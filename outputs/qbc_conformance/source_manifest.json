@@ -1,0 +1,17 @@
+{
+  "source": {
+    "title": "6 批次上傳格式說明_QBC_乳癌照護品質提升方案_XML上傳_11507(定版).docx",
+    "version": "11507 定版",
+    "sha256": "f63be9eae07c552af4f03e9771e48bcda1c5b4eb14c36ae6291c1fc0fb4e069d",
+    "notice": "Derived from the locally supplied QBC document; does not replace the official specification."
+  },
+  "generated_files": [
+    "qbc_workbench/data/qbc_fields.json",
+    "outputs/qbc_conformance/qbc_fields.csv",
+    "outputs/qbc_conformance/clinical_review_template.csv",
+    "outputs/qbc_conformance/rule_coverage.csv",
+    "outputs/qbc_conformance/field_rule_audit.csv",
+    "ig/input/pagecontent/field-audit.md"
+  ],
+  "field_count": 115
+}

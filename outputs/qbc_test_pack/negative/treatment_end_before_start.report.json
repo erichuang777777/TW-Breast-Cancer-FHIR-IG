@@ -1,0 +1,12 @@
+{
+  "accepted": false,
+  "issues": [
+    {
+      "severity": "error",
+      "field": "TM10",
+      "rule": "QBC-TM10-DATE-ORDER",
+      "message": "must not be earlier than TM09",
+      "location": "treatments[0]"
+    }
+  ]
+}

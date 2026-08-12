@@ -1,0 +1,53 @@
+{
+  "sources": [
+    {
+      "file": "1 全民健康保險乳癌照護品質提升方案_方案說明.pdf",
+      "type": "pdf",
+      "sha256": "763e182c9775835cb3a1275a011343431bbddd0832b8fdfc04951b10f4559a5e",
+      "pages": 12,
+      "extracted_lines": 791,
+      "output": "outputs/source_audit/extracted/01_1 全民健康保險乳癌照護品質提升方案_方案說明.txt"
+    },
+    {
+      "file": "2 乳癌照護品質提升方案問答集(1150629修訂).pdf",
+      "type": "pdf",
+      "sha256": "39dbcf066dd729431ebe80116903266438ed1ff0471c7c89f7676d8ee3be9539",
+      "pages": 13,
+      "extracted_lines": 838,
+      "output": "outputs/source_audit/extracted/02_2 乳癌照護品質提升方案問答集(1150629修訂).txt"
+    },
+    {
+      "file": "3 乳癌VPN系統說明會.pdf",
+      "type": "pdf",
+      "sha256": "6e4fcd89ddda307999c5cd32e1b547e54dedc6532d83eae5536c548f6dacf1e4",
+      "pages": 24,
+      "extracted_lines": 1032,
+      "output": "outputs/source_audit/extracted/03_3 乳癌VPN系統說明會.txt"
+    },
+    {
+      "file": "4 乳癌照護品質提升方案VPN使用者手冊.pdf",
+      "type": "pdf",
+      "sha256": "888dd7f655c857e159f27a6bd34d2625aae8359341d154f73db3b5c2443f9ac1",
+      "pages": 13,
+      "extracted_lines": 857,
+      "output": "outputs/source_audit/extracted/04_4 乳癌照護品質提升方案VPN使用者手冊.txt"
+    },
+    {
+      "file": "5 批次上傳使用手冊_QBC_UploadXML_UserGuide.pdf",
+      "type": "pdf",
+      "sha256": "16a6c90e88f8266867aae95e62acedb4d85192b29e40316896efc8734951b99e",
+      "pages": 2,
+      "extracted_lines": 131,
+      "output": "outputs/source_audit/extracted/05_5 批次上傳使用手冊_QBC_UploadXML_UserGuide.txt"
+    },
+    {
+      "file": "6 批次上傳格式說明_QBC_乳癌照護品質提升方案_XML上傳_11507(定版).docx",
+      "type": "docx",
+      "sha256": "f63be9eae07c552af4f03e9771e48bcda1c5b4eb14c36ae6291c1fc0fb4e069d",
+      "paragraphs": 36,
+      "tables": 5,
+      "extracted_lines": 334,
+      "output": "outputs/source_audit/extracted/06_6 批次上傳格式說明_QBC_乳癌照護品質提升方案_XML上傳_11507(定版).txt"
+    }
+  ]
+}

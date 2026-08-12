@@ -1,0 +1,43 @@
+{
+  "notice": "All cases are fully synthetic.",
+  "golden": [
+    {
+      "diagnosis_type": "1",
+      "xml": "golden/QBC_3501200000_11508_001.xml",
+      "audit": "golden/QBC_3501200000_11508_001.audit.json",
+      "sha256": "c0c3752c8341df4245cb8f9b28ead39e24f5216b1e6c5de9fd32bcd14a7c0121",
+      "mock_status": "accepted"
+    },
+    {
+      "diagnosis_type": "2",
+      "xml": "golden/QBC_3501200000_11508_002.xml",
+      "audit": "golden/QBC_3501200000_11508_002.audit.json",
+      "sha256": "f66c3839a22e66d63ef4791f276397436177087dc1e8d1fef09c79609e4cbdf5",
+      "mock_status": "accepted"
+    },
+    {
+      "diagnosis_type": "3",
+      "xml": "golden/QBC_3501200000_11508_003.xml",
+      "audit": "golden/QBC_3501200000_11508_003.audit.json",
+      "sha256": "a3126c002576a0e464882798237f440e50e50ece51a7478c7ca47e4b608d05e7",
+      "mock_status": "accepted"
+    }
+  ],
+  "negative": [
+    {
+      "name": "invalid_date",
+      "report": "negative/invalid_date.report.json",
+      "accepted": false
+    },
+    {
+      "name": "missing_other_description",
+      "report": "negative/missing_other_description.report.json",
+      "accepted": false
+    },
+    {
+      "name": "treatment_end_before_start",
+      "report": "negative/treatment_end_before_start.report.json",
+      "accepted": false
+    }
+  ]
+}

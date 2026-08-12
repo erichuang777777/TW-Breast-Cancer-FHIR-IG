@@ -1,0 +1,2693 @@
+{
+  "schema_version": "1.0.0",
+  "status": "unofficial-derived-draft",
+  "source": {
+    "title": "6 批次上傳格式說明_QBC_乳癌照護品質提升方案_XML上傳_11507(定版).docx",
+    "version": "11507 定版",
+    "sha256": "f63be9eae07c552af4f03e9771e48bcda1c5b4eb14c36ae6291c1fc0fb4e069d",
+    "notice": "Derived from the locally supplied QBC document; does not replace the official specification."
+  },
+  "section_rules": [
+    {
+      "rule_id": "QBC-TM02-SURGERY-POSTOP-REQUIRED",
+      "condition": "TM02=1 and DIAG_TYPE in (1,2)",
+      "fields": "D027-D057",
+      "precedence": "field-specific conditions override"
+    },
+    {
+      "rule_id": "QBC-DIAGTYPE3-RECURRENCE-REQUIRED",
+      "condition": "DIAG_TYPE=3",
+      "fields": "D058-D085",
+      "precedence": "field-specific conditions override"
+    }
+  ],
+  "program_rules": [
+    {
+      "rule_id": "QBC-FAQ-PREOP-HORMONE-3D-DIRECT-SURGERY",
+      "condition": "preoperative hormone medication for 3 days",
+      "outcome": "classify as DIAG_TYPE=1 (new diagnosis, direct curative surgery), not neoadjuvant therapy",
+      "enforcement": "clinical-review",
+      "source": "QBC FAQ item 5 supplied by the project reviewer"
+    },
+    {
+      "rule_id": "QBC-FAQ-BILATERAL-TWO-RECORDS",
+      "condition": "simultaneous bilateral breast cancer",
+      "outcome": "create two clinical records for the same patient: L and R",
+      "enforcement": "batch-review",
+      "source": "QBC FAQ item 6.1 supplied by the project reviewer"
+    },
+    {
+      "rule_id": "QBC-FAQ-BILATERAL-SEVERITY-ORDER",
+      "condition": "bilateral lesions have different severity",
+      "outcome": "submit the more severe side first, then the other side",
+      "enforcement": "clinical-and-batch-review",
+      "source": "QBC FAQ item 6.1 supplied by the project reviewer"
+    },
+    {
+      "rule_id": "QBC-FAQ-BILATERAL-ID-REWARD",
+      "condition": "the same patient has bilateral records",
+      "outcome": "integrated-care and follow-up rewards are paid once per ID, using the more severe side",
+      "enforcement": "payer-system-only",
+      "source": "QBC FAQ item 6.2 supplied by the project reviewer"
+    },
+    {
+      "rule_id": "QBC-FAQ-IPSILATERAL-HISTOLOGY-SEVERITY",
+      "condition": "two or more histology types occur in the same breast",
+      "outcome": "submit only the more severe histology; do not create a second record",
+      "enforcement": "clinical-review",
+      "source": "QBC FAQ item 6.3 supplied by the project reviewer"
+    },
+    {
+      "rule_id": "QBC-T01-AFTER-ONE-YEAR",
+      "condition": "annual follow-up",
+      "outcome": "T01 may be entered after one full year from P09, once per year, for at most five years",
+      "enforcement": "automated",
+      "source": "QBC scheme, FAQ section 3 item 1, VPN briefing page 17, and XML specification T01"
+    },
+    {
+      "rule_id": "QBC-T06-DEATH-CLOSE",
+      "condition": "T02=5 or T03=4",
+      "outcome": "T06 is required; death is treated as case closure and T05 is not additionally required",
+      "enforcement": "automated",
+      "source": "XML specification T06 and VPN briefing page 17"
+    }
+  ],
+  "fields": [
+    {
+      "tag": "HOSPID",
+      "label": "醫事機構代碼",
+      "section": "個案鍵值",
+      "required_marker": "＊",
+      "always_required": true,
+      "source_format": "X(10）",
+      "max_length": 10,
+      "data_type": "string",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "醫事服務機構代號"
+    },
+    {
+      "tag": "ID",
+      "label": "個案身份證號",
+      "section": "個案鍵值",
+      "required_marker": "＊",
+      "always_required": true,
+      "source_format": "X(10)",
+      "max_length": 10,
+      "data_type": "string",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "文數字，國民身分證統一編號或外籍居留證號碼(如無居留證號碼請填護照號碼)，如為A123456789則輸入A123456789"
+    },
+    {
+      "tag": "BIRTHDAY",
+      "label": "個案出生年月日",
+      "section": "個案鍵值",
+      "required_marker": "＊",
+      "always_required": true,
+      "source_format": "X(8)",
+      "max_length": 8,
+      "data_type": "date",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206"
+    },
+    {
+      "tag": "DIAG_TYPE",
+      "label": "收案類別",
+      "section": "個案鍵值",
+      "required_marker": "＊",
+      "always_required": true,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "1",
+        "2",
+        "3"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "1:新診斷個案-直接治癒性手術 2:新診斷個案-新輔助性治療法 3:首次復發個案"
+    },
+    {
+      "tag": "LATERALITY",
+      "label": "側性(患部)",
+      "section": "個案鍵值",
+      "required_marker": "＊",
+      "always_required": true,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "L",
+        "R"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-LATERALITY-REQUIRED"
+      ],
+      "source_rule": "填入代碼: L:左側 R:右側 上傳資料包含診斷病理或治療療程時必填。 若為雙側的病患，請將左右側拆分為2筆資料填寫。"
+    },
+    {
+      "tag": "P01",
+      "label": "個案姓名",
+      "section": "基本資料",
+      "required_marker": "＊",
+      "always_required": true,
+      "source_format": "X(50)",
+      "max_length": 50,
+      "data_type": "string",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "中文字採使用Big-5碼，至多為50個中文字"
+    },
+    {
+      "tag": "P02",
+      "label": "個案性別",
+      "section": "基本資料",
+      "required_marker": "＊",
+      "always_required": true,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "0：男性 1：女性 2：其他 (不符合傳統性別者，如雙性、跨性別) 3：未知"
+    },
+    {
+      "tag": "P03",
+      "label": "身高",
+      "section": "基本資料",
+      "required_marker": "＊",
+      "always_required": true,
+      "source_format": "X(5)",
+      "max_length": 5,
+      "data_type": "decimal",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "數字、長度整數至多3位數及小數至多2位數、範例150.3"
+    },
+    {
+      "tag": "P04",
+      "label": "體重",
+      "section": "基本資料",
+      "required_marker": "＊",
+      "always_required": true,
+      "source_format": "X(5)",
+      "max_length": 5,
+      "data_type": "decimal",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "數字、長度整數至多3位數及小數至多2位數、範例59.65"
+    },
+    {
+      "tag": "P05",
+      "label": "是否已停經",
+      "section": "基本資料",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "1",
+        "2"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-P05-FEMALE"
+      ],
+      "source_rule": "※ 僅女性個案需要填寫。 1：是 2：否"
+    },
+    {
+      "tag": "P06",
+      "label": "停經年齡",
+      "section": "基本資料",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(2)",
+      "max_length": 2,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 0,
+      "maximum": 99,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-P06-MENOPAUSE"
+      ],
+      "source_rule": "※ 僅限已停經的女性個案需要填寫。 填入數字範圍值:0-99 (實歲)"
+    },
+    {
+      "tag": "P07",
+      "label": "主責醫師身份證字號",
+      "section": "基本資料",
+      "required_marker": "＊",
+      "always_required": true,
+      "source_format": "X(10)",
+      "max_length": 10,
+      "data_type": "string",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "文數字，國民身分證統一編號或外籍居留證號碼(如無居留證號碼請填護照號碼) 如為A123456789則輸入A123456789"
+    },
+    {
+      "tag": "P08",
+      "label": "個案分類",
+      "section": "基本資料",
+      "required_marker": "＊",
+      "always_required": true,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "1",
+        "2",
+        "3"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "1：本院診斷+治療 2：他院診斷、本院治療 3：復發個案"
+    },
+    {
+      "tag": "P09",
+      "label": "收案日期",
+      "section": "基本資料",
+      "required_marker": "＊",
+      "always_required": true,
+      "source_format": "X(8)",
+      "max_length": 8,
+      "data_type": "date",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "確定診斷及提供相關治療建議之(門診)日期 固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206"
+    },
+    {
+      "tag": "D001",
+      "label": "(新輔助) 最初診斷日期",
+      "section": "新輔助－術前診斷",
+      "required_marker": "＊",
+      "always_required": false,
+      "source_format": "X(8)",
+      "max_length": 8,
+      "data_type": "date",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-D001-DIAGTYPE"
+      ],
+      "source_rule": "若收案類別「DIAG_TYPE」為「2」時必填 臨床或病理上診斷為癌症的開始日期 固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206"
+    },
+    {
+      "tag": "D002",
+      "label": "(新輔助) 最初診斷院所",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "1",
+        "2"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "1：本院 2：他院"
+    },
+    {
+      "tag": "D003",
+      "label": "(新輔助) 組織學分類",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "0：No cancer 1：Intraductal ca (DCIS) 2：Invasive cancer with no special type (IDC) 3：Invasive lobular ca (ILC) 4：Mucinous ca 5：Tubular ca 6：Invasive papillary ca 7：Metaplastic carcinoma 8：Others"
+    },
+    {
+      "tag": "D004",
+      "label": "(新輔助) 腫瘤組織分級",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "1",
+        "2",
+        "3"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-D004-HISTOLOGY"
+      ],
+      "source_rule": "※若(新輔助) 組織學分類「D003」為「0、1」，不需填寫。 X：無法評估等級(無法確定分級) 1：分化良好(低度惡性) 2：中度分化(中度惡性) 3：分化差(高度惡性)"
+    },
+    {
+      "tag": "D005",
+      "label": "(新輔助) 臨床期別 T",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(5)",
+      "max_length": 5,
+      "data_type": "code",
+      "allowed_values": [
+        "T0",
+        "Tis",
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "Tx"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "T0：No evidence of primary tumor Tis：(DCIS)*Ductal carcinoma in situ T1：腫瘤小於等於2公分 T2：腫瘤大於2公分，小於等於5公分 T3：腫瘤大於5公分 T4：腫瘤已侵犯至胸壁或是皮膚(潰瘍或結節)，發炎性乳癌 Tx：未知"
+    },
+    {
+      "tag": "D006",
+      "label": "(新輔助) 臨床期別 N",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(5)",
+      "max_length": 5,
+      "data_type": "code",
+      "allowed_values": [
+        "N0",
+        "N1mi",
+        "N1",
+        "N2",
+        "N3",
+        "Nx"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "N0：無區域淋巴結轉移（影像學或臨床檢查） N1mi：微小轉移(0.2-2mm) N1：轉移至同側可移動的 I、II 區腋窩淋巴結 N2：轉移至同側 I、II 區腋窩淋巴結，臨床表現為固定或 融合；或轉移至同側內乳淋巴結，但無腋窩淋巴結轉移 N3：轉移至同側鎖骨下（III 區腋窩）淋巴結，伴或不伴 I、II 區腋窩淋巴結受累；或轉移至同側內乳淋巴結， 伴隨 I、II 區腋窩淋巴結轉移；或同側鎖骨上淋巴結 轉移，伴隨或不伴隨腋窩或內乳淋巴結受累 Nx：未知"
+    },
+    {
+      "tag": "D007",
+      "label": "(新輔助) 臨床期別 M",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(5)",
+      "max_length": 5,
+      "data_type": "code",
+      "allowed_values": [
+        "M0",
+        "M1",
+        "Mx"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "M0：遠端器官沒有癌細胞轉移 M1：遠端器官有癌細胞轉移，例如腦、肝、肺等 Mx：未知"
+    },
+    {
+      "tag": "D008",
+      "label": "(新輔助) 癌症臨床分期：TNM 計算結果",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(20)",
+      "max_length": 20,
+      "data_type": "string",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-D008-TNM"
+      ],
+      "source_rule": "預設為空白，由系統自動計算「D005」、「D006」、「D007」三欄英文代號值合併結果，若有對應下列的Stage，則由系統代入其對應的Stage，若無任何對應的Stage，則需自行填寫，不能空白。 e.g.「D005」填入[T4]，「D006」填入[N0]，「D007」填入[M0]，合併計算結果為［T4N0M0］，其所對應的Stage為「StageⅢB」，則系統將此欄位值自動代入［StageⅢB］ e.g.「D005」填入[T4]，「D006」填入[Nx]，「D007」填入[M0]，合併計算結果為［T4NxM0］，沒有對應的Stage則需由使用者自行填入值StageⅠ~Ⅳ。 ==================== Stage ================= Stage 0： ['TisN0M0'] StageⅠA： ['T1N0M0'] StageⅠB： ['T0N1miM0', 'T1N1miM0'] StageⅡA： ['T2N0M0', 'T0N1M0', 'T1N1M0'] StageⅡB： ['T3N0M0', 'T2N1M0'] StageⅢA： ['T3N1M0', 'T3N2M0', 'T0N2M0', 'T1N2M0', 'T2N2M0'] StageⅢB： ['T4N0M0', 'T4N1M0', 'T4N2M0'] StageⅢC： ['anyTN3M0'] StageⅣ： ['anyTanyNM1'] Stage X： ['TxNxMx', 'TxNxM0']"
+    },
+    {
+      "tag": "D009",
+      "label": "(新輔助) 遠端轉移部位",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(30)",
+      "max_length": 30,
+      "data_type": "code-list",
+      "allowed_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "multi_select": true,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-D009-STAGE4"
+      ],
+      "source_rule": "填入代碼，可複選 ※「D008」滿足「StageⅣ」才可選擇。 ※ 複選以逗點相隔。 e.g. 1,5,10,11,12 (以半形英文逗號「,」連接數字) 1：遠端淋巴 2：皮膚 3：骨 4：肝 5：肺 6：腦 7：骨髓 8：胸膜 9：腹膜 10：腎上腺 11：對側腋下淋巴 12：其他"
+    },
+    {
+      "tag": "D010",
+      "label": "(新輔助) 遠端轉移部位：其他",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(200)",
+      "max_length": 200,
+      "data_type": "string",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-D010-OTHER"
+      ],
+      "source_rule": "※「D009」為[12:其他]，此欄位為必填。 內容自訂，文字格式"
+    },
+    {
+      "tag": "D011",
+      "label": "(新輔助) 術前腋下淋巴檢驗：未檢驗",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-D011-D012-XOR"
+      ],
+      "source_rule": "※與術前腋下淋巴檢驗：檢驗方式「D012」擇一填寫 ※ 若此欄位有填寫，則不需填寫「D012」、「D013」 1：未檢驗"
+    },
+    {
+      "tag": "D012",
+      "label": "(新輔助) 術前腋下淋巴檢驗：檢驗方式",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "1",
+        "2"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-D011-D012-XOR"
+      ],
+      "source_rule": "※與術前腋下淋巴檢驗：未檢驗「D011」擇一填寫 1：細針穿刺 2：粗針切片"
+    },
+    {
+      "tag": "D013",
+      "label": "(新輔助) 術前腋下淋巴檢驗：檢驗結果",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-D013-METHOD"
+      ],
+      "source_rule": "※「D012」有值時，才需填寫。 0：陰性 1：陽性"
+    },
+    {
+      "tag": "D014",
+      "label": "(新輔助) ER",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "X：未檢驗 0：陰性 1：陽性"
+    },
+    {
+      "tag": "D015",
+      "label": "(新輔助) ER 數值",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(3)",
+      "max_length": 3,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 1,
+      "maximum": 100,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-D015-ER"
+      ],
+      "source_rule": "※「D014」為[1:陽性]時，才需填寫。 填入範圍值：01-100 整數百分比(%)"
+    },
+    {
+      "tag": "D016",
+      "label": "(新輔助) PR",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "X：未檢驗 0：陰性 1：陽性"
+    },
+    {
+      "tag": "D017",
+      "label": "(新輔助) PR 數值",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(3)",
+      "max_length": 3,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 1,
+      "maximum": 100,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-D017-PR"
+      ],
+      "source_rule": "※「D016」為[1:陽性]時，才需填寫。 填入範圍值：01-100 整數百分比(%)"
+    },
+    {
+      "tag": "D018",
+      "label": "(新輔助) HER2",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "X：未檢驗 0：IHC 0 (negative or score 0) 1：IHC 1+(negative or score 1+) 2：IHC 2+(equivocal or score 2+) 3：IHC 3+(positive or score 3+)"
+    },
+    {
+      "tag": "D019",
+      "label": "(新輔助) HER2 FISH",
+      "section": "新輔助－術前診斷",
+      "required_marker": "",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-D019-HER2"
+      ],
+      "source_rule": "※「D018」為[2：IHC 2+(equivocal or score 2+)]時，才需填寫。 0：negative 1：positive"
+    },
+    {
+      "tag": "D020",
+      "label": "(新輔助) Ki-67",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "0：未檢驗 1：有檢驗"
+    },
+    {
+      "tag": "D021",
+      "label": "(新輔助) Ki-67 數值",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(3)",
+      "max_length": 3,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 1,
+      "maximum": 100,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-D021-KI67"
+      ],
+      "source_rule": "※「D020」為[1：有檢驗]時，才需填寫。 填入範圍值：01-100 整數百分比(%)"
+    },
+    {
+      "tag": "D022",
+      "label": "(新輔助) BRCA 1/2",
+      "section": "新輔助－術前診斷",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "X：未檢驗 0：無突變 1：有突變"
+    },
+    {
+      "tag": "D023",
+      "label": "(新輔助) PD-L1",
+      "section": "新輔助－術前診斷",
+      "required_marker": "",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "X：未檢驗 0：陰性 1：陽性"
+    },
+    {
+      "tag": "D024",
+      "label": "(術後) 新輔助性治療法之療效",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-D024-NEOADJUVANT-SURGERY"
+      ],
+      "source_rule": "※若收案類別「DIAG_TYPE」為[2:新診斷個案-新輔助性治療法]且治療療程「TM02」為[1.治癒性手術]時，必填 0：Non-pCR 1：pCR"
+    },
+    {
+      "tag": "D025",
+      "label": "(術後) 最初診斷日期",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(8)",
+      "max_length": 8,
+      "data_type": "date",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-D025-DIAGTYPE"
+      ],
+      "source_rule": "※若收案類別「DIAG_TYPE」為[1:新診斷個案-直接治癒性手術]時，必填 ※收案類別「DIAG_TYPE」為[2:新診斷個案-新輔助性治療法]無需填寫 臨床或病理上診斷為癌症的開始日期 固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206"
+    },
+    {
+      "tag": "D026",
+      "label": "(術後) 最初診斷院所",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "1",
+        "2"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-D026-DIAGTYPE"
+      ],
+      "source_rule": "※若收案類別「DIAG_TYPE」為[1:新診斷個案-直接治癒性手術]時，必填 ※收案類別「DIAG_TYPE」為[2:新診斷個案-新輔助性治療法]無需填寫 1：本院 2：他院"
+    },
+    {
+      "tag": "D027",
+      "label": "(術後) 乳房手術",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED"
+      ],
+      "source_rule": "0：乳房部分切除手術 (BCS) 1：乳房全切除術 (Mastectomy)"
+    },
+    {
+      "tag": "D028",
+      "label": "(術後) 手術邊緣",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "0",
+        "1",
+        "2"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED"
+      ],
+      "source_rule": "0：free 1：involved with DCIS 2：involved with invasive carcinoma"
+    },
+    {
+      "tag": "D029",
+      "label": "(術後) 腋窩手術",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED"
+      ],
+      "source_rule": "0：Nil 1：SLNB 2：SLNB → ALND 3：direct ALND 4：TLND"
+    },
+    {
+      "tag": "D030",
+      "label": "(術後) 組織學分類",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED"
+      ],
+      "source_rule": "0：No cancer 1：Intraductal ca (DCIS) 2：Invasive cancer with no special type (IDC) 3：Invasive lobular ca (ILC) 4：Mucinous ca 5：Tubular ca 6：Invasive papillary ca 7：Metaplastic carcinoma 8：Others"
+    },
+    {
+      "tag": "D031",
+      "label": "(術後) 腫瘤組織分級",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "1",
+        "2",
+        "3"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED"
+      ],
+      "source_rule": "X：無法評估等級(無法確定分級) 1：分化良好(低度惡性) 2：中度分化(中度惡性) 3：分化差(高度惡性)"
+    },
+    {
+      "tag": "D032",
+      "label": "(術後) 病理期別T",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(5)",
+      "max_length": 5,
+      "data_type": "code",
+      "allowed_values": [
+        "T0",
+        "Tis",
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "Tx"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED"
+      ],
+      "source_rule": "T0：No evidence of primary tumor Tis：(DCIS)*Ductal carcinoma in situ T1：腫瘤小於等於2公分 T2：腫瘤大於2公分，小於等於5公分 T3：腫瘤大於5公分 T4：腫瘤已侵犯至胸壁或是皮膚(潰瘍或結節)，發炎性乳癌 Tx：未知"
+    },
+    {
+      "tag": "D033",
+      "label": "(術後) 病理期別N",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(5)",
+      "max_length": 5,
+      "data_type": "code",
+      "allowed_values": [
+        "N0",
+        "N1mi",
+        "N1",
+        "N2",
+        "N3",
+        "Nx"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED"
+      ],
+      "source_rule": "N0：沒有淋巴結轉移 N1mi：微小轉移(0.2-2mm) N1：同側腋下淋巴結1~3顆有癌細胞轉移 N2：同側腋下淋巴結4~9顆有癌細胞轉移 N3：同側腋下淋巴結大於等於10顆有癌細胞轉移 Nx：未知"
+    },
+    {
+      "tag": "D034",
+      "label": "(術後) 病理期別M",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(5)",
+      "max_length": 5,
+      "data_type": "code",
+      "allowed_values": [
+        "M0",
+        "M1",
+        "Mx"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED"
+      ],
+      "source_rule": "M0：遠端器官沒有癌細胞轉移 M1：遠端器官有癌細胞轉移，例如腦、肝、肺等 Mx：未知"
+    },
+    {
+      "tag": "D035",
+      "label": "(術後) 癌症病理分期：TNM 計算結果",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(40)",
+      "max_length": 40,
+      "data_type": "string",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED",
+        "QBC-D035-TNM"
+      ],
+      "source_rule": "預設為空白，由系統自動計算「D032」、「D033」、「D034」三欄英文代號值合併計算結果，若有對應下列的Stage，則由系統代入其對應的Stage，若無任何對應的Stage，則需自行填寫，不能空白。 e.g.「D032」填入[T4]，「D033」填入[N0]，「D034」填入[M0]，合併計算結果為［T4N0M0］，其所對應的Stage為「StageⅢB」，則系統將此欄位值自動代入［StageⅢB］ e.g.「D032」填入[T4]，「D033」填入[Nx]，「D034」填入[M0]，合併計算結果為［T4NxM0］，沒有對應的Stage需由使用者自行填入值StageⅠ~Ⅳ。 ==================== Stage ================= Stage 0：['TisN0M0'] StageⅠA：['T1N0M0'] StageⅠB：['T0N1miM0', 'T1N1miM0'] StageⅡA：['T2N0M0', 'T0N1M0', 'T1N1M0'] StageⅡB：['T3N0M0', 'T2N1M0'] StageⅢA：['T3N1M0', 'T3N2M0', 'T0N2M0', 'T1N2M0', 'T2N2M0'] StageⅢB：['T4N0M0', 'T4N1M0', 'T4N2M0'] StageⅢC：['anyTN3M0'] StageⅣ：['anyTanyNM1'] Stage X：['TxNxMx', 'TxNxM0']"
+    },
+    {
+      "tag": "D036",
+      "label": "(術後) 遠端轉移部位",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(30)",
+      "max_length": 30,
+      "data_type": "code-list",
+      "allowed_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "multi_select": true,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND D035=StageⅣ"
+      ],
+      "rule_ids": [
+        "QBC-D036-STAGE4"
+      ],
+      "source_rule": "※「D035」滿足[StageⅣ]才需填寫。 填入代碼，可複選 e.g. 1,5,10,11,12 (以半形英文逗號「,」連接數字) 1：遠端淋巴 2：皮膚 3：骨 4：肝 5：肺 6：腦 7：骨髓 8：胸膜 9：腹膜 10：腎上腺 11：對側腋下淋巴 12：其他"
+    },
+    {
+      "tag": "D037",
+      "label": "(術後) 遠端轉移部位：其他",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(200)",
+      "max_length": 200,
+      "data_type": "string",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND D036 CONTAINS 12"
+      ],
+      "rule_ids": [
+        "QBC-D037-OTHER"
+      ],
+      "source_rule": "※「D036」為[12：其他]，此欄位為必填。 內容自訂，文字格式"
+    },
+    {
+      "tag": "D038",
+      "label": "(術後) 哨兵淋巴結",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED"
+      ],
+      "source_rule": "X：未檢驗 0：陰性 1：陽性"
+    },
+    {
+      "tag": "D039",
+      "label": "(術後) 哨兵淋巴結：陽性顆數",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(2)",
+      "max_length": 2,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 1,
+      "maximum": 99,
+      "required_when": [
+        "TM02=1 AND D038=1"
+      ],
+      "rule_ids": [
+        "QBC-D039-SENTINEL"
+      ],
+      "source_rule": "※「D038」為[1.陽性]時，必填。 填入範圍值：1-99"
+    },
+    {
+      "tag": "D040",
+      "label": "(術後) 哨兵淋巴結：哨兵淋巴結顆數",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(2)",
+      "max_length": 2,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 1,
+      "maximum": 99,
+      "required_when": [
+        "TM02=1 AND D038 IN (0,1)"
+      ],
+      "rule_ids": [
+        "QBC-D040-SENTINEL"
+      ],
+      "source_rule": "※「D038」為[0：陰性]或[1：陽性]時，必填。 填入範圍值：1-99"
+    },
+    {
+      "tag": "D041",
+      "label": "(術後) 腋下淋巴結",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED"
+      ],
+      "source_rule": "X：未檢驗 0：陰性 1：陽性"
+    },
+    {
+      "tag": "D042",
+      "label": "(術後) 腋下淋巴結：陽性顆數",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(2)",
+      "max_length": 2,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 1,
+      "maximum": 99,
+      "required_when": [
+        "TM02=1 AND D041=1"
+      ],
+      "rule_ids": [
+        "QBC-D042-AXILLARY"
+      ],
+      "source_rule": "※「D041」為[1：陽性]時，必填。 填入範圍值：1-99"
+    },
+    {
+      "tag": "D043",
+      "label": "(術後) 腋下淋巴結：腋下淋巴結顆數",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(2)",
+      "max_length": 2,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 1,
+      "maximum": 99,
+      "required_when": [
+        "TM02=1 AND D041 IN (0,1)"
+      ],
+      "rule_ids": [
+        "QBC-D043-AXILLARY"
+      ],
+      "source_rule": "※「D041」為[0.陰性]或[1.陽性]時，必填。 填入範圍值：1-99"
+    },
+    {
+      "tag": "D044",
+      "label": "(術後) 淋巴結陽性數量",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED",
+        "QBC-D044-NODE"
+      ],
+      "source_rule": "※「D038」、「D041」任一項滿足[1：陽性]，需填寫此欄位。 0：無 1：有"
+    },
+    {
+      "tag": "D045",
+      "label": "(術後) 淋巴結陽性數量：Micro-Metastasis 顆數",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(2)",
+      "max_length": 2,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 0,
+      "maximum": 99,
+      "required_when": [
+        "TM02=1 AND D044=1 (AT LEAST ONE OF D045,D046)"
+      ],
+      "rule_ids": [
+        "QBC-D045-D046-ONE"
+      ],
+      "source_rule": "※「D044」為[1：有]時，「D045」與「D046」至少填一項。 填入範圍值：0-99"
+    },
+    {
+      "tag": "D046",
+      "label": "(術後) 淋巴結陽性數量：Macro-Metastasis 顆數",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(2)",
+      "max_length": 2,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 0,
+      "maximum": 99,
+      "required_when": [
+        "TM02=1 AND D044=1 (AT LEAST ONE OF D045,D046)"
+      ],
+      "rule_ids": [
+        "QBC-D045-D046-ONE"
+      ],
+      "source_rule": "※「D044」為「1：有]」時，「D045」與「D046」至少填一項。 填入範圍值：0-99"
+    },
+    {
+      "tag": "D047",
+      "label": "(術後) 手術時顯微鏡下腫瘤大小",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(5)",
+      "max_length": 5,
+      "data_type": "decimal",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 0,
+      "maximum": 99.99,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED"
+      ],
+      "source_rule": "填入範圍值：0.00-99.99"
+    },
+    {
+      "tag": "D048",
+      "label": "(術後) ER",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED"
+      ],
+      "source_rule": "X：未檢驗 0：陰性 1：陽性"
+    },
+    {
+      "tag": "D049",
+      "label": "(術後) ER 數值",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(3)",
+      "max_length": 3,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 1,
+      "maximum": 100,
+      "required_when": [
+        "TM02=1 AND D048=1"
+      ],
+      "rule_ids": [
+        "QBC-D049-ER"
+      ],
+      "source_rule": "※(術後) ER「D048」為[1：陽性]時，才需填寫。 填入範圍值：01-100 整數百分比(%)"
+    },
+    {
+      "tag": "D050",
+      "label": "(術後) PR",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED"
+      ],
+      "source_rule": "X：未檢驗 0：陰性 1：陽性"
+    },
+    {
+      "tag": "D051",
+      "label": "(術後) PR 數值",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(3)",
+      "max_length": 3,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 1,
+      "maximum": 100,
+      "required_when": [
+        "TM02=1 AND D050=1"
+      ],
+      "rule_ids": [
+        "QBC-D051-PR"
+      ],
+      "source_rule": "※「D050」為[1：陽性]時，才需填寫。 填入範圍值：01-100 整數百分比(%)"
+    },
+    {
+      "tag": "D052",
+      "label": "(術後) HER2",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED"
+      ],
+      "source_rule": "X：未檢驗 0：IHC 0 (negative or score 0) 1：IHC 1+(negative or score 1+) 2：IHC 2+(equivocal or score 2+) 3：IHC 3+(positive or score 3+)"
+    },
+    {
+      "tag": "D053",
+      "label": "(術後) HER2：FISH",
+      "section": "術後病理",
+      "required_marker": "",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND D052=2"
+      ],
+      "rule_ids": [
+        "QBC-D053-HER2"
+      ],
+      "source_rule": "※「D052」為[2：IHC 2+(equivocal or score 2+)]時，才需填寫。 0：negative 1：positive"
+    },
+    {
+      "tag": "D054",
+      "label": "(術後) Ki-67",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED"
+      ],
+      "source_rule": "0：未檢驗 1：有檢驗"
+    },
+    {
+      "tag": "D055",
+      "label": "(術後) Ki-67 數值",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(3)",
+      "max_length": 3,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 1,
+      "maximum": 100,
+      "required_when": [
+        "TM02=1 AND D054=1"
+      ],
+      "rule_ids": [
+        "QBC-D055-KI67"
+      ],
+      "source_rule": "※ 「D054」為[1：有檢驗]時，才需填寫。 填入範圍值：01-100 整數百分比(%)"
+    },
+    {
+      "tag": "D056",
+      "label": "(術後) BRCA 1/2",
+      "section": "術後病理",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED"
+      ],
+      "source_rule": "X：未檢驗 0：無突變 1：有突變"
+    },
+    {
+      "tag": "D057",
+      "label": "(術後) PD-L1",
+      "section": "術後病理",
+      "required_marker": "",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "TM02=1 AND DIAG_TYPE IN (1,2)"
+      ],
+      "rule_ids": [
+        "QBC-TM02-SURGERY-POSTOP-REQUIRED"
+      ],
+      "source_rule": "X：未檢驗 0：陰性 1：陽性"
+    },
+    {
+      "tag": "D058",
+      "label": "(復發) 診斷日期",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(8)",
+      "max_length": 8,
+      "data_type": "date",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED"
+      ],
+      "source_rule": "固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206"
+    },
+    {
+      "tag": "D059",
+      "label": "(復發) 診斷院所",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "1",
+        "2"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED"
+      ],
+      "source_rule": "1：本院 2：他院"
+    },
+    {
+      "tag": "D060",
+      "label": "(復發) 臨床期別 T",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(5)",
+      "max_length": 5,
+      "data_type": "code",
+      "allowed_values": [
+        "T0",
+        "Tis",
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "Tx"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED"
+      ],
+      "source_rule": "T0：No evidence of primary tumor Tis：(DCIS)*Ductal carcinoma in situ T1：腫瘤小於等於2公分 T2：腫瘤大於2公分，小於等於5公分 T3：腫瘤大於5公分 T4：腫瘤已侵犯至胸壁或是皮膚(潰瘍或結節)，發炎性乳癌 Tx：未知"
+    },
+    {
+      "tag": "D061",
+      "label": "(復發) 臨床期別 N",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(5)",
+      "max_length": 5,
+      "data_type": "code",
+      "allowed_values": [
+        "N0",
+        "N1mi",
+        "N1",
+        "N2",
+        "N3",
+        "Nx"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED"
+      ],
+      "source_rule": "N0：無區域淋巴結轉移（影像學或臨床檢查） N1mi：微小轉移(0.2-2mm) N1：轉移至同側可移動的 I、II 區腋窩淋巴結 N2：轉移至同側 I、II 區腋窩淋巴結，臨床表現為固定或融合；或轉移至同側內乳淋巴結，但無腋窩淋巴結轉移 N3：轉移至同側鎖骨下（III 區腋窩）淋巴結，伴或不伴 I、II 區腋窩淋巴結受累；或轉移至同側內乳淋巴結，伴隨 I、II 區腋窩淋巴結轉移；或同側鎖骨上淋巴結轉移，伴隨或不伴隨腋窩或內乳淋巴結受累 Nx：未知"
+    },
+    {
+      "tag": "D062",
+      "label": "(復發) 臨床期別 M",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(5)",
+      "max_length": 5,
+      "data_type": "code",
+      "allowed_values": [
+        "M0",
+        "M1",
+        "Mx"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED"
+      ],
+      "source_rule": "M0：遠端器官沒有癌細胞轉移 M1：遠端器官有癌細胞轉移，例如腦、肝、肺等 Mx：未知"
+    },
+    {
+      "tag": "D063",
+      "label": "(復發) 癌症臨床分期：TNM 計算結果",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(20)",
+      "max_length": 20,
+      "data_type": "string",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED",
+        "QBC-D063-TNM"
+      ],
+      "source_rule": "預設為空白，由系統自動計算「D060」、「D061」、「D062」三欄英文代號值合併結果，若有對應下列的Stage，則由系統代入其對應的Stage，若無任何對應的Stage，則需自行填寫，不能空白。 e.g.「D060」填入[T4]，「D061」填入[N0]，「D062」填入[M0]，合併計算結果為［T4N0M0］，其所對應的Stage為「StageⅢB」，則系統將此欄位值自動代入［StageⅢB］ e.g.「D060」填入[T4]，「D061」填入[Nx]，「D062」填入[M0]，合併計算結果為［T4NxM0］，沒有對應的Stage則需由使用者自行填入值StageⅠ~Ⅳ。 ==================== Stage ================= Stage 0： ['TisN0M0'] StageⅠA：['T1N0M0'] StageⅠB：['T0N1miM0', 'T1N1miM0'] StageⅡA：['T2N0M0', 'T0N1M0', 'T1N1M0'] StageⅡB：['T3N0M0', 'T2N1M0'] StageⅢA：['T3N1M0', 'T3N2M0', 'T0N2M0', 'T1N2M0', 'T2N2M0'] StageⅢB：['T4N0M0', 'T4N1M0', 'T4N2M0'] StageⅢC：['anyTN3M0'] StageⅣ：['anyTanyNM1'] Stage X：['TxNxMx', 'TxNxM0']"
+    },
+    {
+      "tag": "D064",
+      "label": "(復發) 病理期別 T",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(5)",
+      "max_length": 5,
+      "data_type": "code",
+      "allowed_values": [
+        "T0",
+        "Tis",
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "Tx"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED"
+      ],
+      "source_rule": "T0：No evidence of primary tumor Tis：(DCIS)*Ductal carcinoma in situ T1：腫瘤小於等於2公分 T2：腫瘤大於2公分，小於等於5公分 T3：腫瘤大於5公分 T4：腫瘤已侵犯至胸壁或是皮膚(潰瘍或結節)，發炎性乳癌 Tx：未知"
+    },
+    {
+      "tag": "D065",
+      "label": "(復發) 病理期別 N",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(5)",
+      "max_length": 5,
+      "data_type": "code",
+      "allowed_values": [
+        "N0",
+        "N1mi",
+        "N1",
+        "N2",
+        "N3",
+        "Nx"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED"
+      ],
+      "source_rule": "N0：沒有淋巴結轉移 N1mi：微小轉移(0.2-2mm) N1：同側腋下淋巴結1~3顆有癌細胞轉移 N2：同側腋下淋巴結4~9顆有癌細胞轉移 N3：同側腋下淋巴結大於等於10顆有癌細胞轉移 Nx：未知"
+    },
+    {
+      "tag": "D066",
+      "label": "(復發) 病理期別 M",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(5)",
+      "max_length": 5,
+      "data_type": "code",
+      "allowed_values": [
+        "M0",
+        "M1",
+        "Mx"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED"
+      ],
+      "source_rule": "M0：遠端器官沒有癌細胞轉移 M1：遠端器官有癌細胞轉移，例如腦、肝、肺等 Mx：未知"
+    },
+    {
+      "tag": "D067",
+      "label": "(復發) 癌症病理分期：TNM 計算結果",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(20)",
+      "max_length": 20,
+      "data_type": "string",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED",
+        "QBC-D067-TNM"
+      ],
+      "source_rule": "預設為空白，由系統自動計算「D064」、「D065」、「D066」三欄英文代號值合併計算結果，若有對應下列的Stage，則由系統代入其對應的Stage，若無任何對應的Stage，則需自行填寫，不能空白。 e.g.「D0064」填入[T4]，「D0065」填入[N0]，「D0066」填入[M0]，合併計算結果為［T4N0M0］，其所對應的Stage為「StageⅢB」，則系統將此欄位值自動代入［StageⅢB］ e.g.「D0064」填入[T4]，「D0065」填入[Nx]，「D0066」填入[M0]，合併計算結果為［T4NxM0］，沒有對應的Stage則需由使用者自行填入值StageⅠ~Ⅳ。 ==================== Stage ================= Stage 0：['TisN0M0'] StageⅠA：['T1N0M0'] StageⅠB：['T0N1miM0', 'T1N1miM0'] StageⅡA：['T2N0M0', 'T0N1M0', 'T1N1M0'] StageⅡB：['T3N0M0', 'T2N1M0'] StageⅢA：['T3N1M0', 'T3N2M0', 'T0N2M0', 'T1N2M0', 'T2N2M0'] StageⅢB：['T4N0M0', 'T4N1M0', 'T4N2M0'] StageⅢC：['anyTN3M0'] StageⅣ：['anyTanyNM1'] Stage X：['TxNxMx', 'TxNxM0']"
+    },
+    {
+      "tag": "D068",
+      "label": "(復發) 復發位置",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(30)",
+      "max_length": 30,
+      "data_type": "code-list",
+      "allowed_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "multi_select": true,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED",
+        "QBC-D068-RECURRENCE"
+      ],
+      "source_rule": "※ 填入代碼，可複選 ※ 複選以逗點相隔 e.g. 1,5,10,11,12 (以半形英文逗號「,」連接數字) 1：乳房(局部復發) 2：遠端淋巴 3：皮膚 4：骨 5：肝 6：肺 7：腦 8：骨髓 9：胸膜 10：腹膜 11：腎上腺 12：對側腋下淋巴 13：其他"
+    },
+    {
+      "tag": "D069",
+      "label": "(復發) 復發位置：其他",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(200)",
+      "max_length": 200,
+      "data_type": "string",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3 AND D068 CONTAINS 13"
+      ],
+      "rule_ids": [
+        "QBC-D069-OTHER"
+      ],
+      "source_rule": "※ (復發) 復發位置「D068」選項包含「13：其他」，才需填寫 內容自訂，文字格式"
+    },
+    {
+      "tag": "D070",
+      "label": "(復發) 哨兵淋巴結",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED"
+      ],
+      "source_rule": "X：未檢驗 0：陰性 1：陽性"
+    },
+    {
+      "tag": "D071",
+      "label": "(復發) 哨兵淋巴結：陽性顆數",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(2)",
+      "max_length": 2,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 1,
+      "maximum": 99,
+      "required_when": [
+        "DIAG_TYPE=3 AND D070=1"
+      ],
+      "rule_ids": [
+        "QBC-D071-SENTINEL"
+      ],
+      "source_rule": "※「D070」為「1：陽性」時，必填。 填入範圍值：1-99"
+    },
+    {
+      "tag": "D072",
+      "label": "(復發) 哨兵淋巴結：哨兵淋巴結顆數",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(2)",
+      "max_length": 2,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 1,
+      "maximum": 99,
+      "required_when": [
+        "DIAG_TYPE=3 AND D070 IN (0,1)"
+      ],
+      "rule_ids": [
+        "QBC-D072-SENTINEL"
+      ],
+      "source_rule": "※「D070」為「0：陰性」或「1：陽性」時，必填。 填入範圍值：1-99"
+    },
+    {
+      "tag": "D073",
+      "label": "(復發) 腋下淋巴結",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED"
+      ],
+      "source_rule": "X：未檢驗 0：陰性 1：陽性"
+    },
+    {
+      "tag": "D074",
+      "label": "(復發) 腋下淋巴結：陽性顆數",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(2)",
+      "max_length": 2,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 1,
+      "maximum": 99,
+      "required_when": [
+        "DIAG_TYPE=3 AND D073=1"
+      ],
+      "rule_ids": [
+        "QBC-D074-AXILLARY"
+      ],
+      "source_rule": "※「D073」為「1：陽性」時，必填。 填入範圍值：1-99"
+    },
+    {
+      "tag": "D075",
+      "label": "(復發) 腋下淋巴結：腋下淋巴結顆數",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(2)",
+      "max_length": 2,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 1,
+      "maximum": 99,
+      "required_when": [
+        "DIAG_TYPE=3 AND D073 IN (0,1)"
+      ],
+      "rule_ids": [
+        "QBC-D075-AXILLARY"
+      ],
+      "source_rule": "※ 「D073」為「0：陰性」或「1：陽性」時，必填。 填入範圍值：1-99"
+    },
+    {
+      "tag": "D076",
+      "label": "(復發) ER",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED"
+      ],
+      "source_rule": "X：未檢驗 0：陰性 1：陽性"
+    },
+    {
+      "tag": "D077",
+      "label": "(復發) ER 數值",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(3)",
+      "max_length": 3,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 1,
+      "maximum": 100,
+      "required_when": [
+        "DIAG_TYPE=3 AND D076=1"
+      ],
+      "rule_ids": [
+        "QBC-D077-ER"
+      ],
+      "source_rule": "※「D076」為「1：陽性」時，才需填寫。 填入範圍值：01-100 整數百分比(%)"
+    },
+    {
+      "tag": "D078",
+      "label": "(復發) PR",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED"
+      ],
+      "source_rule": "X：未檢驗 0：陰性 1：陽性"
+    },
+    {
+      "tag": "D079",
+      "label": "(復發) PR 數值",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(3)",
+      "max_length": 3,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 1,
+      "maximum": 100,
+      "required_when": [
+        "DIAG_TYPE=3 AND D078=1"
+      ],
+      "rule_ids": [
+        "QBC-D079-PR"
+      ],
+      "source_rule": "※「D078」為「1：陽性」時，才需填寫。 填入範圍值：01-100 整數百分比(%)"
+    },
+    {
+      "tag": "D080",
+      "label": "(復發) HER2",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED"
+      ],
+      "source_rule": "X：未檢驗 0：IHC 0 (negative or score 0) 1：IHC 1+(negative or score 1+) 2：IHC 2+(equivocal or score 2+) 3：IHC 3+(positive or score 3+)"
+    },
+    {
+      "tag": "D081",
+      "label": "(復發) HER2_FISH",
+      "section": "復發／de novo mBC",
+      "required_marker": "",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3 AND D080=2"
+      ],
+      "rule_ids": [
+        "QBC-D081-HER2"
+      ],
+      "source_rule": "※ 「D080」為「2：IHC 2+(equivocal or score 2+)」時，才需填寫。 0：negative 1：positive"
+    },
+    {
+      "tag": "D082",
+      "label": "(復發) Ki-67",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED"
+      ],
+      "source_rule": "0：未檢驗 1：有檢驗"
+    },
+    {
+      "tag": "D083",
+      "label": "(復發) Ki-67數值",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(3)",
+      "max_length": 3,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 1,
+      "maximum": 100,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED"
+      ],
+      "source_rule": "填入範圍值：01-100 整數百分比(%)"
+    },
+    {
+      "tag": "D084",
+      "label": "(復發) BRCA 1/2",
+      "section": "復發／de novo mBC",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED"
+      ],
+      "source_rule": "X：未檢驗 0：無突變 1：有突變"
+    },
+    {
+      "tag": "D085",
+      "label": "(復發) PD-L1",
+      "section": "復發／de novo mBC",
+      "required_marker": "",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "X",
+        "0",
+        "1"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [
+        "DIAG_TYPE=3"
+      ],
+      "rule_ids": [
+        "QBC-DIAGTYPE3-RECURRENCE-REQUIRED"
+      ],
+      "source_rule": "X：未檢驗 0：陰性 1：陽性"
+    },
+    {
+      "tag": "TM01",
+      "label": "治療順序",
+      "section": "治療療程",
+      "required_marker": "＊",
+      "always_required": false,
+      "source_format": "X(2)",
+      "max_length": 2,
+      "data_type": "integer",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": 1,
+      "maximum": 99,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-TM01-DIRECT-SURGERY",
+        "QBC-TM01-UNIQUE",
+        "QBC-TM01-CONTIGUOUS"
+      ],
+      "source_rule": "按醫事機構於畫面所新增之治療項目，從1開始自行排序 ※當收案類別「DIAG_TYPE」為[1:新診斷個案-直接治癒性手術]時，必填「TM01」為[1]，「TM02」為［1：治癒性手術］"
+    },
+    {
+      "tag": "TM02",
+      "label": "治療方式",
+      "section": "治療療程",
+      "required_marker": "＊",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-TM02-DEPENDENCIES"
+      ],
+      "source_rule": "填入下列代碼1~7 ※當收案類別「DIAG_TYPE」為[1:新診斷個案-直接治癒性手術]時，必填「TM01」為[1]，「TM02」為［1：治癒性手術］ 1：治癒性手術 (新輔助性治療、直接治癒性手術) / 復發手術 (首次復發) 治癒性手術 (新輔助性治療、直接治癒性手術)：需再填「TM03」、「TM09」 復發手術 (首次復發)：需再填「TM03」、「TM04」、「TM09」 2：化學治療：需再填「TM03」、「TM09」、「TM10」 3：放射治療：需再填「TM03」、「TM07」、(TM08)、「TM09」、「TM10」 4：免疫治療：需再填「TM03」、「TM05」、(TM06)、「TM09」、「TM10」 5：標靶治療：需再填「TM03」、「TM05」、(TM06)、「TM09」、「TM10」 6：內分泌治療：需再填「TM03」、「TM09」 7：其他治療：需再填「TM03」、「TM05」、「TM06」、「TM09」、「TM10」"
+    },
+    {
+      "tag": "TM03",
+      "label": "治療情況",
+      "section": "治療療程",
+      "required_marker": "＊",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "1",
+        "2"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "1：本院治療 2：他院治療"
+    },
+    {
+      "tag": "TM04",
+      "label": "手術項目",
+      "section": "治療療程",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "1",
+        "2",
+        "3"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-TM04-RECURRENCE"
+      ],
+      "source_rule": "若「DIAG_TYPE」為[3:首次復發個案]且「TM02」為「1：復發手術」時，必填 1：乳癌復發處手術 2：腋下復發處手術 3：遠端轉移處手術"
+    },
+    {
+      "tag": "TM05",
+      "label": "藥物",
+      "section": "治療療程",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(50)",
+      "max_length": 50,
+      "data_type": "code-list",
+      "allowed_values": [
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "B8",
+        "B9",
+        "B10",
+        "B11",
+        "B12",
+        "C1"
+      ],
+      "multi_select": true,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-TM05-TREATMENT",
+        "QBC-TM05-TREATMENT-TYPE"
+      ],
+      "source_rule": "填入代碼A1~A2、B1~B12、C1，可複選並以逗點相隔。 ※「TM02」包含[4：免疫治療]、[5：標靶治療]、[7：其他治療]才需填寫 e.g.A1,B3,B7,C1 (以半形英文逗號「,」連接數字) [4：免疫治療] A1：Pembrolizumab A2：其他 [5：標靶治療] B1：Abemaciclib B2：Olaparib B3：Palbociclib B4：Pertuzumab B5：Pertuzumab+Trastuzumab B6：Ribocilcib B7：Sacituzumab govitecan B8：Talazoparib B9：Trastuzumab B10：Trastuzumab deruxtecan B11：Trastuzumab emtansine B12：其他 [7：其他治療] C1：其他"
+    },
+    {
+      "tag": "TM06",
+      "label": "藥物 (其他)",
+      "section": "治療療程",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(250)",
+      "max_length": 250,
+      "data_type": "string",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-TM06-OTHER"
+      ],
+      "source_rule": "「TM05」包含 [A2：其他]、[B12：其他]、[C1：其他]任一選項時，需填寫此欄位。"
+    },
+    {
+      "tag": "TM07",
+      "label": "部位",
+      "section": "治療療程",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(20)",
+      "max_length": 20,
+      "data_type": "code-list",
+      "allowed_values": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5"
+      ],
+      "multi_select": true,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-TM07-RADIOTHERAPY"
+      ],
+      "source_rule": "※「TM02」為[3：放射治療] 才需填寫 填入代碼A1~A5，可複選並以逗點相隔。 e.g.A1,A3,A5(以半形英文逗號「,」連接數字) [3：放射治療] A1：全乳房 A2：腋下淋巴結 A3：鎖骨上淋巴結 A4：胸壁 A5：其他"
+    },
+    {
+      "tag": "TM08",
+      "label": "部位 (其他)",
+      "section": "治療療程",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(250)",
+      "max_length": 250,
+      "data_type": "string",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-TM08-OTHER"
+      ],
+      "source_rule": "「TM07」為 [A5：其他]時，需填寫此欄位。"
+    },
+    {
+      "tag": "TM09",
+      "label": "治療項目開始日期",
+      "section": "治療療程",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(8)",
+      "max_length": 8,
+      "data_type": "date",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206"
+    },
+    {
+      "tag": "TM10",
+      "label": "治療項目結束日期",
+      "section": "治療療程",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(8)",
+      "max_length": 8,
+      "data_type": "date",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-TM10-DATE-ORDER"
+      ],
+      "source_rule": "※ 不可早於「TM08」的日期 固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206"
+    },
+    {
+      "tag": "T01",
+      "label": "追蹤年度",
+      "section": "年度追蹤",
+      "required_marker": "＊",
+      "always_required": false,
+      "source_format": "X(8)",
+      "max_length": 8,
+      "data_type": "date",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [],
+      "source_rule": "※ 一年追蹤(填寫)一次 固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206"
+    },
+    {
+      "tag": "T02",
+      "label": "治療狀況",
+      "section": "年度追蹤",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "X"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-T02-DEPENDENCIES",
+        "QBC-TRACE-RECURRENCE-CASE"
+      ],
+      "source_rule": "1.已完成治療(必填追蹤狀況) 2.繼續在本院治療(必填追蹤狀況) 3.轉他院治療(必填轉出日期) 4.病人中斷治療(必填追蹤狀況) 5.於治療中死亡(必填死亡日期) 6.於治療中復發(必填結案日期，且應新增一筆首次復發個案) X.不詳"
+    },
+    {
+      "tag": "T03",
+      "label": "追蹤狀況",
+      "section": "年度追蹤",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(1)",
+      "max_length": 1,
+      "data_type": "code",
+      "allowed_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "X"
+      ],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-T03-DEPENDENCIES",
+        "QBC-TRACE-RECURRENCE-CASE"
+      ],
+      "source_rule": "1.在本院追蹤且定期檢查，無復發/轉移 2.轉他院追蹤(必填轉出日期) 3.個案中斷追蹤(必填結案日期) 4.於追蹤中死亡(必填死亡日期) 5.於追蹤中復發(必填結案日期，且應新增一筆首次復發個案) X.不詳"
+    },
+    {
+      "tag": "T04",
+      "label": "轉出日期",
+      "section": "年度追蹤",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(8)",
+      "max_length": 8,
+      "data_type": "date",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-T04-TRANSFER"
+      ],
+      "source_rule": "※「T02」為 [3.轉他院治療(必填轉出日期)]或 「T03」為[2.轉他院追蹤(必填轉出日期)]時必填。 固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206"
+    },
+    {
+      "tag": "T05",
+      "label": "結案日期",
+      "section": "年度追蹤",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(8)",
+      "max_length": 8,
+      "data_type": "date",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-T05-CLOSE"
+      ],
+      "source_rule": "※「T02」為[6.於治療中復發]或 「T03」為[3.個案中斷追蹤]、[5.於追蹤中復發]時必填。 固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206"
+    },
+    {
+      "tag": "T06",
+      "label": "死亡日期",
+      "section": "年度追蹤",
+      "required_marker": "△",
+      "always_required": false,
+      "source_format": "X(8)",
+      "max_length": 8,
+      "data_type": "date",
+      "allowed_values": [],
+      "multi_select": false,
+      "minimum": null,
+      "maximum": null,
+      "required_when": [],
+      "rule_ids": [
+        "QBC-T06-DEATH"
+      ],
+      "source_rule": "※死亡視同結案。 「T02」為[5.於治療中死亡]或 「T03」為[4.於追蹤中死亡]時必填。 固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206"
+    }
+  ]
+}

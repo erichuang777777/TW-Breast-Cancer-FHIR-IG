@@ -1,0 +1,116 @@
+﻿tag,label,section,required_marker,always_required,source_format,max_length,data_type,allowed_values,multi_select,minimum,maximum,required_when,rule_ids,source_rule
+HOSPID,醫事機構代碼,個案鍵值,＊,True,X(10）,10,string,,False,,,[],,醫事服務機構代號
+ID,個案身份證號,個案鍵值,＊,True,X(10),10,string,,False,,,[],,文數字，國民身分證統一編號或外籍居留證號碼(如無居留證號碼請填護照號碼)，如為A123456789則輸入A123456789
+BIRTHDAY,個案出生年月日,個案鍵值,＊,True,X(8),8,date,,False,,,[],,固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206
+DIAG_TYPE,收案類別,個案鍵值,＊,True,X(1),1,code,"1,2,3",False,,,[],,1:新診斷個案-直接治癒性手術 2:新診斷個案-新輔助性治療法 3:首次復發個案
+LATERALITY,側性(患部),個案鍵值,＊,True,X(1),1,code,"L,R",False,,,[],QBC-LATERALITY-REQUIRED,填入代碼: L:左側 R:右側 上傳資料包含診斷病理或治療療程時必填。 若為雙側的病患，請將左右側拆分為2筆資料填寫。
+P01,個案姓名,基本資料,＊,True,X(50),50,string,,False,,,[],,中文字採使用Big-5碼，至多為50個中文字
+P02,個案性別,基本資料,＊,True,X(1),1,code,"0,1,2,3",False,,,[],,0：男性 1：女性 2：其他 (不符合傳統性別者，如雙性、跨性別) 3：未知
+P03,身高,基本資料,＊,True,X(5),5,decimal,,False,,,[],,數字、長度整數至多3位數及小數至多2位數、範例150.3
+P04,體重,基本資料,＊,True,X(5),5,decimal,,False,,,[],,數字、長度整數至多3位數及小數至多2位數、範例59.65
+P05,是否已停經,基本資料,△,False,X(1),1,code,"1,2",False,,,[],QBC-P05-FEMALE,※ 僅女性個案需要填寫。 1：是 2：否
+P06,停經年齡,基本資料,△,False,X(2),2,integer,,False,0,99,[],QBC-P06-MENOPAUSE,※ 僅限已停經的女性個案需要填寫。 填入數字範圍值:0-99 (實歲)
+P07,主責醫師身份證字號,基本資料,＊,True,X(10),10,string,,False,,,[],,文數字，國民身分證統一編號或外籍居留證號碼(如無居留證號碼請填護照號碼) 如為A123456789則輸入A123456789
+P08,個案分類,基本資料,＊,True,X(1),1,code,"1,2,3",False,,,[],,1：本院診斷+治療 2：他院診斷、本院治療 3：復發個案
+P09,收案日期,基本資料,＊,True,X(8),8,date,,False,,,[],,確定診斷及提供相關治療建議之(門診)日期 固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206
+D001,(新輔助) 最初診斷日期,新輔助－術前診斷,＊,False,X(8),8,date,,False,,,[],QBC-D001-DIAGTYPE,若收案類別「DIAG_TYPE」為「2」時必填 臨床或病理上診斷為癌症的開始日期 固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206
+D002,(新輔助) 最初診斷院所,新輔助－術前診斷,△,False,X(1),1,code,"1,2",False,,,[],,1：本院 2：他院
+D003,(新輔助) 組織學分類,新輔助－術前診斷,△,False,X(1),1,code,"0,1,2,3,4,5,6,7,8",False,,,[],,0：No cancer 1：Intraductal ca (DCIS) 2：Invasive cancer with no special type (IDC) 3：Invasive lobular ca (ILC) 4：Mucinous ca 5：Tubular ca 6：Invasive papillary ca 7：Metaplastic carcinoma 8：Others
+D004,(新輔助) 腫瘤組織分級,新輔助－術前診斷,△,False,X(1),1,code,"X,1,2,3",False,,,[],QBC-D004-HISTOLOGY,※若(新輔助) 組織學分類「D003」為「0、1」，不需填寫。 X：無法評估等級(無法確定分級) 1：分化良好(低度惡性) 2：中度分化(中度惡性) 3：分化差(高度惡性)
+D005,(新輔助) 臨床期別 T,新輔助－術前診斷,△,False,X(5),5,code,"T0,Tis,T1,T2,T3,T4,Tx",False,,,[],,T0：No evidence of primary tumor Tis：(DCIS)*Ductal carcinoma in situ T1：腫瘤小於等於2公分 T2：腫瘤大於2公分，小於等於5公分 T3：腫瘤大於5公分 T4：腫瘤已侵犯至胸壁或是皮膚(潰瘍或結節)，發炎性乳癌 Tx：未知
+D006,(新輔助) 臨床期別 N,新輔助－術前診斷,△,False,X(5),5,code,"N0,N1mi,N1,N2,N3,Nx",False,,,[],,N0：無區域淋巴結轉移（影像學或臨床檢查） N1mi：微小轉移(0.2-2mm) N1：轉移至同側可移動的 I、II 區腋窩淋巴結 N2：轉移至同側 I、II 區腋窩淋巴結，臨床表現為固定或 融合；或轉移至同側內乳淋巴結，但無腋窩淋巴結轉移 N3：轉移至同側鎖骨下（III 區腋窩）淋巴結，伴或不伴 I、II 區腋窩淋巴結受累；或轉移至同側內乳淋巴結， 伴隨 I、II 區腋窩淋巴結轉移；或同側鎖骨上淋巴結 轉移，伴隨或不伴隨腋窩或內乳淋巴結受累 Nx：未知
+D007,(新輔助) 臨床期別 M,新輔助－術前診斷,△,False,X(5),5,code,"M0,M1,Mx",False,,,[],,M0：遠端器官沒有癌細胞轉移 M1：遠端器官有癌細胞轉移，例如腦、肝、肺等 Mx：未知
+D008,(新輔助) 癌症臨床分期：TNM 計算結果,新輔助－術前診斷,△,False,X(20),20,string,,False,,,[],QBC-D008-TNM,"預設為空白，由系統自動計算「D005」、「D006」、「D007」三欄英文代號值合併結果，若有對應下列的Stage，則由系統代入其對應的Stage，若無任何對應的Stage，則需自行填寫，不能空白。 e.g.「D005」填入[T4]，「D006」填入[N0]，「D007」填入[M0]，合併計算結果為［T4N0M0］，其所對應的Stage為「StageⅢB」，則系統將此欄位值自動代入［StageⅢB］ e.g.「D005」填入[T4]，「D006」填入[Nx]，「D007」填入[M0]，合併計算結果為［T4NxM0］，沒有對應的Stage則需由使用者自行填入值StageⅠ~Ⅳ。 ==================== Stage ================= Stage 0： ['TisN0M0'] StageⅠA： ['T1N0M0'] StageⅠB： ['T0N1miM0', 'T1N1miM0'] StageⅡA： ['T2N0M0', 'T0N1M0', 'T1N1M0'] StageⅡB： ['T3N0M0', 'T2N1M0'] StageⅢA： ['T3N1M0', 'T3N2M0', 'T0N2M0', 'T1N2M0', 'T2N2M0'] StageⅢB： ['T4N0M0', 'T4N1M0', 'T4N2M0'] StageⅢC： ['anyTN3M0'] StageⅣ： ['anyTanyNM1'] Stage X： ['TxNxMx', 'TxNxM0']"
+D009,(新輔助) 遠端轉移部位,新輔助－術前診斷,△,False,X(30),30,code-list,"1,2,3,4,5,6,7,8,9,10,11,12",True,,,[],QBC-D009-STAGE4,"填入代碼，可複選 ※「D008」滿足「StageⅣ」才可選擇。 ※ 複選以逗點相隔。 e.g. 1,5,10,11,12 (以半形英文逗號「,」連接數字) 1：遠端淋巴 2：皮膚 3：骨 4：肝 5：肺 6：腦 7：骨髓 8：胸膜 9：腹膜 10：腎上腺 11：對側腋下淋巴 12：其他"
+D010,(新輔助) 遠端轉移部位：其他,新輔助－術前診斷,△,False,X(200),200,string,,False,,,[],QBC-D010-OTHER,※「D009」為[12:其他]，此欄位為必填。 內容自訂，文字格式
+D011,(新輔助) 術前腋下淋巴檢驗：未檢驗,新輔助－術前診斷,△,False,X(1),1,code,1,False,,,[],QBC-D011-D012-XOR,※與術前腋下淋巴檢驗：檢驗方式「D012」擇一填寫 ※ 若此欄位有填寫，則不需填寫「D012」、「D013」 1：未檢驗
+D012,(新輔助) 術前腋下淋巴檢驗：檢驗方式,新輔助－術前診斷,△,False,X(1),1,code,"1,2",False,,,[],QBC-D011-D012-XOR,※與術前腋下淋巴檢驗：未檢驗「D011」擇一填寫 1：細針穿刺 2：粗針切片
+D013,(新輔助) 術前腋下淋巴檢驗：檢驗結果,新輔助－術前診斷,△,False,X(1),1,code,"0,1",False,,,[],QBC-D013-METHOD,※「D012」有值時，才需填寫。 0：陰性 1：陽性
+D014,(新輔助) ER,新輔助－術前診斷,△,False,X(1),1,code,"X,0,1",False,,,[],,X：未檢驗 0：陰性 1：陽性
+D015,(新輔助) ER 數值,新輔助－術前診斷,△,False,X(3),3,integer,,False,1,100,[],QBC-D015-ER,※「D014」為[1:陽性]時，才需填寫。 填入範圍值：01-100 整數百分比(%)
+D016,(新輔助) PR,新輔助－術前診斷,△,False,X(1),1,code,"X,0,1",False,,,[],,X：未檢驗 0：陰性 1：陽性
+D017,(新輔助) PR 數值,新輔助－術前診斷,△,False,X(3),3,integer,,False,1,100,[],QBC-D017-PR,※「D016」為[1:陽性]時，才需填寫。 填入範圍值：01-100 整數百分比(%)
+D018,(新輔助) HER2,新輔助－術前診斷,△,False,X(1),1,code,"X,0,1,2,3",False,,,[],,X：未檢驗 0：IHC 0 (negative or score 0) 1：IHC 1+(negative or score 1+) 2：IHC 2+(equivocal or score 2+) 3：IHC 3+(positive or score 3+)
+D019,(新輔助) HER2 FISH,新輔助－術前診斷,,False,X(1),1,code,"0,1",False,,,[],QBC-D019-HER2,※「D018」為[2：IHC 2+(equivocal or score 2+)]時，才需填寫。 0：negative 1：positive
+D020,(新輔助) Ki-67,新輔助－術前診斷,△,False,X(1),1,code,"0,1",False,,,[],,0：未檢驗 1：有檢驗
+D021,(新輔助) Ki-67 數值,新輔助－術前診斷,△,False,X(3),3,integer,,False,1,100,[],QBC-D021-KI67,※「D020」為[1：有檢驗]時，才需填寫。 填入範圍值：01-100 整數百分比(%)
+D022,(新輔助) BRCA 1/2,新輔助－術前診斷,△,False,X(1),1,code,"X,0,1",False,,,[],,X：未檢驗 0：無突變 1：有突變
+D023,(新輔助) PD-L1,新輔助－術前診斷,,False,X(1),1,code,"X,0,1",False,,,[],,X：未檢驗 0：陰性 1：陽性
+D024,(術後) 新輔助性治療法之療效,術後病理,△,False,X(1),1,code,"0,1",False,,,[],QBC-D024-NEOADJUVANT-SURGERY,※若收案類別「DIAG_TYPE」為[2:新診斷個案-新輔助性治療法]且治療療程「TM02」為[1.治癒性手術]時，必填 0：Non-pCR 1：pCR
+D025,(術後) 最初診斷日期,術後病理,△,False,X(8),8,date,,False,,,[],QBC-D025-DIAGTYPE,※若收案類別「DIAG_TYPE」為[1:新診斷個案-直接治癒性手術]時，必填 ※收案類別「DIAG_TYPE」為[2:新診斷個案-新輔助性治療法]無需填寫 臨床或病理上診斷為癌症的開始日期 固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206
+D026,(術後) 最初診斷院所,術後病理,△,False,X(1),1,code,"1,2",False,,,[],QBC-D026-DIAGTYPE,※若收案類別「DIAG_TYPE」為[1:新診斷個案-直接治癒性手術]時，必填 ※收案類別「DIAG_TYPE」為[2:新診斷個案-新輔助性治療法]無需填寫 1：本院 2：他院
+D027,(術後) 乳房手術,術後病理,△,False,X(1),1,code,"0,1",False,,,"['TM02=1 AND DIAG_TYPE IN (1,2)']",QBC-TM02-SURGERY-POSTOP-REQUIRED,0：乳房部分切除手術 (BCS) 1：乳房全切除術 (Mastectomy)
+D028,(術後) 手術邊緣,術後病理,△,False,X(1),1,code,"0,1,2",False,,,"['TM02=1 AND DIAG_TYPE IN (1,2)']",QBC-TM02-SURGERY-POSTOP-REQUIRED,0：free 1：involved with DCIS 2：involved with invasive carcinoma
+D029,(術後) 腋窩手術,術後病理,△,False,X(1),1,code,"0,1,2,3,4",False,,,"['TM02=1 AND DIAG_TYPE IN (1,2)']",QBC-TM02-SURGERY-POSTOP-REQUIRED,0：Nil 1：SLNB 2：SLNB → ALND 3：direct ALND 4：TLND
+D030,(術後) 組織學分類,術後病理,△,False,X(1),1,code,"0,1,2,3,4,5,6,7,8",False,,,"['TM02=1 AND DIAG_TYPE IN (1,2)']",QBC-TM02-SURGERY-POSTOP-REQUIRED,0：No cancer 1：Intraductal ca (DCIS) 2：Invasive cancer with no special type (IDC) 3：Invasive lobular ca (ILC) 4：Mucinous ca 5：Tubular ca 6：Invasive papillary ca 7：Metaplastic carcinoma 8：Others
+D031,(術後) 腫瘤組織分級,術後病理,△,False,X(1),1,code,"X,1,2,3",False,,,"['TM02=1 AND DIAG_TYPE IN (1,2)']",QBC-TM02-SURGERY-POSTOP-REQUIRED,X：無法評估等級(無法確定分級) 1：分化良好(低度惡性) 2：中度分化(中度惡性) 3：分化差(高度惡性)
+D032,(術後) 病理期別T,術後病理,△,False,X(5),5,code,"T0,Tis,T1,T2,T3,T4,Tx",False,,,"['TM02=1 AND DIAG_TYPE IN (1,2)']",QBC-TM02-SURGERY-POSTOP-REQUIRED,T0：No evidence of primary tumor Tis：(DCIS)*Ductal carcinoma in situ T1：腫瘤小於等於2公分 T2：腫瘤大於2公分，小於等於5公分 T3：腫瘤大於5公分 T4：腫瘤已侵犯至胸壁或是皮膚(潰瘍或結節)，發炎性乳癌 Tx：未知
+D033,(術後) 病理期別N,術後病理,△,False,X(5),5,code,"N0,N1mi,N1,N2,N3,Nx",False,,,"['TM02=1 AND DIAG_TYPE IN (1,2)']",QBC-TM02-SURGERY-POSTOP-REQUIRED,N0：沒有淋巴結轉移 N1mi：微小轉移(0.2-2mm) N1：同側腋下淋巴結1~3顆有癌細胞轉移 N2：同側腋下淋巴結4~9顆有癌細胞轉移 N3：同側腋下淋巴結大於等於10顆有癌細胞轉移 Nx：未知
+D034,(術後) 病理期別M,術後病理,△,False,X(5),5,code,"M0,M1,Mx",False,,,"['TM02=1 AND DIAG_TYPE IN (1,2)']",QBC-TM02-SURGERY-POSTOP-REQUIRED,M0：遠端器官沒有癌細胞轉移 M1：遠端器官有癌細胞轉移，例如腦、肝、肺等 Mx：未知
+D035,(術後) 癌症病理分期：TNM 計算結果,術後病理,△,False,X(40),40,string,,False,,,"['TM02=1 AND DIAG_TYPE IN (1,2)']","QBC-TM02-SURGERY-POSTOP-REQUIRED,QBC-D035-TNM","預設為空白，由系統自動計算「D032」、「D033」、「D034」三欄英文代號值合併計算結果，若有對應下列的Stage，則由系統代入其對應的Stage，若無任何對應的Stage，則需自行填寫，不能空白。 e.g.「D032」填入[T4]，「D033」填入[N0]，「D034」填入[M0]，合併計算結果為［T4N0M0］，其所對應的Stage為「StageⅢB」，則系統將此欄位值自動代入［StageⅢB］ e.g.「D032」填入[T4]，「D033」填入[Nx]，「D034」填入[M0]，合併計算結果為［T4NxM0］，沒有對應的Stage需由使用者自行填入值StageⅠ~Ⅳ。 ==================== Stage ================= Stage 0：['TisN0M0'] StageⅠA：['T1N0M0'] StageⅠB：['T0N1miM0', 'T1N1miM0'] StageⅡA：['T2N0M0', 'T0N1M0', 'T1N1M0'] StageⅡB：['T3N0M0', 'T2N1M0'] StageⅢA：['T3N1M0', 'T3N2M0', 'T0N2M0', 'T1N2M0', 'T2N2M0'] StageⅢB：['T4N0M0', 'T4N1M0', 'T4N2M0'] StageⅢC：['anyTN3M0'] StageⅣ：['anyTanyNM1'] Stage X：['TxNxMx', 'TxNxM0']"
+D036,(術後) 遠端轉移部位,術後病理,△,False,X(30),30,code-list,"1,2,3,4,5,6,7,8,9,10,11,12",True,,,['TM02=1 AND D035=StageⅣ'],QBC-D036-STAGE4,"※「D035」滿足[StageⅣ]才需填寫。 填入代碼，可複選 e.g. 1,5,10,11,12 (以半形英文逗號「,」連接數字) 1：遠端淋巴 2：皮膚 3：骨 4：肝 5：肺 6：腦 7：骨髓 8：胸膜 9：腹膜 10：腎上腺 11：對側腋下淋巴 12：其他"
+D037,(術後) 遠端轉移部位：其他,術後病理,△,False,X(200),200,string,,False,,,['TM02=1 AND D036 CONTAINS 12'],QBC-D037-OTHER,※「D036」為[12：其他]，此欄位為必填。 內容自訂，文字格式
+D038,(術後) 哨兵淋巴結,術後病理,△,False,X(1),1,code,"X,0,1",False,,,"['TM02=1 AND DIAG_TYPE IN (1,2)']",QBC-TM02-SURGERY-POSTOP-REQUIRED,X：未檢驗 0：陰性 1：陽性
+D039,(術後) 哨兵淋巴結：陽性顆數,術後病理,△,False,X(2),2,integer,,False,1,99,['TM02=1 AND D038=1'],QBC-D039-SENTINEL,※「D038」為[1.陽性]時，必填。 填入範圍值：1-99
+D040,(術後) 哨兵淋巴結：哨兵淋巴結顆數,術後病理,△,False,X(2),2,integer,,False,1,99,"['TM02=1 AND D038 IN (0,1)']",QBC-D040-SENTINEL,※「D038」為[0：陰性]或[1：陽性]時，必填。 填入範圍值：1-99
+D041,(術後) 腋下淋巴結,術後病理,△,False,X(1),1,code,"X,0,1",False,,,"['TM02=1 AND DIAG_TYPE IN (1,2)']",QBC-TM02-SURGERY-POSTOP-REQUIRED,X：未檢驗 0：陰性 1：陽性
+D042,(術後) 腋下淋巴結：陽性顆數,術後病理,△,False,X(2),2,integer,,False,1,99,['TM02=1 AND D041=1'],QBC-D042-AXILLARY,※「D041」為[1：陽性]時，必填。 填入範圍值：1-99
+D043,(術後) 腋下淋巴結：腋下淋巴結顆數,術後病理,△,False,X(2),2,integer,,False,1,99,"['TM02=1 AND D041 IN (0,1)']",QBC-D043-AXILLARY,※「D041」為[0.陰性]或[1.陽性]時，必填。 填入範圍值：1-99
+D044,(術後) 淋巴結陽性數量,術後病理,△,False,X(1),1,code,"0,1",False,,,"['TM02=1 AND DIAG_TYPE IN (1,2)']","QBC-TM02-SURGERY-POSTOP-REQUIRED,QBC-D044-NODE",※「D038」、「D041」任一項滿足[1：陽性]，需填寫此欄位。 0：無 1：有
+D045,(術後) 淋巴結陽性數量：Micro-Metastasis 顆數,術後病理,△,False,X(2),2,integer,,False,0,99,"['TM02=1 AND D044=1 (AT LEAST ONE OF D045,D046)']",QBC-D045-D046-ONE,※「D044」為[1：有]時，「D045」與「D046」至少填一項。 填入範圍值：0-99
+D046,(術後) 淋巴結陽性數量：Macro-Metastasis 顆數,術後病理,△,False,X(2),2,integer,,False,0,99,"['TM02=1 AND D044=1 (AT LEAST ONE OF D045,D046)']",QBC-D045-D046-ONE,※「D044」為「1：有]」時，「D045」與「D046」至少填一項。 填入範圍值：0-99
+D047,(術後) 手術時顯微鏡下腫瘤大小,術後病理,△,False,X(5),5,decimal,,False,0,99.99,"['TM02=1 AND DIAG_TYPE IN (1,2)']",QBC-TM02-SURGERY-POSTOP-REQUIRED,填入範圍值：0.00-99.99
+D048,(術後) ER,術後病理,△,False,X(1),1,code,"X,0,1",False,,,"['TM02=1 AND DIAG_TYPE IN (1,2)']",QBC-TM02-SURGERY-POSTOP-REQUIRED,X：未檢驗 0：陰性 1：陽性
+D049,(術後) ER 數值,術後病理,△,False,X(3),3,integer,,False,1,100,['TM02=1 AND D048=1'],QBC-D049-ER,※(術後) ER「D048」為[1：陽性]時，才需填寫。 填入範圍值：01-100 整數百分比(%)
+D050,(術後) PR,術後病理,△,False,X(1),1,code,"X,0,1",False,,,"['TM02=1 AND DIAG_TYPE IN (1,2)']",QBC-TM02-SURGERY-POSTOP-REQUIRED,X：未檢驗 0：陰性 1：陽性
+D051,(術後) PR 數值,術後病理,△,False,X(3),3,integer,,False,1,100,['TM02=1 AND D050=1'],QBC-D051-PR,※「D050」為[1：陽性]時，才需填寫。 填入範圍值：01-100 整數百分比(%)
+D052,(術後) HER2,術後病理,△,False,X(1),1,code,"X,0,1,2,3",False,,,"['TM02=1 AND DIAG_TYPE IN (1,2)']",QBC-TM02-SURGERY-POSTOP-REQUIRED,X：未檢驗 0：IHC 0 (negative or score 0) 1：IHC 1+(negative or score 1+) 2：IHC 2+(equivocal or score 2+) 3：IHC 3+(positive or score 3+)
+D053,(術後) HER2：FISH,術後病理,,False,X(1),1,code,"0,1",False,,,['TM02=1 AND D052=2'],QBC-D053-HER2,※「D052」為[2：IHC 2+(equivocal or score 2+)]時，才需填寫。 0：negative 1：positive
+D054,(術後) Ki-67,術後病理,△,False,X(1),1,code,"0,1",False,,,"['TM02=1 AND DIAG_TYPE IN (1,2)']",QBC-TM02-SURGERY-POSTOP-REQUIRED,0：未檢驗 1：有檢驗
+D055,(術後) Ki-67 數值,術後病理,△,False,X(3),3,integer,,False,1,100,['TM02=1 AND D054=1'],QBC-D055-KI67,※ 「D054」為[1：有檢驗]時，才需填寫。 填入範圍值：01-100 整數百分比(%)
+D056,(術後) BRCA 1/2,術後病理,△,False,X(1),1,code,"X,0,1",False,,,"['TM02=1 AND DIAG_TYPE IN (1,2)']",QBC-TM02-SURGERY-POSTOP-REQUIRED,X：未檢驗 0：無突變 1：有突變
+D057,(術後) PD-L1,術後病理,,False,X(1),1,code,"X,0,1",False,,,"['TM02=1 AND DIAG_TYPE IN (1,2)']",QBC-TM02-SURGERY-POSTOP-REQUIRED,X：未檢驗 0：陰性 1：陽性
+D058,(復發) 診斷日期,復發／de novo mBC,△,False,X(8),8,date,,False,,,['DIAG_TYPE=3'],QBC-DIAGTYPE3-RECURRENCE-REQUIRED,固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206
+D059,(復發) 診斷院所,復發／de novo mBC,△,False,X(1),1,code,"1,2",False,,,['DIAG_TYPE=3'],QBC-DIAGTYPE3-RECURRENCE-REQUIRED,1：本院 2：他院
+D060,(復發) 臨床期別 T,復發／de novo mBC,△,False,X(5),5,code,"T0,Tis,T1,T2,T3,T4,Tx",False,,,['DIAG_TYPE=3'],QBC-DIAGTYPE3-RECURRENCE-REQUIRED,T0：No evidence of primary tumor Tis：(DCIS)*Ductal carcinoma in situ T1：腫瘤小於等於2公分 T2：腫瘤大於2公分，小於等於5公分 T3：腫瘤大於5公分 T4：腫瘤已侵犯至胸壁或是皮膚(潰瘍或結節)，發炎性乳癌 Tx：未知
+D061,(復發) 臨床期別 N,復發／de novo mBC,△,False,X(5),5,code,"N0,N1mi,N1,N2,N3,Nx",False,,,['DIAG_TYPE=3'],QBC-DIAGTYPE3-RECURRENCE-REQUIRED,N0：無區域淋巴結轉移（影像學或臨床檢查） N1mi：微小轉移(0.2-2mm) N1：轉移至同側可移動的 I、II 區腋窩淋巴結 N2：轉移至同側 I、II 區腋窩淋巴結，臨床表現為固定或融合；或轉移至同側內乳淋巴結，但無腋窩淋巴結轉移 N3：轉移至同側鎖骨下（III 區腋窩）淋巴結，伴或不伴 I、II 區腋窩淋巴結受累；或轉移至同側內乳淋巴結，伴隨 I、II 區腋窩淋巴結轉移；或同側鎖骨上淋巴結轉移，伴隨或不伴隨腋窩或內乳淋巴結受累 Nx：未知
+D062,(復發) 臨床期別 M,復發／de novo mBC,△,False,X(5),5,code,"M0,M1,Mx",False,,,['DIAG_TYPE=3'],QBC-DIAGTYPE3-RECURRENCE-REQUIRED,M0：遠端器官沒有癌細胞轉移 M1：遠端器官有癌細胞轉移，例如腦、肝、肺等 Mx：未知
+D063,(復發) 癌症臨床分期：TNM 計算結果,復發／de novo mBC,△,False,X(20),20,string,,False,,,['DIAG_TYPE=3'],"QBC-DIAGTYPE3-RECURRENCE-REQUIRED,QBC-D063-TNM","預設為空白，由系統自動計算「D060」、「D061」、「D062」三欄英文代號值合併結果，若有對應下列的Stage，則由系統代入其對應的Stage，若無任何對應的Stage，則需自行填寫，不能空白。 e.g.「D060」填入[T4]，「D061」填入[N0]，「D062」填入[M0]，合併計算結果為［T4N0M0］，其所對應的Stage為「StageⅢB」，則系統將此欄位值自動代入［StageⅢB］ e.g.「D060」填入[T4]，「D061」填入[Nx]，「D062」填入[M0]，合併計算結果為［T4NxM0］，沒有對應的Stage則需由使用者自行填入值StageⅠ~Ⅳ。 ==================== Stage ================= Stage 0： ['TisN0M0'] StageⅠA：['T1N0M0'] StageⅠB：['T0N1miM0', 'T1N1miM0'] StageⅡA：['T2N0M0', 'T0N1M0', 'T1N1M0'] StageⅡB：['T3N0M0', 'T2N1M0'] StageⅢA：['T3N1M0', 'T3N2M0', 'T0N2M0', 'T1N2M0', 'T2N2M0'] StageⅢB：['T4N0M0', 'T4N1M0', 'T4N2M0'] StageⅢC：['anyTN3M0'] StageⅣ：['anyTanyNM1'] Stage X：['TxNxMx', 'TxNxM0']"
+D064,(復發) 病理期別 T,復發／de novo mBC,△,False,X(5),5,code,"T0,Tis,T1,T2,T3,T4,Tx",False,,,['DIAG_TYPE=3'],QBC-DIAGTYPE3-RECURRENCE-REQUIRED,T0：No evidence of primary tumor Tis：(DCIS)*Ductal carcinoma in situ T1：腫瘤小於等於2公分 T2：腫瘤大於2公分，小於等於5公分 T3：腫瘤大於5公分 T4：腫瘤已侵犯至胸壁或是皮膚(潰瘍或結節)，發炎性乳癌 Tx：未知
+D065,(復發) 病理期別 N,復發／de novo mBC,△,False,X(5),5,code,"N0,N1mi,N1,N2,N3,Nx",False,,,['DIAG_TYPE=3'],QBC-DIAGTYPE3-RECURRENCE-REQUIRED,N0：沒有淋巴結轉移 N1mi：微小轉移(0.2-2mm) N1：同側腋下淋巴結1~3顆有癌細胞轉移 N2：同側腋下淋巴結4~9顆有癌細胞轉移 N3：同側腋下淋巴結大於等於10顆有癌細胞轉移 Nx：未知
+D066,(復發) 病理期別 M,復發／de novo mBC,△,False,X(5),5,code,"M0,M1,Mx",False,,,['DIAG_TYPE=3'],QBC-DIAGTYPE3-RECURRENCE-REQUIRED,M0：遠端器官沒有癌細胞轉移 M1：遠端器官有癌細胞轉移，例如腦、肝、肺等 Mx：未知
+D067,(復發) 癌症病理分期：TNM 計算結果,復發／de novo mBC,△,False,X(20),20,string,,False,,,['DIAG_TYPE=3'],"QBC-DIAGTYPE3-RECURRENCE-REQUIRED,QBC-D067-TNM","預設為空白，由系統自動計算「D064」、「D065」、「D066」三欄英文代號值合併計算結果，若有對應下列的Stage，則由系統代入其對應的Stage，若無任何對應的Stage，則需自行填寫，不能空白。 e.g.「D0064」填入[T4]，「D0065」填入[N0]，「D0066」填入[M0]，合併計算結果為［T4N0M0］，其所對應的Stage為「StageⅢB」，則系統將此欄位值自動代入［StageⅢB］ e.g.「D0064」填入[T4]，「D0065」填入[Nx]，「D0066」填入[M0]，合併計算結果為［T4NxM0］，沒有對應的Stage則需由使用者自行填入值StageⅠ~Ⅳ。 ==================== Stage ================= Stage 0：['TisN0M0'] StageⅠA：['T1N0M0'] StageⅠB：['T0N1miM0', 'T1N1miM0'] StageⅡA：['T2N0M0', 'T0N1M0', 'T1N1M0'] StageⅡB：['T3N0M0', 'T2N1M0'] StageⅢA：['T3N1M0', 'T3N2M0', 'T0N2M0', 'T1N2M0', 'T2N2M0'] StageⅢB：['T4N0M0', 'T4N1M0', 'T4N2M0'] StageⅢC：['anyTN3M0'] StageⅣ：['anyTanyNM1'] Stage X：['TxNxMx', 'TxNxM0']"
+D068,(復發) 復發位置,復發／de novo mBC,△,False,X(30),30,code-list,"1,2,3,4,5,6,7,8,9,10,11,12,13",True,,,['DIAG_TYPE=3'],"QBC-DIAGTYPE3-RECURRENCE-REQUIRED,QBC-D068-RECURRENCE","※ 填入代碼，可複選 ※ 複選以逗點相隔 e.g. 1,5,10,11,12 (以半形英文逗號「,」連接數字) 1：乳房(局部復發) 2：遠端淋巴 3：皮膚 4：骨 5：肝 6：肺 7：腦 8：骨髓 9：胸膜 10：腹膜 11：腎上腺 12：對側腋下淋巴 13：其他"
+D069,(復發) 復發位置：其他,復發／de novo mBC,△,False,X(200),200,string,,False,,,['DIAG_TYPE=3 AND D068 CONTAINS 13'],QBC-D069-OTHER,※ (復發) 復發位置「D068」選項包含「13：其他」，才需填寫 內容自訂，文字格式
+D070,(復發) 哨兵淋巴結,復發／de novo mBC,△,False,X(1),1,code,"X,0,1",False,,,['DIAG_TYPE=3'],QBC-DIAGTYPE3-RECURRENCE-REQUIRED,X：未檢驗 0：陰性 1：陽性
+D071,(復發) 哨兵淋巴結：陽性顆數,復發／de novo mBC,△,False,X(2),2,integer,,False,1,99,['DIAG_TYPE=3 AND D070=1'],QBC-D071-SENTINEL,※「D070」為「1：陽性」時，必填。 填入範圍值：1-99
+D072,(復發) 哨兵淋巴結：哨兵淋巴結顆數,復發／de novo mBC,△,False,X(2),2,integer,,False,1,99,"['DIAG_TYPE=3 AND D070 IN (0,1)']",QBC-D072-SENTINEL,※「D070」為「0：陰性」或「1：陽性」時，必填。 填入範圍值：1-99
+D073,(復發) 腋下淋巴結,復發／de novo mBC,△,False,X(1),1,code,"X,0,1",False,,,['DIAG_TYPE=3'],QBC-DIAGTYPE3-RECURRENCE-REQUIRED,X：未檢驗 0：陰性 1：陽性
+D074,(復發) 腋下淋巴結：陽性顆數,復發／de novo mBC,△,False,X(2),2,integer,,False,1,99,['DIAG_TYPE=3 AND D073=1'],QBC-D074-AXILLARY,※「D073」為「1：陽性」時，必填。 填入範圍值：1-99
+D075,(復發) 腋下淋巴結：腋下淋巴結顆數,復發／de novo mBC,△,False,X(2),2,integer,,False,1,99,"['DIAG_TYPE=3 AND D073 IN (0,1)']",QBC-D075-AXILLARY,※ 「D073」為「0：陰性」或「1：陽性」時，必填。 填入範圍值：1-99
+D076,(復發) ER,復發／de novo mBC,△,False,X(1),1,code,"X,0,1",False,,,['DIAG_TYPE=3'],QBC-DIAGTYPE3-RECURRENCE-REQUIRED,X：未檢驗 0：陰性 1：陽性
+D077,(復發) ER 數值,復發／de novo mBC,△,False,X(3),3,integer,,False,1,100,['DIAG_TYPE=3 AND D076=1'],QBC-D077-ER,※「D076」為「1：陽性」時，才需填寫。 填入範圍值：01-100 整數百分比(%)
+D078,(復發) PR,復發／de novo mBC,△,False,X(1),1,code,"X,0,1",False,,,['DIAG_TYPE=3'],QBC-DIAGTYPE3-RECURRENCE-REQUIRED,X：未檢驗 0：陰性 1：陽性
+D079,(復發) PR 數值,復發／de novo mBC,△,False,X(3),3,integer,,False,1,100,['DIAG_TYPE=3 AND D078=1'],QBC-D079-PR,※「D078」為「1：陽性」時，才需填寫。 填入範圍值：01-100 整數百分比(%)
+D080,(復發) HER2,復發／de novo mBC,△,False,X(1),1,code,"X,0,1,2,3",False,,,['DIAG_TYPE=3'],QBC-DIAGTYPE3-RECURRENCE-REQUIRED,X：未檢驗 0：IHC 0 (negative or score 0) 1：IHC 1+(negative or score 1+) 2：IHC 2+(equivocal or score 2+) 3：IHC 3+(positive or score 3+)
+D081,(復發) HER2_FISH,復發／de novo mBC,,False,X(1),1,code,"0,1",False,,,['DIAG_TYPE=3 AND D080=2'],QBC-D081-HER2,※ 「D080」為「2：IHC 2+(equivocal or score 2+)」時，才需填寫。 0：negative 1：positive
+D082,(復發) Ki-67,復發／de novo mBC,△,False,X(1),1,code,"0,1",False,,,['DIAG_TYPE=3'],QBC-DIAGTYPE3-RECURRENCE-REQUIRED,0：未檢驗 1：有檢驗
+D083,(復發) Ki-67數值,復發／de novo mBC,△,False,X(3),3,integer,,False,1,100,['DIAG_TYPE=3'],QBC-DIAGTYPE3-RECURRENCE-REQUIRED,填入範圍值：01-100 整數百分比(%)
+D084,(復發) BRCA 1/2,復發／de novo mBC,△,False,X(1),1,code,"X,0,1",False,,,['DIAG_TYPE=3'],QBC-DIAGTYPE3-RECURRENCE-REQUIRED,X：未檢驗 0：無突變 1：有突變
+D085,(復發) PD-L1,復發／de novo mBC,,False,X(1),1,code,"X,0,1",False,,,['DIAG_TYPE=3'],QBC-DIAGTYPE3-RECURRENCE-REQUIRED,X：未檢驗 0：陰性 1：陽性
+TM01,治療順序,治療療程,＊,False,X(2),2,integer,,False,1,99,[],"QBC-TM01-DIRECT-SURGERY,QBC-TM01-UNIQUE,QBC-TM01-CONTIGUOUS",按醫事機構於畫面所新增之治療項目，從1開始自行排序 ※當收案類別「DIAG_TYPE」為[1:新診斷個案-直接治癒性手術]時，必填「TM01」為[1]，「TM02」為［1：治癒性手術］
+TM02,治療方式,治療療程,＊,False,X(1),1,code,"1,2,3,4,5,6,7",False,,,[],QBC-TM02-DEPENDENCIES,填入下列代碼1~7 ※當收案類別「DIAG_TYPE」為[1:新診斷個案-直接治癒性手術]時，必填「TM01」為[1]，「TM02」為［1：治癒性手術］ 1：治癒性手術 (新輔助性治療、直接治癒性手術) / 復發手術 (首次復發) 治癒性手術 (新輔助性治療、直接治癒性手術)：需再填「TM03」、「TM09」 復發手術 (首次復發)：需再填「TM03」、「TM04」、「TM09」 2：化學治療：需再填「TM03」、「TM09」、「TM10」 3：放射治療：需再填「TM03」、「TM07」、(TM08)、「TM09」、「TM10」 4：免疫治療：需再填「TM03」、「TM05」、(TM06)、「TM09」、「TM10」 5：標靶治療：需再填「TM03」、「TM05」、(TM06)、「TM09」、「TM10」 6：內分泌治療：需再填「TM03」、「TM09」 7：其他治療：需再填「TM03」、「TM05」、「TM06」、「TM09」、「TM10」
+TM03,治療情況,治療療程,＊,False,X(1),1,code,"1,2",False,,,[],,1：本院治療 2：他院治療
+TM04,手術項目,治療療程,△,False,X(1),1,code,"1,2,3",False,,,[],QBC-TM04-RECURRENCE,若「DIAG_TYPE」為[3:首次復發個案]且「TM02」為「1：復發手術」時，必填 1：乳癌復發處手術 2：腋下復發處手術 3：遠端轉移處手術
+TM05,藥物,治療療程,△,False,X(50),50,code-list,"A1,A2,B1,B2,B3,B4,B5,B6,B7,B8,B9,B10,B11,B12,C1",True,,,[],"QBC-TM05-TREATMENT,QBC-TM05-TREATMENT-TYPE","填入代碼A1~A2、B1~B12、C1，可複選並以逗點相隔。 ※「TM02」包含[4：免疫治療]、[5：標靶治療]、[7：其他治療]才需填寫 e.g.A1,B3,B7,C1 (以半形英文逗號「,」連接數字) [4：免疫治療] A1：Pembrolizumab A2：其他 [5：標靶治療] B1：Abemaciclib B2：Olaparib B3：Palbociclib B4：Pertuzumab B5：Pertuzumab+Trastuzumab B6：Ribocilcib B7：Sacituzumab govitecan B8：Talazoparib B9：Trastuzumab B10：Trastuzumab deruxtecan B11：Trastuzumab emtansine B12：其他 [7：其他治療] C1：其他"
+TM06,藥物 (其他),治療療程,△,False,X(250),250,string,,False,,,[],QBC-TM06-OTHER,「TM05」包含 [A2：其他]、[B12：其他]、[C1：其他]任一選項時，需填寫此欄位。
+TM07,部位,治療療程,△,False,X(20),20,code-list,"A1,A2,A3,A4,A5",True,,,[],QBC-TM07-RADIOTHERAPY,"※「TM02」為[3：放射治療] 才需填寫 填入代碼A1~A5，可複選並以逗點相隔。 e.g.A1,A3,A5(以半形英文逗號「,」連接數字) [3：放射治療] A1：全乳房 A2：腋下淋巴結 A3：鎖骨上淋巴結 A4：胸壁 A5：其他"
+TM08,部位 (其他),治療療程,△,False,X(250),250,string,,False,,,[],QBC-TM08-OTHER,「TM07」為 [A5：其他]時，需填寫此欄位。
+TM09,治療項目開始日期,治療療程,△,False,X(8),8,date,,False,,,[],,固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206
+TM10,治療項目結束日期,治療療程,△,False,X(8),8,date,,False,,,[],QBC-TM10-DATE-ORDER,※ 不可早於「TM08」的日期 固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206
+T01,追蹤年度,年度追蹤,＊,False,X(8),8,date,,False,,,[],,※ 一年追蹤(填寫)一次 固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206
+T02,治療狀況,年度追蹤,△,False,X(1),1,code,"1,2,3,4,5,6,X",False,,,[],"QBC-T02-DEPENDENCIES,QBC-TRACE-RECURRENCE-CASE",1.已完成治療(必填追蹤狀況) 2.繼續在本院治療(必填追蹤狀況) 3.轉他院治療(必填轉出日期) 4.病人中斷治療(必填追蹤狀況) 5.於治療中死亡(必填死亡日期) 6.於治療中復發(必填結案日期，且應新增一筆首次復發個案) X.不詳
+T03,追蹤狀況,年度追蹤,△,False,X(1),1,code,"1,2,3,4,5,X",False,,,[],"QBC-T03-DEPENDENCIES,QBC-TRACE-RECURRENCE-CASE",1.在本院追蹤且定期檢查，無復發/轉移 2.轉他院追蹤(必填轉出日期) 3.個案中斷追蹤(必填結案日期) 4.於追蹤中死亡(必填死亡日期) 5.於追蹤中復發(必填結案日期，且應新增一筆首次復發個案) X.不詳
+T04,轉出日期,年度追蹤,△,False,X(8),8,date,,False,,,[],QBC-T04-TRANSFER,※「T02」為 [3.轉他院治療(必填轉出日期)]或 「T03」為[2.轉他院追蹤(必填轉出日期)]時必填。 固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206
+T05,結案日期,年度追蹤,△,False,X(8),8,date,,False,,,[],QBC-T05-CLOSE,※「T02」為[6.於治療中復發]或 「T03」為[3.個案中斷追蹤]、[5.於追蹤中復發]時必填。 固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206
+T06,死亡日期,年度追蹤,△,False,X(8),8,date,,False,,,[],QBC-T06-DEATH,※死亡視同結案。 「T02」為[5.於治療中死亡]或 「T03」為[4.於追蹤中死亡]時必填。 固定8碼，西元年（YYYYMMDD），例如1980年12月6日，則填寫：19801206

@@ -1,0 +1,35 @@
+Creative Commons Attribution 4.0 International
+
+Copyright (c) 2026 QBC IG Community Draft contributors.
+Contact: https://github.com/ericeric777777/qbc-ig
+
+This work is licensed under the Creative Commons Attribution 4.0
+International License. To view a copy of this license, visit:
+https://creativecommons.org/licenses/by/4.0/
+
+SCOPE OF THIS LICENSE
+
+This license applies ONLY to original content authored by this project:
+the FHIR profiles, value sets, naming systems, examples, narrative pages,
+and tooling written here.
+
+It does NOT apply to, and this project claims no rights over:
+
+  - Specification documents published by Taiwan's National Health Insurance
+    Administration and Ministry of Health and Welfare. Passages quoted
+    verbatim on the "115 欄逐欄規則稽核" page remain subject to the rights of
+    the issuing authority. Those source documents are not redistributed by
+    this project.
+  - HL7 FHIR, the FHIR flame design, and related HL7 trademarks and
+    specifications (Health Level Seven International).
+  - TW Core Implementation Guide (Ministry of Health and Welfare).
+  - UCUM (Regenstrief Institute, Inc. and the UCUM Organization).
+  - ISO 3166 country codes (International Organization for Standardization).
+
+This project is NOT endorsed by, affiliated with, or approved by Taiwan's
+Ministry of Health and Welfare, the National Health Insurance Administration,
+or HL7 International.
+
+If a rights holder considers any quotation here to exceed fair use, please
+open an issue at https://github.com/ericeric777777/qbc-ig/issues and this
+project will adjust or remove the material.

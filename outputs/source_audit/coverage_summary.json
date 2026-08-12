@@ -1,0 +1,62 @@
+{
+  "source_count": 6,
+  "mapped_nonempty_lines": 1436,
+  "unmapped_lines": 0,
+  "sources": [
+    {
+      "source_file": "1 全民健康保險乳癌照護品質提升方案_方案說明.pdf",
+      "sha256": "763e182c9775835cb3a1275a011343431bbddd0832b8fdfc04951b10f4559a5e",
+      "mapped_nonempty_lines": 382,
+      "destinations": [
+        "field-audit.html",
+        "program-rules.html",
+        "quality-indicators.html"
+      ]
+    },
+    {
+      "source_file": "2 乳癌照護品質提升方案問答集(1150629修訂).pdf",
+      "sha256": "39dbcf066dd729431ebe80116903266438ed1ff0471c7c89f7676d8ee3be9539",
+      "mapped_nonempty_lines": 404,
+      "destinations": [
+        "faq-rules.html",
+        "governance.html",
+        "program-rules.html"
+      ]
+    },
+    {
+      "source_file": "3 乳癌VPN系統說明會.pdf",
+      "sha256": "6e4fcd89ddda307999c5cd32e1b547e54dedc6532d83eae5536c548f6dacf1e4",
+      "mapped_nonempty_lines": 180,
+      "destinations": [
+        "field-audit.html",
+        "governance.html",
+        "program-rules.html",
+        "vpn-workflow.html"
+      ]
+    },
+    {
+      "source_file": "4 乳癌照護品質提升方案VPN使用者手冊.pdf",
+      "sha256": "888dd7f655c857e159f27a6bd34d2625aae8359341d154f73db3b5c2443f9ac1",
+      "mapped_nonempty_lines": 122,
+      "destinations": [
+        "vpn-workflow.html"
+      ]
+    },
+    {
+      "source_file": "5 批次上傳使用手冊_QBC_UploadXML_UserGuide.pdf",
+      "sha256": "16a6c90e88f8266867aae95e62acedb4d85192b29e40316896efc8734951b99e",
+      "mapped_nonempty_lines": 14,
+      "destinations": [
+        "upload-workflow.html"
+      ]
+    },
+    {
+      "source_file": "6 批次上傳格式說明_QBC_乳癌照護品質提升方案_XML上傳_11507(定版).docx",
+      "sha256": "f63be9eae07c552af4f03e9771e48bcda1c5b4eb14c36ae6291c1fc0fb4e069d",
+      "mapped_nonempty_lines": 334,
+      "destinations": [
+        "field-audit.html"
+      ]
+    }
+  ]
+}

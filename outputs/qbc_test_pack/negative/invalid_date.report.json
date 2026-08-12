@@ -1,0 +1,12 @@
+{
+  "accepted": false,
+  "issues": [
+    {
+      "severity": "error",
+      "field": "BIRTHDAY",
+      "rule": "QBC-FORMAT-DATE",
+      "message": "must be a real calendar date in YYYYMMDD format",
+      "location": "case"
+    }
+  ]
+}

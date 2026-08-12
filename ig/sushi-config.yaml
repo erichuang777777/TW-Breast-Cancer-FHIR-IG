@@ -1,0 +1,99 @@
+id: io.github.ericeric777777.qbc
+canonical: https://ericeric777777.github.io/qbc-ig
+name: QBCImplementationGuide
+title: 非官方 QBC 資料交換實作指引
+description: 非官方 QBC 資料交換研究草案，採用 HL7 FHIR R4 並以 TW Core IG 1.0.0 為相依規範。本 IG 非衛生福利部、中央健康保險署或 HL7 International 出版品。
+status: draft
+experimental: true
+version: 0.1.0
+fhirVersion: 4.0.1
+copyrightYear: 2026+
+releaseLabel: draft
+license: CC-BY-4.0
+jurisdiction: urn:iso:std:iso:3166#TW
+copyright: >-
+  本 IG 之原創內容依 CC BY 4.0 授權。所引用之健保署／衛福部規格文件、HL7 FHIR、
+  TW Core IG、UCUM、ISO 3166 等第三方著作與商標，其權利仍屬各該權利人所有，
+  不因本 IG 之授權而改變。本 IG 未經上述任何機構認可或背書。
+
+publisher:
+  name: QBC IG Community Draft
+  url: https://github.com/ericeric777777/qbc-ig
+  email: ericeric777777@gmail.com
+
+contact:
+  - name: QBC IG Community Draft
+    telecom:
+      - system: url
+        value: https://github.com/ericeric777777/qbc-ig/issues
+      - system: email
+        value: ericeric777777@gmail.com
+
+dependencies:
+  tw.gov.mohw.twcore: 1.0.0
+  hl7.terminology.r4: 7.3.0
+  hl7.fhir.uv.extensions.r4: 5.3.0
+
+pages:
+  index.md:
+    title: 首頁
+  usecases.md:
+    title: 使用情境
+  mappings.md:
+    title: QBC 對應方式
+  business-rules.md:
+    title: QBC 業務規則
+  faq-rules.md:
+    title: QBC 情境規則
+  program-rules.md:
+    title: 方案資格、收結案與獎勵
+  vpn-workflow.md:
+    title: VPN 登錄作業
+  upload-workflow.md:
+    title: XML 批次上傳流程
+  quality-indicators.md:
+    title: 品質監控指標
+  source-traceability.md:
+    title: 規格來源與逐行追溯
+  known-ambiguities.md:
+    title: 已知歧義與待確認事項
+  field-audit.md:
+    title: 115 欄逐欄規則稽核
+  validation.md:
+    title: 驗證方法
+  mcode-gap.md:
+    title: mCODE 對應與缺口
+  governance.md:
+    title: 人工審查與 VPN 驗收
+  security.md:
+    title: 安全與隱私
+  downloads.md:
+    title: 下載與驗證
+
+menu:
+  首頁: index.html
+  規格:
+    使用情境: usecases.html
+    QBC 對應方式: mappings.html
+    QBC 業務規則: business-rules.html
+    QBC 情境規則: faq-rules.html
+    方案資格、收結案與獎勵: program-rules.html
+    VPN 登錄作業: vpn-workflow.html
+    XML 批次上傳流程: upload-workflow.html
+    品質監控指標: quality-indicators.html
+    規格來源與逐行追溯: source-traceability.html
+    已知歧義與待確認事項: known-ambiguities.html
+    115 欄逐欄規則稽核: field-audit.html
+    驗證方法: validation.html
+    mCODE 對應與缺口: mcode-gap.html
+    人工審查與 VPN 驗收: governance.html
+    安全與隱私: security.html
+  FHIR Artifacts: artifacts.html
+  下載與驗證: downloads.html
+
+parameters:
+  show-inherited-invariants: false
+  apply-contact: true
+  apply-jurisdiction: true
+  apply-publisher: true
+  pin-canonicals: pin-multiples

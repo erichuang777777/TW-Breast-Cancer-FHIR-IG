@@ -1,0 +1,23 @@
+{
+  "package-id": "io.github.ericeric777777.qbc",
+  "title": "非官方 QBC 資料交換實作指引",
+  "canonical": "https://ericeric777777.github.io/qbc-ig",
+  "introduction": "非官方 QBC 資料交換研究草案，採用 HL7 FHIR R4 並以 TW Core IG 1.0.0 為相依規範。本 IG 非衛生福利部、中央健康保險署或 HL7 International 出版品。",
+  "list": [
+    {
+      "version": "current",
+      "desc": "Continuous Integration Build",
+      "path": "https://ericeric777777.github.io/qbc-ig",
+      "status": "ci-build",
+      "current": true
+    },
+    {
+      "version": "0.1.0",
+      "date": "2026-08-13",
+      "desc": "首個非官方草案：115 欄 CodeSystem、Raw／Date／Integer／Quantity／Tumor Size Observation Profiles、TW Core 衍生 Patient 與 Submission Bundle、逐行來源追溯與已知歧義清單。",
+      "path": "https://ericeric777777.github.io/qbc-ig/0.1.0",
+      "status": "draft",
+      "sequence": "Draft 1"
+    }
+  ]
+}

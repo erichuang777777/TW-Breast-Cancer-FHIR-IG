@@ -1,0 +1,12 @@
+{
+  "accepted": false,
+  "issues": [
+    {
+      "severity": "error",
+      "field": "D010",
+      "rule": "QBC-D010-OTHER",
+      "message": "other description is required when the other code is selected",
+      "location": "case"
+    }
+  ]
+}

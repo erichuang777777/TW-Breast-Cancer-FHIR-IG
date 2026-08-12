@@ -1,0 +1,911 @@
+{
+  "case_id": "SYNTHETIC-DIAG-3",
+  "xml_file": "QBC_3501200000_11508_003.xml",
+  "sha256": "a3126c002576a0e464882798237f440e50e50ece51a7478c7ca47e4b608d05e7",
+  "validation": {
+    "accepted": true,
+    "sha256": "a3126c002576a0e464882798237f440e50e50ece51a7478c7ca47e4b608d05e7",
+    "errors": 0,
+    "warnings": 0,
+    "issues": []
+  },
+  "fields": {
+    "HOSPID": {
+      "qbc_tag": "HOSPID",
+      "value": "3501200000",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "ID": {
+      "qbc_tag": "ID",
+      "value": "Z000000003",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "BIRTHDAY": {
+      "qbc_tag": "BIRTHDAY",
+      "value": "19700101",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "DIAG_TYPE": {
+      "qbc_tag": "DIAG_TYPE",
+      "value": "3",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "LATERALITY": {
+      "qbc_tag": "LATERALITY",
+      "value": "L",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "P01": {
+      "qbc_tag": "P01",
+      "value": "合成個案3",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "P02": {
+      "qbc_tag": "P02",
+      "value": "0",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "P03": {
+      "qbc_tag": "P03",
+      "value": "170.0",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "P04": {
+      "qbc_tag": "P04",
+      "value": "65.0",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "P07": {
+      "qbc_tag": "P07",
+      "value": "B123456789",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "P08": {
+      "qbc_tag": "P08",
+      "value": "3",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "P09": {
+      "qbc_tag": "P09",
+      "value": "20260101",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D058": {
+      "qbc_tag": "D058",
+      "value": "20251201",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D059": {
+      "qbc_tag": "D059",
+      "value": "1",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D060": {
+      "qbc_tag": "D060",
+      "value": "T2",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D061": {
+      "qbc_tag": "D061",
+      "value": "N0",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D062": {
+      "qbc_tag": "D062",
+      "value": "M0",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D063": {
+      "qbc_tag": "D063",
+      "value": "StageⅡA",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D064": {
+      "qbc_tag": "D064",
+      "value": "T2",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D065": {
+      "qbc_tag": "D065",
+      "value": "N0",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D066": {
+      "qbc_tag": "D066",
+      "value": "M0",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D067": {
+      "qbc_tag": "D067",
+      "value": "StageⅡA",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D068": {
+      "qbc_tag": "D068",
+      "value": "1",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D070": {
+      "qbc_tag": "D070",
+      "value": "1",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D071": {
+      "qbc_tag": "D071",
+      "value": "1",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D072": {
+      "qbc_tag": "D072",
+      "value": "2",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D073": {
+      "qbc_tag": "D073",
+      "value": "1",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D074": {
+      "qbc_tag": "D074",
+      "value": "1",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D075": {
+      "qbc_tag": "D075",
+      "value": "2",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D076": {
+      "qbc_tag": "D076",
+      "value": "1",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D077": {
+      "qbc_tag": "D077",
+      "value": "10",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D078": {
+      "qbc_tag": "D078",
+      "value": "1",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D079": {
+      "qbc_tag": "D079",
+      "value": "10",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D080": {
+      "qbc_tag": "D080",
+      "value": "2",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D081": {
+      "qbc_tag": "D081",
+      "value": "1",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D082": {
+      "qbc_tag": "D082",
+      "value": "1",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D083": {
+      "qbc_tag": "D083",
+      "value": "10",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D084": {
+      "qbc_tag": "D084",
+      "value": "0",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    "D085": {
+      "qbc_tag": "D085",
+      "value": "0",
+      "display": null,
+      "method": "manual",
+      "status": "auto_accepted",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "source_file": "synthetic-source.json",
+          "source_type": "synthetic",
+          "source_path": null,
+          "source_date": null,
+          "text": null,
+          "page": null,
+          "input_hash": null
+        }
+      ],
+      "rule_id": "SYNTHETIC",
+      "notes": [],
+      "reviewed_by": null,
+      "reviewed_at": null
+    }
+  }
+}
