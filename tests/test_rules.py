@@ -1,7 +1,7 @@
 import pytest
 
 from qbc_workbench.models import CaseRecord
-from qbc_workbench.rules import derive_stage,ev,extract_pathology,more_severe,put,severity_rank,stage_group
+from qbc_workbench.rules import derive_stage,ev,extract_pathology,more_severe,put,severity_rank,stage_rank
 from qbc_workbench.models import Method
 from qbc_workbench.validation import validate_case
 
@@ -20,33 +20,44 @@ def test_pathology_node_parser_requires_review():
     assert c.candidates["D042"].value=="7" and c.candidates["D043"].value=="13"
 
 
-# --- 專案決議 2026-08-13：較嚴重的定義為 Stage Ⅲ>Ⅱ>Ⅰ，同期別以腫瘤大小排序 ---
+# --- 專案決議 2026-08-13：較嚴重的定義為 Stage Ⅲ>Ⅱ>Ⅰ，次分期 ⅢC>ⅢB>ⅢA，
+#     完全同期別才以腫瘤大小排序 ---
 
 @pytest.mark.parametrize("stage,expected", [
-    ("Stage 0", 0), ("StageⅠA", 1), ("StageⅠB", 1), ("StageⅡA", 2),
-    ("StageⅡB", 2), ("StageⅢA", 3), ("StageⅢC", 3), ("StageⅣ", 4),
-    ("StageX", None), ("", None), (None, None),
+    ("Stage 0", 0), ("StageⅠA", 1), ("StageⅠB", 2), ("StageⅡA", 3),
+    ("StageⅡB", 4), ("StageⅢA", 5), ("StageⅢB", 6), ("StageⅢC", 7),
+    ("StageⅣ", 8), ("Stage ⅢC", 7),
+    ("StageX", None), ("Stage X", None), ("", None), (None, None), ("nonsense", None),
 ])
-def test_stage_group_collapses_subgroups(stage, expected):
-    assert stage_group(stage) == expected
+def test_stage_rank_orders_every_subgroup(stage, expected):
+    assert stage_rank(stage) == expected
 
 
-def test_higher_stage_group_wins_regardless_of_tumour_size():
+def test_subgroups_are_ranked_within_the_same_stage():
+    assert stage_rank("StageⅢC") > stage_rank("StageⅢB") > stage_rank("StageⅢA")
+
+
+def test_higher_stage_wins_regardless_of_tumour_size():
     # 期別優先於腫瘤大小：ⅢA 的 1.0cm 仍比 ⅡB 的 9.0cm 嚴重
     assert more_severe([("a", "StageⅢA", "1.0"), ("b", "StageⅡB", "9.0")]) == "a"
 
 
-def test_same_stage_group_is_ordered_by_tumour_size():
-    # 同期別（皆為 Ⅲ 群組，含不同次分期）改以腫瘤大小排序
-    assert more_severe([("a", "StageⅢA", "2.0"), ("b", "StageⅢC", "5.5")]) == "b"
+def test_higher_subgroup_wins_regardless_of_tumour_size():
+    # 次分期優先於腫瘤大小：ⅢC 的 2.0cm 比 ⅢA 的 5.5cm 嚴重
+    assert more_severe([("a", "StageⅢA", "5.5"), ("b", "StageⅢC", "2.0")]) == "b"
+
+
+def test_identical_stage_is_ordered_by_tumour_size():
+    # 完全同期別才比腫瘤大小
+    assert more_severe([("a", "StageⅢA", "2.0"), ("b", "StageⅢA", "5.5")]) == "b"
 
 
 def test_unknown_stage_forces_manual_decision():
     assert more_severe([("a", "StageX", "5.0"), ("b", "StageⅡA", "1.0")]) is None
 
 
-def test_identical_severity_forces_manual_decision():
-    assert more_severe([("a", "StageⅡA", "3.0"), ("b", "StageⅡB", "3.0")]) is None
+def test_identical_stage_and_size_forces_manual_decision():
+    assert more_severe([("a", "StageⅡA", "3.0"), ("b", "StageⅡA", "3.0")]) is None
 
 
 def test_missing_tumour_size_ranks_below_a_measured_one():

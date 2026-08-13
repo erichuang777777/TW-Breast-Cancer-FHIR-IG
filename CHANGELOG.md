@@ -26,10 +26,15 @@
 | de novo Stage IV | 初診斷即轉移視同復發，定義相同，不另做特殊標記 | 移除 de novo 特殊標記的保留條款 |
 | 雙側共用療程 | 各自建檔、各自上傳，每筆含各自完整療程；須提醒使用者 | 新增 `QBC-FAQ-BILATERAL-TWO-RECORDS` warning 與 `bilateral_counterpart_case_id` |
 | 惡性葉狀瘤／肉瘤 | 一般乳癌 TNM 不適用，臨床手填分期優先 | 新增 `QBC-TNM-SARCOMA-EXCEPTION`（TNM 不一致降為 warning）與 `non_epithelial_tumor` |
-| 同側多型態「較嚴重」 | 期別群組 Ⅲ > Ⅱ > Ⅰ，同期別以腫瘤大小排序 | 新增 `QBC-SEVERITY-ORDER`：`stage_group()`、`severity_rank()`、`more_severe()` |
+| 同側多型態「較嚴重」 | 期別 Ⅲ > Ⅱ > Ⅰ，次分期 ⅢC > ⅢB > ⅢA，完全同期別才以腫瘤大小排序 | 新增 `QBC-SEVERITY-ORDER`：`stage_rank()`、`severity_rank()`、`more_severe()` |
 
-「同側多型態」自此由人工逐案判定升級為可自動判定。`StageⅣ`／`Stage 0` 的相對順序
-依同一邏輯延伸、`StageX` 一律回退人工判定，這三者列為待確認，未當作已決議。
+「同側多型態」自此由人工逐案判定升級為可自動判定。完整排序為
+`Stage 0` < `ⅠA` < `ⅠB` < `ⅡA` < `ⅡB` < `ⅢA` < `ⅢB` < `ⅢC` < `Ⅳ`。
+其中 `Ⅳ > ⅢC` 與 `ⅠA > 0` 依同一邏輯延伸、`StageX` 一律回退人工判定，
+這三者列為待確認，未當作已決議。
+
+肉瘤例外的觸發範圍維持原設計：除 `non_epithelial_tumor` 明示旗標外，組織學分類
+為 `8`（其他）亦自動觸發，因 `D003`／`D030` 無葉狀瘤專屬代碼。
 
 第 8 項「獎勵核付」不是歧義而是刻意不做，已移至「不由本 IG 認定」。
 

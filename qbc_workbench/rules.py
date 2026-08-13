@@ -13,23 +13,24 @@ def calculate_stage(t, n, m):
     if t == "Tx" and n == "Nx" and m in {"Mx", "M0"}: return "StageX"
     return STAGE.get(f"{t}{n}{m}")
 
-# 「較嚴重」的判定順序。專案決議 2026-08-13：以期別群組排序 Ⅲ > Ⅱ > Ⅰ，
-# 同期別再以腫瘤大小排序。Ⅳ > Ⅲ 與 Ⅰ > 0 為依臨床邏輯之延伸，Stage X（未知）
-# 無法排序，一律交人工判定。用於同側多型態擇一申報，以及雙側個案的較嚴重側判定。
-STAGE_GROUP = {"0": 0, "Ⅰ": 1, "Ⅱ": 2, "Ⅲ": 3, "Ⅳ": 4}
+# 「較嚴重」的判定順序。專案決議 2026-08-13：期別 Ⅲ > Ⅱ > Ⅰ，次分期同樣分高低
+# （ⅢC > ⅢB > ⅢA，專案決議 2026-08-13 補充），完全同期別才以腫瘤大小排序。
+# Ⅳ > ⅢC 與 ⅠA > 0 為依臨床邏輯之延伸，尚未經決議確認；Stage X（未知）無法排序，
+# 一律交人工判定。用於同側多型態擇一申報，以及雙側個案的較嚴重側判定。
+STAGE_ORDER = ["0", "ⅠA", "ⅠB", "ⅡA", "ⅡB", "ⅢA", "ⅢB", "ⅢC", "Ⅳ"]
 
 
-def stage_group(stage):
-    """把 StageⅢA 之類的分期值轉成群組序數；未知或無法解析回傳 None。"""
+def stage_rank(stage):
+    """把 StageⅢA 之類的分期值轉成嚴重度序數；未知或無法解析回傳 None。"""
     if not stage: return None
     text = str(stage).replace(" ", "").removeprefix("Stage")
     if text.upper() == "X": return None
-    return STAGE_GROUP.get(text[:1])
+    return STAGE_ORDER.index(text) if text in STAGE_ORDER else None
 
 
 def severity_rank(stage, tumor_size_cm=None):
     """回傳可比較的嚴重度序數；分期未知時回傳 None，代表必須人工判定。"""
-    group = stage_group(stage)
+    group = stage_rank(stage)
     if group is None: return None
     try:
         size = float(tumor_size_cm) if tumor_size_cm not in (None, "") else -1.0

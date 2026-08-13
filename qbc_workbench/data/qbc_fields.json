@@ -46,9 +46,9 @@
     {
       "rule_id": "QBC-SEVERITY-ORDER",
       "condition": "two lesions must be ranked by severity",
-      "outcome": "rank by stage group III > II > I, then by tumour size within the same group; IV > III and I > 0 extend the same logic, Stage X cannot be ranked and falls to manual decision",
+      "outcome": "rank by stage III > II > I with subgroups ordered IIIC > IIIB > IIIA, then by tumour size only when the full stage is identical; IV > IIIC and IA > 0 extend the same logic, Stage X cannot be ranked and falls to manual decision",
       "enforcement": "automated",
-      "source": "project decision 2026-08-13 (stage-group ordering and tumour-size tie-break)"
+      "source": "project decision 2026-08-13 (stage and subgroup ordering, tumour-size tie-break)"
     },
     {
       "rule_id": "QBC-TNM-SARCOMA-EXCEPTION",
