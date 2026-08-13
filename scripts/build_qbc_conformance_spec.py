@@ -18,6 +18,115 @@ AUDIT_OUT = ROOT / "outputs" / "qbc_conformance" / "field_rule_audit.csv"
 MANIFEST_OUT = ROOT / "outputs" / "qbc_conformance" / "source_manifest.json"
 IG_AUDIT_PAGE = ROOT / "ig" / "input" / "pagecontent" / "field-audit.md"
 
+# Word 文字未明示、由本專案補上的解讀。這些才是需要人簽核的項目——115 欄的規則
+# 本身是健保署公布的法定規格，依定義即為準據，不需要任何人核准。
+# `decision` 欄的值：pending（待簽核）、resolved（已決議，見 notes）。
+LOCAL_INTERPRETATIONS = [
+    {
+        "item_id": "QBC-TM02-SURGERY-POSTOP-REQUIRED",
+        "category": "區段必填觸發條件",
+        "word_basis": "主表 D027-D057 各列僅列出值域，未載明何時必填",
+        "local_interpretation": "推導為 TM02=1（治癒性手術）且 DIAG_TYPE 屬 (1,2) 時，術後區段必填",
+        "decision": "pending",
+        "reviewer_role": "QBC 申報負責人",
+    },
+    {
+        "item_id": "QBC-DIAGTYPE3-RECURRENCE-REQUIRED",
+        "category": "區段必填觸發條件",
+        "word_basis": "主表總則要求 DIAG_TYPE=3 時 D058-D085 必填",
+        "local_interpretation": "採「總則必填、個別條件優先」：D069 等具明確個別條件者依個別條件，否則依總則",
+        "decision": "pending",
+        "reviewer_role": "QBC 申報負責人",
+    },
+    {
+        "item_id": "QBC-XML-TABLE1-CLOSING-TAGS",
+        "category": "官方範例瑕疵處理",
+        "word_basis": "表-1 官方 XML 範例部分結束標籤錯置或遺漏 /",
+        "local_interpretation": "不沿用表-1 範例，改以表-2 欄位規則產生 well-formed XML",
+        "decision": "pending",
+        "reviewer_role": "QBC 申報負責人",
+    },
+    {
+        "item_id": "QBC-MCODE-GAP-SCOPE",
+        "category": "對應範圍",
+        "word_basis": "非主表範圍；mCODE 4.0.0 為 US Realm 且依賴 US Core",
+        "local_interpretation": "只做 gap mapping，不以加入 dependency 冒充 TW Core／mCODE 雙重 conformance",
+        "decision": "pending",
+        "reviewer_role": "FHIR 實作負責人",
+    },
+    {
+        "item_id": "QBC-TM10-DATE-ORDER",
+        "category": "疑似筆誤",
+        "word_basis": "主表 TM10 列寫「不可早於 TM08」，但 TM08 是治療部位文字，不是日期",
+        "local_interpretation": "視為筆誤，改以 TM09 開始日期檢查",
+        "decision": "resolved",
+        "reviewer_role": "臨床／QBC 申報負責人",
+        "notes": "專案決議 2026-08-13；尚未取得健保署書面函釋，VPN 驗收仍應納入測試案例",
+    },
+    {
+        "item_id": "QBC-SEVERITY-ORDER",
+        "category": "FAQ 未提供的判定準則",
+        "word_basis": "FAQ 要求同側多型態只報較嚴重者，但未提供嚴重度排序表",
+        "local_interpretation": "期別 Ⅲ>Ⅱ>Ⅰ，次分期 ⅢC>ⅢB>ⅢA，完全同期別才以腫瘤大小排序",
+        "decision": "resolved",
+        "reviewer_role": "病理／臨床專家",
+        "notes": "專案決議 2026-08-13；Ⅳ>ⅢC 與 ⅠA>0 為延伸推論、StageX 回退人工，仍待確認",
+    },
+    {
+        "item_id": "QBC-TNM-SARCOMA-EXCEPTION",
+        "category": "FAQ 未界定的例外範圍",
+        "word_basis": "FAQ 允許葉狀瘤 TNM 未知後手填分期，未界定例外的判定方式",
+        "local_interpretation": "非上皮性腫瘤不適用乳癌 TNM；除明示旗標外，組織學分類 8（其他）亦自動觸發",
+        "decision": "resolved",
+        "reviewer_role": "病理專家",
+        "notes": "專案決議 2026-08-13；組織學 8 觸發範圍較寬，非葉狀瘤但填 8 者亦會降級為 warning",
+    },
+    {
+        "item_id": "QBC-FAQ-BILATERAL-TWO-RECORDS",
+        "category": "FAQ 未逐欄說明的範圍",
+        "word_basis": "FAQ 要求雙側拆為左右兩筆，未說明全身性療程應否兩側重複",
+        "local_interpretation": "兩側各自建檔與各自上傳，每筆含各自完整療程；系統主動提醒使用者",
+        "decision": "resolved",
+        "reviewer_role": "臨床／QBC 申報負責人",
+        "notes": "專案決議 2026-08-13",
+    },
+    {
+        "item_id": "QBC-FAQ-PREOP-HORMONE-3D-DIRECT-SURGERY",
+        "category": "FAQ 情境判定",
+        "word_basis": "FAQ 第 5 項：術前荷爾蒙用藥 3 天",
+        "local_interpretation": "歸為 DIAG_TYPE=1 直接治癒性手術，不算新輔助性治療",
+        "decision": "pending",
+        "reviewer_role": "臨床專家",
+    },
+]
+
+# 受區段規則影響的欄位由 rule_ids 反查，避免手寫欄位範圍與實作脫節。
+SECTION_SCOPED_ITEMS = {"QBC-TM02-SURGERY-POSTOP-REQUIRED", "QBC-DIAGTYPE3-RECURRENCE-REQUIRED"}
+
+
+def local_interpretation_rows(fields):
+    """產生簽核表列；區段規則的受影響欄位由實際 rule_ids 反查。"""
+    rows = []
+    for item in LOCAL_INTERPRETATIONS:
+        affected = [f["tag"] for f in fields if item["item_id"] in f.get("rule_ids", [])]
+        if item["item_id"] in SECTION_SCOPED_ITEMS and not affected:
+            raise RuntimeError(f"{item['item_id']} 宣稱是區段規則，卻沒有任何欄位引用它")
+        rows.append({
+            "item_id": item["item_id"],
+            "category": item["category"],
+            "affected_fields": f"{affected[0]}-{affected[-1]}" if len(affected) > 1 else (affected[0] if affected else "跨欄位／非欄位層級"),
+            "field_count": len(affected),
+            "word_basis": item["word_basis"],
+            "local_interpretation": item["local_interpretation"],
+            "decision": item["decision"],
+            "reviewer_role": item["reviewer_role"],
+            "reviewer_name": "",
+            "decision_date": "",
+            "notes": item.get("notes", ""),
+        })
+    return rows
+
+
 PROGRAM_RULES = [
     {
         "rule_id": "QBC-FAQ-PREOP-HORMONE-3D-DIRECT-SURGERY",
@@ -316,12 +425,17 @@ def build() -> tuple[Path, ...]:
         writer.writeheader()
         for field in fields:
             writer.writerow({**field, "allowed_values": ",".join(field["allowed_values"]), "rule_ids": ",".join(field["rule_ids"])})
+    # 115 欄的規則本身是健保署公布的法定規格，不需要任何人「核准」；逐字轉錄與
+    # 實作已由來源 SHA-256 與 tests/test_conformance.py 驗證。真正需要人簽核的，
+    # 只有 Word 文字未明示、由本專案補上的解讀。簽核表因此只列這些項目。
     with REVIEW_OUT.open("w", encoding="utf-8-sig", newline="") as handle:
-        columns = ["tag", "label", "section", "source_rule", "clinical_reviewer", "qbc_reviewer", "decision", "review_date", "notes"]
+        columns = ["item_id", "category", "affected_fields", "field_count", "word_basis",
+                   "local_interpretation", "decision", "reviewer_role", "reviewer_name",
+                   "decision_date", "notes"]
         writer = csv.DictWriter(handle, fieldnames=columns)
         writer.writeheader()
-        for field in fields:
-            writer.writerow({column: ("pending" if column == "decision" else field.get(column, "")) for column in columns})
+        for item in local_interpretation_rows(fields):
+            writer.writerow(item)
     with COVERAGE_OUT.open("w", encoding="utf-8-sig", newline="") as handle:
         columns = ["tag", "label", "source_rule", "required_when", "validation_checks", "rule_id", "implementation", "automated_test", "technical_status", "clinical_review_status"]
         writer = csv.DictWriter(handle, fieldnames=columns)
@@ -337,13 +451,23 @@ def build() -> tuple[Path, ...]:
             if field["minimum"] is not None or field["maximum"] is not None:
                 generic_rules.append("QBC-FORMAT-RANGE")
             rule_ids = list(dict.fromkeys(generic_rules + field["rule_ids"]))
+            pending_items = {item["item_id"] for item in LOCAL_INTERPRETATIONS if item["decision"] == "pending"}
+            resolved_items = {item["item_id"] for item in LOCAL_INTERPRETATIONS if item["decision"] == "resolved"}
             for rule_id in rule_ids:
+                # 直接轉錄自 Word 的規則不需要人簽核：來源 SHA-256 已鎖定版本，
+                # 逐字保留與值域完整性由 tests/test_conformance.py 斷言。
+                if rule_id in pending_items:
+                    status = "needs-decision"
+                elif rule_id in resolved_items:
+                    status = "decided-by-project"
+                else:
+                    status = "verified-by-test"
                 writer.writerow({
                     "tag": field["tag"], "label": field["label"], "source_rule": field["source_rule"],
                     "required_when": " | ".join(field["required_when"]),
                     "validation_checks": " | ".join(validation_checks(field)), "rule_id": rule_id,
                     "implementation": "qbc_workbench.validation", "automated_test": "tests/test_conformance.py",
-                    "technical_status": "implemented", "clinical_review_status": "pending",
+                    "technical_status": "implemented", "clinical_review_status": status,
                 })
     with AUDIT_OUT.open("w", encoding="utf-8-sig", newline="") as handle:
         columns = [

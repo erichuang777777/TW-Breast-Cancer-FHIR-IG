@@ -12,9 +12,15 @@
 - mCODE 4.0.0 逐欄 gap matrix
 - clinical review 與 VPN acceptance templates
 
+## 不需要人工審查
+
+115 欄的規則是健保署公布的法定規格，依定義即為準據，不需要任何人核准。逐字轉錄由
+來源 SHA-256 鎖定版本、`tests/test_conformance.py` 斷言 115 列逐字保留與值域完整；
+XML 規格的 `TRACES` 官方範例亦已納入回歸測試，原封不動通過驗證。
+
 ## 尚待外部權責人完成
 
-- `clinical_review_template.csv` 的臨床專家與 QBC 申報人員雙人簽核
+- `clinical_review_template.csv` 中尚待簽核的本地解讀項目（Word 未明示、由本專案補上的判定）
 - 院內個資、資安、術語授權與正式主檔核准
 - 正式 canonical、package ID 與 publisher 身分
 - 健保 VPN 測試／正式環境 receipt 與錯誤碼驗收

@@ -80,5 +80,6 @@ python scripts\build_release.py    # 從工作樹產生發布包
 - 若合格名單沒有對應病例，基本主檔欄位會顯示缺漏並阻擋輸出。
 - 表-1官方範例含錯誤XML標籤；本工具以表-2欄位規則產生正確結束標籤。
 - FHIR層的非官方QBC IG草案（`ig/`）為 `draft`／`experimental`，QBC Patient與Bundle衍生自TW Core 1.0.0。這不代表mCODE conformant。
-- 本機模擬收件成功不等同健保VPN正式收件成功；`clinical_review_template.csv`的115欄簽核目前全部為`pending`，須由具權責人員完成。
+- 本機模擬收件成功不等同健保VPN正式收件成功。
+- `clinical_review_template.csv`只列出Word未明示、由本專案補上的解讀，須由具權責人員簽核；115欄的官方規則本身不需要人核准，其轉錄與實作由來源SHA-256與自動化測試把關。
 - `ig/input/pagecontent/` 的 `field-audit.md` 與 `source-traceability.md` 為腳本生成，請勿手動編輯；重新產生需要 `private/spec-sources/` 內的官方原檔。

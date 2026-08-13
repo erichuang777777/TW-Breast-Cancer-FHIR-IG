@@ -75,6 +75,47 @@ def test_every_word_row_is_preserved_and_conditional_rows_are_traceable():
     assert {row["tag"] for row in audit_rows} == {field["tag"] for field in fields}
 
 
+def test_review_template_only_lists_local_interpretations_not_official_rules():
+    """115 欄的規則是健保署公布的法定規格，不需要任何人核准；簽核表只列本專案補上的解讀。"""
+    path = Path("outputs/qbc_conformance/clinical_review_template.csv")
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+
+    assert 0 < len(rows) < 20, "簽核表應只列本地解讀，不是逐欄列出 115 個官方規則"
+    assert {row["decision"] for row in rows} <= {"pending", "resolved"}
+    assert all(row["word_basis"] and row["local_interpretation"] for row in rows)
+    assert all(row["reviewer_role"] for row in rows)
+    assert all(row["decision_date"] == "" and row["reviewer_name"] == "" for row in rows), \
+        "簽核欄位必須留空待具權責人員填寫，不得由程式預填"
+
+    # 已決議者必須留下決議依據，避免日後無法追溯
+    assert all(row["notes"] for row in rows if row["decision"] == "resolved")
+
+    # 兩個區段規則的受影響欄位由 rule_ids 反查，須與實作一致
+    by_id = {row["item_id"]: row for row in rows}
+    assert by_id["QBC-TM02-SURGERY-POSTOP-REQUIRED"]["field_count"] == "19"
+    assert by_id["QBC-DIAGTYPE3-RECURRENCE-REQUIRED"]["field_count"] == "20"
+
+
+def test_word_derived_rules_are_verified_by_test_not_pending_human_review():
+    """直接轉錄自 Word 的規則由來源 SHA-256 與自動化測試把關，不應標為待人工審查。"""
+    path = Path("outputs/qbc_conformance/rule_coverage.csv")
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+
+    statuses = {row["clinical_review_status"] for row in rows}
+    assert statuses <= {"verified-by-test", "needs-decision", "decided-by-project"}
+    assert "pending" not in statuses
+
+    verified = [row for row in rows if row["clinical_review_status"] == "verified-by-test"]
+    assert len(verified) > len(rows) * 0.8, "絕大多數規則直接來自 Word，應由測試驗證而非人工簽核"
+
+    # 需要決議的一定是本專案補的解讀，不會是純格式規則
+    for row in rows:
+        if row["clinical_review_status"] == "needs-decision":
+            assert not row["rule_id"].startswith(("QBC-FORMAT-", "QBC-ENCODING-", "QBC-VALUESET"))
+
+
 def test_all_six_explanation_sources_have_zero_unmapped_lines():
     import json
     summary = json.loads(Path("outputs/source_audit/coverage_summary.json").read_text(encoding="utf-8"))
@@ -139,6 +180,27 @@ def test_neoadjuvant_surgery_requires_response_and_hospid_is_ten_digits():
     rules = errors(case)
     assert "QBC-HOSPID-FORMAT" in rules
     assert "QBC-D024-NEOADJUVANT-SURGERY" in rules
+
+
+def test_official_traces_example_from_the_xml_specification_is_accepted():
+    """官方 XML 規格的 TRACES 範例必須原封不動通過本地驗證。
+
+    來源：批次上傳格式說明的 TRACES 區段，兩筆追蹤。官方註記為
+    「追蹤(每年至多填寫一次，最多5年)」與「追蹤年度(根據收案日滿一年後始可填寫)」。
+    第二筆 T03=4（於追蹤中死亡）填 T06 而 T05 留空，對應主表 T06 的
+    「※死亡視同結案」，證明結案日期不應被額外要求。
+    """
+    case = base_case("2")
+    case.candidates["P09"].value = "20241025"  # 收案日，第一次追蹤的一年前
+    case.followups = [
+        FollowUpEvent(trace_date="20251025", treatment_status="2", followup_status="1"),
+        FollowUpEvent(trace_date="20261025", treatment_status="2", followup_status="4", death_date="20261026"),
+    ]
+    assert not [issue for issue in validate_case(case) if issue.severity == "error"]
+
+    # 同一份範例若把死亡日期抽掉，就必須被擋下來
+    case.followups[1].death_date = None
+    assert "QBC-T06-DEATH" in errors(case)
 
 
 def test_only_one_followup_per_year():

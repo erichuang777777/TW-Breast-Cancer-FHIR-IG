@@ -21,10 +21,12 @@ Package ID 採 canonical 的 reverse-DNS 形式，刻意不使用 `tw.` 或 `tw.
 
 本版本**不是**正式版。下列項目需要外部權責人員完成，程式無法代替：
 
-- 115 欄的臨床專家與 QBC 申報人員雙人簽核（目前全部為 `pending`）
-- 「[已知歧義與待確認事項](known-ambiguities.html)」列出的項目取得健保署書面確認
+- `clinical_review_template.csv` 中尚待簽核的本地解讀項目（見「[人工審查與 VPN 驗收](governance.html)」）
+- 「[已知歧義與待確認事項](known-ambiguities.html)」中標為專案決議者，取得健保署書面確認
 - 院內個資、資安與術語授權核准
 - 健保 VPN 測試／正式環境的收件 receipt 與錯誤碼驗收
+
+115 欄的規則本身**不在**上列——它們是健保署公布的法定規格，不需要任何人核准；逐字轉錄由來源 SHA-256 鎖定、實作由自動化測試驗證。需要人簽核的只有本專案補上的解讀。
 
 在上述完成前，所有 Profile 維持 `draft`／`experimental`，且不得宣稱 mCODE conformant。
 

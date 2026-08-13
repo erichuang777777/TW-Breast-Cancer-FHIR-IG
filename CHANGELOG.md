@@ -13,6 +13,30 @@
 
 ## [未發布]
 
+### 人工審查範圍修正
+
+先前 `clinical_review_template.csv` 逐欄列出 115 個官方規則、全部標為
+`pending`，等於要求人「核准」健保署公布的法定規格。這個框架是錯的：官方規則
+依定義即為準據，需要人判斷的只有 Word 文字未明示、由本專案補上的解讀。
+
+- 簽核表由 **115 列縮為 9 列**，只列本地解讀，欄位改為
+  `item_id`／`category`／`affected_fields`／`word_basis`／`local_interpretation`／
+  `decision`／`reviewer_role`／`reviewer_name`／`decision_date`／`notes`
+- 受影響欄位由實作的 `rule_ids` 反查，不手寫；區段規則若無欄位引用，產生腳本直接失敗
+- `rule_coverage.csv` 的 `clinical_review_status` 由全部 `pending` 改為
+  `verified-by-test`（481）／`needs-decision`（39）／`decided-by-project`（1）
+- 查證後確認 `QBC-TM02-SURGERY-POSTOP-REQUIRED` 的觸發條件並非 Word 明文
+  （D027／D030／D032 原文只列值域），係本專案推導，影響 19 欄，已列入待簽核
+- 新增 `test_review_template_only_lists_local_interpretations_not_official_rules`
+  與 `test_word_derived_rules_are_verified_by_test_not_pending_human_review`
+
+### 官方 XML 範例回歸測試
+
+依 XML 規格 `TRACES` 區段的官方範例新增回歸測試，原封不動通過驗證。官方註記
+「追蹤（每年至多填寫一次，最多 5 年）」與「追蹤年度（根據收案日滿一年後始可填寫）」
+證實追蹤頻率**本非歧義**，該項依據由「專案決議」升級為「官方明文」。範例第二筆
+`T03=4` 填 `T06` 而 `T05` 留空，亦印證主表 T06 的「※死亡視同結案」。
+
 ### 已知歧義決議（專案決議 2026-08-13）
 
 8 項已知歧義中的 7 項由專案臨床與實作人員決議。決議來源記為「專案決議」，
