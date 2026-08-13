@@ -96,7 +96,7 @@ def _validate_field(issues: list[ValidationIssue], tag: str, value: str, spec: d
             pass
 
 
-def _validate_stage(issues: list[ValidationIssue], case: CaseRecord, t: str, n: str, m: str, stage: str) -> None:
+def _validate_stage(issues: list[ValidationIssue], case: CaseRecord, t: str, n: str, m: str, stage: str, histology: str | None = None) -> None:
     from .rules import calculate_stage
 
     values = [_value(case, tag) for tag in (t, n, m)]
@@ -110,7 +110,16 @@ def _validate_stage(issues: list[ValidationIssue], case: CaseRecord, t: str, n: 
     if all(values) and actual:
         expected = calculate_stage(*values)
         if expected and actual.replace(" ", "") != expected.replace(" ", ""):
-            _issue(issues, stage, f"QBC-{stage}-TNM-CONSISTENCY", f"TNM components imply {expected}, not {actual}")
+            # 惡性葉狀瘤／肉瘤等非乳癌上皮性腫瘤不適用一般乳癌 TNM 分期，臨床手填
+            # 分期優先，不得被自動計算結果推翻。專案決議 2026-08-13。
+            # 仍降級為 warning 保留紀錄，並要求病理／癌登 reviewer 簽核例外理由。
+            if case.non_epithelial_tumor or (histology and _value(case, histology) == "8"):
+                _issue(issues, stage, f"QBC-{stage}-TNM-SARCOMA-EXCEPTION",
+                       f"non-epithelial tumour: clinical stage {actual} is kept even though breast TNM implies {expected}; "
+                       "requires pathology reviewer sign-off",
+                       severity="warning")
+            else:
+                _issue(issues, stage, f"QBC-{stage}-TNM-CONSISTENCY", f"TNM components imply {expected}, not {actual}")
 
 
 def _conditional_rules(issues: list[ValidationIssue], case: CaseRecord) -> None:
@@ -119,6 +128,22 @@ def _conditional_rules(issues: list[ValidationIssue], case: CaseRecord) -> None:
         _issue(issues, "DIAG_TYPE", "QBC-DIAGTYPE-SYNC", "candidate value does not match CaseRecord.diagnosis_type")
     if case.laterality and _value(case, "LATERALITY") and case.laterality != _value(case, "LATERALITY"):
         _issue(issues, "LATERALITY", "QBC-LATERALITY-SYNC", "candidate value does not match CaseRecord.laterality")
+
+    # 雙側個案必須左右各自建檔與各自上傳，每一筆都是完整記錄（含全身性療程）。
+    # 專案決議 2026-08-13。提醒使用者，避免只建一筆或漏傳其中一側。
+    if case.bilateral_counterpart_case_id:
+        if case.bilateral_counterpart_case_id == case.case_id:
+            _issue(issues, "LATERALITY", "QBC-BILATERAL-COUNTERPART",
+                   "the bilateral counterpart must be a different case")
+        elif not case.laterality:
+            _issue(issues, "LATERALITY", "QBC-BILATERAL-COUNTERPART",
+                   "a bilateral case must declare LATERALITY as L or R")
+        else:
+            _issue(issues, "LATERALITY", "QBC-FAQ-BILATERAL-TWO-RECORDS",
+                   f"bilateral case: side {case.laterality} is one of two records; counterpart "
+                   f"{case.bilateral_counterpart_case_id} must be built and uploaded separately, "
+                   "each carrying its own complete treatment course",
+                   severity="warning")
 
     if _value(case, "P02") == "1":
         _require(issues, case, "P05", "QBC-P05-FEMALE", "menopause status is required for female patients")
@@ -167,7 +192,10 @@ def _conditional_rules(issues: list[ValidationIssue], case: CaseRecord) -> None:
         if bool(_value(case, "D011")) == bool(_value(case, "D012")):
             _issue(issues, "D011", "QBC-D011-D012-XOR", "exactly one of D011 or D012 is required for a neoadjuvant case")
 
-    for args in [("D005", "D006", "D007", "D008"), ("D032", "D033", "D034", "D035"), ("D060", "D061", "D062", "D063"), ("D064", "D065", "D066", "D067")]:
+    # 第 5 個引數是同區段的組織學分類欄位，供肉瘤／葉狀瘤例外判定；
+    # 復發區段沒有對應的組織學欄位，只能靠 case.non_epithelial_tumor 明示。
+    for args in [("D005", "D006", "D007", "D008", "D003"), ("D032", "D033", "D034", "D035", "D030"),
+                 ("D060", "D061", "D062", "D063", None), ("D064", "D065", "D066", "D067", None)]:
         _validate_stage(issues, case, *args)
 
     for stage, sites, other, other_code in [("D008", "D009", "D010", "12"), ("D035", "D036", "D037", "12"), (None, "D068", "D069", "13")]:

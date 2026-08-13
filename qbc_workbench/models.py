@@ -47,6 +47,11 @@ class CaseRecord(BaseModel):
     case_id:str; diagnosis_type:str|None=None; laterality:str|None=None
     candidates:dict[str,Candidate]=Field(default_factory=dict); treatments:list[TreatmentEvent]=Field(default_factory=list)
     followups:list[FollowUpEvent]=Field(default_factory=list)
+    # 惡性葉狀瘤／肉瘤等非乳癌上皮性腫瘤：一般乳癌 TNM 分期不適用，
+    # 臨床手填分期優先，不得被自動計算結果推翻。專案決議 2026-08-13。
+    non_epithelial_tumor:bool=False
+    # 雙側個案必須左右各自建檔與各自上傳；此欄記錄對側的 case_id 供交叉檢查。
+    bilateral_counterpart_case_id:str|None=None
     fhir_bundle:dict[str,Any]|None=None; issues:list[str]=Field(default_factory=list)
     source_files:list[str]=Field(default_factory=list); state:str="draft"; version:int=1
 

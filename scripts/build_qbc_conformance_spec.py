@@ -29,16 +29,41 @@ PROGRAM_RULES = [
     {
         "rule_id": "QBC-FAQ-BILATERAL-TWO-RECORDS",
         "condition": "simultaneous bilateral breast cancer",
-        "outcome": "create two clinical records for the same patient: L and R",
-        "enforcement": "batch-review",
-        "source": "QBC FAQ item 6.1 supplied by the project reviewer",
+        "outcome": (
+            "each side is built and uploaded as its own complete record (L and R), "
+            "each carrying its own full treatment course including systemic therapy; "
+            "the workbench warns the user so neither side is omitted"
+        ),
+        "enforcement": "automated-warning-and-batch-review",
+        "source": "QBC FAQ item 6.1; scope of systemic therapy resolved by project decision 2026-08-13",
     },
     {
         "rule_id": "QBC-FAQ-BILATERAL-SEVERITY-ORDER",
         "condition": "bilateral lesions have different severity",
-        "outcome": "submit the more severe side first, then the other side",
+        "outcome": "submit the more severe side first, then the other side; severity per QBC-SEVERITY-ORDER",
         "enforcement": "clinical-and-batch-review",
         "source": "QBC FAQ item 6.1 supplied by the project reviewer",
+    },
+    {
+        "rule_id": "QBC-SEVERITY-ORDER",
+        "condition": "two lesions must be ranked by severity",
+        "outcome": (
+            "rank by stage group III > II > I, then by tumour size within the same group; "
+            "IV > III and I > 0 extend the same logic, Stage X cannot be ranked and falls to manual decision"
+        ),
+        "enforcement": "automated",
+        "source": "project decision 2026-08-13 (stage-group ordering and tumour-size tie-break)",
+    },
+    {
+        "rule_id": "QBC-TNM-SARCOMA-EXCEPTION",
+        "condition": "malignant phyllodes tumour or sarcoma (non-epithelial breast tumour)",
+        "outcome": (
+            "ordinary breast TNM staging does not apply; the clinically entered stage is kept and "
+            "the automatic TNM result must not override it. Downgraded to a warning that requires "
+            "pathology reviewer sign-off"
+        ),
+        "enforcement": "automated-warning",
+        "source": "QBC FAQ (phyllodes stage may be entered manually); exception scope resolved by project decision 2026-08-13",
     },
     {
         "rule_id": "QBC-FAQ-BILATERAL-ID-REWARD",

@@ -13,6 +13,43 @@ def calculate_stage(t, n, m):
     if t == "Tx" and n == "Nx" and m in {"Mx", "M0"}: return "StageX"
     return STAGE.get(f"{t}{n}{m}")
 
+# 「較嚴重」的判定順序。專案決議 2026-08-13：以期別群組排序 Ⅲ > Ⅱ > Ⅰ，
+# 同期別再以腫瘤大小排序。Ⅳ > Ⅲ 與 Ⅰ > 0 為依臨床邏輯之延伸，Stage X（未知）
+# 無法排序，一律交人工判定。用於同側多型態擇一申報，以及雙側個案的較嚴重側判定。
+STAGE_GROUP = {"0": 0, "Ⅰ": 1, "Ⅱ": 2, "Ⅲ": 3, "Ⅳ": 4}
+
+
+def stage_group(stage):
+    """把 StageⅢA 之類的分期值轉成群組序數；未知或無法解析回傳 None。"""
+    if not stage: return None
+    text = str(stage).replace(" ", "").removeprefix("Stage")
+    if text.upper() == "X": return None
+    return STAGE_GROUP.get(text[:1])
+
+
+def severity_rank(stage, tumor_size_cm=None):
+    """回傳可比較的嚴重度序數；分期未知時回傳 None，代表必須人工判定。"""
+    group = stage_group(stage)
+    if group is None: return None
+    try:
+        size = float(tumor_size_cm) if tumor_size_cm not in (None, "") else -1.0
+    except (TypeError, ValueError):
+        size = -1.0
+    return (group, size)
+
+
+def more_severe(lesions):
+    """從 [(識別, 分期, 腫瘤大小), ...] 選出較嚴重者。
+
+    任一病灶分期未知即回傳 None——寧可要求人工判定，也不猜測。
+    嚴重度完全相同時同樣回傳 None，因為排序無法決定申報哪一筆。
+    """
+    ranked = [(severity_rank(stage, size), key) for key, stage, size in lesions]
+    if not ranked or any(rank is None for rank, _ in ranked): return None
+    ranked.sort(key=lambda item: item[0], reverse=True)
+    if len(ranked) > 1 and ranked[0][0] == ranked[1][0]: return None
+    return ranked[0][1]
+
 def ev(file,kind,text=None,path=None): return Evidence(source_file=file,source_type=kind,text=text,source_path=path)
 
 def put(case,tag,value,method,evidence,rule,display=None,confidence=1.0,review=False):
