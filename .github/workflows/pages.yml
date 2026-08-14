@@ -21,6 +21,9 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Check out publication metadata
+        uses: actions/checkout@v6
+
       - name: Select release
         id: release
         shell: bash
@@ -34,6 +37,7 @@ jobs:
           fi
           test -n "$tag"
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "version=${tag#ig-}" >> "$GITHUB_OUTPUT"
 
       - name: Download generated IG
         shell: bash
@@ -43,9 +47,16 @@ jobs:
           gh release download "${{ steps.release.outputs.tag }}" \
             --repo "$GITHUB_REPOSITORY" \
             --pattern full-ig.zip
-          mkdir -p pages-artifact
-          unzip -q full-ig.zip -d pages-artifact
-          test -f pages-artifact/site/index.html
+          mkdir -p release-artifact pages-artifact
+          unzip -q full-ig.zip -d release-artifact
+          test -f release-artifact/site/index.html
+          cp -a release-artifact/site/. pages-artifact/
+          mkdir -p "pages-artifact/${{ steps.release.outputs.version }}"
+          cp -a release-artifact/site/. "pages-artifact/${{ steps.release.outputs.version }}/"
+          cp ig/publication/package-list.json pages-artifact/package-list.json
+          test -f pages-artifact/index.html
+          test -f "pages-artifact/${{ steps.release.outputs.version }}/index.html"
+          test -f pages-artifact/package-list.json
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -53,7 +64,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: pages-artifact/site
+          path: pages-artifact
 
       - name: Deploy to GitHub Pages
         id: deployment
