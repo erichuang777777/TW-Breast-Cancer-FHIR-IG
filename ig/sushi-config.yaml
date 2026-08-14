@@ -47,6 +47,8 @@ pages:
     title: 資料來源與轉換流程
   external-alignment.md:
     title: 外部規格對齊
+  examples.md:
+    title: 合成範例
   task-index.md:
     title: Task 目錄
   task-qbc.md:
@@ -94,6 +96,7 @@ menu:
     共同資料模型: common-model.html
     資料來源與轉換流程: data-flow.html
     外部規格對齊: external-alignment.html
+    合成範例: examples.html
   Task 模組:
     Task 目錄: task-index.html
     QBC／P4P Task: task-qbc.html

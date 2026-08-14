@@ -15,6 +15,7 @@
 
 ### 乳癌社群草稿上層與 QBC Task 分層
 
+- 新增完整乳癌合成情境 Bundle、中英雙語合成範例頁，以及強制每個公開 FSH example 標示為合成資料的回歸測試。
 - IG identity 改為 `io.github.erichuang777777.breast-cancer#1.0.0-preview.1`，canonical 改為 `https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG`。
 - 新增 7 個可跨 Task 重用的 `BreastCancer*` Profiles、共同資訊分類 CodeSystem／ValueSet、CapabilityStatement 與完整合成範例。
 - `QBCPatient` 改由 `BreastCancerPatient` 衍生；QBC 115 欄 Mapping、Extensions、CodeSystems 與 XML／VPN 規則明確歸入 QBC／P4P Task 層。

@@ -36,6 +36,7 @@ Task：QBC／P4P 癌症治療申報（目前第一個 Task）
 - QBC／P4P 115 年欄位至 FHIR 的正式化 Mapping、條件、基數、轉換、缺值、重複值、可逆性與審查狀態。
 - 與 TW Core 1.0.0、mCODE 4.0.0 及 ICHOM Breast Cancer 1.0.0 的對齊與差異說明。
 - 來源可追溯、Provenance、FHIR Bundle、Big5 XML round-trip、驗證規則與人工審查登錄。
+- 可由 IG Publisher 驗證的完全合成端到端乳癌情境與 QBC Task Bundle。
 - 後續擴充病理報告、檢驗報告、超音波報告、癌症登記、癌藥申請、治療計畫及多專科討論等 Task 的架構。
 
 目前不包含：
@@ -72,6 +73,8 @@ Task：QBC／P4P 癌症治療申報（目前第一個 Task）
 - `outputs/qbc_ig_mapping/QBC_FHIR_Mapping_TaskSpec_v1.0-preview.1.xlsx`
 - `outputs/qbc_ig_mapping/qbc_fhir_formal_mapping.csv`
 - `outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv`
+
+公開範例位於 `ig/input/fsh/breast-common-examples.fsh`、`ig/input/fsh/examples.fsh` 與 `ig/input/pagecontent/examples.md`。所有範例均為完全合成資料，不得以真實病歷或僅去識別化的病歷取代。
 
 ### 建置與驗證
 
@@ -141,6 +144,7 @@ Included now:
 - A formal QBC/P4P 2026 field-to-FHIR mapping, including conditions, cardinalities, transformations, missing-value behavior, repetitions, reversibility, and review status.
 - Alignment and gap documentation for TW Core 1.0.0, mCODE 4.0.0, and ICHOM Breast Cancer 1.0.0.
 - Source traceability, Provenance, FHIR Bundles, Big5 XML round-trip behavior, validation rules, and a human-review register.
+- Publisher-validated, fully synthetic end-to-end breast cancer and QBC task scenarios.
 - An extensible architecture for pathology, laboratory, ultrasound, cancer registry, anticancer drug review, treatment planning, and multidisciplinary discussion tasks.
 
 Not included:
@@ -177,6 +181,8 @@ Primary mapping artifacts:
 - `outputs/qbc_ig_mapping/QBC_FHIR_Mapping_TaskSpec_v1.0-preview.1.xlsx`
 - `outputs/qbc_ig_mapping/qbc_fhir_formal_mapping.csv`
 - `outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv`
+
+Public examples are maintained in `ig/input/fsh/breast-common-examples.fsh`, `ig/input/fsh/examples.fsh`, and `ig/input/pagecontent/examples.md`. Every example is completely synthetic; real or merely de-identified medical records must never be substituted.
 
 ### Build and validation
 

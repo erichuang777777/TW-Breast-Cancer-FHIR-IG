@@ -140,7 +140,7 @@ Description: "不含真實病人資料的 collection Bundle。"
 Instance: QBCWorkflowEpisodeExample
 InstanceOf: EpisodeOfCare
 Usage: #example
-Title: "QBC Workflow Episode with Mapping Extensions"
+Title: "Synthetic QBC Workflow Episode with Mapping Extensions"
 Description: "Synthetic example covering enrollment, case class, treatment/follow-up status and transfer date extensions."
 * status = #active
 * patient = Reference(QBCPatientExample)
@@ -158,7 +158,7 @@ Description: "Synthetic example covering enrollment, case class, treatment/follo
 Instance: QBCDiagnosisEncounterExample
 InstanceOf: Encounter
 Usage: #example
-Title: "QBC Diagnosis Facility Class Example"
+Title: "Synthetic QBC Diagnosis Facility Class Example"
 Description: "Synthetic example preserving that diagnosis occurred at this institution."
 * status = #finished
 * class = http://terminology.hl7.org/CodeSystem/v3-ActCode#AMB
@@ -169,7 +169,7 @@ Description: "Synthetic example preserving that diagnosis occurred at this insti
 Instance: QBCTreatmentProcedureExample
 InstanceOf: Procedure
 Usage: #example
-Title: "QBC Treatment Procedure Mapping Example"
+Title: "Synthetic QBC Treatment Procedure Mapping Example"
 Description: "Synthetic example covering treatment sequence, type and facility class extensions."
 * status = #completed
 * code = http://snomed.info/sct#387713003 "Surgical procedure"

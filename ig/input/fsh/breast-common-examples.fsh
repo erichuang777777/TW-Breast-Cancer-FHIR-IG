@@ -140,3 +140,34 @@ Description: "Synthetic ultrasound report structure; a future source adapter may
 * effectiveDateTime = "2026-01-03T00:00:00+08:00"
 * issued = "2026-01-03T01:00:00+08:00"
 * performer.display = "Synthetic imaging service"
+
+Instance: BreastCancerSyntheticScenarioBundleExample
+InstanceOf: Bundle
+Usage: #example
+Title: "Completely Synthetic Breast Cancer Scenario Bundle"
+Description: "End-to-end synthetic scenario linking atomic source reports, reusable breast cancer facts, and treatment records. It represents no real person and is not for clinical decisions or official submission."
+* id = "breast-cancer-synthetic-scenario"
+* type = #collection
+* timestamp = "2026-01-15T00:00:00+08:00"
+* entry[+].fullUrl = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/Patient/breast-cancer-patient-example"
+* entry[=].resource = BreastCancerPatientExample
+* entry[+].fullUrl = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/Condition/breast-cancer-primary-condition-example"
+* entry[=].resource = BreastCancerPrimaryConditionExample
+* entry[+].fullUrl = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/Specimen/breast-cancer-pathology-specimen-example"
+* entry[=].resource = BreastCancerPathologySpecimenExample
+* entry[+].fullUrl = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/Observation/breast-cancer-tumor-marker-example"
+* entry[=].resource = BreastCancerTumorMarkerObservationExample
+* entry[+].fullUrl = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/Observation/breast-cancer-stage-group-example"
+* entry[=].resource = BreastCancerStageGroupObservationExample
+* entry[+].fullUrl = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/DiagnosticReport/breast-cancer-pathology-report-example"
+* entry[=].resource = BreastCancerPathologyReportExample
+* entry[+].fullUrl = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/DiagnosticReport/breast-cancer-laboratory-report-example"
+* entry[=].resource = BreastCancerLaboratoryReportExample
+* entry[+].fullUrl = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/DiagnosticReport/breast-cancer-ultrasound-report-example"
+* entry[=].resource = BreastCancerUltrasoundReportExample
+* entry[+].fullUrl = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/Procedure/breast-cancer-treatment-procedure-example"
+* entry[=].resource = BreastCancerTreatmentProcedureExample
+* entry[+].fullUrl = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/MedicationRequest/breast-cancer-medication-request-example"
+* entry[=].resource = BreastCancerMedicationRequestExample
+* entry[+].fullUrl = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/EpisodeOfCare/breast-cancer-episode-example"
+* entry[=].resource = BreastCancerEpisodeOfCareExample
