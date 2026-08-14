@@ -13,7 +13,7 @@ from openpyxl.utils import get_column_letter
 ROOT = Path(__file__).resolve().parents[1]
 SPEC = ROOT / "6 批次上傳格式說明_QBC_乳癌照護品質提升方案_XML上傳_11507(定版).docx"
 OUTDIR = ROOT / "outputs" / "qbc_ig_mapping"
-OUT = OUTDIR / "QBC_FHIR_TWCore_mCODE_Mapping_v0.1.xlsx"
+OUT = OUTDIR / "QBC_FHIR_Mapping_TaskSpec_v1.0-preview.1.xlsx"
 
 TWCORE = "https://twcore.mohw.gov.tw/ig/twcore/"
 MCODE = "https://hl7.org/fhir/us/mcode/"
@@ -478,6 +478,7 @@ def build():
         if cell.value:
             cell.hyperlink = cell.value
             cell.style = "Hyperlink"
+            cell.font = Font(name="Arial", color="0563C1", underline="single", size=9)
 
     ws = wb.create_sheet("Mapping_Summary")
     ws.append(["指標", "數量", "說明"])
@@ -501,6 +502,8 @@ def build():
     wb.calculation.fullCalcOnLoad = True
     wb.calculation.forceFullCalc = True
     wb.save(OUT)
+    from formalize_qbc_mapping import formalize
+    formalize(OUT)
     return OUT
 
 

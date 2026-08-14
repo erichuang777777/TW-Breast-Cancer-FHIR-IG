@@ -1,7 +1,7 @@
 {
   "resourceType" : "Requirements",
   "id" : "fromNarrative",
-  "url" : "https://ericeric777777.github.io/qbc-ig/Requirements/fromNarrative",
+  "url" : "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/Requirements/fromNarrative",
   "name" : "FromNarrative",
   "title" : "Narrative Conformance Statements",
   "status" : "active",

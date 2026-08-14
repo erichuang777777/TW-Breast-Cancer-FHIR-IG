@@ -500,7 +500,7 @@ def build() -> tuple[Path, ...]:
         "",
         "「Word 原始規則」欄為衛生福利部中央健康保險署所發布 QBC XML 上傳格式說明（11507 定版）之逐字引用，目的在於讓實作者能逐欄核對本草案的技術檢查是否忠實反映官方規則。該等文字之權利屬原權利機關所有，不因本 IG 依 CC BY 4.0 授權其原創內容而改變。",
         "",
-        "官方文件原檔不隨本 IG 散布；請逕向健保署取得，並以下列 SHA-256 核對版本是否一致。若權利機關認為本頁引用範圍不適當，請循 [issue tracker](https://github.com/ericeric777777/qbc-ig/issues) 反映，本專案將配合調整或移除。",
+        "官方文件原檔不隨本 IG 散布；請逕向健保署取得，並以下列 SHA-256 核對版本是否一致。若權利機關認為本頁引用範圍不適當，請循 [issue tracker](https://github.com/erichuang777777/TW-Breast-Cancer-FHIR-IG/issues) 反映，本專案將配合調整或移除。",
         "",
         f"來源 SHA-256：`{source_hash}`",
         "",

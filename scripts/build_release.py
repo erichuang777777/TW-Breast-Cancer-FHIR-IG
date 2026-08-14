@@ -28,6 +28,7 @@ INCLUDE_PREFIXES = (
     "config/",
     "outputs/qbc_conformance/",
     "outputs/qbc_test_pack/",
+    "outputs/qbc_ig_mapping/",
     # 只含 SHA-256 與行數統計；官方文件全文與逐行 CSV 由 .gitignore 排除，
     # 因此 tracked_files() 不會選到它們。
     "outputs/source_audit/",

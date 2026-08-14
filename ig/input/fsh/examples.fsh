@@ -131,9 +131,52 @@ Description: "不含真實病人資料的 collection Bundle。"
 * identifier.value = "qbc-submission-example"
 * type = #collection
 * timestamp = "2026-01-01T00:00:00Z"
-* entry[patient].fullUrl = "https://ericeric777777.github.io/qbc-ig/Patient/qbc-patient-example"
+* entry[patient].fullUrl = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/Patient/qbc-patient-example"
 * entry[patient].resource = QBCPatientExample
-* entry[observation].fullUrl = "https://ericeric777777.github.io/qbc-ig/Observation/qbc-stage-example"
+* entry[observation].fullUrl = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/Observation/qbc-stage-example"
 * entry[observation].resource = QBCStageObservationExample
-* entry[provenance].fullUrl = "https://ericeric777777.github.io/qbc-ig/Provenance/qbc-provenance-example"
+* entry[provenance].fullUrl = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/Provenance/qbc-provenance-example"
 * entry[provenance].resource = QBCProvenanceExample
+Instance: QBCWorkflowEpisodeExample
+InstanceOf: EpisodeOfCare
+Usage: #example
+Title: "QBC Workflow Episode with Mapping Extensions"
+Description: "Synthetic example covering enrollment, case class, treatment/follow-up status and transfer date extensions."
+* status = #active
+* patient = Reference(QBCPatientExample)
+* extension[+].url = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/qbc-enrollment-type"
+* extension[=].valueCodeableConcept = QBCWorkflowCodeSystem#enrollment-2
+* extension[+].url = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/qbc-case-class"
+* extension[=].valueCodeableConcept = QBCWorkflowCodeSystem#case-class-1
+* extension[+].url = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/qbc-treatment-status"
+* extension[=].valueCodeableConcept = QBCWorkflowCodeSystem#treatment-status-2
+* extension[+].url = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/qbc-followup-status"
+* extension[=].valueCodeableConcept = QBCWorkflowCodeSystem#followup-status-1
+* extension[+].url = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/qbc-transfer-date"
+* extension[=].valueDate = "2026-12-31"
+
+Instance: QBCDiagnosisEncounterExample
+InstanceOf: Encounter
+Usage: #example
+Title: "QBC Diagnosis Facility Class Example"
+Description: "Synthetic example preserving that diagnosis occurred at this institution."
+* status = #finished
+* class = http://terminology.hl7.org/CodeSystem/v3-ActCode#AMB
+* subject = Reference(QBCPatientExample)
+* extension.url = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/qbc-diagnosis-facility-class"
+* extension.valueCodeableConcept = QBCWorkflowCodeSystem#facility-1
+
+Instance: QBCTreatmentProcedureExample
+InstanceOf: Procedure
+Usage: #example
+Title: "QBC Treatment Procedure Mapping Example"
+Description: "Synthetic example covering treatment sequence, type and facility class extensions."
+* status = #completed
+* code = http://snomed.info/sct#387713003 "Surgical procedure"
+* subject = Reference(QBCPatientExample)
+* extension[+].url = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/qbc-treatment-sequence"
+* extension[=].valuePositiveInt = 1
+* extension[+].url = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/qbc-treatment-type"
+* extension[=].valueCodeableConcept = QBCWorkflowCodeSystem#treatment-1
+* extension[+].url = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/qbc-treatment-facility-class"
+* extension[=].valueCodeableConcept = QBCWorkflowCodeSystem#facility-1

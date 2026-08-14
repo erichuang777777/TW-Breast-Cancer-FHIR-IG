@@ -194,7 +194,7 @@ Description: "本 IG 為 QBC Submission Bundle 識別碼所定義的命名空間
 * description = "非官方 QBC 草案用來識別單一 Submission Bundle 的 identifier 命名空間。識別碼值由送件端自行決定，須在該送件端範圍內唯一，且不得包含個案身分識別資訊。"
 * jurisdiction = urn:iso:std:iso:3166#TW
 * uniqueId.type = #uri
-* uniqueId.value = "https://ericeric777777.github.io/qbc-ig/sid/qbc-bundle-id"
+* uniqueId.value = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/sid/qbc-bundle-id"
 * uniqueId.preferred = true
 
 ValueSet: QBCQuantityFieldValueSet

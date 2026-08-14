@@ -10,6 +10,8 @@
 - 三種 DIAG_TYPE 完全合成 golden cases 與負向案例
 - FHIR R4／TW Core IG、Raw／Date／Integer／Tumor Size Profiles
 - mCODE 4.0.0 逐欄 gap matrix
+- 115 欄 deterministic FHIR mapping（canonical/version、型別、基數、轉換、null/repeat/loss/round-trip policy）
+- 9 個 QBC Extensions、2 個 ConceptMaps、workflow CodeSystem／ValueSets 與正式 Approval Register
 - clinical review 與 VPN acceptance templates
 
 ## 不需要人工審查

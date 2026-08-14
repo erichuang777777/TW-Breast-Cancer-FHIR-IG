@@ -1,8 +1,8 @@
 Profile: QBCPatient
-Parent: $TWCorePatient
+Parent: BreastCancerPatient
 Id: qbc-patient
 Title: "QBC Patient"
-Description: "非官方 QBC 草案中的個案基本識別資料。"
+Description: "QBC／P4P Task 使用的病人 Profile，衍生自乳癌社群草稿的 BreastCancerPatient。"
 * ^status = #draft
 * ^experimental = true
 * identifier 1..*

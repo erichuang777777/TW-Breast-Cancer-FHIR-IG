@@ -5,7 +5,7 @@ import re
 from .models import CaseRecord
 
 
-QBC_CANONICAL = os.getenv("QBC_FHIR_CANONICAL", "https://ericeric777777.github.io/qbc-ig").rstrip("/")
+QBC_CANONICAL = os.getenv("QBC_FHIR_CANONICAL", "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG").rstrip("/")
 QBC_FIELD_SYSTEM = f"{QBC_CANONICAL}/CodeSystem/qbc-field"
 QBC_PATIENT_ID_SYSTEM = f"{QBC_CANONICAL}/sid/qbc-patient-id"
 QBC_BUNDLE_ID_SYSTEM = f"{QBC_CANONICAL}/sid/qbc-bundle-id"

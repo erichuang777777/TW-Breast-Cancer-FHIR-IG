@@ -5,13 +5,24 @@
 | 版本線 | 識別 | 目前版本 | 定義於 |
 |---|---|---|---|
 | Workbench 應用程式 | `qbc-review-workbench` | `0.1.0-alpha.1`（PEP 440：`0.1.0a1`） | `qbc_workbench/__init__.py`、`pyproject.toml` |
-| FHIR 實作指引 | `io.github.ericeric777777.qbc` | `0.1.0`（`draft`／`experimental`） | `ig/sushi-config.yaml`、`ig/publication/package-list.json` |
+| FHIR 實作指引 | `io.github.erichuang777777.breast-cancer` | `1.0.0-preview.1`（`draft`／`experimental`） | `ig/sushi-config.yaml`、`ig/publication/package-list.json` |
 
 格式依循 [Keep a Changelog](https://keepachangelog.com/zh-TW/1.1.0/)，版本號依循 [語意化版本](https://semver.org/lang/zh-TW/)。
 
 ---
 
 ## [未發布]
+
+### 乳癌社群草稿上層與 QBC Task 分層
+
+- IG identity 改為 `io.github.erichuang777777.breast-cancer#1.0.0-preview.1`，canonical 改為 `https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG`。
+- 新增 7 個可跨 Task 重用的 `BreastCancer*` Profiles、共同資訊分類 CodeSystem／ValueSet、CapabilityStatement 與完整合成範例。
+- `QBCPatient` 改由 `BreastCancerPatient` 衍生；QBC 115 欄 Mapping、Extensions、CodeSystems 與 XML／VPN 規則明確歸入 QBC／P4P Task 層。
+- 新增分層架構、Scope、共同模型、外部規格對齊、Task 目錄與 QBC Task 頁面；TW Core 為結構 dependency，mCODE／ICHOM 僅作語意參考。
+- Mapping workbook 更新為 `QBC_FHIR_Mapping_TaskSpec_v1.0-preview.1.xlsx`，新增 `Architecture` 工作表並保留原有 115 欄及治理表。
+- 依資料來源成熟度再分成來源證據、乳癌 canonical facts、衍生文件／協作、Task 投影四層；新增抽象 source profiles，以及具體 `BreastCancerPathologyReport`、`BreastCancerLaboratoryReport`、`BreastCancerUltrasoundReport`、`BreastCancerPathologySpecimen`。影像 lineage 直接使用標準 FHIR `ImagingStudy`。
+- 明確記錄目前的 bridge flow（癌症診療計畫書 → QBC）及目標 flow（原始病理／檢驗／超音波／治療來源 → canonical facts → 計畫書或直接 QBC／癌藥申請／癌登／MDT）。
+- Mapping workbook 新增 `Data_Flow`，逐欄增加 current bridge input、target source evidence、canonical fact 及 projection role，禁止把衍生文件當成原始 source of truth。
 
 ### 人工審查範圍修正
 
@@ -114,3 +125,8 @@
 人工審核 Web UI、核准閘門、Big5 XML 與稽核輸出。後續 conformance 更新加入 115 欄
 機器可讀規格、結構化錯誤碼、Big5 XML round-trip、模擬收件端、三種 `DIAG_TYPE` 合成
 測試包、FHIR 強型別 Observation Profiles 及 mCODE 4.0.0 gap matrix。
+# Mapping v0.2.0-review
+
+- 新增 `Formal_Mapping_115`：115 個唯一 mapping rule，固定 Target Resource/Element、profile 版本、型別、基數、轉換及資訊損失政策。
+- 新增 `Approval_Register`，將 QBC 規則、臨床、FHIR、術語／授權、個資資安、VPN UAT 與 publisher 核准分開治理。
+- 新增 9 個 QBC Extensions、2 個 ConceptMaps、13 個 ValueSets／2 個 CodeSystems；IG Publisher QA 為 0 errors、0 warnings、0 broken links。
