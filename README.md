@@ -1,85 +1,222 @@
-# QBC Review Workbench v0.1.0-alpha.1
+# Taiwan Breast Cancer FHIR Implementation Guide
 
-將癌症診療計畫JSON、EligibleList及外部病歷文件轉成FHIR相容中介資料，經人工審核後產生QBC XML及稽核檔。
+> 台灣乳癌 FHIR 實作指引社群草稿（Preview 1.0）
+> Taiwan Breast Cancer FHIR Implementation Guide — Community Draft (Preview 1.0)
 
-> Alpha／研究測試用途。未完成院內驗證、資安與VPN驗收前，不得直接用於正式申報。
+[中文](#中文說明) | [English](#english)
 
-## 功能
+目前版本：`1.0.0-preview.1` · FHIR R4 · `draft` · `experimental`
 
-- JSON、EligibleList（Big5 TSV `.xls`）、PDF、DOCX、XLSX批次匯入
-- 新輔助、直接手術、首次復發適用區段
-- 病理規則擷取、TNM Stage規則計算
-- AI／規則／結構化／人工來源標記
-- Ollama JSON Schema擷取介面
-- FHIR Bundle與Provenance
-- Web人工審核及核准閘門
-- Big5 QBC XML、檔名規則與audit.json
-- 115欄機器可讀規格、值域／條件必填／日期／跨欄位 Validator
-- Big5 XML round-trip 預驗證與本機模擬收件端
+## 中文說明
 
-## 啟動
+### 專案定位
 
-```powershell
-python -m qbc_workbench.cli serve --host 127.0.0.1 --port 8765
+本專案建立一套以台灣醫療情境為背景的乳癌 FHIR 實作指引草稿。乳癌是上層臨床範疇（domain scope）；QBC／P4P 癌症治療品質改善計畫資料申報是目前第一個被納入驗證的業務 Task，不等同於整套乳癌 IG。
+
+本草稿希望讓後續 Task 共用乳癌核心模型，避免每個申報或作業流程各自建立不相容的 Patient、Condition、Observation、DiagnosticReport、Procedure、MedicationRequest 等定義。
+
+```text
+原子臨床資料
+病理／檢驗／超音波／病史／家族史
+        ↓
+乳癌共用 FHIR Profiles、ValueSets、Extensions
+        ↓
+診療計畫／治療計畫／多專科討論／癌症登記／藥物申請
+        ↓
+Task：QBC／P4P 癌症治療申報（目前第一個 Task）
 ```
 
-開啟 `http://127.0.0.1:8765/`。
+目前因無法取得完整原始臨床資料，QBC Task 先以整理過的癌症診療計畫書作為 bridge input。未來可改由病理、檢驗、影像與其他原子資料產生診療計畫，或直接投影為申報資料；診療計畫與申報資料都不應被視為原始臨床事實的唯一來源。
 
-Ollama模型由`QBC_OLLAMA_MODEL`設定；開發環境預設為`qwen3.5:cloud`。Cloud模型不得傳送未獲院方授權的可識別病歷。
+### 範圍
 
-## CLI匯入
+目前包含：
 
-```powershell
-python -m qbc_workbench.cli import D:\QBC_DATA --batch demo-001 --case CASE001
-```
+- 乳癌共用 Profiles、Terminology、Extensions、Examples 與 CapabilityStatement。
+- QBC／P4P 115 年欄位至 FHIR 的正式化 Mapping、條件、基數、轉換、缺值、重複值、可逆性與審查狀態。
+- 與 TW Core 1.0.0、mCODE 4.0.0 及 ICHOM Breast Cancer 1.0.0 的對齊與差異說明。
+- 來源可追溯、Provenance、FHIR Bundle、Big5 XML round-trip、驗證規則與人工審查登錄。
+- 可由 IG Publisher 驗證的完全合成端到端乳癌情境與 QBC Task Bundle。
+- 後續擴充病理報告、檢驗報告、超音波報告、癌症登記、癌藥申請、治療計畫及多專科討論等 Task 的架構。
 
-資料保存在 `runtime/batches/`；核准後輸出至 `runtime/exports/`。
+目前不包含：
 
-## QBC XML預驗證
+- 衛生主管機關、健保署、HL7 Taiwan 或任何標準組織的正式核准或背書。
+- 醫療決策建議、支付資格判定，或可直接投入正式申報的保證。
+- 未經驗證的原始病歷資料與個人健康資訊。
 
-```powershell
-python -m qbc_workbench.cli validate-xml .\QBC_3501200000_11508_001.xml
-python -m qbc_workbench.cli mock-receive .\QBC_3501200000_11508_001.xml
-```
+### IG 識別
 
-機器可讀的115欄規格位於`qbc_workbench/data/qbc_fields.json`，可編輯表格位於`outputs/qbc_conformance/`。重新擷取官方Word主表：
-
-```powershell
-python scripts\build_qbc_conformance_spec.py
-```
-
-## 安全控制
-
-- AI候選預設`pending_review`，未核准不能輸出。
-- 來源衝突、必填缺漏、治療日期缺漏均阻擋XML。
-- XML不加入自訂AI標籤；來源保存在FHIR Provenance及audit.json。
-- `model-cloud`可能將資料送往外部服務，未完成院內法遵前只使用去識別化資料。
-
-## 資料隔離
-
-真實個案、名單與健保署官方規格原檔一律隔離於 `private/`，已由 `.gitignore` 整批排除：
-
-| 目錄 | 內容 |
+| 項目 | 值 |
 |---|---|
-| `private/cases/` | 單一個案來源檔（JSON／Word／PDF／Excel） |
-| `private/rosters/` | 方案申請與合格個案名單 |
-| `private/spec-sources/` | 健保署官方規格文件原檔（第三方著作，不再散布） |
+| Repository | `erichuang777777/TW-Breast-Cancer-FHIR-IG` |
+| Package ID | `io.github.erichuang777777.breast-cancer` |
+| Canonical | `https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG` |
+| Version | `1.0.0-preview.1` |
+| FHIR | `4.0.1` |
+| Status | `draft` / `experimental` |
+| License | CC BY 4.0 |
 
-每次打包與發布前，`scripts/check_no_phi.py` 會以 git 可提交檔案為範圍掃描病歷號、
-身分證號與個案檔名；合成識別碼必須在該腳本的 `SYNTHETIC_ALLOWLIST` 明確宣告。
+### 重要目錄
+
+| 路徑 | 內容 |
+|---|---|
+| `ig/` | FSH、IG 頁面、設定及 Publisher 產物 |
+| `outputs/qbc_ig_mapping/` | QBC Mapping Table、正式化 CSV、簽核／審查登錄 |
+| `qbc_workbench/` | 匯入、驗證、FHIR 轉換、XML round-trip 與稽核工具 |
+| `scripts/` | Mapping、IG、發布與 PHI 檢查腳本 |
+| `tests/` | 自動化測試 |
+| `private/` | 不納入 Git 的受保護來源與個案資料 |
+
+核心 Mapping Table：
+
+- `outputs/qbc_ig_mapping/QBC_FHIR_Mapping_TaskSpec_v1.0-preview.1.xlsx`
+- `outputs/qbc_ig_mapping/qbc_fhir_formal_mapping.csv`
+- `outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv`
+
+公開範例位於 `ig/input/fsh/breast-common-examples.fsh`、`ig/input/fsh/examples.fsh` 與 `ig/input/pagecontent/examples.md`。所有範例均為完全合成資料，不得以真實病歷或僅去識別化的病歷取代。
+
+### 建置與驗證
+
+需求：Python 3、Node.js／npm、SUSHI、Java，以及 HL7 FHIR IG Publisher。
 
 ```powershell
-python scripts\check_no_phi.py     # 單獨執行個資閘門
-.\scripts\check_release.ps1        # 完整發布前檢查（閘門 + 測試 + IG QA）
-python scripts\build_release.py    # 從工作樹產生發布包
+# 完整發布檢查：重建產物、PHI 掃描、測試、SUSHI 與 Publisher QA
+.\scripts\check_release.ps1
+
+# 單獨重建 Mapping Table
+python scripts\build_qbc_ig_mapping.py
+
+# 單獨執行測試與 PHI 掃描
+python -m pytest -q
+python scripts\check_no_phi.py
 ```
 
-## 已知限制
+手動建置 IG：
 
-- 各院外部病歷格式需要額外adapter與測試語料。
-- 若合格名單沒有對應病例，基本主檔欄位會顯示缺漏並阻擋輸出。
-- 表-1官方範例含錯誤XML標籤；本工具以表-2欄位規則產生正確結束標籤。
-- FHIR層的非官方QBC IG草案（`ig/`）為 `draft`／`experimental`，QBC Patient與Bundle衍生自TW Core 1.0.0。這不代表mCODE conformant。
-- 本機模擬收件成功不等同健保VPN正式收件成功。
-- `clinical_review_template.csv`只列出Word未明示、由本專案補上的解讀，須由具權責人員簽核；115欄的官方規則本身不需要人核准，其轉錄與實作由來源SHA-256與自動化測試把關。
-- `ig/input/pagecontent/` 的 `field-audit.md` 與 `source-traceability.md` 為腳本生成，請勿手動編輯；重新產生需要 `private/spec-sources/` 內的官方原檔。
+```powershell
+Set-Location ig
+npm.cmd install --prefix tools
+sushi.cmd .
+java "-Dfile.encoding=UTF-8" -jar publisher.jar -ig ig.ini
+```
+
+發布前至少應確認：測試通過、SUSHI 無 error、Publisher QA 為 0 errors／0 warnings／0 broken links、Mapping 產物已重建，且 PHI 掃描無發現。
+
+### 治理與簽核
+
+Preview 版本可以由專案維護者發布，不代表官方認證。需要人工確認的項目記錄於 Mapping workbook 的 `Approval_Register` 及對應 CSV；簽核的是本專案對規則、術語與臨床語意所做的本地解讀，不是要求維護者代替主管機關核准官方規則。
+
+正式導入前，採用機構仍應完成臨床、術語、FHIR、資訊安全、法遵與申報流程的在地審查。問題與建議請使用 [GitHub Issues](https://github.com/erichuang777777/TW-Breast-Cancer-FHIR-IG/issues)。
+
+### 授權與聲明
+
+本專案內容以 CC BY 4.0 授權；第三方標準、代碼系統與文件仍受各自授權條款約束。FHIR® 是 HL7® 的註冊商標。本專案為獨立社群草稿，未經 HL7 International、HL7 Taiwan、衛生福利部、中央健康保險署、ICHOM 或其他機構背書。
+
+---
+
+## English
+
+### Project purpose
+
+This repository develops a Taiwan-context community draft for a breast cancer FHIR Implementation Guide. Breast cancer is the domain scope. The QBC/P4P cancer care quality reporting workflow is the first validated business task; it is not the entire breast cancer IG.
+
+The guide provides a reusable breast cancer model so future workflows can share compatible definitions for Patient, Condition, Observation, DiagnosticReport, Procedure, MedicationRequest, and related resources instead of creating a separate IG for every task.
+
+```text
+Atomic clinical data
+pathology / laboratory / ultrasound / history / family history
+        ↓
+Shared breast cancer FHIR Profiles, ValueSets, and Extensions
+        ↓
+care plans / treatment plans / tumor board / cancer registry / drug review
+        ↓
+Task: QBC/P4P cancer care reporting (the first task currently implemented)
+```
+
+Because complete source clinical data is not currently available, the QBC task uses a curated cancer care plan as a bridge input. A future implementation may derive the care plan from atomic pathology, laboratory, imaging, and history data, or project those facts directly into reporting data. Neither the care plan nor the claim/report payload should replace the original clinical facts as the source of truth.
+
+### Scope
+
+Included now:
+
+- Shared breast cancer Profiles, terminology, Extensions, examples, and a CapabilityStatement.
+- A formal QBC/P4P 2026 field-to-FHIR mapping, including conditions, cardinalities, transformations, missing-value behavior, repetitions, reversibility, and review status.
+- Alignment and gap documentation for TW Core 1.0.0, mCODE 4.0.0, and ICHOM Breast Cancer 1.0.0.
+- Source traceability, Provenance, FHIR Bundles, Big5 XML round-trip behavior, validation rules, and a human-review register.
+- Publisher-validated, fully synthetic end-to-end breast cancer and QBC task scenarios.
+- An extensible architecture for pathology, laboratory, ultrasound, cancer registry, anticancer drug review, treatment planning, and multidisciplinary discussion tasks.
+
+Not included:
+
+- Official approval or endorsement by Taiwan health authorities, NHIA, HL7 Taiwan, or any standards organization.
+- Clinical decision support, reimbursement eligibility decisions, or a guarantee that artifacts are production-ready for official submission.
+- Unvalidated source medical records or personal health information.
+
+### IG identity
+
+| Item | Value |
+|---|---|
+| Repository | `erichuang777777/TW-Breast-Cancer-FHIR-IG` |
+| Package ID | `io.github.erichuang777777.breast-cancer` |
+| Canonical | `https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG` |
+| Version | `1.0.0-preview.1` |
+| FHIR | `4.0.1` |
+| Status | `draft` / `experimental` |
+| License | CC BY 4.0 |
+
+### Repository layout
+
+| Path | Purpose |
+|---|---|
+| `ig/` | FSH, narrative pages, configuration, and Publisher output |
+| `outputs/qbc_ig_mapping/` | QBC Mapping Table, formal CSV, and approval/review register |
+| `qbc_workbench/` | Import, validation, FHIR transformation, XML round-trip, and audit tooling |
+| `scripts/` | Mapping, IG, release, and PHI-check scripts |
+| `tests/` | Automated tests |
+| `private/` | Protected source and case data excluded from Git |
+
+Primary mapping artifacts:
+
+- `outputs/qbc_ig_mapping/QBC_FHIR_Mapping_TaskSpec_v1.0-preview.1.xlsx`
+- `outputs/qbc_ig_mapping/qbc_fhir_formal_mapping.csv`
+- `outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv`
+
+Public examples are maintained in `ig/input/fsh/breast-common-examples.fsh`, `ig/input/fsh/examples.fsh`, and `ig/input/pagecontent/examples.md`. Every example is completely synthetic; real or merely de-identified medical records must never be substituted.
+
+### Build and validation
+
+Prerequisites: Python 3, Node.js/npm, SUSHI, Java, and the HL7 FHIR IG Publisher.
+
+```powershell
+# Full release gate: rebuild artifacts, PHI scan, tests, SUSHI, and Publisher QA
+.\scripts\check_release.ps1
+
+# Rebuild the mapping artifacts only
+python scripts\build_qbc_ig_mapping.py
+
+# Run tests and the PHI scan separately
+python -m pytest -q
+python scripts\check_no_phi.py
+```
+
+Manual IG build:
+
+```powershell
+Set-Location ig
+npm.cmd install --prefix tools
+sushi.cmd .
+java "-Dfile.encoding=UTF-8" -jar publisher.jar -ig ig.ini
+```
+
+Before publication, confirm that tests pass, SUSHI reports no errors, Publisher QA reports 0 errors, 0 warnings, and 0 broken links, mapping artifacts are rebuilt, and the PHI scan finds nothing.
+
+### Governance and review
+
+A project maintainer may publish this Preview release; publication does not constitute official certification. Human-review items are recorded in the workbook `Approval_Register` and its CSV counterpart. Reviewers sign the project’s local interpretation of clinical, terminology, and workflow rules—not the underlying official rules themselves.
+
+Before production adoption, each implementing organization remains responsible for local clinical, terminology, FHIR, privacy, security, legal, and submission-workflow review. Use [GitHub Issues](https://github.com/erichuang777777/TW-Breast-Cancer-FHIR-IG/issues) for feedback.
+
+### License and disclaimer
+
+Project-authored content is licensed under CC BY 4.0. Third-party standards, code systems, and documents remain subject to their own terms. FHIR® is a registered trademark of HL7®. This independent community draft is not endorsed by HL7 International, HL7 Taiwan, Taiwan’s Ministry of Health and Welfare, the National Health Insurance Administration, ICHOM, or any other organization.

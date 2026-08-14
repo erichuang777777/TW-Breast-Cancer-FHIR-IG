@@ -1,5 +1,7 @@
 # v0.1.0-alpha.1
 
+FHIR 規格另已重構為「乳癌 FHIR 社群草稿」`1.0.0-preview.1`。共同層提供可重用的乳癌 Profiles，QBC／P4P 明確定位為第一個 Task；TW Core 1.0.0 是結構 dependency，mCODE 4.0.0 與 ICHOM Breast Cancer 1.0.0 為語意參考。
+
 首個可執行的開發預覽版，包含批次匯入、FHIR canonical Bundle、QBC規則、Ollama結構化擷取、人工審核Web UI、核准閘門、Big5 XML與稽核輸出。
 
 後續 conformance 更新加入115欄機器可讀規格、結構化錯誤碼、完整值域／條件規則、治療與追蹤驗證、Big5 XML round-trip、模擬收件端、三種DIAG_TYPE合成測試包、FHIR強型別Observation Profiles及mCODE 4.0.0 gap matrix。
@@ -21,7 +23,7 @@
 
 非官方QBC IG草案為 `draft`／`experimental`，尚未宣告mCODE相容。正式release前仍需完成：
 
-- 115欄的臨床專家與QBC申報人員雙人簽核（目前全部為 `pending`）
+- `QBC_FHIR_Mapping_TaskSpec_v1.0-preview.1.xlsx` 的 `Approval_Register` 保留正式／官方使用所需簽核；社群 Preview 可在非官方、draft／experimental 標示下發布
 - 已知歧義項目取得健保署書面確認
 - 院內主檔、完整三類測試案例與資安審查
 - 健保VPN測試／正式環境驗收

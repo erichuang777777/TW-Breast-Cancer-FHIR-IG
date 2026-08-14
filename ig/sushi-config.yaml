@@ -1,31 +1,31 @@
-id: io.github.ericeric777777.qbc
-canonical: https://ericeric777777.github.io/qbc-ig
-name: QBCImplementationGuide
-title: 非官方 QBC 資料交換實作指引
-description: 非官方 QBC 資料交換研究草案，採用 HL7 FHIR R4 並以 TW Core IG 1.0.0 為相依規範。本 IG 非衛生福利部、中央健康保險署或 HL7 International 出版品。
+id: io.github.erichuang777777.breast-cancer
+canonical: https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG
+name: BreastCancerCommunityImplementationGuide
+title: 乳癌 FHIR 實作指引－社群草稿
+description: 非官方乳癌 FHIR 社群草稿，以 TW Core IG 1.0.0 為結構基礎，提供可重用的乳癌共同資料層，並納入 QBC／P4P 申報 Task。mCODE 4.0.0 與 ICHOM Breast Cancer 1.0.0 僅作語意參考。本 IG 非衛生福利部、中央健康保險署、HL7 International 或 ICHOM 出版品。
 status: draft
 experimental: true
-version: 0.1.0
+version: 1.0.0-preview.1
 fhirVersion: 4.0.1
 copyrightYear: 2026+
-releaseLabel: draft
+releaseLabel: preview
 license: CC-BY-4.0
 jurisdiction: urn:iso:std:iso:3166#TW
 copyright: >-
   本 IG 之原創內容依 CC BY 4.0 授權。所引用之健保署／衛福部規格文件、HL7 FHIR、
-  TW Core IG、UCUM、ISO 3166 等第三方著作與商標，其權利仍屬各該權利人所有，
+  TW Core IG、mCODE、ICHOM、UCUM、ISO 3166 等第三方著作與商標，其權利仍屬各該權利人所有，
   不因本 IG 之授權而改變。本 IG 未經上述任何機構認可或背書。
 
 publisher:
-  name: QBC IG Community Draft
-  url: https://github.com/ericeric777777/qbc-ig
+  name: Breast Cancer FHIR Community Draft
+  url: https://github.com/erichuang777777/TW-Breast-Cancer-FHIR-IG
   email: ericeric777777@gmail.com
 
 contact:
-  - name: QBC IG Community Draft
+  - name: Breast Cancer FHIR Community Draft
     telecom:
       - system: url
-        value: https://github.com/ericeric777777/qbc-ig/issues
+        value: https://github.com/erichuang777777/TW-Breast-Cancer-FHIR-IG/issues
       - system: email
         value: ericeric777777@gmail.com
 
@@ -37,10 +37,28 @@ dependencies:
 pages:
   index.md:
     title: 首頁
+  architecture.md:
+    title: 分層架構
+  scope.md:
+    title: 乳癌社群草稿範圍
+  common-model.md:
+    title: 乳癌共同資料模型
+  data-flow.md:
+    title: 資料來源與轉換流程
+  external-alignment.md:
+    title: 外部規格對齊
+  examples.md:
+    title: 合成範例
+  task-index.md:
+    title: Task 目錄
+  task-qbc.md:
+    title: QBC／P4P Task
   usecases.md:
     title: 使用情境
   mappings.md:
     title: QBC 對應方式
+  formal-mapping.md:
+    title: 正式 Mapping 候選與簽核閘門
   business-rules.md:
     title: QBC 業務規則
   faq-rules.md:
@@ -72,9 +90,20 @@ pages:
 
 menu:
   首頁: index.html
-  規格:
+  乳癌共同層:
+    分層架構: architecture.html
+    Scope 與邊界: scope.html
+    共同資料模型: common-model.html
+    資料來源與轉換流程: data-flow.html
+    外部規格對齊: external-alignment.html
+    合成範例: examples.html
+  Task 模組:
+    Task 目錄: task-index.html
+    QBC／P4P Task: task-qbc.html
     使用情境: usecases.html
+  QBC 規格:
     QBC 對應方式: mappings.html
+    正式 Mapping 候選與簽核閘門: formal-mapping.html
     QBC 業務規則: business-rules.html
     QBC 情境規則: faq-rules.html
     方案資格、收結案與獎勵: program-rules.html

@@ -17,4 +17,4 @@
 | 放射治療 | RadiotherapyCourseSummary／Volume | partial；需治療系統資料 |
 | QBC 收案、分類、追蹤狀態 | EpisodeOfCare／QBC Extension | no exact map |
 
-完整 115 欄逐欄 mapping、信心等級、術語候選與待確認事項收錄於 `QBC_FHIR_TWCore_mCODE_Mapping_v0.1.xlsx`。在所有 `pending`／`Review` 項目完成治理前，不宣稱整體 mCODE conformant。
+完整 115 欄逐欄 mapping、確定的單一 Target Resource/Element、型別、基數、轉換、資訊損失政策與治理閘門收錄於 `QBC_FHIR_Mapping_TaskSpec_v1.0-preview.1.xlsx` 的 `Formal_Mapping_115`。本社群 Preview 不宣稱整體 mCODE conformant。

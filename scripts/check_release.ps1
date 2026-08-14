@@ -3,9 +3,12 @@ $root = Split-Path -Parent $PSScriptRoot
 
 Push-Location $root
 try {
-    # 個資閘門必須最先通過：其餘檢查再乾淨，只要有病歷資料外流就不得發布。
+    # The PHI gate runs first. Any detected patient data blocks publication.
     python scripts\check_no_phi.py
     if ($LASTEXITCODE -ne 0) { throw "PHI gate failed; inspect the findings above" }
+
+    python scripts\build_qbc_ig_mapping.py
+    if ($LASTEXITCODE -ne 0) { throw "formal FHIR mapping build failed" }
 
     python -m pytest -q
     if ($LASTEXITCODE -ne 0) { throw "pytest failed" }
@@ -29,7 +32,7 @@ try {
         Pop-Location
     }
     Write-Host "Release checks passed: PHI gate, pytest, synthetic test pack, SUSHI and IG Publisher QA."
-    Write-Host "尚未涵蓋（需人工完成）：115 欄臨床簽核、已知歧義的健保署書面確認、院內資安核准、健保 VPN 驗收。"
+    Write-Host "Community Preview is publishable. Production use still requires local governance and acceptance."
 }
 finally {
     Pop-Location

@@ -2,9 +2,11 @@
 
 {% include disclaimer.md %}
 
+QBC Task Preview 1.0 Mapping 工作簿：`outputs/qbc_ig_mapping/QBC_FHIR_Mapping_TaskSpec_v1.0-preview.1.xlsx`。其中 `Architecture` 說明乳癌共同層與 QBC Task 的關係，`Formal_Mapping_115` 是技術規格，`Approval_Register` 則保留正式／官方使用時的治理與驗收閘門。
+
 建置後可從網站下載本 IG 的 FHIR package，或使用套件識別碼載入驗證工具。
 
-本草案預定 package ID：`io.github.ericeric777777.qbc#0.1.0`。
+本草案 package ID：`io.github.erichuang777777.breast-cancer#1.0.0-preview.1`。
 
 > 對外發布前必須把範例 package ID 與 canonical URL 換成發布者實際控制的值。
 
@@ -14,7 +16,7 @@
 
 1. `hl7.fhir.r4.core#4.0.1`
 2. `tw.gov.mohw.twcore#1.0.0`
-3. 本 QBC IG package
+3. 本乳癌社群草稿 package
 
 公開 release 的 `qa.html` 必須為 0 errors、0 broken links。Warnings 必須修正，或在 release notes 中記錄其原因與影響。QBC 業務規則、Big5 XML 與 VPN 驗收屬於 package 之外的獨立驗證層。
 
