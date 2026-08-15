@@ -1,0 +1,1271 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-ssf10",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf10",
+  "version": "4.0.1",
+  "name": "TCRBreastSSF10CodeSystem",
+  "title": "台灣癌症登記 SSF10 Ki-67（SSF10）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for SSF10 (SSF10 Ki-67). 碼冊出處：p.144/151 Ki-67. Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 114,
+  "concept": [
+    {
+      "code": "000",
+      "display": "Ki-67 檢驗值 0%",
+      "definition": "Ki-67 檢驗值 0% / 0% (Low)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "0% (Low)"
+        }
+      ]
+    },
+    {
+      "code": "001",
+      "display": "Ki-67 檢驗值 1%",
+      "definition": "Ki-67 檢驗值 1% / 1% (Low)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "1% (Low)"
+        }
+      ]
+    },
+    {
+      "code": "002",
+      "display": "Ki-67 檢驗值 2%",
+      "definition": "Ki-67 檢驗值 2% / 2% (Low)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "2% (Low)"
+        }
+      ]
+    },
+    {
+      "code": "003",
+      "display": "Ki-67 檢驗值 3%",
+      "definition": "Ki-67 檢驗值 3% / 3% (Low)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "3% (Low)"
+        }
+      ]
+    },
+    {
+      "code": "004",
+      "display": "Ki-67 檢驗值 4%",
+      "definition": "Ki-67 檢驗值 4% / 4% (Low)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "4% (Low)"
+        }
+      ]
+    },
+    {
+      "code": "005",
+      "display": "Ki-67 檢驗值 5%",
+      "definition": "Ki-67 檢驗值 5% / 5% (Low)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "5% (Low)"
+        }
+      ]
+    },
+    {
+      "code": "006",
+      "display": "Ki-67 檢驗值 6%",
+      "definition": "Ki-67 檢驗值 6% / 6% (Low)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "6% (Low)"
+        }
+      ]
+    },
+    {
+      "code": "007",
+      "display": "Ki-67 檢驗值 7%",
+      "definition": "Ki-67 檢驗值 7% / 7% (Low)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "7% (Low)"
+        }
+      ]
+    },
+    {
+      "code": "008",
+      "display": "Ki-67 檢驗值 8%",
+      "definition": "Ki-67 檢驗值 8% / 8% (Low)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "8% (Low)"
+        }
+      ]
+    },
+    {
+      "code": "009",
+      "display": "Ki-67 檢驗值 9%",
+      "definition": "Ki-67 檢驗值 9% / 9% (Low)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "9% (Low)"
+        }
+      ]
+    },
+    {
+      "code": "010",
+      "display": "Ki-67 檢驗值 10%",
+      "definition": "Ki-67 檢驗值 10% / 10% (Low)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "10% (Low)"
+        }
+      ]
+    },
+    {
+      "code": "011",
+      "display": "Ki-67 檢驗值 11%",
+      "definition": "Ki-67 檢驗值 11% / 11% (Low)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "11% (Low)"
+        }
+      ]
+    },
+    {
+      "code": "012",
+      "display": "Ki-67 檢驗值 12%",
+      "definition": "Ki-67 檢驗值 12% / 12% (Low)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "12% (Low)"
+        }
+      ]
+    },
+    {
+      "code": "013",
+      "display": "Ki-67 檢驗值 13%",
+      "definition": "Ki-67 檢驗值 13% / 13% (Low)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "13% (Low)"
+        }
+      ]
+    },
+    {
+      "code": "014",
+      "display": "Ki-67 檢驗值 14%",
+      "definition": "Ki-67 檢驗值 14% / 14% (Intermediate)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "14% (Intermediate)"
+        }
+      ]
+    },
+    {
+      "code": "015",
+      "display": "Ki-67 檢驗值 15%",
+      "definition": "Ki-67 檢驗值 15% / 15% (Intermediate)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "15% (Intermediate)"
+        }
+      ]
+    },
+    {
+      "code": "016",
+      "display": "Ki-67 檢驗值 16%",
+      "definition": "Ki-67 檢驗值 16% / 16% (Intermediate)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "16% (Intermediate)"
+        }
+      ]
+    },
+    {
+      "code": "017",
+      "display": "Ki-67 檢驗值 17%",
+      "definition": "Ki-67 檢驗值 17% / 17% (Intermediate)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "17% (Intermediate)"
+        }
+      ]
+    },
+    {
+      "code": "018",
+      "display": "Ki-67 檢驗值 18%",
+      "definition": "Ki-67 檢驗值 18% / 18% (Intermediate)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "18% (Intermediate)"
+        }
+      ]
+    },
+    {
+      "code": "019",
+      "display": "Ki-67 檢驗值 19%",
+      "definition": "Ki-67 檢驗值 19% / 19% (Intermediate)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "19% (Intermediate)"
+        }
+      ]
+    },
+    {
+      "code": "020",
+      "display": "Ki-67 檢驗值 20%",
+      "definition": "Ki-67 檢驗值 20% / 20% (Intermediate)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "20% (Intermediate)"
+        }
+      ]
+    },
+    {
+      "code": "021",
+      "display": "Ki-67 檢驗值 21%",
+      "definition": "Ki-67 檢驗值 21% / 21% (Intermediate)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "21% (Intermediate)"
+        }
+      ]
+    },
+    {
+      "code": "022",
+      "display": "Ki-67 檢驗值 22%",
+      "definition": "Ki-67 檢驗值 22% / 22% (Intermediate)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "22% (Intermediate)"
+        }
+      ]
+    },
+    {
+      "code": "023",
+      "display": "Ki-67 檢驗值 23%",
+      "definition": "Ki-67 檢驗值 23% / 23% (Intermediate)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "23% (Intermediate)"
+        }
+      ]
+    },
+    {
+      "code": "024",
+      "display": "Ki-67 檢驗值 24%",
+      "definition": "Ki-67 檢驗值 24% / 24% (Intermediate)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "24% (Intermediate)"
+        }
+      ]
+    },
+    {
+      "code": "025",
+      "display": "Ki-67 檢驗值 25%",
+      "definition": "Ki-67 檢驗值 25% / 25% (Intermediate)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "25% (Intermediate)"
+        }
+      ]
+    },
+    {
+      "code": "026",
+      "display": "Ki-67 檢驗值 26%",
+      "definition": "Ki-67 檢驗值 26% / 26% (Intermediate)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "26% (Intermediate)"
+        }
+      ]
+    },
+    {
+      "code": "027",
+      "display": "Ki-67 檢驗值 27%",
+      "definition": "Ki-67 檢驗值 27% / 27% (Intermediate)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "27% (Intermediate)"
+        }
+      ]
+    },
+    {
+      "code": "028",
+      "display": "Ki-67 檢驗值 28%",
+      "definition": "Ki-67 檢驗值 28% / 28% (Intermediate)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "28% (Intermediate)"
+        }
+      ]
+    },
+    {
+      "code": "029",
+      "display": "Ki-67 檢驗值 29%",
+      "definition": "Ki-67 檢驗值 29% / 29% (Intermediate)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "29% (Intermediate)"
+        }
+      ]
+    },
+    {
+      "code": "030",
+      "display": "Ki-67 檢驗值 30%",
+      "definition": "Ki-67 檢驗值 30% / 30% (Intermediate)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "30% (Intermediate)"
+        }
+      ]
+    },
+    {
+      "code": "031",
+      "display": "Ki-67 檢驗值 31%",
+      "definition": "Ki-67 檢驗值 31% / 31% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "31% (High)"
+        }
+      ]
+    },
+    {
+      "code": "032",
+      "display": "Ki-67 檢驗值 32%",
+      "definition": "Ki-67 檢驗值 32% / 32% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "32% (High)"
+        }
+      ]
+    },
+    {
+      "code": "033",
+      "display": "Ki-67 檢驗值 33%",
+      "definition": "Ki-67 檢驗值 33% / 33% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "33% (High)"
+        }
+      ]
+    },
+    {
+      "code": "034",
+      "display": "Ki-67 檢驗值 34%",
+      "definition": "Ki-67 檢驗值 34% / 34% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "34% (High)"
+        }
+      ]
+    },
+    {
+      "code": "035",
+      "display": "Ki-67 檢驗值 35%",
+      "definition": "Ki-67 檢驗值 35% / 35% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "35% (High)"
+        }
+      ]
+    },
+    {
+      "code": "036",
+      "display": "Ki-67 檢驗值 36%",
+      "definition": "Ki-67 檢驗值 36% / 36% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "36% (High)"
+        }
+      ]
+    },
+    {
+      "code": "037",
+      "display": "Ki-67 檢驗值 37%",
+      "definition": "Ki-67 檢驗值 37% / 37% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "37% (High)"
+        }
+      ]
+    },
+    {
+      "code": "038",
+      "display": "Ki-67 檢驗值 38%",
+      "definition": "Ki-67 檢驗值 38% / 38% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "38% (High)"
+        }
+      ]
+    },
+    {
+      "code": "039",
+      "display": "Ki-67 檢驗值 39%",
+      "definition": "Ki-67 檢驗值 39% / 39% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "39% (High)"
+        }
+      ]
+    },
+    {
+      "code": "040",
+      "display": "Ki-67 檢驗值 40%",
+      "definition": "Ki-67 檢驗值 40% / 40% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "40% (High)"
+        }
+      ]
+    },
+    {
+      "code": "041",
+      "display": "Ki-67 檢驗值 41%",
+      "definition": "Ki-67 檢驗值 41% / 41% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "41% (High)"
+        }
+      ]
+    },
+    {
+      "code": "042",
+      "display": "Ki-67 檢驗值 42%",
+      "definition": "Ki-67 檢驗值 42% / 42% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "42% (High)"
+        }
+      ]
+    },
+    {
+      "code": "043",
+      "display": "Ki-67 檢驗值 43%",
+      "definition": "Ki-67 檢驗值 43% / 43% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "43% (High)"
+        }
+      ]
+    },
+    {
+      "code": "044",
+      "display": "Ki-67 檢驗值 44%",
+      "definition": "Ki-67 檢驗值 44% / 44% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "44% (High)"
+        }
+      ]
+    },
+    {
+      "code": "045",
+      "display": "Ki-67 檢驗值 45%",
+      "definition": "Ki-67 檢驗值 45% / 45% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "45% (High)"
+        }
+      ]
+    },
+    {
+      "code": "046",
+      "display": "Ki-67 檢驗值 46%",
+      "definition": "Ki-67 檢驗值 46% / 46% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "46% (High)"
+        }
+      ]
+    },
+    {
+      "code": "047",
+      "display": "Ki-67 檢驗值 47%",
+      "definition": "Ki-67 檢驗值 47% / 47% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "47% (High)"
+        }
+      ]
+    },
+    {
+      "code": "048",
+      "display": "Ki-67 檢驗值 48%",
+      "definition": "Ki-67 檢驗值 48% / 48% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "48% (High)"
+        }
+      ]
+    },
+    {
+      "code": "049",
+      "display": "Ki-67 檢驗值 49%",
+      "definition": "Ki-67 檢驗值 49% / 49% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "49% (High)"
+        }
+      ]
+    },
+    {
+      "code": "050",
+      "display": "Ki-67 檢驗值 50%",
+      "definition": "Ki-67 檢驗值 50% / 50% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "50% (High)"
+        }
+      ]
+    },
+    {
+      "code": "051",
+      "display": "Ki-67 檢驗值 51%",
+      "definition": "Ki-67 檢驗值 51% / 51% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "51% (High)"
+        }
+      ]
+    },
+    {
+      "code": "052",
+      "display": "Ki-67 檢驗值 52%",
+      "definition": "Ki-67 檢驗值 52% / 52% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "52% (High)"
+        }
+      ]
+    },
+    {
+      "code": "053",
+      "display": "Ki-67 檢驗值 53%",
+      "definition": "Ki-67 檢驗值 53% / 53% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "53% (High)"
+        }
+      ]
+    },
+    {
+      "code": "054",
+      "display": "Ki-67 檢驗值 54%",
+      "definition": "Ki-67 檢驗值 54% / 54% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "54% (High)"
+        }
+      ]
+    },
+    {
+      "code": "055",
+      "display": "Ki-67 檢驗值 55%",
+      "definition": "Ki-67 檢驗值 55% / 55% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "55% (High)"
+        }
+      ]
+    },
+    {
+      "code": "056",
+      "display": "Ki-67 檢驗值 56%",
+      "definition": "Ki-67 檢驗值 56% / 56% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "56% (High)"
+        }
+      ]
+    },
+    {
+      "code": "057",
+      "display": "Ki-67 檢驗值 57%",
+      "definition": "Ki-67 檢驗值 57% / 57% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "57% (High)"
+        }
+      ]
+    },
+    {
+      "code": "058",
+      "display": "Ki-67 檢驗值 58%",
+      "definition": "Ki-67 檢驗值 58% / 58% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "58% (High)"
+        }
+      ]
+    },
+    {
+      "code": "059",
+      "display": "Ki-67 檢驗值 59%",
+      "definition": "Ki-67 檢驗值 59% / 59% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "59% (High)"
+        }
+      ]
+    },
+    {
+      "code": "060",
+      "display": "Ki-67 檢驗值 60%",
+      "definition": "Ki-67 檢驗值 60% / 60% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "60% (High)"
+        }
+      ]
+    },
+    {
+      "code": "061",
+      "display": "Ki-67 檢驗值 61%",
+      "definition": "Ki-67 檢驗值 61% / 61% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "61% (High)"
+        }
+      ]
+    },
+    {
+      "code": "062",
+      "display": "Ki-67 檢驗值 62%",
+      "definition": "Ki-67 檢驗值 62% / 62% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "62% (High)"
+        }
+      ]
+    },
+    {
+      "code": "063",
+      "display": "Ki-67 檢驗值 63%",
+      "definition": "Ki-67 檢驗值 63% / 63% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "63% (High)"
+        }
+      ]
+    },
+    {
+      "code": "064",
+      "display": "Ki-67 檢驗值 64%",
+      "definition": "Ki-67 檢驗值 64% / 64% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "64% (High)"
+        }
+      ]
+    },
+    {
+      "code": "065",
+      "display": "Ki-67 檢驗值 65%",
+      "definition": "Ki-67 檢驗值 65% / 65% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "65% (High)"
+        }
+      ]
+    },
+    {
+      "code": "066",
+      "display": "Ki-67 檢驗值 66%",
+      "definition": "Ki-67 檢驗值 66% / 66% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "66% (High)"
+        }
+      ]
+    },
+    {
+      "code": "067",
+      "display": "Ki-67 檢驗值 67%",
+      "definition": "Ki-67 檢驗值 67% / 67% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "67% (High)"
+        }
+      ]
+    },
+    {
+      "code": "068",
+      "display": "Ki-67 檢驗值 68%",
+      "definition": "Ki-67 檢驗值 68% / 68% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "68% (High)"
+        }
+      ]
+    },
+    {
+      "code": "069",
+      "display": "Ki-67 檢驗值 69%",
+      "definition": "Ki-67 檢驗值 69% / 69% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "69% (High)"
+        }
+      ]
+    },
+    {
+      "code": "070",
+      "display": "Ki-67 檢驗值 70%",
+      "definition": "Ki-67 檢驗值 70% / 70% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "70% (High)"
+        }
+      ]
+    },
+    {
+      "code": "071",
+      "display": "Ki-67 檢驗值 71%",
+      "definition": "Ki-67 檢驗值 71% / 71% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "71% (High)"
+        }
+      ]
+    },
+    {
+      "code": "072",
+      "display": "Ki-67 檢驗值 72%",
+      "definition": "Ki-67 檢驗值 72% / 72% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "72% (High)"
+        }
+      ]
+    },
+    {
+      "code": "073",
+      "display": "Ki-67 檢驗值 73%",
+      "definition": "Ki-67 檢驗值 73% / 73% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "73% (High)"
+        }
+      ]
+    },
+    {
+      "code": "074",
+      "display": "Ki-67 檢驗值 74%",
+      "definition": "Ki-67 檢驗值 74% / 74% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "74% (High)"
+        }
+      ]
+    },
+    {
+      "code": "075",
+      "display": "Ki-67 檢驗值 75%",
+      "definition": "Ki-67 檢驗值 75% / 75% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "75% (High)"
+        }
+      ]
+    },
+    {
+      "code": "076",
+      "display": "Ki-67 檢驗值 76%",
+      "definition": "Ki-67 檢驗值 76% / 76% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "76% (High)"
+        }
+      ]
+    },
+    {
+      "code": "077",
+      "display": "Ki-67 檢驗值 77%",
+      "definition": "Ki-67 檢驗值 77% / 77% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "77% (High)"
+        }
+      ]
+    },
+    {
+      "code": "078",
+      "display": "Ki-67 檢驗值 78%",
+      "definition": "Ki-67 檢驗值 78% / 78% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "78% (High)"
+        }
+      ]
+    },
+    {
+      "code": "079",
+      "display": "Ki-67 檢驗值 79%",
+      "definition": "Ki-67 檢驗值 79% / 79% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "79% (High)"
+        }
+      ]
+    },
+    {
+      "code": "080",
+      "display": "Ki-67 檢驗值 80%",
+      "definition": "Ki-67 檢驗值 80% / 80% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "80% (High)"
+        }
+      ]
+    },
+    {
+      "code": "081",
+      "display": "Ki-67 檢驗值 81%",
+      "definition": "Ki-67 檢驗值 81% / 81% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "81% (High)"
+        }
+      ]
+    },
+    {
+      "code": "082",
+      "display": "Ki-67 檢驗值 82%",
+      "definition": "Ki-67 檢驗值 82% / 82% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "82% (High)"
+        }
+      ]
+    },
+    {
+      "code": "083",
+      "display": "Ki-67 檢驗值 83%",
+      "definition": "Ki-67 檢驗值 83% / 83% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "83% (High)"
+        }
+      ]
+    },
+    {
+      "code": "084",
+      "display": "Ki-67 檢驗值 84%",
+      "definition": "Ki-67 檢驗值 84% / 84% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "84% (High)"
+        }
+      ]
+    },
+    {
+      "code": "085",
+      "display": "Ki-67 檢驗值 85%",
+      "definition": "Ki-67 檢驗值 85% / 85% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "85% (High)"
+        }
+      ]
+    },
+    {
+      "code": "086",
+      "display": "Ki-67 檢驗值 86%",
+      "definition": "Ki-67 檢驗值 86% / 86% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "86% (High)"
+        }
+      ]
+    },
+    {
+      "code": "087",
+      "display": "Ki-67 檢驗值 87%",
+      "definition": "Ki-67 檢驗值 87% / 87% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "87% (High)"
+        }
+      ]
+    },
+    {
+      "code": "088",
+      "display": "Ki-67 檢驗值 88%",
+      "definition": "Ki-67 檢驗值 88% / 88% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "88% (High)"
+        }
+      ]
+    },
+    {
+      "code": "089",
+      "display": "Ki-67 檢驗值 89%",
+      "definition": "Ki-67 檢驗值 89% / 89% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "89% (High)"
+        }
+      ]
+    },
+    {
+      "code": "090",
+      "display": "Ki-67 檢驗值 90%",
+      "definition": "Ki-67 檢驗值 90% / 90% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "90% (High)"
+        }
+      ]
+    },
+    {
+      "code": "091",
+      "display": "Ki-67 檢驗值 91%",
+      "definition": "Ki-67 檢驗值 91% / 91% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "91% (High)"
+        }
+      ]
+    },
+    {
+      "code": "092",
+      "display": "Ki-67 檢驗值 92%",
+      "definition": "Ki-67 檢驗值 92% / 92% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "92% (High)"
+        }
+      ]
+    },
+    {
+      "code": "093",
+      "display": "Ki-67 檢驗值 93%",
+      "definition": "Ki-67 檢驗值 93% / 93% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "93% (High)"
+        }
+      ]
+    },
+    {
+      "code": "094",
+      "display": "Ki-67 檢驗值 94%",
+      "definition": "Ki-67 檢驗值 94% / 94% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "94% (High)"
+        }
+      ]
+    },
+    {
+      "code": "095",
+      "display": "Ki-67 檢驗值 95%",
+      "definition": "Ki-67 檢驗值 95% / 95% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "95% (High)"
+        }
+      ]
+    },
+    {
+      "code": "096",
+      "display": "Ki-67 檢驗值 96%",
+      "definition": "Ki-67 檢驗值 96% / 96% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "96% (High)"
+        }
+      ]
+    },
+    {
+      "code": "097",
+      "display": "Ki-67 檢驗值 97%",
+      "definition": "Ki-67 檢驗值 97% / 97% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "97% (High)"
+        }
+      ]
+    },
+    {
+      "code": "098",
+      "display": "Ki-67 檢驗值 98%",
+      "definition": "Ki-67 檢驗值 98% / 98% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "98% (High)"
+        }
+      ]
+    },
+    {
+      "code": "099",
+      "display": "Ki-67 檢驗值 99%",
+      "definition": "Ki-67 檢驗值 99% / 99% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "99% (High)"
+        }
+      ]
+    },
+    {
+      "code": "100",
+      "display": "Ki-67 檢驗值 100%",
+      "definition": "Ki-67 檢驗值 100% / 100% (High)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "100% (High)"
+        }
+      ]
+    },
+    {
+      "code": "988",
+      "display": "不適用：Phyllodes tumor (M-9020)、Sarcoma、外院已切除大部分腫瘤且無外院資訊",
+      "definition": "不適用：Phyllodes tumor (M-9020)、Sarcoma、外院已切除大部分腫瘤且無外院資訊 / Not applicable (Phyllodes/Sarcoma)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not applicable (Phyllodes/Sarcoma)"
+        }
+      ]
+    },
+    {
+      "code": "998",
+      "display": "有檢驗，但百分比不明",
+      "definition": "有檢驗，但百分比不明 / Tested, percentage unknown",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Tested, percentage unknown"
+        }
+      ]
+    },
+    {
+      "code": "999",
+      "display": "不清楚檢測是否執行／病歷未記載／沒有檢驗",
+      "definition": "不清楚檢測是否執行／病歷未記載／沒有檢驗 / Unknown",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Unknown"
+        }
+      ]
+    },
+    {
+      "code": "A00",
+      "display": "Ki-67 檢驗值 0.0%（小於 1%、大於 0%，無條件捨去至小數第一位）",
+      "definition": "Ki-67 檢驗值 0.0%（小於 1%、大於 0%，無條件捨去至小數第一位） / 0.0%",
+      "designation": [
+        {
+          "language": "en",
+          "value": "0.0%"
+        }
+      ]
+    },
+    {
+      "code": "A01",
+      "display": "Ki-67 檢驗值 0.1%（小於 1%、大於 0%，無條件捨去至小數第一位）",
+      "definition": "Ki-67 檢驗值 0.1%（小於 1%、大於 0%，無條件捨去至小數第一位） / 0.1%",
+      "designation": [
+        {
+          "language": "en",
+          "value": "0.1%"
+        }
+      ]
+    },
+    {
+      "code": "A02",
+      "display": "Ki-67 檢驗值 0.2%（小於 1%、大於 0%，無條件捨去至小數第一位）",
+      "definition": "Ki-67 檢驗值 0.2%（小於 1%、大於 0%，無條件捨去至小數第一位） / 0.2%",
+      "designation": [
+        {
+          "language": "en",
+          "value": "0.2%"
+        }
+      ]
+    },
+    {
+      "code": "A03",
+      "display": "Ki-67 檢驗值 0.3%（小於 1%、大於 0%，無條件捨去至小數第一位）",
+      "definition": "Ki-67 檢驗值 0.3%（小於 1%、大於 0%，無條件捨去至小數第一位） / 0.3%",
+      "designation": [
+        {
+          "language": "en",
+          "value": "0.3%"
+        }
+      ]
+    },
+    {
+      "code": "A04",
+      "display": "Ki-67 檢驗值 0.4%（小於 1%、大於 0%，無條件捨去至小數第一位）",
+      "definition": "Ki-67 檢驗值 0.4%（小於 1%、大於 0%，無條件捨去至小數第一位） / 0.4%",
+      "designation": [
+        {
+          "language": "en",
+          "value": "0.4%"
+        }
+      ]
+    },
+    {
+      "code": "A05",
+      "display": "Ki-67 檢驗值 0.5%（小於 1%、大於 0%，無條件捨去至小數第一位）",
+      "definition": "Ki-67 檢驗值 0.5%（小於 1%、大於 0%，無條件捨去至小數第一位） / 0.5%",
+      "designation": [
+        {
+          "language": "en",
+          "value": "0.5%"
+        }
+      ]
+    },
+    {
+      "code": "A06",
+      "display": "Ki-67 檢驗值 0.6%（小於 1%、大於 0%，無條件捨去至小數第一位）",
+      "definition": "Ki-67 檢驗值 0.6%（小於 1%、大於 0%，無條件捨去至小數第一位） / 0.6%",
+      "designation": [
+        {
+          "language": "en",
+          "value": "0.6%"
+        }
+      ]
+    },
+    {
+      "code": "A07",
+      "display": "Ki-67 檢驗值 0.7%（小於 1%、大於 0%，無條件捨去至小數第一位）",
+      "definition": "Ki-67 檢驗值 0.7%（小於 1%、大於 0%，無條件捨去至小數第一位） / 0.7%",
+      "designation": [
+        {
+          "language": "en",
+          "value": "0.7%"
+        }
+      ]
+    },
+    {
+      "code": "A08",
+      "display": "Ki-67 檢驗值 0.8%（小於 1%、大於 0%，無條件捨去至小數第一位）",
+      "definition": "Ki-67 檢驗值 0.8%（小於 1%、大於 0%，無條件捨去至小數第一位） / 0.8%",
+      "designation": [
+        {
+          "language": "en",
+          "value": "0.8%"
+        }
+      ]
+    },
+    {
+      "code": "A09",
+      "display": "Ki-67 檢驗值 0.9%（小於 1%、大於 0%，無條件捨去至小數第一位）",
+      "definition": "Ki-67 檢驗值 0.9%（小於 1%、大於 0%，無條件捨去至小數第一位） / 0.9%",
+      "designation": [
+        {
+          "language": "en",
+          "value": "0.9%"
+        }
+      ]
+    }
+  ]
+}

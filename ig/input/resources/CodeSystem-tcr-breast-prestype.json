@@ -1,0 +1,52 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-prestype",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-prestype",
+  "version": "4.0.1",
+  "name": "TCRBreastPRESTYPECodeSystem",
+  "title": "台灣癌症登記 他院手術方式（PRESTYPE）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for PRESTYPE (他院手術方式). 碼冊出處：長表編碼手冊. Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 7,
+  "concept": [
+    {
+      "code": "0",
+      "display": "No outside hospital surgery",
+      "definition": "No outside hospital surgery"
+    },
+    {
+      "code": "20",
+      "display": "Partial mastectomy / lumpectomy",
+      "definition": "Partial mastectomy / lumpectomy"
+    },
+    {
+      "code": "22",
+      "display": "Modified radical mastectomy",
+      "definition": "Modified radical mastectomy"
+    },
+    {
+      "code": "24",
+      "display": "Total / simple mastectomy",
+      "definition": "Total / simple mastectomy"
+    },
+    {
+      "code": "41",
+      "display": "Local excision — margins positive or NOS",
+      "definition": "Local excision — margins positive or NOS"
+    },
+    {
+      "code": "51",
+      "display": "Biopsy only",
+      "definition": "Biopsy only"
+    },
+    {
+      "code": "99",
+      "display": "Unknown",
+      "definition": "Unknown"
+    }
+  ]
+}

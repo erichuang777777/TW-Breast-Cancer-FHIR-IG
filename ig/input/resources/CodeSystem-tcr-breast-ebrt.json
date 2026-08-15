@@ -1,0 +1,67 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-ebrt",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ebrt",
+  "version": "4.0.1",
+  "name": "TCRBreastEBRTCodeSystem",
+  "title": "台灣癌症登記 體外放射治療技術（EBRT）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for EBRT (體外放射治療技術). 碼冊出處：長表編碼手冊. Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 10,
+  "concept": [
+    {
+      "code": "1",
+      "display": "2D/Simple",
+      "definition": "2D/Simple（加總碼，可複選）"
+    },
+    {
+      "code": "2",
+      "display": "3D-CRT",
+      "definition": "3D-CRT（加總碼，可複選）"
+    },
+    {
+      "code": "4",
+      "display": "IMRT",
+      "definition": "IMRT（加總碼，可複選）"
+    },
+    {
+      "code": "8",
+      "display": "VMAT/Tomotherapy",
+      "definition": "VMAT/Tomotherapy（加總碼，可複選）"
+    },
+    {
+      "code": "16",
+      "display": "Mixed Photon+Particle",
+      "definition": "Mixed Photon+Particle（加總碼，可複選）"
+    },
+    {
+      "code": "32",
+      "display": "IGRT",
+      "definition": "IGRT（加總碼，可複選）"
+    },
+    {
+      "code": "64",
+      "display": "Respiratory Control",
+      "definition": "Respiratory Control（加總碼，可複選）"
+    },
+    {
+      "code": "0",
+      "display": "No EBRT",
+      "definition": "未執行體外放射治療"
+    },
+    {
+      "code": "-1",
+      "display": "EBRT NOS",
+      "definition": "有體外放射治療但技術不明"
+    },
+    {
+      "code": "999",
+      "display": "Unknown",
+      "definition": "不詳"
+    }
+  ]
+}

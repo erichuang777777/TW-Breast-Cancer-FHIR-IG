@@ -1,0 +1,889 @@
+{
+  "resourceType": "QuestionnaireResponse",
+  "id": "tcr-breast-example",
+  "questionnaire": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/Questionnaire/tcr-breast-longform",
+  "status": "in-progress",
+  "subject": {
+    "reference": "Patient/example"
+  },
+  "item": [
+    {
+      "linkId": "demographics",
+      "item": [
+        {
+          "linkId": "PK",
+          "answer": [
+            {
+              "valueString": "BR00001"
+            }
+          ]
+        },
+        {
+          "linkId": "SEX",
+          "answer": [
+            {
+              "valueString": "2"
+            }
+          ]
+        },
+        {
+          "linkId": "AGE",
+          "answer": [
+            {
+              "valueInteger": 67
+            }
+          ]
+        },
+        {
+          "linkId": "DX_YEAR",
+          "answer": [
+            {
+              "valueInteger": 2012
+            }
+          ]
+        },
+        {
+          "linkId": "DXDATE",
+          "answer": [
+            {
+              "valueString": "2012/12/08"
+            }
+          ]
+        },
+        {
+          "linkId": "VISTDATE",
+          "answer": [
+            {
+              "valueString": "2012/12/08"
+            }
+          ]
+        },
+        {
+          "linkId": "SMOKING",
+          "answer": [
+            {
+              "valueString": "02,00,00"
+            }
+          ]
+        },
+        {
+          "linkId": "HEIGHT",
+          "answer": [
+            {
+              "valueInteger": 172
+            }
+          ]
+        },
+        {
+          "linkId": "WEIGHT",
+          "answer": [
+            {
+              "valueInteger": 40
+            }
+          ]
+        },
+        {
+          "linkId": "KPSECOG",
+          "answer": [
+            {
+              "valueString": "9"
+            }
+          ]
+        },
+        {
+          "linkId": "CLASS95",
+          "answer": [
+            {
+              "valueString": "1"
+            }
+          ]
+        },
+        {
+          "linkId": "CLASSOFDIAG",
+          "answer": [
+            {
+              "valueString": "1"
+            }
+          ]
+        },
+        {
+          "linkId": "CLASSOFTREAT",
+          "answer": [
+            {
+              "valueString": "1"
+            }
+          ]
+        },
+        {
+          "linkId": "SEQ1",
+          "answer": [
+            {
+              "valueString": "1"
+            }
+          ]
+        },
+        {
+          "linkId": "SEQ2",
+          "answer": [
+            {
+              "valueString": "1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "tumour",
+      "item": [
+        {
+          "linkId": "TCODE1",
+          "answer": [
+            {
+              "valueString": "C50.2"
+            }
+          ]
+        },
+        {
+          "linkId": "LAT95",
+          "answer": [
+            {
+              "valueString": "2"
+            }
+          ]
+        },
+        {
+          "linkId": "MCODE",
+          "answer": [
+            {
+              "valueString": "8480"
+            }
+          ]
+        },
+        {
+          "linkId": "MCODE5",
+          "answer": [
+            {
+              "valueString": "3"
+            }
+          ]
+        },
+        {
+          "linkId": "MCODE6",
+          "answer": [
+            {
+              "valueString": "1"
+            }
+          ]
+        },
+        {
+          "linkId": "MCODE6C",
+          "answer": [
+            {
+              "valueString": "1"
+            }
+          ]
+        },
+        {
+          "linkId": "CONFER",
+          "answer": [
+            {
+              "valueString": "2"
+            }
+          ]
+        },
+        {
+          "linkId": "CSIZE95",
+          "answer": [
+            {
+              "valueInteger": 35
+            }
+          ]
+        },
+        {
+          "linkId": "PNI",
+          "answer": [
+            {
+              "valueString": "9"
+            }
+          ]
+        },
+        {
+          "linkId": "LVI",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "LNEXAM",
+          "answer": [
+            {
+              "valueInteger": 23
+            }
+          ]
+        },
+        {
+          "linkId": "LN_POSITI",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ln-positi",
+                "code": "00"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "staging",
+      "item": [
+        {
+          "linkId": "AJCC",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ajcc",
+                "code": "07"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "CT",
+          "answer": [
+            {
+              "valueString": "T2"
+            }
+          ]
+        },
+        {
+          "linkId": "CN",
+          "answer": [
+            {
+              "valueString": "N1"
+            }
+          ]
+        },
+        {
+          "linkId": "CM",
+          "answer": [
+            {
+              "valueString": "M0"
+            }
+          ]
+        },
+        {
+          "linkId": "CSTG",
+          "answer": [
+            {
+              "valueString": "Stage IIB"
+            }
+          ]
+        },
+        {
+          "linkId": "PT",
+          "answer": [
+            {
+              "valueString": "T2"
+            }
+          ]
+        },
+        {
+          "linkId": "PN",
+          "answer": [
+            {
+              "valueString": "N1"
+            }
+          ]
+        },
+        {
+          "linkId": "PM",
+          "answer": [
+            {
+              "valueString": "M0"
+            }
+          ]
+        },
+        {
+          "linkId": "PSTG",
+          "answer": [
+            {
+              "valueString": "Stage IIB"
+            }
+          ]
+        },
+        {
+          "linkId": "SUMSTG",
+          "answer": [
+            {
+              "valueString": "Stage IIB"
+            }
+          ]
+        },
+        {
+          "linkId": "OSTG",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "OCSTG",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "OPSTG",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "META1",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "META2",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "META3",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "surgery",
+      "item": [
+        {
+          "linkId": "S",
+          "answer": [
+            {
+              "valueString": "1"
+            }
+          ]
+        },
+        {
+          "linkId": "FSDATE",
+          "answer": [
+            {
+              "valueString": "2013/01/04"
+            }
+          ]
+        },
+        {
+          "linkId": "PRESTYPE",
+          "answer": [
+            {
+              "valueString": "00",
+              "extension": [
+                {
+                  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-illegal-code",
+                  "valueString": "'00' is not in the 編碼範圍 for PRESTYPE; needs review"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "STYPE95",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-stype95",
+                "code": "800"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "MINS",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "MARG95",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "MARGDIS",
+          "answer": [
+            {
+              "valueInteger": 28
+            }
+          ]
+        },
+        {
+          "linkId": "PRESLNSCO",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-preslnsco",
+                "code": "0"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "SLNSCO95",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-slnsco95",
+                "code": "5"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "ssf",
+      "item": [
+        {
+          "linkId": "SSF1",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf1",
+                "code": "064"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "SSF2",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf2",
+                "code": "046"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "SSF3",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf3",
+                "code": "030"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "SSF4",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf4",
+                "code": "006"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "SSF5",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf5",
+                "code": "004"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "SSF6",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf6",
+                "code": "040"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "SSF7",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf7",
+                "code": "101"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "SSF8",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf8",
+                "code": "000"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "SSF9",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf9",
+                "code": "010"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "SSF10",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf10",
+                "code": "017"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "radiotherapy",
+      "item": [
+        {
+          "linkId": "R",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "RTAR",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "RMOD",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "EBRT",
+          "answer": [
+            {
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ebrt",
+                "code": "0"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "HTAR",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "HDOSE",
+          "answer": [
+            {
+              "valueInteger": 0
+            }
+          ]
+        },
+        {
+          "linkId": "HNO",
+          "answer": [
+            {
+              "valueInteger": 0
+            }
+          ]
+        },
+        {
+          "linkId": "LTAR",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "LDOSE",
+          "answer": [
+            {
+              "valueInteger": 0
+            }
+          ]
+        },
+        {
+          "linkId": "LNO",
+          "answer": [
+            {
+              "valueInteger": 0
+            }
+          ]
+        },
+        {
+          "linkId": "SEQRS",
+          "answer": [
+            {
+              "valueString": "1"
+            }
+          ]
+        },
+        {
+          "linkId": "SEQLS",
+          "answer": [
+            {
+              "valueString": "2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "systemic",
+      "item": [
+        {
+          "linkId": "PREC",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "C",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "PREH",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "H",
+          "answer": [
+            {
+              "valueString": "1"
+            }
+          ]
+        },
+        {
+          "linkId": "PREI",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "I",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "PREB",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "B",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "PRETAR",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "TAR",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "OTH",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "PREP",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "WATCHWAITING",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "followup",
+      "item": [
+        {
+          "linkId": "VSTA",
+          "answer": [
+            {
+              "valueString": "1"
+            }
+          ]
+        },
+        {
+          "linkId": "CSTA",
+          "answer": [
+            {
+              "valueString": "1"
+            }
+          ]
+        },
+        {
+          "linkId": "LCD",
+          "answer": [
+            {
+              "valueString": "2021/12/21"
+            }
+          ]
+        },
+        {
+          "linkId": "RETYPE95",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "DIECAUSE",
+          "answer": [
+            {
+              "valueString": "1"
+            }
+          ]
+        },
+        {
+          "linkId": "VSTA6",
+          "answer": [
+            {
+              "valueString": "1"
+            }
+          ]
+        },
+        {
+          "linkId": "LCD6",
+          "answer": [
+            {
+              "valueString": "2021/12/21"
+            }
+          ]
+        },
+        {
+          "linkId": "SURVY6",
+          "answer": [
+            {
+              "valueInteger": 9
+            }
+          ]
+        },
+        {
+          "linkId": "RETYPE6",
+          "answer": [
+            {
+              "valueString": "0"
+            }
+          ]
+        },
+        {
+          "linkId": "DIECAUSE6",
+          "answer": [
+            {
+              "valueString": "1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "tag": [
+      {
+        "code": "synthetic",
+        "display": "Synthetic data — not a real patient"
+      }
+    ]
+  }
+}

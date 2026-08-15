@@ -1,0 +1,61 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-ssf8",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf8",
+  "version": "4.0.1",
+  "name": "TCRBreastSSF8CodeSystem",
+  "title": "台灣癌症登記 SSF8 Paget 氏症（SSF8）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for SSF8 (SSF8 Paget 氏症). 碼冊出處：p.142/148 Paget 氏症. Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 4,
+  "concept": [
+    {
+      "code": "000",
+      "display": "沒有 Paget disease",
+      "definition": "沒有 Paget disease / No Paget disease",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No Paget disease"
+        }
+      ]
+    },
+    {
+      "code": "010",
+      "display": "有 Paget disease",
+      "definition": "有 Paget disease / Paget disease present",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Paget disease present"
+        }
+      ]
+    },
+    {
+      "code": "988",
+      "display": "不適用：病理標本不含乳頭、乳暈之檢查",
+      "definition": "不適用：病理標本不含乳頭、乳暈之檢查 / Not applicable (specimen excludes nipple/areola)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not applicable (specimen excludes nipple/areola)"
+        }
+      ]
+    },
+    {
+      "code": "999",
+      "display": "病歷未記載或不詳",
+      "definition": "病歷未記載或不詳 / Unknown / not documented",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Unknown / not documented"
+        }
+      ]
+    }
+  ]
+}

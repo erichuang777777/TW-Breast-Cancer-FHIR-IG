@@ -1,0 +1,62 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-ajcc",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ajcc",
+  "version": "4.0.1",
+  "name": "TCRBreastAJCCCodeSystem",
+  "title": "台灣癌症登記 AJCC 版本（AJCC）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for AJCC (AJCC 版本). 碼冊出處：長表編碼手冊. Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 9,
+  "concept": [
+    {
+      "code": "6",
+      "display": "AJCC 6th Edition (2002)",
+      "definition": "AJCC 6th Edition (2002)"
+    },
+    {
+      "code": "7",
+      "display": "AJCC 7th Edition (2010)",
+      "definition": "AJCC 7th Edition (2010)"
+    },
+    {
+      "code": "8",
+      "display": "AJCC 8th Edition (2018)",
+      "definition": "AJCC 8th Edition (2018)"
+    },
+    {
+      "code": "8048",
+      "display": "AJCC 8th Edition — Prognostic Stage (Breast)",
+      "definition": "AJCC 8th Edition — Prognostic Stage (Breast)"
+    },
+    {
+      "code": "99",
+      "display": "Unknown AJCC edition",
+      "definition": "Unknown AJCC edition"
+    },
+    {
+      "code": "99999",
+      "display": "Not applicable",
+      "definition": "Not applicable"
+    },
+    {
+      "code": "06",
+      "display": "AJCC 6th Edition (2002)",
+      "definition": "AJCC 6th Edition (2002)"
+    },
+    {
+      "code": "07",
+      "display": "AJCC 7th Edition (2010)",
+      "definition": "AJCC 7th Edition (2010)"
+    },
+    {
+      "code": "08",
+      "display": "AJCC 8th Edition (2018)",
+      "definition": "AJCC 8th Edition (2018)"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-slnsco95",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-slnsco95",
+  "version": "4.0.1",
+  "name": "TCRBreastSLNSCO95CodeSystem",
+  "title": "台灣癌症登記 本院區域淋巴結手術（SLNSCO95）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for SLNSCO95 (本院區域淋巴結手術). 碼冊出處：長表編碼手冊. Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 9,
+  "concept": [
+    {
+      "code": "0",
+      "display": "No regional LN procedure performed",
+      "definition": "No regional LN procedure performed"
+    },
+    {
+      "code": "1",
+      "display": "Diagnostic biopsy or aspiration of regional LN only (incisional/excisional/core biopsy or aspiration)",
+      "definition": "Diagnostic biopsy or aspiration of regional LN only (incisional/excisional/core biopsy or aspiration)"
+    },
+    {
+      "code": "2",
+      "display": "Sentinel LN biopsy (SLNB) only",
+      "definition": "Sentinel LN biopsy (SLNB) only"
+    },
+    {
+      "code": "3",
+      "display": "Regional LN dissection — number/extent not specified",
+      "definition": "Regional LN dissection — number/extent not specified"
+    },
+    {
+      "code": "4",
+      "display": "1–3 regional LN removed (therapeutic dissection, NOT SLNB)",
+      "definition": "1–3 regional LN removed (therapeutic dissection, NOT SLNB)"
+    },
+    {
+      "code": "5",
+      "display": "4 or more regional LN removed (therapeutic dissection, NOT SLNB)",
+      "definition": "4 or more regional LN removed (therapeutic dissection, NOT SLNB)"
+    },
+    {
+      "code": "6",
+      "display": "SLNB + regional LN dissection (same surgery or timing unrecorded)",
+      "definition": "SLNB + regional LN dissection (same surgery or timing unrecorded)"
+    },
+    {
+      "code": "7",
+      "display": "SLNB first, then regional LN dissection (separate surgeries)",
+      "definition": "SLNB first, then regional LN dissection (separate surgeries)"
+    },
+    {
+      "code": "9",
+      "display": "Unknown",
+      "definition": "Unknown"
+    }
+  ]
+}

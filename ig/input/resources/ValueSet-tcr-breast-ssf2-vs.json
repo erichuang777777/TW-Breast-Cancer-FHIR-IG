@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-ssf2-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ssf2-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastSSF2ValueSet",
+  "title": "台灣癌症登記 SSF2 黃體激素接受體 PR（SSF2）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf2"
+      }
+    ]
+  }
+}

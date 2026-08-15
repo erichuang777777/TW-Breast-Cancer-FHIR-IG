@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-ajcc-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ajcc-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastAJCCValueSet",
+  "title": "台灣癌症登記 AJCC 版本（AJCC）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ajcc"
+      }
+    ]
+  }
+}

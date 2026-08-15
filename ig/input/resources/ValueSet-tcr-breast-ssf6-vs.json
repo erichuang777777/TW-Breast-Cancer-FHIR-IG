@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-ssf6-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ssf6-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastSSF6ValueSet",
+  "title": "台灣癌症登記 SSF6 Nottingham/BR 分數與級數（SSF6）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf6"
+      }
+    ]
+  }
+}
