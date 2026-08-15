@@ -1,0 +1,479 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-ssf7",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf7",
+  "version": "4.0.1",
+  "name": "TCRBreastSSF7CodeSystem",
+  "title": "台灣癌症登記 SSF7 HER2 IHC/ISH（SSF7）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for SSF7 (SSF7 HER2 IHC/ISH). 碼冊出處：p.136-145 HER2 IHC/ISH. Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 42,
+  "concept": [
+    {
+      "code": "000",
+      "display": "IHC 0 (negative or score 0) 且有描述染色比例為 0%",
+      "definition": "IHC 0 (negative or score 0) 且有描述染色比例為 0% / IHC 0 — Negative",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 0 — Negative"
+        }
+      ]
+    },
+    {
+      "code": "004",
+      "display": "IHC 0 (negative or score 0) 且有描述染色比例 >0%、≦10%（Ultralow）",
+      "definition": "IHC 0 (negative or score 0) 且有描述染色比例 >0%、≦10%（Ultralow） / IHC 0 Ultralow (0%<staining≤10%) — Negative",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 0 Ultralow (0%<staining≤10%) — Negative"
+        }
+      ]
+    },
+    {
+      "code": "100",
+      "display": "IHC 0 (negative or score 0) 且未描述染色比例",
+      "definition": "IHC 0 (negative or score 0) 且未描述染色比例 / IHC 0 → Negative (no ISH)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 0 → Negative (no ISH)"
+        }
+      ]
+    },
+    {
+      "code": "101",
+      "display": "IHC 1+ (score 1+)",
+      "definition": "IHC 1+ (score 1+) / IHC 1+ — Negative (Low HER2)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 1+ — Negative (Low HER2)"
+        }
+      ]
+    },
+    {
+      "code": "102",
+      "display": "IHC 2+ (equivocal or score 2+)",
+      "definition": "IHC 2+ (equivocal or score 2+) / IHC 2+ — Equivocal (no ISH)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 2+ — Equivocal (no ISH)"
+        }
+      ]
+    },
+    {
+      "code": "103",
+      "display": "IHC 3+ (positive or score 3+)",
+      "definition": "IHC 3+ (positive or score 3+) / IHC 3+ — Positive",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 3+ — Positive"
+        }
+      ]
+    },
+    {
+      "code": "200",
+      "display": "僅 100-107 診斷年適用：CISH negative / not amplified",
+      "definition": "僅 100-107 診斷年適用：CISH negative / not amplified / CISH Negative (legacy: dx yr 100-107 only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "CISH Negative (legacy: dx yr 100-107 only)"
+        }
+      ]
+    },
+    {
+      "code": "201",
+      "display": "僅 100-107 診斷年適用：CISH positive / amplified",
+      "definition": "僅 100-107 診斷年適用：CISH positive / amplified / CISH Positive (legacy: dx yr 100-107 only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "CISH Positive (legacy: dx yr 100-107 only)"
+        }
+      ]
+    },
+    {
+      "code": "202",
+      "display": "僅 100-107 診斷年適用：CISH equivocal",
+      "definition": "僅 100-107 診斷年適用：CISH equivocal / CISH Equivocal (legacy: dx yr 100-107 only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "CISH Equivocal (legacy: dx yr 100-107 only)"
+        }
+      ]
+    },
+    {
+      "code": "300",
+      "display": "僅 100-107 診斷年適用：FISH negative / not amplified",
+      "definition": "僅 100-107 診斷年適用：FISH negative / not amplified / FISH Negative (legacy: dx yr 100-107 only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "FISH Negative (legacy: dx yr 100-107 only)"
+        }
+      ]
+    },
+    {
+      "code": "301",
+      "display": "僅 100-107 診斷年適用：FISH positive / amplified",
+      "definition": "僅 100-107 診斷年適用：FISH positive / amplified / FISH Positive (legacy: dx yr 100-107 only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "FISH Positive (legacy: dx yr 100-107 only)"
+        }
+      ]
+    },
+    {
+      "code": "302",
+      "display": "僅 100-107 診斷年適用：FISH equivocal",
+      "definition": "僅 100-107 診斷年適用：FISH equivocal / FISH Equivocal (legacy: dx yr 100-107 only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "FISH Equivocal (legacy: dx yr 100-107 only)"
+        }
+      ]
+    },
+    {
+      "code": "400",
+      "display": "僅 100-107 診斷年適用：其它檢驗，HER2 陰性",
+      "definition": "僅 100-107 診斷年適用：其它檢驗，HER2 陰性 / Other test — HER2 Negative (legacy: dx yr 100-107 only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Other test — HER2 Negative (legacy: dx yr 100-107 only)"
+        }
+      ]
+    },
+    {
+      "code": "401",
+      "display": "僅 100-107 診斷年適用：其它檢驗，HER2 陽性",
+      "definition": "僅 100-107 診斷年適用：其它檢驗，HER2 陽性 / Other test — HER2 Positive (legacy: dx yr 100-107 only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Other test — HER2 Positive (legacy: dx yr 100-107 only)"
+        }
+      ]
+    },
+    {
+      "code": "402",
+      "display": "僅 100-107 診斷年適用：其它檢驗，HER2 equivocal",
+      "definition": "僅 100-107 診斷年適用：其它檢驗，HER2 equivocal / Other test — HER2 Equivocal (legacy: dx yr 100-107 only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Other test — HER2 Equivocal (legacy: dx yr 100-107 only)"
+        }
+      ]
+    },
+    {
+      "code": "500",
+      "display": "IHC 0 (negative or score 0) 且 ISH negative / not amplified",
+      "definition": "IHC 0 (negative or score 0) 且 ISH negative / not amplified / IHC 0 + ISH Negative — Negative",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 0 + ISH Negative — Negative"
+        }
+      ]
+    },
+    {
+      "code": "501",
+      "display": "IHC 0 (negative or score 0) 且 ISH positive / amplified",
+      "definition": "IHC 0 (negative or score 0) 且 ISH positive / amplified / IHC 0 + ISH Positive — Positive",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 0 + ISH Positive — Positive"
+        }
+      ]
+    },
+    {
+      "code": "502",
+      "display": "IHC 0 (negative or score 0) 且 ISH equivocal",
+      "definition": "IHC 0 (negative or score 0) 且 ISH equivocal / IHC 0 + ISH Equivocal",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 0 + ISH Equivocal"
+        }
+      ]
+    },
+    {
+      "code": "510",
+      "display": "IHC 1+ (score 1+) 且 ISH negative / not amplified",
+      "definition": "IHC 1+ (score 1+) 且 ISH negative / not amplified / IHC 1+ + ISH Negative — Negative",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 1+ + ISH Negative — Negative"
+        }
+      ]
+    },
+    {
+      "code": "511",
+      "display": "IHC 1+ (score 1+) 且 ISH positive / amplified",
+      "definition": "IHC 1+ (score 1+) 且 ISH positive / amplified / IHC 1+ + ISH Positive — Positive",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 1+ + ISH Positive — Positive"
+        }
+      ]
+    },
+    {
+      "code": "512",
+      "display": "IHC 1+ (score 1+) 且 ISH equivocal",
+      "definition": "IHC 1+ (score 1+) 且 ISH equivocal / IHC 1+ + ISH Equivocal",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 1+ + ISH Equivocal"
+        }
+      ]
+    },
+    {
+      "code": "520",
+      "display": "IHC 2+ (equivocal or score 2+) 且 ISH negative / not amplified",
+      "definition": "IHC 2+ (equivocal or score 2+) 且 ISH negative / not amplified / IHC 2+ + ISH Negative — Negative",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 2+ + ISH Negative — Negative"
+        }
+      ]
+    },
+    {
+      "code": "521",
+      "display": "IHC 2+ (equivocal or score 2+) 且 ISH positive / amplified",
+      "definition": "IHC 2+ (equivocal or score 2+) 且 ISH positive / amplified / IHC 2+ + ISH Positive — Positive",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 2+ + ISH Positive — Positive"
+        }
+      ]
+    },
+    {
+      "code": "522",
+      "display": "IHC 2+ (equivocal or score 2+) 且 ISH equivocal",
+      "definition": "IHC 2+ (equivocal or score 2+) 且 ISH equivocal / IHC 2+ + ISH Equivocal",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 2+ + ISH Equivocal"
+        }
+      ]
+    },
+    {
+      "code": "530",
+      "display": "IHC 3+ (positive or score 3+) 且 ISH negative / not amplified",
+      "definition": "IHC 3+ (positive or score 3+) 且 ISH negative / not amplified / IHC 3+ + ISH Negative — Positive (IHC overrides)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 3+ + ISH Negative — Positive (IHC overrides)"
+        }
+      ]
+    },
+    {
+      "code": "531",
+      "display": "IHC 3+ (positive or score 3+) 且 ISH positive / amplified",
+      "definition": "IHC 3+ (positive or score 3+) 且 ISH positive / amplified / IHC 3+ + ISH Positive — Positive",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 3+ + ISH Positive — Positive"
+        }
+      ]
+    },
+    {
+      "code": "532",
+      "display": "IHC 3+ (positive or score 3+) 且 ISH equivocal",
+      "definition": "IHC 3+ (positive or score 3+) 且 ISH equivocal / IHC 3+ + ISH Equivocal — Positive (IHC overrides)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 3+ + ISH Equivocal — Positive (IHC overrides)"
+        }
+      ]
+    },
+    {
+      "code": "590",
+      "display": "IHC 不詳 且 ISH negative / not amplified",
+      "definition": "IHC 不詳 且 ISH negative / not amplified / IHC unknown + ISH Negative — Negative",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC unknown + ISH Negative — Negative"
+        }
+      ]
+    },
+    {
+      "code": "591",
+      "display": "IHC 不詳 且 ISH positive / amplified",
+      "definition": "IHC 不詳 且 ISH positive / amplified / IHC unknown + ISH Positive — Positive",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC unknown + ISH Positive — Positive"
+        }
+      ]
+    },
+    {
+      "code": "592",
+      "display": "IHC 不詳 且 ISH equivocal",
+      "definition": "IHC 不詳 且 ISH equivocal / IHC unknown + ISH Equivocal",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC unknown + ISH Equivocal"
+        }
+      ]
+    },
+    {
+      "code": "600",
+      "display": "IHC 0（染色比例 0%）且 ISH negative / not amplified（114 診斷年起）",
+      "definition": "IHC 0（染色比例 0%）且 ISH negative / not amplified（114 診斷年起） / IHC 0 (staining=0%) + ISH Negative — Negative",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 0 (staining=0%) + ISH Negative — Negative"
+        }
+      ]
+    },
+    {
+      "code": "601",
+      "display": "IHC 0（染色比例 0%）且 ISH positive / amplified（114 診斷年起）",
+      "definition": "IHC 0（染色比例 0%）且 ISH positive / amplified（114 診斷年起） / IHC 0 (staining=0%) + ISH Positive — Positive",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 0 (staining=0%) + ISH Positive — Positive"
+        }
+      ]
+    },
+    {
+      "code": "602",
+      "display": "IHC 0（染色比例 0%）且 ISH equivocal（114 診斷年起）",
+      "definition": "IHC 0（染色比例 0%）且 ISH equivocal（114 診斷年起） / IHC 0 (staining=0%) + ISH Equivocal",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 0 (staining=0%) + ISH Equivocal"
+        }
+      ]
+    },
+    {
+      "code": "640",
+      "display": "IHC 0（0%<染色比例≦10%，Ultralow）且 ISH negative / not amplified（114 診斷年起）",
+      "definition": "IHC 0（0%<染色比例≦10%，Ultralow）且 ISH negative / not amplified（114 診斷年起） / IHC 0 Ultralow + ISH Negative — Negative",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 0 Ultralow + ISH Negative — Negative"
+        }
+      ]
+    },
+    {
+      "code": "641",
+      "display": "IHC 0（0%<染色比例≦10%，Ultralow）且 ISH positive / amplified（114 診斷年起）",
+      "definition": "IHC 0（0%<染色比例≦10%，Ultralow）且 ISH positive / amplified（114 診斷年起） / IHC 0 Ultralow + ISH Positive — Positive",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 0 Ultralow + ISH Positive — Positive"
+        }
+      ]
+    },
+    {
+      "code": "642",
+      "display": "IHC 0（0%<染色比例≦10%，Ultralow）且 ISH equivocal（114 診斷年起）",
+      "definition": "IHC 0（0%<染色比例≦10%，Ultralow）且 ISH equivocal（114 診斷年起） / IHC 0 Ultralow + ISH Equivocal",
+      "designation": [
+        {
+          "language": "en",
+          "value": "IHC 0 Ultralow + ISH Equivocal"
+        }
+      ]
+    },
+    {
+      "code": "888",
+      "display": "前導性治療後 HER2 檢驗值由陰性轉為陽性；或無治療前數值但治療後為陽性",
+      "definition": "前導性治療後 HER2 檢驗值由陰性轉為陽性；或無治療前數值但治療後為陽性 / HER2 converted Neg→Pos after neoadjuvant therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "HER2 converted Neg→Pos after neoadjuvant therapy"
+        }
+      ]
+    },
+    {
+      "code": "900",
+      "display": "HER2 陰性，其它檢驗方式或外院檢驗方式不詳",
+      "definition": "HER2 陰性，其它檢驗方式或外院檢驗方式不詳 / HER2 Negative (other/unknown test method)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "HER2 Negative (other/unknown test method)"
+        }
+      ]
+    },
+    {
+      "code": "901",
+      "display": "HER2 陽性，其它檢驗方式或外院檢驗方式不詳",
+      "definition": "HER2 陽性，其它檢驗方式或外院檢驗方式不詳 / HER2 Positive (other/unknown test method)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "HER2 Positive (other/unknown test method)"
+        }
+      ]
+    },
+    {
+      "code": "902",
+      "display": "HER2 equivocal，其它檢驗方式或外院檢驗方式不詳",
+      "definition": "HER2 equivocal，其它檢驗方式或外院檢驗方式不詳 / HER2 Equivocal (other/unknown test method)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "HER2 Equivocal (other/unknown test method)"
+        }
+      ]
+    },
+    {
+      "code": "988",
+      "display": "不適用：Phyllodes tumor (M-9020)、Sarcoma",
+      "definition": "不適用：Phyllodes tumor (M-9020)、Sarcoma / Not applicable (Phyllodes/Sarcoma)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not applicable (Phyllodes/Sarcoma)"
+        }
+      ]
+    },
+    {
+      "code": "999",
+      "display": "不清楚檢測是否執行／病歷並未記載／沒有檢測",
+      "definition": "不清楚檢測是否執行／病歷並未記載／沒有檢測 / Unknown",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Unknown"
+        }
+      ]
+    }
+  ]
+}

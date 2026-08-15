@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-ssf3-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ssf3-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastSSF3ValueSet",
+  "title": "台灣癌症登記 SSF3 前導性療法之療效（SSF3）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf3"
+      }
+    ]
+  }
+}

@@ -15,16 +15,19 @@ dependencies = [
   "PyMuPDF>=1.24",
   "python-docx>=1.1",
   "requests>=2.31",
+  # 癌登代碼表與雙向編解碼引擎（14 癌別，逐碼驗證）
+  "tcr-decoder @ git+https://github.com/erichuang777777/TCRD_decoding.git",
 ]
 
 [project.scripts]
 qbc-workbench = "qbc_workbench.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["qbc_workbench*"]
+include = ["qbc_workbench*", "tcr_workbench*"]
 
 [tool.setuptools.package-data]
 qbc_workbench = ["data/*.json"]
+tcr_workbench = ["data/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

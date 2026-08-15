@@ -1,0 +1,54 @@
+{
+  "resourceType": "Task",
+  "id": "tcr-breast-abstraction-example",
+  "meta": {
+    "profile": [
+      "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-registry-abstraction-task"
+    ]
+  },
+  "status": "requested",
+  "intent": "order",
+  "description": "癌症登記長表摘錄（breast）",
+  "focus": {
+    "reference": "Condition/example-breast-cancer"
+  },
+  "for": {
+    "reference": "Patient/example"
+  },
+  "input": [
+    {
+      "type": {
+        "text": "病理報告"
+      },
+      "valueReference": {
+        "reference": "DiagnosticReport/example-pathology"
+      }
+    },
+    {
+      "type": {
+        "text": "門診紀錄"
+      },
+      "valueReference": {
+        "reference": "DocumentReference/example-opd-note"
+      }
+    },
+    {
+      "type": {
+        "text": "化療紀錄"
+      },
+      "valueReference": {
+        "reference": "DocumentReference/example-chemo"
+      }
+    }
+  ],
+  "output": [
+    {
+      "type": {
+        "text": "QuestionnaireResponse"
+      },
+      "valueReference": {
+        "reference": "QuestionnaireResponse/tcr-breast-example"
+      }
+    }
+  ]
+}

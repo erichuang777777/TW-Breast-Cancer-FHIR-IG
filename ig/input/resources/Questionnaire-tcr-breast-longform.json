@@ -1,0 +1,1824 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "tcr-breast-longform",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/Questionnaire/tcr-breast-longform",
+  "version": "4.0.1",
+  "name": "TCRBreastLongformQuestionnaire",
+  "title": "台灣癌症登記長表申報（breast）",
+  "status": "draft",
+  "experimental": true,
+  "subjectType": [
+    "Patient"
+  ],
+  "description": "One item per Longform field. Items bound to an answerValueSet have a code table verified against the printed manual; items carrying tcr-codetable-pending do not have one in this package yet and must be reviewed manually.",
+  "item": [
+    {
+      "linkId": "demographics",
+      "text": "人口學與就診",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "PK",
+          "text": "[PK] 病歷號／個案識別碼",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Patient.identifier"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "ADT"
+            }
+          ]
+        },
+        {
+          "linkId": "SEX",
+          "text": "[SEX] 性別",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Patient.gender"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "ADT"
+            }
+          ]
+        },
+        {
+          "linkId": "AGE",
+          "text": "[AGE] 診斷時年齡",
+          "type": "integer",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Patient.birthDate + Condition.onsetDateTime"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "ADT"
+            }
+          ]
+        },
+        {
+          "linkId": "DX_YEAR",
+          "text": "[DX_YEAR] 診斷年",
+          "type": "integer",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition.onsetDateTime"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "DXDATE",
+          "text": "[DXDATE] 診斷日期",
+          "type": "date",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition.onsetDateTime"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "VISTDATE",
+          "text": "[VISTDATE] 首次就診日期",
+          "type": "date",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Encounter.period.start"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "ADT"
+            }
+          ]
+        },
+        {
+          "linkId": "SMOKING",
+          "text": "[SMOKING] 吸菸／檳榔／飲酒",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (social history)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "門診紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "HEIGHT",
+          "text": "[HEIGHT] 身高",
+          "type": "integer",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation LOINC 8302-2"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "門診紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "WEIGHT",
+          "text": "[WEIGHT] 體重",
+          "type": "integer",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation LOINC 29463-7"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "門診紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "KPSECOG",
+          "text": "[KPSECOG] 體能狀態 ECOG/KPS",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (performance status)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "門診紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "CLASS95",
+          "text": "[CLASS95] 個案分類",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "derived: Encounter + Condition + Procedure"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "院內系統"
+            }
+          ]
+        },
+        {
+          "linkId": "CLASSOFDIAG",
+          "text": "[CLASSOFDIAG] 診斷分類（本院／他院）",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "derived: DiagnosticReport.performer"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "院內系統"
+            }
+          ]
+        },
+        {
+          "linkId": "CLASSOFTREAT",
+          "text": "[CLASSOFTREAT] 治療分類（本院／他院）",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "derived: Procedure.performer"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "院內系統"
+            }
+          ]
+        },
+        {
+          "linkId": "SEQ1",
+          "text": "[SEQ1] 腫瘤總數",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "count of Condition (primary neoplasm)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "院內系統"
+            }
+          ]
+        },
+        {
+          "linkId": "SEQ2",
+          "text": "[SEQ2] 本腫瘤序號",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "ordinal of Condition.onsetDateTime"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "院內系統"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "tumour",
+      "text": "腫瘤特性",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "TCODE1",
+          "text": "[TCODE1] 原發部位 ICD-O-3",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition.bodySite / Observation ICD-O-3 topography"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "LAT95",
+          "text": "[LAT95] 側性",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition.bodySite laterality qualifier"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "MCODE",
+          "text": "[MCODE] 組織型態 ICD-O-3",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation ICD-O-3 morphology"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "MCODE5",
+          "text": "[MCODE5] 行為碼",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation ICD-O-3 behavior"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "MCODE6",
+          "text": "[MCODE6] 病理分化度",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (histologic grade)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "MCODE6C",
+          "text": "[MCODE6C] 臨床分化度",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (histologic grade, clinical)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "影像／門診"
+            }
+          ]
+        },
+        {
+          "linkId": "CONFER",
+          "text": "[CONFER] 診斷確認方式",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "DiagnosticReport.category"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "CSIZE95",
+          "text": "[CSIZE95] 腫瘤大小 (mm)",
+          "type": "integer",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (tumor size)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "PNI",
+          "text": "[PNI] 神經周圍侵犯",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (perineural invasion)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "LVI",
+          "text": "[LVI] 淋巴血管侵犯",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (lymphovascular invasion)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "LNEXAM",
+          "text": "[LNEXAM] 區域淋巴結檢查數",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-lnexam-vs",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (nodes examined)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "LN_POSITI",
+          "text": "[LN_POSITI] 區域淋巴結侵犯數",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ln-positi-vs",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (nodes positive)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "staging",
+      "text": "分期",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "AJCC",
+          "text": "[AJCC] AJCC 版本",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ajcc-vs",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition.stage.type"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "CT",
+          "text": "[CT] 臨床 T",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition.stage.assessment (clinical)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "影像／門診"
+            }
+          ]
+        },
+        {
+          "linkId": "CN",
+          "text": "[CN] 臨床 N",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition.stage.assessment (clinical)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "影像／門診"
+            }
+          ]
+        },
+        {
+          "linkId": "CM",
+          "text": "[CM] 臨床 M",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition.stage.assessment (clinical)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "影像／門診"
+            }
+          ]
+        },
+        {
+          "linkId": "CSTG",
+          "text": "[CSTG] 臨床期別",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition.stage.summary (clinical)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "影像／門診"
+            }
+          ]
+        },
+        {
+          "linkId": "PT",
+          "text": "[PT] 病理 T",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition.stage.assessment (pathologic)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "PN",
+          "text": "[PN] 病理 N",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition.stage.assessment (pathologic)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "PM",
+          "text": "[PM] 病理 M",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition.stage.assessment (pathologic)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "PSTG",
+          "text": "[PSTG] 病理期別",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition.stage.summary (pathologic)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "SUMSTG",
+          "text": "[SUMSTG] 合併期別",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "derived: clinical + pathologic stage"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "衍生"
+            }
+          ]
+        },
+        {
+          "linkId": "OSTG",
+          "text": "[OSTG] 其他分期系統",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition.stage.type"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "OCSTG",
+          "text": "[OCSTG] 其他系統臨床期別",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition.stage.summary"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "OPSTG",
+          "text": "[OPSTG] 其他系統病理期別",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition.stage.summary"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "META1",
+          "text": "[META1] 遠端轉移部位 1",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition (secondary neoplasm).bodySite"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "影像報告"
+            }
+          ]
+        },
+        {
+          "linkId": "META2",
+          "text": "[META2] 遠端轉移部位 2",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition (secondary neoplasm).bodySite"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "影像報告"
+            }
+          ]
+        },
+        {
+          "linkId": "META3",
+          "text": "[META3] 遠端轉移部位 3",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition (secondary neoplasm).bodySite"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "影像報告"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "surgery",
+      "text": "手術",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "S",
+          "text": "[S] 本院手術",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure (surgical) exists"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "手術紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "FSDATE",
+          "text": "[FSDATE] 首次手術日期",
+          "type": "date",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure.performedDateTime"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "手術紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "PRESTYPE",
+          "text": "[PRESTYPE] 他院手術方式",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-prestype-vs",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure.code (external)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "轉診資料"
+            }
+          ]
+        },
+        {
+          "linkId": "STYPE95",
+          "text": "[STYPE95] 本院手術方式",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-stype95-vs",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure.code"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "手術紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "MINS",
+          "text": "[MINS] 微創手術",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure.category / method"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "手術紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "MARG95",
+          "text": "[MARG95] 手術切緣狀態",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (margin status)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "MARGDIS",
+          "text": "[MARGDIS] 手術切緣距離 (mm)",
+          "type": "integer",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (margin distance)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "PRESLNSCO",
+          "text": "[PRESLNSCO] 他院區域淋巴結手術",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-preslnsco-vs",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure.code (external)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "轉診資料"
+            }
+          ]
+        },
+        {
+          "linkId": "SLNSCO95",
+          "text": "[SLNSCO95] 本院區域淋巴結手術",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-slnsco95-vs",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure.code"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "手術紀錄"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "ssf",
+      "text": "癌症部位特定因子 (SSF1-10)",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "SSF1",
+          "text": "[SSF1] SSF1 動情激素接受體 ER",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ssf1-vs",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (ER)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "SSF2",
+          "text": "[SSF2] SSF2 黃體激素接受體 PR",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ssf2-vs",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (PR)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "SSF3",
+          "text": "[SSF3] SSF3 前導性療法之療效",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ssf3-vs",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (treatment response)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "門診／病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "SSF4",
+          "text": "[SSF4] SSF4 哨兵淋巴結檢查數目",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ssf4-vs",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (sentinel nodes examined)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "SSF5",
+          "text": "[SSF5] SSF5 哨兵淋巴結侵犯數目",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ssf5-vs",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (sentinel nodes positive)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "SSF6",
+          "text": "[SSF6] SSF6 Nottingham/BR 分數與級數",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ssf6-vs",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (histologic grade)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "SSF7",
+          "text": "[SSF7] SSF7 HER2 IHC/ISH",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ssf7-vs",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (HER2)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "SSF8",
+          "text": "[SSF8] SSF8 Paget 氏症",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ssf8-vs",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (Paget disease)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "SSF9",
+          "text": "[SSF9] SSF9 淋巴管或血管侵犯",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ssf9-vs",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (lymphovascular invasion)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        },
+        {
+          "linkId": "SSF10",
+          "text": "[SSF10] SSF10 Ki-67",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ssf10-vs",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (Ki-67)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "病理報告"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "radiotherapy",
+      "text": "放射治療",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "R",
+          "text": "[R] 本院放射治療",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure (radiotherapy) exists"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "放療紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "RTAR",
+          "text": "[RTAR] 放療標的總結",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure.bodySite"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "放療紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "RMOD",
+          "text": "[RMOD] 放療方式",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure.code"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "放療紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "EBRT",
+          "text": "[EBRT] 體外放射治療技術",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ebrt-vs",
+          "repeats": true,
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure.code (technique)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "放療紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "HTAR",
+          "text": "[HTAR] 高劑量標的",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure.bodySite"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "放療紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "HDOSE",
+          "text": "[HDOSE] 高劑量劑量 (cGy)",
+          "type": "integer",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure / Observation (dose)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "放療紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "HNO",
+          "text": "[HNO] 高劑量分次數",
+          "type": "integer",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure / Observation (fractions)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "放療紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "LTAR",
+          "text": "[LTAR] 低劑量標的",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure.bodySite"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "放療紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "LDOSE",
+          "text": "[LDOSE] 低劑量劑量 (cGy)",
+          "type": "integer",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure / Observation (dose)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "放療紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "LNO",
+          "text": "[LNO] 低劑量分次數",
+          "type": "integer",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure / Observation (fractions)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "放療紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "SEQRS",
+          "text": "[SEQRS] 放療與手術順序",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "derived: Procedure.performedDateTime"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "衍生"
+            }
+          ]
+        },
+        {
+          "linkId": "SEQLS",
+          "text": "[SEQLS] 局部與全身治療順序",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "derived: Procedure/MedicationAdministration dates"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "衍生"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "systemic",
+      "text": "全身性治療",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "PREC",
+          "text": "[PREC] 他院化學治療",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "MedicationAdministration (external)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "轉診資料"
+            }
+          ]
+        },
+        {
+          "linkId": "C",
+          "text": "[C] 本院化學治療",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "MedicationAdministration (antineoplastic)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "化療紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "PREH",
+          "text": "[PREH] 他院荷爾蒙治療",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "MedicationAdministration (external)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "轉診資料"
+            }
+          ]
+        },
+        {
+          "linkId": "H",
+          "text": "[H] 本院荷爾蒙治療",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "MedicationAdministration (hormone)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "化療／門診紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "PREI",
+          "text": "[PREI] 他院免疫治療",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "MedicationAdministration (external)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "轉診資料"
+            }
+          ]
+        },
+        {
+          "linkId": "I",
+          "text": "[I] 本院免疫治療",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "MedicationAdministration (immunotherapy)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "化療紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "PREB",
+          "text": "[PREB] 他院骨髓／幹細胞移植",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure (external)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "轉診資料"
+            }
+          ]
+        },
+        {
+          "linkId": "B",
+          "text": "[B] 本院骨髓／幹細胞移植",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure (transplant)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "移植紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "PRETAR",
+          "text": "[PRETAR] 他院標靶治療",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "MedicationAdministration (external)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "轉診資料"
+            }
+          ]
+        },
+        {
+          "linkId": "TAR",
+          "text": "[TAR] 本院標靶治療",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "MedicationAdministration (targeted)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "化療紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "OTH",
+          "text": "[OTH] 其他治療",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure / MedicationAdministration"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "門診紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "PREP",
+          "text": "[PREP] 安寧緩和照護",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Procedure / CarePlan (palliative)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "門診紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "WATCHWAITING",
+          "text": "[WATCHWAITING] 積極監測",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "CarePlan (active surveillance)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "門診紀錄"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "followup",
+      "text": "追蹤與結果",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "VSTA",
+          "text": "[VSTA] 生命狀態（首次追蹤）",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Patient.deceased / Encounter"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "追蹤紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "CSTA",
+          "text": "[CSTA] 癌症狀態（首次追蹤）",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition.clinicalStatus"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "追蹤紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "LCD",
+          "text": "[LCD] 最後接觸日期",
+          "type": "date",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Encounter.period.end"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "追蹤紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "REDATE",
+          "text": "[REDATE] 復發日期",
+          "type": "date",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition (recurrence).onsetDateTime"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "追蹤紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "RETYPE95",
+          "text": "[RETYPE95] 復發型態",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition (recurrence).code"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "追蹤紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "DIECAUSE",
+          "text": "[DIECAUSE] 死亡原因",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Patient.deceased + Observation (cause of death)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "死亡證明"
+            }
+          ]
+        },
+        {
+          "linkId": "VSTA6",
+          "text": "[VSTA6] 生命狀態（延長追蹤）",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Patient.deceased"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "追蹤紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "LCD6",
+          "text": "[LCD6] 最後接觸日期（延長追蹤）",
+          "type": "date",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Encounter.period.end"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "追蹤紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "SURVY6",
+          "text": "[SURVY6] 存活年數",
+          "type": "decimal",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "derived: onset -> last contact"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "衍生"
+            }
+          ]
+        },
+        {
+          "linkId": "REDATE6",
+          "text": "[REDATE6] 復發日期（延長追蹤）",
+          "type": "date",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition (recurrence).onsetDateTime"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "追蹤紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "RETYPE6",
+          "text": "[RETYPE6] 復發型態（延長追蹤）",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Condition (recurrence).code"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "追蹤紀錄"
+            }
+          ]
+        },
+        {
+          "linkId": "DIECAUSE6",
+          "text": "[DIECAUSE6] 死亡原因（延長追蹤）",
+          "type": "string",
+          "extension": [
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+              "valueBoolean": true
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
+              "valueString": "Observation (cause of death)"
+            },
+            {
+              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-document",
+              "valueString": "死亡證明"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

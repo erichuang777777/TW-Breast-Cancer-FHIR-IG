@@ -1,0 +1,51 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "tcr-codetable-pending",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
+  "version": "4.0.1",
+  "name": "TCRCodeTablePending",
+  "title": "此欄位的官方碼表尚未轉錄 (TCR code table not yet transcribed)",
+  "status": "draft",
+  "experimental": true,
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "Questionnaire.item"
+    },
+    {
+      "type": "element",
+      "expression": "QuestionnaireResponse.item.answer"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "description": "True when this package has no verified code table for the field, so the item is a free-text placeholder rather than a coded answer.",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "此欄位的官方碼表尚未轉錄 (TCR code table not yet transcribed)"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ]
+      }
+    ]
+  }
+}

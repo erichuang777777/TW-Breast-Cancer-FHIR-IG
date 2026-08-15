@@ -1,0 +1,1040 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-ssf4",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf4",
+  "version": "4.0.1",
+  "name": "TCRBreastSSF4CodeSystem",
+  "title": "台灣癌症登記 SSF4 哨兵淋巴結檢查數目（SSF4）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for SSF4 (SSF4 哨兵淋巴結檢查數目). 碼冊出處：p.131 哨兵淋巴結檢查數目. Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 93,
+  "concept": [
+    {
+      "code": "000",
+      "display": "沒有進行哨兵淋巴結手術",
+      "definition": "沒有進行哨兵淋巴結手術 / No sentinel LN surgery performed",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No sentinel LN surgery performed"
+        }
+      ]
+    },
+    {
+      "code": "001",
+      "display": "依實際檢查之哨兵淋巴結數目：1 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：1 顆 / 1 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "1 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "002",
+      "display": "依實際檢查之哨兵淋巴結數目：2 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：2 顆 / 2 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "2 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "003",
+      "display": "依實際檢查之哨兵淋巴結數目：3 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：3 顆 / 3 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "3 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "004",
+      "display": "依實際檢查之哨兵淋巴結數目：4 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：4 顆 / 4 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "4 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "005",
+      "display": "依實際檢查之哨兵淋巴結數目：5 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：5 顆 / 5 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "5 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "006",
+      "display": "依實際檢查之哨兵淋巴結數目：6 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：6 顆 / 6 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "6 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "007",
+      "display": "依實際檢查之哨兵淋巴結數目：7 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：7 顆 / 7 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "7 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "008",
+      "display": "依實際檢查之哨兵淋巴結數目：8 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：8 顆 / 8 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "8 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "009",
+      "display": "依實際檢查之哨兵淋巴結數目：9 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：9 顆 / 9 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "9 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "010",
+      "display": "依實際檢查之哨兵淋巴結數目：10 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：10 顆 / 10 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "10 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "011",
+      "display": "依實際檢查之哨兵淋巴結數目：11 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：11 顆 / 11 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "11 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "012",
+      "display": "依實際檢查之哨兵淋巴結數目：12 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：12 顆 / 12 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "12 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "013",
+      "display": "依實際檢查之哨兵淋巴結數目：13 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：13 顆 / 13 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "13 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "014",
+      "display": "依實際檢查之哨兵淋巴結數目：14 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：14 顆 / 14 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "14 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "015",
+      "display": "依實際檢查之哨兵淋巴結數目：15 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：15 顆 / 15 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "15 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "016",
+      "display": "依實際檢查之哨兵淋巴結數目：16 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：16 顆 / 16 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "16 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "017",
+      "display": "依實際檢查之哨兵淋巴結數目：17 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：17 顆 / 17 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "17 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "018",
+      "display": "依實際檢查之哨兵淋巴結數目：18 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：18 顆 / 18 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "18 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "019",
+      "display": "依實際檢查之哨兵淋巴結數目：19 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：19 顆 / 19 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "19 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "020",
+      "display": "依實際檢查之哨兵淋巴結數目：20 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：20 顆 / 20 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "20 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "021",
+      "display": "依實際檢查之哨兵淋巴結數目：21 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：21 顆 / 21 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "21 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "022",
+      "display": "依實際檢查之哨兵淋巴結數目：22 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：22 顆 / 22 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "22 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "023",
+      "display": "依實際檢查之哨兵淋巴結數目：23 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：23 顆 / 23 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "23 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "024",
+      "display": "依實際檢查之哨兵淋巴結數目：24 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：24 顆 / 24 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "24 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "025",
+      "display": "依實際檢查之哨兵淋巴結數目：25 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：25 顆 / 25 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "25 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "026",
+      "display": "依實際檢查之哨兵淋巴結數目：26 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：26 顆 / 26 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "26 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "027",
+      "display": "依實際檢查之哨兵淋巴結數目：27 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：27 顆 / 27 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "27 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "028",
+      "display": "依實際檢查之哨兵淋巴結數目：28 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：28 顆 / 28 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "28 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "029",
+      "display": "依實際檢查之哨兵淋巴結數目：29 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：29 顆 / 29 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "29 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "030",
+      "display": "依實際檢查之哨兵淋巴結數目：30 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：30 顆 / 30 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "30 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "031",
+      "display": "依實際檢查之哨兵淋巴結數目：31 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：31 顆 / 31 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "31 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "032",
+      "display": "依實際檢查之哨兵淋巴結數目：32 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：32 顆 / 32 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "32 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "033",
+      "display": "依實際檢查之哨兵淋巴結數目：33 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：33 顆 / 33 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "33 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "034",
+      "display": "依實際檢查之哨兵淋巴結數目：34 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：34 顆 / 34 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "34 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "035",
+      "display": "依實際檢查之哨兵淋巴結數目：35 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：35 顆 / 35 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "35 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "036",
+      "display": "依實際檢查之哨兵淋巴結數目：36 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：36 顆 / 36 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "36 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "037",
+      "display": "依實際檢查之哨兵淋巴結數目：37 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：37 顆 / 37 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "37 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "038",
+      "display": "依實際檢查之哨兵淋巴結數目：38 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：38 顆 / 38 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "38 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "039",
+      "display": "依實際檢查之哨兵淋巴結數目：39 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：39 顆 / 39 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "39 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "040",
+      "display": "依實際檢查之哨兵淋巴結數目：40 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：40 顆 / 40 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "40 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "041",
+      "display": "依實際檢查之哨兵淋巴結數目：41 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：41 顆 / 41 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "41 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "042",
+      "display": "依實際檢查之哨兵淋巴結數目：42 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：42 顆 / 42 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "42 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "043",
+      "display": "依實際檢查之哨兵淋巴結數目：43 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：43 顆 / 43 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "43 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "044",
+      "display": "依實際檢查之哨兵淋巴結數目：44 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：44 顆 / 44 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "44 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "045",
+      "display": "依實際檢查之哨兵淋巴結數目：45 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：45 顆 / 45 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "45 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "046",
+      "display": "依實際檢查之哨兵淋巴結數目：46 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：46 顆 / 46 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "46 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "047",
+      "display": "依實際檢查之哨兵淋巴結數目：47 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：47 顆 / 47 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "47 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "048",
+      "display": "依實際檢查之哨兵淋巴結數目：48 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：48 顆 / 48 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "48 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "049",
+      "display": "依實際檢查之哨兵淋巴結數目：49 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：49 顆 / 49 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "49 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "050",
+      "display": "依實際檢查之哨兵淋巴結數目：50 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：50 顆 / 50 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "50 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "051",
+      "display": "依實際檢查之哨兵淋巴結數目：51 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：51 顆 / 51 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "51 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "052",
+      "display": "依實際檢查之哨兵淋巴結數目：52 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：52 顆 / 52 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "52 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "053",
+      "display": "依實際檢查之哨兵淋巴結數目：53 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：53 顆 / 53 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "53 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "054",
+      "display": "依實際檢查之哨兵淋巴結數目：54 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：54 顆 / 54 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "54 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "055",
+      "display": "依實際檢查之哨兵淋巴結數目：55 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：55 顆 / 55 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "55 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "056",
+      "display": "依實際檢查之哨兵淋巴結數目：56 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：56 顆 / 56 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "56 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "057",
+      "display": "依實際檢查之哨兵淋巴結數目：57 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：57 顆 / 57 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "57 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "058",
+      "display": "依實際檢查之哨兵淋巴結數目：58 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：58 顆 / 58 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "58 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "059",
+      "display": "依實際檢查之哨兵淋巴結數目：59 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：59 顆 / 59 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "59 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "060",
+      "display": "依實際檢查之哨兵淋巴結數目：60 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：60 顆 / 60 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "60 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "061",
+      "display": "依實際檢查之哨兵淋巴結數目：61 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：61 顆 / 61 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "61 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "062",
+      "display": "依實際檢查之哨兵淋巴結數目：62 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：62 顆 / 62 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "62 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "063",
+      "display": "依實際檢查之哨兵淋巴結數目：63 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：63 顆 / 63 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "63 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "064",
+      "display": "依實際檢查之哨兵淋巴結數目：64 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：64 顆 / 64 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "64 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "065",
+      "display": "依實際檢查之哨兵淋巴結數目：65 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：65 顆 / 65 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "65 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "066",
+      "display": "依實際檢查之哨兵淋巴結數目：66 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：66 顆 / 66 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "66 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "067",
+      "display": "依實際檢查之哨兵淋巴結數目：67 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：67 顆 / 67 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "67 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "068",
+      "display": "依實際檢查之哨兵淋巴結數目：68 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：68 顆 / 68 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "68 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "069",
+      "display": "依實際檢查之哨兵淋巴結數目：69 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：69 顆 / 69 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "69 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "070",
+      "display": "依實際檢查之哨兵淋巴結數目：70 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：70 顆 / 70 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "70 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "071",
+      "display": "依實際檢查之哨兵淋巴結數目：71 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：71 顆 / 71 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "71 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "072",
+      "display": "依實際檢查之哨兵淋巴結數目：72 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：72 顆 / 72 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "72 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "073",
+      "display": "依實際檢查之哨兵淋巴結數目：73 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：73 顆 / 73 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "73 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "074",
+      "display": "依實際檢查之哨兵淋巴結數目：74 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：74 顆 / 74 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "74 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "075",
+      "display": "依實際檢查之哨兵淋巴結數目：75 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：75 顆 / 75 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "75 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "076",
+      "display": "依實際檢查之哨兵淋巴結數目：76 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：76 顆 / 76 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "76 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "077",
+      "display": "依實際檢查之哨兵淋巴結數目：77 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：77 顆 / 77 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "77 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "078",
+      "display": "依實際檢查之哨兵淋巴結數目：78 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：78 顆 / 78 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "78 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "079",
+      "display": "依實際檢查之哨兵淋巴結數目：79 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：79 顆 / 79 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "79 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "080",
+      "display": "依實際檢查之哨兵淋巴結數目：80 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：80 顆 / 80 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "80 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "081",
+      "display": "依實際檢查之哨兵淋巴結數目：81 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：81 顆 / 81 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "81 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "082",
+      "display": "依實際檢查之哨兵淋巴結數目：82 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：82 顆 / 82 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "82 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "083",
+      "display": "依實際檢查之哨兵淋巴結數目：83 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：83 顆 / 83 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "83 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "084",
+      "display": "依實際檢查之哨兵淋巴結數目：84 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：84 顆 / 84 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "84 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "085",
+      "display": "依實際檢查之哨兵淋巴結數目：85 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：85 顆 / 85 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "85 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "086",
+      "display": "依實際檢查之哨兵淋巴結數目：86 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：86 顆 / 86 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "86 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "087",
+      "display": "依實際檢查之哨兵淋巴結數目：87 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：87 顆 / 87 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "87 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "088",
+      "display": "依實際檢查之哨兵淋巴結數目：88 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：88 顆 / 88 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "88 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "089",
+      "display": "依實際檢查之哨兵淋巴結數目：89 顆",
+      "definition": "依實際檢查之哨兵淋巴結數目：89 顆 / 89 node(s) examined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "89 node(s) examined"
+        }
+      ]
+    },
+    {
+      "code": "988",
+      "display": "不適用（例如前導性治療後手術才做哨兵淋巴結檢查）",
+      "definition": "不適用（例如前導性治療後手術才做哨兵淋巴結檢查） / Not applicable (no SLN surgery, post-neoadjuvant SLN, or unknown whether performed)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not applicable (no SLN surgery, post-neoadjuvant SLN, or unknown whether performed)"
+        }
+      ]
+    },
+    {
+      "code": "996",
+      "display": "病歷記載有哨兵淋巴結檢查但數目不詳；或確實取樣但病理報告未發現淋巴結組織",
+      "definition": "病歷記載有哨兵淋巴結檢查但數目不詳；或確實取樣但病理報告未發現淋巴結組織 / Sentinel LN biopsy performed; count unknown or no lymph node tissue found in the specimen",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Sentinel LN biopsy performed; count unknown or no lymph node tissue found in the specimen"
+        }
+      ]
+    },
+    {
+      "code": "999",
+      "display": "不清楚檢測是否執行／病歷未記載",
+      "definition": "不清楚檢測是否執行／病歷未記載 / Unknown",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Unknown"
+        }
+      ]
+    }
+  ]
+}

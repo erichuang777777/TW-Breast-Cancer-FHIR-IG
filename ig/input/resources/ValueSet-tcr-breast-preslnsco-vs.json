@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-preslnsco-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-preslnsco-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastPRESLNSCOValueSet",
+  "title": "台灣癌症登記 他院區域淋巴結手術（PRESLNSCO）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-preslnsco"
+      }
+    ]
+  }
+}

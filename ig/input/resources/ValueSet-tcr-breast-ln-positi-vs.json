@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-ln-positi-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ln-positi-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastLN_POSITIValueSet",
+  "title": "台灣癌症登記 區域淋巴結侵犯數（LN_POSITI）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ln-positi"
+      }
+    ]
+  }
+}

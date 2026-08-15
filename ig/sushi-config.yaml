@@ -61,6 +61,12 @@ pages:
     title: TWPAS 癌藥事前審查 Task
   twpas-crosswalk.md:
     title: 乳癌共同資料至 TWPAS 對照
+  task-tcr.md:
+    title: 癌症登記 Task
+  tcr-code-tables.md:
+    title: 癌登代碼表與 conformance
+  tcr-source-resolution.md:
+    title: 來源解析與摘錄原則
   usecases.md:
     title: 使用情境
   mappings.md:
@@ -112,7 +118,11 @@ menu:
     QBC／P4P Task: task-qbc.html
     TWPAS 癌藥事前審查 Task: task-twpas.html
     乳癌共同資料至 TWPAS 對照: twpas-crosswalk.html
+    癌症登記 Task: task-tcr.html
     使用情境: usecases.html
+  癌登規格:
+    癌登代碼表與 conformance: tcr-code-tables.html
+    來源解析與摘錄原則: tcr-source-resolution.html
   QBC 規格:
     QBC 對應方式: mappings.html
     正式 Mapping 候選與簽核閘門: formal-mapping.html
