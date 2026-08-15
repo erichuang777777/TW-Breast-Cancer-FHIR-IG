@@ -41,7 +41,7 @@ from typing import Dict, List, Optional, Tuple, Union
 
 import pandas as pd
 
-from tcr_decoder.code_ranges import CODE_RANGES, LONGFORM, SURGERY_CODES
+from tcr_decoder.code_ranges import CODE_RANGES, LONGFORM
 from tcr_decoder.ssf_registry import get_ssf_profile
 from tcr_decoder.validation import zh_definition
 
@@ -264,7 +264,8 @@ def _structural_concepts(field: str) -> List[dict]:
     submission ValueSet must not offer them.
     """
     from tcr_decoder import decoders
-    from tcr_decoder.core import AJCC_MAP, LNSCO_MAP, PRESTYPE_MAP, STYPE95_MAP
+    from tcr_decoder.core import AJCC_MAP, LNSCO_MAP
+    from tcr_decoder.surgery_codes import SURGERY_TABLES
 
     if field in _COUNT_FIELD_DECODERS:
         _width, codes, _ref = LONGFORM[field]
@@ -286,20 +287,18 @@ def _structural_concepts(field: str) -> List[dict]:
         ]
         return concepts
 
-    table = {'AJCC': AJCC_MAP, 'PRESTYPE': PRESTYPE_MAP, 'STYPE95': STYPE95_MAP,
-             'PRESLNSCO': LNSCO_MAP, 'SLNSCO95': LNSCO_MAP}[field]
-
-    # Surgery of primary site draws on Appendix B, which is per-site; the two
-    # node-surgery fields share one 1-character table. Where the engine has
-    # transcribed the official range, restrict the CodeSystem to it so the
-    # legacy 1- and 2-character codes stay decode-only.
-    legal = None
+    # Surgery of primary site draws on Appendix B, which the manual defines
+    # PER PRIMARY SITE: the same code is a different operation in a different
+    # organ. This IG is breast-only, so it publishes the breast table -- not a
+    # merged one, which would offer a colectomy as a valid breast answer.
     if field in ('PRESTYPE', 'STYPE95'):
-        legal = SURGERY_CODES.get('breast', (0, None, ''))[1]
-    elif field in ('PRESLNSCO', 'SLNSCO95'):
+        table = SURGERY_TABLES['Breast'][1]
+    else:
+        table = {'AJCC': AJCC_MAP,
+                 'PRESLNSCO': LNSCO_MAP, 'SLNSCO95': LNSCO_MAP}[field]
         legal = LONGFORM.get(field, (0, None, ''))[1]
-    if legal:
-        table = {code: label for code, label in table.items() if code in legal}
+        if legal:
+            table = {c: l for c, l in table.items() if c in legal}
 
     return [{'code': str(code), 'display': str(label), 'definition': str(label)}
             for code, label in sorted(table.items())]

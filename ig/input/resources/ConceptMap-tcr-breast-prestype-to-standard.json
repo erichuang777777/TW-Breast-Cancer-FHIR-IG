@@ -14,7 +14,7 @@
       "element": [
         {
           "code": "000",
-          "display": "No surgery of primary site; autopsy ONLY",
+          "display": "None; no surgery of primary site; autopsy ONLY",
           "target": [
             {
               "equivalence": "unmatched",
@@ -24,7 +24,7 @@
         },
         {
           "code": "200",
-          "display": "Partial mastectomy, NOS (lumpectomy, segmental mastectomy, quadrantectomy, tylectomy), with or without nipple resection",
+          "display": "Partial mastectomy, NOS; less than total mastectomy, NOS; lumpectomy, segmental mastectomy, quadrantectomy, tylectomy, with or without nipple resection",
           "target": [
             {
               "equivalence": "unmatched",
@@ -34,7 +34,7 @@
         },
         {
           "code": "210",
-          "display": "Excisional breast biopsy — diagnostic excision, no pre-operative biopsy-proven diagnosis",
+          "display": "Excisional breast biopsy - Diagnostic excision, no pre-operative biopsy proven diagnosis of cancer.",
           "target": [
             {
               "equivalence": "unmatched",
@@ -44,7 +44,7 @@
         },
         {
           "code": "215",
-          "display": "Excisional breast biopsy for atypia",
+          "display": "Excisional breast biopsy, for atypia",
           "target": [
             {
               "equivalence": "unmatched",
@@ -54,7 +54,7 @@
         },
         {
           "code": "240",
-          "display": "Re-excision of margins for gross or microscopic residual disease (less than total mastectomy)",
+          "display": "Re-excision of margins from primary tumor site for gross or microscopic residual disease when less than total mastectomy performed.",
           "target": [
             {
               "equivalence": "unmatched",
@@ -64,7 +64,7 @@
         },
         {
           "code": "290",
-          "display": "Central lumpectomy — nipple areolar complex removed",
+          "display": "Central lumpectomy, only performed for a prior diagnosis of cancer, which includes removal of the nipple areolar complex.",
           "target": [
             {
               "equivalence": "unmatched",
@@ -564,7 +564,7 @@
         },
         {
           "code": "900",
-          "display": "Surgery, NOS — surgery performed but the procedure is not known",
+          "display": "Surgery, NOS",
           "target": [
             {
               "equivalence": "unmatched",
