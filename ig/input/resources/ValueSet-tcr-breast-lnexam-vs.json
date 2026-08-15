@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-lnexam-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-lnexam-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastLNEXAMValueSet",
+  "title": "台灣癌症登記 區域淋巴結檢查數（LNEXAM）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-lnexam"
+      }
+    ]
+  }
+}

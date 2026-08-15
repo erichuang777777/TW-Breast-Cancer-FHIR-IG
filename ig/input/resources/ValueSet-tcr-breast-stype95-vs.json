@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-stype95-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-stype95-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastSTYPE95ValueSet",
+  "title": "台灣癌症登記 本院手術方式（STYPE95）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-stype95"
+      }
+    ]
+  }
+}

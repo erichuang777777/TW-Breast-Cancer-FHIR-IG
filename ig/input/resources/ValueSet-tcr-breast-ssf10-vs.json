@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-ssf10-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ssf10-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastSSF10ValueSet",
+  "title": "台灣癌症登記 SSF10 Ki-67（SSF10）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf10"
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-ssf8-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ssf8-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastSSF8ValueSet",
+  "title": "台灣癌症登記 SSF8 Paget 氏症（SSF8）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf8"
+      }
+    ]
+  }
+}

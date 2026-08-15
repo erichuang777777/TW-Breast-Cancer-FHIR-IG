@@ -1,0 +1,4505 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-ssf2",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf2",
+  "version": "4.0.1",
+  "name": "TCRBreastSSF2CodeSystem",
+  "title": "台灣癌症登記 SSF2 黃體激素接受體 PR（SSF2）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for SSF2 (SSF2 黃體激素接受體 PR). 碼冊出處：p.125-128 黃體激素接受體檢測 (PR). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 408,
+  "concept": [
+    {
+      "code": "000",
+      "display": "PR 0%",
+      "definition": "PR 0% / PR Negative (0%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Negative (0%)"
+        }
+      ]
+    },
+    {
+      "code": "001",
+      "display": "PR 反應比例 1%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 1%，但表現(染色)強度未明示 / PR Positive (1%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (1%)"
+        }
+      ]
+    },
+    {
+      "code": "002",
+      "display": "PR 反應比例 2%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 2%，但表現(染色)強度未明示 / PR Positive (2%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (2%)"
+        }
+      ]
+    },
+    {
+      "code": "003",
+      "display": "PR 反應比例 3%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 3%，但表現(染色)強度未明示 / PR Positive (3%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (3%)"
+        }
+      ]
+    },
+    {
+      "code": "004",
+      "display": "PR 反應比例 4%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 4%，但表現(染色)強度未明示 / PR Positive (4%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (4%)"
+        }
+      ]
+    },
+    {
+      "code": "005",
+      "display": "PR 反應比例 5%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 5%，但表現(染色)強度未明示 / PR Positive (5%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (5%)"
+        }
+      ]
+    },
+    {
+      "code": "006",
+      "display": "PR 反應比例 6%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 6%，但表現(染色)強度未明示 / PR Positive (6%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (6%)"
+        }
+      ]
+    },
+    {
+      "code": "007",
+      "display": "PR 反應比例 7%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 7%，但表現(染色)強度未明示 / PR Positive (7%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (7%)"
+        }
+      ]
+    },
+    {
+      "code": "008",
+      "display": "PR 反應比例 8%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 8%，但表現(染色)強度未明示 / PR Positive (8%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (8%)"
+        }
+      ]
+    },
+    {
+      "code": "009",
+      "display": "PR 反應比例 9%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 9%，但表現(染色)強度未明示 / PR Positive (9%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (9%)"
+        }
+      ]
+    },
+    {
+      "code": "010",
+      "display": "PR 反應比例 10%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 10%，但表現(染色)強度未明示 / PR Positive (10%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (10%)"
+        }
+      ]
+    },
+    {
+      "code": "011",
+      "display": "PR 反應比例 11%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 11%，但表現(染色)強度未明示 / PR Positive (11%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (11%)"
+        }
+      ]
+    },
+    {
+      "code": "012",
+      "display": "PR 反應比例 12%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 12%，但表現(染色)強度未明示 / PR Positive (12%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (12%)"
+        }
+      ]
+    },
+    {
+      "code": "013",
+      "display": "PR 反應比例 13%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 13%，但表現(染色)強度未明示 / PR Positive (13%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (13%)"
+        }
+      ]
+    },
+    {
+      "code": "014",
+      "display": "PR 反應比例 14%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 14%，但表現(染色)強度未明示 / PR Positive (14%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (14%)"
+        }
+      ]
+    },
+    {
+      "code": "015",
+      "display": "PR 反應比例 15%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 15%，但表現(染色)強度未明示 / PR Positive (15%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (15%)"
+        }
+      ]
+    },
+    {
+      "code": "016",
+      "display": "PR 反應比例 16%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 16%，但表現(染色)強度未明示 / PR Positive (16%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (16%)"
+        }
+      ]
+    },
+    {
+      "code": "017",
+      "display": "PR 反應比例 17%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 17%，但表現(染色)強度未明示 / PR Positive (17%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (17%)"
+        }
+      ]
+    },
+    {
+      "code": "018",
+      "display": "PR 反應比例 18%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 18%，但表現(染色)強度未明示 / PR Positive (18%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (18%)"
+        }
+      ]
+    },
+    {
+      "code": "019",
+      "display": "PR 反應比例 19%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 19%，但表現(染色)強度未明示 / PR Positive (19%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (19%)"
+        }
+      ]
+    },
+    {
+      "code": "020",
+      "display": "PR 反應比例 20%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 20%，但表現(染色)強度未明示 / PR Positive (20%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (20%)"
+        }
+      ]
+    },
+    {
+      "code": "021",
+      "display": "PR 反應比例 21%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 21%，但表現(染色)強度未明示 / PR Positive (21%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (21%)"
+        }
+      ]
+    },
+    {
+      "code": "022",
+      "display": "PR 反應比例 22%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 22%，但表現(染色)強度未明示 / PR Positive (22%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (22%)"
+        }
+      ]
+    },
+    {
+      "code": "023",
+      "display": "PR 反應比例 23%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 23%，但表現(染色)強度未明示 / PR Positive (23%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (23%)"
+        }
+      ]
+    },
+    {
+      "code": "024",
+      "display": "PR 反應比例 24%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 24%，但表現(染色)強度未明示 / PR Positive (24%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (24%)"
+        }
+      ]
+    },
+    {
+      "code": "025",
+      "display": "PR 反應比例 25%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 25%，但表現(染色)強度未明示 / PR Positive (25%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (25%)"
+        }
+      ]
+    },
+    {
+      "code": "026",
+      "display": "PR 反應比例 26%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 26%，但表現(染色)強度未明示 / PR Positive (26%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (26%)"
+        }
+      ]
+    },
+    {
+      "code": "027",
+      "display": "PR 反應比例 27%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 27%，但表現(染色)強度未明示 / PR Positive (27%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (27%)"
+        }
+      ]
+    },
+    {
+      "code": "028",
+      "display": "PR 反應比例 28%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 28%，但表現(染色)強度未明示 / PR Positive (28%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (28%)"
+        }
+      ]
+    },
+    {
+      "code": "029",
+      "display": "PR 反應比例 29%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 29%，但表現(染色)強度未明示 / PR Positive (29%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (29%)"
+        }
+      ]
+    },
+    {
+      "code": "030",
+      "display": "PR 反應比例 30%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 30%，但表現(染色)強度未明示 / PR Positive (30%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (30%)"
+        }
+      ]
+    },
+    {
+      "code": "031",
+      "display": "PR 反應比例 31%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 31%，但表現(染色)強度未明示 / PR Positive (31%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (31%)"
+        }
+      ]
+    },
+    {
+      "code": "032",
+      "display": "PR 反應比例 32%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 32%，但表現(染色)強度未明示 / PR Positive (32%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (32%)"
+        }
+      ]
+    },
+    {
+      "code": "033",
+      "display": "PR 反應比例 33%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 33%，但表現(染色)強度未明示 / PR Positive (33%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (33%)"
+        }
+      ]
+    },
+    {
+      "code": "034",
+      "display": "PR 反應比例 34%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 34%，但表現(染色)強度未明示 / PR Positive (34%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (34%)"
+        }
+      ]
+    },
+    {
+      "code": "035",
+      "display": "PR 反應比例 35%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 35%，但表現(染色)強度未明示 / PR Positive (35%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (35%)"
+        }
+      ]
+    },
+    {
+      "code": "036",
+      "display": "PR 反應比例 36%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 36%，但表現(染色)強度未明示 / PR Positive (36%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (36%)"
+        }
+      ]
+    },
+    {
+      "code": "037",
+      "display": "PR 反應比例 37%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 37%，但表現(染色)強度未明示 / PR Positive (37%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (37%)"
+        }
+      ]
+    },
+    {
+      "code": "038",
+      "display": "PR 反應比例 38%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 38%，但表現(染色)強度未明示 / PR Positive (38%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (38%)"
+        }
+      ]
+    },
+    {
+      "code": "039",
+      "display": "PR 反應比例 39%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 39%，但表現(染色)強度未明示 / PR Positive (39%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (39%)"
+        }
+      ]
+    },
+    {
+      "code": "040",
+      "display": "PR 反應比例 40%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 40%，但表現(染色)強度未明示 / PR Positive (40%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (40%)"
+        }
+      ]
+    },
+    {
+      "code": "041",
+      "display": "PR 反應比例 41%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 41%，但表現(染色)強度未明示 / PR Positive (41%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (41%)"
+        }
+      ]
+    },
+    {
+      "code": "042",
+      "display": "PR 反應比例 42%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 42%，但表現(染色)強度未明示 / PR Positive (42%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (42%)"
+        }
+      ]
+    },
+    {
+      "code": "043",
+      "display": "PR 反應比例 43%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 43%，但表現(染色)強度未明示 / PR Positive (43%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (43%)"
+        }
+      ]
+    },
+    {
+      "code": "044",
+      "display": "PR 反應比例 44%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 44%，但表現(染色)強度未明示 / PR Positive (44%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (44%)"
+        }
+      ]
+    },
+    {
+      "code": "045",
+      "display": "PR 反應比例 45%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 45%，但表現(染色)強度未明示 / PR Positive (45%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (45%)"
+        }
+      ]
+    },
+    {
+      "code": "046",
+      "display": "PR 反應比例 46%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 46%，但表現(染色)強度未明示 / PR Positive (46%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (46%)"
+        }
+      ]
+    },
+    {
+      "code": "047",
+      "display": "PR 反應比例 47%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 47%，但表現(染色)強度未明示 / PR Positive (47%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (47%)"
+        }
+      ]
+    },
+    {
+      "code": "048",
+      "display": "PR 反應比例 48%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 48%，但表現(染色)強度未明示 / PR Positive (48%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (48%)"
+        }
+      ]
+    },
+    {
+      "code": "049",
+      "display": "PR 反應比例 49%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 49%，但表現(染色)強度未明示 / PR Positive (49%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (49%)"
+        }
+      ]
+    },
+    {
+      "code": "050",
+      "display": "PR 反應比例 50%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 50%，但表現(染色)強度未明示 / PR Positive (50%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (50%)"
+        }
+      ]
+    },
+    {
+      "code": "051",
+      "display": "PR 反應比例 51%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 51%，但表現(染色)強度未明示 / PR Positive (51%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (51%)"
+        }
+      ]
+    },
+    {
+      "code": "052",
+      "display": "PR 反應比例 52%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 52%，但表現(染色)強度未明示 / PR Positive (52%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (52%)"
+        }
+      ]
+    },
+    {
+      "code": "053",
+      "display": "PR 反應比例 53%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 53%，但表現(染色)強度未明示 / PR Positive (53%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (53%)"
+        }
+      ]
+    },
+    {
+      "code": "054",
+      "display": "PR 反應比例 54%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 54%，但表現(染色)強度未明示 / PR Positive (54%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (54%)"
+        }
+      ]
+    },
+    {
+      "code": "055",
+      "display": "PR 反應比例 55%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 55%，但表現(染色)強度未明示 / PR Positive (55%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (55%)"
+        }
+      ]
+    },
+    {
+      "code": "056",
+      "display": "PR 反應比例 56%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 56%，但表現(染色)強度未明示 / PR Positive (56%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (56%)"
+        }
+      ]
+    },
+    {
+      "code": "057",
+      "display": "PR 反應比例 57%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 57%，但表現(染色)強度未明示 / PR Positive (57%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (57%)"
+        }
+      ]
+    },
+    {
+      "code": "058",
+      "display": "PR 反應比例 58%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 58%，但表現(染色)強度未明示 / PR Positive (58%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (58%)"
+        }
+      ]
+    },
+    {
+      "code": "059",
+      "display": "PR 反應比例 59%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 59%，但表現(染色)強度未明示 / PR Positive (59%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (59%)"
+        }
+      ]
+    },
+    {
+      "code": "060",
+      "display": "PR 反應比例 60%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 60%，但表現(染色)強度未明示 / PR Positive (60%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (60%)"
+        }
+      ]
+    },
+    {
+      "code": "061",
+      "display": "PR 反應比例 61%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 61%，但表現(染色)強度未明示 / PR Positive (61%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (61%)"
+        }
+      ]
+    },
+    {
+      "code": "062",
+      "display": "PR 反應比例 62%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 62%，但表現(染色)強度未明示 / PR Positive (62%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (62%)"
+        }
+      ]
+    },
+    {
+      "code": "063",
+      "display": "PR 反應比例 63%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 63%，但表現(染色)強度未明示 / PR Positive (63%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (63%)"
+        }
+      ]
+    },
+    {
+      "code": "064",
+      "display": "PR 反應比例 64%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 64%，但表現(染色)強度未明示 / PR Positive (64%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (64%)"
+        }
+      ]
+    },
+    {
+      "code": "065",
+      "display": "PR 反應比例 65%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 65%，但表現(染色)強度未明示 / PR Positive (65%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (65%)"
+        }
+      ]
+    },
+    {
+      "code": "066",
+      "display": "PR 反應比例 66%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 66%，但表現(染色)強度未明示 / PR Positive (66%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (66%)"
+        }
+      ]
+    },
+    {
+      "code": "067",
+      "display": "PR 反應比例 67%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 67%，但表現(染色)強度未明示 / PR Positive (67%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (67%)"
+        }
+      ]
+    },
+    {
+      "code": "068",
+      "display": "PR 反應比例 68%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 68%，但表現(染色)強度未明示 / PR Positive (68%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (68%)"
+        }
+      ]
+    },
+    {
+      "code": "069",
+      "display": "PR 反應比例 69%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 69%，但表現(染色)強度未明示 / PR Positive (69%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (69%)"
+        }
+      ]
+    },
+    {
+      "code": "070",
+      "display": "PR 反應比例 70%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 70%，但表現(染色)強度未明示 / PR Positive (70%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (70%)"
+        }
+      ]
+    },
+    {
+      "code": "071",
+      "display": "PR 反應比例 71%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 71%，但表現(染色)強度未明示 / PR Positive (71%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (71%)"
+        }
+      ]
+    },
+    {
+      "code": "072",
+      "display": "PR 反應比例 72%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 72%，但表現(染色)強度未明示 / PR Positive (72%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (72%)"
+        }
+      ]
+    },
+    {
+      "code": "073",
+      "display": "PR 反應比例 73%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 73%，但表現(染色)強度未明示 / PR Positive (73%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (73%)"
+        }
+      ]
+    },
+    {
+      "code": "074",
+      "display": "PR 反應比例 74%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 74%，但表現(染色)強度未明示 / PR Positive (74%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (74%)"
+        }
+      ]
+    },
+    {
+      "code": "075",
+      "display": "PR 反應比例 75%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 75%，但表現(染色)強度未明示 / PR Positive (75%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (75%)"
+        }
+      ]
+    },
+    {
+      "code": "076",
+      "display": "PR 反應比例 76%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 76%，但表現(染色)強度未明示 / PR Positive (76%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (76%)"
+        }
+      ]
+    },
+    {
+      "code": "077",
+      "display": "PR 反應比例 77%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 77%，但表現(染色)強度未明示 / PR Positive (77%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (77%)"
+        }
+      ]
+    },
+    {
+      "code": "078",
+      "display": "PR 反應比例 78%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 78%，但表現(染色)強度未明示 / PR Positive (78%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (78%)"
+        }
+      ]
+    },
+    {
+      "code": "079",
+      "display": "PR 反應比例 79%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 79%，但表現(染色)強度未明示 / PR Positive (79%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (79%)"
+        }
+      ]
+    },
+    {
+      "code": "080",
+      "display": "PR 反應比例 80%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 80%，但表現(染色)強度未明示 / PR Positive (80%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (80%)"
+        }
+      ]
+    },
+    {
+      "code": "081",
+      "display": "PR 反應比例 81%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 81%，但表現(染色)強度未明示 / PR Positive (81%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (81%)"
+        }
+      ]
+    },
+    {
+      "code": "082",
+      "display": "PR 反應比例 82%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 82%，但表現(染色)強度未明示 / PR Positive (82%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (82%)"
+        }
+      ]
+    },
+    {
+      "code": "083",
+      "display": "PR 反應比例 83%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 83%，但表現(染色)強度未明示 / PR Positive (83%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (83%)"
+        }
+      ]
+    },
+    {
+      "code": "084",
+      "display": "PR 反應比例 84%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 84%，但表現(染色)強度未明示 / PR Positive (84%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (84%)"
+        }
+      ]
+    },
+    {
+      "code": "085",
+      "display": "PR 反應比例 85%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 85%，但表現(染色)強度未明示 / PR Positive (85%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (85%)"
+        }
+      ]
+    },
+    {
+      "code": "086",
+      "display": "PR 反應比例 86%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 86%，但表現(染色)強度未明示 / PR Positive (86%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (86%)"
+        }
+      ]
+    },
+    {
+      "code": "087",
+      "display": "PR 反應比例 87%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 87%，但表現(染色)強度未明示 / PR Positive (87%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (87%)"
+        }
+      ]
+    },
+    {
+      "code": "088",
+      "display": "PR 反應比例 88%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 88%，但表現(染色)強度未明示 / PR Positive (88%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (88%)"
+        }
+      ]
+    },
+    {
+      "code": "089",
+      "display": "PR 反應比例 89%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 89%，但表現(染色)強度未明示 / PR Positive (89%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (89%)"
+        }
+      ]
+    },
+    {
+      "code": "090",
+      "display": "PR 反應比例 90%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 90%，但表現(染色)強度未明示 / PR Positive (90%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (90%)"
+        }
+      ]
+    },
+    {
+      "code": "091",
+      "display": "PR 反應比例 91%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 91%，但表現(染色)強度未明示 / PR Positive (91%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (91%)"
+        }
+      ]
+    },
+    {
+      "code": "092",
+      "display": "PR 反應比例 92%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 92%，但表現(染色)強度未明示 / PR Positive (92%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (92%)"
+        }
+      ]
+    },
+    {
+      "code": "093",
+      "display": "PR 反應比例 93%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 93%，但表現(染色)強度未明示 / PR Positive (93%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (93%)"
+        }
+      ]
+    },
+    {
+      "code": "094",
+      "display": "PR 反應比例 94%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 94%，但表現(染色)強度未明示 / PR Positive (94%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (94%)"
+        }
+      ]
+    },
+    {
+      "code": "095",
+      "display": "PR 反應比例 95%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 95%，但表現(染色)強度未明示 / PR Positive (95%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (95%)"
+        }
+      ]
+    },
+    {
+      "code": "096",
+      "display": "PR 反應比例 96%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 96%，但表現(染色)強度未明示 / PR Positive (96%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (96%)"
+        }
+      ]
+    },
+    {
+      "code": "097",
+      "display": "PR 反應比例 97%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 97%，但表現(染色)強度未明示 / PR Positive (97%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (97%)"
+        }
+      ]
+    },
+    {
+      "code": "098",
+      "display": "PR 反應比例 98%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 98%，但表現(染色)強度未明示 / PR Positive (98%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (98%)"
+        }
+      ]
+    },
+    {
+      "code": "099",
+      "display": "PR 反應比例 99%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 99%，但表現(染色)強度未明示 / PR Positive (99%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (99%)"
+        }
+      ]
+    },
+    {
+      "code": "100",
+      "display": "PR 反應比例 100%，但表現(染色)強度未明示",
+      "definition": "PR 反應比例 100%，但表現(染色)強度未明示 / PR Positive (100%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (100%)"
+        }
+      ]
+    },
+    {
+      "code": "110",
+      "display": "陽性，但比例不明；或 Allred score 僅描述 3-8 分，未明示 intensity 及 positive cell",
+      "definition": "陽性，但比例不明；或 Allred score 僅描述 3-8 分，未明示 intensity 及 positive cell / PR Positive (proportion unclear)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (proportion unclear)"
+        }
+      ]
+    },
+    {
+      "code": "111",
+      "display": "僅有前導性治療後的數值且為陽性",
+      "definition": "僅有前導性治療後的數值且為陽性 / PR Positive (post-neoadjuvant value only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (post-neoadjuvant value only)"
+        }
+      ]
+    },
+    {
+      "code": "120",
+      "display": "陰性：反應比例 <1%（不論染色強度）、比例未明示、僅表示為 (-)，或 Allred score 僅描述 1-2 分",
+      "definition": "陰性：反應比例 <1%（不論染色強度）、比例未明示、僅表示為 (-)，或 Allred score 僅描述 1-2 分 / PR Negative (<1% or not specified)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Negative (<1% or not specified)"
+        }
+      ]
+    },
+    {
+      "code": "121",
+      "display": "僅有前導性治療後的數值且為陰性",
+      "definition": "僅有前導性治療後的數值且為陰性 / PR Negative (post-neoadjuvant value only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Negative (post-neoadjuvant value only)"
+        }
+      ]
+    },
+    {
+      "code": "888",
+      "display": "前導性治療後的數值由陰性轉為陽性",
+      "definition": "前導性治療後的數值由陰性轉為陽性 / PR converted Neg→Pos after neoadjuvant therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR converted Neg→Pos after neoadjuvant therapy"
+        }
+      ]
+    },
+    {
+      "code": "988",
+      "display": "不適用：以 Oncotype 進行檢測、Phyllodes tumor (M-9020)、Sarcoma (M-8800-8936, 8940-9136, 9141-9582)",
+      "definition": "不適用：以 Oncotype 進行檢測、Phyllodes tumor (M-9020)、Sarcoma (M-8800-8936, 8940-9136, 9141-9582) / Not applicable (Oncotype/Phyllodes/Sarcoma)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not applicable (Oncotype/Phyllodes/Sarcoma)"
+        }
+      ]
+    },
+    {
+      "code": "999",
+      "display": "不清楚檢測是否執行／病歷未記載／未檢驗",
+      "definition": "不清楚檢測是否執行／病歷未記載／未檢驗 / Unknown",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Unknown"
+        }
+      ]
+    },
+    {
+      "code": "I00",
+      "display": "中染，PR 反應比例 100%",
+      "definition": "中染，PR 反應比例 100% / PR Positive (Intermediate staining, 100%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 100%)"
+        }
+      ]
+    },
+    {
+      "code": "I01",
+      "display": "中染，PR 反應比例 1%",
+      "definition": "中染，PR 反應比例 1% / PR Positive (Intermediate staining, 1%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 1%)"
+        }
+      ]
+    },
+    {
+      "code": "I02",
+      "display": "中染，PR 反應比例 2%",
+      "definition": "中染，PR 反應比例 2% / PR Positive (Intermediate staining, 2%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 2%)"
+        }
+      ]
+    },
+    {
+      "code": "I03",
+      "display": "中染，PR 反應比例 3%",
+      "definition": "中染，PR 反應比例 3% / PR Positive (Intermediate staining, 3%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 3%)"
+        }
+      ]
+    },
+    {
+      "code": "I04",
+      "display": "中染，PR 反應比例 4%",
+      "definition": "中染，PR 反應比例 4% / PR Positive (Intermediate staining, 4%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 4%)"
+        }
+      ]
+    },
+    {
+      "code": "I05",
+      "display": "中染，PR 反應比例 5%",
+      "definition": "中染，PR 反應比例 5% / PR Positive (Intermediate staining, 5%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 5%)"
+        }
+      ]
+    },
+    {
+      "code": "I06",
+      "display": "中染，PR 反應比例 6%",
+      "definition": "中染，PR 反應比例 6% / PR Positive (Intermediate staining, 6%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 6%)"
+        }
+      ]
+    },
+    {
+      "code": "I07",
+      "display": "中染，PR 反應比例 7%",
+      "definition": "中染，PR 反應比例 7% / PR Positive (Intermediate staining, 7%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 7%)"
+        }
+      ]
+    },
+    {
+      "code": "I08",
+      "display": "中染，PR 反應比例 8%",
+      "definition": "中染，PR 反應比例 8% / PR Positive (Intermediate staining, 8%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 8%)"
+        }
+      ]
+    },
+    {
+      "code": "I09",
+      "display": "中染，PR 反應比例 9%",
+      "definition": "中染，PR 反應比例 9% / PR Positive (Intermediate staining, 9%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 9%)"
+        }
+      ]
+    },
+    {
+      "code": "I10",
+      "display": "中染，PR 反應比例 10%",
+      "definition": "中染，PR 反應比例 10% / PR Positive (Intermediate staining, 10%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 10%)"
+        }
+      ]
+    },
+    {
+      "code": "I11",
+      "display": "中染，PR 反應比例 11%",
+      "definition": "中染，PR 反應比例 11% / PR Positive (Intermediate staining, 11%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 11%)"
+        }
+      ]
+    },
+    {
+      "code": "I12",
+      "display": "中染，PR 反應比例 12%",
+      "definition": "中染，PR 反應比例 12% / PR Positive (Intermediate staining, 12%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 12%)"
+        }
+      ]
+    },
+    {
+      "code": "I13",
+      "display": "中染，PR 反應比例 13%",
+      "definition": "中染，PR 反應比例 13% / PR Positive (Intermediate staining, 13%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 13%)"
+        }
+      ]
+    },
+    {
+      "code": "I14",
+      "display": "中染，PR 反應比例 14%",
+      "definition": "中染，PR 反應比例 14% / PR Positive (Intermediate staining, 14%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 14%)"
+        }
+      ]
+    },
+    {
+      "code": "I15",
+      "display": "中染，PR 反應比例 15%",
+      "definition": "中染，PR 反應比例 15% / PR Positive (Intermediate staining, 15%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 15%)"
+        }
+      ]
+    },
+    {
+      "code": "I16",
+      "display": "中染，PR 反應比例 16%",
+      "definition": "中染，PR 反應比例 16% / PR Positive (Intermediate staining, 16%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 16%)"
+        }
+      ]
+    },
+    {
+      "code": "I17",
+      "display": "中染，PR 反應比例 17%",
+      "definition": "中染，PR 反應比例 17% / PR Positive (Intermediate staining, 17%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 17%)"
+        }
+      ]
+    },
+    {
+      "code": "I18",
+      "display": "中染，PR 反應比例 18%",
+      "definition": "中染，PR 反應比例 18% / PR Positive (Intermediate staining, 18%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 18%)"
+        }
+      ]
+    },
+    {
+      "code": "I19",
+      "display": "中染，PR 反應比例 19%",
+      "definition": "中染，PR 反應比例 19% / PR Positive (Intermediate staining, 19%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 19%)"
+        }
+      ]
+    },
+    {
+      "code": "I20",
+      "display": "中染，PR 反應比例 20%",
+      "definition": "中染，PR 反應比例 20% / PR Positive (Intermediate staining, 20%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 20%)"
+        }
+      ]
+    },
+    {
+      "code": "I21",
+      "display": "中染，PR 反應比例 21%",
+      "definition": "中染，PR 反應比例 21% / PR Positive (Intermediate staining, 21%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 21%)"
+        }
+      ]
+    },
+    {
+      "code": "I22",
+      "display": "中染，PR 反應比例 22%",
+      "definition": "中染，PR 反應比例 22% / PR Positive (Intermediate staining, 22%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 22%)"
+        }
+      ]
+    },
+    {
+      "code": "I23",
+      "display": "中染，PR 反應比例 23%",
+      "definition": "中染，PR 反應比例 23% / PR Positive (Intermediate staining, 23%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 23%)"
+        }
+      ]
+    },
+    {
+      "code": "I24",
+      "display": "中染，PR 反應比例 24%",
+      "definition": "中染，PR 反應比例 24% / PR Positive (Intermediate staining, 24%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 24%)"
+        }
+      ]
+    },
+    {
+      "code": "I25",
+      "display": "中染，PR 反應比例 25%",
+      "definition": "中染，PR 反應比例 25% / PR Positive (Intermediate staining, 25%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 25%)"
+        }
+      ]
+    },
+    {
+      "code": "I26",
+      "display": "中染，PR 反應比例 26%",
+      "definition": "中染，PR 反應比例 26% / PR Positive (Intermediate staining, 26%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 26%)"
+        }
+      ]
+    },
+    {
+      "code": "I27",
+      "display": "中染，PR 反應比例 27%",
+      "definition": "中染，PR 反應比例 27% / PR Positive (Intermediate staining, 27%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 27%)"
+        }
+      ]
+    },
+    {
+      "code": "I28",
+      "display": "中染，PR 反應比例 28%",
+      "definition": "中染，PR 反應比例 28% / PR Positive (Intermediate staining, 28%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 28%)"
+        }
+      ]
+    },
+    {
+      "code": "I29",
+      "display": "中染，PR 反應比例 29%",
+      "definition": "中染，PR 反應比例 29% / PR Positive (Intermediate staining, 29%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 29%)"
+        }
+      ]
+    },
+    {
+      "code": "I30",
+      "display": "中染，PR 反應比例 30%",
+      "definition": "中染，PR 反應比例 30% / PR Positive (Intermediate staining, 30%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 30%)"
+        }
+      ]
+    },
+    {
+      "code": "I31",
+      "display": "中染，PR 反應比例 31%",
+      "definition": "中染，PR 反應比例 31% / PR Positive (Intermediate staining, 31%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 31%)"
+        }
+      ]
+    },
+    {
+      "code": "I32",
+      "display": "中染，PR 反應比例 32%",
+      "definition": "中染，PR 反應比例 32% / PR Positive (Intermediate staining, 32%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 32%)"
+        }
+      ]
+    },
+    {
+      "code": "I33",
+      "display": "中染，PR 反應比例 33%",
+      "definition": "中染，PR 反應比例 33% / PR Positive (Intermediate staining, 33%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 33%)"
+        }
+      ]
+    },
+    {
+      "code": "I34",
+      "display": "中染，PR 反應比例 34%",
+      "definition": "中染，PR 反應比例 34% / PR Positive (Intermediate staining, 34%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 34%)"
+        }
+      ]
+    },
+    {
+      "code": "I35",
+      "display": "中染，PR 反應比例 35%",
+      "definition": "中染，PR 反應比例 35% / PR Positive (Intermediate staining, 35%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 35%)"
+        }
+      ]
+    },
+    {
+      "code": "I36",
+      "display": "中染，PR 反應比例 36%",
+      "definition": "中染，PR 反應比例 36% / PR Positive (Intermediate staining, 36%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 36%)"
+        }
+      ]
+    },
+    {
+      "code": "I37",
+      "display": "中染，PR 反應比例 37%",
+      "definition": "中染，PR 反應比例 37% / PR Positive (Intermediate staining, 37%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 37%)"
+        }
+      ]
+    },
+    {
+      "code": "I38",
+      "display": "中染，PR 反應比例 38%",
+      "definition": "中染，PR 反應比例 38% / PR Positive (Intermediate staining, 38%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 38%)"
+        }
+      ]
+    },
+    {
+      "code": "I39",
+      "display": "中染，PR 反應比例 39%",
+      "definition": "中染，PR 反應比例 39% / PR Positive (Intermediate staining, 39%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 39%)"
+        }
+      ]
+    },
+    {
+      "code": "I40",
+      "display": "中染，PR 反應比例 40%",
+      "definition": "中染，PR 反應比例 40% / PR Positive (Intermediate staining, 40%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 40%)"
+        }
+      ]
+    },
+    {
+      "code": "I41",
+      "display": "中染，PR 反應比例 41%",
+      "definition": "中染，PR 反應比例 41% / PR Positive (Intermediate staining, 41%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 41%)"
+        }
+      ]
+    },
+    {
+      "code": "I42",
+      "display": "中染，PR 反應比例 42%",
+      "definition": "中染，PR 反應比例 42% / PR Positive (Intermediate staining, 42%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 42%)"
+        }
+      ]
+    },
+    {
+      "code": "I43",
+      "display": "中染，PR 反應比例 43%",
+      "definition": "中染，PR 反應比例 43% / PR Positive (Intermediate staining, 43%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 43%)"
+        }
+      ]
+    },
+    {
+      "code": "I44",
+      "display": "中染，PR 反應比例 44%",
+      "definition": "中染，PR 反應比例 44% / PR Positive (Intermediate staining, 44%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 44%)"
+        }
+      ]
+    },
+    {
+      "code": "I45",
+      "display": "中染，PR 反應比例 45%",
+      "definition": "中染，PR 反應比例 45% / PR Positive (Intermediate staining, 45%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 45%)"
+        }
+      ]
+    },
+    {
+      "code": "I46",
+      "display": "中染，PR 反應比例 46%",
+      "definition": "中染，PR 反應比例 46% / PR Positive (Intermediate staining, 46%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 46%)"
+        }
+      ]
+    },
+    {
+      "code": "I47",
+      "display": "中染，PR 反應比例 47%",
+      "definition": "中染，PR 反應比例 47% / PR Positive (Intermediate staining, 47%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 47%)"
+        }
+      ]
+    },
+    {
+      "code": "I48",
+      "display": "中染，PR 反應比例 48%",
+      "definition": "中染，PR 反應比例 48% / PR Positive (Intermediate staining, 48%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 48%)"
+        }
+      ]
+    },
+    {
+      "code": "I49",
+      "display": "中染，PR 反應比例 49%",
+      "definition": "中染，PR 反應比例 49% / PR Positive (Intermediate staining, 49%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 49%)"
+        }
+      ]
+    },
+    {
+      "code": "I50",
+      "display": "中染，PR 反應比例 50%",
+      "definition": "中染，PR 反應比例 50% / PR Positive (Intermediate staining, 50%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 50%)"
+        }
+      ]
+    },
+    {
+      "code": "I51",
+      "display": "中染，PR 反應比例 51%",
+      "definition": "中染，PR 反應比例 51% / PR Positive (Intermediate staining, 51%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 51%)"
+        }
+      ]
+    },
+    {
+      "code": "I52",
+      "display": "中染，PR 反應比例 52%",
+      "definition": "中染，PR 反應比例 52% / PR Positive (Intermediate staining, 52%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 52%)"
+        }
+      ]
+    },
+    {
+      "code": "I53",
+      "display": "中染，PR 反應比例 53%",
+      "definition": "中染，PR 反應比例 53% / PR Positive (Intermediate staining, 53%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 53%)"
+        }
+      ]
+    },
+    {
+      "code": "I54",
+      "display": "中染，PR 反應比例 54%",
+      "definition": "中染，PR 反應比例 54% / PR Positive (Intermediate staining, 54%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 54%)"
+        }
+      ]
+    },
+    {
+      "code": "I55",
+      "display": "中染，PR 反應比例 55%",
+      "definition": "中染，PR 反應比例 55% / PR Positive (Intermediate staining, 55%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 55%)"
+        }
+      ]
+    },
+    {
+      "code": "I56",
+      "display": "中染，PR 反應比例 56%",
+      "definition": "中染，PR 反應比例 56% / PR Positive (Intermediate staining, 56%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 56%)"
+        }
+      ]
+    },
+    {
+      "code": "I57",
+      "display": "中染，PR 反應比例 57%",
+      "definition": "中染，PR 反應比例 57% / PR Positive (Intermediate staining, 57%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 57%)"
+        }
+      ]
+    },
+    {
+      "code": "I58",
+      "display": "中染，PR 反應比例 58%",
+      "definition": "中染，PR 反應比例 58% / PR Positive (Intermediate staining, 58%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 58%)"
+        }
+      ]
+    },
+    {
+      "code": "I59",
+      "display": "中染，PR 反應比例 59%",
+      "definition": "中染，PR 反應比例 59% / PR Positive (Intermediate staining, 59%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 59%)"
+        }
+      ]
+    },
+    {
+      "code": "I60",
+      "display": "中染，PR 反應比例 60%",
+      "definition": "中染，PR 反應比例 60% / PR Positive (Intermediate staining, 60%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 60%)"
+        }
+      ]
+    },
+    {
+      "code": "I61",
+      "display": "中染，PR 反應比例 61%",
+      "definition": "中染，PR 反應比例 61% / PR Positive (Intermediate staining, 61%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 61%)"
+        }
+      ]
+    },
+    {
+      "code": "I62",
+      "display": "中染，PR 反應比例 62%",
+      "definition": "中染，PR 反應比例 62% / PR Positive (Intermediate staining, 62%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 62%)"
+        }
+      ]
+    },
+    {
+      "code": "I63",
+      "display": "中染，PR 反應比例 63%",
+      "definition": "中染，PR 反應比例 63% / PR Positive (Intermediate staining, 63%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 63%)"
+        }
+      ]
+    },
+    {
+      "code": "I64",
+      "display": "中染，PR 反應比例 64%",
+      "definition": "中染，PR 反應比例 64% / PR Positive (Intermediate staining, 64%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 64%)"
+        }
+      ]
+    },
+    {
+      "code": "I65",
+      "display": "中染，PR 反應比例 65%",
+      "definition": "中染，PR 反應比例 65% / PR Positive (Intermediate staining, 65%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 65%)"
+        }
+      ]
+    },
+    {
+      "code": "I66",
+      "display": "中染，PR 反應比例 66%",
+      "definition": "中染，PR 反應比例 66% / PR Positive (Intermediate staining, 66%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 66%)"
+        }
+      ]
+    },
+    {
+      "code": "I67",
+      "display": "中染，PR 反應比例 67%",
+      "definition": "中染，PR 反應比例 67% / PR Positive (Intermediate staining, 67%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 67%)"
+        }
+      ]
+    },
+    {
+      "code": "I68",
+      "display": "中染，PR 反應比例 68%",
+      "definition": "中染，PR 反應比例 68% / PR Positive (Intermediate staining, 68%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 68%)"
+        }
+      ]
+    },
+    {
+      "code": "I69",
+      "display": "中染，PR 反應比例 69%",
+      "definition": "中染，PR 反應比例 69% / PR Positive (Intermediate staining, 69%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 69%)"
+        }
+      ]
+    },
+    {
+      "code": "I70",
+      "display": "中染，PR 反應比例 70%",
+      "definition": "中染，PR 反應比例 70% / PR Positive (Intermediate staining, 70%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 70%)"
+        }
+      ]
+    },
+    {
+      "code": "I71",
+      "display": "中染，PR 反應比例 71%",
+      "definition": "中染，PR 反應比例 71% / PR Positive (Intermediate staining, 71%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 71%)"
+        }
+      ]
+    },
+    {
+      "code": "I72",
+      "display": "中染，PR 反應比例 72%",
+      "definition": "中染，PR 反應比例 72% / PR Positive (Intermediate staining, 72%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 72%)"
+        }
+      ]
+    },
+    {
+      "code": "I73",
+      "display": "中染，PR 反應比例 73%",
+      "definition": "中染，PR 反應比例 73% / PR Positive (Intermediate staining, 73%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 73%)"
+        }
+      ]
+    },
+    {
+      "code": "I74",
+      "display": "中染，PR 反應比例 74%",
+      "definition": "中染，PR 反應比例 74% / PR Positive (Intermediate staining, 74%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 74%)"
+        }
+      ]
+    },
+    {
+      "code": "I75",
+      "display": "中染，PR 反應比例 75%",
+      "definition": "中染，PR 反應比例 75% / PR Positive (Intermediate staining, 75%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 75%)"
+        }
+      ]
+    },
+    {
+      "code": "I76",
+      "display": "中染，PR 反應比例 76%",
+      "definition": "中染，PR 反應比例 76% / PR Positive (Intermediate staining, 76%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 76%)"
+        }
+      ]
+    },
+    {
+      "code": "I77",
+      "display": "中染，PR 反應比例 77%",
+      "definition": "中染，PR 反應比例 77% / PR Positive (Intermediate staining, 77%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 77%)"
+        }
+      ]
+    },
+    {
+      "code": "I78",
+      "display": "中染，PR 反應比例 78%",
+      "definition": "中染，PR 反應比例 78% / PR Positive (Intermediate staining, 78%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 78%)"
+        }
+      ]
+    },
+    {
+      "code": "I79",
+      "display": "中染，PR 反應比例 79%",
+      "definition": "中染，PR 反應比例 79% / PR Positive (Intermediate staining, 79%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 79%)"
+        }
+      ]
+    },
+    {
+      "code": "I80",
+      "display": "中染，PR 反應比例 80%",
+      "definition": "中染，PR 反應比例 80% / PR Positive (Intermediate staining, 80%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 80%)"
+        }
+      ]
+    },
+    {
+      "code": "I81",
+      "display": "中染，PR 反應比例 81%",
+      "definition": "中染，PR 反應比例 81% / PR Positive (Intermediate staining, 81%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 81%)"
+        }
+      ]
+    },
+    {
+      "code": "I82",
+      "display": "中染，PR 反應比例 82%",
+      "definition": "中染，PR 反應比例 82% / PR Positive (Intermediate staining, 82%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 82%)"
+        }
+      ]
+    },
+    {
+      "code": "I83",
+      "display": "中染，PR 反應比例 83%",
+      "definition": "中染，PR 反應比例 83% / PR Positive (Intermediate staining, 83%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 83%)"
+        }
+      ]
+    },
+    {
+      "code": "I84",
+      "display": "中染，PR 反應比例 84%",
+      "definition": "中染，PR 反應比例 84% / PR Positive (Intermediate staining, 84%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 84%)"
+        }
+      ]
+    },
+    {
+      "code": "I85",
+      "display": "中染，PR 反應比例 85%",
+      "definition": "中染，PR 反應比例 85% / PR Positive (Intermediate staining, 85%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 85%)"
+        }
+      ]
+    },
+    {
+      "code": "I86",
+      "display": "中染，PR 反應比例 86%",
+      "definition": "中染，PR 反應比例 86% / PR Positive (Intermediate staining, 86%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 86%)"
+        }
+      ]
+    },
+    {
+      "code": "I87",
+      "display": "中染，PR 反應比例 87%",
+      "definition": "中染，PR 反應比例 87% / PR Positive (Intermediate staining, 87%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 87%)"
+        }
+      ]
+    },
+    {
+      "code": "I88",
+      "display": "中染，PR 反應比例 88%",
+      "definition": "中染，PR 反應比例 88% / PR Positive (Intermediate staining, 88%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 88%)"
+        }
+      ]
+    },
+    {
+      "code": "I89",
+      "display": "中染，PR 反應比例 89%",
+      "definition": "中染，PR 反應比例 89% / PR Positive (Intermediate staining, 89%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 89%)"
+        }
+      ]
+    },
+    {
+      "code": "I90",
+      "display": "中染，PR 反應比例 90%",
+      "definition": "中染，PR 反應比例 90% / PR Positive (Intermediate staining, 90%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 90%)"
+        }
+      ]
+    },
+    {
+      "code": "I91",
+      "display": "中染，PR 反應比例 91%",
+      "definition": "中染，PR 反應比例 91% / PR Positive (Intermediate staining, 91%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 91%)"
+        }
+      ]
+    },
+    {
+      "code": "I92",
+      "display": "中染，PR 反應比例 92%",
+      "definition": "中染，PR 反應比例 92% / PR Positive (Intermediate staining, 92%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 92%)"
+        }
+      ]
+    },
+    {
+      "code": "I93",
+      "display": "中染，PR 反應比例 93%",
+      "definition": "中染，PR 反應比例 93% / PR Positive (Intermediate staining, 93%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 93%)"
+        }
+      ]
+    },
+    {
+      "code": "I94",
+      "display": "中染，PR 反應比例 94%",
+      "definition": "中染，PR 反應比例 94% / PR Positive (Intermediate staining, 94%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 94%)"
+        }
+      ]
+    },
+    {
+      "code": "I95",
+      "display": "中染，PR 反應比例 95%",
+      "definition": "中染，PR 反應比例 95% / PR Positive (Intermediate staining, 95%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 95%)"
+        }
+      ]
+    },
+    {
+      "code": "I96",
+      "display": "中染，PR 反應比例 96%",
+      "definition": "中染，PR 反應比例 96% / PR Positive (Intermediate staining, 96%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 96%)"
+        }
+      ]
+    },
+    {
+      "code": "I97",
+      "display": "中染，PR 反應比例 97%",
+      "definition": "中染，PR 反應比例 97% / PR Positive (Intermediate staining, 97%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 97%)"
+        }
+      ]
+    },
+    {
+      "code": "I98",
+      "display": "中染，PR 反應比例 98%",
+      "definition": "中染，PR 反應比例 98% / PR Positive (Intermediate staining, 98%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 98%)"
+        }
+      ]
+    },
+    {
+      "code": "I99",
+      "display": "中染，PR 反應比例 99%",
+      "definition": "中染，PR 反應比例 99% / PR Positive (Intermediate staining, 99%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Intermediate staining, 99%)"
+        }
+      ]
+    },
+    {
+      "code": "S00",
+      "display": "強染，PR 反應比例 100%",
+      "definition": "強染，PR 反應比例 100% / PR Positive (Strong staining, 100%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 100%)"
+        }
+      ]
+    },
+    {
+      "code": "S01",
+      "display": "強染，PR 反應比例 1%",
+      "definition": "強染，PR 反應比例 1% / PR Positive (Strong staining, 1%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 1%)"
+        }
+      ]
+    },
+    {
+      "code": "S02",
+      "display": "強染，PR 反應比例 2%",
+      "definition": "強染，PR 反應比例 2% / PR Positive (Strong staining, 2%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 2%)"
+        }
+      ]
+    },
+    {
+      "code": "S03",
+      "display": "強染，PR 反應比例 3%",
+      "definition": "強染，PR 反應比例 3% / PR Positive (Strong staining, 3%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 3%)"
+        }
+      ]
+    },
+    {
+      "code": "S04",
+      "display": "強染，PR 反應比例 4%",
+      "definition": "強染，PR 反應比例 4% / PR Positive (Strong staining, 4%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 4%)"
+        }
+      ]
+    },
+    {
+      "code": "S05",
+      "display": "強染，PR 反應比例 5%",
+      "definition": "強染，PR 反應比例 5% / PR Positive (Strong staining, 5%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 5%)"
+        }
+      ]
+    },
+    {
+      "code": "S06",
+      "display": "強染，PR 反應比例 6%",
+      "definition": "強染，PR 反應比例 6% / PR Positive (Strong staining, 6%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 6%)"
+        }
+      ]
+    },
+    {
+      "code": "S07",
+      "display": "強染，PR 反應比例 7%",
+      "definition": "強染，PR 反應比例 7% / PR Positive (Strong staining, 7%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 7%)"
+        }
+      ]
+    },
+    {
+      "code": "S08",
+      "display": "強染，PR 反應比例 8%",
+      "definition": "強染，PR 反應比例 8% / PR Positive (Strong staining, 8%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 8%)"
+        }
+      ]
+    },
+    {
+      "code": "S09",
+      "display": "強染，PR 反應比例 9%",
+      "definition": "強染，PR 反應比例 9% / PR Positive (Strong staining, 9%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 9%)"
+        }
+      ]
+    },
+    {
+      "code": "S10",
+      "display": "強染，PR 反應比例 10%",
+      "definition": "強染，PR 反應比例 10% / PR Positive (Strong staining, 10%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 10%)"
+        }
+      ]
+    },
+    {
+      "code": "S11",
+      "display": "強染，PR 反應比例 11%",
+      "definition": "強染，PR 反應比例 11% / PR Positive (Strong staining, 11%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 11%)"
+        }
+      ]
+    },
+    {
+      "code": "S12",
+      "display": "強染，PR 反應比例 12%",
+      "definition": "強染，PR 反應比例 12% / PR Positive (Strong staining, 12%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 12%)"
+        }
+      ]
+    },
+    {
+      "code": "S13",
+      "display": "強染，PR 反應比例 13%",
+      "definition": "強染，PR 反應比例 13% / PR Positive (Strong staining, 13%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 13%)"
+        }
+      ]
+    },
+    {
+      "code": "S14",
+      "display": "強染，PR 反應比例 14%",
+      "definition": "強染，PR 反應比例 14% / PR Positive (Strong staining, 14%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 14%)"
+        }
+      ]
+    },
+    {
+      "code": "S15",
+      "display": "強染，PR 反應比例 15%",
+      "definition": "強染，PR 反應比例 15% / PR Positive (Strong staining, 15%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 15%)"
+        }
+      ]
+    },
+    {
+      "code": "S16",
+      "display": "強染，PR 反應比例 16%",
+      "definition": "強染，PR 反應比例 16% / PR Positive (Strong staining, 16%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 16%)"
+        }
+      ]
+    },
+    {
+      "code": "S17",
+      "display": "強染，PR 反應比例 17%",
+      "definition": "強染，PR 反應比例 17% / PR Positive (Strong staining, 17%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 17%)"
+        }
+      ]
+    },
+    {
+      "code": "S18",
+      "display": "強染，PR 反應比例 18%",
+      "definition": "強染，PR 反應比例 18% / PR Positive (Strong staining, 18%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 18%)"
+        }
+      ]
+    },
+    {
+      "code": "S19",
+      "display": "強染，PR 反應比例 19%",
+      "definition": "強染，PR 反應比例 19% / PR Positive (Strong staining, 19%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 19%)"
+        }
+      ]
+    },
+    {
+      "code": "S20",
+      "display": "強染，PR 反應比例 20%",
+      "definition": "強染，PR 反應比例 20% / PR Positive (Strong staining, 20%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 20%)"
+        }
+      ]
+    },
+    {
+      "code": "S21",
+      "display": "強染，PR 反應比例 21%",
+      "definition": "強染，PR 反應比例 21% / PR Positive (Strong staining, 21%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 21%)"
+        }
+      ]
+    },
+    {
+      "code": "S22",
+      "display": "強染，PR 反應比例 22%",
+      "definition": "強染，PR 反應比例 22% / PR Positive (Strong staining, 22%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 22%)"
+        }
+      ]
+    },
+    {
+      "code": "S23",
+      "display": "強染，PR 反應比例 23%",
+      "definition": "強染，PR 反應比例 23% / PR Positive (Strong staining, 23%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 23%)"
+        }
+      ]
+    },
+    {
+      "code": "S24",
+      "display": "強染，PR 反應比例 24%",
+      "definition": "強染，PR 反應比例 24% / PR Positive (Strong staining, 24%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 24%)"
+        }
+      ]
+    },
+    {
+      "code": "S25",
+      "display": "強染，PR 反應比例 25%",
+      "definition": "強染，PR 反應比例 25% / PR Positive (Strong staining, 25%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 25%)"
+        }
+      ]
+    },
+    {
+      "code": "S26",
+      "display": "強染，PR 反應比例 26%",
+      "definition": "強染，PR 反應比例 26% / PR Positive (Strong staining, 26%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 26%)"
+        }
+      ]
+    },
+    {
+      "code": "S27",
+      "display": "強染，PR 反應比例 27%",
+      "definition": "強染，PR 反應比例 27% / PR Positive (Strong staining, 27%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 27%)"
+        }
+      ]
+    },
+    {
+      "code": "S28",
+      "display": "強染，PR 反應比例 28%",
+      "definition": "強染，PR 反應比例 28% / PR Positive (Strong staining, 28%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 28%)"
+        }
+      ]
+    },
+    {
+      "code": "S29",
+      "display": "強染，PR 反應比例 29%",
+      "definition": "強染，PR 反應比例 29% / PR Positive (Strong staining, 29%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 29%)"
+        }
+      ]
+    },
+    {
+      "code": "S30",
+      "display": "強染，PR 反應比例 30%",
+      "definition": "強染，PR 反應比例 30% / PR Positive (Strong staining, 30%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 30%)"
+        }
+      ]
+    },
+    {
+      "code": "S31",
+      "display": "強染，PR 反應比例 31%",
+      "definition": "強染，PR 反應比例 31% / PR Positive (Strong staining, 31%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 31%)"
+        }
+      ]
+    },
+    {
+      "code": "S32",
+      "display": "強染，PR 反應比例 32%",
+      "definition": "強染，PR 反應比例 32% / PR Positive (Strong staining, 32%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 32%)"
+        }
+      ]
+    },
+    {
+      "code": "S33",
+      "display": "強染，PR 反應比例 33%",
+      "definition": "強染，PR 反應比例 33% / PR Positive (Strong staining, 33%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 33%)"
+        }
+      ]
+    },
+    {
+      "code": "S34",
+      "display": "強染，PR 反應比例 34%",
+      "definition": "強染，PR 反應比例 34% / PR Positive (Strong staining, 34%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 34%)"
+        }
+      ]
+    },
+    {
+      "code": "S35",
+      "display": "強染，PR 反應比例 35%",
+      "definition": "強染，PR 反應比例 35% / PR Positive (Strong staining, 35%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 35%)"
+        }
+      ]
+    },
+    {
+      "code": "S36",
+      "display": "強染，PR 反應比例 36%",
+      "definition": "強染，PR 反應比例 36% / PR Positive (Strong staining, 36%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 36%)"
+        }
+      ]
+    },
+    {
+      "code": "S37",
+      "display": "強染，PR 反應比例 37%",
+      "definition": "強染，PR 反應比例 37% / PR Positive (Strong staining, 37%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 37%)"
+        }
+      ]
+    },
+    {
+      "code": "S38",
+      "display": "強染，PR 反應比例 38%",
+      "definition": "強染，PR 反應比例 38% / PR Positive (Strong staining, 38%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 38%)"
+        }
+      ]
+    },
+    {
+      "code": "S39",
+      "display": "強染，PR 反應比例 39%",
+      "definition": "強染，PR 反應比例 39% / PR Positive (Strong staining, 39%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 39%)"
+        }
+      ]
+    },
+    {
+      "code": "S40",
+      "display": "強染，PR 反應比例 40%",
+      "definition": "強染，PR 反應比例 40% / PR Positive (Strong staining, 40%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 40%)"
+        }
+      ]
+    },
+    {
+      "code": "S41",
+      "display": "強染，PR 反應比例 41%",
+      "definition": "強染，PR 反應比例 41% / PR Positive (Strong staining, 41%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 41%)"
+        }
+      ]
+    },
+    {
+      "code": "S42",
+      "display": "強染，PR 反應比例 42%",
+      "definition": "強染，PR 反應比例 42% / PR Positive (Strong staining, 42%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 42%)"
+        }
+      ]
+    },
+    {
+      "code": "S43",
+      "display": "強染，PR 反應比例 43%",
+      "definition": "強染，PR 反應比例 43% / PR Positive (Strong staining, 43%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 43%)"
+        }
+      ]
+    },
+    {
+      "code": "S44",
+      "display": "強染，PR 反應比例 44%",
+      "definition": "強染，PR 反應比例 44% / PR Positive (Strong staining, 44%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 44%)"
+        }
+      ]
+    },
+    {
+      "code": "S45",
+      "display": "強染，PR 反應比例 45%",
+      "definition": "強染，PR 反應比例 45% / PR Positive (Strong staining, 45%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 45%)"
+        }
+      ]
+    },
+    {
+      "code": "S46",
+      "display": "強染，PR 反應比例 46%",
+      "definition": "強染，PR 反應比例 46% / PR Positive (Strong staining, 46%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 46%)"
+        }
+      ]
+    },
+    {
+      "code": "S47",
+      "display": "強染，PR 反應比例 47%",
+      "definition": "強染，PR 反應比例 47% / PR Positive (Strong staining, 47%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 47%)"
+        }
+      ]
+    },
+    {
+      "code": "S48",
+      "display": "強染，PR 反應比例 48%",
+      "definition": "強染，PR 反應比例 48% / PR Positive (Strong staining, 48%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 48%)"
+        }
+      ]
+    },
+    {
+      "code": "S49",
+      "display": "強染，PR 反應比例 49%",
+      "definition": "強染，PR 反應比例 49% / PR Positive (Strong staining, 49%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 49%)"
+        }
+      ]
+    },
+    {
+      "code": "S50",
+      "display": "強染，PR 反應比例 50%",
+      "definition": "強染，PR 反應比例 50% / PR Positive (Strong staining, 50%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 50%)"
+        }
+      ]
+    },
+    {
+      "code": "S51",
+      "display": "強染，PR 反應比例 51%",
+      "definition": "強染，PR 反應比例 51% / PR Positive (Strong staining, 51%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 51%)"
+        }
+      ]
+    },
+    {
+      "code": "S52",
+      "display": "強染，PR 反應比例 52%",
+      "definition": "強染，PR 反應比例 52% / PR Positive (Strong staining, 52%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 52%)"
+        }
+      ]
+    },
+    {
+      "code": "S53",
+      "display": "強染，PR 反應比例 53%",
+      "definition": "強染，PR 反應比例 53% / PR Positive (Strong staining, 53%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 53%)"
+        }
+      ]
+    },
+    {
+      "code": "S54",
+      "display": "強染，PR 反應比例 54%",
+      "definition": "強染，PR 反應比例 54% / PR Positive (Strong staining, 54%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 54%)"
+        }
+      ]
+    },
+    {
+      "code": "S55",
+      "display": "強染，PR 反應比例 55%",
+      "definition": "強染，PR 反應比例 55% / PR Positive (Strong staining, 55%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 55%)"
+        }
+      ]
+    },
+    {
+      "code": "S56",
+      "display": "強染，PR 反應比例 56%",
+      "definition": "強染，PR 反應比例 56% / PR Positive (Strong staining, 56%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 56%)"
+        }
+      ]
+    },
+    {
+      "code": "S57",
+      "display": "強染，PR 反應比例 57%",
+      "definition": "強染，PR 反應比例 57% / PR Positive (Strong staining, 57%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 57%)"
+        }
+      ]
+    },
+    {
+      "code": "S58",
+      "display": "強染，PR 反應比例 58%",
+      "definition": "強染，PR 反應比例 58% / PR Positive (Strong staining, 58%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 58%)"
+        }
+      ]
+    },
+    {
+      "code": "S59",
+      "display": "強染，PR 反應比例 59%",
+      "definition": "強染，PR 反應比例 59% / PR Positive (Strong staining, 59%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 59%)"
+        }
+      ]
+    },
+    {
+      "code": "S60",
+      "display": "強染，PR 反應比例 60%",
+      "definition": "強染，PR 反應比例 60% / PR Positive (Strong staining, 60%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 60%)"
+        }
+      ]
+    },
+    {
+      "code": "S61",
+      "display": "強染，PR 反應比例 61%",
+      "definition": "強染，PR 反應比例 61% / PR Positive (Strong staining, 61%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 61%)"
+        }
+      ]
+    },
+    {
+      "code": "S62",
+      "display": "強染，PR 反應比例 62%",
+      "definition": "強染，PR 反應比例 62% / PR Positive (Strong staining, 62%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 62%)"
+        }
+      ]
+    },
+    {
+      "code": "S63",
+      "display": "強染，PR 反應比例 63%",
+      "definition": "強染，PR 反應比例 63% / PR Positive (Strong staining, 63%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 63%)"
+        }
+      ]
+    },
+    {
+      "code": "S64",
+      "display": "強染，PR 反應比例 64%",
+      "definition": "強染，PR 反應比例 64% / PR Positive (Strong staining, 64%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 64%)"
+        }
+      ]
+    },
+    {
+      "code": "S65",
+      "display": "強染，PR 反應比例 65%",
+      "definition": "強染，PR 反應比例 65% / PR Positive (Strong staining, 65%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 65%)"
+        }
+      ]
+    },
+    {
+      "code": "S66",
+      "display": "強染，PR 反應比例 66%",
+      "definition": "強染，PR 反應比例 66% / PR Positive (Strong staining, 66%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 66%)"
+        }
+      ]
+    },
+    {
+      "code": "S67",
+      "display": "強染，PR 反應比例 67%",
+      "definition": "強染，PR 反應比例 67% / PR Positive (Strong staining, 67%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 67%)"
+        }
+      ]
+    },
+    {
+      "code": "S68",
+      "display": "強染，PR 反應比例 68%",
+      "definition": "強染，PR 反應比例 68% / PR Positive (Strong staining, 68%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 68%)"
+        }
+      ]
+    },
+    {
+      "code": "S69",
+      "display": "強染，PR 反應比例 69%",
+      "definition": "強染，PR 反應比例 69% / PR Positive (Strong staining, 69%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 69%)"
+        }
+      ]
+    },
+    {
+      "code": "S70",
+      "display": "強染，PR 反應比例 70%",
+      "definition": "強染，PR 反應比例 70% / PR Positive (Strong staining, 70%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 70%)"
+        }
+      ]
+    },
+    {
+      "code": "S71",
+      "display": "強染，PR 反應比例 71%",
+      "definition": "強染，PR 反應比例 71% / PR Positive (Strong staining, 71%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 71%)"
+        }
+      ]
+    },
+    {
+      "code": "S72",
+      "display": "強染，PR 反應比例 72%",
+      "definition": "強染，PR 反應比例 72% / PR Positive (Strong staining, 72%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 72%)"
+        }
+      ]
+    },
+    {
+      "code": "S73",
+      "display": "強染，PR 反應比例 73%",
+      "definition": "強染，PR 反應比例 73% / PR Positive (Strong staining, 73%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 73%)"
+        }
+      ]
+    },
+    {
+      "code": "S74",
+      "display": "強染，PR 反應比例 74%",
+      "definition": "強染，PR 反應比例 74% / PR Positive (Strong staining, 74%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 74%)"
+        }
+      ]
+    },
+    {
+      "code": "S75",
+      "display": "強染，PR 反應比例 75%",
+      "definition": "強染，PR 反應比例 75% / PR Positive (Strong staining, 75%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 75%)"
+        }
+      ]
+    },
+    {
+      "code": "S76",
+      "display": "強染，PR 反應比例 76%",
+      "definition": "強染，PR 反應比例 76% / PR Positive (Strong staining, 76%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 76%)"
+        }
+      ]
+    },
+    {
+      "code": "S77",
+      "display": "強染，PR 反應比例 77%",
+      "definition": "強染，PR 反應比例 77% / PR Positive (Strong staining, 77%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 77%)"
+        }
+      ]
+    },
+    {
+      "code": "S78",
+      "display": "強染，PR 反應比例 78%",
+      "definition": "強染，PR 反應比例 78% / PR Positive (Strong staining, 78%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 78%)"
+        }
+      ]
+    },
+    {
+      "code": "S79",
+      "display": "強染，PR 反應比例 79%",
+      "definition": "強染，PR 反應比例 79% / PR Positive (Strong staining, 79%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 79%)"
+        }
+      ]
+    },
+    {
+      "code": "S80",
+      "display": "強染，PR 反應比例 80%",
+      "definition": "強染，PR 反應比例 80% / PR Positive (Strong staining, 80%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 80%)"
+        }
+      ]
+    },
+    {
+      "code": "S81",
+      "display": "強染，PR 反應比例 81%",
+      "definition": "強染，PR 反應比例 81% / PR Positive (Strong staining, 81%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 81%)"
+        }
+      ]
+    },
+    {
+      "code": "S82",
+      "display": "強染，PR 反應比例 82%",
+      "definition": "強染，PR 反應比例 82% / PR Positive (Strong staining, 82%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 82%)"
+        }
+      ]
+    },
+    {
+      "code": "S83",
+      "display": "強染，PR 反應比例 83%",
+      "definition": "強染，PR 反應比例 83% / PR Positive (Strong staining, 83%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 83%)"
+        }
+      ]
+    },
+    {
+      "code": "S84",
+      "display": "強染，PR 反應比例 84%",
+      "definition": "強染，PR 反應比例 84% / PR Positive (Strong staining, 84%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 84%)"
+        }
+      ]
+    },
+    {
+      "code": "S85",
+      "display": "強染，PR 反應比例 85%",
+      "definition": "強染，PR 反應比例 85% / PR Positive (Strong staining, 85%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 85%)"
+        }
+      ]
+    },
+    {
+      "code": "S86",
+      "display": "強染，PR 反應比例 86%",
+      "definition": "強染，PR 反應比例 86% / PR Positive (Strong staining, 86%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 86%)"
+        }
+      ]
+    },
+    {
+      "code": "S87",
+      "display": "強染，PR 反應比例 87%",
+      "definition": "強染，PR 反應比例 87% / PR Positive (Strong staining, 87%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 87%)"
+        }
+      ]
+    },
+    {
+      "code": "S88",
+      "display": "強染，PR 反應比例 88%",
+      "definition": "強染，PR 反應比例 88% / PR Positive (Strong staining, 88%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 88%)"
+        }
+      ]
+    },
+    {
+      "code": "S89",
+      "display": "強染，PR 反應比例 89%",
+      "definition": "強染，PR 反應比例 89% / PR Positive (Strong staining, 89%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 89%)"
+        }
+      ]
+    },
+    {
+      "code": "S90",
+      "display": "強染，PR 反應比例 90%",
+      "definition": "強染，PR 反應比例 90% / PR Positive (Strong staining, 90%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 90%)"
+        }
+      ]
+    },
+    {
+      "code": "S91",
+      "display": "強染，PR 反應比例 91%",
+      "definition": "強染，PR 反應比例 91% / PR Positive (Strong staining, 91%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 91%)"
+        }
+      ]
+    },
+    {
+      "code": "S92",
+      "display": "強染，PR 反應比例 92%",
+      "definition": "強染，PR 反應比例 92% / PR Positive (Strong staining, 92%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 92%)"
+        }
+      ]
+    },
+    {
+      "code": "S93",
+      "display": "強染，PR 反應比例 93%",
+      "definition": "強染，PR 反應比例 93% / PR Positive (Strong staining, 93%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 93%)"
+        }
+      ]
+    },
+    {
+      "code": "S94",
+      "display": "強染，PR 反應比例 94%",
+      "definition": "強染，PR 反應比例 94% / PR Positive (Strong staining, 94%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 94%)"
+        }
+      ]
+    },
+    {
+      "code": "S95",
+      "display": "強染，PR 反應比例 95%",
+      "definition": "強染，PR 反應比例 95% / PR Positive (Strong staining, 95%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 95%)"
+        }
+      ]
+    },
+    {
+      "code": "S96",
+      "display": "強染，PR 反應比例 96%",
+      "definition": "強染，PR 反應比例 96% / PR Positive (Strong staining, 96%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 96%)"
+        }
+      ]
+    },
+    {
+      "code": "S97",
+      "display": "強染，PR 反應比例 97%",
+      "definition": "強染，PR 反應比例 97% / PR Positive (Strong staining, 97%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 97%)"
+        }
+      ]
+    },
+    {
+      "code": "S98",
+      "display": "強染，PR 反應比例 98%",
+      "definition": "強染，PR 反應比例 98% / PR Positive (Strong staining, 98%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 98%)"
+        }
+      ]
+    },
+    {
+      "code": "S99",
+      "display": "強染，PR 反應比例 99%",
+      "definition": "強染，PR 反應比例 99% / PR Positive (Strong staining, 99%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Strong staining, 99%)"
+        }
+      ]
+    },
+    {
+      "code": "W00",
+      "display": "弱染，PR 反應比例 100%",
+      "definition": "弱染，PR 反應比例 100% / PR Positive (Weak staining, 100%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 100%)"
+        }
+      ]
+    },
+    {
+      "code": "W01",
+      "display": "弱染，PR 反應比例 1%",
+      "definition": "弱染，PR 反應比例 1% / PR Positive (Weak staining, 1%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 1%)"
+        }
+      ]
+    },
+    {
+      "code": "W02",
+      "display": "弱染，PR 反應比例 2%",
+      "definition": "弱染，PR 反應比例 2% / PR Positive (Weak staining, 2%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 2%)"
+        }
+      ]
+    },
+    {
+      "code": "W03",
+      "display": "弱染，PR 反應比例 3%",
+      "definition": "弱染，PR 反應比例 3% / PR Positive (Weak staining, 3%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 3%)"
+        }
+      ]
+    },
+    {
+      "code": "W04",
+      "display": "弱染，PR 反應比例 4%",
+      "definition": "弱染，PR 反應比例 4% / PR Positive (Weak staining, 4%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 4%)"
+        }
+      ]
+    },
+    {
+      "code": "W05",
+      "display": "弱染，PR 反應比例 5%",
+      "definition": "弱染，PR 反應比例 5% / PR Positive (Weak staining, 5%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 5%)"
+        }
+      ]
+    },
+    {
+      "code": "W06",
+      "display": "弱染，PR 反應比例 6%",
+      "definition": "弱染，PR 反應比例 6% / PR Positive (Weak staining, 6%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 6%)"
+        }
+      ]
+    },
+    {
+      "code": "W07",
+      "display": "弱染，PR 反應比例 7%",
+      "definition": "弱染，PR 反應比例 7% / PR Positive (Weak staining, 7%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 7%)"
+        }
+      ]
+    },
+    {
+      "code": "W08",
+      "display": "弱染，PR 反應比例 8%",
+      "definition": "弱染，PR 反應比例 8% / PR Positive (Weak staining, 8%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 8%)"
+        }
+      ]
+    },
+    {
+      "code": "W09",
+      "display": "弱染，PR 反應比例 9%",
+      "definition": "弱染，PR 反應比例 9% / PR Positive (Weak staining, 9%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 9%)"
+        }
+      ]
+    },
+    {
+      "code": "W10",
+      "display": "弱染，PR 反應比例 10%",
+      "definition": "弱染，PR 反應比例 10% / PR Positive (Weak staining, 10%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 10%)"
+        }
+      ]
+    },
+    {
+      "code": "W11",
+      "display": "弱染，PR 反應比例 11%",
+      "definition": "弱染，PR 反應比例 11% / PR Positive (Weak staining, 11%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 11%)"
+        }
+      ]
+    },
+    {
+      "code": "W12",
+      "display": "弱染，PR 反應比例 12%",
+      "definition": "弱染，PR 反應比例 12% / PR Positive (Weak staining, 12%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 12%)"
+        }
+      ]
+    },
+    {
+      "code": "W13",
+      "display": "弱染，PR 反應比例 13%",
+      "definition": "弱染，PR 反應比例 13% / PR Positive (Weak staining, 13%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 13%)"
+        }
+      ]
+    },
+    {
+      "code": "W14",
+      "display": "弱染，PR 反應比例 14%",
+      "definition": "弱染，PR 反應比例 14% / PR Positive (Weak staining, 14%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 14%)"
+        }
+      ]
+    },
+    {
+      "code": "W15",
+      "display": "弱染，PR 反應比例 15%",
+      "definition": "弱染，PR 反應比例 15% / PR Positive (Weak staining, 15%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 15%)"
+        }
+      ]
+    },
+    {
+      "code": "W16",
+      "display": "弱染，PR 反應比例 16%",
+      "definition": "弱染，PR 反應比例 16% / PR Positive (Weak staining, 16%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 16%)"
+        }
+      ]
+    },
+    {
+      "code": "W17",
+      "display": "弱染，PR 反應比例 17%",
+      "definition": "弱染，PR 反應比例 17% / PR Positive (Weak staining, 17%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 17%)"
+        }
+      ]
+    },
+    {
+      "code": "W18",
+      "display": "弱染，PR 反應比例 18%",
+      "definition": "弱染，PR 反應比例 18% / PR Positive (Weak staining, 18%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 18%)"
+        }
+      ]
+    },
+    {
+      "code": "W19",
+      "display": "弱染，PR 反應比例 19%",
+      "definition": "弱染，PR 反應比例 19% / PR Positive (Weak staining, 19%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 19%)"
+        }
+      ]
+    },
+    {
+      "code": "W20",
+      "display": "弱染，PR 反應比例 20%",
+      "definition": "弱染，PR 反應比例 20% / PR Positive (Weak staining, 20%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 20%)"
+        }
+      ]
+    },
+    {
+      "code": "W21",
+      "display": "弱染，PR 反應比例 21%",
+      "definition": "弱染，PR 反應比例 21% / PR Positive (Weak staining, 21%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 21%)"
+        }
+      ]
+    },
+    {
+      "code": "W22",
+      "display": "弱染，PR 反應比例 22%",
+      "definition": "弱染，PR 反應比例 22% / PR Positive (Weak staining, 22%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 22%)"
+        }
+      ]
+    },
+    {
+      "code": "W23",
+      "display": "弱染，PR 反應比例 23%",
+      "definition": "弱染，PR 反應比例 23% / PR Positive (Weak staining, 23%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 23%)"
+        }
+      ]
+    },
+    {
+      "code": "W24",
+      "display": "弱染，PR 反應比例 24%",
+      "definition": "弱染，PR 反應比例 24% / PR Positive (Weak staining, 24%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 24%)"
+        }
+      ]
+    },
+    {
+      "code": "W25",
+      "display": "弱染，PR 反應比例 25%",
+      "definition": "弱染，PR 反應比例 25% / PR Positive (Weak staining, 25%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 25%)"
+        }
+      ]
+    },
+    {
+      "code": "W26",
+      "display": "弱染，PR 反應比例 26%",
+      "definition": "弱染，PR 反應比例 26% / PR Positive (Weak staining, 26%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 26%)"
+        }
+      ]
+    },
+    {
+      "code": "W27",
+      "display": "弱染，PR 反應比例 27%",
+      "definition": "弱染，PR 反應比例 27% / PR Positive (Weak staining, 27%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 27%)"
+        }
+      ]
+    },
+    {
+      "code": "W28",
+      "display": "弱染，PR 反應比例 28%",
+      "definition": "弱染，PR 反應比例 28% / PR Positive (Weak staining, 28%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 28%)"
+        }
+      ]
+    },
+    {
+      "code": "W29",
+      "display": "弱染，PR 反應比例 29%",
+      "definition": "弱染，PR 反應比例 29% / PR Positive (Weak staining, 29%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 29%)"
+        }
+      ]
+    },
+    {
+      "code": "W30",
+      "display": "弱染，PR 反應比例 30%",
+      "definition": "弱染，PR 反應比例 30% / PR Positive (Weak staining, 30%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 30%)"
+        }
+      ]
+    },
+    {
+      "code": "W31",
+      "display": "弱染，PR 反應比例 31%",
+      "definition": "弱染，PR 反應比例 31% / PR Positive (Weak staining, 31%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 31%)"
+        }
+      ]
+    },
+    {
+      "code": "W32",
+      "display": "弱染，PR 反應比例 32%",
+      "definition": "弱染，PR 反應比例 32% / PR Positive (Weak staining, 32%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 32%)"
+        }
+      ]
+    },
+    {
+      "code": "W33",
+      "display": "弱染，PR 反應比例 33%",
+      "definition": "弱染，PR 反應比例 33% / PR Positive (Weak staining, 33%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 33%)"
+        }
+      ]
+    },
+    {
+      "code": "W34",
+      "display": "弱染，PR 反應比例 34%",
+      "definition": "弱染，PR 反應比例 34% / PR Positive (Weak staining, 34%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 34%)"
+        }
+      ]
+    },
+    {
+      "code": "W35",
+      "display": "弱染，PR 反應比例 35%",
+      "definition": "弱染，PR 反應比例 35% / PR Positive (Weak staining, 35%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 35%)"
+        }
+      ]
+    },
+    {
+      "code": "W36",
+      "display": "弱染，PR 反應比例 36%",
+      "definition": "弱染，PR 反應比例 36% / PR Positive (Weak staining, 36%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 36%)"
+        }
+      ]
+    },
+    {
+      "code": "W37",
+      "display": "弱染，PR 反應比例 37%",
+      "definition": "弱染，PR 反應比例 37% / PR Positive (Weak staining, 37%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 37%)"
+        }
+      ]
+    },
+    {
+      "code": "W38",
+      "display": "弱染，PR 反應比例 38%",
+      "definition": "弱染，PR 反應比例 38% / PR Positive (Weak staining, 38%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 38%)"
+        }
+      ]
+    },
+    {
+      "code": "W39",
+      "display": "弱染，PR 反應比例 39%",
+      "definition": "弱染，PR 反應比例 39% / PR Positive (Weak staining, 39%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 39%)"
+        }
+      ]
+    },
+    {
+      "code": "W40",
+      "display": "弱染，PR 反應比例 40%",
+      "definition": "弱染，PR 反應比例 40% / PR Positive (Weak staining, 40%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 40%)"
+        }
+      ]
+    },
+    {
+      "code": "W41",
+      "display": "弱染，PR 反應比例 41%",
+      "definition": "弱染，PR 反應比例 41% / PR Positive (Weak staining, 41%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 41%)"
+        }
+      ]
+    },
+    {
+      "code": "W42",
+      "display": "弱染，PR 反應比例 42%",
+      "definition": "弱染，PR 反應比例 42% / PR Positive (Weak staining, 42%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 42%)"
+        }
+      ]
+    },
+    {
+      "code": "W43",
+      "display": "弱染，PR 反應比例 43%",
+      "definition": "弱染，PR 反應比例 43% / PR Positive (Weak staining, 43%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 43%)"
+        }
+      ]
+    },
+    {
+      "code": "W44",
+      "display": "弱染，PR 反應比例 44%",
+      "definition": "弱染，PR 反應比例 44% / PR Positive (Weak staining, 44%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 44%)"
+        }
+      ]
+    },
+    {
+      "code": "W45",
+      "display": "弱染，PR 反應比例 45%",
+      "definition": "弱染，PR 反應比例 45% / PR Positive (Weak staining, 45%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 45%)"
+        }
+      ]
+    },
+    {
+      "code": "W46",
+      "display": "弱染，PR 反應比例 46%",
+      "definition": "弱染，PR 反應比例 46% / PR Positive (Weak staining, 46%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 46%)"
+        }
+      ]
+    },
+    {
+      "code": "W47",
+      "display": "弱染，PR 反應比例 47%",
+      "definition": "弱染，PR 反應比例 47% / PR Positive (Weak staining, 47%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 47%)"
+        }
+      ]
+    },
+    {
+      "code": "W48",
+      "display": "弱染，PR 反應比例 48%",
+      "definition": "弱染，PR 反應比例 48% / PR Positive (Weak staining, 48%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 48%)"
+        }
+      ]
+    },
+    {
+      "code": "W49",
+      "display": "弱染，PR 反應比例 49%",
+      "definition": "弱染，PR 反應比例 49% / PR Positive (Weak staining, 49%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 49%)"
+        }
+      ]
+    },
+    {
+      "code": "W50",
+      "display": "弱染，PR 反應比例 50%",
+      "definition": "弱染，PR 反應比例 50% / PR Positive (Weak staining, 50%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 50%)"
+        }
+      ]
+    },
+    {
+      "code": "W51",
+      "display": "弱染，PR 反應比例 51%",
+      "definition": "弱染，PR 反應比例 51% / PR Positive (Weak staining, 51%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 51%)"
+        }
+      ]
+    },
+    {
+      "code": "W52",
+      "display": "弱染，PR 反應比例 52%",
+      "definition": "弱染，PR 反應比例 52% / PR Positive (Weak staining, 52%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 52%)"
+        }
+      ]
+    },
+    {
+      "code": "W53",
+      "display": "弱染，PR 反應比例 53%",
+      "definition": "弱染，PR 反應比例 53% / PR Positive (Weak staining, 53%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 53%)"
+        }
+      ]
+    },
+    {
+      "code": "W54",
+      "display": "弱染，PR 反應比例 54%",
+      "definition": "弱染，PR 反應比例 54% / PR Positive (Weak staining, 54%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 54%)"
+        }
+      ]
+    },
+    {
+      "code": "W55",
+      "display": "弱染，PR 反應比例 55%",
+      "definition": "弱染，PR 反應比例 55% / PR Positive (Weak staining, 55%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 55%)"
+        }
+      ]
+    },
+    {
+      "code": "W56",
+      "display": "弱染，PR 反應比例 56%",
+      "definition": "弱染，PR 反應比例 56% / PR Positive (Weak staining, 56%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 56%)"
+        }
+      ]
+    },
+    {
+      "code": "W57",
+      "display": "弱染，PR 反應比例 57%",
+      "definition": "弱染，PR 反應比例 57% / PR Positive (Weak staining, 57%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 57%)"
+        }
+      ]
+    },
+    {
+      "code": "W58",
+      "display": "弱染，PR 反應比例 58%",
+      "definition": "弱染，PR 反應比例 58% / PR Positive (Weak staining, 58%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 58%)"
+        }
+      ]
+    },
+    {
+      "code": "W59",
+      "display": "弱染，PR 反應比例 59%",
+      "definition": "弱染，PR 反應比例 59% / PR Positive (Weak staining, 59%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 59%)"
+        }
+      ]
+    },
+    {
+      "code": "W60",
+      "display": "弱染，PR 反應比例 60%",
+      "definition": "弱染，PR 反應比例 60% / PR Positive (Weak staining, 60%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 60%)"
+        }
+      ]
+    },
+    {
+      "code": "W61",
+      "display": "弱染，PR 反應比例 61%",
+      "definition": "弱染，PR 反應比例 61% / PR Positive (Weak staining, 61%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 61%)"
+        }
+      ]
+    },
+    {
+      "code": "W62",
+      "display": "弱染，PR 反應比例 62%",
+      "definition": "弱染，PR 反應比例 62% / PR Positive (Weak staining, 62%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 62%)"
+        }
+      ]
+    },
+    {
+      "code": "W63",
+      "display": "弱染，PR 反應比例 63%",
+      "definition": "弱染，PR 反應比例 63% / PR Positive (Weak staining, 63%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 63%)"
+        }
+      ]
+    },
+    {
+      "code": "W64",
+      "display": "弱染，PR 反應比例 64%",
+      "definition": "弱染，PR 反應比例 64% / PR Positive (Weak staining, 64%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 64%)"
+        }
+      ]
+    },
+    {
+      "code": "W65",
+      "display": "弱染，PR 反應比例 65%",
+      "definition": "弱染，PR 反應比例 65% / PR Positive (Weak staining, 65%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 65%)"
+        }
+      ]
+    },
+    {
+      "code": "W66",
+      "display": "弱染，PR 反應比例 66%",
+      "definition": "弱染，PR 反應比例 66% / PR Positive (Weak staining, 66%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 66%)"
+        }
+      ]
+    },
+    {
+      "code": "W67",
+      "display": "弱染，PR 反應比例 67%",
+      "definition": "弱染，PR 反應比例 67% / PR Positive (Weak staining, 67%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 67%)"
+        }
+      ]
+    },
+    {
+      "code": "W68",
+      "display": "弱染，PR 反應比例 68%",
+      "definition": "弱染，PR 反應比例 68% / PR Positive (Weak staining, 68%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 68%)"
+        }
+      ]
+    },
+    {
+      "code": "W69",
+      "display": "弱染，PR 反應比例 69%",
+      "definition": "弱染，PR 反應比例 69% / PR Positive (Weak staining, 69%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 69%)"
+        }
+      ]
+    },
+    {
+      "code": "W70",
+      "display": "弱染，PR 反應比例 70%",
+      "definition": "弱染，PR 反應比例 70% / PR Positive (Weak staining, 70%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 70%)"
+        }
+      ]
+    },
+    {
+      "code": "W71",
+      "display": "弱染，PR 反應比例 71%",
+      "definition": "弱染，PR 反應比例 71% / PR Positive (Weak staining, 71%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 71%)"
+        }
+      ]
+    },
+    {
+      "code": "W72",
+      "display": "弱染，PR 反應比例 72%",
+      "definition": "弱染，PR 反應比例 72% / PR Positive (Weak staining, 72%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 72%)"
+        }
+      ]
+    },
+    {
+      "code": "W73",
+      "display": "弱染，PR 反應比例 73%",
+      "definition": "弱染，PR 反應比例 73% / PR Positive (Weak staining, 73%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 73%)"
+        }
+      ]
+    },
+    {
+      "code": "W74",
+      "display": "弱染，PR 反應比例 74%",
+      "definition": "弱染，PR 反應比例 74% / PR Positive (Weak staining, 74%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 74%)"
+        }
+      ]
+    },
+    {
+      "code": "W75",
+      "display": "弱染，PR 反應比例 75%",
+      "definition": "弱染，PR 反應比例 75% / PR Positive (Weak staining, 75%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 75%)"
+        }
+      ]
+    },
+    {
+      "code": "W76",
+      "display": "弱染，PR 反應比例 76%",
+      "definition": "弱染，PR 反應比例 76% / PR Positive (Weak staining, 76%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 76%)"
+        }
+      ]
+    },
+    {
+      "code": "W77",
+      "display": "弱染，PR 反應比例 77%",
+      "definition": "弱染，PR 反應比例 77% / PR Positive (Weak staining, 77%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 77%)"
+        }
+      ]
+    },
+    {
+      "code": "W78",
+      "display": "弱染，PR 反應比例 78%",
+      "definition": "弱染，PR 反應比例 78% / PR Positive (Weak staining, 78%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 78%)"
+        }
+      ]
+    },
+    {
+      "code": "W79",
+      "display": "弱染，PR 反應比例 79%",
+      "definition": "弱染，PR 反應比例 79% / PR Positive (Weak staining, 79%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 79%)"
+        }
+      ]
+    },
+    {
+      "code": "W80",
+      "display": "弱染，PR 反應比例 80%",
+      "definition": "弱染，PR 反應比例 80% / PR Positive (Weak staining, 80%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 80%)"
+        }
+      ]
+    },
+    {
+      "code": "W81",
+      "display": "弱染，PR 反應比例 81%",
+      "definition": "弱染，PR 反應比例 81% / PR Positive (Weak staining, 81%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 81%)"
+        }
+      ]
+    },
+    {
+      "code": "W82",
+      "display": "弱染，PR 反應比例 82%",
+      "definition": "弱染，PR 反應比例 82% / PR Positive (Weak staining, 82%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 82%)"
+        }
+      ]
+    },
+    {
+      "code": "W83",
+      "display": "弱染，PR 反應比例 83%",
+      "definition": "弱染，PR 反應比例 83% / PR Positive (Weak staining, 83%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 83%)"
+        }
+      ]
+    },
+    {
+      "code": "W84",
+      "display": "弱染，PR 反應比例 84%",
+      "definition": "弱染，PR 反應比例 84% / PR Positive (Weak staining, 84%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 84%)"
+        }
+      ]
+    },
+    {
+      "code": "W85",
+      "display": "弱染，PR 反應比例 85%",
+      "definition": "弱染，PR 反應比例 85% / PR Positive (Weak staining, 85%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 85%)"
+        }
+      ]
+    },
+    {
+      "code": "W86",
+      "display": "弱染，PR 反應比例 86%",
+      "definition": "弱染，PR 反應比例 86% / PR Positive (Weak staining, 86%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 86%)"
+        }
+      ]
+    },
+    {
+      "code": "W87",
+      "display": "弱染，PR 反應比例 87%",
+      "definition": "弱染，PR 反應比例 87% / PR Positive (Weak staining, 87%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 87%)"
+        }
+      ]
+    },
+    {
+      "code": "W88",
+      "display": "弱染，PR 反應比例 88%",
+      "definition": "弱染，PR 反應比例 88% / PR Positive (Weak staining, 88%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 88%)"
+        }
+      ]
+    },
+    {
+      "code": "W89",
+      "display": "弱染，PR 反應比例 89%",
+      "definition": "弱染，PR 反應比例 89% / PR Positive (Weak staining, 89%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 89%)"
+        }
+      ]
+    },
+    {
+      "code": "W90",
+      "display": "弱染，PR 反應比例 90%",
+      "definition": "弱染，PR 反應比例 90% / PR Positive (Weak staining, 90%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 90%)"
+        }
+      ]
+    },
+    {
+      "code": "W91",
+      "display": "弱染，PR 反應比例 91%",
+      "definition": "弱染，PR 反應比例 91% / PR Positive (Weak staining, 91%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 91%)"
+        }
+      ]
+    },
+    {
+      "code": "W92",
+      "display": "弱染，PR 反應比例 92%",
+      "definition": "弱染，PR 反應比例 92% / PR Positive (Weak staining, 92%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 92%)"
+        }
+      ]
+    },
+    {
+      "code": "W93",
+      "display": "弱染，PR 反應比例 93%",
+      "definition": "弱染，PR 反應比例 93% / PR Positive (Weak staining, 93%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 93%)"
+        }
+      ]
+    },
+    {
+      "code": "W94",
+      "display": "弱染，PR 反應比例 94%",
+      "definition": "弱染，PR 反應比例 94% / PR Positive (Weak staining, 94%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 94%)"
+        }
+      ]
+    },
+    {
+      "code": "W95",
+      "display": "弱染，PR 反應比例 95%",
+      "definition": "弱染，PR 反應比例 95% / PR Positive (Weak staining, 95%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 95%)"
+        }
+      ]
+    },
+    {
+      "code": "W96",
+      "display": "弱染，PR 反應比例 96%",
+      "definition": "弱染，PR 反應比例 96% / PR Positive (Weak staining, 96%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 96%)"
+        }
+      ]
+    },
+    {
+      "code": "W97",
+      "display": "弱染，PR 反應比例 97%",
+      "definition": "弱染，PR 反應比例 97% / PR Positive (Weak staining, 97%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 97%)"
+        }
+      ]
+    },
+    {
+      "code": "W98",
+      "display": "弱染，PR 反應比例 98%",
+      "definition": "弱染，PR 反應比例 98% / PR Positive (Weak staining, 98%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 98%)"
+        }
+      ]
+    },
+    {
+      "code": "W99",
+      "display": "弱染，PR 反應比例 99%",
+      "definition": "弱染，PR 反應比例 99% / PR Positive (Weak staining, 99%)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "PR Positive (Weak staining, 99%)"
+        }
+      ]
+    }
+  ]
+}

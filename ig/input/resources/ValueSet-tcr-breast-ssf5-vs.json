@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-ssf5-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ssf5-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastSSF5ValueSet",
+  "title": "台灣癌症登記 SSF5 哨兵淋巴結侵犯數目（SSF5）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf5"
+      }
+    ]
+  }
+}

@@ -53,6 +53,12 @@ pages:
     title: Task 目錄
   task-qbc.md:
     title: QBC／P4P Task
+  task-tcr.md:
+    title: 癌症登記 Task
+  tcr-code-tables.md:
+    title: 癌登代碼表與 conformance
+  tcr-source-resolution.md:
+    title: 來源解析與摘錄原則
   usecases.md:
     title: 使用情境
   mappings.md:
@@ -100,7 +106,11 @@ menu:
   Task 模組:
     Task 目錄: task-index.html
     QBC／P4P Task: task-qbc.html
+    癌症登記 Task: task-tcr.html
     使用情境: usecases.html
+  癌登規格:
+    癌登代碼表與 conformance: tcr-code-tables.html
+    來源解析與摘錄原則: tcr-source-resolution.html
   QBC 規格:
     QBC 對應方式: mappings.html
     正式 Mapping 候選與簽核閘門: formal-mapping.html

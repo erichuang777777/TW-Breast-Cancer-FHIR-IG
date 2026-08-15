@@ -1,0 +1,105 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-ssf3",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf3",
+  "version": "4.0.1",
+  "name": "TCRBreastSSF3CodeSystem",
+  "title": "台灣癌症登記 SSF3 前導性療法之療效（SSF3）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for SSF3 (SSF3 前導性療法之療效). 碼冊出處：p.129-130 前導性療法之療效. Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 8,
+  "concept": [
+    {
+      "code": "010",
+      "display": "Clinical complete response (cCR)，臨床完全緩解",
+      "definition": "Clinical complete response (cCR)，臨床完全緩解 / cCR — Clinical complete response",
+      "designation": [
+        {
+          "language": "en",
+          "value": "cCR — Clinical complete response"
+        }
+      ]
+    },
+    {
+      "code": "011",
+      "display": "病理資訊顯示 Pathological complete response (pCR)：乳房組織與淋巴結皆無殘餘侵襲性癌（N0(i+) 不視為 pCR）",
+      "definition": "病理資訊顯示 Pathological complete response (pCR)：乳房組織與淋巴結皆無殘餘侵襲性癌（N0(i+) 不視為 pCR） / pCR — Pathologic complete response (no residual in breast + nodes)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "pCR — Pathologic complete response (no residual in breast + nodes)"
+        }
+      ]
+    },
+    {
+      "code": "020",
+      "display": "Partial response (PR)；Moderate response，部分緩解",
+      "definition": "Partial response (PR)；Moderate response，部分緩解 / Partial response / Moderate response",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Partial response / Moderate response"
+        }
+      ]
+    },
+    {
+      "code": "030",
+      "display": "Stable disease (SD)；Minimal response，疾病穩定",
+      "definition": "Stable disease (SD)；Minimal response，疾病穩定 / Stable disease / Minimal response",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Stable disease / Minimal response"
+        }
+      ]
+    },
+    {
+      "code": "040",
+      "display": "Progressive disease (PD)；Poor response；No response，疾病進展",
+      "definition": "Progressive disease (PD)；Poor response；No response，疾病進展 / Progressive disease / No response",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Progressive disease / No response"
+        }
+      ]
+    },
+    {
+      "code": "988",
+      "display": "不適用：沒有執行前導性療法，或未執行手術",
+      "definition": "不適用：沒有執行前導性療法，或未執行手術 / Not applicable (no neoadjuvant therapy / no surgery)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not applicable (no neoadjuvant therapy / no surgery)"
+        }
+      ]
+    },
+    {
+      "code": "990",
+      "display": "治療後有縮小反應，但反應程度未進一步說明",
+      "definition": "治療後有縮小反應，但反應程度未進一步說明 / Post-treatment shrinkage, degree not specified",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Post-treatment shrinkage, degree not specified"
+        }
+      ]
+    },
+    {
+      "code": "999",
+      "display": "有進行前導性治療但療效不明／病歷未記載或不詳",
+      "definition": "有進行前導性治療但療效不明／病歷未記載或不詳 / Unknown",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Unknown"
+        }
+      ]
+    }
+  ]
+}

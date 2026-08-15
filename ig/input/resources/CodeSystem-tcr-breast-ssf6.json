@@ -1,0 +1,149 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-ssf6",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ssf6",
+  "version": "4.0.1",
+  "name": "TCRBreastSSF6CodeSystem",
+  "title": "台灣癌症登記 SSF6 Nottingham/BR 分數與級數（SSF6）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for SSF6 (SSF6 Nottingham/BR 分數與級數). 碼冊出處：p.134/141 Nottingham 或 BR 的分數/級數. Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 12,
+  "concept": [
+    {
+      "code": "030",
+      "display": "BR score 3 分",
+      "definition": "BR score 3 分 / Score 3 → Grade 1 (Well differentiated)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Score 3 → Grade 1 (Well differentiated)"
+        }
+      ]
+    },
+    {
+      "code": "040",
+      "display": "BR score 4 分",
+      "definition": "BR score 4 分 / Score 4 → Grade 1 (Well differentiated)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Score 4 → Grade 1 (Well differentiated)"
+        }
+      ]
+    },
+    {
+      "code": "050",
+      "display": "BR score 5 分",
+      "definition": "BR score 5 分 / Score 5 → Grade 1 (Well differentiated)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Score 5 → Grade 1 (Well differentiated)"
+        }
+      ]
+    },
+    {
+      "code": "060",
+      "display": "BR score 6 分",
+      "definition": "BR score 6 分 / Score 6 → Grade 2 (Moderately differentiated)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Score 6 → Grade 2 (Moderately differentiated)"
+        }
+      ]
+    },
+    {
+      "code": "070",
+      "display": "BR score 7 分",
+      "definition": "BR score 7 分 / Score 7 → Grade 2 (Moderately differentiated)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Score 7 → Grade 2 (Moderately differentiated)"
+        }
+      ]
+    },
+    {
+      "code": "080",
+      "display": "BR score 8 分",
+      "definition": "BR score 8 分 / Score 8 → Grade 3 (Poorly differentiated)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Score 8 → Grade 3 (Poorly differentiated)"
+        }
+      ]
+    },
+    {
+      "code": "090",
+      "display": "BR score 9 分",
+      "definition": "BR score 9 分 / Score 9 → Grade 3 (Poorly differentiated)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Score 9 → Grade 3 (Poorly differentiated)"
+        }
+      ]
+    },
+    {
+      "code": "110",
+      "display": "Low Grade，BR grade 1",
+      "definition": "Low Grade，BR grade 1 / Grade 1 (Well differentiated)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Grade 1 (Well differentiated)"
+        }
+      ]
+    },
+    {
+      "code": "120",
+      "display": "Medium Grade，BR grade 2",
+      "definition": "Medium Grade，BR grade 2 / Grade 2 (Moderately differentiated)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Grade 2 (Moderately differentiated)"
+        }
+      ]
+    },
+    {
+      "code": "130",
+      "display": "High Grade，BR grade 3",
+      "definition": "High Grade，BR grade 3 / Grade 3 (Poorly differentiated)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Grade 3 (Poorly differentiated)"
+        }
+      ]
+    },
+    {
+      "code": "988",
+      "display": "不適用：Sarcoma (M-8800-8936, 8940-9136, 9141-9582)、Phyllodes tumor (M-9020)、原位癌",
+      "definition": "不適用：Sarcoma (M-8800-8936, 8940-9136, 9141-9582)、Phyllodes tumor (M-9020)、原位癌 / Not applicable",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not applicable"
+        }
+      ]
+    },
+    {
+      "code": "999",
+      "display": "既無 BR grade 亦無 BR score／不詳／病歷未記載",
+      "definition": "既無 BR grade 亦無 BR score／不詳／病歷未記載 / Unknown",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Unknown"
+        }
+      ]
+    }
+  ]
+}
