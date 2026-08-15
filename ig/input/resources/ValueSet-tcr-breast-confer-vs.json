@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-confer-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-confer-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastCONFERValueSet",
+  "title": "台灣癌症登記 診斷確認方式（CONFER）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-confer"
+      }
+    ]
+  }
+}

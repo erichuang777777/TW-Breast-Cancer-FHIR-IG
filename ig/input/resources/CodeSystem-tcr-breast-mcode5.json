@@ -1,0 +1,27 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-mcode5",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-mcode5",
+  "version": "4.0.1",
+  "name": "TCRBreastMCODE5CodeSystem",
+  "title": "台灣癌症登記 行為碼（MCODE5）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for MCODE5 (行為碼). 碼冊出處：Longform p.91-92 性態碼 (#2.9). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 2,
+  "concept": [
+    {
+      "code": "2",
+      "display": "In situ (non-invasive, intraepithelial, no stromal invasion)",
+      "definition": "In situ (non-invasive, intraepithelial, no stromal invasion)"
+    },
+    {
+      "code": "3",
+      "display": "Invasive or microinvasive",
+      "definition": "Invasive or microinvasive"
+    }
+  ]
+}

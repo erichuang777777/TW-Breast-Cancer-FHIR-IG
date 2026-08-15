@@ -1,0 +1,52 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-lat95",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-lat95",
+  "version": "4.0.1",
+  "name": "TCRBreastLAT95CodeSystem",
+  "title": "台灣癌症登記 側性（LAT95）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for LAT95 (側性). 碼冊出處：Longform p.87-88 側性 (#2.7). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 7,
+  "concept": [
+    {
+      "code": "0",
+      "display": "Not a paired organ",
+      "definition": "Not a paired organ"
+    },
+    {
+      "code": "1",
+      "display": "Origin in the right side",
+      "definition": "Origin in the right side"
+    },
+    {
+      "code": "2",
+      "display": "Origin in the left side",
+      "definition": "Origin in the left side"
+    },
+    {
+      "code": "3",
+      "display": "Paired organ, one side involved but the side of origin is not stated",
+      "definition": "Paired organ, one side involved but the side of origin is not stated"
+    },
+    {
+      "code": "4",
+      "display": "Paired organ, bilateral involvement with the side of origin unknown, recorded as a single primary",
+      "definition": "Paired organ, bilateral involvement with the side of origin unknown, recorded as a single primary"
+    },
+    {
+      "code": "5",
+      "display": "Midline tumour of a paired site (C70.0, C71.0-C71.4, C72.2-C72.5, C44.3-C44.5)",
+      "definition": "Midline tumour of a paired site (C70.0, C71.0-C71.4, C72.2-C72.5, C44.3-C44.5)"
+    },
+    {
+      "code": "9",
+      "display": "Paired organ, laterality not stated",
+      "definition": "Paired organ, laterality not stated"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-pni",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-pni",
+  "version": "4.0.1",
+  "name": "TCRBreastPNICodeSystem",
+  "title": "台灣癌症登記 神經周圍侵犯（PNI）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for PNI (神經周圍侵犯). 碼冊出處：Longform p.114-115 神經侵襲 (#2.13.1). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 5,
+  "concept": [
+    {
+      "code": "0",
+      "display": "No perineural invasion",
+      "definition": "No perineural invasion"
+    },
+    {
+      "code": "1",
+      "display": "Perineural invasion present",
+      "definition": "Perineural invasion present"
+    },
+    {
+      "code": "7",
+      "display": "Perineural invasion cannot be assessed: reported as NA, specimen too small, insufficient sample, no primary-site report describes it, or the report found no malignant cells",
+      "definition": "Perineural invasion cannot be assessed: reported as NA, specimen too small, insufficient sample, no primary-site report describes it, or the report found no malignant cells"
+    },
+    {
+      "code": "8",
+      "display": "Not applicable: GIST, NET, high-grade dysplasia or carcinoma in situ; lymphoma or leukemia; plasma cell myeloma; central nervous system malignancy; unknown primary; or no pathology performed on the primary site",
+      "definition": "Not applicable: GIST, NET, high-grade dysplasia or carcinoma in situ; lymphoma or leukemia; plasma cell myeloma; central nervous system malignancy; unknown primary; or no pathology performed on the primary site"
+    },
+    {
+      "code": "9",
+      "display": "Not documented in the medical record",
+      "definition": "Not documented in the medical record"
+    }
+  ]
+}
