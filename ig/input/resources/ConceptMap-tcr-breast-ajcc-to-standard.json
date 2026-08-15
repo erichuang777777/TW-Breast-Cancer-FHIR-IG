@@ -13,6 +13,36 @@
       "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ajcc",
       "element": [
         {
+          "code": "06",
+          "display": "AJCC 6th Edition (2002)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "07",
+          "display": "AJCC 7th Edition (2010)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "08",
+          "display": "AJCC 8th Edition (2018)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
           "code": "6",
           "display": "AJCC 6th Edition (2002)",
           "target": [
@@ -65,36 +95,6 @@
         {
           "code": "99999",
           "display": "Not applicable",
-          "target": [
-            {
-              "equivalence": "unmatched",
-              "comment": "TODO: terminology review"
-            }
-          ]
-        },
-        {
-          "code": "06",
-          "display": "AJCC 6th Edition (2002)",
-          "target": [
-            {
-              "equivalence": "unmatched",
-              "comment": "TODO: terminology review"
-            }
-          ]
-        },
-        {
-          "code": "07",
-          "display": "AJCC 7th Edition (2010)",
-          "target": [
-            {
-              "equivalence": "unmatched",
-              "comment": "TODO: terminology review"
-            }
-          ]
-        },
-        {
-          "code": "08",
-          "display": "AJCC 8th Edition (2018)",
           "target": [
             {
               "equivalence": "unmatched",

@@ -11,37 +11,32 @@
   "description": "Taiwan Cancer Registry code table for STYPE95 (本院手術方式). 碼冊出處：長表編碼手冊. Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
   "caseSensitive": true,
   "content": "complete",
-  "count": 59,
+  "count": 57,
   "concept": [
     {
-      "code": "0",
-      "display": "No surgery",
-      "definition": "No surgery"
-    },
-    {
       "code": "000",
-      "display": "No surgery",
-      "definition": "No surgery"
+      "display": "No surgery of primary site; autopsy ONLY",
+      "definition": "No surgery of primary site; autopsy ONLY"
     },
     {
       "code": "200",
-      "display": "Partial mastectomy (lumpectomy / segmental / quadrantectomy)",
-      "definition": "Partial mastectomy (lumpectomy / segmental / quadrantectomy)"
+      "display": "Partial mastectomy, NOS (lumpectomy, segmental mastectomy, quadrantectomy, tylectomy), with or without nipple resection",
+      "definition": "Partial mastectomy, NOS (lumpectomy, segmental mastectomy, quadrantectomy, tylectomy), with or without nipple resection"
     },
     {
       "code": "210",
-      "display": "Diagnostic excision — no pre-op biopsy proven diagnosis",
-      "definition": "Diagnostic excision — no pre-op biopsy proven diagnosis"
+      "display": "Excisional breast biopsy — diagnostic excision, no pre-operative biopsy-proven diagnosis",
+      "definition": "Excisional breast biopsy — diagnostic excision, no pre-operative biopsy-proven diagnosis"
     },
     {
       "code": "215",
-      "display": "Excisional biopsy for atypia",
-      "definition": "Excisional biopsy for atypia"
+      "display": "Excisional breast biopsy for atypia",
+      "definition": "Excisional breast biopsy for atypia"
     },
     {
       "code": "240",
-      "display": "Re-excision of margins (partial mastectomy)",
-      "definition": "Re-excision of margins (partial mastectomy)"
+      "display": "Re-excision of margins for gross or microscopic residual disease (less than total mastectomy)",
+      "definition": "Re-excision of margins for gross or microscopic residual disease (less than total mastectomy)"
     },
     {
       "code": "290",
@@ -55,8 +50,8 @@
     },
     {
       "code": "310",
-      "display": "Skin-sparing mastectomy WITHOUT contralateral removal",
-      "definition": "Skin-sparing mastectomy WITHOUT contralateral removal"
+      "display": "Skin-sparing mastectomy WITHOUT removal of the contralateral breast",
+      "definition": "Skin-sparing mastectomy WITHOUT removal of the contralateral breast"
     },
     {
       "code": "311",
@@ -80,8 +75,8 @@
     },
     {
       "code": "320",
-      "display": "Skin-sparing mastectomy WITH contralateral removal",
-      "definition": "Skin-sparing mastectomy WITH contralateral removal"
+      "display": "Skin-sparing mastectomy WITH removal of the contralateral breast",
+      "definition": "Skin-sparing mastectomy WITH removal of the contralateral breast"
     },
     {
       "code": "321",
@@ -110,8 +105,8 @@
     },
     {
       "code": "410",
-      "display": "Nipple-sparing mastectomy WITHOUT contralateral removal",
-      "definition": "Nipple-sparing mastectomy WITHOUT contralateral removal"
+      "display": "Nipple-sparing mastectomy WITHOUT removal of the contralateral breast",
+      "definition": "Nipple-sparing mastectomy WITHOUT removal of the contralateral breast"
     },
     {
       "code": "411",
@@ -135,8 +130,8 @@
     },
     {
       "code": "420",
-      "display": "Nipple-sparing mastectomy WITH contralateral removal",
-      "definition": "Nipple-sparing mastectomy WITH contralateral removal"
+      "display": "Nipple-sparing mastectomy WITH removal of the contralateral breast",
+      "definition": "Nipple-sparing mastectomy WITH removal of the contralateral breast"
     },
     {
       "code": "421",
@@ -165,13 +160,48 @@
     },
     {
       "code": "510",
-      "display": "Areolar-sparing mastectomy WITHOUT contralateral removal",
-      "definition": "Areolar-sparing mastectomy WITHOUT contralateral removal"
+      "display": "Areolar-sparing mastectomy WITHOUT removal of the contralateral breast",
+      "definition": "Areolar-sparing mastectomy WITHOUT removal of the contralateral breast"
     },
     {
       "code": "520",
-      "display": "Areolar-sparing mastectomy WITH contralateral removal",
-      "definition": "Areolar-sparing mastectomy WITH contralateral removal"
+      "display": "Areolar-sparing mastectomy WITH removal of the contralateral breast",
+      "definition": "Areolar-sparing mastectomy WITH removal of the contralateral breast"
+    },
+    {
+      "code": "530",
+      "display": "Areolar-sparing mastectomy WITHOUT contralateral, reconstruction NOS",
+      "definition": "Areolar-sparing mastectomy WITHOUT contralateral, reconstruction NOS"
+    },
+    {
+      "code": "540",
+      "display": "Areolar-sparing mastectomy WITHOUT contralateral, tissue reconstruction",
+      "definition": "Areolar-sparing mastectomy WITHOUT contralateral, tissue reconstruction"
+    },
+    {
+      "code": "550",
+      "display": "Areolar-sparing mastectomy WITHOUT contralateral, implant reconstruction",
+      "definition": "Areolar-sparing mastectomy WITHOUT contralateral, implant reconstruction"
+    },
+    {
+      "code": "560",
+      "display": "Areolar-sparing mastectomy WITHOUT contralateral, combined reconstruction",
+      "definition": "Areolar-sparing mastectomy WITHOUT contralateral, combined reconstruction"
+    },
+    {
+      "code": "570",
+      "display": "Areolar-sparing mastectomy WITH contralateral, reconstruction NOS",
+      "definition": "Areolar-sparing mastectomy WITH contralateral, reconstruction NOS"
+    },
+    {
+      "code": "580",
+      "display": "Areolar-sparing mastectomy WITH contralateral, tissue reconstruction",
+      "definition": "Areolar-sparing mastectomy WITH contralateral, tissue reconstruction"
+    },
+    {
+      "code": "590",
+      "display": "Areolar-sparing mastectomy WITH contralateral, implant reconstruction",
+      "definition": "Areolar-sparing mastectomy WITH contralateral, implant reconstruction"
     },
     {
       "code": "600",
@@ -180,13 +210,48 @@
     },
     {
       "code": "610",
-      "display": "Total mastectomy WITHOUT contralateral removal",
-      "definition": "Total mastectomy WITHOUT contralateral removal"
+      "display": "Total (simple) mastectomy WITHOUT removal of the contralateral breast",
+      "definition": "Total (simple) mastectomy WITHOUT removal of the contralateral breast"
     },
     {
       "code": "620",
-      "display": "Total mastectomy WITH contralateral removal",
-      "definition": "Total mastectomy WITH contralateral removal"
+      "display": "Total (simple) mastectomy WITH removal of the contralateral breast",
+      "definition": "Total (simple) mastectomy WITH removal of the contralateral breast"
+    },
+    {
+      "code": "630",
+      "display": "Areolar-sparing mastectomy WITH contralateral, combined reconstruction",
+      "definition": "Areolar-sparing mastectomy WITH contralateral, combined reconstruction"
+    },
+    {
+      "code": "640",
+      "display": "Total (simple) mastectomy WITHOUT contralateral, reconstruction NOS",
+      "definition": "Total (simple) mastectomy WITHOUT contralateral, reconstruction NOS"
+    },
+    {
+      "code": "650",
+      "display": "Total (simple) mastectomy WITHOUT contralateral, tissue reconstruction",
+      "definition": "Total (simple) mastectomy WITHOUT contralateral, tissue reconstruction"
+    },
+    {
+      "code": "660",
+      "display": "Total (simple) mastectomy WITHOUT contralateral, implant reconstruction",
+      "definition": "Total (simple) mastectomy WITHOUT contralateral, implant reconstruction"
+    },
+    {
+      "code": "670",
+      "display": "Total (simple) mastectomy WITHOUT contralateral, combined reconstruction",
+      "definition": "Total (simple) mastectomy WITHOUT contralateral, combined reconstruction"
+    },
+    {
+      "code": "680",
+      "display": "Total (simple) mastectomy WITH contralateral, reconstruction NOS",
+      "definition": "Total (simple) mastectomy WITH contralateral, reconstruction NOS"
+    },
+    {
+      "code": "690",
+      "display": "Total (simple) mastectomy WITH contralateral, tissue reconstruction",
+      "definition": "Total (simple) mastectomy WITH contralateral, tissue reconstruction"
     },
     {
       "code": "700",
@@ -195,118 +260,43 @@
     },
     {
       "code": "710",
-      "display": "Radical mastectomy WITHOUT contralateral removal",
-      "definition": "Radical mastectomy WITHOUT contralateral removal"
+      "display": "Radical mastectomy WITHOUT removal of the contralateral breast",
+      "definition": "Radical mastectomy WITHOUT removal of the contralateral breast"
     },
     {
       "code": "720",
-      "display": "Radical mastectomy WITH contralateral removal",
-      "definition": "Radical mastectomy WITH contralateral removal"
+      "display": "Radical mastectomy WITH removal of the contralateral breast",
+      "definition": "Radical mastectomy WITH removal of the contralateral breast"
+    },
+    {
+      "code": "730",
+      "display": "Total (simple) mastectomy WITH contralateral, implant reconstruction",
+      "definition": "Total (simple) mastectomy WITH contralateral, implant reconstruction"
+    },
+    {
+      "code": "740",
+      "display": "Total (simple) mastectomy WITH contralateral, combined reconstruction",
+      "definition": "Total (simple) mastectomy WITH contralateral, combined reconstruction"
     },
     {
       "code": "760",
-      "display": "Bilateral mastectomy (single tumor involving both breasts)",
-      "definition": "Bilateral mastectomy (single tumor involving both breasts)"
+      "display": "Bilateral mastectomy for a single tumour involving both breasts",
+      "definition": "Bilateral mastectomy for a single tumour involving both breasts"
     },
     {
       "code": "800",
-      "display": "Mastectomy NOS (including extended radical mastectomy)",
-      "definition": "Mastectomy NOS (including extended radical mastectomy)"
+      "display": "Mastectomy, NOS (including extended radical mastectomy)",
+      "definition": "Mastectomy, NOS (including extended radical mastectomy)"
     },
     {
       "code": "900",
-      "display": "Surgery, NOS",
-      "definition": "Surgery, NOS"
+      "display": "Surgery, NOS — surgery performed but the procedure is not known",
+      "definition": "Surgery, NOS — surgery performed but the procedure is not known"
     },
     {
       "code": "990",
-      "display": "Unknown if surgery performed",
-      "definition": "Unknown if surgery performed"
-    },
-    {
-      "code": "20",
-      "display": "Partial mastectomy / lumpectomy (local excision)",
-      "definition": "Partial mastectomy / lumpectomy (local excision)"
-    },
-    {
-      "code": "22",
-      "display": "Modified radical mastectomy",
-      "definition": "Modified radical mastectomy"
-    },
-    {
-      "code": "24",
-      "display": "Total / simple mastectomy",
-      "definition": "Total / simple mastectomy"
-    },
-    {
-      "code": "41",
-      "display": "Local excision — margins positive or NOS",
-      "definition": "Local excision — margins positive or NOS"
-    },
-    {
-      "code": "44",
-      "display": "Sentinel LN biopsy only",
-      "definition": "Sentinel LN biopsy only"
-    },
-    {
-      "code": "45",
-      "display": "Sentinel LN biopsy + axillary LN dissection",
-      "definition": "Sentinel LN biopsy + axillary LN dissection"
-    },
-    {
-      "code": "50",
-      "display": "Radical mastectomy (legacy code)",
-      "definition": "Radical mastectomy (legacy code)"
-    },
-    {
-      "code": "51",
-      "display": "Extended radical mastectomy (legacy code)",
-      "definition": "Extended radical mastectomy (legacy code)"
-    },
-    {
-      "code": "54",
-      "display": "Subcutaneous mastectomy (legacy code)",
-      "definition": "Subcutaneous mastectomy (legacy code)"
-    },
-    {
-      "code": "55",
-      "display": "Skin-sparing mastectomy (legacy code)",
-      "definition": "Skin-sparing mastectomy (legacy code)"
-    },
-    {
-      "code": "60",
-      "display": "Other surgery",
-      "definition": "Other surgery"
-    },
-    {
-      "code": "99",
-      "display": "Unknown",
-      "definition": "Unknown"
-    },
-    {
-      "code": "30",
-      "display": "Partial surgical removal of primary site (legacy code)",
-      "definition": "Partial surgical removal of primary site (legacy code)"
-    },
-    {
-      "code": "40",
-      "display": "Total surgical removal of primary site (legacy code)",
-      "definition": "Total surgical removal of primary site (legacy code)"
-    },
-    {
-      "code": "70",
-      "display": "Radical surgery with organ resection in continuity (legacy code)",
-      "definition": "Radical surgery with organ resection in continuity (legacy code)"
-    },
-    {
-      "code": "80",
-      "display": "Surgery, NOS (legacy code)",
-      "definition": "Surgery, NOS (legacy code)"
-    },
-    {
-      "code": "00",
-      "display": "No surgery",
-      "definition": "No surgery"
+      "display": "Unknown if surgery performed; death certificate ONLY",
+      "definition": "Unknown if surgery performed; death certificate ONLY"
     }
   ]
 }

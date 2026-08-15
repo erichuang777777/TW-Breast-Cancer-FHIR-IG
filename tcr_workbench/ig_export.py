@@ -41,7 +41,7 @@ from typing import Dict, List, Optional, Tuple, Union
 
 import pandas as pd
 
-from tcr_decoder.code_ranges import CODE_RANGES, LONGFORM
+from tcr_decoder.code_ranges import CODE_RANGES, LONGFORM, SURGERY_CODES
 from tcr_decoder.ssf_registry import get_ssf_profile
 from tcr_decoder.validation import zh_definition
 
@@ -200,8 +200,11 @@ SECTIONS: Tuple[Tuple[str, str, Tuple[str, ...]], ...] = (
 )
 
 # Fields whose value is a number or a date, not a coded concept.
+# LNEXAM and LN_POSITI look numeric but are NOT: 95-99 are sentinel codes,
+# so 95 means "nodes not surgically removed", not ninety-five nodes. They are
+# choice items bound to their code table, like every other coded field.
 NUMERIC_FIELDS = frozenset({
-    'AGE', 'CSIZE95', 'MARGDIS', 'LNEXAM', 'HDOSE', 'HNO', 'LDOSE', 'LNO',
+    'AGE', 'CSIZE95', 'MARGDIS', 'HDOSE', 'HNO', 'LDOSE', 'LNO',
     'HEIGHT', 'WEIGHT', 'SURVY6', 'DX_YEAR',
 })
 DATE_FIELDS = frozenset({
@@ -211,7 +214,7 @@ STRING_FIELDS = frozenset({'PK'})
 
 # Structural (non-SSF) fields whose code table this package owns and verifies.
 STRUCTURAL_CODE_TABLES = ('AJCC', 'PRESTYPE', 'STYPE95', 'PRESLNSCO',
-                          'SLNSCO95', 'LN_POSITI', 'EBRT')
+                          'SLNSCO95', 'LNEXAM', 'LN_POSITI', 'EBRT')
 
 # EBRT is an ADDITIVE field: the submitted value is the sum of the technique
 # codes used across all phases, so the ValueSet enumerates the components and
@@ -245,15 +248,29 @@ def _ssf_concepts(cancer_group: str, ssf_key: str) -> List[dict]:
     return concepts
 
 
-def _structural_concepts(field: str) -> List[dict]:
-    """Concepts for a structural Longform field this package can decode."""
-    from tcr_decoder.core import AJCC_MAP, LNSCO_MAP, PRESTYPE_MAP, STYPE95_MAP
-    from tcr_decoder.decoders import decode_lnpositive
+# Fields whose concepts come from a decoder run over the official 編碼範圍
+# rather than from a plain dict.
+_COUNT_FIELD_DECODERS = {
+    'LNEXAM':    'decode_lnexam',
+    'LN_POSITI': 'decode_lnpositive',
+}
 
-    if field == 'LN_POSITI':
-        _width, codes, _ref = LONGFORM['LN_POSITI']
+
+def _structural_concepts(field: str) -> List[dict]:
+    """Concepts for a structural Longform field this package can decode.
+
+    Only codes inside the official 編碼範圍 are emitted. The decoder also
+    understands pre-2025 legacy codes so historical files still read, but a
+    submission ValueSet must not offer them.
+    """
+    from tcr_decoder import decoders
+    from tcr_decoder.core import AJCC_MAP, LNSCO_MAP, PRESTYPE_MAP, STYPE95_MAP
+
+    if field in _COUNT_FIELD_DECODERS:
+        _width, codes, _ref = LONGFORM[field]
         ordered = sorted(codes, key=lambda c: int(c))
-        labels = decode_lnpositive(pd.Series(ordered, dtype=object))
+        decode = getattr(decoders, _COUNT_FIELD_DECODERS[field])
+        labels = decode(pd.Series(ordered, dtype=object))
         return [{'code': c, 'display': str(l), 'definition': str(l)}
                 for c, l in zip(ordered, labels)]
 
@@ -271,8 +288,21 @@ def _structural_concepts(field: str) -> List[dict]:
 
     table = {'AJCC': AJCC_MAP, 'PRESTYPE': PRESTYPE_MAP, 'STYPE95': STYPE95_MAP,
              'PRESLNSCO': LNSCO_MAP, 'SLNSCO95': LNSCO_MAP}[field]
+
+    # Surgery of primary site draws on Appendix B, which is per-site; the two
+    # node-surgery fields share one 1-character table. Where the engine has
+    # transcribed the official range, restrict the CodeSystem to it so the
+    # legacy 1- and 2-character codes stay decode-only.
+    legal = None
+    if field in ('PRESTYPE', 'STYPE95'):
+        legal = SURGERY_CODES.get('breast', (0, None, ''))[1]
+    elif field in ('PRESLNSCO', 'SLNSCO95'):
+        legal = LONGFORM.get(field, (0, None, ''))[1]
+    if legal:
+        table = {code: label for code, label in table.items() if code in legal}
+
     return [{'code': str(code), 'display': str(label), 'definition': str(label)}
-            for code, label in table.items()]
+            for code, label in sorted(table.items())]
 
 
 def field_has_code_table(cancer_group: str, field: str) -> bool:
@@ -323,7 +353,7 @@ def build_code_system(cancer_group: str, field: str, base_url: str) -> dict:
     zh_label = dict((f, z) for f, z, _s, _d in FIELD_MAP).get(field, field)
     ref = (CODE_RANGES[cancer_group][field][2]
            if field.startswith('SSF') and field in CODE_RANGES.get(cancer_group, {})
-           else LONGFORM['LN_POSITI'][2] if field == 'LN_POSITI'
+           else LONGFORM[field][2] if field in LONGFORM
            else '長表編碼手冊')
     return {
         'resourceType': 'CodeSystem',
@@ -1084,8 +1114,8 @@ def _spec_max_length(cancer_group: str, field: str) -> int:
     from tcr_decoder.code_ranges import field_width
     if field.startswith('SSF'):
         return field_width(cancer_group, field) or _SPEC_DEFAULT_LENGTH
-    if field == 'LN_POSITI':
-        return LONGFORM['LN_POSITI'][0]
+    if field in LONGFORM:
+        return LONGFORM[field][0]
     if field_has_code_table(cancer_group, field):
         return max(len(c) for c in legal_code_set(cancer_group, field))
     return 10
@@ -1117,7 +1147,7 @@ def build_field_spec(cancer_group: str = 'breast') -> dict:
             allowed = sorted(codes, key=lambda c: (not c.isdigit(), c))
             entry = CODE_RANGES.get(cancer_group, {}).get(field)
             rule = (entry[2] if entry
-                    else LONGFORM['LN_POSITI'][2] if field == 'LN_POSITI'
+                    else LONGFORM[field][2] if field in LONGFORM
                     else '長表編碼手冊')
         else:
             allowed = []

@@ -470,7 +470,8 @@
         {
           "linkId": "LNEXAM",
           "text": "[LNEXAM] 區域淋巴結檢查數",
-          "type": "integer",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-lnexam-vs",
           "extension": [
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",

@@ -23,7 +23,7 @@
 
 - 癌登代碼是**申報語意**，不自動等同完整臨床語意；共同層概念與癌登代碼之間以 Mapping 對齊，並保留癌登原始值。
 - 代碼表本身不屬於本 IG：由 [`tcr-decoder`](https://github.com/erichuang777777/TCRD_decoding) 套件從官方碼冊產生並逐碼驗證，本 IG 只負責「乳癌要怎麼用它」。
-- 本 Task 目前覆蓋長表 99 欄中的 17 欄（已驗證碼表）；其餘欄位保留在 `Questionnaire` 中並標記 `tcr-codetable-pending`，不是可自由填寫。
+- 本 Task 目前覆蓋長表 99 欄中的 18 欄（已驗證碼表）；其餘欄位保留在 `Questionnaire` 中並標記 `tcr-codetable-pending`，不是可自由填寫。
 - 癌登專用的 CodeSystem 與 Task profile 留在 Task 層，不提升為乳癌通用術語。
 - 時間脈絡（治療前／前導性治療後）**不是來源差異**，而是不同事實：癌登有 `111`／`121`／`888` 等專屬代碼表達它。
 

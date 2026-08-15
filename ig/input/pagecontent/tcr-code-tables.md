@@ -1,14 +1,15 @@
-# 癌登代碼表與 conformance
-
-{% include disclaimer.md %}
+# 乳癌 IG：癌症登記申報 Task 設計
 
 > **目的**：把「從原始病歷產生癌症登記長表申報檔」做成乳癌 FHIR Implementation
 > Guide 底下的一個 task。
 >
-> **產生方式**：`python -m tcr_decoder --build-fhir <輸出目錄> --cancer breast
-> --fhir-base-url https://你的canonical/base`
+> **產生方式**：`python -c "from tcr_workbench.ig_export import export_to_breast_ig;
+> export_to_breast_ig('.', canonical='https://你的canonical/base')"`
 >
-> **產生器**：`tcr_decoder/fhir.py`　**測試**：`tests/test_fhir.py`
+> **產生器**：`tcr_workbench/ig_export.py`　**測試**：`tests/test_tcr_ig_export.py`
+>
+> 代碼表本身來自 [`tcr-decoder`](https://github.com/erichuang777777/TCRD_decoding)，
+> 由官方碼冊逐碼驗證後提供。
 
 ---
 
@@ -42,7 +43,7 @@
 | 做法 | 後果 |
 |---|---|
 | LLM 直接輸出「SSF1=S70」 | 無法稽核：不知道它是從哪句話推出來的；也無法保證是合法碼；碼冊改版要重訓 prompt |
-| LLM 只輸出「ER 70%、強染、治療前」，規則轉碼 | 每個代碼都能回推到原文；代碼永遠合法（20,172 碼已逐碼驗證）；碼冊改版只改規則表 |
+| LLM 只輸出「ER 70%、強染、治療前」，規則轉碼 | 每個代碼都能回推到原文；代碼永遠合法（21,158 碼已逐碼驗證）；碼冊改版只改規則表 |
 
 FHIR 上的對應：① 的產物是 `Observation`（或直接是 QuestionnaireResponse 的
 臨床事實部分），② 的產物是帶 `Coding`（system = 本 IG 的 CodeSystem）的答案，
@@ -71,16 +72,16 @@ FHIR 上的對應：① 的產物是 `Observation`（或直接是 QuestionnaireR
 
 | 資源 | 數量 | 說明 |
 |---|---|---|
-| `CodeSystem` | 17 | 每個已驗證碼表一個。**display 用碼冊中文原文**，另附 `en` designation（本工具的英文臨床意義），`definition` 為中英合併 |
-| `ValueSet` | 17 | 供 Questionnaire item 或 `Observation.valueCodeableConcept` 綁定 |
-| `ConceptMap` | 17 | TCR 碼 → 標準術語的**骨架**：每個碼都列出來但 target 一律 `unmatched` |
+| `CodeSystem` | 18 | 每個已驗證碼表一個。**display 用碼冊中文原文**，另附 `en` designation（本工具的英文臨床意義），`definition` 為中英合併 |
+| `ValueSet` | 18 | 供 Questionnaire item 或 `Observation.valueCodeableConcept` 綁定 |
+| `ConceptMap` | 18 | TCR 碼 → 標準術語的**骨架**：每個碼都列出來但 target 一律 `unmatched` |
 | `Questionnaire` | 1 | 長表 99 欄位，分 8 個 group |
 | `StructureDefinition` | 1 | `TCRRegistryAbstractionTask` |
 | `Task` / `QuestionnaireResponse` | 2 | 範例（合成資料） |
 | `ImplementationGuide` | 1 | 清單 |
 
-**CodeSystem 概念總數 1,385**（乳癌 SSF1–10 共 1,187 碼 + AJCC／他院手術／本院手術／
-他院淋巴結手術／本院淋巴結手術／EBRT／區域淋巴結侵犯數）。
+**CodeSystem 概念總數 1,529**（乳癌 SSF1–10 共 1,187 碼 + AJCC／他院手術／本院手術／
+他院淋巴結手術／本院淋巴結手術／EBRT／區域淋巴結檢查數／區域淋巴結侵犯數）。
 
 ### 兩個刻意的設計選擇
 
@@ -88,6 +89,12 @@ FHIR 上的對應：① 的產物是 `Observation`（或直接是 QuestionnaireR
    猜一個對應碼進到申報管線，比留下明顯缺口更糟。骨架已把每個待對應的碼列出來。
 2. **EBRT 是加總碼**（1+2+4+8+16+32+64），所以 ValueSet 收的是「元件」，
    Questionnaire item 設 `repeats: true`，而不是列舉 128 種總和。
+3. **`LNEXAM`／`LN_POSITI` 是 choice，不是 integer**。95-99 是 sentinel 碼，
+   `95` 的意思是「淋巴結未移除」而不是九十五顆；設成數值欄位會讓表單填出
+   語意錯誤的值。
+4. **手術碼只收現行 3 碼**。附錄B 的碼表是**依部位**給定的，兩個手術欄位
+   （他院／本院）共用同一張表。舊制 1-2 碼代碼仍可解碼（歷史檔案還在），
+   但不進 CodeSystem——申報用的值域不該提供已淘汰的碼。
 
 ---
 
@@ -95,11 +102,11 @@ FHIR 上的對應：① 的產物是 `Observation`（或直接是 QuestionnaireR
 
 | 類別 | 欄位數 | 狀態 |
 |---|---|---|
-| 已有驗證碼表（SSF1–10、AJCC、手術碼×2、淋巴結手術碼×2、EBRT、LN_POSITI） | 17 | ✅ 有 CodeSystem/ValueSet，Questionnaire 綁定 |
+| 已有驗證碼表（SSF1–10、AJCC、手術碼×2、淋巴結手術碼×2、EBRT、LNEXAM、LN_POSITI） | 18 | ✅ 有 CodeSystem/ValueSet，Questionnaire 綁定 |
 | 純數值／日期／識別碼 | 20 | ✅ 型別為 integer/date/string，不需碼表 |
-| 尚未轉錄碼表 | 62 | ⚠️ Questionnaire 仍有該欄位，型別為 string 並帶 `tcr-codetable-pending` 擴充 |
+| 尚未轉錄碼表 | 61 | ⚠️ Questionnaire 仍有該欄位，型別為 string 並帶 `tcr-codetable-pending` 擴充 |
 
-**待補的 62 欄**分四群，長表碼冊都有定義：
+**待補的 61 欄**分四群，長表碼冊都有定義：
 
 1. **腫瘤特性**：TCODE1、MCODE、MCODE5、MCODE6、MCODE6C、CONFER、LAT95、PNI、LVI
    （ICD-O-3 需外部字典，其餘是長表碼表）
@@ -110,7 +117,7 @@ FHIR 上的對應：① 的產物是 `Observation`（或直接是 QuestionnaireR
 4. **人口學與追蹤**：SEX、SMOKING、KPSECOG、CLASS95、CLASSOFDIAG、CLASSOFTREAT、
    SEQ1、SEQ2、VSTA/VSTA6、CSTA、RETYPE95/RETYPE6、DIECAUSE/DIECAUSE6
 
-補這 62 欄的工作方式與已完成的 SSF 相同：轉錄官方編碼範圍到
+補這 61 欄的工作方式與已完成的 SSF 相同：轉錄官方編碼範圍到
 `code_ranges.py` → 寫 decoder/encoder → 通過 `test_codebook_conformance.py`
 的四項性質 → FHIR 產生器會自動多出對應的 CodeSystem/ValueSet 並把
 Questionnaire item 從 string 換成 choice。

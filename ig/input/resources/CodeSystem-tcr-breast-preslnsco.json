@@ -8,7 +8,7 @@
   "status": "draft",
   "experimental": true,
   "publisher": "TCR decoding project",
-  "description": "Taiwan Cancer Registry code table for PRESLNSCO (他院區域淋巴結手術). 碼冊出處：長表編碼手冊. Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "description": "Taiwan Cancer Registry code table for PRESLNSCO (他院區域淋巴結手術). 碼冊出處：Longform p.203 外院區域淋巴結手術範圍. Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
   "caseSensitive": true,
   "content": "complete",
   "count": 9,

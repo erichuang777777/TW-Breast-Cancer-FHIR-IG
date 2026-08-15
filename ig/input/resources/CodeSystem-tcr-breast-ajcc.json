@@ -14,6 +14,21 @@
   "count": 9,
   "concept": [
     {
+      "code": "06",
+      "display": "AJCC 6th Edition (2002)",
+      "definition": "AJCC 6th Edition (2002)"
+    },
+    {
+      "code": "07",
+      "display": "AJCC 7th Edition (2010)",
+      "definition": "AJCC 7th Edition (2010)"
+    },
+    {
+      "code": "08",
+      "display": "AJCC 8th Edition (2018)",
+      "definition": "AJCC 8th Edition (2018)"
+    },
+    {
       "code": "6",
       "display": "AJCC 6th Edition (2002)",
       "definition": "AJCC 6th Edition (2002)"
@@ -42,21 +57,6 @@
       "code": "99999",
       "display": "Not applicable",
       "definition": "Not applicable"
-    },
-    {
-      "code": "06",
-      "display": "AJCC 6th Edition (2002)",
-      "definition": "AJCC 6th Edition (2002)"
-    },
-    {
-      "code": "07",
-      "display": "AJCC 7th Edition (2010)",
-      "definition": "AJCC 7th Edition (2010)"
-    },
-    {
-      "code": "08",
-      "display": "AJCC 8th Edition (2018)",
-      "definition": "AJCC 8th Edition (2018)"
     }
   ]
 }

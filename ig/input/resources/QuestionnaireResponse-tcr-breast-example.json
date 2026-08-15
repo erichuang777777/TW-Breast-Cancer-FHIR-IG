@@ -219,7 +219,10 @@
           "linkId": "LNEXAM",
           "answer": [
             {
-              "valueInteger": 23
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-lnexam",
+                "code": "23"
+              }
             }
           ]
         },
@@ -395,13 +398,10 @@
           "linkId": "PRESTYPE",
           "answer": [
             {
-              "valueString": "00",
-              "extension": [
-                {
-                  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-illegal-code",
-                  "valueString": "'00' is not in the 編碼範圍 for PRESTYPE; needs review"
-                }
-              ]
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-prestype",
+                "code": "000"
+              }
             }
           ]
         },
