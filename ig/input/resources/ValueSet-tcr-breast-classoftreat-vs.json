@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-classoftreat-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-classoftreat-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastCLASSOFTREATValueSet",
+  "title": "台灣癌症登記 治療分類（本院／他院）（CLASSOFTREAT）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-classoftreat"
+      }
+    ]
+  }
+}

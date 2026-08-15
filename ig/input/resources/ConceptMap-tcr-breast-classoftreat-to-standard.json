@@ -1,0 +1,118 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-classoftreat-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-classoftreat-to-standard",
+  "version": "4.0.1",
+  "name": "TCRCLASSOFTREATToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-classoftreat-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-classoftreat",
+      "element": [
+        {
+          "code": "0",
+          "display": "Died at the reporting hospital without receiving any treatment there (diagnosed here and died or discharged critically ill, or diagnosed elsewhere and transferred here before dying)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "1",
+          "display": "The entire first course of therapy was given at the reporting hospital, with none at another hospital (includes a case whose only first-course therapy is one of the registry's defined \"other treatments\")",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "2",
+          "display": "No first-course therapy at the reporting hospital: the whole first course was given elsewhere, or the case came for a second opinion with no treatment here, or the main treatment plan was set by another hospital (e.g. maintenance therapy continued here, or a referred-out partial radiotherapy course)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "3",
+          "display": "Part of the first course of therapy at the reporting hospital, part at another hospital",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "4",
+          "display": "The first course of therapy was watchful observation, or only non-tumour-directed palliative surgery, pain control, supportive care, or a hospice referral",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "5",
+          "display": "The first course of therapy was alternative therapy only",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "6",
+          "display": "The patient refused treatment in the first course",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "7",
+          "display": "Diagnosed and treated elsewhere; presented at the reporting hospital because of a complication of the cancer or its treatment",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "8",
+          "display": "Diagnosed elsewhere; presented at the reporting hospital for an unrelated condition -- not reportable",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "9",
+          "display": "First-course treatment status unknown, and refusal cannot be confirmed either (e.g. lost to follow-up after the initial diagnosis at the reporting hospital)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

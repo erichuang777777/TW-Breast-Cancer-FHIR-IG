@@ -1,0 +1,182 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-retype95",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-retype95",
+  "version": "4.0.1",
+  "name": "TCRBreastRETYPE95CodeSystem",
+  "title": "台灣癌症登記 復發型態（RETYPE95）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for RETYPE95 (復發型態). 碼冊出處：Longform p.317-319 首次復發型式 (#5.2). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 33,
+  "concept": [
+    {
+      "code": "00",
+      "display": "Disease-free after treatment; no recurrence",
+      "definition": "Disease-free after treatment; no recurrence"
+    },
+    {
+      "code": "04",
+      "display": "Recurrence of an invasive cancer, presenting as carcinoma in situ",
+      "definition": "Recurrence of an invasive cancer, presenting as carcinoma in situ"
+    },
+    {
+      "code": "06",
+      "display": "Recurrence of a carcinoma in situ, presenting as carcinoma in situ",
+      "definition": "Recurrence of a carcinoma in situ, presenting as carcinoma in situ"
+    },
+    {
+      "code": "10",
+      "display": "Local recurrence, not specific enough for 13-17 (in the residual primary organ, the primary organ, an anastomosis, or the scar of the resected organ)",
+      "definition": "Local recurrence, not specific enough for 13-17 (in the residual primary organ, the primary organ, an anastomosis, or the scar of the resected organ)"
+    },
+    {
+      "code": "13",
+      "display": "Invasive cancer, local recurrence",
+      "definition": "Invasive cancer, local recurrence"
+    },
+    {
+      "code": "14",
+      "display": "Invasive cancer, recurrence at a trocar/port site (along the port track or a prior surgical entrance site)",
+      "definition": "Invasive cancer, recurrence at a trocar/port site (along the port track or a prior surgical entrance site)"
+    },
+    {
+      "code": "15",
+      "display": "Invasive cancer, local recurrence AND trocar/port-site recurrence (codes 13 and 14 combined)",
+      "definition": "Invasive cancer, local recurrence AND trocar/port-site recurrence (codes 13 and 14 combined)"
+    },
+    {
+      "code": "16",
+      "display": "Carcinoma in situ, local recurrence, not otherwise specified",
+      "definition": "Carcinoma in situ, local recurrence, not otherwise specified"
+    },
+    {
+      "code": "17",
+      "display": "Carcinoma in situ, local AND trocar/port-site recurrence",
+      "definition": "Carcinoma in situ, local AND trocar/port-site recurrence"
+    },
+    {
+      "code": "20",
+      "display": "Regional recurrence, not specific enough for 21-27",
+      "definition": "Regional recurrence, not specific enough for 21-27"
+    },
+    {
+      "code": "21",
+      "display": "Invasive cancer, recurrence in adjacent tissue or organs only",
+      "definition": "Invasive cancer, recurrence in adjacent tissue or organs only"
+    },
+    {
+      "code": "22",
+      "display": "Invasive cancer, recurrence in regional lymph nodes only",
+      "definition": "Invasive cancer, recurrence in regional lymph nodes only"
+    },
+    {
+      "code": "25",
+      "display": "Invasive cancer, recurrence in adjacent tissue/organs AND regional lymph nodes (codes 21 and 22 combined)",
+      "definition": "Invasive cancer, recurrence in adjacent tissue/organs AND regional lymph nodes (codes 21 and 22 combined)"
+    },
+    {
+      "code": "26",
+      "display": "Carcinoma in situ, regional recurrence, not otherwise specified",
+      "definition": "Carcinoma in situ, regional recurrence, not otherwise specified"
+    },
+    {
+      "code": "27",
+      "display": "Carcinoma in situ, recurrence in adjacent tissue/organs AND regional lymph nodes",
+      "definition": "Carcinoma in situ, recurrence in adjacent tissue/organs AND regional lymph nodes"
+    },
+    {
+      "code": "30",
+      "display": "Invasive cancer, one recurrence type from each of two groups: (adjacent tissue/organ or regional node recurrence, codes 20-25) combined with (local, prior port-site, or surgical-entrance-site recurrence, codes 10, 13-15)",
+      "definition": "Invasive cancer, one recurrence type from each of two groups: (adjacent tissue/organ or regional node recurrence, codes 20-25) combined with (local, prior port-site, or surgical-entrance-site recurrence, codes 10, 13-15)"
+    },
+    {
+      "code": "36",
+      "display": "Carcinoma in situ, one recurrence type from each of two groups: (regional recurrence, codes 26-27) combined with (local or port-site recurrence, codes 16-17)",
+      "definition": "Carcinoma in situ, one recurrence type from each of two groups: (regional recurrence, codes 26-27) combined with (local or port-site recurrence, codes 16-17)"
+    },
+    {
+      "code": "40",
+      "display": "Distant recurrence, not specific enough for 46-62",
+      "definition": "Distant recurrence, not specific enough for 46-62"
+    },
+    {
+      "code": "46",
+      "display": "Carcinoma in situ, distant recurrence",
+      "definition": "Carcinoma in situ, distant recurrence"
+    },
+    {
+      "code": "51",
+      "display": "Invasive cancer, distant recurrence in the peritoneum only, or malignant cells in ascites",
+      "definition": "Invasive cancer, distant recurrence in the peritoneum only, or malignant cells in ascites"
+    },
+    {
+      "code": "52",
+      "display": "Invasive cancer, distant recurrence in the lung only (including visceral pleura)",
+      "definition": "Invasive cancer, distant recurrence in the lung only (including visceral pleura)"
+    },
+    {
+      "code": "53",
+      "display": "Invasive cancer, distant recurrence in the pleura only, or malignant cells in pleural effusion",
+      "definition": "Invasive cancer, distant recurrence in the pleura only, or malignant cells in pleural effusion"
+    },
+    {
+      "code": "54",
+      "display": "Invasive cancer, distant recurrence in the liver only",
+      "definition": "Invasive cancer, distant recurrence in the liver only"
+    },
+    {
+      "code": "55",
+      "display": "Invasive cancer, distant recurrence in bone only, excluding bone at the primary site",
+      "definition": "Invasive cancer, distant recurrence in bone only, excluding bone at the primary site"
+    },
+    {
+      "code": "56",
+      "display": "Invasive cancer, distant recurrence in the CNS only (brain and spinal cord; excludes the external eye)",
+      "definition": "Invasive cancer, distant recurrence in the CNS only (brain and spinal cord; excludes the external eye)"
+    },
+    {
+      "code": "57",
+      "display": "Invasive cancer, distant recurrence in the skin only, excluding skin at the primary site",
+      "definition": "Invasive cancer, distant recurrence in the skin only, excluding skin at the primary site"
+    },
+    {
+      "code": "58",
+      "display": "Invasive cancer, distant recurrence in distant lymph nodes only (per each cancer site's own definition of distant nodes)",
+      "definition": "Invasive cancer, distant recurrence in distant lymph nodes only (per each cancer site's own definition of distant nodes)"
+    },
+    {
+      "code": "59",
+      "display": "Invasive cancer, systemic distant recurrence only (lymphoma, leukemia, bone marrow metastasis, carcinomatosis, or generalised disease)",
+      "definition": "Invasive cancer, systemic distant recurrence only (lymphoma, leukemia, bone marrow metastasis, carcinomatosis, or generalised disease)"
+    },
+    {
+      "code": "60",
+      "display": "Invasive cancer, one recurrence type from each of two groups: (one or more distant-site recurrences) combined with (local or regional recurrence, codes 10-15, 20-25 or 30)",
+      "definition": "Invasive cancer, one recurrence type from each of two groups: (one or more distant-site recurrences) combined with (local or regional recurrence, codes 10-15, 20-25 or 30)"
+    },
+    {
+      "code": "62",
+      "display": "Invasive cancer, recurrence at multiple distant sites",
+      "definition": "Invasive cancer, recurrence at multiple distant sites"
+    },
+    {
+      "code": "70",
+      "display": "Never disease-free since diagnosis (already had distant metastasis at diagnosis, systemic disease at diagnosis, an unknown primary, or disease too limited to have been treated)",
+      "definition": "Never disease-free since diagnosis (already had distant metastasis at diagnosis, systemic disease at diagnosis, an unknown primary, or disease too limited to have been treated)"
+    },
+    {
+      "code": "88",
+      "display": "Recurrence occurred, but the type is not documented",
+      "definition": "Recurrence occurred, but the type is not documented"
+    },
+    {
+      "code": "99",
+      "display": "Unknown whether the case ever recurred or was ever disease-free (usually class of case 3)",
+      "definition": "Unknown whether the case ever recurred or was ever disease-free (usually class of case 3)"
+    }
+  ]
+}

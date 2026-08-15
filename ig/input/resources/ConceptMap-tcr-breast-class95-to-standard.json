@@ -1,0 +1,98 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-class95-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-class95-to-standard",
+  "version": "4.0.1",
+  "name": "TCRCLASS95ToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-class95-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-class95",
+      "element": [
+        {
+          "code": "0",
+          "display": "Diagnosed at the reporting hospital, but the first course of therapy was not given there (the patient chose another hospital, was referred, refused treatment, or died/was discharged critically ill before treatment started)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "1",
+          "display": "Diagnosed at the reporting hospital, and all or part of the first course of therapy was given there",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "2",
+          "display": "Diagnosed elsewhere, and all or part of the first course of therapy was given at the reporting hospital",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "3",
+          "display": "Diagnosed elsewhere with no first-course therapy at the reporting hospital; presented here for recurrent or persistent disease",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "5",
+          "display": "Diagnosed only at autopsy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "7",
+          "display": "Pathology report only; the patient was never seen at the reporting hospital for diagnosis or treatment (excludes autopsy diagnosis) -- not reportable",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "8",
+          "display": "Known only from a death certificate (DCO) -- not reportable",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "9",
+          "display": "Unknown; the record does not document enough to classify the case",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -219,7 +219,9 @@ STRUCTURAL_CODE_TABLES = ('AJCC', 'PRESTYPE', 'STYPE95', 'PRESLNSCO',
                           'PREC', 'C', 'PREH', 'H', 'PREI', 'I',
                           'PRETAR', 'TAR', 'OTH', 'PREP',
                           'RTAR', 'RMOD', 'HTAR', 'LTAR', 'SEQRS',
-                          'SEQLS', 'R', 'MINS')
+                          'SEQLS', 'R', 'MINS',
+                          'SEX', 'CLASS95', 'CLASSOFDIAG', 'CLASSOFTREAT',
+                          'VSTA', 'RETYPE95', 'KPSECOG')
 
 # EBRT is an ADDITIVE field: the submitted value is the sum of the technique
 # codes used across all phases, so the ValueSet enumerates the components and

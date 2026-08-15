@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-vsta-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-vsta-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastVSTAValueSet",
+  "title": "台灣癌症登記 生命狀態（首次追蹤）（VSTA）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-vsta"
+      }
+    ]
+  }
+}

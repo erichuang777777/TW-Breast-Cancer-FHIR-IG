@@ -1,0 +1,47 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-classofdiag",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-classofdiag",
+  "version": "4.0.1",
+  "name": "TCRBreastCLASSOFDIAGCodeSystem",
+  "title": "台灣癌症登記 診斷分類（本院／他院）（CLASSOFDIAG）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for CLASSOFDIAG (診斷分類（本院／他院）). 碼冊出處：Longform p.82 診斷狀態分類 (#2.3.1). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 6,
+  "concept": [
+    {
+      "code": "1",
+      "display": "Diagnosed at the reporting hospital",
+      "definition": "Diagnosed at the reporting hospital"
+    },
+    {
+      "code": "2",
+      "display": "Diagnosed elsewhere; presented at the reporting hospital within the first course of therapy, with no recurrence, or recurrence status unknown",
+      "definition": "Diagnosed elsewhere; presented at the reporting hospital within the first course of therapy, with no recurrence, or recurrence status unknown"
+    },
+    {
+      "code": "3",
+      "display": "Diagnosed elsewhere; presented at the reporting hospital after recurrence or progression",
+      "definition": "Diagnosed elsewhere; presented at the reporting hospital after recurrence or progression"
+    },
+    {
+      "code": "5",
+      "display": "Diagnosed only at autopsy",
+      "definition": "Diagnosed only at autopsy"
+    },
+    {
+      "code": "7",
+      "display": "Pathology report only; not seen at the reporting hospital for diagnosis or treatment (excludes autopsy diagnosis)",
+      "definition": "Pathology report only; not seen at the reporting hospital for diagnosis or treatment (excludes autopsy diagnosis)"
+    },
+    {
+      "code": "8",
+      "display": "Known only from a death certificate",
+      "definition": "Known only from a death certificate"
+    }
+  ]
+}

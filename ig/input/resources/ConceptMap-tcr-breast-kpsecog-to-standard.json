@@ -1,0 +1,318 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-kpsecog-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-kpsecog-to-standard",
+  "version": "4.0.1",
+  "name": "TCRKPSECOGToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-kpsecog-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-kpsecog",
+      "element": [
+        {
+          "code": "000",
+          "display": "ECOG PS 0 only (KPS not assessed): normal activity, unaffected by disease",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "001",
+          "display": "ECOG PS 1 only (KPS not assessed): unable to do strenuous activity, but ambulatory and able to do light or sedentary work",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "002",
+          "display": "ECOG PS 2 only (KPS not assessed): ambulatory and fully self-caring but unable to work, up to about half of waking hours out of bed",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "003",
+          "display": "ECOG PS 3 only (KPS not assessed): limited self-care, confined to bed or chair more than half of waking hours",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "004",
+          "display": "ECOG PS 4 only (KPS not assessed): completely disabled, no self-care, totally confined to bed or chair",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "005",
+          "display": "Died before treatment (KPS=0 and/or ECOG PS=5)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "100",
+          "display": "KPS 100, ECOG PS 0: normal, no complaints, no evidence of disease",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "104",
+          "display": "KPS 10, ECOG PS 4: moribund, fatal processes progressing rapidly",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "204",
+          "display": "KPS 20, ECOG PS 4: very sick, urgent hospitalisation needed",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "209",
+          "display": "KPS 20 (ECOG not assessed): very sick, urgent hospitalisation needed",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "303",
+          "display": "KPS 30, ECOG PS 3: severely disabled, hospitalisation indicated, death not imminent",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "304",
+          "display": "KPS 30, ECOG PS 4: severely disabled, hospitalisation indicated, death not imminent",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "309",
+          "display": "KPS 30 (ECOG not assessed): severely disabled, hospitalisation indicated, death not imminent",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "403",
+          "display": "KPS 40, ECOG PS 3: disabled, requires special care and assistance",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "409",
+          "display": "KPS 40 (ECOG not assessed): disabled, requires special care and assistance",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "502",
+          "display": "KPS 50, ECOG PS 2: requires considerable assistance and frequent medical care",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "503",
+          "display": "KPS 50, ECOG PS 3: requires considerable assistance and frequent medical care",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "509",
+          "display": "KPS 50 (ECOG not assessed): requires considerable assistance and frequent medical care",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "602",
+          "display": "KPS 60, ECOG PS 2: requires occasional assistance but can care for most needs",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "609",
+          "display": "KPS 60 (ECOG not assessed): requires occasional assistance but can care for most needs",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "701",
+          "display": "KPS 70, ECOG PS 1: cares for self, unable to carry on normal activity",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "702",
+          "display": "KPS 70, ECOG PS 2: cares for self, unable to carry on normal activity",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "709",
+          "display": "KPS 70 (ECOG not assessed): cares for self, unable to carry on normal activity",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "801",
+          "display": "KPS 80, ECOG PS 1: normal activity with effort, some disease symptoms",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "809",
+          "display": "KPS 80 (ECOG not assessed): normal activity with effort, some disease symptoms",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "900",
+          "display": "KPS 90, ECOG PS 0: able to carry on normal activity, minor disease symptoms",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "901",
+          "display": "KPS 90, ECOG PS 1: able to carry on normal activity, minor disease symptoms",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "909",
+          "display": "KPS 90 (ECOG not assessed): able to carry on normal activity, minor disease symptoms",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "988",
+          "display": "Not applicable: the first course of therapy was given entirely at another hospital, and a pre-treatment functional-status assessment could not be obtained",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "999",
+          "display": "Not documented, or unknown",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

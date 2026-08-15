@@ -35,12 +35,9 @@
         {
           "linkId": "SEX",
           "text": "[SEX] 性別",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-sex-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "Patient.gender"
@@ -163,12 +160,9 @@
         {
           "linkId": "KPSECOG",
           "text": "[KPSECOG] 體能狀態 ECOG/KPS",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-kpsecog-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "Observation (performance status)"
@@ -182,12 +176,9 @@
         {
           "linkId": "CLASS95",
           "text": "[CLASS95] 個案分類",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-class95-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "derived: Encounter + Condition + Procedure"
@@ -201,12 +192,9 @@
         {
           "linkId": "CLASSOFDIAG",
           "text": "[CLASSOFDIAG] 診斷分類（本院／他院）",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-classofdiag-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "derived: DiagnosticReport.performer"
@@ -220,12 +208,9 @@
         {
           "linkId": "CLASSOFTREAT",
           "text": "[CLASSOFTREAT] 治療分類（本院／他院）",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-classoftreat-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "derived: Procedure.performer"
@@ -1544,12 +1529,9 @@
         {
           "linkId": "VSTA",
           "text": "[VSTA] 生命狀態（首次追蹤）",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-vsta-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "Patient.deceased / Encounter"
@@ -1612,12 +1594,9 @@
         {
           "linkId": "RETYPE95",
           "text": "[RETYPE95] 復發型態",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-retype95-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "Condition (recurrence).code"

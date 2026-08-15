@@ -1,0 +1,348 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-retype95-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-retype95-to-standard",
+  "version": "4.0.1",
+  "name": "TCRRETYPE95ToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-retype95-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-retype95",
+      "element": [
+        {
+          "code": "00",
+          "display": "Disease-free after treatment; no recurrence",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "04",
+          "display": "Recurrence of an invasive cancer, presenting as carcinoma in situ",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "06",
+          "display": "Recurrence of a carcinoma in situ, presenting as carcinoma in situ",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "10",
+          "display": "Local recurrence, not specific enough for 13-17 (in the residual primary organ, the primary organ, an anastomosis, or the scar of the resected organ)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "13",
+          "display": "Invasive cancer, local recurrence",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "14",
+          "display": "Invasive cancer, recurrence at a trocar/port site (along the port track or a prior surgical entrance site)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "15",
+          "display": "Invasive cancer, local recurrence AND trocar/port-site recurrence (codes 13 and 14 combined)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "16",
+          "display": "Carcinoma in situ, local recurrence, not otherwise specified",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "17",
+          "display": "Carcinoma in situ, local AND trocar/port-site recurrence",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "20",
+          "display": "Regional recurrence, not specific enough for 21-27",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "21",
+          "display": "Invasive cancer, recurrence in adjacent tissue or organs only",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "22",
+          "display": "Invasive cancer, recurrence in regional lymph nodes only",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "25",
+          "display": "Invasive cancer, recurrence in adjacent tissue/organs AND regional lymph nodes (codes 21 and 22 combined)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "26",
+          "display": "Carcinoma in situ, regional recurrence, not otherwise specified",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "27",
+          "display": "Carcinoma in situ, recurrence in adjacent tissue/organs AND regional lymph nodes",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "30",
+          "display": "Invasive cancer, one recurrence type from each of two groups: (adjacent tissue/organ or regional node recurrence, codes 20-25) combined with (local, prior port-site, or surgical-entrance-site recurrence, codes 10, 13-15)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "36",
+          "display": "Carcinoma in situ, one recurrence type from each of two groups: (regional recurrence, codes 26-27) combined with (local or port-site recurrence, codes 16-17)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "40",
+          "display": "Distant recurrence, not specific enough for 46-62",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "46",
+          "display": "Carcinoma in situ, distant recurrence",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "51",
+          "display": "Invasive cancer, distant recurrence in the peritoneum only, or malignant cells in ascites",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "52",
+          "display": "Invasive cancer, distant recurrence in the lung only (including visceral pleura)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "53",
+          "display": "Invasive cancer, distant recurrence in the pleura only, or malignant cells in pleural effusion",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "54",
+          "display": "Invasive cancer, distant recurrence in the liver only",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "55",
+          "display": "Invasive cancer, distant recurrence in bone only, excluding bone at the primary site",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "56",
+          "display": "Invasive cancer, distant recurrence in the CNS only (brain and spinal cord; excludes the external eye)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "57",
+          "display": "Invasive cancer, distant recurrence in the skin only, excluding skin at the primary site",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "58",
+          "display": "Invasive cancer, distant recurrence in distant lymph nodes only (per each cancer site's own definition of distant nodes)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "59",
+          "display": "Invasive cancer, systemic distant recurrence only (lymphoma, leukemia, bone marrow metastasis, carcinomatosis, or generalised disease)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "60",
+          "display": "Invasive cancer, one recurrence type from each of two groups: (one or more distant-site recurrences) combined with (local or regional recurrence, codes 10-15, 20-25 or 30)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "62",
+          "display": "Invasive cancer, recurrence at multiple distant sites",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "70",
+          "display": "Never disease-free since diagnosis (already had distant metastasis at diagnosis, systemic disease at diagnosis, an unknown primary, or disease too limited to have been treated)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "88",
+          "display": "Recurrence occurred, but the type is not documented",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "99",
+          "display": "Unknown whether the case ever recurred or was ever disease-free (usually class of case 3)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

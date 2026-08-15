@@ -1,0 +1,78 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-classofdiag-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-classofdiag-to-standard",
+  "version": "4.0.1",
+  "name": "TCRCLASSOFDIAGToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-classofdiag-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-classofdiag",
+      "element": [
+        {
+          "code": "1",
+          "display": "Diagnosed at the reporting hospital",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "2",
+          "display": "Diagnosed elsewhere; presented at the reporting hospital within the first course of therapy, with no recurrence, or recurrence status unknown",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "3",
+          "display": "Diagnosed elsewhere; presented at the reporting hospital after recurrence or progression",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "5",
+          "display": "Diagnosed only at autopsy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "7",
+          "display": "Pathology report only; not seen at the reporting hospital for diagnosis or treatment (excludes autopsy diagnosis)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "8",
+          "display": "Known only from a death certificate",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

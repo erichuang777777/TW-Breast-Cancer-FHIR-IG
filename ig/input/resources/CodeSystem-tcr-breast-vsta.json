@@ -1,0 +1,27 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-vsta",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-vsta",
+  "version": "4.0.1",
+  "name": "TCRBreastVSTACodeSystem",
+  "title": "台灣癌症登記 生命狀態（首次追蹤）（VSTA）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for VSTA (生命狀態（首次追蹤）). 碼冊出處：Longform p.234 生存狀態 (#5.4). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 2,
+  "concept": [
+    {
+      "code": "0",
+      "display": "Dead",
+      "definition": "Dead"
+    },
+    {
+      "code": "1",
+      "display": "Alive",
+      "definition": "Alive"
+    }
+  ]
+}
