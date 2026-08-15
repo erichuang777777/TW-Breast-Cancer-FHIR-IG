@@ -1,0 +1,62 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-prep",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-prep",
+  "version": "4.0.1",
+  "name": "TCRBreastPREPCodeSystem",
+  "title": "台灣癌症登記 安寧緩和照護（PREP）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for PREP (安寧緩和照護). 碼冊出處：Longform p.298-300 申報醫院緩和照護 (#4.4). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 9,
+  "concept": [
+    {
+      "code": "0",
+      "display": "No palliative care",
+      "definition": "No palliative care"
+    },
+    {
+      "code": "1",
+      "display": "Surgery to relieve symptoms only, not for diagnosis, staging or treatment (may include a bypass procedure)",
+      "definition": "Surgery to relieve symptoms only, not for diagnosis, staging or treatment (may include a bypass procedure)"
+    },
+    {
+      "code": "2",
+      "display": "Radiotherapy to relieve symptoms only",
+      "definition": "Radiotherapy to relieve symptoms only"
+    },
+    {
+      "code": "3",
+      "display": "Regional or systemic drug therapy to relieve symptoms only",
+      "definition": "Regional or systemic drug therapy to relieve symptoms only"
+    },
+    {
+      "code": "4",
+      "display": "Pain management or referral for it, with no other palliative care",
+      "definition": "Pain management or referral for it, with no other palliative care"
+    },
+    {
+      "code": "5",
+      "display": "Two or more of codes 1, 2 and 3, without code 4",
+      "definition": "Two or more of codes 1, 2 and 3, without code 4"
+    },
+    {
+      "code": "6",
+      "display": "One or more of codes 1, 2 and 3, together with code 4",
+      "definition": "One or more of codes 1, 2 and 3, together with code 4"
+    },
+    {
+      "code": "7",
+      "display": "Palliative care given or referred, but the record does not say what kind",
+      "definition": "Palliative care given or referred, but the record does not say what kind"
+    },
+    {
+      "code": "9",
+      "display": "Unknown whether palliative care was given or referred; not documented",
+      "definition": "Unknown whether palliative care was given or referred; not documented"
+    }
+  ]
+}

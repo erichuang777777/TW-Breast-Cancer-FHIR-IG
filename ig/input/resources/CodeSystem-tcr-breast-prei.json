@@ -1,0 +1,112 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-prei",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-prei",
+  "version": "4.0.1",
+  "name": "TCRBreastPREICodeSystem",
+  "title": "台灣癌症登記 他院免疫治療（PREI）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for PREI (他院免疫治療). 碼冊出處：Longform p.282-284 外院免疫治療 (#4.3.8). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 19,
+  "concept": [
+    {
+      "code": "00",
+      "display": "No immunotherapy; not part of the first course, or the cancer was found only at autopsy",
+      "definition": "No immunotherapy; not part of the first course, or the cancer was found only at autopsy"
+    },
+    {
+      "code": "01",
+      "display": "Systemic immunotherapy drug",
+      "definition": "Systemic immunotherapy drug"
+    },
+    {
+      "code": "02",
+      "display": "Regional immunotherapy drug",
+      "definition": "Regional immunotherapy drug"
+    },
+    {
+      "code": "03",
+      "display": "Systemic and regional immunotherapy drugs",
+      "definition": "Systemic and regional immunotherapy drugs"
+    },
+    {
+      "code": "04",
+      "display": "Cellular immunotherapy only",
+      "definition": "Cellular immunotherapy only"
+    },
+    {
+      "code": "05",
+      "display": "Cellular immunotherapy plus a systemic immunotherapy drug",
+      "definition": "Cellular immunotherapy plus a systemic immunotherapy drug"
+    },
+    {
+      "code": "06",
+      "display": "Cellular immunotherapy plus a regional immunotherapy drug",
+      "definition": "Cellular immunotherapy plus a regional immunotherapy drug"
+    },
+    {
+      "code": "07",
+      "display": "Cellular immunotherapy plus systemic and regional immunotherapy drugs",
+      "definition": "Cellular immunotherapy plus systemic and regional immunotherapy drugs"
+    },
+    {
+      "code": "20",
+      "display": "Clinical-trial immunotherapy only",
+      "definition": "Clinical-trial immunotherapy only"
+    },
+    {
+      "code": "21",
+      "display": "Immunotherapy plus clinical-trial immunotherapy",
+      "definition": "Immunotherapy plus clinical-trial immunotherapy"
+    },
+    {
+      "code": "22",
+      "display": "Cellular immunotherapy plus clinical-trial immunotherapy",
+      "definition": "Cellular immunotherapy plus clinical-trial immunotherapy"
+    },
+    {
+      "code": "23",
+      "display": "Cellular immunotherapy with systemic and/or regional drugs, plus clinical-trial immunotherapy",
+      "definition": "Cellular immunotherapy with systemic and/or regional drugs, plus clinical-trial immunotherapy"
+    },
+    {
+      "code": "30",
+      "display": "Double-blind-trial immunotherapy only",
+      "definition": "Double-blind-trial immunotherapy only"
+    },
+    {
+      "code": "31",
+      "display": "Immunotherapy plus double-blind-trial immunotherapy",
+      "definition": "Immunotherapy plus double-blind-trial immunotherapy"
+    },
+    {
+      "code": "32",
+      "display": "Cellular immunotherapy plus double-blind-trial immunotherapy",
+      "definition": "Cellular immunotherapy plus double-blind-trial immunotherapy"
+    },
+    {
+      "code": "33",
+      "display": "Cellular immunotherapy with systemic and/or regional drugs, plus double-blind-trial immunotherapy",
+      "definition": "Cellular immunotherapy with systemic and/or regional drugs, plus double-blind-trial immunotherapy"
+    },
+    {
+      "code": "40",
+      "display": "Clinical-trial cellular immunotherapy only",
+      "definition": "Clinical-trial cellular immunotherapy only"
+    },
+    {
+      "code": "41",
+      "display": "Systemic and/or regional drugs plus clinical-trial cellular immunotherapy",
+      "definition": "Systemic and/or regional drugs plus clinical-trial cellular immunotherapy"
+    },
+    {
+      "code": "99",
+      "display": "Not documented, so it is unknown whether immunotherapy was advised or given; or the cancer is known only from a death certificate",
+      "definition": "Not documented, so it is unknown whether immunotherapy was advised or given; or the cancer is known only from a death certificate"
+    }
+  ]
+}

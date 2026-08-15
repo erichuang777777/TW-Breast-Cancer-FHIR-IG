@@ -1,0 +1,268 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-i-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-i-to-standard",
+  "version": "4.0.1",
+  "name": "TCRIToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-i-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-i",
+      "element": [
+        {
+          "code": "00",
+          "display": "No immunotherapy; not part of the first course, or the cancer was found only at autopsy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "01",
+          "display": "Systemic immunotherapy drug",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "02",
+          "display": "Regional immunotherapy drug",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "03",
+          "display": "Systemic and regional immunotherapy drugs",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "04",
+          "display": "Cellular immunotherapy only",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "05",
+          "display": "Cellular immunotherapy plus a systemic immunotherapy drug",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "06",
+          "display": "Cellular immunotherapy plus a regional immunotherapy drug",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "07",
+          "display": "Cellular immunotherapy plus systemic and regional immunotherapy drugs",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "20",
+          "display": "Clinical-trial immunotherapy only",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "21",
+          "display": "Immunotherapy plus clinical-trial immunotherapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "22",
+          "display": "Cellular immunotherapy plus clinical-trial immunotherapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "23",
+          "display": "Cellular immunotherapy with systemic and/or regional drugs, plus clinical-trial immunotherapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "30",
+          "display": "Double-blind-trial immunotherapy only",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "31",
+          "display": "Immunotherapy plus double-blind-trial immunotherapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "32",
+          "display": "Cellular immunotherapy plus double-blind-trial immunotherapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "33",
+          "display": "Cellular immunotherapy with systemic and/or regional drugs, plus double-blind-trial immunotherapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "40",
+          "display": "Clinical-trial cellular immunotherapy only",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "41",
+          "display": "Systemic and/or regional drugs plus clinical-trial cellular immunotherapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "82",
+          "display": "Immunotherapy not advised or given because of a contraindication or another patient risk factor (comorbidity, advanced age)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "83",
+          "display": "Immunotherapy not advised or given because the disease progressed",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "85",
+          "display": "Immunotherapy was part of the planned first course, but the patient died or was discharged critically ill before it started",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "86",
+          "display": "Immunotherapy was part of the planned first course and was not given, with no reason recorded; or it was given at another hospital",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "87",
+          "display": "Immunotherapy was part of the planned first course but the patient or family refused it",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "88",
+          "display": "Immunotherapy was part of the planned first course but had not started when the case was abstracted",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "99",
+          "display": "Not documented, so it is unknown whether immunotherapy was advised or given; or the cancer is known only from a death certificate",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -72,9 +72,9 @@ FHIR 上的對應：① 的產物是 `Observation`（或直接是 QuestionnaireR
 
 | 資源 | 數量 | 說明 |
 |---|---|---|
-| `CodeSystem` | 23 | 每個已驗證碼表一個。**display 用碼冊中文原文**，另附 `en` designation（本工具的英文臨床意義），`definition` 為中英合併 |
-| `ValueSet` | 23 | 供 Questionnaire item 或 `Observation.valueCodeableConcept` 綁定 |
-| `ConceptMap` | 23 | TCR 碼 → 標準術語的**骨架**：每個碼都列出來但 target 一律 `unmatched` |
+| `CodeSystem` | 33 | 每個已驗證碼表一個。**display 用碼冊中文原文**，另附 `en` designation（本工具的英文臨床意義），`definition` 為中英合併 |
+| `ValueSet` | 33 | 供 Questionnaire item 或 `Observation.valueCodeableConcept` 綁定 |
+| `ConceptMap` | 33 | TCR 碼 → 標準術語的**骨架**：每個碼都列出來但 target 一律 `unmatched` |
 | `Questionnaire` | 1 | 長表 99 欄位，分 8 個 group |
 | `StructureDefinition` | 1 | `TCRRegistryAbstractionTask` |
 | `Task` / `QuestionnaireResponse` | 2 | 範例（合成資料） |
@@ -102,22 +102,22 @@ FHIR 上的對應：① 的產物是 `Observation`（或直接是 QuestionnaireR
 
 | 類別 | 欄位數 | 狀態 |
 |---|---|---|
-| 已有驗證碼表（SSF1–10、AJCC、手術碼×2、淋巴結手術碼×2、EBRT、LNEXAM、LN_POSITI、側性、性態、確診方式、神經侵襲、LVI） | 23 | ✅ 有 CodeSystem/ValueSet，Questionnaire 綁定 |
+| 已有驗證碼表（SSF1–10、結構欄位、腫瘤特性五欄、治療十欄） | 33 | ✅ 有 CodeSystem/ValueSet，Questionnaire 綁定 |
 | 純數值／日期／識別碼 | 20 | ✅ 型別為 integer/date/string，不需碼表 |
-| 尚未轉錄碼表 | 56 | ⚠️ Questionnaire 仍有該欄位，型別為 string 並帶 `tcr-codetable-pending` 擴充 |
+| 尚未轉錄碼表 | 46 | ⚠️ Questionnaire 仍有該欄位，型別為 string 並帶 `tcr-codetable-pending` 擴充 |
 
-**待補的 56 欄**分四群，長表碼冊都有定義：
+**待補的 46 欄**分四群，長表碼冊都有定義：
 
 1. **腫瘤特性**：TCODE1、MCODE（ICD-O-3，需外部字典）、MCODE6、MCODE6C
    （分級依部位，附錄D）
 2. **分期**：CT/CN/CM/CSTG、PT/PN/PM/PSTG、SUMSTG、OSTG/OCSTG/OPSTG、META1–3
    （需 AJCC 8th 規則引擎，不只是碼表）
 3. **治療**：S、R、MINS、MARG95、RTAR、RMOD、HTAR、LTAR、SEQRS、SEQLS、
-   PREC/C、PREH/H、PREI/I、PREB/B、PRETAR/TAR、OTH、PREP、WATCHWAITING
+   PREB/B（骨髓/幹細胞移植）、WATCHWAITING
 4. **人口學與追蹤**：SEX、SMOKING、KPSECOG、CLASS95、CLASSOFDIAG、CLASSOFTREAT、
    SEQ1、SEQ2、VSTA/VSTA6、CSTA、RETYPE95/RETYPE6、DIECAUSE/DIECAUSE6
 
-補這 56 欄的工作方式與已完成的 SSF 相同：轉錄官方編碼範圍到
+補這 46 欄的工作方式與已完成的 SSF 相同：轉錄官方編碼範圍到
 `code_ranges.py` → 寫 decoder/encoder → 通過 `test_codebook_conformance.py`
 的四項性質 → FHIR 產生器會自動多出對應的 CodeSystem/ValueSet 並把
 Questionnaire item 從 string 換成 choice。

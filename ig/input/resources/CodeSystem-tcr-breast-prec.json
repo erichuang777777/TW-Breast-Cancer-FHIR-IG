@@ -1,0 +1,112 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-prec",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-prec",
+  "version": "4.0.1",
+  "name": "TCRBreastPRECCodeSystem",
+  "title": "台灣癌症登記 他院化學治療（PREC）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for PREC (他院化學治療). 碼冊出處：Longform p.268-269 外院化學治療 (#4.3.2). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 19,
+  "concept": [
+    {
+      "code": "00",
+      "display": "No chemotherapy; not part of the first course, or the cancer was found only at autopsy",
+      "definition": "No chemotherapy; not part of the first course, or the cancer was found only at autopsy"
+    },
+    {
+      "code": "01",
+      "display": "Systemic chemotherapy",
+      "definition": "Systemic chemotherapy"
+    },
+    {
+      "code": "02",
+      "display": "Systemic chemotherapy, single agent (diagnosis year 2017 or earlier)",
+      "definition": "Systemic chemotherapy, single agent (diagnosis year 2017 or earlier)"
+    },
+    {
+      "code": "03",
+      "display": "Systemic chemotherapy, more than one agent (diagnosis year 2017 or earlier)",
+      "definition": "Systemic chemotherapy, more than one agent (diagnosis year 2017 or earlier)"
+    },
+    {
+      "code": "04",
+      "display": "Transarterial chemoembolisation (TACE) of the primary site only",
+      "definition": "Transarterial chemoembolisation (TACE) of the primary site only"
+    },
+    {
+      "code": "05",
+      "display": "TACE of the primary site plus systemic chemotherapy",
+      "definition": "TACE of the primary site plus systemic chemotherapy"
+    },
+    {
+      "code": "06",
+      "display": "TACE of the primary site plus other regional chemotherapy",
+      "definition": "TACE of the primary site plus other regional chemotherapy"
+    },
+    {
+      "code": "07",
+      "display": "TACE of the primary site plus other regional and systemic chemotherapy",
+      "definition": "TACE of the primary site plus other regional and systemic chemotherapy"
+    },
+    {
+      "code": "08",
+      "display": "Regional chemotherapy only, excluding TACE (intrapleural, intrapericardial, intraperitoneal, intravesical, intrathecal, or another regional route such as a BCNU wafer implant)",
+      "definition": "Regional chemotherapy only, excluding TACE (intrapleural, intrapericardial, intraperitoneal, intravesical, intrathecal, or another regional route such as a BCNU wafer implant)"
+    },
+    {
+      "code": "09",
+      "display": "Systemic and regional chemotherapy, excluding TACE",
+      "definition": "Systemic and regional chemotherapy, excluding TACE"
+    },
+    {
+      "code": "10",
+      "display": "TACE for liver metastases",
+      "definition": "TACE for liver metastases"
+    },
+    {
+      "code": "11",
+      "display": "TACE for liver metastases plus systemic chemotherapy",
+      "definition": "TACE for liver metastases plus systemic chemotherapy"
+    },
+    {
+      "code": "12",
+      "display": "TACE for liver metastases plus other regional chemotherapy",
+      "definition": "TACE for liver metastases plus other regional chemotherapy"
+    },
+    {
+      "code": "13",
+      "display": "TACE for liver metastases plus other regional and systemic chemotherapy",
+      "definition": "TACE for liver metastases plus other regional and systemic chemotherapy"
+    },
+    {
+      "code": "20",
+      "display": "Clinical-trial chemotherapy only",
+      "definition": "Clinical-trial chemotherapy only"
+    },
+    {
+      "code": "21",
+      "display": "Chemotherapy plus clinical-trial chemotherapy",
+      "definition": "Chemotherapy plus clinical-trial chemotherapy"
+    },
+    {
+      "code": "30",
+      "display": "Double-blind-trial chemotherapy only",
+      "definition": "Double-blind-trial chemotherapy only"
+    },
+    {
+      "code": "31",
+      "display": "Chemotherapy plus double-blind-trial chemotherapy",
+      "definition": "Chemotherapy plus double-blind-trial chemotherapy"
+    },
+    {
+      "code": "99",
+      "display": "Not documented, so it is unknown whether chemotherapy was advised or given; or the cancer is known only from a death certificate",
+      "definition": "Not documented, so it is unknown whether chemotherapy was advised or given; or the cancer is known only from a death certificate"
+    }
+  ]
+}

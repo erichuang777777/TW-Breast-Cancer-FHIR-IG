@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-prep-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-prep-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastPREPValueSet",
+  "title": "台灣癌症登記 安寧緩和照護（PREP）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-prep"
+      }
+    ]
+  }
+}

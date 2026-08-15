@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-tar-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-tar-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastTARValueSet",
+  "title": "台灣癌症登記 本院標靶治療（TAR）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-tar"
+      }
+    ]
+  }
+}

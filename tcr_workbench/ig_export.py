@@ -215,7 +215,9 @@ STRING_FIELDS = frozenset({'PK'})
 # Structural (non-SSF) fields whose code table this package owns and verifies.
 STRUCTURAL_CODE_TABLES = ('AJCC', 'PRESTYPE', 'STYPE95', 'PRESLNSCO',
                           'SLNSCO95', 'LNEXAM', 'LN_POSITI', 'EBRT',
-                          'LAT95', 'MCODE5', 'CONFER', 'PNI', 'LVI')
+                          'LAT95', 'MCODE5', 'CONFER', 'PNI', 'LVI',
+                          'PREC', 'C', 'PREH', 'H', 'PREI', 'I',
+                          'PRETAR', 'TAR', 'OTH', 'PREP')
 
 # EBRT is an ADDITIVE field: the submitted value is the sum of the technique
 # codes used across all phases, so the ValueSet enumerates the components and

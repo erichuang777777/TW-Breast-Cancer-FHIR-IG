@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-prei-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-prei-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastPREIValueSet",
+  "title": "台灣癌症登記 他院免疫治療（PREI）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-prei"
+      }
+    ]
+  }
+}

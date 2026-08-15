@@ -1344,12 +1344,9 @@
         {
           "linkId": "PREC",
           "text": "[PREC] 他院化學治療",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-prec-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "MedicationAdministration (external)"
@@ -1363,12 +1360,9 @@
         {
           "linkId": "C",
           "text": "[C] 本院化學治療",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-c-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "MedicationAdministration (antineoplastic)"
@@ -1382,12 +1376,9 @@
         {
           "linkId": "PREH",
           "text": "[PREH] 他院荷爾蒙治療",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-preh-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "MedicationAdministration (external)"
@@ -1401,12 +1392,9 @@
         {
           "linkId": "H",
           "text": "[H] 本院荷爾蒙治療",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-h-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "MedicationAdministration (hormone)"
@@ -1420,12 +1408,9 @@
         {
           "linkId": "PREI",
           "text": "[PREI] 他院免疫治療",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-prei-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "MedicationAdministration (external)"
@@ -1439,12 +1424,9 @@
         {
           "linkId": "I",
           "text": "[I] 本院免疫治療",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-i-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "MedicationAdministration (immunotherapy)"
@@ -1496,12 +1478,9 @@
         {
           "linkId": "PRETAR",
           "text": "[PRETAR] 他院標靶治療",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-pretar-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "MedicationAdministration (external)"
@@ -1515,12 +1494,9 @@
         {
           "linkId": "TAR",
           "text": "[TAR] 本院標靶治療",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-tar-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "MedicationAdministration (targeted)"
@@ -1534,12 +1510,9 @@
         {
           "linkId": "OTH",
           "text": "[OTH] 其他治療",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-oth-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "Procedure / MedicationAdministration"
@@ -1553,12 +1526,9 @@
         {
           "linkId": "PREP",
           "text": "[PREP] 安寧緩和照護",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-prep-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "Procedure / CarePlan (palliative)"
