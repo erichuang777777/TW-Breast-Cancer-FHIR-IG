@@ -1,0 +1,88 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-lat95-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-lat95-to-standard",
+  "version": "4.0.1",
+  "name": "TCRLAT95ToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-lat95-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-lat95",
+      "element": [
+        {
+          "code": "0",
+          "display": "Not a paired organ",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "1",
+          "display": "Origin in the right side",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "2",
+          "display": "Origin in the left side",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "3",
+          "display": "Paired organ, one side involved but the side of origin is not stated",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "4",
+          "display": "Paired organ, bilateral involvement with the side of origin unknown, recorded as a single primary",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "5",
+          "display": "Midline tumour of a paired site (C70.0, C71.0-C71.4, C72.2-C72.5, C44.3-C44.5)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "9",
+          "display": "Paired organ, laterality not stated",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

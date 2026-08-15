@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-mcode5-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-mcode5-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastMCODE5ValueSet",
+  "title": "台灣癌症登記 行為碼（MCODE5）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-mcode5"
+      }
+    ]
+  }
+}

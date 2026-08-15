@@ -214,7 +214,8 @@ STRING_FIELDS = frozenset({'PK'})
 
 # Structural (non-SSF) fields whose code table this package owns and verifies.
 STRUCTURAL_CODE_TABLES = ('AJCC', 'PRESTYPE', 'STYPE95', 'PRESLNSCO',
-                          'SLNSCO95', 'LNEXAM', 'LN_POSITI', 'EBRT')
+                          'SLNSCO95', 'LNEXAM', 'LN_POSITI', 'EBRT',
+                          'LAT95', 'MCODE5', 'CONFER', 'PNI', 'LVI')
 
 # EBRT is an ADDITIVE field: the submitted value is the sum of the technique
 # codes used across all phases, so the ValueSet enumerates the components and
@@ -265,6 +266,8 @@ def _structural_concepts(field: str) -> List[dict]:
     """
     from tcr_decoder import decoders
     from tcr_decoder.core import AJCC_MAP, LNSCO_MAP
+    from tcr_decoder.longform_codes import (
+        CONFIRMATION_SOLID_MAP, LONGFORM_CODE_MAPS)
     from tcr_decoder.surgery_codes import SURGERY_TABLES
 
     if field in _COUNT_FIELD_DECODERS:
@@ -291,7 +294,15 @@ def _structural_concepts(field: str) -> List[dict]:
     # PER PRIMARY SITE: the same code is a different operation in a different
     # organ. This IG is breast-only, so it publishes the breast table -- not a
     # merged one, which would offer a colectomy as a valid breast answer.
-    if field in ('PRESTYPE', 'STYPE95'):
+    if field in LONGFORM_CODE_MAPS:
+        table = {str(c).zfill(LONGFORM[field][0]): l
+                 for c, l in LONGFORM_CODE_MAPS[field][0].mapping.items()}
+    elif field == 'CONFER':
+        # Two tables, chosen by morphology. This IG is breast-only, so it
+        # publishes the solid-tumour table -- code 3 is haematolymphoid-only
+        # (manual p.104) and is not a legal answer for a breast case.
+        table = {str(c): l for c, l in CONFIRMATION_SOLID_MAP.mapping.items()}
+    elif field in ('PRESTYPE', 'STYPE95'):
         table = SURGERY_TABLES['Breast'][1]
     else:
         table = {'AJCC': AJCC_MAP,

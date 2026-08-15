@@ -1,0 +1,42 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-lvi",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-lvi",
+  "version": "4.0.1",
+  "name": "TCRBreastLVICodeSystem",
+  "title": "台灣癌症登記 淋巴血管侵犯（LVI）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for LVI (淋巴血管侵犯). 碼冊出處：Longform p.117-118 淋巴管或血管侵犯 (#2.13.2). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 5,
+  "concept": [
+    {
+      "code": "0",
+      "display": "No lymph-vascular invasion",
+      "definition": "No lymph-vascular invasion"
+    },
+    {
+      "code": "1",
+      "display": "Lymph-vascular invasion present",
+      "definition": "Lymph-vascular invasion present"
+    },
+    {
+      "code": "7",
+      "display": "Lymph-vascular invasion cannot be assessed: reported as NA, specimen too small, insufficient sample, no primary-site report describes it, or the report found no malignant cells",
+      "definition": "Lymph-vascular invasion cannot be assessed: reported as NA, specimen too small, insufficient sample, no primary-site report describes it, or the report found no malignant cells"
+    },
+    {
+      "code": "8",
+      "display": "Not applicable: GIST, NET, high-grade dysplasia or carcinoma in situ; lymphoma or leukemia; plasma cell myeloma; central nervous system malignancy; unknown primary; or no pathology performed on the primary site",
+      "definition": "Not applicable: GIST, NET, high-grade dysplasia or carcinoma in situ; lymphoma or leukemia; plasma cell myeloma; central nervous system malignancy; unknown primary; or no pathology performed on the primary site"
+    },
+    {
+      "code": "9",
+      "display": "Not documented in the medical record",
+      "definition": "Not documented in the medical record"
+    }
+  ]
+}

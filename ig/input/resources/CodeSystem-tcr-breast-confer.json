@@ -1,0 +1,57 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-confer",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-confer",
+  "version": "4.0.1",
+  "name": "TCRBreastCONFERCodeSystem",
+  "title": "台灣癌症登記 診斷確認方式（CONFER）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for CONFER (診斷確認方式). 碼冊出處：Longform p.102-104 癌症確診方式 (#2.11). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 8,
+  "concept": [
+    {
+      "code": "1",
+      "display": "Positive histology",
+      "definition": "Positive histology"
+    },
+    {
+      "code": "2",
+      "display": "Positive cytology",
+      "definition": "Positive cytology"
+    },
+    {
+      "code": "4",
+      "display": "Microscopically confirmed, method not stated",
+      "definition": "Microscopically confirmed, method not stated"
+    },
+    {
+      "code": "5",
+      "display": "Positive laboratory test or tumour marker, not microscopically confirmed",
+      "definition": "Positive laboratory test or tumour marker, not microscopically confirmed"
+    },
+    {
+      "code": "6",
+      "display": "Direct visualisation at surgery or endoscopy, not microscopically confirmed",
+      "definition": "Direct visualisation at surgery or endoscopy, not microscopically confirmed"
+    },
+    {
+      "code": "7",
+      "display": "Radiography or other imaging, not microscopically confirmed",
+      "definition": "Radiography or other imaging, not microscopically confirmed"
+    },
+    {
+      "code": "8",
+      "display": "Clinical diagnosis only (excluding 5, 6 and 7)",
+      "definition": "Clinical diagnosis only (excluding 5, 6 and 7)"
+    },
+    {
+      "code": "9",
+      "display": "Unknown whether microscopically confirmed",
+      "definition": "Unknown whether microscopically confirmed"
+    }
+  ]
+}

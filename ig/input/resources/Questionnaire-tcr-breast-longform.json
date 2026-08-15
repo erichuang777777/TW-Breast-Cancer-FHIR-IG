@@ -303,12 +303,9 @@
         {
           "linkId": "LAT95",
           "text": "[LAT95] 側性",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-lat95-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "Condition.bodySite laterality qualifier"
@@ -341,12 +338,9 @@
         {
           "linkId": "MCODE5",
           "text": "[MCODE5] 行為碼",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-mcode5-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "Observation ICD-O-3 behavior"
@@ -398,12 +392,9 @@
         {
           "linkId": "CONFER",
           "text": "[CONFER] 診斷確認方式",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-confer-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "DiagnosticReport.category"
@@ -432,12 +423,9 @@
         {
           "linkId": "PNI",
           "text": "[PNI] 神經周圍侵犯",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-pni-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "Observation (perineural invasion)"
@@ -451,12 +439,9 @@
         {
           "linkId": "LVI",
           "text": "[LVI] 淋巴血管侵犯",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-lvi-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "Observation (lymphovascular invasion)"

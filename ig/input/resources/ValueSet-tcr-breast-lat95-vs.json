@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-lat95-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-lat95-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastLAT95ValueSet",
+  "title": "台灣癌症登記 側性（LAT95）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-lat95"
+      }
+    ]
+  }
+}

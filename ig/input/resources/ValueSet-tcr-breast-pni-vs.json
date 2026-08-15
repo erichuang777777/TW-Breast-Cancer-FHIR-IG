@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-pni-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-pni-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastPNIValueSet",
+  "title": "台灣癌症登記 神經周圍侵犯（PNI）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-pni"
+      }
+    ]
+  }
+}

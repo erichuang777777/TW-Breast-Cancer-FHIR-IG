@@ -1,0 +1,38 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-mcode5-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-mcode5-to-standard",
+  "version": "4.0.1",
+  "name": "TCRMCODE5ToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-mcode5-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-mcode5",
+      "element": [
+        {
+          "code": "2",
+          "display": "In situ (non-invasive, intraepithelial, no stromal invasion)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "3",
+          "display": "Invasive or microinvasive",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
