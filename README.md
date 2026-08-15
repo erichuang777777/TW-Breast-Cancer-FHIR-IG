@@ -41,7 +41,7 @@
 - 與 TW Core 1.0.0、mCODE 4.0.0 及 ICHOM Breast Cancer 1.0.0 的對齊與差異說明。
 - 來源可追溯、Provenance、FHIR Bundle、Big5 XML round-trip、驗證規則與人工審查登錄。
 - 可由 IG Publisher 驗證的完全合成端到端乳癌情境與 QBC Task Bundle。
-- 癌症診療計畫書 JSON 契約、223 個控制項的去識別化盤點、CarePlan／QuestionnaireResponse／Provenance／Task Bundle，以及平行 Task alignment check。
+- 癌症診療計畫書 capture v1 與未來 web template v2 JSON 契約、223-control Preview catalog／314-control 月批次 union 稽核、CarePlan／QuestionnaireResponse／Provenance／Task Bundle，以及平行 Task alignment check。
 - TWPAS 1.2.5 平行 Task 的版本隔離策略、common facts crosswalk 與事前審查 Task-only 欄位目錄；不複製或取代健保署官方 Profiles。
 - 後續擴充病理報告、檢驗報告、超音波報告、癌症登記、癌藥申請、治療計畫及多專科討論等 Task 的架構。
 
@@ -105,6 +105,14 @@ python -m qbc_workbench.cli transform-care-plan .\private\cases\<case>.case.json
 python -m qbc_workbench.cli check-task-alignment .\private\cases\<case>.case.json `
   --case <local-case-id> --output .\runtime\task-alignment
 
+# 產生不含個案識別與值的月批次稽核及 Care Plan JSON → QBC 缺口矩陣
+python scripts\analyze_care_plan_batch.py .\private\monthly .\runtime\care-plan-output `
+  .\runtime\care-plan-batch-audit.json
+python scripts\analyze_care_plan_companions.py .\private\monthly `
+  .\runtime\care-plan-companion-audit.json .\runtime\care-plan-companion-audit.xlsx
+python scripts\analyze_care_plan_qbc_coverage.py .\private\monthly `
+  .\runtime\care-plan-qbc-coverage.json
+
 # 單獨執行測試與 PHI 掃描
 python -m pytest -q
 python scripts\check_no_phi.py
@@ -167,7 +175,7 @@ Included now:
 - Alignment and gap documentation for TW Core 1.0.0, mCODE 4.0.0, and ICHOM Breast Cancer 1.0.0.
 - Source traceability, Provenance, FHIR Bundles, Big5 XML round-trip behavior, validation rules, and a human-review register.
 - Publisher-validated, fully synthetic end-to-end breast cancer and QBC task scenarios.
-- A cancer-care-plan JSON contract, PHI-free inventory of 223 controls, CarePlan/QuestionnaireResponse/Provenance/Task Bundle, and a parallel-task alignment check.
+- Cancer-care-plan capture-v1 and future web-template-v2 JSON contracts, a 223-control Preview catalog and 314-control monthly-union audit, CarePlan/QuestionnaireResponse/Provenance/Task Bundle, and a parallel-task alignment check.
 - A TWPAS 1.2.5 parallel-task design with version isolation, a common-facts crosswalk, and a prior-authorization task-only field inventory; the official NHIA profiles are neither copied nor replaced.
 - A machine-readable TWPAS compatibility policy: published 1.2.5 remains the blocking conformance target, while the changing 1.2.6 CI build is used only for advisory early warnings and synthetic regression planning.
 - An extensible architecture for pathology, laboratory, ultrasound, cancer registry, anticancer drug review, treatment planning, and multidisciplinary discussion tasks.
@@ -231,6 +239,14 @@ python -m qbc_workbench.cli transform-care-plan .\private\cases\<case>.case.json
 # Independently build both task views from one test source for alignment checking only
 python -m qbc_workbench.cli check-task-alignment .\private\cases\<case>.case.json `
   --case <local-case-id> --output .\runtime\task-alignment
+
+# Produce aggregate-only monthly audits and the Care Plan JSON to QBC gap matrix
+python scripts\analyze_care_plan_batch.py .\private\monthly .\runtime\care-plan-output `
+  .\runtime\care-plan-batch-audit.json
+python scripts\analyze_care_plan_companions.py .\private\monthly `
+  .\runtime\care-plan-companion-audit.json .\runtime\care-plan-companion-audit.xlsx
+python scripts\analyze_care_plan_qbc_coverage.py .\private\monthly `
+  .\runtime\care-plan-qbc-coverage.json
 
 # Run tests and the PHI scan separately
 python -m pytest -q
