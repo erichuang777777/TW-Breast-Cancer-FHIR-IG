@@ -197,6 +197,23 @@ Description: "本 IG 為 QBC Submission Bundle 識別碼所定義的命名空間
 * uniqueId.value = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/sid/qbc-bundle-id"
 * uniqueId.preferred = true
 
+Instance: CancerCarePlanBundleIdentifierNamingSystem
+InstanceOf: NamingSystem
+Usage: #definition
+Title: "Cancer Care Plan Task Bundle Identifier"
+Description: "本 IG 為癌症診療計畫書 Task Bundle 識別碼所定義的命名空間。"
+* name = "CancerCarePlanTaskBundleIdentifier"
+* status = #draft
+* kind = #identifier
+* date = "2026-08-15"
+* publisher = "Breast Cancer FHIR Community Draft"
+* responsible = "Breast Cancer FHIR Community Draft"
+* description = "非官方社群草案用來識別單一癌症診療計畫書 Task Bundle 的命名空間。識別碼由產生端決定，須在該端範圍內唯一，且公開範例不得包含個案識別資訊。"
+* jurisdiction = urn:iso:std:iso:3166#TW
+* uniqueId.type = #uri
+* uniqueId.value = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/sid/cancer-care-plan-bundle-id"
+* uniqueId.preferred = true
+
 ValueSet: QBCQuantityFieldValueSet
 Id: qbc-quantity-field
 Title: "QBC Quantity Field Value Set"

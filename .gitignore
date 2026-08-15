@@ -11,6 +11,7 @@ EligibleList*.xls*
 *新診斷及測試名單*.xls*
 *名單*.xls*
 test_case.xlsx
+/p4p_case_*/
 runtime/
 outputs/source_audit/extracted/
 outputs/source_audit/source_line_traceability.csv

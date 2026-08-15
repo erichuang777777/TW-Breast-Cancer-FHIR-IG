@@ -1,0 +1,4498 @@
+{
+  "catalog_version": "1.0.0-preview.1",
+  "source_contract": "cancer_care_plan.schema.json",
+  "source_schema_version": "1",
+  "contains_phi": false,
+  "privacy_note": "Generated from control metadata only; source values, reports, hashes and case identifiers are excluded.",
+  "field_count": 223,
+  "fields": [
+    {
+      "field_id": "CCP-001",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cbAJCC",
+      "control_key": "cbAJCC",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "AJCC分期不適用(或原發不明)"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-002",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cbChild",
+      "control_key": "cbChild",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "兒童癌症之分期"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-003",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cbUnderStagingAuto",
+      "control_key": "cbUnderStagingAuto",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Under staging"
+      ],
+      "ownership": "derived",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse / Provenance",
+      "fhir_path": "QuestionnaireResponse.item / Provenance.entity",
+      "transformation": "Preserve displayed result; record derivation algorithm and version before promotion",
+      "lossiness": "Derivation lineage pending review",
+      "review_status": "pending-algorithm-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-004",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$0",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "HTN"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-005",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$1",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "DM"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-006",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$10",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "TB"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-007",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$11",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Liver cirrhosis"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-008",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$12",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Gout"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-009",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$13",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "ESRD"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-010",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$14",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Gastric ulcer"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-011",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$15",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Duodenal ulcer"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-012",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$16",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "CKD"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-013",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$17",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "BPH"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-014",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$18",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Other"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-015",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$2",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "HBV"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-016",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$3",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "HCV"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-017",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$4",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Hyperlipidemia"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-018",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$5",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Thyroid disease"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-019",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$6",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "CAD"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-020",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$7",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "CVA"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-021",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$8",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "COPD"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-022",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCDGeneral$9",
+      "control_key": "cblCDGeneral",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Asthma"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-023",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCMutations$0",
+      "control_key": "cblCMutations",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "NPM1 positive"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-024",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCMutations$1",
+      "control_key": "cblCMutations",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "NPM1 Negative"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-025",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCMutations$2",
+      "control_key": "cblCMutations",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "NPM1 not done"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-026",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCMutations$3",
+      "control_key": "cblCMutations",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "FLT3/ITD positive"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-027",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCMutations$4",
+      "control_key": "cblCMutations",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "FLT3/ITD Negative"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-028",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCMutations$5",
+      "control_key": "cblCMutations",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "FLT3/ITD not done"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-029",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblCMutations$6",
+      "control_key": "cblCMutations",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Others"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-030",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblLCH31$0",
+      "control_key": "cblLCH31",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "CNS Risk group"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-031",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblLCH31$1",
+      "control_key": "cblLCH31",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Vertebral lesions"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-032",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblLCH31$2",
+      "control_key": "cblLCH31",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Intraspinal soft tissue extensions(可複選)"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-033",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblLCH32$0",
+      "control_key": "cblLCH32",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "hematopoietic"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-034",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblLCH32$1",
+      "control_key": "cblLCH32",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "liver"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-035",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblLCH32$2",
+      "control_key": "cblLCH32",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "spleen"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-036",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblLCH32$3",
+      "control_key": "cblLCH32",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "lung(可複選)"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-037",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblMetastasis$0",
+      "control_key": "cblMetastasis",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Soft tissue"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-038",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblMetastasis$1",
+      "control_key": "cblMetastasis",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Lung"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-039",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblMetastasis$10",
+      "control_key": "cblMetastasis",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "LN-distant"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-040",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblMetastasis$11",
+      "control_key": "cblMetastasis",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Peritoneal seeding"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-041",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblMetastasis$12",
+      "control_key": "cblMetastasis",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Omentum"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-042",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblMetastasis$13",
+      "control_key": "cblMetastasis",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Others"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-043",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblMetastasis$2",
+      "control_key": "cblMetastasis",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Adrenal"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-044",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblMetastasis$3",
+      "control_key": "cblMetastasis",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Liver"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-045",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblMetastasis$4",
+      "control_key": "cblMetastasis",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Kidney"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-046",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblMetastasis$5",
+      "control_key": "cblMetastasis",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Bone"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-047",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblMetastasis$6",
+      "control_key": "cblMetastasis",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Pleural seeding"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-048",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblMetastasis$7",
+      "control_key": "cblMetastasis",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Brain"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-049",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblMetastasis$8",
+      "control_key": "cblMetastasis",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Malignant pleural effusion"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-050",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblMetastasis$9",
+      "control_key": "cblMetastasis",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Malignant pericaridal effusion"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-051",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblMutations$0",
+      "control_key": "cblMutations",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "NPM1"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-052",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblMutations$1",
+      "control_key": "cblMutations",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "FLT3/ITD"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-053",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblMutations$2",
+      "control_key": "cblMutations",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "CEBPA"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-054",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$cblMutations$3",
+      "control_key": "cblMutations",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Others"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-055",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ckbBinet",
+      "control_key": "ckbBinet",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Binet stage："
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-056",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ckbDurie",
+      "control_key": "ckbDurie",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Durie-Salmon Criteria："
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-057",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ckbIss",
+      "control_key": "ckbIss",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Iss criteria："
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-058",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ckbRai",
+      "control_key": "ckbRai",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Rai System stage："
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-059",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ckbResectability",
+      "control_key": "ckbResectability",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Resectability"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-060",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ckbYPTNM1",
+      "control_key": "ckbYPTNM1",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "y"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-061",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlBCLC",
+      "control_key": "ddlBCLC",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-062",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlBinet",
+      "control_key": "ddlBinet",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-063",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlCFAB",
+      "control_key": "ddlCFAB",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-064",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlClinicMGeneral",
+      "control_key": "ddlClinicMGeneral",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D007"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.component.valueCodeableConcept",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-065",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlClinicNGeneral",
+      "control_key": "ddlClinicNGeneral",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D006"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.component.valueCodeableConcept",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-066",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlClinicTGeneral",
+      "control_key": "ddlClinicTGeneral",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D005"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.component.valueCodeableConcept",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-067",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlDiagnosis",
+      "control_key": "ddlDiagnosis",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-068",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlDurie",
+      "control_key": "ddlDurie",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-069",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlFAB",
+      "control_key": "ddlFAB",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-070",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlFIGO",
+      "control_key": "ddlFIGO",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-071",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlGrade",
+      "control_key": "ddlGrade",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-072",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlHistology",
+      "control_key": "ddlHistology",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-073",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlIss",
+      "control_key": "ddlIss",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-074",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlLymphomaB",
+      "control_key": "ddlLymphomaB",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-075",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlLymphomaM",
+      "control_key": "ddlLymphomaM",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-076",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlLymphomaN",
+      "control_key": "ddlLymphomaN",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-077",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlLymphomaT",
+      "control_key": "ddlLymphomaT",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-078",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlPathMGeneral",
+      "control_key": "ddlPathMGeneral",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D034"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.component.valueCodeableConcept",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-079",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlPathNGeneral",
+      "control_key": "ddlPathNGeneral",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D033"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.component.valueCodeableConcept",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-080",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlPathTGeneral",
+      "control_key": "ddlPathTGeneral",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D032"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.component.valueCodeableConcept",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-081",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlRai",
+      "control_key": "ddlRai",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-082",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ddlResectability",
+      "control_key": "ddlResectability",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-083",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$histologyCheckBox",
+      "control_key": "histologyCheckBox",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "以特殊病理為分期依據"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-084",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblAArbor",
+      "control_key": "rblAArbor",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "I",
+        "IE",
+        "II",
+        "II bulky",
+        "IIE",
+        "III",
+        "IV",
+        "不適用"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 8
+    },
+    {
+      "field_id": "CCP-085",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblALLCytogenetics",
+      "control_key": "rblALLCytogenetics",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Hyperdiploid",
+        "Others",
+        "t(11;19)",
+        "t(12;21)",
+        "t(4;11)",
+        "t(9;22)",
+        "t(v;11q23)"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 7
+    },
+    {
+      "field_id": "CCP-086",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblAML",
+      "control_key": "rblAML",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Secondary AML",
+        "de novo AML"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-087",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblASExtr",
+      "control_key": "rblASExtr",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "No",
+        "Yes"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-088",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblBS",
+      "control_key": "rblBS",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "No",
+        "Yes"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-089",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblCAML",
+      "control_key": "rblCAML",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Secondary AML",
+        "de novo AML"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-090",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblCClass",
+      "control_key": "rblCClass",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "B-lineage ALL",
+        "Burkitt’s leukemia",
+        "Early T cell presursor ALL",
+        "Mixed lineage:",
+        "T cell ALL"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 5
+    },
+    {
+      "field_id": "CCP-091",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblCDGeneral",
+      "control_key": "rblCDGeneral",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "有",
+        "無"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-092",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblCFAB",
+      "control_key": "rblCFAB",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "M",
+        "Not classifiable"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-093",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblClass",
+      "control_key": "rblClass",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Burkitt leukemia",
+        "Early pre B ALL",
+        "Pre B ALL",
+        "T ALL"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 4
+    },
+    {
+      "field_id": "CCP-094",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblCmmlWho",
+      "control_key": "rblCmmlWho",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "CMML-0",
+        "CMML-1",
+        "CMML-2",
+        "Others"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 4
+    },
+    {
+      "field_id": "CCP-095",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblCutaneousM",
+      "control_key": "rblCutaneousM",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "M0",
+        "M1"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-096",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblCutaneousN",
+      "control_key": "rblCutaneousN",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "N0",
+        "N1",
+        "N2",
+        "N3"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 4
+    },
+    {
+      "field_id": "CCP-097",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblCutaneousT",
+      "control_key": "rblCutaneousT",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "T1a",
+        "T1b",
+        "T2a",
+        "T2b",
+        "T3"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 5
+    },
+    {
+      "field_id": "CCP-098",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblCyto",
+      "control_key": "rblCyto",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Complex (>=3)",
+        "Normal",
+        "Others",
+        "inv(16)",
+        "t(15;17)",
+        "t(8;21)",
+        "t(v;11q23)"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 7
+    },
+    {
+      "field_id": "CCP-099",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblDisease",
+      "control_key": "rblDisease",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Accelerated phase",
+        "Blast Crisis",
+        "Chronic phase"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 3
+    },
+    {
+      "field_id": "CCP-100",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblExtranodal",
+      "control_key": "rblExtranodal",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Extensive",
+        "Limited"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-101",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblFAB",
+      "control_key": "rblFAB",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "M",
+        "Not classifiable"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-102",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblINSS",
+      "control_key": "rblINSS",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "1",
+        "2A",
+        "2B",
+        "3",
+        "4",
+        "4S",
+        "XM3",
+        "XM4"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 8
+    },
+    {
+      "field_id": "CCP-103",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblLCH1",
+      "control_key": "rblLCH1",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Single-system disease"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-104",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblLCH111",
+      "control_key": "rblLCH111",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Isolated skin disease",
+        "Single bone lesion",
+        "Solitary lymph node"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 3
+    },
+    {
+      "field_id": "CCP-105",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblLCH122",
+      "control_key": "rblLCH122",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Extensive skin disease",
+        "Multiple bone lesions",
+        "Multiple lymph node involvements"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 3
+    },
+    {
+      "field_id": "CCP-106",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblLCH2",
+      "control_key": "rblLCH2",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Multi-system disease"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-107",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblLCH21",
+      "control_key": "rblLCH21",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "with risk organs Involvement",
+        "without risk organs Involvement"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-108",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblLCH3",
+      "control_key": "rblLCH3",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Special Site"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-109",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblLugano",
+      "control_key": "rblLugano",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "I",
+        "II1",
+        "II2",
+        "IIE",
+        "IV"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 5
+    },
+    {
+      "field_id": "CCP-110",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblMetastasis",
+      "control_key": "rblMetastasis",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "有",
+        "無"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-111",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblSJOMS",
+      "control_key": "rblSJOMS",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "I",
+        "II",
+        "III",
+        "IV"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 4
+    },
+    {
+      "field_id": "CCP-112",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblSecondaryAML",
+      "control_key": "rblSecondaryAML",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Therapy-related",
+        "from MDS",
+        "from MPN"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 3
+    },
+    {
+      "field_id": "CCP-113",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblSecondaryCAML",
+      "control_key": "rblSecondaryCAML",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Therapy-related",
+        "from MDS",
+        "from MPN"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 3
+    },
+    {
+      "field_id": "CCP-114",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblSpleen",
+      "control_key": "rblSpleen",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "No",
+        "Yes"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-115",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblTherapyAML",
+      "control_key": "rblTherapyAML",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "from C/T",
+        "from R/T"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-116",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblWHO",
+      "control_key": "rblWHO",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Multilineage dysplasia",
+        "Others",
+        "Recurrent genetic abnor",
+        "Therapy-related"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 4
+    },
+    {
+      "field_id": "CCP-117",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$rblWTS",
+      "control_key": "rblWTS",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "I",
+        "II",
+        "III",
+        "IV",
+        "V"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 5
+    },
+    {
+      "field_id": "CCP-118",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$site",
+      "control_key": "site",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "(1)Single site:",
+        "(2)Multiple sites:"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-119",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbAJCC",
+      "control_key": "txbAJCC",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-120",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbAJCC8",
+      "control_key": "txbAJCC8",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-121",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbALLClassML",
+      "control_key": "txbALLClassML",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-122",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbALLCytogenetics",
+      "control_key": "txbALLCytogenetics",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-123",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbAML",
+      "control_key": "txbAML",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-124",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbAutoClinicGeneral",
+      "control_key": "txbAutoClinicGeneral",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "derived",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse / Provenance",
+      "fhir_path": "QuestionnaireResponse.item / Provenance.entity",
+      "transformation": "Preserve displayed result; record derivation algorithm and version before promotion",
+      "lossiness": "Derivation lineage pending review",
+      "review_status": "pending-algorithm-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-125",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbAutoLymphomaStage",
+      "control_key": "txbAutoLymphomaStage",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-126",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbAutoPathGeneral",
+      "control_key": "txbAutoPathGeneral",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "derived",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse / Provenance",
+      "fhir_path": "QuestionnaireResponse.item / Provenance.entity",
+      "transformation": "Preserve displayed result; record derivation algorithm and version before promotion",
+      "lossiness": "Derivation lineage pending review",
+      "review_status": "pending-algorithm-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-127",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbCALLCytogenetics",
+      "control_key": "txbCALLCytogenetics",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-128",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbCCyto",
+      "control_key": "txbCCyto",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-129",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbCDDescGeneral",
+      "control_key": "txbCDDescGeneral",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-130",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbCMutations",
+      "control_key": "txbCMutations",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-131",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbCmmlWho",
+      "control_key": "txbCmmlWho",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-132",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbCytoDesc",
+      "control_key": "txbCytoDesc",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-133",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbDiagnosis",
+      "control_key": "txbDiagnosis",
+      "input_types": [
+        "textarea"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-134",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbDiagnosisVer",
+      "control_key": "txbDiagnosisVer",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-135",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbMetastasisDesc",
+      "control_key": "txbMetastasisDesc",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-136",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbMutations",
+      "control_key": "txbMutations",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-137",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbOrganCode",
+      "control_key": "txbOrganCode",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-138",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbOrganName",
+      "control_key": "txbOrganName",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-139",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbOtherHospital",
+      "control_key": "txbOtherHospital",
+      "input_types": [
+        "textarea"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-140",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbRemark",
+      "control_key": "txbRemark",
+      "input_types": [
+        "textarea"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-141",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$txbWHO",
+      "control_key": "txbWHO",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-142",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucBasicInfo_Custom$ddlECOG",
+      "control_key": "ddlECOG",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-143",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucBasicInfo_Custom$ddlReason",
+      "control_key": "ddlReason",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "shared",
+      "qbc_targets": [
+        "DIAG_TYPE"
+      ],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-144",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucBasicInfo_Custom$txbFirstFillDate",
+      "control_key": "txbFirstFillDate",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-145",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$0",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "HTN"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-146",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$1",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "DM"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-147",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$10",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "TB"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-148",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$11",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Liver cirrhosis"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-149",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$12",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Gout"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-150",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$13",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "ESRD"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-151",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$14",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Gastric ulcer"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-152",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$15",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Duodenal ulcer"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-153",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$16",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "CKD"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-154",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$17",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "BPH"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-155",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$18",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Other"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-156",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$2",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "HBV"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-157",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$3",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "HCV"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-158",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$4",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Hyperlipidemia"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-159",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$5",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Thyroid disease"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-160",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$6",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "CAD"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-161",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$7",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "CVA"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-162",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$8",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "COPD"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-163",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblCD$9",
+      "control_key": "cblCD",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Asthma"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-164",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblHisType$0",
+      "control_key": "cblHisType",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Invasive ductal carcinoma"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-165",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblHisType$1",
+      "control_key": "cblHisType",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Ductal carcinoma in situ"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-166",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblHisType$2",
+      "control_key": "cblHisType",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Infiltation ductal carcinoma"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-167",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblHisType$3",
+      "control_key": "cblHisType",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Intraductal papillary carcinoma"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-168",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblHisType$4",
+      "control_key": "cblHisType",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Invasive lobular carcinoma"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-169",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblHisType$5",
+      "control_key": "cblHisType",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Infiltation lobular carcinoma"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-170",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblHisType$6",
+      "control_key": "cblHisType",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Intraductal carcinoma and Paget's disease"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-171",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblHisType$7",
+      "control_key": "cblHisType",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Mucinous carcinoma"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-172",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblHisType$8",
+      "control_key": "cblHisType",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Phyllodes tumor, malignant"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-173",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$cblHisType$9",
+      "control_key": "cblHisType",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "Other"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-174",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$rb2HGrade1",
+      "control_key": "rb2HGrade1",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Unknown",
+        "Ⅰ",
+        "Ⅱ",
+        "Ⅲ"
+      ],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D004"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.valueCodeableConcept",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 4
+    },
+    {
+      "field_id": "CCP-175",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$rb2Her1",
+      "control_key": "rb2Her1",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "0+",
+        "1+",
+        "2+",
+        "2~3+",
+        "3+",
+        "Unknown"
+      ],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D018"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.value[x]",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 6
+    },
+    {
+      "field_id": "CCP-176",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$rb2HerFISH1",
+      "control_key": "rb2HerFISH1",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Negative",
+        "Positive",
+        "未測"
+      ],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D019"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.value[x]",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 3
+    },
+    {
+      "field_id": "CCP-177",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$rbl2Ki67",
+      "control_key": "rbl2Ki67",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "已檢測：",
+        "未檢測"
+      ],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D020"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.value[x]",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-178",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$rblCD",
+      "control_key": "rblCD",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "有",
+        "無"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-179",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$rblHGrade",
+      "control_key": "rblHGrade",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Unknown",
+        "Ⅰ",
+        "Ⅱ",
+        "Ⅲ"
+      ],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D031"
+      ],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 4
+    },
+    {
+      "field_id": "CCP-180",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$rblHer",
+      "control_key": "rblHer",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "0+",
+        "1+",
+        "2+",
+        "2~3+",
+        "3+",
+        "Unknown"
+      ],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D052"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.value[x]",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 6
+    },
+    {
+      "field_id": "CCP-181",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$rblHerFISH",
+      "control_key": "rblHerFISH",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Negative",
+        "Positive",
+        "未測"
+      ],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D053"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.value[x]",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 3
+    },
+    {
+      "field_id": "CCP-182",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$rblKi67",
+      "control_key": "rblKi67",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "已檢測：",
+        "未檢測"
+      ],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D054"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.value[x]",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-183",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$rblMargin",
+      "control_key": "rblMargin",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "Negative",
+        "Positive",
+        "不適用"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 3
+    },
+    {
+      "field_id": "CCP-184",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$txb2EReceptor1",
+      "control_key": "txb2EReceptor1",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D014",
+        "D015"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.value[x]",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-185",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$txb2Ki67",
+      "control_key": "txb2Ki67",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D021"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.valueQuantity",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-186",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$txb2PReceptor1",
+      "control_key": "txb2PReceptor1",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D016",
+        "D017"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.value[x]",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-187",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$txbEReceptor",
+      "control_key": "txbEReceptor",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D048",
+        "D049"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.value[x]",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-188",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$txbHisTypeDesc",
+      "control_key": "txbHisTypeDesc",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-189",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$txbKi67",
+      "control_key": "txbKi67",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D055"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.valueQuantity",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-190",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$txbLN",
+      "control_key": "txbLN",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-191",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$txbLNTotal",
+      "control_key": "txbLNTotal",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-192",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$txbOCD",
+      "control_key": "txbOCD",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-193",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$txbPReceptor",
+      "control_key": "txbPReceptor",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D050",
+        "D051"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.value[x]",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-194",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$txbSize1",
+      "control_key": "txbSize1",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D047"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.valueQuantity",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-195",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$txbSize2",
+      "control_key": "txbSize2",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-196",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucComorbidityBC_Custom$txbSize3",
+      "control_key": "txbSize3",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-197",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucDiagnosisBC_Custom$cblDxManner$0",
+      "control_key": "cblDxManner",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "cytology"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-198",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucDiagnosisBC_Custom$cblDxManner$1",
+      "control_key": "cblDxManner",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "surgical biopsy"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-199",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucDiagnosisBC_Custom$cblDxManner$2",
+      "control_key": "cblDxManner",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "core biopsy"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-200",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucDiagnosisBC_Custom$cblDxManner$3",
+      "control_key": "cblDxManner",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "frozen"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-201",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucDiagnosisBC_Custom$ddlDiagnosis",
+      "control_key": "ddlDiagnosis",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-202",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucDiagnosisBC_Custom$ddlImage",
+      "control_key": "ddlImage",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-203",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucDiagnosisBC_Custom$rblHospital",
+      "control_key": "rblHospital",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "外院",
+        "本院"
+      ],
+      "ownership": "shared",
+      "qbc_targets": [
+        "D002"
+      ],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-204",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucDiagnosisBC_Custom$rblLocation",
+      "control_key": "rblLocation",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "兩側",
+        "右側",
+        "左側"
+      ],
+      "ownership": "shared",
+      "qbc_targets": [
+        "LATERALITY"
+      ],
+      "fhir_resource": "Condition",
+      "fhir_path": "Condition.bodySite",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 3
+    },
+    {
+      "field_id": "CCP-205",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucHistoryBC_Custom$cblFamilyHistory$0",
+      "control_key": "cblFamilyHistory",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "特殊家族史(停經前得過兩側乳癌)"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-206",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucHistoryBC_Custom$cblFamilyHistory$1",
+      "control_key": "cblFamilyHistory",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "母親或姐妹得過乳癌"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-207",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucHistoryBC_Custom$cblFamilyHistory$2",
+      "control_key": "cblFamilyHistory",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "卵巢癌及子宮內膜癌"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-208",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucHistoryBC_Custom$cblFamilyHistory$3",
+      "control_key": "cblFamilyHistory",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "其它"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-209",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucHistoryBC_Custom$cblPersonalHistory$0",
+      "control_key": "cblPersonalHistory",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "同側"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-210",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucHistoryBC_Custom$cblPersonalHistory$1",
+      "control_key": "cblPersonalHistory",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "對側乳房得過乳癌"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-211",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucHistoryBC_Custom$cblPersonalHistory$2",
+      "control_key": "cblPersonalHistory",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "乳房切片有不正常細胞增生現象"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-212",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucHistoryBC_Custom$cblPersonalHistory$3",
+      "control_key": "cblPersonalHistory",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "其它"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-213",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucHistoryBC_Custom$ddlChemotherapy",
+      "control_key": "ddlChemotherapy",
+      "input_types": [
+        "select"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-214",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucHistoryBC_Custom$rblFamilyHis",
+      "control_key": "rblFamilyHis",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "有",
+        "無"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-215",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucHistoryBC_Custom$rblHis",
+      "control_key": "rblHis",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "有",
+        "無"
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-216",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucHistoryBC_Custom$rblMenopause",
+      "control_key": "rblMenopause",
+      "input_types": [
+        "radio"
+      ],
+      "source_labels": [
+        "否",
+        "是"
+      ],
+      "ownership": "shared",
+      "qbc_targets": [
+        "P05"
+      ],
+      "fhir_resource": "Observation",
+      "fhir_path": "Observation.valueCodeableConcept",
+      "transformation": "Promote reviewed meaning to the breast-cancer common FHIR layer; map independently into each task",
+      "lossiness": "Task projections may be lossy; retain the reviewed common fact and source Provenance",
+      "review_status": "implemented-partial",
+      "occurrence_count": 2
+    },
+    {
+      "field_id": "CCP-217",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucHistoryBC_Custom$txbMemCD",
+      "control_key": "txbMemCD",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-218",
+      "section": "basic",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlGeneralCancerPlan$ucGeneralCancerPlan$ucHistoryBC_Custom$txbOHD",
+      "control_key": "txbOHD",
+      "input_types": [
+        "text"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-219",
+      "section": "reference_reports",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlReferenceReport$ucReferenceReport$ckbMore",
+      "control_key": "ckbMore",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "more..."
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-220",
+      "section": "reference_reports",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlReferenceReport$ucReferenceReport$ckbPathMore",
+      "control_key": "ckbPathMore",
+      "input_types": [
+        "checkbox"
+      ],
+      "source_labels": [
+        "more..."
+      ],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-221",
+      "section": "reference_reports",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlReferenceReport$ucReferenceReport$txbLabReport",
+      "control_key": "txbLabReport",
+      "input_types": [
+        "textarea"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-222",
+      "section": "reference_reports",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlReferenceReport$ucReferenceReport$txbPath",
+      "control_key": "txbPath",
+      "input_types": [
+        "textarea"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    },
+    {
+      "field_id": "CCP-223",
+      "section": "reference_reports",
+      "control_name": "EligibleCase$pnlCancerPlan$ucPlnSheetEdit$ctl01$ucPlnSheetGeneral$pnlReferenceReport$ucReferenceReport$txbXray",
+      "control_key": "txbXray",
+      "input_types": [
+        "textarea"
+      ],
+      "source_labels": [],
+      "ownership": "care-plan-only",
+      "qbc_targets": [],
+      "fhir_resource": "QuestionnaireResponse",
+      "fhir_path": "QuestionnaireResponse.item.answer.value[x]",
+      "transformation": "Preserve populated source answer without inventing QBC semantics",
+      "lossiness": "Lossless at source-response level; canonical FHIR promotion pending",
+      "review_status": "pending-field-review",
+      "occurrence_count": 1
+    }
+  ]
+}

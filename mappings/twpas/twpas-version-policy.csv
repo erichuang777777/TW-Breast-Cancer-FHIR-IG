@@ -1,0 +1,3 @@
+target_version,publication_status,authority,intended_use,validation_mode,release_gate,main_ig_dependency_allowed,source_url,checked_on
+1.2.5,published,National Health Insurance Administration,current official submission target,"validate generated TWPAS output in an isolated environment against tw.gov.mohw.nhi.pas#1.2.5",blocking,no,https://nhicore.nhi.gov.tw/pas/,2026-08-15
+1.2.6,ci-build,TWNHIFHIR/pas continuous build,future compatibility warning only,"compare changes and run advisory regression checks; never claim conformance or submission readiness",advisory,no,https://build.fhir.org/ig/TWNHIFHIR/pas/,2026-08-15

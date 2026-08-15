@@ -8,6 +8,7 @@
 - 分期、腫瘤標記、治療處置、用藥要求與照護期間的候選 Profile 外殼。
 - 共同層與 Task 層的邊界、命名及版本治理。
 - QBC／P4P 申報 Task 的完整 115 欄 Mapping 與驗證資產。
+- TWPAS 1.2.5 平行 Task 的架構、共同臨床資料 crosswalk、Task-only 欄位邊界與版本隔離策略；尚未宣告官方送件 conformance。
 
 ## 本版不涵蓋
 
@@ -15,6 +16,6 @@
 - 完整病理、影像、放療、基因體或病人報告結果規範。
 - 健保支付資格、官方申報核准或正式 VPN 收件保證。
 - AJCC 受授權內容的重製。
-- 未經驗證的 mCODE、ICHOM 或 TWPAS conformance 聲明。
+- 未經驗證的 mCODE、ICHOM 或 TWPAS conformance 聲明；本草稿不複製或修改健保署官方 TWPAS Profiles。
 
 本版的共同 Profiles 是可運作的 draft shell，而不是已完成臨床共識的終局模型。新增限制前應先證明該限制跨至少兩個 Task 可重用；只服務單一流程的限制應留在該 Task。

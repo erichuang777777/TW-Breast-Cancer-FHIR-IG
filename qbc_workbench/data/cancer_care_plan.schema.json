@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/Schema/cancer-care-plan-source-json",
+  "title": "Cancer Care Plan Source JSON",
+  "description": "Private source contract for the currently captured cancer care plan form. Instances may contain PHI and must never be published.",
+  "type": "object",
+  "required": ["schema_version", "sections"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "source": {"type": ["string", "object", "null"]},
+    "scraped_at": {"type": ["string", "null"]},
+    "chart": {"type": ["string", "null"], "description": "Private source identifier; may contain PHI."},
+    "seqno": {"type": ["string", "number", "null"]},
+    "diagnosis_code": {"type": ["string", "null"]},
+    "sections": {
+      "type": "object",
+      "required": ["basic"],
+      "properties": {
+        "basic": {"$ref": "#/$defs/section"},
+        "disclosure": {"$ref": "#/$defs/section"},
+        "reference_reports": {"$ref": "#/$defs/section"},
+        "treatment_plan": {"$ref": "#/$defs/section"}
+      },
+      "additionalProperties": {"$ref": "#/$defs/section"}
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "section": {
+      "type": "object",
+      "properties": {
+        "found": {"type": ["boolean", "null"]},
+        "label": {"type": ["string", "null"]},
+        "text": {"type": ["string", "null"]},
+        "tables": {"type": ["array", "null"]},
+        "fields": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/sourceField"}
+        }
+      },
+      "additionalProperties": true
+    },
+    "sourceField": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "id": {"type": ["string", "null"]},
+        "name": {"type": "string"},
+        "label": {"type": ["string", "null"]},
+        "type": {"type": ["string", "null"]},
+        "value": {"type": ["string", "number", "boolean", "null"]},
+        "selected_text": {"type": ["string", "null"]},
+        "checked": {"type": ["boolean", "null"]},
+        "disabled": {"type": ["boolean", "null"]}
+      },
+      "additionalProperties": true
+    }
+  }
+}

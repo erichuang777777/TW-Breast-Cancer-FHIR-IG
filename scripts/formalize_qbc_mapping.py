@@ -196,7 +196,7 @@ def approvals_for(tag: str, semantic_profile: str) -> list[str]:
 
 
 def lineage(tag: str) -> tuple[str, str, str, str]:
-    current = "癌症診療計畫書（目前 bridge input）"
+    current = "癌症診療計畫書 JSON（過渡期 secondary source；非 Care Plan Task 輸出）"
     target_source = "signed clinical source + provenance"
     canonical_fact = "BreastCancer canonical fact"
     if tag in {"HOSPID", "ID", "BIRTHDAY", "P01", "P02", "P03", "P04", "P05", "P06", "P07", "P08", "P09", "DIAG_TYPE", "LATERALITY"}:
@@ -340,8 +340,8 @@ def formalize(path: Path) -> Path:
         ["Taiwan base", "MOHW / TW Core", "Taiwan identifiers and reusable base profiles", "tw.gov.mohw.twcore#1.0.0", "external trial-use dependency"],
         ["Source evidence layer", "source systems / signed reports", "Pathology, laboratory, ultrasound, specimen and imaging lineage", "DiagnosticReport + Observation + Specimen + ImagingStudy", "target-state draft"],
         ["Breast cancer canonical facts", "Independent community draft", "Reusable diagnosis, stage, biomarker, treatment and outcome facts", "mCODE 4.0.0 and ICHOM Breast Cancer 1.0.0 semantic reference", "draft / experimental"],
-        ["Derived document/collaboration layer", "clinical workflow", "Cancer diagnosis/treatment plan, treatment plan and MDT record", "generated from canonical facts; may be bridge input during migration", "partially modeled"],
-        ["QBC/P4P task projection", "Independent community draft", "115-field mapping, QBC rules, reversible transforms and XML/VPN validation", "reads canonical facts or current plan bridge input", "1.0.0-preview.1"],
+        ["Parallel task/document projections", "task-specific workflow", "Cancer care plan, QBC, treatment plan and MDT record", "independently generated from common FHIR facts; no task-to-task production dependency", "partially modeled"],
+        ["QBC/P4P task projection", "Independent community draft", "115-field mapping, QBC rules, reversible transforms and XML/VPN validation", "reads common FHIR facts; secondary-source adapter is migration/check only", "1.0.0-preview.1"],
     ]:
         arch.append(row)
     style(arch, {1: 30, 2: 34, 3: 70, 4: 75, 5: 30})
@@ -351,11 +351,12 @@ def formalize(path: Path) -> Path:
     flow = wb.create_sheet("Data_Flow", 3)
     flow.append(["State", "Input", "Transformation", "Canonical layer", "Output/task", "Governance rule"])
     for row in [
-        ["Current bridge", "癌症診療計畫書", "document extraction + QBC review", "partial; gradually normalize to BreastCancer facts", "QBC FHIR Bundle → QBC XML", "plan is derived input, not original evidence"],
-        ["Migration", "癌症診療計畫書", "bridge adapter + provenance + reconciliation", "BreastCancer canonical facts", "QBC and regenerated treatment-plan document", "retain document version/page and missing-original-evidence flag"],
-        ["Target A", "pathology/laboratory/ultrasound/treatment sources", "source-specific mapping", "BreastCancer canonical facts", "generate cancer diagnosis/treatment plan", "signed source and specimen/imaging lineage retained"],
-        ["Target B", "pathology/laboratory/ultrasound/treatment sources", "source-specific mapping", "BreastCancer canonical facts", "direct QBC projection", "same rules/version as plan-first pathway"],
-        ["Target C", "BreastCancer canonical facts", "task-specific projection", "single reusable fact store", "drug prior authorization / registry / treatment plan / MDT", "task output never overwrites source facts silently"],
+        ["Current secondary source", "癌症診療計畫書 JSON", "independent Care Plan/QBC adapters + alignment check", "partial; gradually normalize to BreastCancer common FHIR facts", "separate Care Plan and QBC check Bundles", "check only; neither task output is the other task input"],
+        ["Migration", "癌症診療計畫書 JSON", "secondary-source adapter + provenance + reconciliation", "BreastCancer common FHIR facts", "parallel task projections", "retain document version/page and missing-original-evidence flag"],
+        ["Target common layer", "pathology/laboratory/ultrasound/treatment sources", "source-specific mapping + provenance", "BreastCancer common FHIR facts", "task-neutral fact store or exchange Bundle", "signed source and specimen/imaging lineage retained"],
+        ["Target Care Plan task", "BreastCancer common FHIR facts", "Care Plan-specific projection", "read-only common layer", "Cancer Care Plan Bundle", "parallel task; never feeds QBC production input"],
+        ["Target QBC task", "BreastCancer common FHIR facts + QBC-only fields", "QBC-specific projection", "read-only common layer", "QBC Bundle → QBC XML", "parallel task; alignment with Care Plan is check-only"],
+        ["Target other tasks", "BreastCancer common FHIR facts", "task-specific projection", "read-only common layer", "drug prior authorization / registry / treatment plan / MDT", "task output never overwrites source facts silently"],
     ]:
         flow.append(row)
     style(flow, {1: 20, 2: 55, 3: 55, 4: 45, 5: 55, 6: 70})
@@ -367,7 +368,7 @@ def formalize(path: Path) -> Path:
     readme["A6"] = "正式化狀態"
     readme["B6"] = "Formal_Mapping_115 提供逐欄可執行規則；Approval_Register 保留正式／官方使用的治理與驗收閘門。社群 Preview 不等於權責核准。"
     readme["A7"] = "資料流狀態"
-    readme["B7"] = "目前：癌症診療計畫書 → QBC Task。目標：原始報告／系統 → BreastCancer canonical facts → 計畫書或直接 QBC／其他 Task。"
+    readme["B7"] = "唯一目標：原始報告／系統 → BreastCancer common FHIR facts → 平行的 Care Plan／QBC／其他 Task。現有診療計畫 JSON 只作 secondary source alignment check。"
     readme["A6"].font = copy(readme["A5"].font)
     readme["A6"].alignment = copy(readme["A5"].alignment)
     readme["A7"].font = copy(readme["A5"].font)

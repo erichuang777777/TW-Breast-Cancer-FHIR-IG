@@ -4,14 +4,15 @@
 
 ## Task 定位
 
-QBC／P4P 是乳癌社群草稿下的第一個可執行業務 Task，目標是把乳癌 canonical facts 或目前可取得的衍生文件轉成可追溯的 FHIR 表示，再依官方規格產生 QBC XML。FHIR Bundle 是交換與稽核中介層，不是健保署 VPN 的直接上傳格式。
+QBC／P4P 是乳癌社群草稿下第一個已完成正式欄位 Mapping 與驗證的業務 Task。它與癌症診療計畫書是平行 Task，應各自讀取乳癌 common FHIR facts。QBC 只投影申報所需子集合，再依官方規格產生 QBC XML。FHIR Bundle 是交換與稽核中介層，不是健保署 VPN 的直接上傳格式。
 
 ## 輸入與輸出
 
 | 項目 | 定義 |
 |---|---|
 | Trigger | 建立、更新或重新送出 QBC 個案申報資料 |
-| Current input | 已整理的癌症診療計畫書、QBC 115 欄候選值及人工審核結果 |
+| Current transition input | 過渡期可由診療計畫書 JSON secondary-source adapter 取得候選值；不是讀取 Care Plan Task Bundle |
+| Production input | 經來源 Mapping 與人工審核的乳癌 common FHIR facts，加上 QBC 專屬欄位 |
 | Target input | 由病理、檢驗、超音波、治療與追蹤來源建立的乳癌 canonical facts |
 | FHIR representation | QBC Patient、Data Item Observations、workflow Extensions、Provenance、Submission Bundle |
 | Output | 驗證後 QBC XML、稽核紀錄與錯誤報告 |
@@ -20,8 +21,8 @@ QBC／P4P 是乳癌社群草稿下的第一個可執行業務 Task，目標是�
 ## 邊界
 
 - QBC 欄位是申報語意，不自動等同完整臨床語意。
-- 癌症診療計畫書是目前的 bridge input，不是永久 source of truth。
-- 未來可由 canonical facts 先產診療計畫書再申報，也可直接投影成 QBC；兩者必須使用相同 Provenance 與 reconciliation 規則。
+- 診療計畫書 JSON 目前只作為 secondary source；Cancer Care Plan Task artifact 不是 QBC 輸入。
+- QBC 與 Care Plan 各自從 common facts 產生；兩個 Task view 的互相比對只用於 reconciliation 與 regression test。
 - QBC 專用 Extensions 與 CodeSystems 留在 Task 層。
 - ER／PR／HER2／PD-L1、TNM 等可對齊乳癌共同層或 mCODE，但必須保留 QBC 原始值。
 - `QBCPatient` 衍生自共同層 `BreastCancerPatient`；其他 QBC raw observations 暫留 Task 層，待共同臨床 Profile 成熟後再逐步提升。

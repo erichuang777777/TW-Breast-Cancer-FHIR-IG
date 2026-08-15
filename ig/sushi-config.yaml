@@ -2,7 +2,7 @@ id: io.github.erichuang777777.breast-cancer
 canonical: https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG
 name: BreastCancerCommunityImplementationGuide
 title: 乳癌 FHIR 實作指引－社群草稿
-description: 非官方乳癌 FHIR 社群草稿，以 TW Core IG 1.0.0 為結構基礎，提供可重用的乳癌共同資料層，並納入 QBC／P4P 申報 Task。mCODE 4.0.0 與 ICHOM Breast Cancer 1.0.0 僅作語意參考。本 IG 非衛生福利部、中央健康保險署、HL7 International 或 ICHOM 出版品。
+description: 非官方乳癌 FHIR 社群草稿，以 TW Core IG 1.0.0 為結構基礎，提供可重用的乳癌共同資料層，並納入癌症診療計畫書、QBC／P4P 與官方 TWPAS 投影等平行 Task。mCODE 4.0.0 與 ICHOM Breast Cancer 1.0.0 僅作語意參考；TWPAS 輸出以健保署官方 IG 為唯一規範。本 IG 非衛生福利部、中央健康保險署、HL7 International 或 ICHOM 出版品。
 status: draft
 experimental: true
 version: 1.0.0-preview.1
@@ -51,8 +51,16 @@ pages:
     title: 合成範例
   task-index.md:
     title: Task 目錄
+  task-care-plan.md:
+    title: 癌症診療計畫書 Task
+  care-plan-field-inventory.md:
+    title: 診療計畫書欄位盤點
   task-qbc.md:
     title: QBC／P4P Task
+  task-twpas.md:
+    title: TWPAS 癌藥事前審查 Task
+  twpas-crosswalk.md:
+    title: 乳癌共同資料至 TWPAS 對照
   task-tcr.md:
     title: 癌症登記 Task
   tcr-code-tables.md:
@@ -105,7 +113,11 @@ menu:
     合成範例: examples.html
   Task 模組:
     Task 目錄: task-index.html
+    癌症診療計畫書 Task: task-care-plan.html
+    診療計畫書欄位盤點: care-plan-field-inventory.html
     QBC／P4P Task: task-qbc.html
+    TWPAS 癌藥事前審查 Task: task-twpas.html
+    乳癌共同資料至 TWPAS 對照: twpas-crosswalk.html
     癌症登記 Task: task-tcr.html
     使用情境: usecases.html
   癌登規格:
