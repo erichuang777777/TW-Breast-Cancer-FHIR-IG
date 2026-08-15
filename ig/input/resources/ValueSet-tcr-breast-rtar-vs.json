@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-rtar-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-rtar-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastRTARValueSet",
+  "title": "台灣癌症登記 放療標的總結（RTAR）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-rtar"
+      }
+    ]
+  }
+}

@@ -868,12 +868,9 @@
         {
           "linkId": "MINS",
           "text": "[MINS] 微創手術",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-mins-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "Procedure.category / method"
@@ -1127,12 +1124,9 @@
         {
           "linkId": "R",
           "text": "[R] 本院放射治療",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-r-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "Procedure (radiotherapy) exists"
@@ -1146,12 +1140,9 @@
         {
           "linkId": "RTAR",
           "text": "[RTAR] 放療標的總結",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-rtar-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "Procedure.bodySite"
@@ -1165,12 +1156,9 @@
         {
           "linkId": "RMOD",
           "text": "[RMOD] 放療方式",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-rmod-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "Procedure.code"
@@ -1201,12 +1189,9 @@
         {
           "linkId": "HTAR",
           "text": "[HTAR] 高劑量標的",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-htar-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "Procedure.bodySite"
@@ -1250,12 +1235,9 @@
         {
           "linkId": "LTAR",
           "text": "[LTAR] 低劑量標的",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ltar-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "Procedure.bodySite"
@@ -1299,12 +1281,9 @@
         {
           "linkId": "SEQRS",
           "text": "[SEQRS] 放療與手術順序",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-seqrs-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "derived: Procedure.performedDateTime"
@@ -1318,12 +1297,9 @@
         {
           "linkId": "SEQLS",
           "text": "[SEQLS] 局部與全身治療順序",
-          "type": "string",
+          "type": "choice",
+          "answerValueSet": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-seqls-vs",
           "extension": [
-            {
-              "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-codetable-pending",
-              "valueBoolean": true
-            },
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
               "valueString": "derived: Procedure/MedicationAdministration dates"

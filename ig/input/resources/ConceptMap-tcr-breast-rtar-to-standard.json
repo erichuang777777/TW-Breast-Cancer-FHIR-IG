@@ -1,0 +1,678 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-rtar-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-rtar-to-standard",
+  "version": "4.0.1",
+  "name": "TCRRTARToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-rtar-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-rtar",
+      "element": [
+        {
+          "code": "-1",
+          "display": "Radiation therapy given, target volume not specified (includes RT as an endocrine procedure)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "-9",
+          "display": "Unknown whether radiation therapy was given",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "00",
+          "display": "No radiation therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "01",
+          "display": "Primary tumour (T)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "02",
+          "display": "Regional lymph nodes (N)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "03",
+          "display": "Primary tumour (T) + Regional lymph nodes (N)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "04",
+          "display": "Distant metastasis (M)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "05",
+          "display": "Primary tumour (T) + Distant metastasis (M)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "06",
+          "display": "Regional lymph nodes (N) + Distant metastasis (M)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "07",
+          "display": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "08",
+          "display": "Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "09",
+          "display": "Primary tumour (T) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "10",
+          "display": "Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "11",
+          "display": "Primary tumour (T) + Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "12",
+          "display": "Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "13",
+          "display": "Primary tumour (T) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "14",
+          "display": "Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "15",
+          "display": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "16",
+          "display": "Total body / total bone marrow",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "17",
+          "display": "Primary tumour (T) + Total body / total bone marrow",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "18",
+          "display": "Regional lymph nodes (N) + Total body / total bone marrow",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "19",
+          "display": "Primary tumour (T) + Regional lymph nodes (N) + Total body / total bone marrow",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "20",
+          "display": "Distant metastasis (M) + Total body / total bone marrow",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "21",
+          "display": "Primary tumour (T) + Distant metastasis (M) + Total body / total bone marrow",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "22",
+          "display": "Regional lymph nodes (N) + Distant metastasis (M) + Total body / total bone marrow",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "23",
+          "display": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Total body / total bone marrow",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "24",
+          "display": "Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "25",
+          "display": "Primary tumour (T) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "26",
+          "display": "Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "27",
+          "display": "Primary tumour (T) + Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "28",
+          "display": "Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "29",
+          "display": "Primary tumour (T) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "30",
+          "display": "Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "31",
+          "display": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "32",
+          "display": "Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "33",
+          "display": "Primary tumour (T) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "34",
+          "display": "Regional lymph nodes (N) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "35",
+          "display": "Primary tumour (T) + Regional lymph nodes (N) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "36",
+          "display": "Distant metastasis (M) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "37",
+          "display": "Primary tumour (T) + Distant metastasis (M) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "38",
+          "display": "Regional lymph nodes (N) + Distant metastasis (M) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "39",
+          "display": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "40",
+          "display": "Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "41",
+          "display": "Primary tumour (T) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "42",
+          "display": "Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "43",
+          "display": "Primary tumour (T) + Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "44",
+          "display": "Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "45",
+          "display": "Primary tumour (T) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "46",
+          "display": "Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "47",
+          "display": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "48",
+          "display": "Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "49",
+          "display": "Primary tumour (T) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "50",
+          "display": "Regional lymph nodes (N) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "51",
+          "display": "Primary tumour (T) + Regional lymph nodes (N) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "52",
+          "display": "Distant metastasis (M) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "53",
+          "display": "Primary tumour (T) + Distant metastasis (M) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "54",
+          "display": "Regional lymph nodes (N) + Distant metastasis (M) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "55",
+          "display": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "56",
+          "display": "Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "57",
+          "display": "Primary tumour (T) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "58",
+          "display": "Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "59",
+          "display": "Primary tumour (T) + Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "60",
+          "display": "Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "61",
+          "display": "Primary tumour (T) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "62",
+          "display": "Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "63",
+          "display": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

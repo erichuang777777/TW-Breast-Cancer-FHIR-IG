@@ -1,0 +1,77 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-r",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-r",
+  "version": "4.0.1",
+  "name": "TCRBreastRCodeSystem",
+  "title": "台灣癌症登記 本院放射治療（R）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for R (本院放射治療). 碼冊出處：Longform p.236-238 放射治療執行狀態 (#4.2.1.8). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 12,
+  "concept": [
+    {
+      "code": "00",
+      "display": "Radiation therapy given in the first course, at the reporting hospital only",
+      "definition": "Radiation therapy given in the first course, at the reporting hospital only"
+    },
+    {
+      "code": "01",
+      "display": "Radiation therapy was not part of the planned first course",
+      "definition": "Radiation therapy was not part of the planned first course"
+    },
+    {
+      "code": "02",
+      "display": "Not advised or given because of a contraindication or another patient risk factor (comorbidity, advanced age)",
+      "definition": "Not advised or given because of a contraindication or another patient risk factor (comorbidity, advanced age)"
+    },
+    {
+      "code": "03",
+      "display": "Not advised or given because the disease progressed",
+      "definition": "Not advised or given because the disease progressed"
+    },
+    {
+      "code": "04",
+      "display": "Given at the reporting hospital but not completed, for a personal reason (comorbidity, poor performance status, side effects, death)",
+      "definition": "Given at the reporting hospital but not completed, for a personal reason (comorbidity, poor performance status, side effects, death)"
+    },
+    {
+      "code": "05",
+      "display": "Part of the planned first course, but the patient died or was discharged critically ill before it started",
+      "definition": "Part of the planned first course, but the patient died or was discharged critically ill before it started"
+    },
+    {
+      "code": "06",
+      "display": "Part of the planned first course, not given, with no reason recorded",
+      "definition": "Part of the planned first course, not given, with no reason recorded"
+    },
+    {
+      "code": "07",
+      "display": "Part of the planned first course, but the patient or family refused it",
+      "definition": "Part of the planned first course, but the patient or family refused it"
+    },
+    {
+      "code": "08",
+      "display": "Part of the planned first course, but had not started when the case was abstracted",
+      "definition": "Part of the planned first course, but had not started when the case was abstracted"
+    },
+    {
+      "code": "09",
+      "display": "Radiation therapy given in the first course, at another hospital only",
+      "definition": "Radiation therapy given in the first course, at another hospital only"
+    },
+    {
+      "code": "10",
+      "display": "Radiation therapy given in the first course, at both the reporting hospital and another hospital",
+      "definition": "Radiation therapy given in the first course, at both the reporting hospital and another hospital"
+    },
+    {
+      "code": "99",
+      "display": "Not documented, so it is unknown whether radiation therapy was advised or given",
+      "definition": "Not documented, so it is unknown whether radiation therapy was advised or given"
+    }
+  ]
+}

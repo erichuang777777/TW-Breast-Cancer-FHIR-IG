@@ -217,7 +217,9 @@ STRUCTURAL_CODE_TABLES = ('AJCC', 'PRESTYPE', 'STYPE95', 'PRESLNSCO',
                           'SLNSCO95', 'LNEXAM', 'LN_POSITI', 'EBRT',
                           'LAT95', 'MCODE5', 'CONFER', 'PNI', 'LVI',
                           'PREC', 'C', 'PREH', 'H', 'PREI', 'I',
-                          'PRETAR', 'TAR', 'OTH', 'PREP')
+                          'PRETAR', 'TAR', 'OTH', 'PREP',
+                          'RTAR', 'RMOD', 'HTAR', 'LTAR', 'SEQRS',
+                          'SEQLS', 'R', 'MINS')
 
 # EBRT is an ADDITIVE field: the submitted value is the sum of the technique
 # codes used across all phases, so the ValueSet enumerates the components and
@@ -297,7 +299,11 @@ def _structural_concepts(field: str) -> List[dict]:
     # organ. This IG is breast-only, so it publishes the breast table -- not a
     # merged one, which would offer a colectomy as a valid breast answer.
     if field in LONGFORM_CODE_MAPS:
-        table = {str(c).zfill(LONGFORM[field][0]): l
+        # A negative sentinel (RMOD's -9/-1) is never padded past its sign --
+        # the manual's own 編碼範圍 line never shows a padded form, and the
+        # engine's CodeMap.encode_one agrees (see codemap.py).
+        width = LONGFORM[field][0]
+        table = {(str(c) if c < 0 else str(c).zfill(width)): l
                  for c, l in LONGFORM_CODE_MAPS[field][0].mapping.items()}
     elif field == 'CONFER':
         # Two tables, chosen by morphology. This IG is breast-only, so it

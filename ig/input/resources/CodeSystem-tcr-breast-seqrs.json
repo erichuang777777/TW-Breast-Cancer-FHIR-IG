@@ -1,0 +1,82 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-seqrs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-seqrs",
+  "version": "4.0.1",
+  "name": "TCRBreastSEQRSCodeSystem",
+  "title": "台灣癌症登記 放療與手術順序（SEQRS）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for SEQRS (放療與手術順序). 碼冊出處：Longform p.220-222 放射治療與手術順序 (#4.2.1.5). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 13,
+  "concept": [
+    {
+      "code": "-1",
+      "display": "Sequence unknown: the first course had both surgery and radiation therapy, but the order is not documented",
+      "definition": "Sequence unknown: the first course had both surgery and radiation therapy, but the order is not documented"
+    },
+    {
+      "code": "-6",
+      "display": "More than two primary-site or regional-node surgeries with radiation therapy in between, so the sequence cannot be determined",
+      "definition": "More than two primary-site or regional-node surgeries with radiation therapy in between, so the sequence cannot be determined"
+    },
+    {
+      "code": "-7",
+      "display": "Not comparable: nodal lymphoma, a haematologic malignancy, distant metastasis, or a first course including surgery and radiation aimed at different sites",
+      "definition": "Not comparable: nodal lymphoma, a haematologic malignancy, distant metastasis, or a first course including surgery and radiation aimed at different sites"
+    },
+    {
+      "code": "-8",
+      "display": "No surgery of the primary site or regional nodes (radiation therapy only, including radiation to a distant site)",
+      "definition": "No surgery of the primary site or regional nodes (radiation therapy only, including radiation to a distant site)"
+    },
+    {
+      "code": "-9",
+      "display": "Unknown whether the case had surgery and/or radiation therapy",
+      "definition": "Unknown whether the case had surgery and/or radiation therapy"
+    },
+    {
+      "code": "00",
+      "display": "No radiation therapy in the first course (with or without surgery)",
+      "definition": "No radiation therapy in the first course (with or without surgery)"
+    },
+    {
+      "code": "01",
+      "display": "Pre-operative radiation therapy",
+      "definition": "Pre-operative radiation therapy"
+    },
+    {
+      "code": "02",
+      "display": "Intra-operative radiation therapy (IORT)",
+      "definition": "Intra-operative radiation therapy (IORT)"
+    },
+    {
+      "code": "03",
+      "display": "Pre-operative radiation therapy + Intra-operative radiation therapy (IORT)",
+      "definition": "Pre-operative radiation therapy + Intra-operative radiation therapy (IORT)"
+    },
+    {
+      "code": "04",
+      "display": "Post-operative radiation therapy",
+      "definition": "Post-operative radiation therapy"
+    },
+    {
+      "code": "05",
+      "display": "Pre-operative radiation therapy + Post-operative radiation therapy",
+      "definition": "Pre-operative radiation therapy + Post-operative radiation therapy"
+    },
+    {
+      "code": "06",
+      "display": "Intra-operative radiation therapy (IORT) + Post-operative radiation therapy",
+      "definition": "Intra-operative radiation therapy (IORT) + Post-operative radiation therapy"
+    },
+    {
+      "code": "07",
+      "display": "Pre-operative radiation therapy + Intra-operative radiation therapy (IORT) + Post-operative radiation therapy",
+      "definition": "Pre-operative radiation therapy + Intra-operative radiation therapy (IORT) + Post-operative radiation therapy"
+    }
+  ]
+}

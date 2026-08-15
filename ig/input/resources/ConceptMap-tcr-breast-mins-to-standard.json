@@ -1,0 +1,88 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-mins-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-mins-to-standard",
+  "version": "4.0.1",
+  "name": "TCRMINSToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-mins-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-mins",
+      "element": [
+        {
+          "code": "0",
+          "display": "Open surgery only; no minimally invasive or robotic-assisted surgery",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "1",
+          "display": "Endoscopic surgery (entry through a natural body opening: e.g. gastroscopy, colonoscopy, bronchoscopy, hysteroscopy, colposcopy, cystoscopy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "2",
+          "display": "Thoracoscopic, laparoscopic, or a similar minimally invasive surgery (percutaneous entry, or a natural opening reopened, into a body cavity)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "3",
+          "display": "Robotic-assisted surgery",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "4",
+          "display": "Minimally invasive or robotic-assisted surgery combined with, or converted to, open surgery",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "8",
+          "display": "Not applicable: no primary-site surgery; primary-site surgery coded 100-190; prostate cancer primary-site surgery coded 210-270; primary-site surgery performed at another hospital; diagnosis year 2017 or earlier; or a haematopoietic/reticuloendothelial/immunoproliferative/myeloproliferative neoplasm",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "9",
+          "display": "Not documented",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

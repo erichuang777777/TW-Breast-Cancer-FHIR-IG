@@ -1,0 +1,148 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-seqrs-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-seqrs-to-standard",
+  "version": "4.0.1",
+  "name": "TCRSEQRSToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-seqrs-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-seqrs",
+      "element": [
+        {
+          "code": "-1",
+          "display": "Sequence unknown: the first course had both surgery and radiation therapy, but the order is not documented",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "-6",
+          "display": "More than two primary-site or regional-node surgeries with radiation therapy in between, so the sequence cannot be determined",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "-7",
+          "display": "Not comparable: nodal lymphoma, a haematologic malignancy, distant metastasis, or a first course including surgery and radiation aimed at different sites",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "-8",
+          "display": "No surgery of the primary site or regional nodes (radiation therapy only, including radiation to a distant site)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "-9",
+          "display": "Unknown whether the case had surgery and/or radiation therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "00",
+          "display": "No radiation therapy in the first course (with or without surgery)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "01",
+          "display": "Pre-operative radiation therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "02",
+          "display": "Intra-operative radiation therapy (IORT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "03",
+          "display": "Pre-operative radiation therapy + Intra-operative radiation therapy (IORT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "04",
+          "display": "Post-operative radiation therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "05",
+          "display": "Pre-operative radiation therapy + Post-operative radiation therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "06",
+          "display": "Intra-operative radiation therapy (IORT) + Post-operative radiation therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "07",
+          "display": "Pre-operative radiation therapy + Intra-operative radiation therapy (IORT) + Post-operative radiation therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

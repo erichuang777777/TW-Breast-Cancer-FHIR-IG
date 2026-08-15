@@ -1,0 +1,1318 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-rmod-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-rmod-to-standard",
+  "version": "4.0.1",
+  "name": "TCRRMODToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-rmod-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-rmod",
+      "element": [
+        {
+          "code": "-1",
+          "display": "Radiation therapy given, modality not specified",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "-9",
+          "display": "Unknown whether radiation therapy was given",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "000",
+          "display": "No radiation therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "001",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "002",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "003",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "004",
+          "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "005",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "006",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "007",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "008",
+          "display": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "009",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "010",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "011",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "012",
+          "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "013",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "014",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "015",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "016",
+          "display": "Proton therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "017",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "018",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "019",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "020",
+          "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "021",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "022",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "023",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "024",
+          "display": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "025",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "026",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "027",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "028",
+          "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "029",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "030",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "031",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "032",
+          "display": "Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "033",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "034",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "035",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "036",
+          "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "037",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "038",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "039",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "040",
+          "display": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "041",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "042",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "043",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "044",
+          "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "045",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "046",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "047",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "048",
+          "display": "Proton therapy + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "049",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "050",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "051",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "052",
+          "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "053",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "054",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "055",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "056",
+          "display": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "057",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "058",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "059",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "060",
+          "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "061",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "062",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "063",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "064",
+          "display": "Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "065",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "066",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "067",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "068",
+          "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "069",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "070",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "071",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "072",
+          "display": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "073",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "074",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "075",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "076",
+          "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "077",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "078",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "079",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "080",
+          "display": "Proton therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "081",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "082",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "083",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "084",
+          "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "085",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "086",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "087",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "088",
+          "display": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "089",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "090",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "091",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "092",
+          "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "093",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "094",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "095",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "096",
+          "display": "Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "097",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "098",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "099",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "100",
+          "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "101",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "102",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "103",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "104",
+          "display": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "105",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "106",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "107",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "108",
+          "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "109",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "110",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "111",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "112",
+          "display": "Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "113",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "114",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "115",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "116",
+          "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "117",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "118",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "119",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "120",
+          "display": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "121",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "122",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "123",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "124",
+          "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "125",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "126",
+          "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "127",
+          "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
