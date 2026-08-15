@@ -4,6 +4,15 @@
 
 QBC Task Preview 1.0 Mapping 工作簿：`outputs/qbc_ig_mapping/QBC_FHIR_Mapping_TaskSpec_v1.0-preview.1.xlsx`。其中 `Architecture` 說明乳癌共同層與 QBC Task 的關係，`Formal_Mapping_115` 是技術規格，`Approval_Register` 則保留正式／官方使用時的治理與驗收閘門。
 
+癌症診療計畫書 Task 的機器可讀來源契約與 PHI-free 欄位 catalog 位於 repository 的 `qbc_workbench/data/cancer_care_plan.schema.json` 及 `qbc_workbench/data/cancer_care_plan_field_catalog.json`；網站版請見「[診療計畫書欄位盤點](care-plan-field-inventory.html)」。
+
+TWPAS Task 的初版機器可讀對照位於：
+
+- `mappings/twpas/breast-common-to-twpas-1.2.5.csv`：乳癌 common facts 至官方 TWPAS target 的 projection design。
+- `mappings/twpas/twpas-task-only-fields-1.2.5.csv`：不得提升為 common facts 的當次申請欄位。
+
+兩份 CSV 均不是官方 TWPAS artifact，也不代表已通過正式送件；正式驗證仍須使用 `tw.gov.mohw.nhi.pas#1.2.5` 與健保署測試環境。
+
 建置後可從網站下載本 IG 的 FHIR package，或使用套件識別碼載入驗證工具。
 
 本草案 package ID：`io.github.erichuang777777.breast-cancer#1.0.0-preview.1`。

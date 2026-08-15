@@ -23,10 +23,14 @@
         ↓
 診療計畫／治療計畫／多專科討論／癌症登記／藥物申請
         ↓
-Task：QBC／P4P 癌症治療申報（目前第一個 Task）
+├─ Task：癌症診療計畫書（獨立 Task 草稿）
+├─ Task：QBC／P4P 癌症治療申報（第一個已驗證 Task）
+└─ Task：TWPAS 癌症用藥事前審查（官方 TWPAS 1.2.5 投影設計）
 ```
 
-目前因無法取得完整原始臨床資料，QBC Task 先以整理過的癌症診療計畫書作為 bridge input。未來可改由病理、檢驗、影像與其他原子資料產生診療計畫，或直接投影為申報資料；診療計畫與申報資料都不應被視為原始臨床事實的唯一來源。
+目標資料流是先把病理、檢驗、影像、病史及治療等原始資料轉成乳癌共用 FHIR facts，再由癌症診療計畫書、QBC／P4P、TWPAS、癌症登記等平行 Task 各自取用。Task 之間沒有上下游依賴；互相產生的功能只可用於 migration、reconciliation 與一致性檢查。TWPAS Task 另加入當次申請的品項、數量、用藥線別與給付適應症等 Task-only 資料，再輸出符合健保署官方規格的 Bundle。
+
+目前因無法取得完整原始臨床資料，整理過的癌症診療計畫書 JSON 暫時作為 secondary source，供兩個獨立 adapter 驗證 Mapping。這不代表 Cancer Care Plan Task 的輸出是 QBC Task 的輸入。
 
 ### 範圍
 
@@ -37,6 +41,8 @@ Task：QBC／P4P 癌症治療申報（目前第一個 Task）
 - 與 TW Core 1.0.0、mCODE 4.0.0 及 ICHOM Breast Cancer 1.0.0 的對齊與差異說明。
 - 來源可追溯、Provenance、FHIR Bundle、Big5 XML round-trip、驗證規則與人工審查登錄。
 - 可由 IG Publisher 驗證的完全合成端到端乳癌情境與 QBC Task Bundle。
+- 癌症診療計畫書 JSON 契約、223 個控制項的去識別化盤點、CarePlan／QuestionnaireResponse／Provenance／Task Bundle，以及平行 Task alignment check。
+- TWPAS 1.2.5 平行 Task 的版本隔離策略、common facts crosswalk 與事前審查 Task-only 欄位目錄；不複製或取代健保署官方 Profiles。
 - 後續擴充病理報告、檢驗報告、超音波報告、癌症登記、癌藥申請、治療計畫及多專科討論等 Task 的架構。
 
 目前不包含：
@@ -63,6 +69,7 @@ Task：QBC／P4P 癌症治療申報（目前第一個 Task）
 |---|---|
 | `ig/` | FSH、IG 頁面、設定及 Publisher 產物 |
 | `outputs/qbc_ig_mapping/` | QBC Mapping Table、正式化 CSV、簽核／審查登錄 |
+| `qbc_workbench/data/cancer_care_plan*` | 診療計畫 JSON Schema 與不含個案值的欄位 catalog |
 | `qbc_workbench/` | 匯入、驗證、FHIR 轉換、XML round-trip 與稽核工具 |
 | `scripts/` | Mapping、IG、發布與 PHI 檢查腳本 |
 | `tests/` | 自動化測試 |
@@ -86,6 +93,17 @@ Task：QBC／P4P 癌症治療申報（目前第一個 Task）
 
 # 單獨重建 Mapping Table
 python scripts\build_qbc_ig_mapping.py
+
+# 從受控來源重建不含 PHI 的診療計畫欄位 catalog
+python scripts\build_care_plan_catalog.py .\private\cases\<case>.case.json
+
+# 只產生 Cancer Care Plan Task Bundle
+python -m qbc_workbench.cli transform-care-plan .\private\cases\<case>.case.json `
+  --case <local-case-id> --output .\runtime\care-plan-output
+
+# 由同一測試來源獨立產生兩個 Task view，僅供一致性檢查
+python -m qbc_workbench.cli check-task-alignment .\private\cases\<case>.case.json `
+  --case <local-case-id> --output .\runtime\task-alignment
 
 # 單獨執行測試與 PHI 掃描
 python -m pytest -q
@@ -131,10 +149,14 @@ Shared breast cancer FHIR Profiles, ValueSets, and Extensions
         ↓
 care plans / treatment plans / tumor board / cancer registry / drug review
         ↓
-Task: QBC/P4P cancer care reporting (the first task currently implemented)
+├─ Task: cancer care plan (independent task draft)
+├─ Task: QBC/P4P reporting (the first validated task)
+└─ Task: TWPAS cancer drug prior authorization (official TWPAS 1.2.5 projection design)
 ```
 
-Because complete source clinical data is not currently available, the QBC task uses a curated cancer care plan as a bridge input. A future implementation may derive the care plan from atomic pathology, laboratory, imaging, and history data, or project those facts directly into reporting data. Neither the care plan nor the claim/report payload should replace the original clinical facts as the source of truth.
+The target flow converts atomic pathology, laboratory, imaging, history, and treatment sources into reusable breast-cancer FHIR facts first. The cancer-care-plan, QBC/P4P, TWPAS, registry, and future modules are parallel tasks that independently consume those facts. Task-to-task conversion is permitted only for migration, reconciliation, and consistency checks. The TWPAS task adds application-only data such as the requested item, quantity, line of therapy, and coverage indication before producing an official TWPAS-conformant Bundle.
+
+Because complete atomic sources are not yet available, the curated care-plan JSON is temporarily treated as a secondary source for two independent adapters. This does not make the Cancer Care Plan Task output an input to the QBC Task.
 
 ### Scope
 
@@ -145,6 +167,8 @@ Included now:
 - Alignment and gap documentation for TW Core 1.0.0, mCODE 4.0.0, and ICHOM Breast Cancer 1.0.0.
 - Source traceability, Provenance, FHIR Bundles, Big5 XML round-trip behavior, validation rules, and a human-review register.
 - Publisher-validated, fully synthetic end-to-end breast cancer and QBC task scenarios.
+- A cancer-care-plan JSON contract, PHI-free inventory of 223 controls, CarePlan/QuestionnaireResponse/Provenance/Task Bundle, and a parallel-task alignment check.
+- A TWPAS 1.2.5 parallel-task design with version isolation, a common-facts crosswalk, and a prior-authorization task-only field inventory; the official NHIA profiles are neither copied nor replaced.
 - An extensible architecture for pathology, laboratory, ultrasound, cancer registry, anticancer drug review, treatment planning, and multidisciplinary discussion tasks.
 
 Not included:
@@ -171,6 +195,7 @@ Not included:
 |---|---|
 | `ig/` | FSH, narrative pages, configuration, and Publisher output |
 | `outputs/qbc_ig_mapping/` | QBC Mapping Table, formal CSV, and approval/review register |
+| `qbc_workbench/data/cancer_care_plan*` | Care-plan JSON Schema and field catalog with no case values |
 | `qbc_workbench/` | Import, validation, FHIR transformation, XML round-trip, and audit tooling |
 | `scripts/` | Mapping, IG, release, and PHI-check scripts |
 | `tests/` | Automated tests |
@@ -194,6 +219,17 @@ Prerequisites: Python 3, Node.js/npm, SUSHI, Java, and the HL7 FHIR IG Publisher
 
 # Rebuild the mapping artifacts only
 python scripts\build_qbc_ig_mapping.py
+
+# Rebuild the PHI-free care-plan field catalog from a controlled source
+python scripts\build_care_plan_catalog.py .\private\cases\<case>.case.json
+
+# Produce only the Cancer Care Plan Task Bundle
+python -m qbc_workbench.cli transform-care-plan .\private\cases\<case>.case.json `
+  --case <local-case-id> --output .\runtime\care-plan-output
+
+# Independently build both task views from one test source for alignment checking only
+python -m qbc_workbench.cli check-task-alignment .\private\cases\<case>.case.json `
+  --case <local-case-id> --output .\runtime\task-alignment
 
 # Run tests and the PHI scan separately
 python -m pytest -q

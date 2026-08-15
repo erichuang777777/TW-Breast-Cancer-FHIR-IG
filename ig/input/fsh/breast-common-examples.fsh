@@ -142,7 +142,7 @@ Description: "Synthetic ultrasound report structure; a future source adapter may
 * performer.display = "Synthetic imaging service"
 
 Instance: BreastCancerSyntheticScenarioBundleExample
-InstanceOf: Bundle
+InstanceOf: BreastCancerCommonFactsBundle
 Usage: #example
 Title: "Completely Synthetic Breast Cancer Scenario Bundle"
 Description: "End-to-end synthetic scenario linking atomic source reports, reusable breast cancer facts, and treatment records. It represents no real person and is not for clinical decisions or official submission."

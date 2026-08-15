@@ -194,3 +194,16 @@ Description: "Reusable episode shell linking diagnosis, treatment and follow-up 
 * patient only Reference(BreastCancerPatient)
 * diagnosis.condition only Reference(BreastCancerPrimaryCondition)
 * period MS
+
+Profile: BreastCancerCommonFactsBundle
+Parent: Bundle
+Id: breast-cancer-common-facts-bundle
+Title: "Breast Cancer Common FHIR Facts Bundle - Community Draft"
+Description: "Task-neutral collection of reviewed breast-cancer source evidence and reusable clinical facts. Parallel task modules such as Cancer Care Plan and QBC consume this layer independently; no task artifact is the source of another task."
+* ^status = #draft
+* ^experimental = true
+* type = #collection (exactly)
+* timestamp 1..1 MS
+* entry 2..* MS
+* entry.fullUrl 1..1 MS
+* entry.resource 1..1 MS

@@ -1,0 +1,16 @@
+field_group,target_path,source_owner,common_fact,required_behavior,review_status
+application category,Claim.priority,TWPAS application workflow,no,"collect for each case using official ValueSet; do not infer",design
+submission subtype,Claim.subType,TWPAS application workflow,no,"collect for each submission or resubmission using official ValueSet",design
+provider,Claim.provider|Organization,TWPAS application workflow,no,"resolve the applying institution using registered identifiers",design
+department,Claim extension ClaimEncounter|Encounter,TWPAS application workflow,no,"collect applying encounter/service type",design
+applicant,Claim.enterer|Practitioner,TWPAS application workflow,no,"collect applying practitioner and official identifier",design
+application date,Claim.created,TWPAS application workflow,no,"record the actual application creation date",design
+previous acceptance number,Claim.identifier,TWPAS application workflow,no,"required only for the applicable resubmission scenario",design
+requested medication,MedicationRequest Apply.medicationCodeableConcept,TWPAS application workflow,no,"require official prior-authorization item coding",design
+requested quantity,Claim.item.quantity,TWPAS application workflow,no,"require value and official unit/package coding",design
+order type,Claim.item productOrService or applicable official slice,TWPAS application workflow,no,"apply official code and current profile path",pending-path-verification
+continuation status,Claim.item modifier or applicable official slice,TWPAS application workflow,no,"collect for initial versus continued use according to official rule",pending-path-verification
+line of therapy,Claim.item modifier or applicable official slice,TWPAS application workflow,no,"collect the requested treatment line; do not derive from narrative alone",pending-path-verification
+coverage indication,Claim.item.programCode,TWPAS application workflow,no,"require the official indication/condition code and validate item-specific constraints",design
+coverage,Coverage TWPAS,TWPAS application workflow,no,"create and reference official Coverage profile",design
+self assessment,ClaimResponse Self Assessment TWPAS,TWPAS application workflow,no,"include only for the official self-assessment scenario",design

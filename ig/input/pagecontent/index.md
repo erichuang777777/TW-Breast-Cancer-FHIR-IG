@@ -2,7 +2,7 @@
 
 {% include disclaimer.md %}
 
-本實作指引是一套以台灣情境為背景的乳癌 FHIR 社群草稿。它先定義跨業務流程可重用的乳癌共同資料層，再將特定申報或交換流程放入 Task 模組。目前第一個可執行的 Task 是「QBC／P4P 申報」。
+本實作指引是一套以台灣情境為背景的乳癌 FHIR 社群草稿。它先定義跨業務流程可重用的乳癌共同資料層，再將特定申報或交換流程放入平行 Task 模組。目前包含 QBC／P4P 與癌症診療計畫書原型，並新增 common facts 到官方 TWPAS 1.2.5 的投影設計。
 
 ## 版本與基礎
 
@@ -19,6 +19,7 @@
 1. **乳癌共同層**：提供 Patient、Primary Condition、Stage、Tumor Marker、Treatment、Medication 與 Episode of Care 的社群候選 Profiles。
 2. **Task 層**：定義每個業務流程自己的必填規則、交換方式、Mapping、驗證與範例。
 3. **QBC／P4P Task**：保存 115 欄來源規格、FHIR 對應、可逆轉換、業務規則及 XML／VPN 驗證邊界。
+4. **TWPAS Task**：將乳癌 common facts 與事前審查專屬申請資料組成官方 TWPAS Bundle；不重製官方 Profile。
 
 共同層不等於完整乳癌照護標準；QBC Task 也不代表整套乳癌 IG。實作者只能宣告其實際完成且通過驗證的 Profile 與 Task。
 
@@ -29,5 +30,6 @@
 3. 乳癌共用概念與 QBC 專用申報規則分開管理。
 4. 所有來源值均可追溯；資訊不足時不得推論 assay、分期版本或臨床語意。
 5. 正式 QBC XML 與健保 VPN 驗收仍以主管機關當期規範為準。
+6. 正式癌症用藥事前審查輸出以健保署當期 TWPAS package、ValueSet、Constraint 與驗收結果為準。
 
-從「[分層架構](architecture.html)」開始閱讀，再依需要進入「[乳癌共同資料模型](common-model.html)」或「[QBC／P4P Task](task-qbc.html)」。
+從「[分層架構](architecture.html)」開始閱讀，再依需要進入「[乳癌共同資料模型](common-model.html)」、「[QBC／P4P Task](task-qbc.html)」或「[TWPAS 癌藥事前審查 Task](task-twpas.html)」。

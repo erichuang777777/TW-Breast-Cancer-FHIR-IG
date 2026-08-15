@@ -13,6 +13,19 @@
 
 ## [未發布]
 
+### TWPAS 癌症用藥事前審查 Task
+
+- 將官方 TWPAS 1.2.5 納入乳癌 common facts 的平行 Task 架構，新增 Task 定位、TW Core 版本隔離策略、common-to-TWPAS crosswalk 與 Task-only 欄位目錄。
+- 明確規定本 IG 不複製或重新定義健保署官方 Profiles；只有經官方 package 獨立驗證的 Task output 才可宣告 TWPAS conformance。
+
+### 癌症診療計畫書 Task
+
+- 將癌症診療計畫書與 QBC 定義為平行 Task；兩者各自讀取乳癌 common FHIR facts，不互為 production input/output。
+- 新增目前院內 JSON 的機器可讀 Schema，以及 223 個唯一控制項的 PHI-free catalog：25 個 `shared`、195 個 `care-plan-only`、3 個 `derived`。
+- 新增 `CancerCarePlanTaskQuestionnaireResponse`、`CancerCarePlanTaskCarePlan`、`CancerCarePlanTaskProvenance`、`CancerCarePlanTaskBundle` Profiles 與完全合成 examples。
+- `transform-care-plan` CLI 只產生診療計畫 FHIR Bundle；另以 `check-task-alignment` 從同一測試來源獨立產生兩個 Task view，僅供 reconciliation／regression check。
+- 新增欄位 catalog 產生器、診療計畫 Task／欄位盤點頁面，以及空表單拒絕、FHIR id 長度、Provenance profile 與禁止 catalog 洩漏來源值的測試。
+
 ### 乳癌社群草稿上層與 QBC Task 分層
 
 - 新增完整乳癌合成情境 Bundle、中英雙語合成範例頁，以及強制每個公開 FSH example 標示為合成資料的回歸測試。
@@ -22,8 +35,8 @@
 - 新增分層架構、Scope、共同模型、外部規格對齊、Task 目錄與 QBC Task 頁面；TW Core 為結構 dependency，mCODE／ICHOM 僅作語意參考。
 - Mapping workbook 更新為 `QBC_FHIR_Mapping_TaskSpec_v1.0-preview.1.xlsx`，新增 `Architecture` 工作表並保留原有 115 欄及治理表。
 - 依資料來源成熟度再分成來源證據、乳癌 canonical facts、衍生文件／協作、Task 投影四層；新增抽象 source profiles，以及具體 `BreastCancerPathologyReport`、`BreastCancerLaboratoryReport`、`BreastCancerUltrasoundReport`、`BreastCancerPathologySpecimen`。影像 lineage 直接使用標準 FHIR `ImagingStudy`。
-- 明確記錄目前的 bridge flow（癌症診療計畫書 → QBC）及目標 flow（原始病理／檢驗／超音波／治療來源 → canonical facts → 計畫書或直接 QBC／癌藥申請／癌登／MDT）。
-- Mapping workbook 新增 `Data_Flow`，逐欄增加 current bridge input、target source evidence、canonical fact 及 projection role，禁止把衍生文件當成原始 source of truth。
+- 明確記錄唯一目標 flow（原始病理／檢驗／超音波／治療來源 → common FHIR facts → 平行的 Care Plan／QBC／癌藥申請／癌登／MDT）；診療計畫書 JSON 僅是過渡期 secondary source。
+- Mapping workbook 新增 `Data_Flow`，逐欄增加 current secondary source、target source evidence、canonical fact 及 projection role，禁止把衍生文件或其他 Task artifact 當成原始 source of truth。
 
 ### 人工審查範圍修正
 

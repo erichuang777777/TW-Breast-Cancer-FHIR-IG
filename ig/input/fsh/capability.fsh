@@ -36,3 +36,11 @@ Description: "Requirements-level capability statement listing the resource famil
 * rest.resource[=].supportedProfile[+] = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/breast-cancer-ultrasound-report"
 * rest.resource[+].type = #Specimen
 * rest.resource[=].supportedProfile = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/breast-cancer-pathology-specimen"
+* rest.resource[+].type = #CarePlan
+* rest.resource[=].supportedProfile = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/cancer-care-plan-task-care-plan"
+* rest.resource[+].type = #QuestionnaireResponse
+* rest.resource[=].supportedProfile = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/cancer-care-plan-task-questionnaire-response"
+* rest.resource[+].type = #Bundle
+* rest.resource[=].supportedProfile[+] = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/breast-cancer-common-facts-bundle"
+* rest.resource[=].supportedProfile[+] = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/cancer-care-plan-task-bundle"
+* rest.resource[=].supportedProfile[+] = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/qbc-submission-bundle"
