@@ -14,7 +14,7 @@
       "element": [
         {
           "code": "0",
-          "display": "No palliative care",
+          "display": "個案未接受緩和照護。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -24,7 +24,7 @@
         },
         {
           "code": "1",
-          "display": "Surgery to relieve symptoms only, not for diagnosis, staging or treatment (may include a bypass procedure)",
+          "display": "接受以減輕症狀為目的，而非為了診斷、分期或治療所進行之手術(可包括bypass 繞道手術)。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -34,7 +34,7 @@
         },
         {
           "code": "2",
-          "display": "Radiotherapy to relieve symptoms only",
+          "display": "僅接受以減輕症狀為目的，而非為了診斷、分期或治療所進行之放射治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -44,7 +44,7 @@
         },
         {
           "code": "3",
-          "display": "Regional or systemic drug therapy to relieve symptoms only",
+          "display": "僅接受以減輕症狀為目的，而非為了診斷、分期或治療所進行之局部藥物或全身性藥物治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -54,7 +54,7 @@
         },
         {
           "code": "4",
-          "display": "Pain management or referral for it, with no other palliative care",
+          "display": "僅接受或轉介疼痛治療，並未接受其他緩和照護。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -64,7 +64,7 @@
         },
         {
           "code": "5",
-          "display": "Two or more of codes 1, 2 and 3, without code 4",
+          "display": "編碼 1、2 及 3 任二項或二項以上但不包括 4。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -74,7 +74,7 @@
         },
         {
           "code": "6",
-          "display": "One or more of codes 1, 2 and 3, together with code 4",
+          "display": "編碼 1、2 及 3 任一項或一項以上且包括 4。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -84,7 +84,7 @@
         },
         {
           "code": "7",
-          "display": "Palliative care given or referred, but the record does not say what kind",
+          "display": "有接受或轉介緩和照護，但在病歷中未提及緩和照護的型式。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -94,7 +94,7 @@
         },
         {
           "code": "9",
-          "display": "Unknown whether palliative care was given or referred; not documented",
+          "display": "不確定是否曾接受或轉介緩和照護；病歷未記載。",
           "target": [
             {
               "equivalence": "unmatched",

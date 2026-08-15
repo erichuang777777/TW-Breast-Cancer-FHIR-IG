@@ -14,7 +14,7 @@
       "element": [
         {
           "code": "00",
-          "display": "No immunotherapy; not part of the first course, or the cancer was found only at autopsy",
+          "display": "未接受免疫治療，免疫治療非首次療程的一部份。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -24,7 +24,7 @@
         },
         {
           "code": "01",
-          "display": "Systemic immunotherapy drug",
+          "display": "接受全身性免疫藥物治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -34,7 +34,7 @@
         },
         {
           "code": "02",
-          "display": "Regional immunotherapy drug",
+          "display": "接受局部性免疫藥物治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -44,7 +44,7 @@
         },
         {
           "code": "03",
-          "display": "Systemic and regional immunotherapy drugs",
+          "display": "接受全身性與局部性免疫藥物治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -54,7 +54,7 @@
         },
         {
           "code": "04",
-          "display": "Cellular immunotherapy only",
+          "display": "僅接受免疫細胞治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -64,7 +64,7 @@
         },
         {
           "code": "05",
-          "display": "Cellular immunotherapy plus a systemic immunotherapy drug",
+          "display": "同時接受免疫細胞治療與全身性免疫藥物治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -74,7 +74,7 @@
         },
         {
           "code": "06",
-          "display": "Cellular immunotherapy plus a regional immunotherapy drug",
+          "display": "同時接受免疫細胞治療與局部性免疫藥物治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -84,7 +84,7 @@
         },
         {
           "code": "07",
-          "display": "Cellular immunotherapy plus systemic and regional immunotherapy drugs",
+          "display": "同時接受免疫細胞治療、全身性與局部性免疫藥物治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -94,7 +94,7 @@
         },
         {
           "code": "20",
-          "display": "Clinical-trial immunotherapy only",
+          "display": "僅接受臨床試驗免疫治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -104,7 +104,7 @@
         },
         {
           "code": "21",
-          "display": "Immunotherapy plus clinical-trial immunotherapy",
+          "display": "同時接受免疫治療及臨床試驗免疫治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -114,7 +114,7 @@
         },
         {
           "code": "22",
-          "display": "Cellular immunotherapy plus clinical-trial immunotherapy",
+          "display": "同時接受免疫細胞治療及臨床試驗免疫治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -124,7 +124,7 @@
         },
         {
           "code": "23",
-          "display": "Cellular immunotherapy with systemic and/or regional drugs, plus clinical-trial immunotherapy",
+          "display": "同時接受免疫細胞治療與全身性或/與局部性藥物治療及臨床試驗免疫治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -134,7 +134,7 @@
         },
         {
           "code": "30",
-          "display": "Double-blind-trial immunotherapy only",
+          "display": "僅接受雙盲試驗免疫治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -144,7 +144,7 @@
         },
         {
           "code": "31",
-          "display": "Immunotherapy plus double-blind-trial immunotherapy",
+          "display": "同時接受免疫治療及雙盲試驗免疫治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -154,7 +154,7 @@
         },
         {
           "code": "32",
-          "display": "Cellular immunotherapy plus double-blind-trial immunotherapy",
+          "display": "同時接受免疫細胞治療及雙盲試驗免疫治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -164,7 +164,7 @@
         },
         {
           "code": "33",
-          "display": "Cellular immunotherapy with systemic and/or regional drugs, plus double-blind-trial immunotherapy",
+          "display": "同時接受免疫細胞治療與全身性或/與局部性藥物治療及雙盲試驗免疫治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -174,7 +174,7 @@
         },
         {
           "code": "40",
-          "display": "Clinical-trial cellular immunotherapy only",
+          "display": "僅接受臨床試驗免疫細胞治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -184,7 +184,7 @@
         },
         {
           "code": "41",
-          "display": "Systemic and/or regional drugs plus clinical-trial cellular immunotherapy",
+          "display": "同時接受全身性或/與局部性藥物治療及臨床試驗免疫細胞治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -194,7 +194,7 @@
         },
         {
           "code": "99",
-          "display": "Not documented, so it is unknown whether immunotherapy was advised or given; or the cancer is known only from a death certificate",
+          "display": "由於病歷未記載，所以不知道是否免疫治療有被建議或是已經執行。",
           "target": [
             {
               "equivalence": "unmatched",

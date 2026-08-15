@@ -14,7 +14,7 @@
       "element": [
         {
           "code": "-1",
-          "display": "Radiation therapy given, target volume not specified (includes RT as an endocrine procedure)",
+          "display": "個案有接受放射治療，但放射範圍未明示；或放射治療是單純內分泌處置。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -24,7 +24,7 @@
         },
         {
           "code": "-9",
-          "display": "Unknown whether radiation therapy was given",
+          "display": "不知道個案是否有接受放射治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -34,7 +34,7 @@
         },
         {
           "code": "00",
-          "display": "No radiation therapy",
+          "display": "個案未接受放射治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -44,7 +44,7 @@
         },
         {
           "code": "01",
-          "display": "Primary tumour (T)",
+          "display": "原發腫瘤(T)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -54,7 +54,7 @@
         },
         {
           "code": "02",
-          "display": "Regional lymph nodes (N)",
+          "display": "區域淋巴結(N)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -64,7 +64,7 @@
         },
         {
           "code": "03",
-          "display": "Primary tumour (T) + Regional lymph nodes (N)",
+          "display": "原發腫瘤(T)＋區域淋巴結(N)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -74,7 +74,7 @@
         },
         {
           "code": "04",
-          "display": "Distant metastasis (M)",
+          "display": "遠端轉移(M)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -84,7 +84,7 @@
         },
         {
           "code": "05",
-          "display": "Primary tumour (T) + Distant metastasis (M)",
+          "display": "原發腫瘤(T)＋遠端轉移(M)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -94,7 +94,7 @@
         },
         {
           "code": "06",
-          "display": "Regional lymph nodes (N) + Distant metastasis (M)",
+          "display": "區域淋巴結(N)＋遠端轉移(M)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -104,7 +104,7 @@
         },
         {
           "code": "07",
-          "display": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M)",
+          "display": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -114,7 +114,7 @@
         },
         {
           "code": "08",
-          "display": "Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+          "display": "廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -124,7 +124,7 @@
         },
         {
           "code": "09",
-          "display": "Primary tumour (T) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+          "display": "原發腫瘤(T)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -134,7 +134,7 @@
         },
         {
           "code": "10",
-          "display": "Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+          "display": "區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -144,7 +144,7 @@
         },
         {
           "code": "11",
-          "display": "Primary tumour (T) + Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+          "display": "原發腫瘤(T)＋區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -154,7 +154,7 @@
         },
         {
           "code": "12",
-          "display": "Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+          "display": "遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -164,7 +164,7 @@
         },
         {
           "code": "13",
-          "display": "Primary tumour (T) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+          "display": "原發腫瘤(T)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -174,7 +174,7 @@
         },
         {
           "code": "14",
-          "display": "Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+          "display": "區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -184,7 +184,7 @@
         },
         {
           "code": "15",
-          "display": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+          "display": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -194,7 +194,7 @@
         },
         {
           "code": "16",
-          "display": "Total body / total bone marrow",
+          "display": "全身/全骨髓",
           "target": [
             {
               "equivalence": "unmatched",
@@ -204,7 +204,7 @@
         },
         {
           "code": "17",
-          "display": "Primary tumour (T) + Total body / total bone marrow",
+          "display": "原發腫瘤(T)＋全身/全骨髓",
           "target": [
             {
               "equivalence": "unmatched",
@@ -214,7 +214,7 @@
         },
         {
           "code": "18",
-          "display": "Regional lymph nodes (N) + Total body / total bone marrow",
+          "display": "區域淋巴結(N)＋全身/全骨髓",
           "target": [
             {
               "equivalence": "unmatched",
@@ -224,7 +224,7 @@
         },
         {
           "code": "19",
-          "display": "Primary tumour (T) + Regional lymph nodes (N) + Total body / total bone marrow",
+          "display": "原發腫瘤(T)＋區域淋巴結(N)＋全身/全骨髓",
           "target": [
             {
               "equivalence": "unmatched",
@@ -234,7 +234,7 @@
         },
         {
           "code": "20",
-          "display": "Distant metastasis (M) + Total body / total bone marrow",
+          "display": "遠端轉移(M)＋全身/全骨髓",
           "target": [
             {
               "equivalence": "unmatched",
@@ -244,7 +244,7 @@
         },
         {
           "code": "21",
-          "display": "Primary tumour (T) + Distant metastasis (M) + Total body / total bone marrow",
+          "display": "原發腫瘤(T)＋遠端轉移(M)＋全身/全骨髓",
           "target": [
             {
               "equivalence": "unmatched",
@@ -254,7 +254,7 @@
         },
         {
           "code": "22",
-          "display": "Regional lymph nodes (N) + Distant metastasis (M) + Total body / total bone marrow",
+          "display": "區域淋巴結(N)＋遠端轉移(M)＋全身/全骨髓",
           "target": [
             {
               "equivalence": "unmatched",
@@ -264,7 +264,7 @@
         },
         {
           "code": "23",
-          "display": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Total body / total bone marrow",
+          "display": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋全身/全骨髓",
           "target": [
             {
               "equivalence": "unmatched",
@@ -274,7 +274,7 @@
         },
         {
           "code": "24",
-          "display": "Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+          "display": "廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓",
           "target": [
             {
               "equivalence": "unmatched",
@@ -284,7 +284,7 @@
         },
         {
           "code": "25",
-          "display": "Primary tumour (T) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+          "display": "原發腫瘤(T)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓",
           "target": [
             {
               "equivalence": "unmatched",
@@ -294,7 +294,7 @@
         },
         {
           "code": "26",
-          "display": "Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+          "display": "區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓",
           "target": [
             {
               "equivalence": "unmatched",
@@ -304,7 +304,7 @@
         },
         {
           "code": "27",
-          "display": "Primary tumour (T) + Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+          "display": "原發腫瘤(T)＋區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓",
           "target": [
             {
               "equivalence": "unmatched",
@@ -314,7 +314,7 @@
         },
         {
           "code": "28",
-          "display": "Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+          "display": "遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓",
           "target": [
             {
               "equivalence": "unmatched",
@@ -324,7 +324,7 @@
         },
         {
           "code": "29",
-          "display": "Primary tumour (T) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+          "display": "原發腫瘤(T)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓",
           "target": [
             {
               "equivalence": "unmatched",
@@ -334,7 +334,7 @@
         },
         {
           "code": "30",
-          "display": "Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+          "display": "區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓",
           "target": [
             {
               "equivalence": "unmatched",
@@ -344,7 +344,7 @@
         },
         {
           "code": "31",
-          "display": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+          "display": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓",
           "target": [
             {
               "equivalence": "unmatched",
@@ -354,7 +354,7 @@
         },
         {
           "code": "32",
-          "display": "Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -364,7 +364,7 @@
         },
         {
           "code": "33",
-          "display": "Primary tumour (T) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "原發腫瘤(T)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -374,7 +374,7 @@
         },
         {
           "code": "34",
-          "display": "Regional lymph nodes (N) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "區域淋巴結(N)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -384,7 +384,7 @@
         },
         {
           "code": "35",
-          "display": "Primary tumour (T) + Regional lymph nodes (N) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "原發腫瘤(T)＋區域淋巴結(N)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -394,7 +394,7 @@
         },
         {
           "code": "36",
-          "display": "Distant metastasis (M) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "遠端轉移(M)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -404,7 +404,7 @@
         },
         {
           "code": "37",
-          "display": "Primary tumour (T) + Distant metastasis (M) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "原發腫瘤(T)＋遠端轉移(M)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -414,7 +414,7 @@
         },
         {
           "code": "38",
-          "display": "Regional lymph nodes (N) + Distant metastasis (M) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "區域淋巴結(N)＋遠端轉移(M)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -424,7 +424,7 @@
         },
         {
           "code": "39",
-          "display": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -434,7 +434,7 @@
         },
         {
           "code": "40",
-          "display": "Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -444,7 +444,7 @@
         },
         {
           "code": "41",
-          "display": "Primary tumour (T) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "原發腫瘤(T)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -454,7 +454,7 @@
         },
         {
           "code": "42",
-          "display": "Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -464,7 +464,7 @@
         },
         {
           "code": "43",
-          "display": "Primary tumour (T) + Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "原發腫瘤(T)＋區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -474,7 +474,7 @@
         },
         {
           "code": "44",
-          "display": "Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -484,7 +484,7 @@
         },
         {
           "code": "45",
-          "display": "Primary tumour (T) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "原發腫瘤(T)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -494,7 +494,7 @@
         },
         {
           "code": "46",
-          "display": "Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -504,7 +504,7 @@
         },
         {
           "code": "47",
-          "display": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -514,7 +514,7 @@
         },
         {
           "code": "48",
-          "display": "Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -524,7 +524,7 @@
         },
         {
           "code": "49",
-          "display": "Primary tumour (T) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "原發腫瘤(T)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -534,7 +534,7 @@
         },
         {
           "code": "50",
-          "display": "Regional lymph nodes (N) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "區域淋巴結(N)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -544,7 +544,7 @@
         },
         {
           "code": "51",
-          "display": "Primary tumour (T) + Regional lymph nodes (N) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "原發腫瘤(T)＋區域淋巴結(N)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -554,7 +554,7 @@
         },
         {
           "code": "52",
-          "display": "Distant metastasis (M) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "遠端轉移(M)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -564,7 +564,7 @@
         },
         {
           "code": "53",
-          "display": "Primary tumour (T) + Distant metastasis (M) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "原發腫瘤(T)＋遠端轉移(M)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -574,7 +574,7 @@
         },
         {
           "code": "54",
-          "display": "Regional lymph nodes (N) + Distant metastasis (M) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "區域淋巴結(N)＋遠端轉移(M)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -584,7 +584,7 @@
         },
         {
           "code": "55",
-          "display": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -594,7 +594,7 @@
         },
         {
           "code": "56",
-          "display": "Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -604,7 +604,7 @@
         },
         {
           "code": "57",
-          "display": "Primary tumour (T) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "原發腫瘤(T)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -614,7 +614,7 @@
         },
         {
           "code": "58",
-          "display": "Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -624,7 +624,7 @@
         },
         {
           "code": "59",
-          "display": "Primary tumour (T) + Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "原發腫瘤(T)＋區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -634,7 +634,7 @@
         },
         {
           "code": "60",
-          "display": "Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -644,7 +644,7 @@
         },
         {
           "code": "61",
-          "display": "Primary tumour (T) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "原發腫瘤(T)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -654,7 +654,7 @@
         },
         {
           "code": "62",
-          "display": "Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",
@@ -664,7 +664,7 @@
         },
         {
           "code": "63",
-          "display": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+          "display": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
           "target": [
             {
               "equivalence": "unmatched",

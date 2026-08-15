@@ -14,7 +14,7 @@
       "element": [
         {
           "code": "00",
-          "display": "No chemotherapy; not part of the first course, or the cancer was found only at autopsy",
+          "display": "未接受化學治療，化學治療非首次療程的一部份。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -24,7 +24,7 @@
         },
         {
           "code": "01",
-          "display": "Systemic chemotherapy",
+          "display": "接受全身性化學治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -34,7 +34,7 @@
         },
         {
           "code": "02",
-          "display": "Systemic chemotherapy, single agent (diagnosis year 2017 or earlier)",
+          "display": "接受全身性化學治療，且只有一種化學藥物(僅適用於2017(含)診斷年之前的個案)。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -44,7 +44,7 @@
         },
         {
           "code": "03",
-          "display": "Systemic chemotherapy, more than one agent (diagnosis year 2017 or earlier)",
+          "display": "接受全身性化學治療，且超過一種以上的化學藥物(僅適用於2017(含)診斷年之前的個案)。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -54,7 +54,7 @@
         },
         {
           "code": "04",
-          "display": "Transarterial chemoembolisation (TACE) of the primary site only",
+          "display": "個案原發部位僅接受局部動脈栓塞化學治療(TACE)。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -64,7 +64,7 @@
         },
         {
           "code": "05",
-          "display": "TACE of the primary site plus systemic chemotherapy",
+          "display": "個案原發部位接受局部動脈栓塞化學(TACE)及全身性化學治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -74,7 +74,7 @@
         },
         {
           "code": "06",
-          "display": "TACE of the primary site plus other regional chemotherapy",
+          "display": "個案原發部位接受局部動脈栓塞化學(TACE)及其他局部性化學治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -84,7 +84,7 @@
         },
         {
           "code": "07",
-          "display": "TACE of the primary site plus other regional and systemic chemotherapy",
+          "display": "個案原發部位接受局部動脈栓塞化學(TACE)、其他局部性及全身性化學治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -94,7 +94,7 @@
         },
         {
           "code": "08",
-          "display": "Regional chemotherapy only, excluding TACE (intrapleural, intrapericardial, intraperitoneal, intravesical, intrathecal, or another regional route such as a BCNU wafer implant)",
+          "display": "個案僅接受局部性化學治療(不包含TACE)。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -104,7 +104,7 @@
         },
         {
           "code": "09",
-          "display": "Systemic and regional chemotherapy, excluding TACE",
+          "display": "個案同時接受全身性及局部性化學治療(不包含TACE)。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -114,7 +114,7 @@
         },
         {
           "code": "10",
-          "display": "TACE for liver metastases",
+          "display": "肝轉移個案接受局部動脈栓塞化學治療(TACE)。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -124,7 +124,7 @@
         },
         {
           "code": "11",
-          "display": "TACE for liver metastases plus systemic chemotherapy",
+          "display": "肝轉移個案接受局部動脈栓塞化學(TACE)及全身性化學治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -134,7 +134,7 @@
         },
         {
           "code": "12",
-          "display": "TACE for liver metastases plus other regional chemotherapy",
+          "display": "肝轉移個案接受局部動脈栓塞化學治療(TACE)及其他局部性化學治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -144,7 +144,7 @@
         },
         {
           "code": "13",
-          "display": "TACE for liver metastases plus other regional and systemic chemotherapy",
+          "display": "肝轉移個案接受局部動脈栓塞化學治療(TACE)、其他局部性及全身性化學治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -154,7 +154,7 @@
         },
         {
           "code": "20",
-          "display": "Clinical-trial chemotherapy only",
+          "display": "僅接受臨床試驗化學治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -164,7 +164,7 @@
         },
         {
           "code": "21",
-          "display": "Chemotherapy plus clinical-trial chemotherapy",
+          "display": "同時接受化學治療及臨床試驗化學治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -174,7 +174,7 @@
         },
         {
           "code": "30",
-          "display": "Double-blind-trial chemotherapy only",
+          "display": "僅接受雙盲試驗化學治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -184,7 +184,7 @@
         },
         {
           "code": "31",
-          "display": "Chemotherapy plus double-blind-trial chemotherapy",
+          "display": "同時接受化學治療及雙盲試驗化學治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -194,7 +194,7 @@
         },
         {
           "code": "81",
-          "display": "Chemotherapy was the planned first course but was not advised or given because of a genetic test result",
+          "display": "化學治療是既定之首次療程，但因基因檢測結果而未建議或給予。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -204,7 +204,7 @@
         },
         {
           "code": "82",
-          "display": "Chemotherapy not advised or given because of a contraindication or another patient risk factor (comorbidity, advanced age)",
+          "display": "化學治療因禁忌症或個案其他危險因素(併發症、年邁)而未建議或給予。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -214,7 +214,7 @@
         },
         {
           "code": "83",
-          "display": "Chemotherapy not advised or given because the disease progressed",
+          "display": "化學治療因疾病進展而未建議或給予。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -224,7 +224,7 @@
         },
         {
           "code": "85",
-          "display": "Chemotherapy was part of the planned first course, but the patient died or was discharged critically ill before it started",
+          "display": "化學治療是既定之首次療程計畫中的一部分，但因個案未接受治療前即死亡或病危出院。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -234,7 +234,7 @@
         },
         {
           "code": "86",
-          "display": "Chemotherapy was part of the planned first course and was not given, with no reason recorded; or it was given at another hospital",
+          "display": "化學治療雖然是既定之首次療程計畫中的一部分，未執行且病歷也未記載未執行的原因；或於他院執行化學治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -244,7 +244,7 @@
         },
         {
           "code": "87",
-          "display": "Chemotherapy was part of the planned first course but the patient or family refused it",
+          "display": "化學治療雖然是既定之首次療程計畫中的一部分，但未執行，且病歷記載個案或其家屬拒絕此項治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -254,7 +254,7 @@
         },
         {
           "code": "88",
-          "display": "Chemotherapy was part of the planned first course but had not started when the case was abstracted",
+          "display": "化學治療雖然是既定之首次療程計畫中的一部分，但摘錄時尚未執行。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -264,7 +264,7 @@
         },
         {
           "code": "99",
-          "display": "Not documented, so it is unknown whether chemotherapy was advised or given; or the cancer is known only from a death certificate",
+          "display": "由於病歷未記載，所以不知道是否化學治療有被建議或是已經執行。",
           "target": [
             {
               "equivalence": "unmatched",

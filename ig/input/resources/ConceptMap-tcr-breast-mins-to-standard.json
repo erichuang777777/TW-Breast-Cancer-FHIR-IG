@@ -14,7 +14,7 @@
       "element": [
         {
           "code": "0",
-          "display": "Open surgery only; no minimally invasive or robotic-assisted surgery",
+          "display": "僅接受開放性手術(open surgery)，未接受微創或機械臂輔助手術。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -24,7 +24,7 @@
         },
         {
           "code": "1",
-          "display": "Endoscopic surgery (entry through a natural body opening: e.g. gastroscopy, colonoscopy, bronchoscopy, hysteroscopy, colposcopy, cystoscopy)",
+          "display": "有接受內視鏡手術。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -34,7 +34,7 @@
         },
         {
           "code": "2",
-          "display": "Thoracoscopic, laparoscopic, or a similar minimally invasive surgery (percutaneous entry, or a natural opening reopened, into a body cavity)",
+          "display": "有接受胸腔鏡或腹腔鏡手術，或類似手術。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -44,7 +44,7 @@
         },
         {
           "code": "3",
-          "display": "Robotic-assisted surgery",
+          "display": "有接受機械臂輔助手術(Robotic Surgery)。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -54,7 +54,7 @@
         },
         {
           "code": "4",
-          "display": "Minimally invasive or robotic-assisted surgery combined with, or converted to, open surgery",
+          "display": "有接受微創手術或機械臂輔助手術，合併或轉換開放性手術。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -64,7 +64,7 @@
         },
         {
           "code": "8",
-          "display": "Not applicable: no primary-site surgery; primary-site surgery coded 100-190; prostate cancer primary-site surgery coded 210-270; primary-site surgery performed at another hospital; diagnosis year 2017 or earlier; or a haematopoietic/reticuloendothelial/immunoproliferative/myeloproliferative neoplasm",
+          "display": "不適用(原發部位未接受手術；手術方式編碼100-190；攝護腺癌手術方式編碼210-270；於外院接受原發部位手術；2017年(含)之前診斷；或造血/網狀內皮/免疫增生/骨髓增生疾病)。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -74,7 +74,7 @@
         },
         {
           "code": "9",
-          "display": "Not documented",
+          "display": "不詳。",
           "target": [
             {
               "equivalence": "unmatched",

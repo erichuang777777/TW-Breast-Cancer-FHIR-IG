@@ -15,98 +15,212 @@
   "concept": [
     {
       "code": "00",
-      "display": "No chemotherapy; not part of the first course, or the cancer was found only at autopsy",
-      "definition": "No chemotherapy; not part of the first course, or the cancer was found only at autopsy"
+      "display": "未接受化學治療，化學治療非首次療程的一部份。",
+      "definition": "未接受化學治療，化學治療非首次療程的一部份。 / No chemotherapy; not part of the first course, or the cancer was found only at autopsy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No chemotherapy; not part of the first course, or the cancer was found only at autopsy"
+        }
+      ]
     },
     {
       "code": "01",
-      "display": "Systemic chemotherapy",
-      "definition": "Systemic chemotherapy"
+      "display": "接受全身性化學治療。",
+      "definition": "接受全身性化學治療。 / Systemic chemotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Systemic chemotherapy"
+        }
+      ]
     },
     {
       "code": "02",
-      "display": "Systemic chemotherapy, single agent (diagnosis year 2017 or earlier)",
-      "definition": "Systemic chemotherapy, single agent (diagnosis year 2017 or earlier)"
+      "display": "接受全身性化學治療，且只有一種化學藥物(僅適用於2017(含)診斷年之前的個案)。",
+      "definition": "接受全身性化學治療，且只有一種化學藥物(僅適用於2017(含)診斷年之前的個案)。 / Systemic chemotherapy, single agent (diagnosis year 2017 or earlier)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Systemic chemotherapy, single agent (diagnosis year 2017 or earlier)"
+        }
+      ]
     },
     {
       "code": "03",
-      "display": "Systemic chemotherapy, more than one agent (diagnosis year 2017 or earlier)",
-      "definition": "Systemic chemotherapy, more than one agent (diagnosis year 2017 or earlier)"
+      "display": "接受全身性化學治療，且超過一種以上的化學藥物(僅適用於2017(含)診斷年之前的個案)。",
+      "definition": "接受全身性化學治療，且超過一種以上的化學藥物(僅適用於2017(含)診斷年之前的個案)。 / Systemic chemotherapy, more than one agent (diagnosis year 2017 or earlier)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Systemic chemotherapy, more than one agent (diagnosis year 2017 or earlier)"
+        }
+      ]
     },
     {
       "code": "04",
-      "display": "Transarterial chemoembolisation (TACE) of the primary site only",
-      "definition": "Transarterial chemoembolisation (TACE) of the primary site only"
+      "display": "個案原發部位僅接受局部動脈栓塞化學治療(TACE)。",
+      "definition": "個案原發部位僅接受局部動脈栓塞化學治療(TACE)。 / Transarterial chemoembolisation (TACE) of the primary site only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Transarterial chemoembolisation (TACE) of the primary site only"
+        }
+      ]
     },
     {
       "code": "05",
-      "display": "TACE of the primary site plus systemic chemotherapy",
-      "definition": "TACE of the primary site plus systemic chemotherapy"
+      "display": "個案原發部位接受局部動脈栓塞化學(TACE)及全身性化學治療。",
+      "definition": "個案原發部位接受局部動脈栓塞化學(TACE)及全身性化學治療。 / TACE of the primary site plus systemic chemotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "TACE of the primary site plus systemic chemotherapy"
+        }
+      ]
     },
     {
       "code": "06",
-      "display": "TACE of the primary site plus other regional chemotherapy",
-      "definition": "TACE of the primary site plus other regional chemotherapy"
+      "display": "個案原發部位接受局部動脈栓塞化學(TACE)及其他局部性化學治療。",
+      "definition": "個案原發部位接受局部動脈栓塞化學(TACE)及其他局部性化學治療。 / TACE of the primary site plus other regional chemotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "TACE of the primary site plus other regional chemotherapy"
+        }
+      ]
     },
     {
       "code": "07",
-      "display": "TACE of the primary site plus other regional and systemic chemotherapy",
-      "definition": "TACE of the primary site plus other regional and systemic chemotherapy"
+      "display": "個案原發部位接受局部動脈栓塞化學(TACE)、其他局部性及全身性化學治療。",
+      "definition": "個案原發部位接受局部動脈栓塞化學(TACE)、其他局部性及全身性化學治療。 / TACE of the primary site plus other regional and systemic chemotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "TACE of the primary site plus other regional and systemic chemotherapy"
+        }
+      ]
     },
     {
       "code": "08",
-      "display": "Regional chemotherapy only, excluding TACE (intrapleural, intrapericardial, intraperitoneal, intravesical, intrathecal, or another regional route such as a BCNU wafer implant)",
-      "definition": "Regional chemotherapy only, excluding TACE (intrapleural, intrapericardial, intraperitoneal, intravesical, intrathecal, or another regional route such as a BCNU wafer implant)"
+      "display": "個案僅接受局部性化學治療(不包含TACE)。",
+      "definition": "個案僅接受局部性化學治療(不包含TACE)。 / Regional chemotherapy only, excluding TACE (intrapleural, intrapericardial, intraperitoneal, intravesical, intrathecal, or another regional route such as a BCNU wafer implant)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional chemotherapy only, excluding TACE (intrapleural, intrapericardial, intraperitoneal, intravesical, intrathecal, or another regional route such as a BCNU wafer implant)"
+        }
+      ]
     },
     {
       "code": "09",
-      "display": "Systemic and regional chemotherapy, excluding TACE",
-      "definition": "Systemic and regional chemotherapy, excluding TACE"
+      "display": "個案同時接受全身性及局部性化學治療(不包含TACE)。",
+      "definition": "個案同時接受全身性及局部性化學治療(不包含TACE)。 / Systemic and regional chemotherapy, excluding TACE",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Systemic and regional chemotherapy, excluding TACE"
+        }
+      ]
     },
     {
       "code": "10",
-      "display": "TACE for liver metastases",
-      "definition": "TACE for liver metastases"
+      "display": "肝轉移個案接受局部動脈栓塞化學治療(TACE)。",
+      "definition": "肝轉移個案接受局部動脈栓塞化學治療(TACE)。 / TACE for liver metastases",
+      "designation": [
+        {
+          "language": "en",
+          "value": "TACE for liver metastases"
+        }
+      ]
     },
     {
       "code": "11",
-      "display": "TACE for liver metastases plus systemic chemotherapy",
-      "definition": "TACE for liver metastases plus systemic chemotherapy"
+      "display": "肝轉移個案接受局部動脈栓塞化學(TACE)及全身性化學治療。",
+      "definition": "肝轉移個案接受局部動脈栓塞化學(TACE)及全身性化學治療。 / TACE for liver metastases plus systemic chemotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "TACE for liver metastases plus systemic chemotherapy"
+        }
+      ]
     },
     {
       "code": "12",
-      "display": "TACE for liver metastases plus other regional chemotherapy",
-      "definition": "TACE for liver metastases plus other regional chemotherapy"
+      "display": "肝轉移個案接受局部動脈栓塞化學治療(TACE)及其他局部性化學治療。",
+      "definition": "肝轉移個案接受局部動脈栓塞化學治療(TACE)及其他局部性化學治療。 / TACE for liver metastases plus other regional chemotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "TACE for liver metastases plus other regional chemotherapy"
+        }
+      ]
     },
     {
       "code": "13",
-      "display": "TACE for liver metastases plus other regional and systemic chemotherapy",
-      "definition": "TACE for liver metastases plus other regional and systemic chemotherapy"
+      "display": "肝轉移個案接受局部動脈栓塞化學治療(TACE)、其他局部性及全身性化學治療。",
+      "definition": "肝轉移個案接受局部動脈栓塞化學治療(TACE)、其他局部性及全身性化學治療。 / TACE for liver metastases plus other regional and systemic chemotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "TACE for liver metastases plus other regional and systemic chemotherapy"
+        }
+      ]
     },
     {
       "code": "20",
-      "display": "Clinical-trial chemotherapy only",
-      "definition": "Clinical-trial chemotherapy only"
+      "display": "僅接受臨床試驗化學治療。",
+      "definition": "僅接受臨床試驗化學治療。 / Clinical-trial chemotherapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Clinical-trial chemotherapy only"
+        }
+      ]
     },
     {
       "code": "21",
-      "display": "Chemotherapy plus clinical-trial chemotherapy",
-      "definition": "Chemotherapy plus clinical-trial chemotherapy"
+      "display": "同時接受化學治療及臨床試驗化學治療。",
+      "definition": "同時接受化學治療及臨床試驗化學治療。 / Chemotherapy plus clinical-trial chemotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Chemotherapy plus clinical-trial chemotherapy"
+        }
+      ]
     },
     {
       "code": "30",
-      "display": "Double-blind-trial chemotherapy only",
-      "definition": "Double-blind-trial chemotherapy only"
+      "display": "僅接受雙盲試驗化學治療。",
+      "definition": "僅接受雙盲試驗化學治療。 / Double-blind-trial chemotherapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Double-blind-trial chemotherapy only"
+        }
+      ]
     },
     {
       "code": "31",
-      "display": "Chemotherapy plus double-blind-trial chemotherapy",
-      "definition": "Chemotherapy plus double-blind-trial chemotherapy"
+      "display": "同時接受化學治療及雙盲試驗化學治療。",
+      "definition": "同時接受化學治療及雙盲試驗化學治療。 / Chemotherapy plus double-blind-trial chemotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Chemotherapy plus double-blind-trial chemotherapy"
+        }
+      ]
     },
     {
       "code": "99",
-      "display": "Not documented, so it is unknown whether chemotherapy was advised or given; or the cancer is known only from a death certificate",
-      "definition": "Not documented, so it is unknown whether chemotherapy was advised or given; or the cancer is known only from a death certificate"
+      "display": "由於病歷未記載，所以不知道是否化學治療有被建議或是已經執行。",
+      "definition": "由於病歷未記載，所以不知道是否化學治療有被建議或是已經執行。 / Not documented, so it is unknown whether chemotherapy was advised or given; or the cancer is known only from a death certificate",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not documented, so it is unknown whether chemotherapy was advised or given; or the cancer is known only from a death certificate"
+        }
+      ]
     }
   ]
 }

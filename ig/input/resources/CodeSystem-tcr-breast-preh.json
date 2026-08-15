@@ -15,48 +15,102 @@
   "concept": [
     {
       "code": "00",
-      "display": "No hormone/steroid therapy; not part of the first course, or the cancer was found only at autopsy",
-      "definition": "No hormone/steroid therapy; not part of the first course, or the cancer was found only at autopsy"
+      "display": "未接受荷爾蒙/類固醇治療，荷爾蒙/類固醇治療非首次療程的一部份。",
+      "definition": "未接受荷爾蒙/類固醇治療，荷爾蒙/類固醇治療非首次療程的一部份。 / No hormone/steroid therapy; not part of the first course, or the cancer was found only at autopsy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No hormone/steroid therapy; not part of the first course, or the cancer was found only at autopsy"
+        }
+      ]
     },
     {
       "code": "01",
-      "display": "Systemic hormone/steroid therapy in the first course (for a haematolymphoid malignancy, systemic steroids from the date of diagnosis, with or without chemotherapy)",
-      "definition": "Systemic hormone/steroid therapy in the first course (for a haematolymphoid malignancy, systemic steroids from the date of diagnosis, with or without chemotherapy)"
+      "display": "在首次療程中有接受全身性荷爾蒙/類固醇治療。",
+      "definition": "在首次療程中有接受全身性荷爾蒙/類固醇治療。 / Systemic hormone/steroid therapy in the first course (for a haematolymphoid malignancy, systemic steroids from the date of diagnosis, with or without chemotherapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Systemic hormone/steroid therapy in the first course (for a haematolymphoid malignancy, systemic steroids from the date of diagnosis, with or without chemotherapy)"
+        }
+      ]
     },
     {
       "code": "02",
-      "display": "Regional hormone/steroid therapy (for a haematolymphoid malignancy, regional steroids from the date of diagnosis, with or without chemotherapy)",
-      "definition": "Regional hormone/steroid therapy (for a haematolymphoid malignancy, regional steroids from the date of diagnosis, with or without chemotherapy)"
+      "display": "接受局部性荷爾蒙/類固醇治療。",
+      "definition": "接受局部性荷爾蒙/類固醇治療。 / Regional hormone/steroid therapy (for a haematolymphoid malignancy, regional steroids from the date of diagnosis, with or without chemotherapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional hormone/steroid therapy (for a haematolymphoid malignancy, regional steroids from the date of diagnosis, with or without chemotherapy)"
+        }
+      ]
     },
     {
       "code": "03",
-      "display": "Systemic and regional hormone/steroid therapy",
-      "definition": "Systemic and regional hormone/steroid therapy"
+      "display": "接受全身性與局部性荷爾蒙/類固醇治療。",
+      "definition": "接受全身性與局部性荷爾蒙/類固醇治療。 / Systemic and regional hormone/steroid therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Systemic and regional hormone/steroid therapy"
+        }
+      ]
     },
     {
       "code": "20",
-      "display": "Clinical-trial hormone/steroid therapy only",
-      "definition": "Clinical-trial hormone/steroid therapy only"
+      "display": "僅接受臨床試驗荷爾蒙/類固醇治療。",
+      "definition": "僅接受臨床試驗荷爾蒙/類固醇治療。 / Clinical-trial hormone/steroid therapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Clinical-trial hormone/steroid therapy only"
+        }
+      ]
     },
     {
       "code": "21",
-      "display": "Hormone/steroid therapy plus clinical-trial hormone/steroid therapy",
-      "definition": "Hormone/steroid therapy plus clinical-trial hormone/steroid therapy"
+      "display": "同時接受荷爾蒙/類固醇治療及臨床試驗荷爾蒙/類固醇治療。",
+      "definition": "同時接受荷爾蒙/類固醇治療及臨床試驗荷爾蒙/類固醇治療。 / Hormone/steroid therapy plus clinical-trial hormone/steroid therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Hormone/steroid therapy plus clinical-trial hormone/steroid therapy"
+        }
+      ]
     },
     {
       "code": "30",
-      "display": "Double-blind-trial hormone/steroid therapy only",
-      "definition": "Double-blind-trial hormone/steroid therapy only"
+      "display": "僅接受雙盲試驗荷爾蒙/類固醇治療。",
+      "definition": "僅接受雙盲試驗荷爾蒙/類固醇治療。 / Double-blind-trial hormone/steroid therapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Double-blind-trial hormone/steroid therapy only"
+        }
+      ]
     },
     {
       "code": "31",
-      "display": "Hormone/steroid therapy plus double-blind-trial hormone/steroid therapy",
-      "definition": "Hormone/steroid therapy plus double-blind-trial hormone/steroid therapy"
+      "display": "同時接受荷爾蒙/類固醇治療及雙盲試驗荷爾蒙/類固醇治療。",
+      "definition": "同時接受荷爾蒙/類固醇治療及雙盲試驗荷爾蒙/類固醇治療。 / Hormone/steroid therapy plus double-blind-trial hormone/steroid therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Hormone/steroid therapy plus double-blind-trial hormone/steroid therapy"
+        }
+      ]
     },
     {
       "code": "99",
-      "display": "Not documented, so it is unknown whether hormone/steroid therapy was advised or given; or the cancer is known only from a death certificate",
-      "definition": "Not documented, so it is unknown whether hormone/steroid therapy was advised or given; or the cancer is known only from a death certificate"
+      "display": "由於病歷未記載，所以不知道是否荷爾蒙/類固醇治療有被建議或是已經執行。",
+      "definition": "由於病歷未記載，所以不知道是否荷爾蒙/類固醇治療有被建議或是已經執行。 / Not documented, so it is unknown whether hormone/steroid therapy was advised or given; or the cancer is known only from a death certificate",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not documented, so it is unknown whether hormone/steroid therapy was advised or given; or the cancer is known only from a death certificate"
+        }
+      ]
     }
   ]
 }

@@ -14,7 +14,7 @@
       "element": [
         {
           "code": "00",
-          "display": "No targeted therapy; not part of the first course, or the cancer was found only at autopsy",
+          "display": "未接受標靶治療，標靶治療非首次療程的一部份。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -24,7 +24,7 @@
         },
         {
           "code": "01",
-          "display": "Targeted therapy given in the first course",
+          "display": "在首次療程中有接受標靶治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -34,7 +34,7 @@
         },
         {
           "code": "20",
-          "display": "Clinical-trial targeted therapy only",
+          "display": "僅接受臨床試驗標靶治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -44,7 +44,7 @@
         },
         {
           "code": "21",
-          "display": "Targeted therapy plus clinical-trial targeted therapy",
+          "display": "同時接受標靶治療及臨床試驗標靶治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -54,7 +54,7 @@
         },
         {
           "code": "30",
-          "display": "Double-blind-trial targeted therapy only",
+          "display": "僅接受雙盲試驗標靶治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -64,7 +64,7 @@
         },
         {
           "code": "31",
-          "display": "Targeted therapy plus double-blind-trial targeted therapy",
+          "display": "同時接受標靶治療及雙盲試驗標靶治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -74,7 +74,7 @@
         },
         {
           "code": "82",
-          "display": "Targeted therapy not advised or given because of a contraindication or another patient risk factor (comorbidity, advanced age)",
+          "display": "標靶治療因禁忌症或個案其他危險因素(併發症、年邁)而未建議或給予。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -84,7 +84,7 @@
         },
         {
           "code": "83",
-          "display": "Targeted therapy not advised or given because the disease progressed",
+          "display": "標靶治療因疾病進展而未建議或給予。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -94,7 +94,7 @@
         },
         {
           "code": "85",
-          "display": "Targeted therapy was part of the planned first course, but the patient died or was discharged critically ill before it started",
+          "display": "標靶治療是既定之首次療程計畫中的一部分，但因個案未接受治療前即死亡或病危出院。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -104,7 +104,7 @@
         },
         {
           "code": "86",
-          "display": "Targeted therapy was part of the planned first course and was not given, with no reason recorded; or it was given at another hospital",
+          "display": "標靶治療雖然是既定之首次療程計畫中的一部分，未執行且病歷也未記載未執行的原因；或於他院執行標靶治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -114,7 +114,7 @@
         },
         {
           "code": "87",
-          "display": "Targeted therapy was part of the planned first course but the patient or family refused it",
+          "display": "標靶治療雖然是既定之首次療程計畫中的一部分，但未執行，且病歷記載個案或其家屬拒絕此項治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -124,7 +124,7 @@
         },
         {
           "code": "88",
-          "display": "Targeted therapy was part of the planned first course but had not started when the case was abstracted",
+          "display": "標靶治療雖然是既定之首次療程計畫中的一部分，但摘錄時尚未執行。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -134,7 +134,7 @@
         },
         {
           "code": "99",
-          "display": "Not documented, so it is unknown whether targeted therapy was advised or given; or the cancer is known only from a death certificate",
+          "display": "由於病歷未記載，所以不知道是否標靶治療有被建議或是已經執行。",
           "target": [
             {
               "equivalence": "unmatched",

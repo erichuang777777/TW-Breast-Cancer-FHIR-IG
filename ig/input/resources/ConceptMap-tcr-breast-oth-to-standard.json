@@ -14,7 +14,7 @@
       "element": [
         {
           "code": "00",
-          "display": "No other treatment; other treatment was not part of the first course",
+          "display": "未接受其他治療，其他治療非首次療程的一部份。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -24,7 +24,7 @@
         },
         {
           "code": "01",
-          "display": "Other treatment in the first course at the reporting hospital",
+          "display": "在申報醫院的首次療程中接受其他治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -34,7 +34,7 @@
         },
         {
           "code": "02",
-          "display": "Other treatment in the first course at another hospital",
+          "display": "在外院的首次療程中接受其他治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -44,7 +44,7 @@
         },
         {
           "code": "03",
-          "display": "Other treatment in the first course at both the reporting hospital and another hospital",
+          "display": "個案在申報醫院及外院的首次療程中接受其他治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -54,7 +54,7 @@
         },
         {
           "code": "99",
-          "display": "Not documented, so it is unknown whether other treatment was advised or given",
+          "display": "由於病歷未記載，所以不知道其他治療是否有被建議或是已經執行。",
           "target": [
             {
               "equivalence": "unmatched",

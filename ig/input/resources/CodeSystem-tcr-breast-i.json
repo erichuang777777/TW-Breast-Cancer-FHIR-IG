@@ -15,128 +15,278 @@
   "concept": [
     {
       "code": "00",
-      "display": "No immunotherapy; not part of the first course, or the cancer was found only at autopsy",
-      "definition": "No immunotherapy; not part of the first course, or the cancer was found only at autopsy"
+      "display": "未接受免疫治療，免疫治療非首次療程的一部份。",
+      "definition": "未接受免疫治療，免疫治療非首次療程的一部份。 / No immunotherapy; not part of the first course, or the cancer was found only at autopsy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No immunotherapy; not part of the first course, or the cancer was found only at autopsy"
+        }
+      ]
     },
     {
       "code": "01",
-      "display": "Systemic immunotherapy drug",
-      "definition": "Systemic immunotherapy drug"
+      "display": "接受全身性免疫藥物治療。",
+      "definition": "接受全身性免疫藥物治療。 / Systemic immunotherapy drug",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Systemic immunotherapy drug"
+        }
+      ]
     },
     {
       "code": "02",
-      "display": "Regional immunotherapy drug",
-      "definition": "Regional immunotherapy drug"
+      "display": "接受局部性免疫藥物治療。",
+      "definition": "接受局部性免疫藥物治療。 / Regional immunotherapy drug",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional immunotherapy drug"
+        }
+      ]
     },
     {
       "code": "03",
-      "display": "Systemic and regional immunotherapy drugs",
-      "definition": "Systemic and regional immunotherapy drugs"
+      "display": "接受全身性與局部性免疫藥物治療。",
+      "definition": "接受全身性與局部性免疫藥物治療。 / Systemic and regional immunotherapy drugs",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Systemic and regional immunotherapy drugs"
+        }
+      ]
     },
     {
       "code": "04",
-      "display": "Cellular immunotherapy only",
-      "definition": "Cellular immunotherapy only"
+      "display": "僅接受免疫細胞治療。",
+      "definition": "僅接受免疫細胞治療。 / Cellular immunotherapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Cellular immunotherapy only"
+        }
+      ]
     },
     {
       "code": "05",
-      "display": "Cellular immunotherapy plus a systemic immunotherapy drug",
-      "definition": "Cellular immunotherapy plus a systemic immunotherapy drug"
+      "display": "同時接受免疫細胞治療與全身性免疫藥物治療。",
+      "definition": "同時接受免疫細胞治療與全身性免疫藥物治療。 / Cellular immunotherapy plus a systemic immunotherapy drug",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Cellular immunotherapy plus a systemic immunotherapy drug"
+        }
+      ]
     },
     {
       "code": "06",
-      "display": "Cellular immunotherapy plus a regional immunotherapy drug",
-      "definition": "Cellular immunotherapy plus a regional immunotherapy drug"
+      "display": "同時接受免疫細胞治療與局部性免疫藥物治療。",
+      "definition": "同時接受免疫細胞治療與局部性免疫藥物治療。 / Cellular immunotherapy plus a regional immunotherapy drug",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Cellular immunotherapy plus a regional immunotherapy drug"
+        }
+      ]
     },
     {
       "code": "07",
-      "display": "Cellular immunotherapy plus systemic and regional immunotherapy drugs",
-      "definition": "Cellular immunotherapy plus systemic and regional immunotherapy drugs"
+      "display": "同時接受免疫細胞治療、全身性與局部性免疫藥物治療。",
+      "definition": "同時接受免疫細胞治療、全身性與局部性免疫藥物治療。 / Cellular immunotherapy plus systemic and regional immunotherapy drugs",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Cellular immunotherapy plus systemic and regional immunotherapy drugs"
+        }
+      ]
     },
     {
       "code": "20",
-      "display": "Clinical-trial immunotherapy only",
-      "definition": "Clinical-trial immunotherapy only"
+      "display": "僅接受臨床試驗免疫治療。",
+      "definition": "僅接受臨床試驗免疫治療。 / Clinical-trial immunotherapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Clinical-trial immunotherapy only"
+        }
+      ]
     },
     {
       "code": "21",
-      "display": "Immunotherapy plus clinical-trial immunotherapy",
-      "definition": "Immunotherapy plus clinical-trial immunotherapy"
+      "display": "同時接受免疫治療及臨床試驗免疫治療。",
+      "definition": "同時接受免疫治療及臨床試驗免疫治療。 / Immunotherapy plus clinical-trial immunotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Immunotherapy plus clinical-trial immunotherapy"
+        }
+      ]
     },
     {
       "code": "22",
-      "display": "Cellular immunotherapy plus clinical-trial immunotherapy",
-      "definition": "Cellular immunotherapy plus clinical-trial immunotherapy"
+      "display": "同時接受免疫細胞治療及臨床試驗免疫治療。",
+      "definition": "同時接受免疫細胞治療及臨床試驗免疫治療。 / Cellular immunotherapy plus clinical-trial immunotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Cellular immunotherapy plus clinical-trial immunotherapy"
+        }
+      ]
     },
     {
       "code": "23",
-      "display": "Cellular immunotherapy with systemic and/or regional drugs, plus clinical-trial immunotherapy",
-      "definition": "Cellular immunotherapy with systemic and/or regional drugs, plus clinical-trial immunotherapy"
+      "display": "同時接受免疫細胞治療與全身性或/與局部性藥物治療及臨床試驗免疫治療。",
+      "definition": "同時接受免疫細胞治療與全身性或/與局部性藥物治療及臨床試驗免疫治療。 / Cellular immunotherapy with systemic and/or regional drugs, plus clinical-trial immunotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Cellular immunotherapy with systemic and/or regional drugs, plus clinical-trial immunotherapy"
+        }
+      ]
     },
     {
       "code": "30",
-      "display": "Double-blind-trial immunotherapy only",
-      "definition": "Double-blind-trial immunotherapy only"
+      "display": "僅接受雙盲試驗免疫治療。",
+      "definition": "僅接受雙盲試驗免疫治療。 / Double-blind-trial immunotherapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Double-blind-trial immunotherapy only"
+        }
+      ]
     },
     {
       "code": "31",
-      "display": "Immunotherapy plus double-blind-trial immunotherapy",
-      "definition": "Immunotherapy plus double-blind-trial immunotherapy"
+      "display": "同時接受免疫治療及雙盲試驗免疫治療。",
+      "definition": "同時接受免疫治療及雙盲試驗免疫治療。 / Immunotherapy plus double-blind-trial immunotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Immunotherapy plus double-blind-trial immunotherapy"
+        }
+      ]
     },
     {
       "code": "32",
-      "display": "Cellular immunotherapy plus double-blind-trial immunotherapy",
-      "definition": "Cellular immunotherapy plus double-blind-trial immunotherapy"
+      "display": "同時接受免疫細胞治療及雙盲試驗免疫治療。",
+      "definition": "同時接受免疫細胞治療及雙盲試驗免疫治療。 / Cellular immunotherapy plus double-blind-trial immunotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Cellular immunotherapy plus double-blind-trial immunotherapy"
+        }
+      ]
     },
     {
       "code": "33",
-      "display": "Cellular immunotherapy with systemic and/or regional drugs, plus double-blind-trial immunotherapy",
-      "definition": "Cellular immunotherapy with systemic and/or regional drugs, plus double-blind-trial immunotherapy"
+      "display": "同時接受免疫細胞治療與全身性或/與局部性藥物治療及雙盲試驗免疫治療。",
+      "definition": "同時接受免疫細胞治療與全身性或/與局部性藥物治療及雙盲試驗免疫治療。 / Cellular immunotherapy with systemic and/or regional drugs, plus double-blind-trial immunotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Cellular immunotherapy with systemic and/or regional drugs, plus double-blind-trial immunotherapy"
+        }
+      ]
     },
     {
       "code": "40",
-      "display": "Clinical-trial cellular immunotherapy only",
-      "definition": "Clinical-trial cellular immunotherapy only"
+      "display": "僅接受臨床試驗免疫細胞治療。",
+      "definition": "僅接受臨床試驗免疫細胞治療。 / Clinical-trial cellular immunotherapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Clinical-trial cellular immunotherapy only"
+        }
+      ]
     },
     {
       "code": "41",
-      "display": "Systemic and/or regional drugs plus clinical-trial cellular immunotherapy",
-      "definition": "Systemic and/or regional drugs plus clinical-trial cellular immunotherapy"
+      "display": "同時接受全身性或/與局部性藥物治療及臨床試驗免疫細胞治療。",
+      "definition": "同時接受全身性或/與局部性藥物治療及臨床試驗免疫細胞治療。 / Systemic and/or regional drugs plus clinical-trial cellular immunotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Systemic and/or regional drugs plus clinical-trial cellular immunotherapy"
+        }
+      ]
     },
     {
       "code": "82",
-      "display": "Immunotherapy not advised or given because of a contraindication or another patient risk factor (comorbidity, advanced age)",
-      "definition": "Immunotherapy not advised or given because of a contraindication or another patient risk factor (comorbidity, advanced age)"
+      "display": "免疫治療因禁忌症或個案其他危險因素(併發症、年邁)而未建議或給予。",
+      "definition": "免疫治療因禁忌症或個案其他危險因素(併發症、年邁)而未建議或給予。 / Immunotherapy not advised or given because of a contraindication or another patient risk factor (comorbidity, advanced age)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Immunotherapy not advised or given because of a contraindication or another patient risk factor (comorbidity, advanced age)"
+        }
+      ]
     },
     {
       "code": "83",
-      "display": "Immunotherapy not advised or given because the disease progressed",
-      "definition": "Immunotherapy not advised or given because the disease progressed"
+      "display": "免疫治療因疾病進展而未建議或給予。",
+      "definition": "免疫治療因疾病進展而未建議或給予。 / Immunotherapy not advised or given because the disease progressed",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Immunotherapy not advised or given because the disease progressed"
+        }
+      ]
     },
     {
       "code": "85",
-      "display": "Immunotherapy was part of the planned first course, but the patient died or was discharged critically ill before it started",
-      "definition": "Immunotherapy was part of the planned first course, but the patient died or was discharged critically ill before it started"
+      "display": "免疫治療是既定之首次療程計畫中的一部分，但因個案未接受治療前即死亡或病危出院。",
+      "definition": "免疫治療是既定之首次療程計畫中的一部分，但因個案未接受治療前即死亡或病危出院。 / Immunotherapy was part of the planned first course, but the patient died or was discharged critically ill before it started",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Immunotherapy was part of the planned first course, but the patient died or was discharged critically ill before it started"
+        }
+      ]
     },
     {
       "code": "86",
-      "display": "Immunotherapy was part of the planned first course and was not given, with no reason recorded; or it was given at another hospital",
-      "definition": "Immunotherapy was part of the planned first course and was not given, with no reason recorded; or it was given at another hospital"
+      "display": "免疫治療雖然是既定之首次療程計畫中的一部分，未執行且病歷也未記載未執行的原因；或於他院執行免疫治療。",
+      "definition": "免疫治療雖然是既定之首次療程計畫中的一部分，未執行且病歷也未記載未執行的原因；或於他院執行免疫治療。 / Immunotherapy was part of the planned first course and was not given, with no reason recorded; or it was given at another hospital",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Immunotherapy was part of the planned first course and was not given, with no reason recorded; or it was given at another hospital"
+        }
+      ]
     },
     {
       "code": "87",
-      "display": "Immunotherapy was part of the planned first course but the patient or family refused it",
-      "definition": "Immunotherapy was part of the planned first course but the patient or family refused it"
+      "display": "免疫治療雖然是既定之首次療程計畫中的一部分，但未執行，且病歷記載個案或其家屬拒絕此項治療。",
+      "definition": "免疫治療雖然是既定之首次療程計畫中的一部分，但未執行，且病歷記載個案或其家屬拒絕此項治療。 / Immunotherapy was part of the planned first course but the patient or family refused it",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Immunotherapy was part of the planned first course but the patient or family refused it"
+        }
+      ]
     },
     {
       "code": "88",
-      "display": "Immunotherapy was part of the planned first course but had not started when the case was abstracted",
-      "definition": "Immunotherapy was part of the planned first course but had not started when the case was abstracted"
+      "display": "免疫治療雖然是既定之首次療程計畫中的一部分，但摘錄時尚未執行。",
+      "definition": "免疫治療雖然是既定之首次療程計畫中的一部分，但摘錄時尚未執行。 / Immunotherapy was part of the planned first course but had not started when the case was abstracted",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Immunotherapy was part of the planned first course but had not started when the case was abstracted"
+        }
+      ]
     },
     {
       "code": "99",
-      "display": "Not documented, so it is unknown whether immunotherapy was advised or given; or the cancer is known only from a death certificate",
-      "definition": "Not documented, so it is unknown whether immunotherapy was advised or given; or the cancer is known only from a death certificate"
+      "display": "由於病歷未記載，所以不知道是否免疫治療有被建議或是已經執行。",
+      "definition": "由於病歷未記載，所以不知道是否免疫治療有被建議或是已經執行。 / Not documented, so it is unknown whether immunotherapy was advised or given; or the cancer is known only from a death certificate",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not documented, so it is unknown whether immunotherapy was advised or given; or the cancer is known only from a death certificate"
+        }
+      ]
     }
   ]
 }

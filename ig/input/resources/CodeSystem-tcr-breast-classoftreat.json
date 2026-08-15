@@ -15,53 +15,113 @@
   "concept": [
     {
       "code": "0",
-      "display": "Died at the reporting hospital without receiving any treatment there (diagnosed here and died or discharged critically ill, or diagnosed elsewhere and transferred here before dying)",
-      "definition": "Died at the reporting hospital without receiving any treatment there (diagnosed here and died or discharged critically ill, or diagnosed elsewhere and transferred here before dying)"
+      "display": "未於申報醫院接受任何治療即死亡。",
+      "definition": "未於申報醫院接受任何治療即死亡。 / Died at the reporting hospital without receiving any treatment there (diagnosed here and died or discharged critically ill, or diagnosed elsewhere and transferred here before dying)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Died at the reporting hospital without receiving any treatment there (diagnosed here and died or discharged critically ill, or diagnosed elsewhere and transferred here before dying)"
+        }
+      ]
     },
     {
       "code": "1",
-      "display": "The entire first course of therapy was given at the reporting hospital, with none at another hospital (includes a case whose only first-course therapy is one of the registry's defined \"other treatments\")",
-      "definition": "The entire first course of therapy was given at the reporting hospital, with none at another hospital (includes a case whose only first-course therapy is one of the registry's defined \"other treatments\")"
+      "display": "僅於申報醫院接受首次療程，未於他院接受任何首次療程。",
+      "definition": "僅於申報醫院接受首次療程，未於他院接受任何首次療程。 / The entire first course of therapy was given at the reporting hospital, with none at another hospital (includes a case whose only first-course therapy is one of the registry's defined \"other treatments\")",
+      "designation": [
+        {
+          "language": "en",
+          "value": "The entire first course of therapy was given at the reporting hospital, with none at another hospital (includes a case whose only first-course therapy is one of the registry's defined \"other treatments\")"
+        }
+      ]
     },
     {
       "code": "2",
-      "display": "No first-course therapy at the reporting hospital: the whole first course was given elsewhere, or the case came for a second opinion with no treatment here, or the main treatment plan was set by another hospital (e.g. maintenance therapy continued here, or a referred-out partial radiotherapy course)",
-      "definition": "No first-course therapy at the reporting hospital: the whole first course was given elsewhere, or the case came for a second opinion with no treatment here, or the main treatment plan was set by another hospital (e.g. maintenance therapy continued here, or a referred-out partial radiotherapy course)"
+      "display": "未於申報醫院接受任何首次療程（僅於他院接受，或主要治療計畫由他院規劃）。",
+      "definition": "未於申報醫院接受任何首次療程（僅於他院接受，或主要治療計畫由他院規劃）。 / No first-course therapy at the reporting hospital: the whole first course was given elsewhere, or the case came for a second opinion with no treatment here, or the main treatment plan was set by another hospital (e.g. maintenance therapy continued here, or a referred-out partial radiotherapy course)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No first-course therapy at the reporting hospital: the whole first course was given elsewhere, or the case came for a second opinion with no treatment here, or the main treatment plan was set by another hospital (e.g. maintenance therapy continued here, or a referred-out partial radiotherapy course)"
+        }
+      ]
     },
     {
       "code": "3",
-      "display": "Part of the first course of therapy at the reporting hospital, part at another hospital",
-      "definition": "Part of the first course of therapy at the reporting hospital, part at another hospital"
+      "display": "於申報醫院接受部分首次療程，也於他院接受部分首次療程。",
+      "definition": "於申報醫院接受部分首次療程，也於他院接受部分首次療程。 / Part of the first course of therapy at the reporting hospital, part at another hospital",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Part of the first course of therapy at the reporting hospital, part at another hospital"
+        }
+      ]
     },
     {
       "code": "4",
-      "display": "The first course of therapy was watchful observation, or only non-tumour-directed palliative surgery, pain control, supportive care, or a hospice referral",
-      "definition": "The first course of therapy was watchful observation, or only non-tumour-directed palliative surgery, pain control, supportive care, or a hospice referral"
+      "display": "首次療程為不予治療或再密切觀察，或僅給予非腫瘤切除之緩和性手術/疼痛控制/支持療法。",
+      "definition": "首次療程為不予治療或再密切觀察，或僅給予非腫瘤切除之緩和性手術/疼痛控制/支持療法。 / The first course of therapy was watchful observation, or only non-tumour-directed palliative surgery, pain control, supportive care, or a hospice referral",
+      "designation": [
+        {
+          "language": "en",
+          "value": "The first course of therapy was watchful observation, or only non-tumour-directed palliative surgery, pain control, supportive care, or a hospice referral"
+        }
+      ]
     },
     {
       "code": "5",
-      "display": "The first course of therapy was alternative therapy only",
-      "definition": "The first course of therapy was alternative therapy only"
+      "display": "首次療程僅有另類治療。",
+      "definition": "首次療程僅有另類治療。 / The first course of therapy was alternative therapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "The first course of therapy was alternative therapy only"
+        }
+      ]
     },
     {
       "code": "6",
-      "display": "The patient refused treatment in the first course",
-      "definition": "The patient refused treatment in the first course"
+      "display": "首次療程為個案拒絕治療。",
+      "definition": "首次療程為個案拒絕治療。 / The patient refused treatment in the first course",
+      "designation": [
+        {
+          "language": "en",
+          "value": "The patient refused treatment in the first course"
+        }
+      ]
     },
     {
       "code": "7",
-      "display": "Diagnosed and treated elsewhere; presented at the reporting hospital because of a complication of the cancer or its treatment",
-      "definition": "Diagnosed and treated elsewhere; presented at the reporting hospital because of a complication of the cancer or its treatment"
+      "display": "他院診斷及治療，因癌症或其治療的併發症至申報醫院求診。",
+      "definition": "他院診斷及治療，因癌症或其治療的併發症至申報醫院求診。 / Diagnosed and treated elsewhere; presented at the reporting hospital because of a complication of the cancer or its treatment",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Diagnosed and treated elsewhere; presented at the reporting hospital because of a complication of the cancer or its treatment"
+        }
+      ]
     },
     {
       "code": "8",
-      "display": "Diagnosed elsewhere; presented at the reporting hospital for an unrelated condition -- not reportable",
-      "definition": "Diagnosed elsewhere; presented at the reporting hospital for an unrelated condition -- not reportable"
+      "display": "他院診斷個案，為了其他疾病至申報醫院求診（不需申報）。",
+      "definition": "他院診斷個案，為了其他疾病至申報醫院求診（不需申報）。 / Diagnosed elsewhere; presented at the reporting hospital for an unrelated condition -- not reportable",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Diagnosed elsewhere; presented at the reporting hospital for an unrelated condition -- not reportable"
+        }
+      ]
     },
     {
       "code": "9",
-      "display": "First-course treatment status unknown, and refusal cannot be confirmed either (e.g. lost to follow-up after the initial diagnosis at the reporting hospital)",
-      "definition": "First-course treatment status unknown, and refusal cannot be confirmed either (e.g. lost to follow-up after the initial diagnosis at the reporting hospital)"
+      "display": "首次療程不詳，也無法確認個案拒絕治療。",
+      "definition": "首次療程不詳，也無法確認個案拒絕治療。 / First-course treatment status unknown, and refusal cannot be confirmed either (e.g. lost to follow-up after the initial diagnosis at the reporting hospital)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "First-course treatment status unknown, and refusal cannot be confirmed either (e.g. lost to follow-up after the initial diagnosis at the reporting hospital)"
+        }
+      ]
     }
   ]
 }

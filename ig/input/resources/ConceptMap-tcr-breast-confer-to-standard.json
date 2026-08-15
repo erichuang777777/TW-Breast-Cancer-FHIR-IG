@@ -14,7 +14,7 @@
       "element": [
         {
           "code": "1",
-          "display": "Positive histology",
+          "display": "組織病理學確診(Positive histology)。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -24,7 +24,7 @@
         },
         {
           "code": "2",
-          "display": "Positive cytology",
+          "display": "細胞學確診(Positive cytology)。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -34,7 +34,7 @@
         },
         {
           "code": "4",
-          "display": "Microscopically confirmed, method not stated",
+          "display": "經顯微鏡檢證實，但未描述其確診方式。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -44,7 +44,7 @@
         },
         {
           "code": "5",
-          "display": "Positive laboratory test or tumour marker, not microscopically confirmed",
+          "display": "實驗室檢驗/腫瘤標記檢查為陽性，但未經顯微鏡檢證實。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -54,7 +54,7 @@
         },
         {
           "code": "6",
-          "display": "Direct visualisation at surgery or endoscopy, not microscopically confirmed",
+          "display": "直接察看診斷為癌症，但未經顯微鏡檢證實。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -64,7 +64,7 @@
         },
         {
           "code": "7",
-          "display": "Radiography or other imaging, not microscopically confirmed",
+          "display": "放射線或其他影像學檢查診斷為癌症，但未經顯微鏡檢證實。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -74,7 +74,7 @@
         },
         {
           "code": "8",
-          "display": "Clinical diagnosis only (excluding 5, 6 and 7)",
+          "display": "僅臨床診斷(不包含5、6、7)。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -84,7 +84,7 @@
         },
         {
           "code": "9",
-          "display": "Unknown whether microscopically confirmed",
+          "display": "不清楚是否經顯微鏡檢證實。",
           "target": [
             {
               "equivalence": "unmatched",

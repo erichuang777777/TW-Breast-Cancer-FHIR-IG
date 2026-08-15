@@ -14,7 +14,7 @@
       "element": [
         {
           "code": "00",
-          "display": "No targeted therapy; not part of the first course, or the cancer was found only at autopsy",
+          "display": "未接受標靶治療，標靶治療非首次療程的一部份。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -24,7 +24,7 @@
         },
         {
           "code": "01",
-          "display": "Targeted therapy given in the first course",
+          "display": "在首次療程中有接受標靶治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -34,7 +34,7 @@
         },
         {
           "code": "20",
-          "display": "Clinical-trial targeted therapy only",
+          "display": "僅接受臨床試驗標靶治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -44,7 +44,7 @@
         },
         {
           "code": "21",
-          "display": "Targeted therapy plus clinical-trial targeted therapy",
+          "display": "同時接受標靶治療及臨床試驗標靶治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -54,7 +54,7 @@
         },
         {
           "code": "30",
-          "display": "Double-blind-trial targeted therapy only",
+          "display": "僅接受雙盲試驗標靶治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -64,7 +64,7 @@
         },
         {
           "code": "31",
-          "display": "Targeted therapy plus double-blind-trial targeted therapy",
+          "display": "同時接受標靶治療及雙盲試驗標靶治療。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -74,7 +74,7 @@
         },
         {
           "code": "99",
-          "display": "Not documented, so it is unknown whether targeted therapy was advised or given; or the cancer is known only from a death certificate",
+          "display": "由於病歷未記載，所以不知道是否標靶治療有被建議或是已經執行。",
           "target": [
             {
               "equivalence": "unmatched",

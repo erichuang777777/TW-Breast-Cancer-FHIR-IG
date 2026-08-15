@@ -14,7 +14,7 @@
       "element": [
         {
           "code": "1",
-          "display": "Diagnosed at the reporting hospital",
+          "display": "於申報醫院診斷。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -24,7 +24,7 @@
         },
         {
           "code": "2",
-          "display": "Diagnosed elsewhere; presented at the reporting hospital within the first course of therapy, with no recurrence, or recurrence status unknown",
+          "display": "於他院診斷，因該癌症於首次療程內/未復發/復發狀況不明下，至申報醫院就診。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -34,7 +34,7 @@
         },
         {
           "code": "3",
-          "display": "Diagnosed elsewhere; presented at the reporting hospital after recurrence or progression",
+          "display": "於他院診斷，因該癌症復發或惡化後，才至申報醫院就診。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -44,7 +44,7 @@
         },
         {
           "code": "5",
-          "display": "Diagnosed only at autopsy",
+          "display": "屍體解剖時才診斷為癌症。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -54,7 +54,7 @@
         },
         {
           "code": "7",
-          "display": "Pathology report only; not seen at the reporting hospital for diagnosis or treatment (excludes autopsy diagnosis)",
+          "display": "僅有病理檢查報告，個案未因診斷或治療癌症而到申報醫院。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -64,7 +64,7 @@
         },
         {
           "code": "8",
-          "display": "Known only from a death certificate",
+          "display": "僅由死亡診斷證明書診斷為癌症。",
           "target": [
             {
               "equivalence": "unmatched",

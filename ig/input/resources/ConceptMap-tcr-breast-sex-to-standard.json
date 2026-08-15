@@ -14,7 +14,7 @@
       "element": [
         {
           "code": "1",
-          "display": "Male",
+          "display": "男性。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -24,7 +24,7 @@
         },
         {
           "code": "2",
-          "display": "Female",
+          "display": "女性。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -34,7 +34,7 @@
         },
         {
           "code": "3",
-          "display": "Other (e.g. intersex)",
+          "display": "其他，例如：雙性人(hermaphrodite)。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -44,7 +44,7 @@
         },
         {
           "code": "4",
-          "display": "Transsexual",
+          "display": "變性人。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -54,7 +54,7 @@
         },
         {
           "code": "9",
-          "display": "Unknown or not documented",
+          "display": "不詳或在病歷上未記載。",
           "target": [
             {
               "equivalence": "unmatched",

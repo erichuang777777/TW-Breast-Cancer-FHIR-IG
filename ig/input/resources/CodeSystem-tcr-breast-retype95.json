@@ -15,168 +15,366 @@
   "concept": [
     {
       "code": "00",
-      "display": "Disease-free after treatment; no recurrence",
-      "definition": "Disease-free after treatment; no recurrence"
+      "display": "個案治療後 disease-free 且沒有復發。",
+      "definition": "個案治療後 disease-free 且沒有復發。 / Disease-free after treatment; no recurrence",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Disease-free after treatment; no recurrence"
+        }
+      ]
     },
     {
       "code": "04",
-      "display": "Recurrence of an invasive cancer, presenting as carcinoma in situ",
-      "definition": "Recurrence of an invasive cancer, presenting as carcinoma in situ"
+      "display": "侵襲癌以原位癌的形式復發。",
+      "definition": "侵襲癌以原位癌的形式復發。 / Recurrence of an invasive cancer, presenting as carcinoma in situ",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Recurrence of an invasive cancer, presenting as carcinoma in situ"
+        }
+      ]
     },
     {
       "code": "06",
-      "display": "Recurrence of a carcinoma in situ, presenting as carcinoma in situ",
-      "definition": "Recurrence of a carcinoma in situ, presenting as carcinoma in situ"
+      "display": "原位癌以原位癌的形式復發。",
+      "definition": "原位癌以原位癌的形式復發。 / Recurrence of a carcinoma in situ, presenting as carcinoma in situ",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Recurrence of a carcinoma in situ, presenting as carcinoma in situ"
+        }
+      ]
     },
     {
       "code": "10",
-      "display": "Local recurrence, not specific enough for 13-17 (in the residual primary organ, the primary organ, an anastomosis, or the scar of the resected organ)",
-      "definition": "Local recurrence, not specific enough for 13-17 (in the residual primary organ, the primary organ, an anastomosis, or the scar of the resected organ)"
+      "display": "局部復發，且無足夠的資訊可供編碼為 13-17。",
+      "definition": "局部復發，且無足夠的資訊可供編碼為 13-17。 / Local recurrence, not specific enough for 13-17 (in the residual primary organ, the primary organ, an anastomosis, or the scar of the resected organ)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Local recurrence, not specific enough for 13-17 (in the residual primary organ, the primary organ, an anastomosis, or the scar of the resected organ)"
+        }
+      ]
     },
     {
       "code": "13",
-      "display": "Invasive cancer, local recurrence",
-      "definition": "Invasive cancer, local recurrence"
+      "display": "侵襲癌於局部復發。",
+      "definition": "侵襲癌於局部復發。 / Invasive cancer, local recurrence",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive cancer, local recurrence"
+        }
+      ]
     },
     {
       "code": "14",
-      "display": "Invasive cancer, recurrence at a trocar/port site (along the port track or a prior surgical entrance site)",
-      "definition": "Invasive cancer, recurrence at a trocar/port site (along the port track or a prior surgical entrance site)"
+      "display": "侵襲癌於套管處(trocar)復發。",
+      "definition": "侵襲癌於套管處(trocar)復發。 / Invasive cancer, recurrence at a trocar/port site (along the port track or a prior surgical entrance site)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive cancer, recurrence at a trocar/port site (along the port track or a prior surgical entrance site)"
+        }
+      ]
     },
     {
       "code": "15",
-      "display": "Invasive cancer, local recurrence AND trocar/port-site recurrence (codes 13 and 14 combined)",
-      "definition": "Invasive cancer, local recurrence AND trocar/port-site recurrence (codes 13 and 14 combined)"
+      "display": "侵襲癌同時於局部及套管處復發。",
+      "definition": "侵襲癌同時於局部及套管處復發。 / Invasive cancer, local recurrence AND trocar/port-site recurrence (codes 13 and 14 combined)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive cancer, local recurrence AND trocar/port-site recurrence (codes 13 and 14 combined)"
+        }
+      ]
     },
     {
       "code": "16",
-      "display": "Carcinoma in situ, local recurrence, not otherwise specified",
-      "definition": "Carcinoma in situ, local recurrence, not otherwise specified"
+      "display": "原位癌於局部復發，其他未詳細描述。",
+      "definition": "原位癌於局部復發，其他未詳細描述。 / Carcinoma in situ, local recurrence, not otherwise specified",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Carcinoma in situ, local recurrence, not otherwise specified"
+        }
+      ]
     },
     {
       "code": "17",
-      "display": "Carcinoma in situ, local AND trocar/port-site recurrence",
-      "definition": "Carcinoma in situ, local AND trocar/port-site recurrence"
+      "display": "原位癌同時於局部及套管處復發。",
+      "definition": "原位癌同時於局部及套管處復發。 / Carcinoma in situ, local AND trocar/port-site recurrence",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Carcinoma in situ, local AND trocar/port-site recurrence"
+        }
+      ]
     },
     {
       "code": "20",
-      "display": "Regional recurrence, not specific enough for 21-27",
-      "definition": "Regional recurrence, not specific enough for 21-27"
+      "display": "區域性復發，且無足夠資訊可供編碼為 21-27。",
+      "definition": "區域性復發，且無足夠資訊可供編碼為 21-27。 / Regional recurrence, not specific enough for 21-27",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional recurrence, not specific enough for 21-27"
+        }
+      ]
     },
     {
       "code": "21",
-      "display": "Invasive cancer, recurrence in adjacent tissue or organs only",
-      "definition": "Invasive cancer, recurrence in adjacent tissue or organs only"
+      "display": "侵襲癌僅於鄰近組織或器官復發。",
+      "definition": "侵襲癌僅於鄰近組織或器官復發。 / Invasive cancer, recurrence in adjacent tissue or organs only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive cancer, recurrence in adjacent tissue or organs only"
+        }
+      ]
     },
     {
       "code": "22",
-      "display": "Invasive cancer, recurrence in regional lymph nodes only",
-      "definition": "Invasive cancer, recurrence in regional lymph nodes only"
+      "display": "侵襲癌僅於區域淋巴結復發。",
+      "definition": "侵襲癌僅於區域淋巴結復發。 / Invasive cancer, recurrence in regional lymph nodes only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive cancer, recurrence in regional lymph nodes only"
+        }
+      ]
     },
     {
       "code": "25",
-      "display": "Invasive cancer, recurrence in adjacent tissue/organs AND regional lymph nodes (codes 21 and 22 combined)",
-      "definition": "Invasive cancer, recurrence in adjacent tissue/organs AND regional lymph nodes (codes 21 and 22 combined)"
+      "display": "侵襲癌同時於鄰近組織或器官及區域淋巴結復發。",
+      "definition": "侵襲癌同時於鄰近組織或器官及區域淋巴結復發。 / Invasive cancer, recurrence in adjacent tissue/organs AND regional lymph nodes (codes 21 and 22 combined)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive cancer, recurrence in adjacent tissue/organs AND regional lymph nodes (codes 21 and 22 combined)"
+        }
+      ]
     },
     {
       "code": "26",
-      "display": "Carcinoma in situ, regional recurrence, not otherwise specified",
-      "definition": "Carcinoma in situ, regional recurrence, not otherwise specified"
+      "display": "原位癌於區域性復發，其他未詳細描述。",
+      "definition": "原位癌於區域性復發，其他未詳細描述。 / Carcinoma in situ, regional recurrence, not otherwise specified",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Carcinoma in situ, regional recurrence, not otherwise specified"
+        }
+      ]
     },
     {
       "code": "27",
-      "display": "Carcinoma in situ, recurrence in adjacent tissue/organs AND regional lymph nodes",
-      "definition": "Carcinoma in situ, recurrence in adjacent tissue/organs AND regional lymph nodes"
+      "display": "原位癌同時於鄰近組織或器官以及區域淋巴結復發。",
+      "definition": "原位癌同時於鄰近組織或器官以及區域淋巴結復發。 / Carcinoma in situ, recurrence in adjacent tissue/organs AND regional lymph nodes",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Carcinoma in situ, recurrence in adjacent tissue/organs AND regional lymph nodes"
+        }
+      ]
     },
     {
       "code": "30",
-      "display": "Invasive cancer, one recurrence type from each of two groups: (adjacent tissue/organ or regional node recurrence, codes 20-25) combined with (local, prior port-site, or surgical-entrance-site recurrence, codes 10, 13-15)",
-      "definition": "Invasive cancer, one recurrence type from each of two groups: (adjacent tissue/organ or regional node recurrence, codes 20-25) combined with (local, prior port-site, or surgical-entrance-site recurrence, codes 10, 13-15)"
+      "display": "侵襲癌之復發為鄰近組織/器官或區域淋巴結復發，合併局部或套管處/手術切開處復發。",
+      "definition": "侵襲癌之復發為鄰近組織/器官或區域淋巴結復發，合併局部或套管處/手術切開處復發。 / Invasive cancer, one recurrence type from each of two groups: (adjacent tissue/organ or regional node recurrence, codes 20-25) combined with (local, prior port-site, or surgical-entrance-site recurrence, codes 10, 13-15)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive cancer, one recurrence type from each of two groups: (adjacent tissue/organ or regional node recurrence, codes 20-25) combined with (local, prior port-site, or surgical-entrance-site recurrence, codes 10, 13-15)"
+        }
+      ]
     },
     {
       "code": "36",
-      "display": "Carcinoma in situ, one recurrence type from each of two groups: (regional recurrence, codes 26-27) combined with (local or port-site recurrence, codes 16-17)",
-      "definition": "Carcinoma in situ, one recurrence type from each of two groups: (regional recurrence, codes 26-27) combined with (local or port-site recurrence, codes 16-17)"
+      "display": "原位癌之復發為區域性復發，合併局部或套管處復發。",
+      "definition": "原位癌之復發為區域性復發，合併局部或套管處復發。 / Carcinoma in situ, one recurrence type from each of two groups: (regional recurrence, codes 26-27) combined with (local or port-site recurrence, codes 16-17)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Carcinoma in situ, one recurrence type from each of two groups: (regional recurrence, codes 26-27) combined with (local or port-site recurrence, codes 16-17)"
+        }
+      ]
     },
     {
       "code": "40",
-      "display": "Distant recurrence, not specific enough for 46-62",
-      "definition": "Distant recurrence, not specific enough for 46-62"
+      "display": "遠端復發，且無足夠資訊可供編碼為 46-62。",
+      "definition": "遠端復發，且無足夠資訊可供編碼為 46-62。 / Distant recurrence, not specific enough for 46-62",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Distant recurrence, not specific enough for 46-62"
+        }
+      ]
     },
     {
       "code": "46",
-      "display": "Carcinoma in situ, distant recurrence",
-      "definition": "Carcinoma in situ, distant recurrence"
+      "display": "原位癌於遠端復發。",
+      "definition": "原位癌於遠端復發。 / Carcinoma in situ, distant recurrence",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Carcinoma in situ, distant recurrence"
+        }
+      ]
     },
     {
       "code": "51",
-      "display": "Invasive cancer, distant recurrence in the peritoneum only, or malignant cells in ascites",
-      "definition": "Invasive cancer, distant recurrence in the peritoneum only, or malignant cells in ascites"
+      "display": "侵襲癌僅於腹膜發生遠端復發，或腹水呈現惡性細胞。",
+      "definition": "侵襲癌僅於腹膜發生遠端復發，或腹水呈現惡性細胞。 / Invasive cancer, distant recurrence in the peritoneum only, or malignant cells in ascites",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive cancer, distant recurrence in the peritoneum only, or malignant cells in ascites"
+        }
+      ]
     },
     {
       "code": "52",
-      "display": "Invasive cancer, distant recurrence in the lung only (including visceral pleura)",
-      "definition": "Invasive cancer, distant recurrence in the lung only (including visceral pleura)"
+      "display": "侵襲癌僅於肺臟(包括 visceral pleura)發生遠端復發。",
+      "definition": "侵襲癌僅於肺臟(包括 visceral pleura)發生遠端復發。 / Invasive cancer, distant recurrence in the lung only (including visceral pleura)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive cancer, distant recurrence in the lung only (including visceral pleura)"
+        }
+      ]
     },
     {
       "code": "53",
-      "display": "Invasive cancer, distant recurrence in the pleura only, or malignant cells in pleural effusion",
-      "definition": "Invasive cancer, distant recurrence in the pleura only, or malignant cells in pleural effusion"
+      "display": "侵襲癌僅於 pleura 發生遠端復發，或肋膜滲液呈現惡性細胞。",
+      "definition": "侵襲癌僅於 pleura 發生遠端復發，或肋膜滲液呈現惡性細胞。 / Invasive cancer, distant recurrence in the pleura only, or malignant cells in pleural effusion",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive cancer, distant recurrence in the pleura only, or malignant cells in pleural effusion"
+        }
+      ]
     },
     {
       "code": "54",
-      "display": "Invasive cancer, distant recurrence in the liver only",
-      "definition": "Invasive cancer, distant recurrence in the liver only"
+      "display": "侵襲癌僅於肝發生遠端復發。",
+      "definition": "侵襲癌僅於肝發生遠端復發。 / Invasive cancer, distant recurrence in the liver only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive cancer, distant recurrence in the liver only"
+        }
+      ]
     },
     {
       "code": "55",
-      "display": "Invasive cancer, distant recurrence in bone only, excluding bone at the primary site",
-      "definition": "Invasive cancer, distant recurrence in bone only, excluding bone at the primary site"
+      "display": "侵襲癌僅於骨骼發生遠端復發，但原發部位的骨骼除外。",
+      "definition": "侵襲癌僅於骨骼發生遠端復發，但原發部位的骨骼除外。 / Invasive cancer, distant recurrence in bone only, excluding bone at the primary site",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive cancer, distant recurrence in bone only, excluding bone at the primary site"
+        }
+      ]
     },
     {
       "code": "56",
-      "display": "Invasive cancer, distant recurrence in the CNS only (brain and spinal cord; excludes the external eye)",
-      "definition": "Invasive cancer, distant recurrence in the CNS only (brain and spinal cord; excludes the external eye)"
+      "display": "侵襲癌僅於中樞神經系統(CNS)發生遠端復發，但 external eye 除外。",
+      "definition": "侵襲癌僅於中樞神經系統(CNS)發生遠端復發，但 external eye 除外。 / Invasive cancer, distant recurrence in the CNS only (brain and spinal cord; excludes the external eye)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive cancer, distant recurrence in the CNS only (brain and spinal cord; excludes the external eye)"
+        }
+      ]
     },
     {
       "code": "57",
-      "display": "Invasive cancer, distant recurrence in the skin only, excluding skin at the primary site",
-      "definition": "Invasive cancer, distant recurrence in the skin only, excluding skin at the primary site"
+      "display": "侵襲癌僅於皮膚發生遠端復發，但原發部位的皮膚除外。",
+      "definition": "侵襲癌僅於皮膚發生遠端復發，但原發部位的皮膚除外。 / Invasive cancer, distant recurrence in the skin only, excluding skin at the primary site",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive cancer, distant recurrence in the skin only, excluding skin at the primary site"
+        }
+      ]
     },
     {
       "code": "58",
-      "display": "Invasive cancer, distant recurrence in distant lymph nodes only (per each cancer site's own definition of distant nodes)",
-      "definition": "Invasive cancer, distant recurrence in distant lymph nodes only (per each cancer site's own definition of distant nodes)"
+      "display": "侵襲癌僅於遠端淋巴結復發。",
+      "definition": "侵襲癌僅於遠端淋巴結復發。 / Invasive cancer, distant recurrence in distant lymph nodes only (per each cancer site's own definition of distant nodes)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive cancer, distant recurrence in distant lymph nodes only (per each cancer site's own definition of distant nodes)"
+        }
+      ]
     },
     {
       "code": "59",
-      "display": "Invasive cancer, systemic distant recurrence only (lymphoma, leukemia, bone marrow metastasis, carcinomatosis, or generalised disease)",
-      "definition": "Invasive cancer, systemic distant recurrence only (lymphoma, leukemia, bone marrow metastasis, carcinomatosis, or generalised disease)"
+      "display": "侵襲癌僅發生全身性(systemic)遠端復發（如 lymphoma、leukemia、骨髓轉移等）。",
+      "definition": "侵襲癌僅發生全身性(systemic)遠端復發（如 lymphoma、leukemia、骨髓轉移等）。 / Invasive cancer, systemic distant recurrence only (lymphoma, leukemia, bone marrow metastasis, carcinomatosis, or generalised disease)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive cancer, systemic distant recurrence only (lymphoma, leukemia, bone marrow metastasis, carcinomatosis, or generalised disease)"
+        }
+      ]
     },
     {
       "code": "60",
-      "display": "Invasive cancer, one recurrence type from each of two groups: (one or more distant-site recurrences) combined with (local or regional recurrence, codes 10-15, 20-25 or 30)",
-      "definition": "Invasive cancer, one recurrence type from each of two groups: (one or more distant-site recurrences) combined with (local or regional recurrence, codes 10-15, 20-25 or 30)"
+      "display": "侵襲癌之復發為單一或多處遠端部位復發，合併局部或區域復發。",
+      "definition": "侵襲癌之復發為單一或多處遠端部位復發，合併局部或區域復發。 / Invasive cancer, one recurrence type from each of two groups: (one or more distant-site recurrences) combined with (local or regional recurrence, codes 10-15, 20-25 or 30)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive cancer, one recurrence type from each of two groups: (one or more distant-site recurrences) combined with (local or regional recurrence, codes 10-15, 20-25 or 30)"
+        }
+      ]
     },
     {
       "code": "62",
-      "display": "Invasive cancer, recurrence at multiple distant sites",
-      "definition": "Invasive cancer, recurrence at multiple distant sites"
+      "display": "侵襲癌於多處遠端部位復發。",
+      "definition": "侵襲癌於多處遠端部位復發。 / Invasive cancer, recurrence at multiple distant sites",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive cancer, recurrence at multiple distant sites"
+        }
+      ]
     },
     {
       "code": "70",
-      "display": "Never disease-free since diagnosis (already had distant metastasis at diagnosis, systemic disease at diagnosis, an unknown primary, or disease too limited to have been treated)",
-      "definition": "Never disease-free since diagnosis (already had distant metastasis at diagnosis, systemic disease at diagnosis, an unknown primary, or disease too limited to have been treated)"
+      "display": "個案癌症確診後從未 disease-free 過。",
+      "definition": "個案癌症確診後從未 disease-free 過。 / Never disease-free since diagnosis (already had distant metastasis at diagnosis, systemic disease at diagnosis, an unknown primary, or disease too limited to have been treated)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Never disease-free since diagnosis (already had distant metastasis at diagnosis, systemic disease at diagnosis, an unknown primary, or disease too limited to have been treated)"
+        }
+      ]
     },
     {
       "code": "88",
-      "display": "Recurrence occurred, but the type is not documented",
-      "definition": "Recurrence occurred, but the type is not documented"
+      "display": "癌症有復發，但復發型式不詳。",
+      "definition": "癌症有復發，但復發型式不詳。 / Recurrence occurred, but the type is not documented",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Recurrence occurred, but the type is not documented"
+        }
+      ]
     },
     {
       "code": "99",
-      "display": "Unknown whether the case ever recurred or was ever disease-free (usually class of case 3)",
-      "definition": "Unknown whether the case ever recurred or was ever disease-free (usually class of case 3)"
+      "display": "不確定癌症是否曾復發或曾 disease-free 過。",
+      "definition": "不確定癌症是否曾復發或曾 disease-free 過。 / Unknown whether the case ever recurred or was ever disease-free (usually class of case 3)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Unknown whether the case ever recurred or was ever disease-free (usually class of case 3)"
+        }
+      ]
     }
   ]
 }

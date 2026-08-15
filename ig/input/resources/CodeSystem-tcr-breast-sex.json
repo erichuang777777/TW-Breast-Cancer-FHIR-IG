@@ -15,28 +15,58 @@
   "concept": [
     {
       "code": "1",
-      "display": "Male",
-      "definition": "Male"
+      "display": "男性。",
+      "definition": "男性。 / Male",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Male"
+        }
+      ]
     },
     {
       "code": "2",
-      "display": "Female",
-      "definition": "Female"
+      "display": "女性。",
+      "definition": "女性。 / Female",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Female"
+        }
+      ]
     },
     {
       "code": "3",
-      "display": "Other (e.g. intersex)",
-      "definition": "Other (e.g. intersex)"
+      "display": "其他，例如：雙性人(hermaphrodite)。",
+      "definition": "其他，例如：雙性人(hermaphrodite)。 / Other (e.g. intersex)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Other (e.g. intersex)"
+        }
+      ]
     },
     {
       "code": "4",
-      "display": "Transsexual",
-      "definition": "Transsexual"
+      "display": "變性人。",
+      "definition": "變性人。 / Transsexual",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Transsexual"
+        }
+      ]
     },
     {
       "code": "9",
-      "display": "Unknown or not documented",
-      "definition": "Unknown or not documented"
+      "display": "不詳或在病歷上未記載。",
+      "definition": "不詳或在病歷上未記載。 / Unknown or not documented",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Unknown or not documented"
+        }
+      ]
     }
   ]
 }

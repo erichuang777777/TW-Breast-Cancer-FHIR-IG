@@ -89,13 +89,10 @@
           "linkId": "KPSECOG",
           "answer": [
             {
-              "valueString": "9",
-              "extension": [
-                {
-                  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-illegal-code",
-                  "valueString": "'9' is not in the 編碼範圍 for KPSECOG; needs review"
-                }
-              ]
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-kpsecog",
+                "code": "003"
+              }
             }
           ]
         },
@@ -722,7 +719,7 @@
             {
               "valueCoding": {
                 "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-seqrs",
-                "code": "01"
+                "code": "03"
               }
             }
           ]
@@ -733,7 +730,7 @@
             {
               "valueCoding": {
                 "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-seqls",
-                "code": "02"
+                "code": "01"
               }
             }
           ]
@@ -864,7 +861,7 @@
             {
               "valueCoding": {
                 "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-prep",
-                "code": "0"
+                "code": "9"
               }
             }
           ]

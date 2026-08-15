@@ -72,7 +72,7 @@ FHIR 上的對應：① 的產物是 `Observation`（或直接是 QuestionnaireR
 
 | 資源 | 數量 | 說明 |
 |---|---|---|
-| `CodeSystem` | 48 | 每個已驗證碼表一個。**display 用碼冊中文原文**，另附 `en` designation（本工具的英文臨床意義），`definition` 為中英合併 |
+| `CodeSystem` | 48 | 每個已驗證碼表一個。**display 用碼冊中文原文**，另附 `en` designation（本工具的英文臨床意義），`definition` 為中英合併——41 欄已轉錄；AJCC、附錄B 手術碼×2、淋巴結手術碼×2、EBRT、LNEXAM、LN_POSITI 共 7 欄尚未轉錄中文，暫以英文 display 呈現且不附 designation |
 | `ValueSet` | 48 | 供 Questionnaire item 或 `Observation.valueCodeableConcept` 綁定 |
 | `ConceptMap` | 48 | TCR 碼 → 標準術語的**骨架**：每個碼都列出來但 target 一律 `unmatched` |
 | `Questionnaire` | 1 | 長表 99 欄位，分 8 個 group |

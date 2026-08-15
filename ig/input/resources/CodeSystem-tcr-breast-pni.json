@@ -15,28 +15,58 @@
   "concept": [
     {
       "code": "0",
-      "display": "No perineural invasion",
-      "definition": "No perineural invasion"
+      "display": "無神經侵襲。",
+      "definition": "無神經侵襲。 / No perineural invasion",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No perineural invasion"
+        }
+      ]
     },
     {
       "code": "1",
-      "display": "Perineural invasion present",
-      "definition": "Perineural invasion present"
+      "display": "有神經侵襲。",
+      "definition": "有神經侵襲。 / Perineural invasion present",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Perineural invasion present"
+        }
+      ]
     },
     {
       "code": "7",
-      "display": "Perineural invasion cannot be assessed: reported as NA, specimen too small, insufficient sample, no primary-site report describes it, or the report found no malignant cells",
-      "definition": "Perineural invasion cannot be assessed: reported as NA, specimen too small, insufficient sample, no primary-site report describes it, or the report found no malignant cells"
+      "display": "無法判斷是否侵犯（NA、樣本太小、樣本不足、未描述、無惡性細胞）。",
+      "definition": "無法判斷是否侵犯（NA、樣本太小、樣本不足、未描述、無惡性細胞）。 / Perineural invasion cannot be assessed: reported as NA, specimen too small, insufficient sample, no primary-site report describes it, or the report found no malignant cells",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Perineural invasion cannot be assessed: reported as NA, specimen too small, insufficient sample, no primary-site report describes it, or the report found no malignant cells"
+        }
+      ]
     },
     {
       "code": "8",
-      "display": "Not applicable: GIST, NET, high-grade dysplasia or carcinoma in situ; lymphoma or leukemia; plasma cell myeloma; central nervous system malignancy; unknown primary; or no pathology performed on the primary site",
-      "definition": "Not applicable: GIST, NET, high-grade dysplasia or carcinoma in situ; lymphoma or leukemia; plasma cell myeloma; central nervous system malignancy; unknown primary; or no pathology performed on the primary site"
+      "display": "不適用（GIST、NET、高度分化不良、原位癌、淋巴瘤及白血病、漿細胞骨髓瘤、中樞神經系統惡性腫瘤、原發部位不詳或未執行病理檢查）。",
+      "definition": "不適用（GIST、NET、高度分化不良、原位癌、淋巴瘤及白血病、漿細胞骨髓瘤、中樞神經系統惡性腫瘤、原發部位不詳或未執行病理檢查）。 / Not applicable: GIST, NET, high-grade dysplasia or carcinoma in situ; lymphoma or leukemia; plasma cell myeloma; central nervous system malignancy; unknown primary; or no pathology performed on the primary site",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not applicable: GIST, NET, high-grade dysplasia or carcinoma in situ; lymphoma or leukemia; plasma cell myeloma; central nervous system malignancy; unknown primary; or no pathology performed on the primary site"
+        }
+      ]
     },
     {
       "code": "9",
-      "display": "Not documented in the medical record",
-      "definition": "Not documented in the medical record"
+      "display": "病歷未記載或不詳。",
+      "definition": "病歷未記載或不詳。 / Not documented in the medical record",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not documented in the medical record"
+        }
+      ]
     }
   ]
 }

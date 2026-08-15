@@ -15,68 +15,146 @@
   "concept": [
     {
       "code": "-1",
-      "display": "Sequence unknown: the first course had both surgery and radiation therapy, but the order is not documented",
-      "definition": "Sequence unknown: the first course had both surgery and radiation therapy, but the order is not documented"
+      "display": "首次癌症療程中有手術也有放射治療，但順序未明。",
+      "definition": "首次癌症療程中有手術也有放射治療，但順序未明。 / Sequence unknown: the first course had both surgery and radiation therapy, but the order is not documented",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Sequence unknown: the first course had both surgery and radiation therapy, but the order is not documented"
+        }
+      ]
     },
     {
       "code": "-6",
-      "display": "More than two primary-site or regional-node surgeries with radiation therapy in between, so the sequence cannot be determined",
-      "definition": "More than two primary-site or regional-node surgeries with radiation therapy in between, so the sequence cannot be determined"
+      "display": "有兩次以上原發部位或區域淋巴結手術，無法決定與放射治療的順序。",
+      "definition": "有兩次以上原發部位或區域淋巴結手術，無法決定與放射治療的順序。 / More than two primary-site or regional-node surgeries with radiation therapy in between, so the sequence cannot be determined",
+      "designation": [
+        {
+          "language": "en",
+          "value": "More than two primary-site or regional-node surgeries with radiation therapy in between, so the sequence cannot be determined"
+        }
+      ]
     },
     {
       "code": "-7",
-      "display": "Not comparable: nodal lymphoma, a haematologic malignancy, distant metastasis, or a first course including surgery and radiation aimed at different sites",
-      "definition": "Not comparable: nodal lymphoma, a haematologic malignancy, distant metastasis, or a first course including surgery and radiation aimed at different sites"
+      "display": "結內淋巴癌、血液腫瘤疾病或遠端轉移個案；或首次療程包含手術及放射治療，但治療範圍不同。",
+      "definition": "結內淋巴癌、血液腫瘤疾病或遠端轉移個案；或首次療程包含手術及放射治療，但治療範圍不同。 / Not comparable: nodal lymphoma, a haematologic malignancy, distant metastasis, or a first course including surgery and radiation aimed at different sites",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not comparable: nodal lymphoma, a haematologic malignancy, distant metastasis, or a first course including surgery and radiation aimed at different sites"
+        }
+      ]
     },
     {
       "code": "-8",
-      "display": "No surgery of the primary site or regional nodes (radiation therapy only, including radiation to a distant site)",
-      "definition": "No surgery of the primary site or regional nodes (radiation therapy only, including radiation to a distant site)"
+      "display": "首次療程中個案有原發部位及區域淋巴結放射治療，但未接受原發部位及區域淋巴結手術；或無原發部位或區域淋巴結手術，接受遠端部位預防性放射治療。",
+      "definition": "首次療程中個案有原發部位及區域淋巴結放射治療，但未接受原發部位及區域淋巴結手術；或無原發部位或區域淋巴結手術，接受遠端部位預防性放射治療。 / No surgery of the primary site or regional nodes (radiation therapy only, including radiation to a distant site)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No surgery of the primary site or regional nodes (radiation therapy only, including radiation to a distant site)"
+        }
+      ]
     },
     {
       "code": "-9",
-      "display": "Unknown whether the case had surgery and/or radiation therapy",
-      "definition": "Unknown whether the case had surgery and/or radiation therapy"
+      "display": "不清楚是否有手術或放射治療。",
+      "definition": "不清楚是否有手術或放射治療。 / Unknown whether the case had surgery and/or radiation therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Unknown whether the case had surgery and/or radiation therapy"
+        }
+      ]
     },
     {
       "code": "00",
-      "display": "No radiation therapy in the first course (with or without surgery)",
-      "definition": "No radiation therapy in the first course (with or without surgery)"
+      "display": "首次癌症療程中個案未接受放射治療；或首次療程不含放射治療亦不含手術。",
+      "definition": "首次癌症療程中個案未接受放射治療；或首次療程不含放射治療亦不含手術。 / No radiation therapy in the first course (with or without surgery)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No radiation therapy in the first course (with or without surgery)"
+        }
+      ]
     },
     {
       "code": "01",
-      "display": "Pre-operative radiation therapy",
-      "definition": "Pre-operative radiation therapy"
+      "display": "手術前放射治療(縮小腫瘤)",
+      "definition": "手術前放射治療(縮小腫瘤) / Pre-operative radiation therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Pre-operative radiation therapy"
+        }
+      ]
     },
     {
       "code": "02",
-      "display": "Intra-operative radiation therapy (IORT)",
-      "definition": "Intra-operative radiation therapy (IORT)"
+      "display": "手術中放射治療(IORT)",
+      "definition": "手術中放射治療(IORT) / Intra-operative radiation therapy (IORT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Intra-operative radiation therapy (IORT)"
+        }
+      ]
     },
     {
       "code": "03",
-      "display": "Pre-operative radiation therapy + Intra-operative radiation therapy (IORT)",
-      "definition": "Pre-operative radiation therapy + Intra-operative radiation therapy (IORT)"
+      "display": "手術前放射治療(縮小腫瘤)＋手術中放射治療(IORT)",
+      "definition": "手術前放射治療(縮小腫瘤)＋手術中放射治療(IORT) / Pre-operative radiation therapy + Intra-operative radiation therapy (IORT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Pre-operative radiation therapy + Intra-operative radiation therapy (IORT)"
+        }
+      ]
     },
     {
       "code": "04",
-      "display": "Post-operative radiation therapy",
-      "definition": "Post-operative radiation therapy"
+      "display": "手術後放射治療(降低局部復發率)",
+      "definition": "手術後放射治療(降低局部復發率) / Post-operative radiation therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Post-operative radiation therapy"
+        }
+      ]
     },
     {
       "code": "05",
-      "display": "Pre-operative radiation therapy + Post-operative radiation therapy",
-      "definition": "Pre-operative radiation therapy + Post-operative radiation therapy"
+      "display": "手術前放射治療(縮小腫瘤)＋手術後放射治療(降低局部復發率)",
+      "definition": "手術前放射治療(縮小腫瘤)＋手術後放射治療(降低局部復發率) / Pre-operative radiation therapy + Post-operative radiation therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Pre-operative radiation therapy + Post-operative radiation therapy"
+        }
+      ]
     },
     {
       "code": "06",
-      "display": "Intra-operative radiation therapy (IORT) + Post-operative radiation therapy",
-      "definition": "Intra-operative radiation therapy (IORT) + Post-operative radiation therapy"
+      "display": "手術中放射治療(IORT)＋手術後放射治療(降低局部復發率)",
+      "definition": "手術中放射治療(IORT)＋手術後放射治療(降低局部復發率) / Intra-operative radiation therapy (IORT) + Post-operative radiation therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Intra-operative radiation therapy (IORT) + Post-operative radiation therapy"
+        }
+      ]
     },
     {
       "code": "07",
-      "display": "Pre-operative radiation therapy + Intra-operative radiation therapy (IORT) + Post-operative radiation therapy",
-      "definition": "Pre-operative radiation therapy + Intra-operative radiation therapy (IORT) + Post-operative radiation therapy"
+      "display": "手術前放射治療(縮小腫瘤)＋手術中放射治療(IORT)＋手術後放射治療(降低局部復發率)",
+      "definition": "手術前放射治療(縮小腫瘤)＋手術中放射治療(IORT)＋手術後放射治療(降低局部復發率) / Pre-operative radiation therapy + Intra-operative radiation therapy (IORT) + Post-operative radiation therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Pre-operative radiation therapy + Intra-operative radiation therapy (IORT) + Post-operative radiation therapy"
+        }
+      ]
     }
   ]
 }

@@ -15,13 +15,25 @@
   "concept": [
     {
       "code": "0",
-      "display": "Dead",
-      "definition": "Dead"
+      "display": "死亡。",
+      "definition": "死亡。 / Dead",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Dead"
+        }
+      ]
     },
     {
       "code": "1",
-      "display": "Alive",
-      "definition": "Alive"
+      "display": "存活。",
+      "definition": "存活。 / Alive",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Alive"
+        }
+      ]
     }
   ]
 }

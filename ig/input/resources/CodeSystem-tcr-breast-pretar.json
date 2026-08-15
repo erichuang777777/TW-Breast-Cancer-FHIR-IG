@@ -15,38 +15,80 @@
   "concept": [
     {
       "code": "00",
-      "display": "No targeted therapy; not part of the first course, or the cancer was found only at autopsy",
-      "definition": "No targeted therapy; not part of the first course, or the cancer was found only at autopsy"
+      "display": "未接受標靶治療，標靶治療非首次療程的一部份。",
+      "definition": "未接受標靶治療，標靶治療非首次療程的一部份。 / No targeted therapy; not part of the first course, or the cancer was found only at autopsy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No targeted therapy; not part of the first course, or the cancer was found only at autopsy"
+        }
+      ]
     },
     {
       "code": "01",
-      "display": "Targeted therapy given in the first course",
-      "definition": "Targeted therapy given in the first course"
+      "display": "在首次療程中有接受標靶治療。",
+      "definition": "在首次療程中有接受標靶治療。 / Targeted therapy given in the first course",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Targeted therapy given in the first course"
+        }
+      ]
     },
     {
       "code": "20",
-      "display": "Clinical-trial targeted therapy only",
-      "definition": "Clinical-trial targeted therapy only"
+      "display": "僅接受臨床試驗標靶治療。",
+      "definition": "僅接受臨床試驗標靶治療。 / Clinical-trial targeted therapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Clinical-trial targeted therapy only"
+        }
+      ]
     },
     {
       "code": "21",
-      "display": "Targeted therapy plus clinical-trial targeted therapy",
-      "definition": "Targeted therapy plus clinical-trial targeted therapy"
+      "display": "同時接受標靶治療及臨床試驗標靶治療。",
+      "definition": "同時接受標靶治療及臨床試驗標靶治療。 / Targeted therapy plus clinical-trial targeted therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Targeted therapy plus clinical-trial targeted therapy"
+        }
+      ]
     },
     {
       "code": "30",
-      "display": "Double-blind-trial targeted therapy only",
-      "definition": "Double-blind-trial targeted therapy only"
+      "display": "僅接受雙盲試驗標靶治療。",
+      "definition": "僅接受雙盲試驗標靶治療。 / Double-blind-trial targeted therapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Double-blind-trial targeted therapy only"
+        }
+      ]
     },
     {
       "code": "31",
-      "display": "Targeted therapy plus double-blind-trial targeted therapy",
-      "definition": "Targeted therapy plus double-blind-trial targeted therapy"
+      "display": "同時接受標靶治療及雙盲試驗標靶治療。",
+      "definition": "同時接受標靶治療及雙盲試驗標靶治療。 / Targeted therapy plus double-blind-trial targeted therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Targeted therapy plus double-blind-trial targeted therapy"
+        }
+      ]
     },
     {
       "code": "99",
-      "display": "Not documented, so it is unknown whether targeted therapy was advised or given; or the cancer is known only from a death certificate",
-      "definition": "Not documented, so it is unknown whether targeted therapy was advised or given; or the cancer is known only from a death certificate"
+      "display": "由於病歷未記載，所以不知道是否標靶治療有被建議或是已經執行。",
+      "definition": "由於病歷未記載，所以不知道是否標靶治療有被建議或是已經執行。 / Not documented, so it is unknown whether targeted therapy was advised or given; or the cancer is known only from a death certificate",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not documented, so it is unknown whether targeted therapy was advised or given; or the cancer is known only from a death certificate"
+        }
+      ]
     }
   ]
 }

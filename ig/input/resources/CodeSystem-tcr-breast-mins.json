@@ -15,38 +15,80 @@
   "concept": [
     {
       "code": "0",
-      "display": "Open surgery only; no minimally invasive or robotic-assisted surgery",
-      "definition": "Open surgery only; no minimally invasive or robotic-assisted surgery"
+      "display": "僅接受開放性手術(open surgery)，未接受微創或機械臂輔助手術。",
+      "definition": "僅接受開放性手術(open surgery)，未接受微創或機械臂輔助手術。 / Open surgery only; no minimally invasive or robotic-assisted surgery",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Open surgery only; no minimally invasive or robotic-assisted surgery"
+        }
+      ]
     },
     {
       "code": "1",
-      "display": "Endoscopic surgery (entry through a natural body opening: e.g. gastroscopy, colonoscopy, bronchoscopy, hysteroscopy, colposcopy, cystoscopy)",
-      "definition": "Endoscopic surgery (entry through a natural body opening: e.g. gastroscopy, colonoscopy, bronchoscopy, hysteroscopy, colposcopy, cystoscopy)"
+      "display": "有接受內視鏡手術。",
+      "definition": "有接受內視鏡手術。 / Endoscopic surgery (entry through a natural body opening: e.g. gastroscopy, colonoscopy, bronchoscopy, hysteroscopy, colposcopy, cystoscopy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Endoscopic surgery (entry through a natural body opening: e.g. gastroscopy, colonoscopy, bronchoscopy, hysteroscopy, colposcopy, cystoscopy)"
+        }
+      ]
     },
     {
       "code": "2",
-      "display": "Thoracoscopic, laparoscopic, or a similar minimally invasive surgery (percutaneous entry, or a natural opening reopened, into a body cavity)",
-      "definition": "Thoracoscopic, laparoscopic, or a similar minimally invasive surgery (percutaneous entry, or a natural opening reopened, into a body cavity)"
+      "display": "有接受胸腔鏡或腹腔鏡手術，或類似手術。",
+      "definition": "有接受胸腔鏡或腹腔鏡手術，或類似手術。 / Thoracoscopic, laparoscopic, or a similar minimally invasive surgery (percutaneous entry, or a natural opening reopened, into a body cavity)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Thoracoscopic, laparoscopic, or a similar minimally invasive surgery (percutaneous entry, or a natural opening reopened, into a body cavity)"
+        }
+      ]
     },
     {
       "code": "3",
-      "display": "Robotic-assisted surgery",
-      "definition": "Robotic-assisted surgery"
+      "display": "有接受機械臂輔助手術(Robotic Surgery)。",
+      "definition": "有接受機械臂輔助手術(Robotic Surgery)。 / Robotic-assisted surgery",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Robotic-assisted surgery"
+        }
+      ]
     },
     {
       "code": "4",
-      "display": "Minimally invasive or robotic-assisted surgery combined with, or converted to, open surgery",
-      "definition": "Minimally invasive or robotic-assisted surgery combined with, or converted to, open surgery"
+      "display": "有接受微創手術或機械臂輔助手術，合併或轉換開放性手術。",
+      "definition": "有接受微創手術或機械臂輔助手術，合併或轉換開放性手術。 / Minimally invasive or robotic-assisted surgery combined with, or converted to, open surgery",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Minimally invasive or robotic-assisted surgery combined with, or converted to, open surgery"
+        }
+      ]
     },
     {
       "code": "8",
-      "display": "Not applicable: no primary-site surgery; primary-site surgery coded 100-190; prostate cancer primary-site surgery coded 210-270; primary-site surgery performed at another hospital; diagnosis year 2017 or earlier; or a haematopoietic/reticuloendothelial/immunoproliferative/myeloproliferative neoplasm",
-      "definition": "Not applicable: no primary-site surgery; primary-site surgery coded 100-190; prostate cancer primary-site surgery coded 210-270; primary-site surgery performed at another hospital; diagnosis year 2017 or earlier; or a haematopoietic/reticuloendothelial/immunoproliferative/myeloproliferative neoplasm"
+      "display": "不適用(原發部位未接受手術；手術方式編碼100-190；攝護腺癌手術方式編碼210-270；於外院接受原發部位手術；2017年(含)之前診斷；或造血/網狀內皮/免疫增生/骨髓增生疾病)。",
+      "definition": "不適用(原發部位未接受手術；手術方式編碼100-190；攝護腺癌手術方式編碼210-270；於外院接受原發部位手術；2017年(含)之前診斷；或造血/網狀內皮/免疫增生/骨髓增生疾病)。 / Not applicable: no primary-site surgery; primary-site surgery coded 100-190; prostate cancer primary-site surgery coded 210-270; primary-site surgery performed at another hospital; diagnosis year 2017 or earlier; or a haematopoietic/reticuloendothelial/immunoproliferative/myeloproliferative neoplasm",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not applicable: no primary-site surgery; primary-site surgery coded 100-190; prostate cancer primary-site surgery coded 210-270; primary-site surgery performed at another hospital; diagnosis year 2017 or earlier; or a haematopoietic/reticuloendothelial/immunoproliferative/myeloproliferative neoplasm"
+        }
+      ]
     },
     {
       "code": "9",
-      "display": "Not documented",
-      "definition": "Not documented"
+      "display": "不詳。",
+      "definition": "不詳。 / Not documented",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not documented"
+        }
+      ]
     }
   ]
 }

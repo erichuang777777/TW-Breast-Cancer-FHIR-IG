@@ -15,48 +15,102 @@
   "concept": [
     {
       "code": "0",
-      "display": "No palliative care",
-      "definition": "No palliative care"
+      "display": "個案未接受緩和照護。",
+      "definition": "個案未接受緩和照護。 / No palliative care",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No palliative care"
+        }
+      ]
     },
     {
       "code": "1",
-      "display": "Surgery to relieve symptoms only, not for diagnosis, staging or treatment (may include a bypass procedure)",
-      "definition": "Surgery to relieve symptoms only, not for diagnosis, staging or treatment (may include a bypass procedure)"
+      "display": "接受以減輕症狀為目的，而非為了診斷、分期或治療所進行之手術(可包括bypass 繞道手術)。",
+      "definition": "接受以減輕症狀為目的，而非為了診斷、分期或治療所進行之手術(可包括bypass 繞道手術)。 / Surgery to relieve symptoms only, not for diagnosis, staging or treatment (may include a bypass procedure)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Surgery to relieve symptoms only, not for diagnosis, staging or treatment (may include a bypass procedure)"
+        }
+      ]
     },
     {
       "code": "2",
-      "display": "Radiotherapy to relieve symptoms only",
-      "definition": "Radiotherapy to relieve symptoms only"
+      "display": "僅接受以減輕症狀為目的，而非為了診斷、分期或治療所進行之放射治療。",
+      "definition": "僅接受以減輕症狀為目的，而非為了診斷、分期或治療所進行之放射治療。 / Radiotherapy to relieve symptoms only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiotherapy to relieve symptoms only"
+        }
+      ]
     },
     {
       "code": "3",
-      "display": "Regional or systemic drug therapy to relieve symptoms only",
-      "definition": "Regional or systemic drug therapy to relieve symptoms only"
+      "display": "僅接受以減輕症狀為目的，而非為了診斷、分期或治療所進行之局部藥物或全身性藥物治療。",
+      "definition": "僅接受以減輕症狀為目的，而非為了診斷、分期或治療所進行之局部藥物或全身性藥物治療。 / Regional or systemic drug therapy to relieve symptoms only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional or systemic drug therapy to relieve symptoms only"
+        }
+      ]
     },
     {
       "code": "4",
-      "display": "Pain management or referral for it, with no other palliative care",
-      "definition": "Pain management or referral for it, with no other palliative care"
+      "display": "僅接受或轉介疼痛治療，並未接受其他緩和照護。",
+      "definition": "僅接受或轉介疼痛治療，並未接受其他緩和照護。 / Pain management or referral for it, with no other palliative care",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Pain management or referral for it, with no other palliative care"
+        }
+      ]
     },
     {
       "code": "5",
-      "display": "Two or more of codes 1, 2 and 3, without code 4",
-      "definition": "Two or more of codes 1, 2 and 3, without code 4"
+      "display": "編碼 1、2 及 3 任二項或二項以上但不包括 4。",
+      "definition": "編碼 1、2 及 3 任二項或二項以上但不包括 4。 / Two or more of codes 1, 2 and 3, without code 4",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Two or more of codes 1, 2 and 3, without code 4"
+        }
+      ]
     },
     {
       "code": "6",
-      "display": "One or more of codes 1, 2 and 3, together with code 4",
-      "definition": "One or more of codes 1, 2 and 3, together with code 4"
+      "display": "編碼 1、2 及 3 任一項或一項以上且包括 4。",
+      "definition": "編碼 1、2 及 3 任一項或一項以上且包括 4。 / One or more of codes 1, 2 and 3, together with code 4",
+      "designation": [
+        {
+          "language": "en",
+          "value": "One or more of codes 1, 2 and 3, together with code 4"
+        }
+      ]
     },
     {
       "code": "7",
-      "display": "Palliative care given or referred, but the record does not say what kind",
-      "definition": "Palliative care given or referred, but the record does not say what kind"
+      "display": "有接受或轉介緩和照護，但在病歷中未提及緩和照護的型式。",
+      "definition": "有接受或轉介緩和照護，但在病歷中未提及緩和照護的型式。 / Palliative care given or referred, but the record does not say what kind",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Palliative care given or referred, but the record does not say what kind"
+        }
+      ]
     },
     {
       "code": "9",
-      "display": "Unknown whether palliative care was given or referred; not documented",
-      "definition": "Unknown whether palliative care was given or referred; not documented"
+      "display": "不確定是否曾接受或轉介緩和照護；病歷未記載。",
+      "definition": "不確定是否曾接受或轉介緩和照護；病歷未記載。 / Unknown whether palliative care was given or referred; not documented",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Unknown whether palliative care was given or referred; not documented"
+        }
+      ]
     }
   ]
 }

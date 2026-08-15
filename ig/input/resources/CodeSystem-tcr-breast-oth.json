@@ -15,28 +15,58 @@
   "concept": [
     {
       "code": "00",
-      "display": "No other treatment; other treatment was not part of the first course",
-      "definition": "No other treatment; other treatment was not part of the first course"
+      "display": "未接受其他治療，其他治療非首次療程的一部份。",
+      "definition": "未接受其他治療，其他治療非首次療程的一部份。 / No other treatment; other treatment was not part of the first course",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No other treatment; other treatment was not part of the first course"
+        }
+      ]
     },
     {
       "code": "01",
-      "display": "Other treatment in the first course at the reporting hospital",
-      "definition": "Other treatment in the first course at the reporting hospital"
+      "display": "在申報醫院的首次療程中接受其他治療。",
+      "definition": "在申報醫院的首次療程中接受其他治療。 / Other treatment in the first course at the reporting hospital",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Other treatment in the first course at the reporting hospital"
+        }
+      ]
     },
     {
       "code": "02",
-      "display": "Other treatment in the first course at another hospital",
-      "definition": "Other treatment in the first course at another hospital"
+      "display": "在外院的首次療程中接受其他治療。",
+      "definition": "在外院的首次療程中接受其他治療。 / Other treatment in the first course at another hospital",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Other treatment in the first course at another hospital"
+        }
+      ]
     },
     {
       "code": "03",
-      "display": "Other treatment in the first course at both the reporting hospital and another hospital",
-      "definition": "Other treatment in the first course at both the reporting hospital and another hospital"
+      "display": "個案在申報醫院及外院的首次療程中接受其他治療。",
+      "definition": "個案在申報醫院及外院的首次療程中接受其他治療。 / Other treatment in the first course at both the reporting hospital and another hospital",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Other treatment in the first course at both the reporting hospital and another hospital"
+        }
+      ]
     },
     {
       "code": "99",
-      "display": "Not documented, so it is unknown whether other treatment was advised or given",
-      "definition": "Not documented, so it is unknown whether other treatment was advised or given"
+      "display": "由於病歷未記載，所以不知道其他治療是否有被建議或是已經執行。",
+      "definition": "由於病歷未記載，所以不知道其他治療是否有被建議或是已經執行。 / Not documented, so it is unknown whether other treatment was advised or given",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not documented, so it is unknown whether other treatment was advised or given"
+        }
+      ]
     }
   ]
 }

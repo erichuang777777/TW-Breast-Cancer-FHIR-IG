@@ -15,13 +15,25 @@
   "concept": [
     {
       "code": "2",
-      "display": "In situ (non-invasive, intraepithelial, no stromal invasion)",
-      "definition": "In situ (non-invasive, intraepithelial, no stromal invasion)"
+      "display": "原位（in situ），不具侵襲性。",
+      "definition": "原位（in situ），不具侵襲性。 / In situ (non-invasive, intraepithelial, no stromal invasion)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "In situ (non-invasive, intraepithelial, no stromal invasion)"
+        }
+      ]
     },
     {
       "code": "3",
-      "display": "Invasive or microinvasive",
-      "definition": "Invasive or microinvasive"
+      "display": "侵襲性（invasive）或微侵襲。",
+      "definition": "侵襲性（invasive）或微侵襲。 / Invasive or microinvasive",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Invasive or microinvasive"
+        }
+      ]
     }
   ]
 }

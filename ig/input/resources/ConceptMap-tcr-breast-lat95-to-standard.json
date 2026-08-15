@@ -14,7 +14,7 @@
       "element": [
         {
           "code": "0",
-          "display": "Not a paired organ",
+          "display": "不是成對器官。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -24,7 +24,7 @@
         },
         {
           "code": "1",
-          "display": "Origin in the right side",
+          "display": "原發起源位在右側。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -34,7 +34,7 @@
         },
         {
           "code": "2",
-          "display": "Origin in the left side",
+          "display": "原發起源位在左側。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -44,7 +44,7 @@
         },
         {
           "code": "3",
-          "display": "Paired organ, one side involved but the side of origin is not stated",
+          "display": "成對器官，只有單側侵犯，但起源於左側或右側則不清楚。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -54,7 +54,7 @@
         },
         {
           "code": "4",
-          "display": "Paired organ, bilateral involvement with the side of origin unknown, recorded as a single primary",
+          "display": "成對器官，雙側侵犯但起源之側位不清楚，且病歷描述是單一原發。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -64,7 +64,7 @@
         },
         {
           "code": "5",
-          "display": "Midline tumour of a paired site (C70.0, C71.0-C71.4, C72.2-C72.5, C44.3-C44.5)",
+          "display": "原發部位為身體中線的腫瘤（成對器官）。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -74,7 +74,7 @@
         },
         {
           "code": "9",
-          "display": "Paired organ, laterality not stated",
+          "display": "成對器官，但其側位不清楚。",
           "target": [
             {
               "equivalence": "unmatched",

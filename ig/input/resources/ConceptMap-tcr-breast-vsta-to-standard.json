@@ -14,7 +14,7 @@
       "element": [
         {
           "code": "0",
-          "display": "Dead",
+          "display": "死亡。",
           "target": [
             {
               "equivalence": "unmatched",
@@ -24,7 +24,7 @@
         },
         {
           "code": "1",
-          "display": "Alive",
+          "display": "存活。",
           "target": [
             {
               "equivalence": "unmatched",

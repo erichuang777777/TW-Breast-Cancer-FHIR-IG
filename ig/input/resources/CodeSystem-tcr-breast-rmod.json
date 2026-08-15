@@ -15,653 +15,1433 @@
   "concept": [
     {
       "code": "-1",
-      "display": "Radiation therapy given, modality not specified",
-      "definition": "Radiation therapy given, modality not specified"
+      "display": "個案有接受放射治療，但未明示使用的治療儀器或方法。",
+      "definition": "個案有接受放射治療，但未明示使用的治療儀器或方法。 / Radiation therapy given, modality not specified",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiation therapy given, modality not specified"
+        }
+      ]
     },
     {
       "code": "-9",
-      "display": "Unknown whether radiation therapy was given",
-      "definition": "Unknown whether radiation therapy was given"
+      "display": "不知道個案是否有接受放射治療。",
+      "definition": "不知道個案是否有接受放射治療。 / Unknown whether radiation therapy was given",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Unknown whether radiation therapy was given"
+        }
+      ]
     },
     {
       "code": "000",
-      "display": "No radiation therapy",
-      "definition": "No radiation therapy"
+      "display": "個案未接受放射治療。",
+      "definition": "個案未接受放射治療。 / No radiation therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No radiation therapy"
+        }
+      ]
     },
     {
       "code": "001",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy)"
+        }
+      ]
     },
     {
       "code": "002",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction)"
+        }
+      ]
     },
     {
       "code": "003",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction)"
+        }
+      ]
     },
     {
       "code": "004",
-      "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)",
-      "definition": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)"
+      "display": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)",
+      "definition": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質) / Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)"
+        }
+      ]
     },
     {
       "code": "005",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)"
+        }
+      ]
     },
     {
       "code": "006",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)"
+        }
+      ]
     },
     {
       "code": "007",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material)"
+        }
+      ]
     },
     {
       "code": "008",
-      "display": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
-      "definition": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)"
+      "display": "放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)",
+      "definition": "放射線同位素治療(注射放射性同位素，如碘-131、鍶-89) / Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)"
+        }
+      ]
     },
     {
       "code": "009",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)"
+        }
+      ]
     },
     {
       "code": "010",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)"
+        }
+      ]
     },
     {
       "code": "011",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)"
+        }
+      ]
     },
     {
       "code": "012",
-      "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
-      "definition": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)"
+      "display": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)",
+      "definition": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89) / Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)"
+        }
+      ]
     },
     {
       "code": "013",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)"
+        }
+      ]
     },
     {
       "code": "014",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)"
+        }
+      ]
     },
     {
       "code": "015",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89)"
+        }
+      ]
     },
     {
       "code": "016",
-      "display": "Proton therapy",
-      "definition": "Proton therapy"
+      "display": "質子治療",
+      "definition": "質子治療 / Proton therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Proton therapy"
+        }
+      ]
     },
     {
       "code": "017",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋質子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋質子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy"
+        }
+      ]
     },
     {
       "code": "018",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋質子治療",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋質子治療 / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy"
+        }
+      ]
     },
     {
       "code": "019",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋質子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋質子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy"
+        }
+      ]
     },
     {
       "code": "020",
-      "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy",
-      "definition": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy"
+      "display": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療",
+      "definition": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療 / Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy"
+        }
+      ]
     },
     {
       "code": "021",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy"
+        }
+      ]
     },
     {
       "code": "022",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療 / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy"
+        }
+      ]
     },
     {
       "code": "023",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy"
+        }
+      ]
     },
     {
       "code": "024",
-      "display": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
-      "definition": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy"
+      "display": "放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療",
+      "definition": "放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療 / Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy"
+        }
+      ]
     },
     {
       "code": "025",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy"
+        }
+      ]
     },
     {
       "code": "026",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療 / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy"
+        }
+      ]
     },
     {
       "code": "027",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy"
+        }
+      ]
     },
     {
       "code": "028",
-      "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
-      "definition": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy"
+      "display": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療",
+      "definition": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療 / Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy"
+        }
+      ]
     },
     {
       "code": "029",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy"
+        }
+      ]
     },
     {
       "code": "030",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療 / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy"
+        }
+      ]
     },
     {
       "code": "031",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy"
+        }
+      ]
     },
     {
       "code": "032",
-      "display": "Other charged-particle or neutron therapy",
-      "definition": "Other charged-particle or neutron therapy"
+      "display": "其他帶電荷粒子或中子治療",
+      "definition": "其他帶電荷粒子或中子治療 / Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "033",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Other charged-particle or neutron therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Other charged-particle or neutron therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋其他帶電荷粒子或中子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋其他帶電荷粒子或中子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "034",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋其他帶電荷粒子或中子治療",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋其他帶電荷粒子或中子治療 / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "035",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋其他帶電荷粒子或中子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋其他帶電荷粒子或中子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "036",
-      "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy",
-      "definition": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy"
+      "display": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋其他帶電荷粒子或中子治療",
+      "definition": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋其他帶電荷粒子或中子治療 / Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "037",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋其他帶電荷粒子或中子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋其他帶電荷粒子或中子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "038",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋其他帶電荷粒子或中子治療",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋其他帶電荷粒子或中子治療 / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "039",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋其他帶電荷粒子或中子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋其他帶電荷粒子或中子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "040",
-      "display": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
-      "definition": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy"
+      "display": "放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療",
+      "definition": "放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療 / Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "041",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "042",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療 / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "043",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "044",
-      "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
-      "definition": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy"
+      "display": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療",
+      "definition": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療 / Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "045",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "046",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療 / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "047",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "048",
-      "display": "Proton therapy + Other charged-particle or neutron therapy",
-      "definition": "Proton therapy + Other charged-particle or neutron therapy"
+      "display": "質子治療＋其他帶電荷粒子或中子治療",
+      "definition": "質子治療＋其他帶電荷粒子或中子治療 / Proton therapy + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Proton therapy + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "049",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy + Other charged-particle or neutron therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy + Other charged-particle or neutron therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋質子治療＋其他帶電荷粒子或中子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋質子治療＋其他帶電荷粒子或中子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "050",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋質子治療＋其他帶電荷粒子或中子治療",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋質子治療＋其他帶電荷粒子或中子治療 / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "051",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋質子治療＋其他帶電荷粒子或中子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋質子治療＋其他帶電荷粒子或中子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "052",
-      "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy",
-      "definition": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy"
+      "display": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋其他帶電荷粒子或中子治療",
+      "definition": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋其他帶電荷粒子或中子治療 / Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "053",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋其他帶電荷粒子或中子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋其他帶電荷粒子或中子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "054",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋其他帶電荷粒子或中子治療",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋其他帶電荷粒子或中子治療 / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "055",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋其他帶電荷粒子或中子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋其他帶電荷粒子或中子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "056",
-      "display": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
-      "definition": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy"
+      "display": "放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療",
+      "definition": "放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療 / Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "057",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "058",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療 / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "059",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "060",
-      "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
-      "definition": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy"
+      "display": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療",
+      "definition": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療 / Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "061",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "062",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療 / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "063",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療 / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy"
+        }
+      ]
     },
     {
       "code": "064",
-      "display": "Boron neutron capture therapy (BNCT)",
-      "definition": "Boron neutron capture therapy (BNCT)"
+      "display": "硼捉中子治療(BNCT)",
+      "definition": "硼捉中子治療(BNCT) / Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "065",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "066",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Boron neutron capture therapy (BNCT)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Boron neutron capture therapy (BNCT)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋硼捉中子治療(BNCT)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋硼捉中子治療(BNCT) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "067",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "068",
-      "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)",
-      "definition": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)"
+      "display": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋硼捉中子治療(BNCT)",
+      "definition": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋硼捉中子治療(BNCT) / Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "069",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "070",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋硼捉中子治療(BNCT)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋硼捉中子治療(BNCT) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "071",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "072",
-      "display": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
-      "definition": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)"
+      "display": "放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋硼捉中子治療(BNCT)",
+      "definition": "放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋硼捉中子治療(BNCT) / Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "073",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "074",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋硼捉中子治療(BNCT)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋硼捉中子治療(BNCT) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "075",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "076",
-      "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
-      "definition": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)"
+      "display": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋硼捉中子治療(BNCT)",
+      "definition": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋硼捉中子治療(BNCT) / Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "077",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "078",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋硼捉中子治療(BNCT)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋硼捉中子治療(BNCT) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "079",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "080",
-      "display": "Proton therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Proton therapy + Boron neutron capture therapy (BNCT)"
+      "display": "質子治療＋硼捉中子治療(BNCT)",
+      "definition": "質子治療＋硼捉中子治療(BNCT) / Proton therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Proton therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "081",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋質子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋質子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "082",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Boron neutron capture therapy (BNCT)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋質子治療＋硼捉中子治療(BNCT)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋質子治療＋硼捉中子治療(BNCT) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "083",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋質子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋質子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "084",
-      "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)"
+      "display": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋硼捉中子治療(BNCT)",
+      "definition": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋硼捉中子治療(BNCT) / Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "085",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "086",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋硼捉中子治療(BNCT)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋硼捉中子治療(BNCT) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "087",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "088",
-      "display": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)"
+      "display": "放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋硼捉中子治療(BNCT)",
+      "definition": "放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋硼捉中子治療(BNCT) / Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "089",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "090",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋硼捉中子治療(BNCT)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋硼捉中子治療(BNCT) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "091",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "092",
-      "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)"
+      "display": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋硼捉中子治療(BNCT)",
+      "definition": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋硼捉中子治療(BNCT) / Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "093",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "094",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋硼捉中子治療(BNCT)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋硼捉中子治療(BNCT) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "095",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "096",
-      "display": "Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "097",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "098",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "099",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "100",
-      "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "101",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "102",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "103",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "104",
-      "display": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "105",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "106",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "107",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "108",
-      "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "109",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "110",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "111",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "112",
-      "display": "Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "113",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "114",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "115",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "116",
-      "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "117",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "118",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "119",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "120",
-      "display": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "121",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "122",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "123",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "124",
-      "display": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "125",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "126",
-      "display": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     },
     {
       "code": "127",
-      "display": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
-      "definition": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+      "display": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT)",
+      "definition": "一般體外放射治療(包括鈷六十機、光子/電子射線直線加速器、螺旋式斷層治療機)＋放射手術(加馬刀、Linac-based、電腦刀、Zap-X)＋近距放射治療(組織插種、molds、seeds、needles 或腔內放射性物質)＋放射線同位素治療(注射放射性同位素，如碘-131、鍶-89)＋質子治療＋其他帶電荷粒子或中子治療＋硼捉中子治療(BNCT) / External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "External beam radiation therapy (cobalt unit, linear-accelerator photon or electron beam, tomotherapy) + Radiosurgery (Gamma Knife, Linac-based, CyberKnife, Zap-X, or SBRT/SABR delivered in <=6 fractions at >=800 cGy/fraction) + Brachytherapy (interstitial implants, moulds, seeds, needles, or intracavitary applicators of radioactive material) + Radioisotopes (injected radioactive material, e.g. I-131, Sr-89) + Proton therapy + Other charged-particle or neutron therapy + Boron neutron capture therapy (BNCT)"
+        }
+      ]
     }
   ]
 }
