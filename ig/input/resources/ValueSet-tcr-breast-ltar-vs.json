@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-ltar-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-ltar-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastLTARValueSet",
+  "title": "台灣癌症登記 低劑量標的（LTAR）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ltar"
+      }
+    ]
+  }
+}

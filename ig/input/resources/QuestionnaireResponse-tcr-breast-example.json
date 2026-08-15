@@ -435,7 +435,10 @@
           "linkId": "MINS",
           "answer": [
             {
-              "valueString": "0"
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-mins",
+                "code": "0"
+              }
             }
           ]
         },
@@ -601,7 +604,10 @@
           "linkId": "R",
           "answer": [
             {
-              "valueString": "0"
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-r",
+                "code": "01"
+              }
             }
           ]
         },
@@ -609,7 +615,10 @@
           "linkId": "RTAR",
           "answer": [
             {
-              "valueString": "0"
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-rtar",
+                "code": "00"
+              }
             }
           ]
         },
@@ -617,7 +626,10 @@
           "linkId": "RMOD",
           "answer": [
             {
-              "valueString": "0"
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-rmod",
+                "code": "000"
+              }
             }
           ]
         },
@@ -636,7 +648,10 @@
           "linkId": "HTAR",
           "answer": [
             {
-              "valueString": "0"
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-htar",
+                "code": "00"
+              }
             }
           ]
         },
@@ -660,7 +675,10 @@
           "linkId": "LTAR",
           "answer": [
             {
-              "valueString": "0"
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ltar",
+                "code": "00"
+              }
             }
           ]
         },
@@ -684,7 +702,10 @@
           "linkId": "SEQRS",
           "answer": [
             {
-              "valueString": "1"
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-seqrs",
+                "code": "01"
+              }
             }
           ]
         },
@@ -692,7 +713,10 @@
           "linkId": "SEQLS",
           "answer": [
             {
-              "valueString": "2"
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-seqls",
+                "code": "02"
+              }
             }
           ]
         }

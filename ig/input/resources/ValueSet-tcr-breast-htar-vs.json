@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-htar-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-htar-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastHTARValueSet",
+  "title": "台灣癌症登記 高劑量標的（HTAR）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-htar"
+      }
+    ]
+  }
+}

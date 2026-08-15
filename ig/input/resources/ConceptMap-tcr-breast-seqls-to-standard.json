@@ -1,0 +1,138 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-seqls-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-seqls-to-standard",
+  "version": "4.0.1",
+  "name": "TCRSEQLSToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-seqls-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-seqls",
+      "element": [
+        {
+          "code": "-1",
+          "display": "Sequence unknown, or systemic therapy is the main treatment modality (nodal lymphoma, haematologic malignancy, or distant metastasis)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "-7",
+          "display": "The first course had only regional drug therapy (TACE, intraperitoneal, intrapleural, intrathecal, intravesical, intraocular or intratumoral), with no systemic drug therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "-8",
+          "display": "No locoregional therapy: the first course had systemic drug therapy only (regional drug therapy such as TACE may still have been given)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "-9",
+          "display": "Unknown whether the case had locoregional and/or systemic therapy",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "00",
+          "display": "No systemic drug therapy in the first course (chemotherapy, hormone/steroid, immunotherapy or targeted therapy), whether or not locoregional therapy was given",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "01",
+          "display": "Induction / neoadjuvant systemic therapy (before locoregional therapy, or before radiation when radiation is the main locoregional therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "02",
+          "display": "Concurrent / concomitant systemic and radiation therapy (CSRT), or perioperative systemic therapy given around surgery",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "03",
+          "display": "Induction / neoadjuvant systemic therapy (before locoregional therapy, or before radiation when radiation is the main locoregional therapy) + Concurrent / concomitant systemic and radiation therapy (CSRT), or perioperative systemic therapy given around surgery",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "04",
+          "display": "Adjuvant systemic therapy (after locoregional therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "05",
+          "display": "Induction / neoadjuvant systemic therapy (before locoregional therapy, or before radiation when radiation is the main locoregional therapy) + Adjuvant systemic therapy (after locoregional therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "06",
+          "display": "Concurrent / concomitant systemic and radiation therapy (CSRT), or perioperative systemic therapy given around surgery + Adjuvant systemic therapy (after locoregional therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "07",
+          "display": "Induction / neoadjuvant systemic therapy (before locoregional therapy, or before radiation when radiation is the main locoregional therapy) + Concurrent / concomitant systemic and radiation therapy (CSRT), or perioperative systemic therapy given around surgery + Adjuvant systemic therapy (after locoregional therapy)",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
