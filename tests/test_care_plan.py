@@ -84,7 +84,36 @@ def test_care_plan_bundle_preserves_extra_fields(tmp_path):
     answers = {item["text"]: item["answer"][0]["valueString"] for item in response["item"]}
     assert answers["母親或姐妹得過乳癌"] == "母親或姐妹得過乳癌"
     assert answers["ddlECOG"] == "1"
+    assert answers["Combined reference reports"] == "SYNTHETIC REPORT"
     assert care_plan["activity"][0]["detail"]["description"] == "SYNTHETIC TREATMENT PLAN"
+
+
+def test_unchecked_control_with_html_value_is_not_emitted(tmp_path):
+    source = synthetic_source()
+    source["sections"]["basic"]["fields"].append(
+        {
+            "name": "Synthetic$UncheckedFamilyHistory$0",
+            "type": "checkbox",
+            "label": "Unselected family history",
+            "value": "present",
+            "selected_text": "Unselected family history",
+            "checked": False,
+        }
+    )
+    path = tmp_path / "unchecked.case.json"
+    path.write_text(json.dumps(source, ensure_ascii=False), encoding="utf-8")
+
+    record = parse_cancer_care_plan_json(path, "SYNTHETIC-CASE")
+    unchecked = next(field for field in record.fields if field.control_key == "UncheckedFamilyHistory")
+    bundle = build_cancer_care_plan_bundle(record)
+    response = next(
+        entry["resource"]
+        for entry in bundle["entry"]
+        if entry["resource"]["resourceType"] == "QuestionnaireResponse"
+    )
+
+    assert unchecked.answer() is None
+    assert "Unselected family history" not in json.dumps(response, ensure_ascii=False)
 
 
 def test_same_source_can_compare_parallel_task_outputs(tmp_path):
@@ -129,6 +158,38 @@ def test_all_generated_fhir_ids_fit_the_r4_length_limit(tmp_path):
 
     assert len(bundle["id"]) <= 64
     assert all(len(entry["resource"]["id"]) <= 64 for entry in bundle["entry"])
+
+
+def test_shortened_and_normalized_fhir_ids_retain_uniqueness(tmp_path):
+    first_long = build_cancer_care_plan_bundle(
+        parse_cancer_care_plan_json(write_source(tmp_path), f"{'X' * 100}-A")
+    )
+    second_long = build_cancer_care_plan_bundle(
+        parse_cancer_care_plan_json(write_source(tmp_path), f"{'X' * 100}-B")
+    )
+    first_normalized = build_cancer_care_plan_bundle(
+        parse_cancer_care_plan_json(write_source(tmp_path), "SYNTHETIC/CASE")
+    )
+    second_normalized = build_cancer_care_plan_bundle(
+        parse_cancer_care_plan_json(write_source(tmp_path), "SYNTHETIC?CASE")
+    )
+
+    first_resource_ids = {
+        entry["resource"]["resourceType"]: entry["resource"]["id"]
+        for entry in first_long["entry"]
+    }
+    second_resource_ids = {
+        entry["resource"]["resourceType"]: entry["resource"]["id"]
+        for entry in second_long["entry"]
+    }
+
+    assert first_long["id"] != second_long["id"]
+    assert first_long["identifier"]["value"] != second_long["identifier"]["value"]
+    assert all(first_resource_ids[key] != second_resource_ids[key] for key in first_resource_ids)
+    assert first_normalized["id"] != second_normalized["id"]
+    assert first_long["id"] == build_cancer_care_plan_bundle(
+        parse_cancer_care_plan_json(write_source(tmp_path), f"{'X' * 100}-A")
+    )["id"]
 
 
 def test_care_plan_module_has_no_qbc_task_generator_dependency():

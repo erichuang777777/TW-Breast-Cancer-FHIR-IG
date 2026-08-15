@@ -78,6 +78,8 @@ class CarePlanSourceField(BaseModel):
     qbc_targets: list[str] = Field(default_factory=list)
 
     def answer(self) -> str | None:
+        if self.checked is False:
+            return None
         if self.checked is True and self.label:
             return self.label
         return self.display_value or self.raw_value
@@ -97,7 +99,14 @@ class CancerCarePlanRecord(BaseModel):
 
 def _fhir_id(value: str, prefix: str) -> str:
     cleaned = re.sub(r"[^A-Za-z0-9\-.]", "-", value).strip("-.")
-    return (cleaned or prefix)[:64]
+    candidate = cleaned or prefix
+    if candidate == value and len(candidate) <= 64:
+        return candidate
+
+    digest = hashlib.sha256(value.encode("utf-8")).hexdigest()[:12]
+    stem_limit = 64 - len(digest) - 1
+    stem = candidate[:stem_limit].rstrip("-.") or prefix[:stem_limit].strip("-.") or "id"
+    return f"{stem}-{digest}"
 
 
 def _control_key(name: str) -> str:
@@ -229,6 +238,28 @@ def build_cancer_care_plan_bundle(record: CancerCarePlanRecord) -> dict[str, Any
     answered_fields = [field for field in record.fields if field.answer()]
     if not answered_fields:
         raise ValueError("care-plan JSON must contain at least one populated source field")
+    response_items = [
+        {
+            "linkId": _fhir_id(f"{field.section}-{index}-{field.control_key}", "item"),
+            "text": field.label or field.control_key,
+            "answer": [{"valueString": field.answer()}],
+        }
+        for index, field in enumerate(answered_fields, start=1)
+    ]
+    answered_report_keys = {
+        field.control_key for field in answered_fields if field.section == "reference_reports"
+    }
+    for report_key, report_text in record.reference_report_texts.items():
+        if report_key in answered_report_keys:
+            continue
+        response_items.append(
+            {
+                "linkId": _fhir_id(f"reference-reports-{report_key}", "reference-report"),
+                "text": "Combined reference reports" if report_key == "combined" else report_key,
+                "answer": [{"valueString": report_text}],
+            }
+        )
+
     response = {
         "resourceType": "QuestionnaireResponse",
         "id": response_id,
@@ -236,14 +267,7 @@ def build_cancer_care_plan_bundle(record: CancerCarePlanRecord) -> dict[str, Any
         "status": "completed",
         "subject": {"reference": patient_entry["fullUrl"]},
         "authored": created,
-        "item": [
-            {
-                "linkId": _fhir_id(f"{field.section}-{index}-{field.control_key}", "item"),
-                "text": field.label or field.control_key,
-                "answer": [{"valueString": field.answer()}],
-            }
-            for index, field in enumerate(answered_fields, start=1)
-        ],
+        "item": response_items,
     }
     response_entry = _entry(response)
     care_plan: dict[str, Any] = {

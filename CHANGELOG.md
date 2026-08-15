@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Fixed Cancer Care Plan transformation so unchecked controls are omitted, combined reference-report text is preserved, and shortened or normalized FHIR IDs retain stable uniqueness.
 - Added a machine-readable TWPAS version policy that keeps published 1.2.5 as the blocking target and CI 1.2.6 as advisory only.
 - Added a breast-cancer-focused TWPAS CI watchlist covering medication units, treatment dosage-system behavior, drug/programCode constraints, and indication terminology.
 - Added regression tests preventing the CI package from becoming a main IG dependency or conformance claim.
