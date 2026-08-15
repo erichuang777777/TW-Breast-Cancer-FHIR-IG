@@ -705,7 +705,10 @@
           "linkId": "PREC",
           "answer": [
             {
-              "valueString": "0"
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-prec",
+                "code": "00"
+              }
             }
           ]
         },
@@ -713,7 +716,10 @@
           "linkId": "C",
           "answer": [
             {
-              "valueString": "0"
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-c",
+                "code": "00"
+              }
             }
           ]
         },
@@ -721,7 +727,10 @@
           "linkId": "PREH",
           "answer": [
             {
-              "valueString": "0"
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-preh",
+                "code": "00"
+              }
             }
           ]
         },
@@ -729,7 +738,10 @@
           "linkId": "H",
           "answer": [
             {
-              "valueString": "1"
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-h",
+                "code": "01"
+              }
             }
           ]
         },
@@ -737,7 +749,10 @@
           "linkId": "PREI",
           "answer": [
             {
-              "valueString": "0"
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-prei",
+                "code": "00"
+              }
             }
           ]
         },
@@ -745,7 +760,10 @@
           "linkId": "I",
           "answer": [
             {
-              "valueString": "0"
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-i",
+                "code": "00"
+              }
             }
           ]
         },
@@ -769,7 +787,10 @@
           "linkId": "PRETAR",
           "answer": [
             {
-              "valueString": "0"
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-pretar",
+                "code": "00"
+              }
             }
           ]
         },
@@ -777,7 +798,10 @@
           "linkId": "TAR",
           "answer": [
             {
-              "valueString": "0"
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-tar",
+                "code": "00"
+              }
             }
           ]
         },
@@ -785,7 +809,10 @@
           "linkId": "OTH",
           "answer": [
             {
-              "valueString": "0"
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-oth",
+                "code": "00"
+              }
             }
           ]
         },
@@ -793,7 +820,10 @@
           "linkId": "PREP",
           "answer": [
             {
-              "valueString": "0"
+              "valueCoding": {
+                "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-prep",
+                "code": "0"
+              }
             }
           ]
         },

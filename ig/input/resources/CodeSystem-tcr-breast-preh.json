@@ -1,0 +1,62 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-preh",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-preh",
+  "version": "4.0.1",
+  "name": "TCRBreastPREHCodeSystem",
+  "title": "台灣癌症登記 他院荷爾蒙治療（PREH）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for PREH (他院荷爾蒙治療). 碼冊出處：Longform p.277-278 外院荷爾蒙/類固醇治療 (#4.3.5). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 9,
+  "concept": [
+    {
+      "code": "00",
+      "display": "No hormone/steroid therapy; not part of the first course, or the cancer was found only at autopsy",
+      "definition": "No hormone/steroid therapy; not part of the first course, or the cancer was found only at autopsy"
+    },
+    {
+      "code": "01",
+      "display": "Systemic hormone/steroid therapy in the first course (for a haematolymphoid malignancy, systemic steroids from the date of diagnosis, with or without chemotherapy)",
+      "definition": "Systemic hormone/steroid therapy in the first course (for a haematolymphoid malignancy, systemic steroids from the date of diagnosis, with or without chemotherapy)"
+    },
+    {
+      "code": "02",
+      "display": "Regional hormone/steroid therapy (for a haematolymphoid malignancy, regional steroids from the date of diagnosis, with or without chemotherapy)",
+      "definition": "Regional hormone/steroid therapy (for a haematolymphoid malignancy, regional steroids from the date of diagnosis, with or without chemotherapy)"
+    },
+    {
+      "code": "03",
+      "display": "Systemic and regional hormone/steroid therapy",
+      "definition": "Systemic and regional hormone/steroid therapy"
+    },
+    {
+      "code": "20",
+      "display": "Clinical-trial hormone/steroid therapy only",
+      "definition": "Clinical-trial hormone/steroid therapy only"
+    },
+    {
+      "code": "21",
+      "display": "Hormone/steroid therapy plus clinical-trial hormone/steroid therapy",
+      "definition": "Hormone/steroid therapy plus clinical-trial hormone/steroid therapy"
+    },
+    {
+      "code": "30",
+      "display": "Double-blind-trial hormone/steroid therapy only",
+      "definition": "Double-blind-trial hormone/steroid therapy only"
+    },
+    {
+      "code": "31",
+      "display": "Hormone/steroid therapy plus double-blind-trial hormone/steroid therapy",
+      "definition": "Hormone/steroid therapy plus double-blind-trial hormone/steroid therapy"
+    },
+    {
+      "code": "99",
+      "display": "Not documented, so it is unknown whether hormone/steroid therapy was advised or given; or the cancer is known only from a death certificate",
+      "definition": "Not documented, so it is unknown whether hormone/steroid therapy was advised or given; or the cancer is known only from a death certificate"
+    }
+  ]
+}

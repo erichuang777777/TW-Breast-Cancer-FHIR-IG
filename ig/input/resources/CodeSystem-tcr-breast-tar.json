@@ -1,0 +1,82 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-tar",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-tar",
+  "version": "4.0.1",
+  "name": "TCRBreastTARCodeSystem",
+  "title": "台灣癌症登記 本院標靶治療（TAR）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for TAR (本院標靶治療). 碼冊出處：Longform p.294-296 申報醫院標靶治療 (#4.3.14). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 13,
+  "concept": [
+    {
+      "code": "00",
+      "display": "No targeted therapy; not part of the first course, or the cancer was found only at autopsy",
+      "definition": "No targeted therapy; not part of the first course, or the cancer was found only at autopsy"
+    },
+    {
+      "code": "01",
+      "display": "Targeted therapy given in the first course",
+      "definition": "Targeted therapy given in the first course"
+    },
+    {
+      "code": "20",
+      "display": "Clinical-trial targeted therapy only",
+      "definition": "Clinical-trial targeted therapy only"
+    },
+    {
+      "code": "21",
+      "display": "Targeted therapy plus clinical-trial targeted therapy",
+      "definition": "Targeted therapy plus clinical-trial targeted therapy"
+    },
+    {
+      "code": "30",
+      "display": "Double-blind-trial targeted therapy only",
+      "definition": "Double-blind-trial targeted therapy only"
+    },
+    {
+      "code": "31",
+      "display": "Targeted therapy plus double-blind-trial targeted therapy",
+      "definition": "Targeted therapy plus double-blind-trial targeted therapy"
+    },
+    {
+      "code": "82",
+      "display": "Targeted therapy not advised or given because of a contraindication or another patient risk factor (comorbidity, advanced age)",
+      "definition": "Targeted therapy not advised or given because of a contraindication or another patient risk factor (comorbidity, advanced age)"
+    },
+    {
+      "code": "83",
+      "display": "Targeted therapy not advised or given because the disease progressed",
+      "definition": "Targeted therapy not advised or given because the disease progressed"
+    },
+    {
+      "code": "85",
+      "display": "Targeted therapy was part of the planned first course, but the patient died or was discharged critically ill before it started",
+      "definition": "Targeted therapy was part of the planned first course, but the patient died or was discharged critically ill before it started"
+    },
+    {
+      "code": "86",
+      "display": "Targeted therapy was part of the planned first course and was not given, with no reason recorded; or it was given at another hospital",
+      "definition": "Targeted therapy was part of the planned first course and was not given, with no reason recorded; or it was given at another hospital"
+    },
+    {
+      "code": "87",
+      "display": "Targeted therapy was part of the planned first course but the patient or family refused it",
+      "definition": "Targeted therapy was part of the planned first course but the patient or family refused it"
+    },
+    {
+      "code": "88",
+      "display": "Targeted therapy was part of the planned first course but had not started when the case was abstracted",
+      "definition": "Targeted therapy was part of the planned first course but had not started when the case was abstracted"
+    },
+    {
+      "code": "99",
+      "display": "Not documented, so it is unknown whether targeted therapy was advised or given; or the cancer is known only from a death certificate",
+      "definition": "Not documented, so it is unknown whether targeted therapy was advised or given; or the cancer is known only from a death certificate"
+    }
+  ]
+}

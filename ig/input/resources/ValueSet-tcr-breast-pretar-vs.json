@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-pretar-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-pretar-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastPRETARValueSet",
+  "title": "台灣癌症登記 他院標靶治療（PRETAR）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-pretar"
+      }
+    ]
+  }
+}
