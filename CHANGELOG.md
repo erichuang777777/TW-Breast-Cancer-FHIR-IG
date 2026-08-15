@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Added a machine-readable TWPAS version policy that keeps published 1.2.5 as the blocking target and CI 1.2.6 as advisory only.
+- Added a breast-cancer-focused TWPAS CI watchlist covering medication units, treatment dosage-system behavior, drug/programCode constraints, and indication terminology.
+- Added regression tests preventing the CI package from becoming a main IG dependency or conformance claim.
+
 本專案有兩條獨立的版本線，發布節奏不同，請勿混用：
 
 | 版本線 | 識別 | 目前版本 | 定義於 |

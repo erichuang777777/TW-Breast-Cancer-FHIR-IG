@@ -68,6 +68,24 @@
 3. 只有通過官方 `tw.gov.mohw.nhi.pas#1.2.5` 驗證的 output 才可聲明符合該版本。
 4. TWPAS 升版時必須鎖定新 package，重跑 differential、ValueSet、Constraint、CQL、crosswalk 與合成案例。
 
+## CI Build 的價值與預警邊界
+
+[TWPAS 1.2.6 CI Build](https://build.fhir.org/ig/TWNHIFHIR/pas/) 可提早顯示下一版可能影響申請輸出的 Profile、terminology 與 Constraint 變更，因此適合作為乳癌 Task 的相容性預警來源。它不定義完整的乳癌臨床語意，也不是已授權發布版本，不得取代 [TWPAS 1.2.5 正式版](https://nhicore.nhi.gov.tw/pas/)或用來宣告正式送件相容性。
+
+| 驗證目標 | 用途 | Release gate | 可否作主 IG dependency |
+|---|---|---|---|
+| TWPAS 1.2.5 published | 現行正式輸出、驗證與外部驗收 | blocking | 否；在隔離的 adapter 驗證環境使用 |
+| TWPAS 1.2.6 CI | 未來差異偵測與合成案例回歸 | advisory | 否 |
+
+截至 2026-08-15，本草稿追蹤的 CI 預警包括：申請藥物劑量單位／包裝綁定、既有治療 `MedicationRequest` 劑量系統限制、藥品品項與乳癌 `C50` programCode 的 Bundle 條件，以及適應症代碼說明。這些項目應產生警告與 review item，但在新版正式發布前不得改變 1.2.5 的正式輸出行為。
+
+預警處理流程：
+
+1. 定期比較 CI 與目前 published version，記錄觀察日期與官方來源。
+2. 將可能影響乳癌 projection 的變更加入 watchlist，標示受影響欄位、風險與所需合成測試。
+3. CI 測試失敗只產生 advisory，不阻擋依 1.2.5 建置的 Preview。
+4. 新版正式發布後，由維護者與臨床／術語／申報 reviewer 確認差異，再更新 package pin、crosswalk 與 release gate；不得自動升版。
+
 ## 驗收條件
 
 本 Task 從 design draft 升為 executable preview 前，至少需要：
@@ -85,4 +103,5 @@
 - 人類可讀對照：[乳癌共同資料至 TWPAS 對照](twpas-crosswalk.html)
 - 機器可讀 crosswalk：`mappings/twpas/breast-common-to-twpas-1.2.5.csv`
 - Task-only 欄位邊界：`mappings/twpas/twpas-task-only-fields-1.2.5.csv`
-
+- 雙版本驗證政策：`mappings/twpas/twpas-version-policy.csv`
+- CI 1.2.6 預警清單：`mappings/twpas/twpas-ci-1.2.6-watchlist.csv`

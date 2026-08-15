@@ -32,6 +32,14 @@ python -m qbc_workbench.cli mock-receive .\QBC_3501200000_11508_001.xml
 
 API 可使用 `GET /api/batches/{batch_id}/cases/{case_id}/validation` 取得含 `severity`、`field`、`rule`、`location` 的結構化報告。
 
+## TWPAS 雙軌驗證
+
+- `tw.gov.mohw.nhi.pas#1.2.5` 是目前正式輸出的 blocking gate；生成的 TWPAS Bundle 必須在隔離環境以該 package 驗證。
+- TWPAS 1.2.6 CI Build 只用於 future-compatibility advisory。CI 差異或測試失敗建立預警與 review item，不得讓輸出宣告 1.2.6 conformance，也不得自動改寫 1.2.5 Mapping。
+- 新版轉為正式發布後，先完成人工差異審閱、crosswalk 更新及合成正反案例，再由維護者明確調整 release gate。
+
+機器可讀政策與觀察項目分別位於 `mappings/twpas/twpas-version-policy.csv` 與 `mappings/twpas/twpas-ci-1.2.6-watchlist.csv`。
+
 ## 能證明與不能證明
 
 本流程能證明資源符合本草案結構、已實作的 QBC 規則及本機 XML 閘門。它不能單獨證明臨床判讀正確、術語授權完整、mCODE conformance、院內法遵通過或健保 VPN 已接受。

@@ -169,6 +169,7 @@ Included now:
 - Publisher-validated, fully synthetic end-to-end breast cancer and QBC task scenarios.
 - A cancer-care-plan JSON contract, PHI-free inventory of 223 controls, CarePlan/QuestionnaireResponse/Provenance/Task Bundle, and a parallel-task alignment check.
 - A TWPAS 1.2.5 parallel-task design with version isolation, a common-facts crosswalk, and a prior-authorization task-only field inventory; the official NHIA profiles are neither copied nor replaced.
+- A machine-readable TWPAS compatibility policy: published 1.2.5 remains the blocking conformance target, while the changing 1.2.6 CI build is used only for advisory early warnings and synthetic regression planning.
 - An extensible architecture for pathology, laboratory, ultrasound, cancer registry, anticancer drug review, treatment planning, and multidisciplinary discussion tasks.
 
 Not included:
