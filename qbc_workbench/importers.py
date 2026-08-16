@@ -3,7 +3,7 @@ import json,re
 from pathlib import Path
 import fitz
 from openpyxl import load_workbook
-from .models import BatchRecord,CaseRecord,Method,TreatmentEvent
+from .models import BatchRecord,CarePlanTreatmentFact,CaseRecord,Method,TreatmentEvent
 from .rules import derive_stage,ev,extract_pathology,mark_applicability,put
 
 ALL_D=[f"D{i:03d}" for i in range(1,86)]
@@ -46,6 +46,65 @@ def table_value(data,label):
                 return cells[1],f"sections.basic.tables[{table_index}].rows[{row_index}]"
     return None,None
 
+def _care_plan_treatment_markers(plan):
+    """Return dated treatment facts in chronological order without copying narrative text."""
+    markers=[]
+    type_map={"手術":"surgery","抗癌治療":"systemic","放射治療":"radiotherapy"}
+    text=str(plan or "")
+    matches=list(re.finditer(r"\[(手術|抗癌治療|放射治療)\]",text))
+    for index,match in enumerate(matches):
+        preceding=text[max(0,match.start()-180):match.start()]
+        segment_end=matches[index+1].start() if index+1<len(matches) else len(text)
+        segment=text[match.start():segment_end]
+        dates=re.findall(r"(\d{4})[/-](\d{1,2})[/-](\d{1,2})",preceding)
+        date=None
+        if dates:
+            year,month,day=map(int,dates[-1])
+            date=f"{year:04d}{month:02d}{day:02d}"
+        phase=None
+        if "前導輔助性癌症治療" in segment:
+            phase="neoadjuvant"
+        elif "輔助性癌症治療" in segment:
+            phase="adjuvant"
+        markers.append({
+            "kind":type_map[match.group(1)],"phase":phase,
+            "date":date,"position":match.start()
+        })
+    return sorted(markers,key=lambda item:(item["date"] or "99999999",item["position"]))
+
+def _diagnosis_type_from_care_plan(reason,markers,case):
+    """Apply the reviewed institutional QBC enrolment classification rule."""
+    reason_text=str(reason or "")
+    if "復發" in reason_text or "轉移" in reason_text:
+        return "3","CARE_PLAN_EXPLICIT_RECURRENCE"
+    surgeries=[index for index,item in enumerate(markers) if item["kind"]=="surgery"]
+    systemic=[index for index,item in enumerate(markers) if item["kind"]=="systemic"]
+    if surgeries:
+        if systemic and min(systemic)<min(surgeries):
+            return "2","CARE_PLAN_SYSTEMIC_BEFORE_SURGERY"
+        return "1","CARE_PLAN_SURGERY_FIRST"
+    m_values={
+        candidate.value
+        for tag in ("D007","D034")
+        if (candidate:=case.candidates.get(tag)) and candidate.value
+    }
+    if systemic and "M1" in m_values:
+        return "3","CARE_PLAN_SYSTEMIC_ONLY_M1"
+    phases={item.get("phase") for item in markers}
+    if systemic and "neoadjuvant" in phases:
+        return "2","CARE_PLAN_NEOADJUVANT_PHASE"
+    if "adjuvant" in phases:
+        return "1","CARE_PLAN_ADJUVANT_PHASE"
+    clinical_values=[case.candidates.get(tag) for tag in ("D005","D006","D007")]
+    pathological_values=[case.candidates.get(tag) for tag in ("D032","D033","D034")]
+    has_clinical_tn=any(candidate and candidate.value for candidate in clinical_values[:2])
+    has_pathological_tnm=any(candidate and candidate.value for candidate in pathological_values)
+    if systemic and "M0" in m_values and has_clinical_tn and not has_pathological_tnm:
+        return "2","CARE_PLAN_SYSTEMIC_M0_PREOPERATIVE"
+    if not markers:
+        return None,"CARE_PLAN_SOURCE_INCOMPLETE"
+    return None,"CARE_PLAN_DIAGNOSIS_REVIEW_REQUIRED"
+
 def import_case_json(path:Path,case:CaseRecord):
     data=json.loads(path.read_text(encoding="utf-8")); fields=data["sections"]["basic"].get("fields",[]); filename=path.name
     def add(tag,suffix,mapping=None,display=True,review=False):
@@ -63,8 +122,7 @@ def import_case_json(path:Path,case:CaseRecord):
     sex_map={"M":"0","男":"0","男性":"0","F":"1","女":"1","女性":"1","其他":"2","未知":"3"}
     if str(sex).strip() in sex_map:
         put(case,"P02",sex_map[str(sex).strip()],Method.STRUCTURED,ev(filename,"json_table",path=sex_path),"JSON_TABLE_SEX")
-    add("DIAG_TYPE","ddlReason",{"初診斷或初次治療":"2"})
-    case.diagnosis_type=case.candidates.get("DIAG_TYPE").value if case.candidates.get("DIAG_TYPE") else "2"
+    reason,reason_path=selected(fields,"ddlReason")
     add("LATERALITY","rblLocation",{"左側":"L","右側":"R"}); case.laterality=case.candidates.get("LATERALITY").value if case.candidates.get("LATERALITY") else None
     add("P05","rblMenopause",{"是":"1","否":"2"},review=True)
     add("D002","rblHospital",{"本院":"1","外院":"2"})
@@ -80,12 +138,6 @@ def import_case_json(path:Path,case:CaseRecord):
     }
     histology_answers=selected_all(fields,"cblHisType")
     histology_codes={histology_map[value] for value,_ in histology_answers if value in histology_map}
-    if case.diagnosis_type=="2" and len(histology_codes)==1:
-        histology_code=next(iter(histology_codes))
-        source_path=next(path for value,path in histology_answers if histology_map.get(value)==histology_code)
-        put(case,"D003",histology_code,Method.STRUCTURED,ev(filename,"json",path=source_path),"JSON_HISTOLOGY_TYPE",review=True)
-    elif case.diagnosis_type=="2" and len(histology_codes)>1:
-        case.issues.append("D003 has multiple histology categories and requires review")
     mapping=[("D004","rb2HGrade1",{"Ⅰ":"1","Ⅱ":"2","Ⅲ":"3","Unknown":"X"}),("D018","rb2Her1",{"Unknown":"X","0+":"0","1+":"1","2+":"2","3+":"3"}),("D020","rbl2Ki67",{"未檢測":"0","已檢測：":"1"}),("D021","txb2Ki67",None),("D031","rblHGrade",{"Ⅰ":"1","Ⅱ":"2","Ⅲ":"3","Unknown":"X"}),("D052","rblHer",{"Unknown":"X","0+":"0","1+":"1","2+":"2","3+":"3"}),("D054","rblKi67",{"未檢測":"0","已檢測：":"1"}),("D055","txbKi67",None),("D047","txbSize1",None)]
     for x in mapping:add(*x)
     fish_mappings = [
@@ -143,11 +195,50 @@ def import_case_json(path:Path,case:CaseRecord):
             put(case,site_tag,",".join(sorted(metastasis_codes,key=int)),Method.STRUCTURED,ev(filename,"json",path=source_path),"JSON_METASTASIS_SITES",review=True)
             if "12" in metastasis_codes and other_sites:
                 put(case,other_tag,", ".join(other_sites),Method.STRUCTURED,ev(filename,"json",path=source_path),"JSON_METASTASIS_OTHER",review=True)
-    mark_applicability(case,ALL_D)
     reports=str(data["sections"].get("reference_reports",{}).get("text","")); extract_pathology(case,reports,filename)
     plan=str(data["sections"].get("treatment_plan",{}).get("text",""))
-    for date,kind in re.findall(r"填表日期[：:]\s*(\d{4}/\d{1,2}/\d{1,2}).{0,120}?\[(抗癌治療|手術)\]",plan,re.S):
-        case.issues.append(f"planned treatment candidate {kind} {date}; verify against execution record")
+    treatment_markers=_care_plan_treatment_markers(plan)
+    case.care_plan_treatment_facts=[
+        CarePlanTreatmentFact(
+            sequence=index,
+            category=marker["kind"],
+            phase=marker["phase"],
+            plan_date=marker["date"],
+            evidence=[ev(filename,"json",path="sections.treatment_plan.text")],
+        )
+        for index,marker in enumerate(treatment_markers,start=1)
+    ]
+    diagnosis_type,diagnosis_rule=_diagnosis_type_from_care_plan(reason,treatment_markers,case)
+    if diagnosis_type:
+        evidence_path=(
+            reason_path
+            if diagnosis_rule=="CARE_PLAN_EXPLICIT_RECURRENCE" and reason_path
+            else "sections.treatment_plan.text"
+        )
+        put(case,"DIAG_TYPE",diagnosis_type,Method.RULE_DERIVED,
+            ev(filename,"json",path=evidence_path),diagnosis_rule)
+        case.diagnosis_type=diagnosis_type
+        case.diagnosis_type_assessment="classified"
+    else:
+        case.diagnosis_type=None
+        if diagnosis_rule=="CARE_PLAN_SOURCE_INCOMPLETE":
+            case.diagnosis_type_assessment="source_incomplete"
+            case.issues.append("DIAG_TYPE cannot be assessed: care-plan source is incomplete")
+        else:
+            case.diagnosis_type_assessment="pending_review"
+            case.issues.append("DIAG_TYPE requires review: available evidence is insufficient")
+
+    if len(histology_codes)==1 and diagnosis_type in {"1","2"}:
+        histology_code=next(iter(histology_codes))
+        source_path=next(path for value,path in histology_answers if histology_map.get(value)==histology_code)
+        target="D003" if diagnosis_type=="2" else "D030"
+        put(case,target,histology_code,Method.STRUCTURED,
+            ev(filename,"json",path=source_path),"JSON_HISTOLOGY_TYPE",review=True)
+    elif len(histology_codes)>1 and diagnosis_type in {"1","2"}:
+        target="D003" if diagnosis_type=="2" else "D030"
+        case.issues.append(f"{target} has multiple histology categories and requires review")
+
+    mark_applicability(case,ALL_D)
 
 def read_eligible(path:Path):
     raw=path.read_bytes(); text=raw.decode("cp950",errors="replace")
