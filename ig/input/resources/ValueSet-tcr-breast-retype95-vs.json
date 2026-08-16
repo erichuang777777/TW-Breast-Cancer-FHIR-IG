@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-retype95-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-retype95-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastRETYPE95ValueSet",
+  "title": "台灣癌症登記 復發型態（RETYPE95）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-retype95"
+      }
+    ]
+  }
+}

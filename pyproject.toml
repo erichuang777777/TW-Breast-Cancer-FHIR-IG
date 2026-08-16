@@ -15,8 +15,13 @@ dependencies = [
   "PyMuPDF>=1.24",
   "python-docx>=1.1",
   "requests>=2.31",
-  # 癌登代碼表與雙向編解碼引擎（14 癌別，逐碼驗證）
-  "tcr-decoder @ git+https://github.com/erichuang777777/TCRD_decoding.git",
+  # 癌登代碼表與雙向編解碼引擎（16 癌別，逐碼驗證）。釘死在一個具體 commit：
+  # 這個相依原本沒有版本限制，全新安裝抓的是 TCRD_decoding 的 main，而
+  # main 當時還沒有本模組實際 import 的 longform_codes/longform_zh 等模組
+  # （那些工作在合併前的 PR 分支上）——全新 clone 會直接在 import 階段
+  # 壞掉。commit 0582c16 是 fix/head-neck-codex-review 分支的最新狀態，
+  # 待該分支併回 main 後應更新為 main 上的對應 commit。
+  "tcr-decoder @ git+https://github.com/erichuang777777/TCRD_decoding.git@0582c16f382f1228da674c2c7b72af0b6db98975",
 ]
 
 [project.scripts]

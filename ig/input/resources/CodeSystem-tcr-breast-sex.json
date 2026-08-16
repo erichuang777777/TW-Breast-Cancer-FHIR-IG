@@ -1,0 +1,72 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-sex",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-sex",
+  "version": "4.0.1",
+  "name": "TCRBreastSEXCodeSystem",
+  "title": "台灣癌症登記 性別（SEX）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for SEX (性別). 碼冊出處：Longform p.65 性別 (#1.5). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 5,
+  "concept": [
+    {
+      "code": "1",
+      "display": "男性。",
+      "definition": "男性。 / Male",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Male"
+        }
+      ]
+    },
+    {
+      "code": "2",
+      "display": "女性。",
+      "definition": "女性。 / Female",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Female"
+        }
+      ]
+    },
+    {
+      "code": "3",
+      "display": "其他，例如：雙性人(hermaphrodite)。",
+      "definition": "其他，例如：雙性人(hermaphrodite)。 / Other (e.g. intersex)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Other (e.g. intersex)"
+        }
+      ]
+    },
+    {
+      "code": "4",
+      "display": "變性人。",
+      "definition": "變性人。 / Transsexual",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Transsexual"
+        }
+      ]
+    },
+    {
+      "code": "9",
+      "display": "不詳或在病歷上未記載。",
+      "definition": "不詳或在病歷上未記載。 / Unknown or not documented",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Unknown or not documented"
+        }
+      ]
+    }
+  ]
+}

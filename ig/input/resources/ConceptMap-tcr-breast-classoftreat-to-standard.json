@@ -1,0 +1,118 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-classoftreat-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-classoftreat-to-standard",
+  "version": "4.0.1",
+  "name": "TCRCLASSOFTREATToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-classoftreat-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-classoftreat",
+      "element": [
+        {
+          "code": "0",
+          "display": "未於申報醫院接受任何治療即死亡。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "1",
+          "display": "僅於申報醫院接受首次療程，未於他院接受任何首次療程。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "2",
+          "display": "未於申報醫院接受任何首次療程（僅於他院接受，或主要治療計畫由他院規劃）。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "3",
+          "display": "於申報醫院接受部分首次療程，也於他院接受部分首次療程。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "4",
+          "display": "首次療程為不予治療或再密切觀察，或僅給予非腫瘤切除之緩和性手術/疼痛控制/支持療法。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "5",
+          "display": "首次療程僅有另類治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "6",
+          "display": "首次療程為個案拒絕治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "7",
+          "display": "他院診斷及治療，因癌症或其治療的併發症至申報醫院求診。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "8",
+          "display": "他院診斷個案，為了其他疾病至申報醫院求診（不需申報）。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "9",
+          "display": "首次療程不詳，也無法確認個案拒絕治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

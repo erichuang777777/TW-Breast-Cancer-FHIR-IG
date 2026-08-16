@@ -214,7 +214,14 @@ STRING_FIELDS = frozenset({'PK'})
 
 # Structural (non-SSF) fields whose code table this package owns and verifies.
 STRUCTURAL_CODE_TABLES = ('AJCC', 'PRESTYPE', 'STYPE95', 'PRESLNSCO',
-                          'SLNSCO95', 'LNEXAM', 'LN_POSITI', 'EBRT')
+                          'SLNSCO95', 'LNEXAM', 'LN_POSITI', 'EBRT',
+                          'LAT95', 'MCODE5', 'CONFER', 'PNI', 'LVI',
+                          'PREC', 'C', 'PREH', 'H', 'PREI', 'I',
+                          'PRETAR', 'TAR', 'OTH', 'PREP',
+                          'RTAR', 'RMOD', 'HTAR', 'LTAR', 'SEQRS',
+                          'SEQLS', 'R', 'MINS',
+                          'SEX', 'CLASS95', 'CLASSOFDIAG', 'CLASSOFTREAT',
+                          'VSTA', 'RETYPE95', 'KPSECOG')
 
 # EBRT is an ADDITIVE field: the submitted value is the sum of the technique
 # codes used across all phases, so the ValueSet enumerates the components and
@@ -256,15 +263,40 @@ _COUNT_FIELD_DECODERS = {
 }
 
 
+def _zh_en_concept(code: str, english: str, chinese: str) -> dict:
+    """One concept, zh display + en designation -- same shape _ssf_concepts()
+    uses. `chinese` may be '' for a field with no transcribed Chinese text
+    yet (Appendix B surgery codes, AJCC, the two node-surgery fields): the
+    concept still validates, it just has no designation to fall back from."""
+    concept = {
+        'code': code,
+        'display': chinese or english,
+        'definition': f'{chinese} / {english}'.strip(' /'),
+    }
+    if chinese:
+        concept['designation'] = [{'language': 'en', 'value': str(english)}]
+    return concept
+
+
 def _structural_concepts(field: str) -> List[dict]:
     """Concepts for a structural Longform field this package can decode.
 
     Only codes inside the official 編碼範圍 are emitted. The decoder also
     understands pre-2025 legacy codes so historical files still read, but a
     submission ValueSet must not offer them.
+
+    display is the code book's own Chinese text where this package has
+    transcribed it (tcr_decoder.longform_zh), with the English label as an
+    `en` designation -- the same convention _ssf_concepts() uses for SSF1-10.
+    Appendix B surgery codes, AJCC and the two node-surgery fields predate
+    that transcription and fall back to an English-only concept rather than
+    inventing Chinese text; see docs/codebook_conformance_findings.md.
     """
     from tcr_decoder import decoders
     from tcr_decoder.core import AJCC_MAP, LNSCO_MAP
+    from tcr_decoder.longform_codes import (
+        CONFIRMATION_SOLID_MAP, LONGFORM_CODE_MAPS)
+    from tcr_decoder.longform_zh import LONGFORM_ZH, LONGFORM_ZH_CONFER_SOLID
     from tcr_decoder.surgery_codes import SURGERY_TABLES
 
     if field in _COUNT_FIELD_DECODERS:
@@ -272,26 +304,52 @@ def _structural_concepts(field: str) -> List[dict]:
         ordered = sorted(codes, key=lambda c: int(c))
         decode = getattr(decoders, _COUNT_FIELD_DECODERS[field])
         labels = decode(pd.Series(ordered, dtype=object))
-        return [{'code': c, 'display': str(l), 'definition': str(l)}
-                for c, l in zip(ordered, labels)]
+        return [_zh_en_concept(c, str(l), '') for c, l in zip(ordered, labels)]
 
     if field == 'EBRT':
+        # EBRT_COMPONENTS is radiotherapy technique shorthand (2D, 3D-CRT,
+        # IMRT, VMAT, IGRT) kept as-is even in Chinese clinical documents --
+        # no separate Chinese wording to transcribe, so these fall back to
+        # an English-only concept like AJCC/PRESTYPE, plus one Chinese note
+        # in `definition` only (not `display`) for the three special codes,
+        # which the manual does state in Chinese.
         from tcr_decoder.decoders import EBRT_COMPONENTS
-        concepts = [{'code': str(code), 'display': label,
-                     'definition': f'{label}（加總碼，可複選）'}
-                    for code, label in sorted(EBRT_COMPONENTS.items())]
-        concepts += [
-            {'code': '0', 'display': 'No EBRT', 'definition': '未執行體外放射治療'},
-            {'code': '-1', 'display': 'EBRT NOS', 'definition': '有體外放射治療但技術不明'},
-            {'code': '999', 'display': 'Unknown', 'definition': '不詳'},
-        ]
+        concepts = [_zh_en_concept(str(code), label, '')
+                   for code, label in sorted(EBRT_COMPONENTS.items())]
+        for code, label, note in (('0', 'No EBRT', '未執行體外放射治療'),
+                                  ('-1', 'EBRT NOS', '有體外放射治療但技術不明'),
+                                  ('999', 'Unknown', '不詳')):
+            c = _zh_en_concept(code, label, '')
+            c['definition'] = f'{label} / {note}'
+            concepts.append(c)
         return concepts
 
     # Surgery of primary site draws on Appendix B, which the manual defines
     # PER PRIMARY SITE: the same code is a different operation in a different
     # organ. This IG is breast-only, so it publishes the breast table -- not a
     # merged one, which would offer a colectomy as a valid breast answer.
-    if field in ('PRESTYPE', 'STYPE95'):
+    if field in LONGFORM_CODE_MAPS:
+        code_map, _seq = LONGFORM_CODE_MAPS[field]
+        width = LONGFORM[field][0]
+        zh = LONGFORM_ZH.get(field, {})
+        concepts = []
+        for raw_code, english in code_map.mapping.items():
+            # A negative sentinel (RMOD's -9/-1) is never padded past its
+            # sign -- the manual's own 編碼範圍 line never shows a padded
+            # form, and the engine's CodeMap.encode_one agrees (codemap.py).
+            code = str(raw_code) if raw_code < 0 else str(raw_code).zfill(width)
+            concepts.append(_zh_en_concept(code, english, zh.get(raw_code, '')))
+        return sorted(concepts, key=lambda c: c['code'])
+    elif field == 'CONFER':
+        # Two tables, chosen by morphology. This IG is breast-only, so it
+        # publishes the solid-tumour table -- code 3 is haematolymphoid-only
+        # (manual p.104) and is not a legal answer for a breast case.
+        concepts = [
+            _zh_en_concept(str(code), english,
+                          LONGFORM_ZH_CONFER_SOLID.get(code, ''))
+            for code, english in CONFIRMATION_SOLID_MAP.mapping.items()]
+        return sorted(concepts, key=lambda c: c['code'])
+    elif field in ('PRESTYPE', 'STYPE95'):
         table = SURGERY_TABLES['Breast'][1]
     else:
         table = {'AJCC': AJCC_MAP,
@@ -300,7 +358,7 @@ def _structural_concepts(field: str) -> List[dict]:
         if legal:
             table = {c: l for c, l in table.items() if c in legal}
 
-    return [{'code': str(code), 'display': str(label), 'definition': str(label)}
+    return [_zh_en_concept(str(code), str(label), '')
             for code, label in sorted(table.items())]
 
 

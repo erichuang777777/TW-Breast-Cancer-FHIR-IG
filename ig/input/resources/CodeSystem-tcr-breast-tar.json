@@ -1,0 +1,160 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-tar",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-tar",
+  "version": "4.0.1",
+  "name": "TCRBreastTARCodeSystem",
+  "title": "台灣癌症登記 本院標靶治療（TAR）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for TAR (本院標靶治療). 碼冊出處：Longform p.294-296 申報醫院標靶治療 (#4.3.14). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 13,
+  "concept": [
+    {
+      "code": "00",
+      "display": "未接受標靶治療，標靶治療非首次療程的一部份。",
+      "definition": "未接受標靶治療，標靶治療非首次療程的一部份。 / No targeted therapy; not part of the first course, or the cancer was found only at autopsy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No targeted therapy; not part of the first course, or the cancer was found only at autopsy"
+        }
+      ]
+    },
+    {
+      "code": "01",
+      "display": "在首次療程中有接受標靶治療。",
+      "definition": "在首次療程中有接受標靶治療。 / Targeted therapy given in the first course",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Targeted therapy given in the first course"
+        }
+      ]
+    },
+    {
+      "code": "20",
+      "display": "僅接受臨床試驗標靶治療。",
+      "definition": "僅接受臨床試驗標靶治療。 / Clinical-trial targeted therapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Clinical-trial targeted therapy only"
+        }
+      ]
+    },
+    {
+      "code": "21",
+      "display": "同時接受標靶治療及臨床試驗標靶治療。",
+      "definition": "同時接受標靶治療及臨床試驗標靶治療。 / Targeted therapy plus clinical-trial targeted therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Targeted therapy plus clinical-trial targeted therapy"
+        }
+      ]
+    },
+    {
+      "code": "30",
+      "display": "僅接受雙盲試驗標靶治療。",
+      "definition": "僅接受雙盲試驗標靶治療。 / Double-blind-trial targeted therapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Double-blind-trial targeted therapy only"
+        }
+      ]
+    },
+    {
+      "code": "31",
+      "display": "同時接受標靶治療及雙盲試驗標靶治療。",
+      "definition": "同時接受標靶治療及雙盲試驗標靶治療。 / Targeted therapy plus double-blind-trial targeted therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Targeted therapy plus double-blind-trial targeted therapy"
+        }
+      ]
+    },
+    {
+      "code": "82",
+      "display": "標靶治療因禁忌症或個案其他危險因素(併發症、年邁)而未建議或給予。",
+      "definition": "標靶治療因禁忌症或個案其他危險因素(併發症、年邁)而未建議或給予。 / Targeted therapy not advised or given because of a contraindication or another patient risk factor (comorbidity, advanced age)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Targeted therapy not advised or given because of a contraindication or another patient risk factor (comorbidity, advanced age)"
+        }
+      ]
+    },
+    {
+      "code": "83",
+      "display": "標靶治療因疾病進展而未建議或給予。",
+      "definition": "標靶治療因疾病進展而未建議或給予。 / Targeted therapy not advised or given because the disease progressed",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Targeted therapy not advised or given because the disease progressed"
+        }
+      ]
+    },
+    {
+      "code": "85",
+      "display": "標靶治療是既定之首次療程計畫中的一部分，但因個案未接受治療前即死亡或病危出院。",
+      "definition": "標靶治療是既定之首次療程計畫中的一部分，但因個案未接受治療前即死亡或病危出院。 / Targeted therapy was part of the planned first course, but the patient died or was discharged critically ill before it started",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Targeted therapy was part of the planned first course, but the patient died or was discharged critically ill before it started"
+        }
+      ]
+    },
+    {
+      "code": "86",
+      "display": "標靶治療雖然是既定之首次療程計畫中的一部分，未執行且病歷也未記載未執行的原因；或於他院執行標靶治療。",
+      "definition": "標靶治療雖然是既定之首次療程計畫中的一部分，未執行且病歷也未記載未執行的原因；或於他院執行標靶治療。 / Targeted therapy was part of the planned first course and was not given, with no reason recorded; or it was given at another hospital",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Targeted therapy was part of the planned first course and was not given, with no reason recorded; or it was given at another hospital"
+        }
+      ]
+    },
+    {
+      "code": "87",
+      "display": "標靶治療雖然是既定之首次療程計畫中的一部分，但未執行，且病歷記載個案或其家屬拒絕此項治療。",
+      "definition": "標靶治療雖然是既定之首次療程計畫中的一部分，但未執行，且病歷記載個案或其家屬拒絕此項治療。 / Targeted therapy was part of the planned first course but the patient or family refused it",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Targeted therapy was part of the planned first course but the patient or family refused it"
+        }
+      ]
+    },
+    {
+      "code": "88",
+      "display": "標靶治療雖然是既定之首次療程計畫中的一部分，但摘錄時尚未執行。",
+      "definition": "標靶治療雖然是既定之首次療程計畫中的一部分，但摘錄時尚未執行。 / Targeted therapy was part of the planned first course but had not started when the case was abstracted",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Targeted therapy was part of the planned first course but had not started when the case was abstracted"
+        }
+      ]
+    },
+    {
+      "code": "99",
+      "display": "由於病歷未記載，所以不知道是否標靶治療有被建議或是已經執行。",
+      "definition": "由於病歷未記載，所以不知道是否標靶治療有被建議或是已經執行。 / Not documented, so it is unknown whether targeted therapy was advised or given; or the cancer is known only from a death certificate",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not documented, so it is unknown whether targeted therapy was advised or given; or the cancer is known only from a death certificate"
+        }
+      ]
+    }
+  ]
+}

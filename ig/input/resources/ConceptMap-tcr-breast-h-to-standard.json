@@ -1,0 +1,168 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-h-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-h-to-standard",
+  "version": "4.0.1",
+  "name": "TCRHToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-h-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-h",
+      "element": [
+        {
+          "code": "00",
+          "display": "未接受荷爾蒙/類固醇治療，荷爾蒙/類固醇治療非首次療程的一部份。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "01",
+          "display": "在首次療程中有接受全身性荷爾蒙/類固醇治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "02",
+          "display": "接受局部性荷爾蒙/類固醇治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "03",
+          "display": "接受全身性與局部性荷爾蒙/類固醇治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "20",
+          "display": "僅接受臨床試驗荷爾蒙/類固醇治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "21",
+          "display": "同時接受荷爾蒙/類固醇治療及臨床試驗荷爾蒙/類固醇治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "30",
+          "display": "僅接受雙盲試驗荷爾蒙/類固醇治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "31",
+          "display": "同時接受荷爾蒙/類固醇治療及雙盲試驗荷爾蒙/類固醇治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "82",
+          "display": "荷爾蒙/類固醇治療因禁忌症或個案其他危險因素(併發症、年邁)而未建議或給予。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "83",
+          "display": "荷爾蒙/類固醇治療因疾病進展而未建議或給予。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "85",
+          "display": "荷爾蒙/類固醇治療是既定之首次療程計畫中的一部分，但因個案未接受治療前即死亡或病危出院。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "86",
+          "display": "荷爾蒙/類固醇治療雖然是既定之首次療程計畫中的一部分，未執行且病歷也未記載未執行的原因；或於他院執行荷爾蒙/類固醇治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "87",
+          "display": "荷爾蒙/類固醇治療雖然是既定之首次療程計畫中的一部分，但未執行，且病歷記載個案或其家屬拒絕此項治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "88",
+          "display": "荷爾蒙/類固醇治療雖然是既定之首次療程計畫中的一部分，但摘錄時尚未執行。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "99",
+          "display": "由於病歷未記載，所以不知道是否荷爾蒙/類固醇治療有被建議或是已經執行。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

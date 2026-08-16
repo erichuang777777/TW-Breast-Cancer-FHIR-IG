@@ -1,0 +1,72 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-oth",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-oth",
+  "version": "4.0.1",
+  "name": "TCRBreastOTHCodeSystem",
+  "title": "台灣癌症登記 其他治療（OTH）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for OTH (其他治療). 碼冊出處：Longform p.301-302 其他治療 (#4.5.1). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 5,
+  "concept": [
+    {
+      "code": "00",
+      "display": "未接受其他治療，其他治療非首次療程的一部份。",
+      "definition": "未接受其他治療，其他治療非首次療程的一部份。 / No other treatment; other treatment was not part of the first course",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No other treatment; other treatment was not part of the first course"
+        }
+      ]
+    },
+    {
+      "code": "01",
+      "display": "在申報醫院的首次療程中接受其他治療。",
+      "definition": "在申報醫院的首次療程中接受其他治療。 / Other treatment in the first course at the reporting hospital",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Other treatment in the first course at the reporting hospital"
+        }
+      ]
+    },
+    {
+      "code": "02",
+      "display": "在外院的首次療程中接受其他治療。",
+      "definition": "在外院的首次療程中接受其他治療。 / Other treatment in the first course at another hospital",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Other treatment in the first course at another hospital"
+        }
+      ]
+    },
+    {
+      "code": "03",
+      "display": "個案在申報醫院及外院的首次療程中接受其他治療。",
+      "definition": "個案在申報醫院及外院的首次療程中接受其他治療。 / Other treatment in the first course at both the reporting hospital and another hospital",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Other treatment in the first course at both the reporting hospital and another hospital"
+        }
+      ]
+    },
+    {
+      "code": "99",
+      "display": "由於病歷未記載，所以不知道其他治療是否有被建議或是已經執行。",
+      "definition": "由於病歷未記載，所以不知道其他治療是否有被建議或是已經執行。 / Not documented, so it is unknown whether other treatment was advised or given",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not documented, so it is unknown whether other treatment was advised or given"
+        }
+      ]
+    }
+  ]
+}

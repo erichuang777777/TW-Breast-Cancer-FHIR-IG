@@ -1,0 +1,38 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-vsta-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-vsta-to-standard",
+  "version": "4.0.1",
+  "name": "TCRVSTAToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-vsta-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-vsta",
+      "element": [
+        {
+          "code": "0",
+          "display": "死亡。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "1",
+          "display": "存活。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

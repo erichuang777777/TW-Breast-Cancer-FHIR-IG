@@ -1,0 +1,105 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-confer",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-confer",
+  "version": "4.0.1",
+  "name": "TCRBreastCONFERCodeSystem",
+  "title": "台灣癌症登記 診斷確認方式（CONFER）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for CONFER (診斷確認方式). 碼冊出處：Longform p.102-104 癌症確診方式 (#2.11). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 8,
+  "concept": [
+    {
+      "code": "1",
+      "display": "組織病理學確診(Positive histology)。",
+      "definition": "組織病理學確診(Positive histology)。 / Positive histology",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Positive histology"
+        }
+      ]
+    },
+    {
+      "code": "2",
+      "display": "細胞學確診(Positive cytology)。",
+      "definition": "細胞學確診(Positive cytology)。 / Positive cytology",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Positive cytology"
+        }
+      ]
+    },
+    {
+      "code": "4",
+      "display": "經顯微鏡檢證實，但未描述其確診方式。",
+      "definition": "經顯微鏡檢證實，但未描述其確診方式。 / Microscopically confirmed, method not stated",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Microscopically confirmed, method not stated"
+        }
+      ]
+    },
+    {
+      "code": "5",
+      "display": "實驗室檢驗/腫瘤標記檢查為陽性，但未經顯微鏡檢證實。",
+      "definition": "實驗室檢驗/腫瘤標記檢查為陽性，但未經顯微鏡檢證實。 / Positive laboratory test or tumour marker, not microscopically confirmed",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Positive laboratory test or tumour marker, not microscopically confirmed"
+        }
+      ]
+    },
+    {
+      "code": "6",
+      "display": "直接察看診斷為癌症，但未經顯微鏡檢證實。",
+      "definition": "直接察看診斷為癌症，但未經顯微鏡檢證實。 / Direct visualisation at surgery or endoscopy, not microscopically confirmed",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Direct visualisation at surgery or endoscopy, not microscopically confirmed"
+        }
+      ]
+    },
+    {
+      "code": "7",
+      "display": "放射線或其他影像學檢查診斷為癌症，但未經顯微鏡檢證實。",
+      "definition": "放射線或其他影像學檢查診斷為癌症，但未經顯微鏡檢證實。 / Radiography or other imaging, not microscopically confirmed",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiography or other imaging, not microscopically confirmed"
+        }
+      ]
+    },
+    {
+      "code": "8",
+      "display": "僅臨床診斷(不包含5、6、7)。",
+      "definition": "僅臨床診斷(不包含5、6、7)。 / Clinical diagnosis only (excluding 5, 6 and 7)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Clinical diagnosis only (excluding 5, 6 and 7)"
+        }
+      ]
+    },
+    {
+      "code": "9",
+      "display": "不清楚是否經顯微鏡檢證實。",
+      "definition": "不清楚是否經顯微鏡檢證實。 / Unknown whether microscopically confirmed",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Unknown whether microscopically confirmed"
+        }
+      ]
+    }
+  ]
+}

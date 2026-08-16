@@ -1,0 +1,108 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-preh-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-preh-to-standard",
+  "version": "4.0.1",
+  "name": "TCRPREHToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-preh-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-preh",
+      "element": [
+        {
+          "code": "00",
+          "display": "未接受荷爾蒙/類固醇治療，荷爾蒙/類固醇治療非首次療程的一部份。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "01",
+          "display": "在首次療程中有接受全身性荷爾蒙/類固醇治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "02",
+          "display": "接受局部性荷爾蒙/類固醇治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "03",
+          "display": "接受全身性與局部性荷爾蒙/類固醇治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "20",
+          "display": "僅接受臨床試驗荷爾蒙/類固醇治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "21",
+          "display": "同時接受荷爾蒙/類固醇治療及臨床試驗荷爾蒙/類固醇治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "30",
+          "display": "僅接受雙盲試驗荷爾蒙/類固醇治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "31",
+          "display": "同時接受荷爾蒙/類固醇治療及雙盲試驗荷爾蒙/類固醇治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "99",
+          "display": "由於病歷未記載，所以不知道是否荷爾蒙/類固醇治療有被建議或是已經執行。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

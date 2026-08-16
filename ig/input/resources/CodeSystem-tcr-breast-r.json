@@ -1,0 +1,149 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-r",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-r",
+  "version": "4.0.1",
+  "name": "TCRBreastRCodeSystem",
+  "title": "台灣癌症登記 本院放射治療（R）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for R (本院放射治療). 碼冊出處：Longform p.236-238 放射治療執行狀態 (#4.2.1.8). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 12,
+  "concept": [
+    {
+      "code": "00",
+      "display": "個案僅於申報醫院接受首次療程的放射治療。",
+      "definition": "個案僅於申報醫院接受首次療程的放射治療。 / Radiation therapy given in the first course, at the reporting hospital only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiation therapy given in the first course, at the reporting hospital only"
+        }
+      ]
+    },
+    {
+      "code": "01",
+      "display": "放射治療非既定之首次療程計畫中的一部分。",
+      "definition": "放射治療非既定之首次療程計畫中的一部分。 / Radiation therapy was not part of the planned first course",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiation therapy was not part of the planned first course"
+        }
+      ]
+    },
+    {
+      "code": "02",
+      "display": "放射治療因禁忌症或個案其他危險因素(併發症、年邁)而未建議或給予。",
+      "definition": "放射治療因禁忌症或個案其他危險因素(併發症、年邁)而未建議或給予。 / Not advised or given because of a contraindication or another patient risk factor (comorbidity, advanced age)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not advised or given because of a contraindication or another patient risk factor (comorbidity, advanced age)"
+        }
+      ]
+    },
+    {
+      "code": "03",
+      "display": "放射治療因疾病進展而未建議或給予。",
+      "definition": "放射治療因疾病進展而未建議或給予。 / Not advised or given because the disease progressed",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not advised or given because the disease progressed"
+        }
+      ]
+    },
+    {
+      "code": "04",
+      "display": "個案於申報醫院接受首次療程的放射治療，但病人因個人因素未完成既定放射治療之療程。",
+      "definition": "個案於申報醫院接受首次療程的放射治療，但病人因個人因素未完成既定放射治療之療程。 / Given at the reporting hospital but not completed, for a personal reason (comorbidity, poor performance status, side effects, death)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Given at the reporting hospital but not completed, for a personal reason (comorbidity, poor performance status, side effects, death)"
+        }
+      ]
+    },
+    {
+      "code": "05",
+      "display": "放射治療是既定之首次療程計畫中的一部分，但因個案未接受前即死亡或病危出院。",
+      "definition": "放射治療是既定之首次療程計畫中的一部分，但因個案未接受前即死亡或病危出院。 / Part of the planned first course, but the patient died or was discharged critically ill before it started",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Part of the planned first course, but the patient died or was discharged critically ill before it started"
+        }
+      ]
+    },
+    {
+      "code": "06",
+      "display": "放射治療是既定之首次療程計畫中的一部分，未執行且病歷也未記載未執行的原因。",
+      "definition": "放射治療是既定之首次療程計畫中的一部分，未執行且病歷也未記載未執行的原因。 / Part of the planned first course, not given, with no reason recorded",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Part of the planned first course, not given, with no reason recorded"
+        }
+      ]
+    },
+    {
+      "code": "07",
+      "display": "放射治療是既定之首次療程計畫中的一部分，但病歷記載個案或其家屬拒絕放射治療。",
+      "definition": "放射治療是既定之首次療程計畫中的一部分，但病歷記載個案或其家屬拒絕放射治療。 / Part of the planned first course, but the patient or family refused it",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Part of the planned first course, but the patient or family refused it"
+        }
+      ]
+    },
+    {
+      "code": "08",
+      "display": "放射治療雖是既定之首次療程計畫中的一部分，但摘錄時尚未執行。",
+      "definition": "放射治療雖是既定之首次療程計畫中的一部分，但摘錄時尚未執行。 / Part of the planned first course, but had not started when the case was abstracted",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Part of the planned first course, but had not started when the case was abstracted"
+        }
+      ]
+    },
+    {
+      "code": "09",
+      "display": "個案僅於外院接受首次療程的放射治療。",
+      "definition": "個案僅於外院接受首次療程的放射治療。 / Radiation therapy given in the first course, at another hospital only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiation therapy given in the first course, at another hospital only"
+        }
+      ]
+    },
+    {
+      "code": "10",
+      "display": "個案於外院及申報醫院皆接受首次療程的放射治療。",
+      "definition": "個案於外院及申報醫院皆接受首次療程的放射治療。 / Radiation therapy given in the first course, at both the reporting hospital and another hospital",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Radiation therapy given in the first course, at both the reporting hospital and another hospital"
+        }
+      ]
+    },
+    {
+      "code": "99",
+      "display": "由於病歷未記載，所以不知道放射治療是否有被建議或是已經執行。",
+      "definition": "由於病歷未記載，所以不知道放射治療是否有被建議或是已經執行。 / Not documented, so it is unknown whether radiation therapy was advised or given",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not documented, so it is unknown whether radiation therapy was advised or given"
+        }
+      ]
+    }
+  ]
+}

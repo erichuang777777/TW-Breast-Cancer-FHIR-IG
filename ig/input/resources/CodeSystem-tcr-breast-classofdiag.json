@@ -1,0 +1,83 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-classofdiag",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-classofdiag",
+  "version": "4.0.1",
+  "name": "TCRBreastCLASSOFDIAGCodeSystem",
+  "title": "台灣癌症登記 診斷分類（本院／他院）（CLASSOFDIAG）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for CLASSOFDIAG (診斷分類（本院／他院）). 碼冊出處：Longform p.82 診斷狀態分類 (#2.3.1). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 6,
+  "concept": [
+    {
+      "code": "1",
+      "display": "於申報醫院診斷。",
+      "definition": "於申報醫院診斷。 / Diagnosed at the reporting hospital",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Diagnosed at the reporting hospital"
+        }
+      ]
+    },
+    {
+      "code": "2",
+      "display": "於他院診斷，因該癌症於首次療程內/未復發/復發狀況不明下，至申報醫院就診。",
+      "definition": "於他院診斷，因該癌症於首次療程內/未復發/復發狀況不明下，至申報醫院就診。 / Diagnosed elsewhere; presented at the reporting hospital within the first course of therapy, with no recurrence, or recurrence status unknown",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Diagnosed elsewhere; presented at the reporting hospital within the first course of therapy, with no recurrence, or recurrence status unknown"
+        }
+      ]
+    },
+    {
+      "code": "3",
+      "display": "於他院診斷，因該癌症復發或惡化後，才至申報醫院就診。",
+      "definition": "於他院診斷，因該癌症復發或惡化後，才至申報醫院就診。 / Diagnosed elsewhere; presented at the reporting hospital after recurrence or progression",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Diagnosed elsewhere; presented at the reporting hospital after recurrence or progression"
+        }
+      ]
+    },
+    {
+      "code": "5",
+      "display": "屍體解剖時才診斷為癌症。",
+      "definition": "屍體解剖時才診斷為癌症。 / Diagnosed only at autopsy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Diagnosed only at autopsy"
+        }
+      ]
+    },
+    {
+      "code": "7",
+      "display": "僅有病理檢查報告，個案未因診斷或治療癌症而到申報醫院。",
+      "definition": "僅有病理檢查報告，個案未因診斷或治療癌症而到申報醫院。 / Pathology report only; not seen at the reporting hospital for diagnosis or treatment (excludes autopsy diagnosis)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Pathology report only; not seen at the reporting hospital for diagnosis or treatment (excludes autopsy diagnosis)"
+        }
+      ]
+    },
+    {
+      "code": "8",
+      "display": "僅由死亡診斷證明書診斷為癌症。",
+      "definition": "僅由死亡診斷證明書診斷為癌症。 / Known only from a death certificate",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Known only from a death certificate"
+        }
+      ]
+    }
+  ]
+}

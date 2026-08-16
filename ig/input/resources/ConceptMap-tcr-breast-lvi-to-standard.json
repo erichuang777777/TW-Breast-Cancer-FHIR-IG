@@ -1,0 +1,68 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-lvi-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-lvi-to-standard",
+  "version": "4.0.1",
+  "name": "TCRLVIToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-lvi-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-lvi",
+      "element": [
+        {
+          "code": "0",
+          "display": "無淋巴管或血管侵犯。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "1",
+          "display": "有淋巴管或血管侵犯。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "7",
+          "display": "無法判斷是否侵犯（NA、樣本太小、樣本不足、未描述、無惡性細胞）。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "8",
+          "display": "不適用（GIST、NET、高度分化不良、原位癌、淋巴瘤及白血病、漿細胞骨髓瘤、中樞神經系統惡性腫瘤、原發部位不詳或未執行病理檢查）。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "9",
+          "display": "病歷未記載或不詳。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

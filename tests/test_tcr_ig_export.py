@@ -176,7 +176,7 @@ class TestExample:
 def test_summary_reports_the_real_coverage_gap(ig):
     summary, _resources, _out = ig
     assert summary['申報欄位總數'] == 99
-    assert summary['已有驗證碼表的欄位'] == 18
+    assert summary['已有驗證碼表的欄位'] == 48
     # The gap is the point of the summary: it must not silently read as done.
     assert summary['待補碼表的欄位'] > 0
 

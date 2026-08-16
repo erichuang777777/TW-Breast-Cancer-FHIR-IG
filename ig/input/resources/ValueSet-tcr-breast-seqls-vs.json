@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-seqls-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-seqls-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastSEQLSValueSet",
+  "title": "台灣癌症登記 局部與全身治療順序（SEQLS）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-seqls"
+      }
+    ]
+  }
+}

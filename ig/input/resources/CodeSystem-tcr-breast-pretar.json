@@ -1,0 +1,94 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-pretar",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-pretar",
+  "version": "4.0.1",
+  "name": "TCRBreastPRETARCodeSystem",
+  "title": "台灣癌症登記 他院標靶治療（PRETAR）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for PRETAR (他院標靶治療). 碼冊出處：Longform p.292-293 外院標靶治療 (#4.3.13). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 7,
+  "concept": [
+    {
+      "code": "00",
+      "display": "未接受標靶治療，標靶治療非首次療程的一部份。",
+      "definition": "未接受標靶治療，標靶治療非首次療程的一部份。 / No targeted therapy; not part of the first course, or the cancer was found only at autopsy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No targeted therapy; not part of the first course, or the cancer was found only at autopsy"
+        }
+      ]
+    },
+    {
+      "code": "01",
+      "display": "在首次療程中有接受標靶治療。",
+      "definition": "在首次療程中有接受標靶治療。 / Targeted therapy given in the first course",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Targeted therapy given in the first course"
+        }
+      ]
+    },
+    {
+      "code": "20",
+      "display": "僅接受臨床試驗標靶治療。",
+      "definition": "僅接受臨床試驗標靶治療。 / Clinical-trial targeted therapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Clinical-trial targeted therapy only"
+        }
+      ]
+    },
+    {
+      "code": "21",
+      "display": "同時接受標靶治療及臨床試驗標靶治療。",
+      "definition": "同時接受標靶治療及臨床試驗標靶治療。 / Targeted therapy plus clinical-trial targeted therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Targeted therapy plus clinical-trial targeted therapy"
+        }
+      ]
+    },
+    {
+      "code": "30",
+      "display": "僅接受雙盲試驗標靶治療。",
+      "definition": "僅接受雙盲試驗標靶治療。 / Double-blind-trial targeted therapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Double-blind-trial targeted therapy only"
+        }
+      ]
+    },
+    {
+      "code": "31",
+      "display": "同時接受標靶治療及雙盲試驗標靶治療。",
+      "definition": "同時接受標靶治療及雙盲試驗標靶治療。 / Targeted therapy plus double-blind-trial targeted therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Targeted therapy plus double-blind-trial targeted therapy"
+        }
+      ]
+    },
+    {
+      "code": "99",
+      "display": "由於病歷未記載，所以不知道是否標靶治療有被建議或是已經執行。",
+      "definition": "由於病歷未記載，所以不知道是否標靶治療有被建議或是已經執行。 / Not documented, so it is unknown whether targeted therapy was advised or given; or the cancer is known only from a death certificate",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not documented, so it is unknown whether targeted therapy was advised or given; or the cancer is known only from a death certificate"
+        }
+      ]
+    }
+  ]
+}

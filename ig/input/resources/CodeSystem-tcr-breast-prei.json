@@ -1,0 +1,226 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-prei",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-prei",
+  "version": "4.0.1",
+  "name": "TCRBreastPREICodeSystem",
+  "title": "台灣癌症登記 他院免疫治療（PREI）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for PREI (他院免疫治療). 碼冊出處：Longform p.282-284 外院免疫治療 (#4.3.8). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 19,
+  "concept": [
+    {
+      "code": "00",
+      "display": "未接受免疫治療，免疫治療非首次療程的一部份。",
+      "definition": "未接受免疫治療，免疫治療非首次療程的一部份。 / No immunotherapy; not part of the first course, or the cancer was found only at autopsy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No immunotherapy; not part of the first course, or the cancer was found only at autopsy"
+        }
+      ]
+    },
+    {
+      "code": "01",
+      "display": "接受全身性免疫藥物治療。",
+      "definition": "接受全身性免疫藥物治療。 / Systemic immunotherapy drug",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Systemic immunotherapy drug"
+        }
+      ]
+    },
+    {
+      "code": "02",
+      "display": "接受局部性免疫藥物治療。",
+      "definition": "接受局部性免疫藥物治療。 / Regional immunotherapy drug",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional immunotherapy drug"
+        }
+      ]
+    },
+    {
+      "code": "03",
+      "display": "接受全身性與局部性免疫藥物治療。",
+      "definition": "接受全身性與局部性免疫藥物治療。 / Systemic and regional immunotherapy drugs",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Systemic and regional immunotherapy drugs"
+        }
+      ]
+    },
+    {
+      "code": "04",
+      "display": "僅接受免疫細胞治療。",
+      "definition": "僅接受免疫細胞治療。 / Cellular immunotherapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Cellular immunotherapy only"
+        }
+      ]
+    },
+    {
+      "code": "05",
+      "display": "同時接受免疫細胞治療與全身性免疫藥物治療。",
+      "definition": "同時接受免疫細胞治療與全身性免疫藥物治療。 / Cellular immunotherapy plus a systemic immunotherapy drug",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Cellular immunotherapy plus a systemic immunotherapy drug"
+        }
+      ]
+    },
+    {
+      "code": "06",
+      "display": "同時接受免疫細胞治療與局部性免疫藥物治療。",
+      "definition": "同時接受免疫細胞治療與局部性免疫藥物治療。 / Cellular immunotherapy plus a regional immunotherapy drug",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Cellular immunotherapy plus a regional immunotherapy drug"
+        }
+      ]
+    },
+    {
+      "code": "07",
+      "display": "同時接受免疫細胞治療、全身性與局部性免疫藥物治療。",
+      "definition": "同時接受免疫細胞治療、全身性與局部性免疫藥物治療。 / Cellular immunotherapy plus systemic and regional immunotherapy drugs",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Cellular immunotherapy plus systemic and regional immunotherapy drugs"
+        }
+      ]
+    },
+    {
+      "code": "20",
+      "display": "僅接受臨床試驗免疫治療。",
+      "definition": "僅接受臨床試驗免疫治療。 / Clinical-trial immunotherapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Clinical-trial immunotherapy only"
+        }
+      ]
+    },
+    {
+      "code": "21",
+      "display": "同時接受免疫治療及臨床試驗免疫治療。",
+      "definition": "同時接受免疫治療及臨床試驗免疫治療。 / Immunotherapy plus clinical-trial immunotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Immunotherapy plus clinical-trial immunotherapy"
+        }
+      ]
+    },
+    {
+      "code": "22",
+      "display": "同時接受免疫細胞治療及臨床試驗免疫治療。",
+      "definition": "同時接受免疫細胞治療及臨床試驗免疫治療。 / Cellular immunotherapy plus clinical-trial immunotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Cellular immunotherapy plus clinical-trial immunotherapy"
+        }
+      ]
+    },
+    {
+      "code": "23",
+      "display": "同時接受免疫細胞治療與全身性或/與局部性藥物治療及臨床試驗免疫治療。",
+      "definition": "同時接受免疫細胞治療與全身性或/與局部性藥物治療及臨床試驗免疫治療。 / Cellular immunotherapy with systemic and/or regional drugs, plus clinical-trial immunotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Cellular immunotherapy with systemic and/or regional drugs, plus clinical-trial immunotherapy"
+        }
+      ]
+    },
+    {
+      "code": "30",
+      "display": "僅接受雙盲試驗免疫治療。",
+      "definition": "僅接受雙盲試驗免疫治療。 / Double-blind-trial immunotherapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Double-blind-trial immunotherapy only"
+        }
+      ]
+    },
+    {
+      "code": "31",
+      "display": "同時接受免疫治療及雙盲試驗免疫治療。",
+      "definition": "同時接受免疫治療及雙盲試驗免疫治療。 / Immunotherapy plus double-blind-trial immunotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Immunotherapy plus double-blind-trial immunotherapy"
+        }
+      ]
+    },
+    {
+      "code": "32",
+      "display": "同時接受免疫細胞治療及雙盲試驗免疫治療。",
+      "definition": "同時接受免疫細胞治療及雙盲試驗免疫治療。 / Cellular immunotherapy plus double-blind-trial immunotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Cellular immunotherapy plus double-blind-trial immunotherapy"
+        }
+      ]
+    },
+    {
+      "code": "33",
+      "display": "同時接受免疫細胞治療與全身性或/與局部性藥物治療及雙盲試驗免疫治療。",
+      "definition": "同時接受免疫細胞治療與全身性或/與局部性藥物治療及雙盲試驗免疫治療。 / Cellular immunotherapy with systemic and/or regional drugs, plus double-blind-trial immunotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Cellular immunotherapy with systemic and/or regional drugs, plus double-blind-trial immunotherapy"
+        }
+      ]
+    },
+    {
+      "code": "40",
+      "display": "僅接受臨床試驗免疫細胞治療。",
+      "definition": "僅接受臨床試驗免疫細胞治療。 / Clinical-trial cellular immunotherapy only",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Clinical-trial cellular immunotherapy only"
+        }
+      ]
+    },
+    {
+      "code": "41",
+      "display": "同時接受全身性或/與局部性藥物治療及臨床試驗免疫細胞治療。",
+      "definition": "同時接受全身性或/與局部性藥物治療及臨床試驗免疫細胞治療。 / Systemic and/or regional drugs plus clinical-trial cellular immunotherapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Systemic and/or regional drugs plus clinical-trial cellular immunotherapy"
+        }
+      ]
+    },
+    {
+      "code": "99",
+      "display": "由於病歷未記載，所以不知道是否免疫治療有被建議或是已經執行。",
+      "definition": "由於病歷未記載，所以不知道是否免疫治療有被建議或是已經執行。 / Not documented, so it is unknown whether immunotherapy was advised or given; or the cancer is known only from a death certificate",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Not documented, so it is unknown whether immunotherapy was advised or given; or the cancer is known only from a death certificate"
+        }
+      ]
+    }
+  ]
+}

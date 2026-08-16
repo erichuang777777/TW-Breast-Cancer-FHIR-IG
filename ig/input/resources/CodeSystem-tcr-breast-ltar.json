@@ -1,0 +1,743 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-ltar",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-ltar",
+  "version": "4.0.1",
+  "name": "TCRBreastLTARCodeSystem",
+  "title": "台灣癌症登記 低劑量標的（LTAR）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for LTAR (低劑量標的). 碼冊出處：Longform p.216-217 較低放射劑量臨床標靶體積 (#4.2.2.3.1). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 66,
+  "concept": [
+    {
+      "code": "-1",
+      "display": "個案有接受放射治療，但放射範圍未明示；或放射治療是單純內分泌處置。",
+      "definition": "個案有接受放射治療，但放射範圍未明示；或放射治療是單純內分泌處置。 / EBRT given, target volume not specified (includes EBRT as an endocrine procedure)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "EBRT given, target volume not specified (includes EBRT as an endocrine procedure)"
+        }
+      ]
+    },
+    {
+      "code": "-9",
+      "display": "不知道個案是否有接受體外放射治療。",
+      "definition": "不知道個案是否有接受體外放射治療。 / Unknown whether external beam radiotherapy was given",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Unknown whether external beam radiotherapy was given"
+        }
+      ]
+    },
+    {
+      "code": "00",
+      "display": "個案未接受體外放射治療，或是有體外放射治療但沒有 CTV。",
+      "definition": "個案未接受體外放射治療，或是有體外放射治療但沒有 CTV。 / No external beam radiotherapy, or EBRT given with no clinical target volume",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No external beam radiotherapy, or EBRT given with no clinical target volume"
+        }
+      ]
+    },
+    {
+      "code": "01",
+      "display": "原發腫瘤(T)",
+      "definition": "原發腫瘤(T) / Primary tumour (T)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T)"
+        }
+      ]
+    },
+    {
+      "code": "02",
+      "display": "區域淋巴結(N)",
+      "definition": "區域淋巴結(N) / Regional lymph nodes (N)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional lymph nodes (N)"
+        }
+      ]
+    },
+    {
+      "code": "03",
+      "display": "原發腫瘤(T)＋區域淋巴結(N)",
+      "definition": "原發腫瘤(T)＋區域淋巴結(N) / Primary tumour (T) + Regional lymph nodes (N)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Regional lymph nodes (N)"
+        }
+      ]
+    },
+    {
+      "code": "04",
+      "display": "遠端轉移(M)",
+      "definition": "遠端轉移(M) / Distant metastasis (M)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Distant metastasis (M)"
+        }
+      ]
+    },
+    {
+      "code": "05",
+      "display": "原發腫瘤(T)＋遠端轉移(M)",
+      "definition": "原發腫瘤(T)＋遠端轉移(M) / Primary tumour (T) + Distant metastasis (M)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Distant metastasis (M)"
+        }
+      ]
+    },
+    {
+      "code": "06",
+      "display": "區域淋巴結(N)＋遠端轉移(M)",
+      "definition": "區域淋巴結(N)＋遠端轉移(M) / Regional lymph nodes (N) + Distant metastasis (M)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional lymph nodes (N) + Distant metastasis (M)"
+        }
+      ]
+    },
+    {
+      "code": "07",
+      "display": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)",
+      "definition": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M) / Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M)"
+        }
+      ]
+    },
+    {
+      "code": "08",
+      "display": "廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)",
+      "definition": "廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌) / Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)"
+        }
+      ]
+    },
+    {
+      "code": "09",
+      "display": "原發腫瘤(T)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)",
+      "definition": "原發腫瘤(T)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌) / Primary tumour (T) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)"
+        }
+      ]
+    },
+    {
+      "code": "10",
+      "display": "區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)",
+      "definition": "區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌) / Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)"
+        }
+      ]
+    },
+    {
+      "code": "11",
+      "display": "原發腫瘤(T)＋區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)",
+      "definition": "原發腫瘤(T)＋區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌) / Primary tumour (T) + Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)"
+        }
+      ]
+    },
+    {
+      "code": "12",
+      "display": "遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)",
+      "definition": "遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌) / Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)"
+        }
+      ]
+    },
+    {
+      "code": "13",
+      "display": "原發腫瘤(T)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)",
+      "definition": "原發腫瘤(T)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌) / Primary tumour (T) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)"
+        }
+      ]
+    },
+    {
+      "code": "14",
+      "display": "區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)",
+      "definition": "區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌) / Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)"
+        }
+      ]
+    },
+    {
+      "code": "15",
+      "display": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)",
+      "definition": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌) / Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only)"
+        }
+      ]
+    },
+    {
+      "code": "16",
+      "display": "全身/全骨髓",
+      "definition": "全身/全骨髓 / Total body / total bone marrow",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Total body / total bone marrow"
+        }
+      ]
+    },
+    {
+      "code": "17",
+      "display": "原發腫瘤(T)＋全身/全骨髓",
+      "definition": "原發腫瘤(T)＋全身/全骨髓 / Primary tumour (T) + Total body / total bone marrow",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Total body / total bone marrow"
+        }
+      ]
+    },
+    {
+      "code": "18",
+      "display": "區域淋巴結(N)＋全身/全骨髓",
+      "definition": "區域淋巴結(N)＋全身/全骨髓 / Regional lymph nodes (N) + Total body / total bone marrow",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional lymph nodes (N) + Total body / total bone marrow"
+        }
+      ]
+    },
+    {
+      "code": "19",
+      "display": "原發腫瘤(T)＋區域淋巴結(N)＋全身/全骨髓",
+      "definition": "原發腫瘤(T)＋區域淋巴結(N)＋全身/全骨髓 / Primary tumour (T) + Regional lymph nodes (N) + Total body / total bone marrow",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Regional lymph nodes (N) + Total body / total bone marrow"
+        }
+      ]
+    },
+    {
+      "code": "20",
+      "display": "遠端轉移(M)＋全身/全骨髓",
+      "definition": "遠端轉移(M)＋全身/全骨髓 / Distant metastasis (M) + Total body / total bone marrow",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Distant metastasis (M) + Total body / total bone marrow"
+        }
+      ]
+    },
+    {
+      "code": "21",
+      "display": "原發腫瘤(T)＋遠端轉移(M)＋全身/全骨髓",
+      "definition": "原發腫瘤(T)＋遠端轉移(M)＋全身/全骨髓 / Primary tumour (T) + Distant metastasis (M) + Total body / total bone marrow",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Distant metastasis (M) + Total body / total bone marrow"
+        }
+      ]
+    },
+    {
+      "code": "22",
+      "display": "區域淋巴結(N)＋遠端轉移(M)＋全身/全骨髓",
+      "definition": "區域淋巴結(N)＋遠端轉移(M)＋全身/全骨髓 / Regional lymph nodes (N) + Distant metastasis (M) + Total body / total bone marrow",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional lymph nodes (N) + Distant metastasis (M) + Total body / total bone marrow"
+        }
+      ]
+    },
+    {
+      "code": "23",
+      "display": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋全身/全骨髓",
+      "definition": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋全身/全骨髓 / Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Total body / total bone marrow",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Total body / total bone marrow"
+        }
+      ]
+    },
+    {
+      "code": "24",
+      "display": "廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓",
+      "definition": "廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓 / Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow"
+        }
+      ]
+    },
+    {
+      "code": "25",
+      "display": "原發腫瘤(T)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓",
+      "definition": "原發腫瘤(T)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓 / Primary tumour (T) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow"
+        }
+      ]
+    },
+    {
+      "code": "26",
+      "display": "區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓",
+      "definition": "區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓 / Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow"
+        }
+      ]
+    },
+    {
+      "code": "27",
+      "display": "原發腫瘤(T)＋區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓",
+      "definition": "原發腫瘤(T)＋區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓 / Primary tumour (T) + Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow"
+        }
+      ]
+    },
+    {
+      "code": "28",
+      "display": "遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓",
+      "definition": "遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓 / Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow"
+        }
+      ]
+    },
+    {
+      "code": "29",
+      "display": "原發腫瘤(T)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓",
+      "definition": "原發腫瘤(T)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓 / Primary tumour (T) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow"
+        }
+      ]
+    },
+    {
+      "code": "30",
+      "display": "區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓",
+      "definition": "區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓 / Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow"
+        }
+      ]
+    },
+    {
+      "code": "31",
+      "display": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓",
+      "definition": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓 / Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow"
+        }
+      ]
+    },
+    {
+      "code": "32",
+      "display": "全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "33",
+      "display": "原發腫瘤(T)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "原發腫瘤(T)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Primary tumour (T) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "34",
+      "display": "區域淋巴結(N)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "區域淋巴結(N)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Regional lymph nodes (N) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional lymph nodes (N) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "35",
+      "display": "原發腫瘤(T)＋區域淋巴結(N)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "原發腫瘤(T)＋區域淋巴結(N)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Primary tumour (T) + Regional lymph nodes (N) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Regional lymph nodes (N) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "36",
+      "display": "遠端轉移(M)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "遠端轉移(M)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Distant metastasis (M) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Distant metastasis (M) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "37",
+      "display": "原發腫瘤(T)＋遠端轉移(M)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "原發腫瘤(T)＋遠端轉移(M)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Primary tumour (T) + Distant metastasis (M) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Distant metastasis (M) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "38",
+      "display": "區域淋巴結(N)＋遠端轉移(M)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "區域淋巴結(N)＋遠端轉移(M)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Regional lymph nodes (N) + Distant metastasis (M) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional lymph nodes (N) + Distant metastasis (M) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "39",
+      "display": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "40",
+      "display": "廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "41",
+      "display": "原發腫瘤(T)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "原發腫瘤(T)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Primary tumour (T) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "42",
+      "display": "區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "43",
+      "display": "原發腫瘤(T)＋區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "原發腫瘤(T)＋區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Primary tumour (T) + Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "44",
+      "display": "遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "45",
+      "display": "原發腫瘤(T)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "原發腫瘤(T)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Primary tumour (T) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "46",
+      "display": "區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "47",
+      "display": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "48",
+      "display": "全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "49",
+      "display": "原發腫瘤(T)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "原發腫瘤(T)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Primary tumour (T) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "50",
+      "display": "區域淋巴結(N)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "區域淋巴結(N)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Regional lymph nodes (N) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional lymph nodes (N) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "51",
+      "display": "原發腫瘤(T)＋區域淋巴結(N)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "原發腫瘤(T)＋區域淋巴結(N)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Primary tumour (T) + Regional lymph nodes (N) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Regional lymph nodes (N) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "52",
+      "display": "遠端轉移(M)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "遠端轉移(M)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Distant metastasis (M) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Distant metastasis (M) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "53",
+      "display": "原發腫瘤(T)＋遠端轉移(M)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "原發腫瘤(T)＋遠端轉移(M)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Primary tumour (T) + Distant metastasis (M) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Distant metastasis (M) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "54",
+      "display": "區域淋巴結(N)＋遠端轉移(M)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "區域淋巴結(N)＋遠端轉移(M)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Regional lymph nodes (N) + Distant metastasis (M) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional lymph nodes (N) + Distant metastasis (M) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "55",
+      "display": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "56",
+      "display": "廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "57",
+      "display": "原發腫瘤(T)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "原發腫瘤(T)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Primary tumour (T) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "58",
+      "display": "區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "59",
+      "display": "原發腫瘤(T)＋區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "原發腫瘤(T)＋區域淋巴結(N)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Primary tumour (T) + Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Regional lymph nodes (N) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "60",
+      "display": "遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "61",
+      "display": "原發腫瘤(T)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "原發腫瘤(T)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Primary tumour (T) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "62",
+      "display": "區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    },
+    {
+      "code": "63",
+      "display": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者)",
+      "definition": "原發腫瘤(T)＋區域淋巴結(N)＋遠端轉移(M)＋廣泛淋巴區域(mini-mantle/mantle/inverted-Y 或全身淋巴照射；限何杰金氏及非何杰金氏淋巴癌)＋全身/全骨髓＋全皮膚(限卡波西氏肉瘤、原發表皮淋巴癌或其他需全身皮膚電子射線放射治療者) / Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Primary tumour (T) + Regional lymph nodes (N) + Distant metastasis (M) + Extended lymphoid region (mini-mantle/mantle/inverted-Y, or total lymphoid irradiation; Hodgkin and non-Hodgkin lymphoma only) + Total body / total bone marrow + Total skin (Kaposi sarcoma, primary cutaneous lymphoma, or another disease needing total-skin electron-beam therapy)"
+        }
+      ]
+    }
+  ]
+}

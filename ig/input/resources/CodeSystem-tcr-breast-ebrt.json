@@ -16,52 +16,52 @@
     {
       "code": "1",
       "display": "2D/Simple",
-      "definition": "2D/Simple（加總碼，可複選）"
+      "definition": "2D/Simple"
     },
     {
       "code": "2",
       "display": "3D-CRT",
-      "definition": "3D-CRT（加總碼，可複選）"
+      "definition": "3D-CRT"
     },
     {
       "code": "4",
       "display": "IMRT",
-      "definition": "IMRT（加總碼，可複選）"
+      "definition": "IMRT"
     },
     {
       "code": "8",
       "display": "VMAT/Tomotherapy",
-      "definition": "VMAT/Tomotherapy（加總碼，可複選）"
+      "definition": "VMAT/Tomotherapy"
     },
     {
       "code": "16",
       "display": "Mixed Photon+Particle",
-      "definition": "Mixed Photon+Particle（加總碼，可複選）"
+      "definition": "Mixed Photon+Particle"
     },
     {
       "code": "32",
       "display": "IGRT",
-      "definition": "IGRT（加總碼，可複選）"
+      "definition": "IGRT"
     },
     {
       "code": "64",
       "display": "Respiratory Control",
-      "definition": "Respiratory Control（加總碼，可複選）"
+      "definition": "Respiratory Control"
     },
     {
       "code": "0",
       "display": "No EBRT",
-      "definition": "未執行體外放射治療"
+      "definition": "No EBRT / 未執行體外放射治療"
     },
     {
       "code": "-1",
       "display": "EBRT NOS",
-      "definition": "有體外放射治療但技術不明"
+      "definition": "EBRT NOS / 有體外放射治療但技術不明"
     },
     {
       "code": "999",
       "display": "Unknown",
-      "definition": "不詳"
+      "definition": "Unknown / 不詳"
     }
   ]
 }

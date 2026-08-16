@@ -1,0 +1,318 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-kpsecog-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-kpsecog-to-standard",
+  "version": "4.0.1",
+  "name": "TCRKPSECOGToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-kpsecog-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-kpsecog",
+      "element": [
+        {
+          "code": "000",
+          "display": "僅記載 ECOG PS 0（KPS 未評估）：活動性與生病之前無異，不受疾病影響。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "001",
+          "display": "僅記載 ECOG PS 1（KPS 未評估）：無法做劇烈活動，但可以走動與從事輕鬆或坐著的工作。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "002",
+          "display": "僅記載 ECOG PS 2（KPS 未評估）：可以走動，可以完全自我照顧，但無法工作。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "003",
+          "display": "僅記載 ECOG PS 3（KPS 未評估）：自我照顧能力有限，一半以上的清醒時刻需臥床或坐輪椅。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "004",
+          "display": "僅記載 ECOG PS 4（KPS 未評估）：處於完全失能狀態，生活完全無法自理。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "005",
+          "display": "未治療即死亡（KPS=0 及/或 ECOG PS=5）。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "100",
+          "display": "KPS=100，ECOG PS=0：正常，沒有任何抱怨，確定沒有疾病。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "104",
+          "display": "KPS=10，ECOG PS=4：病況緊急，很快有死亡的危險。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "204",
+          "display": "KPS=20，ECOG PS=4：病情嚴重，尚未有死亡的危險。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "209",
+          "display": "KPS=20（ECOG 未評估）：病情嚴重，尚未有死亡的危險。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "303",
+          "display": "KPS=30，ECOG PS=3：嚴重傷殘，尚未有死亡的危險。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "304",
+          "display": "KPS=30，ECOG PS=4：嚴重傷殘，尚未有死亡的危險。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "309",
+          "display": "KPS=30（ECOG 未評估）：嚴重傷殘，尚未有死亡的危險。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "403",
+          "display": "KPS=40，ECOG PS=3：傷殘，需要特別照顧及幫助。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "409",
+          "display": "KPS=40（ECOG 未評估）：傷殘，需要特別照顧及幫助。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "502",
+          "display": "KPS=50，ECOG PS=2：需要考慮別人幫助，經常給予醫療照顧。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "503",
+          "display": "KPS=50，ECOG PS=3：需要考慮別人幫助，經常給予醫療照顧。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "509",
+          "display": "KPS=50（ECOG 未評估）：需要考慮別人幫助，經常給予醫療照顧。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "602",
+          "display": "KPS=60，ECOG PS=2：有時需要別人幫助，但能照顧自己大部分需要。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "609",
+          "display": "KPS=60（ECOG 未評估）：有時需要別人幫助，但能照顧自己大部分需要。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "701",
+          "display": "KPS=70，ECOG PS=1：可以自我照顧，但無法從事正常活動。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "702",
+          "display": "KPS=70，ECOG PS=2：可以自我照顧，但無法從事正常活動。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "709",
+          "display": "KPS=70（ECOG 未評估）：可以自我照顧，但無法從事正常活動。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "801",
+          "display": "KPS=80，ECOG PS=1：可以稍微正常活動，已經有一些疾病的症狀。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "809",
+          "display": "KPS=80（ECOG 未評估）：可以稍微正常活動，已經有一些疾病的症狀。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "900",
+          "display": "KPS=90，ECOG PS=0：可以正常活動，有一些疾病症狀。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "901",
+          "display": "KPS=90，ECOG PS=1：可以正常活動，有一些疾病症狀。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "909",
+          "display": "KPS=90（ECOG 未評估）：可以正常活動，有一些疾病症狀。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "988",
+          "display": "不適用：首次療程已在他院執行，無法取得治療前之生活功能狀態評估值。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "999",
+          "display": "病歷未記載或不詳。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

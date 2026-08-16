@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-lvi-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-lvi-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastLVIValueSet",
+  "title": "台灣癌症登記 淋巴血管侵犯（LVI）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-lvi"
+      }
+    ]
+  }
+}

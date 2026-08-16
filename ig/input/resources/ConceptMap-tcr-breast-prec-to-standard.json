@@ -1,0 +1,208 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-prec-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-prec-to-standard",
+  "version": "4.0.1",
+  "name": "TCRPRECToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-prec-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-prec",
+      "element": [
+        {
+          "code": "00",
+          "display": "未接受化學治療，化學治療非首次療程的一部份。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "01",
+          "display": "接受全身性化學治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "02",
+          "display": "接受全身性化學治療，且只有一種化學藥物(僅適用於2017(含)診斷年之前的個案)。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "03",
+          "display": "接受全身性化學治療，且超過一種以上的化學藥物(僅適用於2017(含)診斷年之前的個案)。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "04",
+          "display": "個案原發部位僅接受局部動脈栓塞化學治療(TACE)。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "05",
+          "display": "個案原發部位接受局部動脈栓塞化學(TACE)及全身性化學治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "06",
+          "display": "個案原發部位接受局部動脈栓塞化學(TACE)及其他局部性化學治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "07",
+          "display": "個案原發部位接受局部動脈栓塞化學(TACE)、其他局部性及全身性化學治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "08",
+          "display": "個案僅接受局部性化學治療(不包含TACE)。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "09",
+          "display": "個案同時接受全身性及局部性化學治療(不包含TACE)。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "10",
+          "display": "肝轉移個案接受局部動脈栓塞化學治療(TACE)。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "11",
+          "display": "肝轉移個案接受局部動脈栓塞化學(TACE)及全身性化學治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "12",
+          "display": "肝轉移個案接受局部動脈栓塞化學治療(TACE)及其他局部性化學治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "13",
+          "display": "肝轉移個案接受局部動脈栓塞化學治療(TACE)、其他局部性及全身性化學治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "20",
+          "display": "僅接受臨床試驗化學治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "21",
+          "display": "同時接受化學治療及臨床試驗化學治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "30",
+          "display": "僅接受雙盲試驗化學治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "31",
+          "display": "同時接受化學治療及雙盲試驗化學治療。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "99",
+          "display": "由於病歷未記載，所以不知道是否化學治療有被建議或是已經執行。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

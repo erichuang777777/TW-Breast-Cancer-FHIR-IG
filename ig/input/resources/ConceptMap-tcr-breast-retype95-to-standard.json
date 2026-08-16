@@ -1,0 +1,348 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "tcr-breast-retype95-to-standard",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ConceptMap/tcr-breast-retype95-to-standard",
+  "version": "4.0.1",
+  "name": "TCRRETYPE95ToStandardTerminology",
+  "status": "draft",
+  "experimental": true,
+  "description": "SKELETON ONLY: every element is listed with an \"unmatched\" target so the mapping work is visible. No LOINC/SNOMED target has been guessed. Fill in `target` after terminology review.",
+  "sourceCanonical": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-retype95-vs",
+  "group": [
+    {
+      "source": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-retype95",
+      "element": [
+        {
+          "code": "00",
+          "display": "個案治療後 disease-free 且沒有復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "04",
+          "display": "侵襲癌以原位癌的形式復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "06",
+          "display": "原位癌以原位癌的形式復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "10",
+          "display": "局部復發，且無足夠的資訊可供編碼為 13-17。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "13",
+          "display": "侵襲癌於局部復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "14",
+          "display": "侵襲癌於套管處(trocar)復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "15",
+          "display": "侵襲癌同時於局部及套管處復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "16",
+          "display": "原位癌於局部復發，其他未詳細描述。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "17",
+          "display": "原位癌同時於局部及套管處復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "20",
+          "display": "區域性復發，且無足夠資訊可供編碼為 21-27。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "21",
+          "display": "侵襲癌僅於鄰近組織或器官復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "22",
+          "display": "侵襲癌僅於區域淋巴結復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "25",
+          "display": "侵襲癌同時於鄰近組織或器官及區域淋巴結復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "26",
+          "display": "原位癌於區域性復發，其他未詳細描述。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "27",
+          "display": "原位癌同時於鄰近組織或器官以及區域淋巴結復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "30",
+          "display": "侵襲癌之復發為鄰近組織/器官或區域淋巴結復發，合併局部或套管處/手術切開處復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "36",
+          "display": "原位癌之復發為區域性復發，合併局部或套管處復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "40",
+          "display": "遠端復發，且無足夠資訊可供編碼為 46-62。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "46",
+          "display": "原位癌於遠端復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "51",
+          "display": "侵襲癌僅於腹膜發生遠端復發，或腹水呈現惡性細胞。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "52",
+          "display": "侵襲癌僅於肺臟(包括 visceral pleura)發生遠端復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "53",
+          "display": "侵襲癌僅於 pleura 發生遠端復發，或肋膜滲液呈現惡性細胞。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "54",
+          "display": "侵襲癌僅於肝發生遠端復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "55",
+          "display": "侵襲癌僅於骨骼發生遠端復發，但原發部位的骨骼除外。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "56",
+          "display": "侵襲癌僅於中樞神經系統(CNS)發生遠端復發，但 external eye 除外。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "57",
+          "display": "侵襲癌僅於皮膚發生遠端復發，但原發部位的皮膚除外。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "58",
+          "display": "侵襲癌僅於遠端淋巴結復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "59",
+          "display": "侵襲癌僅發生全身性(systemic)遠端復發（如 lymphoma、leukemia、骨髓轉移等）。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "60",
+          "display": "侵襲癌之復發為單一或多處遠端部位復發，合併局部或區域復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "62",
+          "display": "侵襲癌於多處遠端部位復發。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "70",
+          "display": "個案癌症確診後從未 disease-free 過。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "88",
+          "display": "癌症有復發，但復發型式不詳。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        },
+        {
+          "code": "99",
+          "display": "不確定癌症是否曾復發或曾 disease-free 過。",
+          "target": [
+            {
+              "equivalence": "unmatched",
+              "comment": "TODO: terminology review"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

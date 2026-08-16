@@ -1,0 +1,149 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "tcr-breast-seqls",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-seqls",
+  "version": "4.0.1",
+  "name": "TCRBreastSEQLSCodeSystem",
+  "title": "台灣癌症登記 局部與全身治療順序（SEQLS）",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "TCR decoding project",
+  "description": "Taiwan Cancer Registry code table for SEQLS (局部與全身治療順序). 碼冊出處：Longform p.233-235 區域治療與全身性治療順序 (#4.2.1.6). Generated from tcr_decoder; every code round-trips through decode/encode (tests/test_codebook_conformance.py).",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 12,
+  "concept": [
+    {
+      "code": "-1",
+      "display": "首次療程中有區域治療與全身性治療，但順序未明；或結內淋巴癌、血液腫瘤疾病或遠端轉移個案。",
+      "definition": "首次療程中有區域治療與全身性治療，但順序未明；或結內淋巴癌、血液腫瘤疾病或遠端轉移個案。 / Sequence unknown, or systemic therapy is the main treatment modality (nodal lymphoma, haematologic malignancy, or distant metastasis)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Sequence unknown, or systemic therapy is the main treatment modality (nodal lymphoma, haematologic malignancy, or distant metastasis)"
+        }
+      ]
+    },
+    {
+      "code": "-7",
+      "display": "首次療程僅有局部性藥物治療而未使用全身性藥物治療(不論是否有區域治療)。",
+      "definition": "首次療程僅有局部性藥物治療而未使用全身性藥物治療(不論是否有區域治療)。 / The first course had only regional drug therapy (TACE, intraperitoneal, intrapleural, intrathecal, intravesical, intraocular or intratumoral), with no systemic drug therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "The first course had only regional drug therapy (TACE, intraperitoneal, intrapleural, intrathecal, intravesical, intraocular or intratumoral), with no systemic drug therapy"
+        }
+      ]
+    },
+    {
+      "code": "-8",
+      "display": "首次療程有全身性藥物治療而無區域治療(不論是否有局部性藥物治療)。",
+      "definition": "首次療程有全身性藥物治療而無區域治療(不論是否有局部性藥物治療)。 / No locoregional therapy: the first course had systemic drug therapy only (regional drug therapy such as TACE may still have been given)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No locoregional therapy: the first course had systemic drug therapy only (regional drug therapy such as TACE may still have been given)"
+        }
+      ]
+    },
+    {
+      "code": "-9",
+      "display": "不清楚是否有區域療法與全身性治療。",
+      "definition": "不清楚是否有區域療法與全身性治療。 / Unknown whether the case had locoregional and/or systemic therapy",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Unknown whether the case had locoregional and/or systemic therapy"
+        }
+      ]
+    },
+    {
+      "code": "00",
+      "display": "首次療程中不含化學藥物、荷爾蒙、免疫及標靶治療，不論是否有接受區域治療。",
+      "definition": "首次療程中不含化學藥物、荷爾蒙、免疫及標靶治療，不論是否有接受區域治療。 / No systemic drug therapy in the first course (chemotherapy, hormone/steroid, immunotherapy or targeted therapy), whether or not locoregional therapy was given",
+      "designation": [
+        {
+          "language": "en",
+          "value": "No systemic drug therapy in the first course (chemotherapy, hormone/steroid, immunotherapy or targeted therapy), whether or not locoregional therapy was given"
+        }
+      ]
+    },
+    {
+      "code": "01",
+      "display": "導引/前導性輔助療法(手術前進行全身性治療)",
+      "definition": "導引/前導性輔助療法(手術前進行全身性治療) / Induction / neoadjuvant systemic therapy (before locoregional therapy, or before radiation when radiation is the main locoregional therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Induction / neoadjuvant systemic therapy (before locoregional therapy, or before radiation when radiation is the main locoregional therapy)"
+        }
+      ]
+    },
+    {
+      "code": "02",
+      "display": "同步/併行療法(同步全身性藥物放射治療 CSRT，或手術旁全身性藥物治療)",
+      "definition": "同步/併行療法(同步全身性藥物放射治療 CSRT，或手術旁全身性藥物治療) / Concurrent / concomitant systemic and radiation therapy (CSRT), or perioperative systemic therapy given around surgery",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Concurrent / concomitant systemic and radiation therapy (CSRT), or perioperative systemic therapy given around surgery"
+        }
+      ]
+    },
+    {
+      "code": "03",
+      "display": "導引/前導性輔助療法(手術前進行全身性治療)＋同步/併行療法(同步全身性藥物放射治療 CSRT，或手術旁全身性藥物治療)",
+      "definition": "導引/前導性輔助療法(手術前進行全身性治療)＋同步/併行療法(同步全身性藥物放射治療 CSRT，或手術旁全身性藥物治療) / Induction / neoadjuvant systemic therapy (before locoregional therapy, or before radiation when radiation is the main locoregional therapy) + Concurrent / concomitant systemic and radiation therapy (CSRT), or perioperative systemic therapy given around surgery",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Induction / neoadjuvant systemic therapy (before locoregional therapy, or before radiation when radiation is the main locoregional therapy) + Concurrent / concomitant systemic and radiation therapy (CSRT), or perioperative systemic therapy given around surgery"
+        }
+      ]
+    },
+    {
+      "code": "04",
+      "display": "輔助療法(手術後進行全身性治療)",
+      "definition": "輔助療法(手術後進行全身性治療) / Adjuvant systemic therapy (after locoregional therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Adjuvant systemic therapy (after locoregional therapy)"
+        }
+      ]
+    },
+    {
+      "code": "05",
+      "display": "導引/前導性輔助療法(手術前進行全身性治療)＋輔助療法(手術後進行全身性治療)",
+      "definition": "導引/前導性輔助療法(手術前進行全身性治療)＋輔助療法(手術後進行全身性治療) / Induction / neoadjuvant systemic therapy (before locoregional therapy, or before radiation when radiation is the main locoregional therapy) + Adjuvant systemic therapy (after locoregional therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Induction / neoadjuvant systemic therapy (before locoregional therapy, or before radiation when radiation is the main locoregional therapy) + Adjuvant systemic therapy (after locoregional therapy)"
+        }
+      ]
+    },
+    {
+      "code": "06",
+      "display": "同步/併行療法(同步全身性藥物放射治療 CSRT，或手術旁全身性藥物治療)＋輔助療法(手術後進行全身性治療)",
+      "definition": "同步/併行療法(同步全身性藥物放射治療 CSRT，或手術旁全身性藥物治療)＋輔助療法(手術後進行全身性治療) / Concurrent / concomitant systemic and radiation therapy (CSRT), or perioperative systemic therapy given around surgery + Adjuvant systemic therapy (after locoregional therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Concurrent / concomitant systemic and radiation therapy (CSRT), or perioperative systemic therapy given around surgery + Adjuvant systemic therapy (after locoregional therapy)"
+        }
+      ]
+    },
+    {
+      "code": "07",
+      "display": "導引/前導性輔助療法(手術前進行全身性治療)＋同步/併行療法(同步全身性藥物放射治療 CSRT，或手術旁全身性藥物治療)＋輔助療法(手術後進行全身性治療)",
+      "definition": "導引/前導性輔助療法(手術前進行全身性治療)＋同步/併行療法(同步全身性藥物放射治療 CSRT，或手術旁全身性藥物治療)＋輔助療法(手術後進行全身性治療) / Induction / neoadjuvant systemic therapy (before locoregional therapy, or before radiation when radiation is the main locoregional therapy) + Concurrent / concomitant systemic and radiation therapy (CSRT), or perioperative systemic therapy given around surgery + Adjuvant systemic therapy (after locoregional therapy)",
+      "designation": [
+        {
+          "language": "en",
+          "value": "Induction / neoadjuvant systemic therapy (before locoregional therapy, or before radiation when radiation is the main locoregional therapy) + Concurrent / concomitant systemic and radiation therapy (CSRT), or perioperative systemic therapy given around surgery + Adjuvant systemic therapy (after locoregional therapy)"
+        }
+      ]
+    }
+  ]
+}

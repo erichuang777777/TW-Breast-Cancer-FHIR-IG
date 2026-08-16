@@ -72,9 +72,9 @@ FHIR 上的對應：① 的產物是 `Observation`（或直接是 QuestionnaireR
 
 | 資源 | 數量 | 說明 |
 |---|---|---|
-| `CodeSystem` | 18 | 每個已驗證碼表一個。**display 用碼冊中文原文**，另附 `en` designation（本工具的英文臨床意義），`definition` 為中英合併 |
-| `ValueSet` | 18 | 供 Questionnaire item 或 `Observation.valueCodeableConcept` 綁定 |
-| `ConceptMap` | 18 | TCR 碼 → 標準術語的**骨架**：每個碼都列出來但 target 一律 `unmatched` |
+| `CodeSystem` | 48 | 每個已驗證碼表一個。**display 用碼冊中文原文**，另附 `en` designation（本工具的英文臨床意義），`definition` 為中英合併——41 欄已轉錄；AJCC、附錄B 手術碼×2、淋巴結手術碼×2、EBRT、LNEXAM、LN_POSITI 共 7 欄尚未轉錄中文，暫以英文 display 呈現且不附 designation |
+| `ValueSet` | 48 | 供 Questionnaire item 或 `Observation.valueCodeableConcept` 綁定 |
+| `ConceptMap` | 48 | TCR 碼 → 標準術語的**骨架**：每個碼都列出來但 target 一律 `unmatched` |
 | `Questionnaire` | 1 | 長表 99 欄位，分 8 個 group |
 | `StructureDefinition` | 1 | `TCRRegistryAbstractionTask` |
 | `Task` / `QuestionnaireResponse` | 2 | 範例（合成資料） |
@@ -102,22 +102,21 @@ FHIR 上的對應：① 的產物是 `Observation`（或直接是 QuestionnaireR
 
 | 類別 | 欄位數 | 狀態 |
 |---|---|---|
-| 已有驗證碼表（SSF1–10、AJCC、手術碼×2、淋巴結手術碼×2、EBRT、LNEXAM、LN_POSITI） | 18 | ✅ 有 CodeSystem/ValueSet，Questionnaire 綁定 |
+| 已有驗證碼表（SSF1–10、結構欄位、腫瘤特性五欄、治療十欄、放射治療七欄、微創手術、人口學與追蹤七欄） | 48 | ✅ 有 CodeSystem/ValueSet，Questionnaire 綁定 |
 | 純數值／日期／識別碼 | 20 | ✅ 型別為 integer/date/string，不需碼表 |
-| 尚未轉錄碼表 | 61 | ⚠️ Questionnaire 仍有該欄位，型別為 string 並帶 `tcr-codetable-pending` 擴充 |
+| 尚未轉錄碼表 | 31 | ⚠️ Questionnaire 仍有該欄位，型別為 string 並帶 `tcr-codetable-pending` 擴充 |
 
-**待補的 61 欄**分四群，長表碼冊都有定義：
+**待補的 31 欄**分三群，長表碼冊都有定義：
 
-1. **腫瘤特性**：TCODE1、MCODE、MCODE5、MCODE6、MCODE6C、CONFER、LAT95、PNI、LVI
-   （ICD-O-3 需外部字典，其餘是長表碼表）
+1. **腫瘤特性**：TCODE1、MCODE（ICD-O-3，需外部字典）、MCODE6、MCODE6C
+   （分級依部位，附錄D）
 2. **分期**：CT/CN/CM/CSTG、PT/PN/PM/PSTG、SUMSTG、OSTG/OCSTG/OPSTG、META1–3
    （需 AJCC 8th 規則引擎，不只是碼表）
-3. **治療**：S、R、MINS、MARG95、RTAR、RMOD、HTAR、LTAR、SEQRS、SEQLS、
-   PREC/C、PREH/H、PREI/I、PREB/B、PRETAR/TAR、OTH、PREP、WATCHWAITING
-4. **人口學與追蹤**：SEX、SMOKING、KPSECOG、CLASS95、CLASSOFDIAG、CLASSOFTREAT、
-   SEQ1、SEQ2、VSTA/VSTA6、CSTA、RETYPE95/RETYPE6、DIECAUSE/DIECAUSE6
+3. **治療**：S、MARG95、PREB/B（骨髓/幹細胞移植）、WATCHWAITING
+4. **人口學與追蹤**：SMOKING、SEQ1、SEQ2、VSTA6、CSTA、RETYPE6、
+   DIECAUSE/DIECAUSE6
 
-補這 61 欄的工作方式與已完成的 SSF 相同：轉錄官方編碼範圍到
+補這 31 欄的工作方式與已完成的 SSF 相同：轉錄官方編碼範圍到
 `code_ranges.py` → 寫 decoder/encoder → 通過 `test_codebook_conformance.py`
 的四項性質 → FHIR 產生器會自動多出對應的 CodeSystem/ValueSet 並把
 Questionnaire item 從 string 換成 choice。

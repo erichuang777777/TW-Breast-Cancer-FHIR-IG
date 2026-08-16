@@ -1,0 +1,17 @@
+{
+  "resourceType": "ValueSet",
+  "id": "tcr-breast-rmod-vs",
+  "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/tcr-breast-rmod-vs",
+  "version": "4.0.1",
+  "name": "TCRBreastRMODValueSet",
+  "title": "台灣癌症登記 放療方式（RMOD）值集",
+  "status": "draft",
+  "experimental": true,
+  "compose": {
+    "include": [
+      {
+        "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/tcr-breast-rmod"
+      }
+    ]
+  }
+}
