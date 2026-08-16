@@ -21,6 +21,17 @@
 - 追蹤、轉出、結案及死亡條件
 - AI 候選與衝突資料的人工核准閘門
 
+## Care Plan JSON 的收案分類（專案決議）
+
+網頁欄位 `ddlReason=初診斷或初次治療` 不等於 QBC `DIAG_TYPE=2`，也不得在缺值時預設為 2。由 Cancer Care Plan JSON 投影至 QBC 檢查資料時，採下列順序規則：
+
+- 有手術，且手術早於抗癌治療，或只有手術：`DIAG_TYPE=1`。
+- 抗癌治療早於手術：`DIAG_TYPE=2`。
+- 只有抗癌治療、沒有手術，且臨床或病理 M 為 `M1`：`DIAG_TYPE=3`。
+- 其餘組合不自動分類，狀態為待審閱。
+
+此規則是本草案的機構／專案決議，不宣稱為健保署官方通則。每次推導均須保存治療順序、M 分期及來源路徑的 Provenance。
+
 ## 規則識別
 
 每項問題都包含穩定的 rule ID，例如 `QBC-D042-LE-D043`。可由工作臺 API、CLI JSON 或 audit 檔取得。完整欄位表與 rule coverage 位於發布原始碼的 `outputs/qbc_conformance/`。
