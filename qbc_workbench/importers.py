@@ -50,14 +50,26 @@ def _care_plan_treatment_markers(plan):
     """Return dated treatment facts in chronological order without copying narrative text."""
     markers=[]
     type_map={"手術":"surgery","抗癌治療":"systemic","放射治療":"radiotherapy"}
-    for match in re.finditer(r"\[(手術|抗癌治療|放射治療)\]",str(plan or "")):
-        preceding=str(plan)[max(0,match.start()-180):match.start()]
+    text=str(plan or "")
+    matches=list(re.finditer(r"\[(手術|抗癌治療|放射治療)\]",text))
+    for index,match in enumerate(matches):
+        preceding=text[max(0,match.start()-180):match.start()]
+        segment_end=matches[index+1].start() if index+1<len(matches) else len(text)
+        segment=text[match.start():segment_end]
         dates=re.findall(r"(\d{4})[/-](\d{1,2})[/-](\d{1,2})",preceding)
         date=None
         if dates:
             year,month,day=map(int,dates[-1])
             date=f"{year:04d}{month:02d}{day:02d}"
-        markers.append({"kind":type_map[match.group(1)],"date":date,"position":match.start()})
+        phase=None
+        if "前導輔助性癌症治療" in segment:
+            phase="neoadjuvant"
+        elif "輔助性癌症治療" in segment:
+            phase="adjuvant"
+        markers.append({
+            "kind":type_map[match.group(1)],"phase":phase,
+            "date":date,"position":match.start()
+        })
     return sorted(markers,key=lambda item:(item["date"] or "99999999",item["position"]))
 
 def _diagnosis_type_from_care_plan(reason,markers,case):
@@ -78,7 +90,20 @@ def _diagnosis_type_from_care_plan(reason,markers,case):
     }
     if systemic and "M1" in m_values:
         return "3","CARE_PLAN_SYSTEMIC_ONLY_M1"
-    return None,None
+    phases={item.get("phase") for item in markers}
+    if systemic and "neoadjuvant" in phases:
+        return "2","CARE_PLAN_NEOADJUVANT_PHASE"
+    if "adjuvant" in phases:
+        return "1","CARE_PLAN_ADJUVANT_PHASE"
+    clinical_values=[case.candidates.get(tag) for tag in ("D005","D006","D007")]
+    pathological_values=[case.candidates.get(tag) for tag in ("D032","D033","D034")]
+    has_clinical_tn=any(candidate and candidate.value for candidate in clinical_values[:2])
+    has_pathological_tnm=any(candidate and candidate.value for candidate in pathological_values)
+    if systemic and "M0" in m_values and has_clinical_tn and not has_pathological_tnm:
+        return "2","CARE_PLAN_SYSTEMIC_M0_PREOPERATIVE"
+    if not markers:
+        return None,"CARE_PLAN_SOURCE_INCOMPLETE"
+    return None,"CARE_PLAN_DIAGNOSIS_REVIEW_REQUIRED"
 
 def import_case_json(path:Path,case:CaseRecord):
     data=json.loads(path.read_text(encoding="utf-8")); fields=data["sections"]["basic"].get("fields",[]); filename=path.name
@@ -177,6 +202,7 @@ def import_case_json(path:Path,case:CaseRecord):
         CarePlanTreatmentFact(
             sequence=index,
             category=marker["kind"],
+            phase=marker["phase"],
             plan_date=marker["date"],
             evidence=[ev(filename,"json",path="sections.treatment_plan.text")],
         )
@@ -192,9 +218,15 @@ def import_case_json(path:Path,case:CaseRecord):
         put(case,"DIAG_TYPE",diagnosis_type,Method.RULE_DERIVED,
             ev(filename,"json",path=evidence_path),diagnosis_rule)
         case.diagnosis_type=diagnosis_type
+        case.diagnosis_type_assessment="classified"
     else:
         case.diagnosis_type=None
-        case.issues.append("DIAG_TYPE requires review: treatment order and M1 rule are insufficient")
+        if diagnosis_rule=="CARE_PLAN_SOURCE_INCOMPLETE":
+            case.diagnosis_type_assessment="source_incomplete"
+            case.issues.append("DIAG_TYPE cannot be assessed: care-plan source is incomplete")
+        else:
+            case.diagnosis_type_assessment="pending_review"
+            case.issues.append("DIAG_TYPE requires review: available evidence is insufficient")
 
     if len(histology_codes)==1 and diagnosis_type in {"1","2"}:
         histology_code=next(iter(histology_codes))

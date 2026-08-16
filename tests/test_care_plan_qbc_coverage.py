@@ -42,7 +42,7 @@ def test_qbc_coverage_report_is_aggregate_and_classifies_gaps(tmp_path: Path):
     assert report["qbc_field_count"] == 115
     assert report["contains_case_identifiers"] is False
     assert report["contains_source_values"] is False
-    assert report["diagnosis_type_counts"]["pending_review"] == 1
+    assert report["diagnosis_type_counts"]["source_incomplete"] == 1
     assert "PRIVATE-PATIENT" not in serialized
     by_tag = {row["tag"]: row for row in report["fields"]}
     assert by_tag["LATERALITY"]["value_records"] == 1
@@ -260,3 +260,71 @@ def test_diagnosis_type_remains_pending_when_rules_are_insufficient(tmp_path: Pa
 
     assert case.diagnosis_type is None
     assert "DIAG_TYPE" not in case.candidates
+    assert case.diagnosis_type_assessment == "pending_review"
+
+
+def test_adjuvant_phase_implies_surgery_first_type_one(tmp_path: Path):
+    path = _write_diagnosis_type_source(
+        tmp_path,
+        "計畫日期 2026/01/01 [放射治療] 輔助性癌症治療",
+    )
+    case = CaseRecord(case_id="synthetic")
+
+    import_case_json(path, case)
+
+    assert case.diagnosis_type == "1"
+    assert case.candidates["DIAG_TYPE"].rule_id == "CARE_PLAN_ADJUVANT_PHASE"
+    assert case.care_plan_treatment_facts[0].phase == "adjuvant"
+
+
+def test_neoadjuvant_phase_implies_type_two_without_surgery_marker(tmp_path: Path):
+    path = _write_diagnosis_type_source(
+        tmp_path,
+        "計畫日期 2026/01/01 [抗癌治療] 前導輔助性癌症治療",
+    )
+    case = CaseRecord(case_id="synthetic")
+
+    import_case_json(path, case)
+
+    assert case.diagnosis_type == "2"
+    assert case.candidates["DIAG_TYPE"].rule_id == "CARE_PLAN_NEOADJUVANT_PHASE"
+    assert case.care_plan_treatment_facts[0].phase == "neoadjuvant"
+
+
+def test_systemic_m0_with_clinical_but_no_path_stage_is_type_two(tmp_path: Path):
+    path = _write_diagnosis_type_source(
+        tmp_path,
+        "計畫日期 2026/01/01 [抗癌治療]",
+    )
+    source = json.loads(path.read_text(encoding="utf-8"))
+    source["sections"]["basic"]["fields"].extend(
+        [
+            {
+                "name": "Synthetic$ddlClinicTGeneral",
+                "type": "select",
+                "selected_text": "2",
+            },
+            {
+                "name": "Synthetic$ddlClinicNGeneral",
+                "type": "select",
+                "selected_text": "0",
+            },
+        ]
+    )
+    path.write_text(json.dumps(source, ensure_ascii=False), encoding="utf-8")
+    case = CaseRecord(case_id="synthetic")
+
+    import_case_json(path, case)
+
+    assert case.diagnosis_type == "2"
+    assert case.candidates["DIAG_TYPE"].rule_id == "CARE_PLAN_SYSTEMIC_M0_PREOPERATIVE"
+
+
+def test_empty_care_plan_is_source_incomplete_not_pending_review(tmp_path: Path):
+    path = _write_diagnosis_type_source(tmp_path, "")
+    case = CaseRecord(case_id="synthetic")
+
+    import_case_json(path, case)
+
+    assert case.diagnosis_type is None
+    assert case.diagnosis_type_assessment == "source_incomplete"

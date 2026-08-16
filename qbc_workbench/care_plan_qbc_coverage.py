@@ -72,6 +72,7 @@ def analyze_care_plan_qbc_coverage(
     method_records: dict[str, Counter[str]] = defaultdict(Counter)
     value_field_counts: list[int] = []
     diagnosis_types: Counter[str] = Counter()
+    diagnosis_assessments: Counter[str] = Counter()
     parse_failures = 0
 
     for index, source_path in enumerate(source_paths, start=1):
@@ -90,6 +91,7 @@ def analyze_care_plan_qbc_coverage(
         )
         if case.diagnosis_type:
             diagnosis_types[case.diagnosis_type] += 1
+        diagnosis_assessments[case.diagnosis_type_assessment] += 1
         for tag, candidate in case.candidates.items():
             if tag not in qbc_by_tag:
                 continue
@@ -169,7 +171,8 @@ def analyze_care_plan_qbc_coverage(
             "1": diagnosis_types.get("1", 0),
             "2": diagnosis_types.get("2", 0),
             "3": diagnosis_types.get("3", 0),
-            "pending_review": parsed_records - sum(diagnosis_types.values()),
+            "pending_review": diagnosis_assessments.get("pending_review", 0),
+            "source_incomplete": diagnosis_assessments.get("source_incomplete", 0),
         },
         "produced_but_not_declared_in_catalog": sorted(produced_tags - declared_tags),
         "declared_but_not_produced_in_january": sorted(declared_tags - produced_tags),

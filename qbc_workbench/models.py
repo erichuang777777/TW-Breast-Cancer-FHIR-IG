@@ -36,7 +36,7 @@ class TreatmentEvent(BaseModel):
 
 class CarePlanTreatmentFact(BaseModel):
     """A treatment fact stated by the care-plan source before QBC code normalization."""
-    sequence:int; category:str; plan_date:str|None=None
+    sequence:int; category:str; phase:str|None=None; plan_date:str|None=None
     evidence:list[Evidence]=Field(default_factory=list)
 
 class FollowUpEvent(BaseModel):
@@ -50,6 +50,7 @@ class FollowUpEvent(BaseModel):
 
 class CaseRecord(BaseModel):
     case_id:str; diagnosis_type:str|None=None; laterality:str|None=None
+    diagnosis_type_assessment:str="pending_review"
     candidates:dict[str,Candidate]=Field(default_factory=dict); treatments:list[TreatmentEvent]=Field(default_factory=list)
     care_plan_treatment_facts:list[CarePlanTreatmentFact]=Field(default_factory=list)
     followups:list[FollowUpEvent]=Field(default_factory=list)
