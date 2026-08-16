@@ -91,32 +91,33 @@ v2 schema 已訂好資料形狀，但 314 controls 的逐欄定義仍須從多�
 
 ## Care Plan JSON 對 QBC 115 欄的覆蓋
 
-目前 adapter 以同一份 JSON 獨立建立 QBC check view。76 筆皆可解析；QBC 115 欄中，至少在一筆一月樣本能產生值者為 **40 欄**，未曾產生者為 **75 欄**。每筆實際產生 16–35 欄，中位數 27 欄。這些數字是來源覆蓋率，不是 QBC 合格率；QBC 必填性仍會依 `DIAG_TYPE`、治療與欄位相依條件逐案判定。
+目前 adapter 以同一份 JSON 獨立建立 QBC check view。76 筆皆可解析；重新納入 `basic.tables`、尚未登錄 catalog 的乳癌 controls，並修正 sentinel／axillary node 判讀後，QBC 115 欄中至少在一筆一月樣本能產生值者為 **50 欄**。每筆實際產生 20–40 欄，中位數 32 欄。
 
-既有 catalog 宣告的 29 個 QBC targets 均至少在一筆樣本成功產生；另有 11 欄由期別／受體規則推導或由 JSON 內 reference-report text 抽取。後者必須保留 Provenance 與審閱狀態，不能冒充原始 structured control。
+「未產生」不能直接解讀成「JSON 沒有答案」或「必須找外部資料」。所有 115 欄應分成下列五類：
 
-| 產生方式 | 唯一 QBC 欄位數 | 欄位 |
+| 分類 | 欄數 | 解讀 |
 |---|---:|---|
-| JSON structured controls | 25 | `DIAG_TYPE`、`LATERALITY`、`P05`、`D002`、`D004`–`D007`、`D015`、`D017`–`D021`、`D031`–`D034`、`D047`、`D049`、`D051`–`D055` |
+| adapter 已於一月產生 | 50 | 至少一筆有 candidate；仍須依 requiredness、ValueSet、review status 驗證 |
+| JSON 已有來源候選、尚未正式 Mapping | 11 | `D010`、`D027`、`D029`、`D030`、`D037`、`TM01`、`TM02`、`TM05`–`TM08` |
+| 一月情境不適用 | 31 | `D025`、`D026`、`D058`–`D085`、`TM04`；76 筆均為 `DIAG_TYPE=2` |
+| JSON 沒有 follow-up event | 6 | `T01`–`T06`；初始申報沒有追蹤事件時不是缺值 |
+| 尚須確認來源 | 17 | 目前不能證明有等義、足夠精確的 JSON 答案 |
+
+因此原先「75 欄需要額外資料」的結論已撤回。正確數字是：65 欄尚未由 adapter 產生，其中 31 欄不適用、11 欄 JSON 已有待 Mapping 候選、6 欄沒有追蹤事件，只有 **17 欄**仍需逐欄確認來源，而且確認後也不一定都需要外部資料。
+
+| 產生方式 | 唯一 QBC 欄位數 | 主要新增內容 |
+|---|---:|---|
+| JSON structured／table | 32 | 新納入 `P01`、`P02`、`BIRTHDAY`、`D003`、`D009`、`D028`、`D036` |
 | 規則推導 | 7 | `D008`、`D014`、`D016`、`D035`、`D044`、`D048`、`D050` |
-| JSON 內 reference-report text 抽取 | 9 | `D012`、`D013`、`D024`、`D041`–`D047` |
+| JSON 內 reference-report text 抽取 | 12 | 包含正確區分 sentinel `D038`–`D040` 與 axillary `D041`–`D043` |
 
-`D047` 同時可能由 structured control 或報告文字抽取，因此三列合計 41、去重後為 40。`D019`／`D053` 僅在 HER2 IHC 為 2+ 且 FISH 有實際陽性／陰性結果時產生；「未測」不得誤轉成 QBC 陰性。
+`D047` 同時可能由 structured control 或報告文字抽取，因此三列合計 51、去重後為 50。`D019`／`D053` 僅在 HER2 IHC 為 2+ 且 FISH 有實際陽性／陰性結果時產生；「未測」不得誤轉成 QBC 陰性。
 
-需要額外資料的 75 欄如下：
+尚須確認來源的 17 欄為：`HOSPID`、`ID`、`P03`、`P04`、`P06`–`P09`、`D001`、`D011`、`D022`、`D023`、`D056`、`D057`、`TM03`、`TM09`、`TM10`。其中 `HOSPID` 可由部署設定提供，未必需要臨床原始資料；其餘仍需確認 JSON table／report 是否有等義值及時間點。
 
-| 建議來源 | 數量 | 目前 JSON 無法產生的 QBC 欄位 |
-|---|---:|---|
-| 機構／病人主檔 | 3 | `HOSPID`、`ID`、`BIRTHDAY` |
-| 收案／病人行政資料 | 8 | `P01`–`P04`、`P06`–`P09` |
-| 診斷／癌症登記 | 5 | `D001`、`D025`、`D026`、`D058`、`D059` |
-| 影像／臨床檢查／期別 | 12 | `D003`、`D009`–`D011`、`D036`、`D037`、`D060`–`D065` |
-| 手術紀錄 | 2 | `D027`、`D029` |
-| 病理／檢驗／分子報告 | 29 | `D022`、`D023`、`D028`、`D030`、`D038`–`D040`、`D056`、`D057`、`D066`–`D085` |
-| 實際治療執行紀錄 | 10 | `TM01`–`TM10` |
-| 追蹤／結案／結果 | 6 | `T01`–`T06` |
+`treatment_plan.text` 中的手術、放療、抗癌治療、藥物及部位可作 `TM01`、`TM02`、`TM05`–`TM08` 的 Mapping 候選，但文字明確表示這是事前計畫，實際處置可能改變。因此在確認 QBC 要求的是 planned 或 performed event 前，只能保留 pending review，不能當成已執行治療。
 
-這個缺口分類是擷取來源建議，不是臨床語意簽核。尤其 `D058`–`D085` 為復發區段；若當案不適用，應標示 not-applicable，而不是強制補值。月批次工具 `scripts/analyze_care_plan_qbc_coverage.py` 會輸出不含個案識別或值的逐欄矩陣，供每月比較。
+月批次工具 `scripts/analyze_care_plan_qbc_coverage.py` 會輸出不含個案識別或值的逐欄五分類矩陣，供每月比較。
 
 ### 來源解析規則
 

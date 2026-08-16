@@ -1,8 +1,8 @@
 import json
 from pathlib import Path
 
+import fitz
 from openpyxl import Workbook
-from pypdf import PdfWriter
 
 from qbc_workbench.care_plan_companion_audit import (
     _unmatched_cell_class,
@@ -25,11 +25,12 @@ def test_companion_audit_is_aggregate_and_detects_structural_sources(tmp_path: P
     workbook = Workbook()
     workbook.active["A1"] = "KNOWN"
     workbook.active["A2"] = "DOCUMENT-ONLY"
+    workbook.active["A3"] = "=1+1"
     workbook.save(tmp_path / "PRIVATE.xlsx")
-    writer = PdfWriter()
-    writer.add_blank_page(width=100, height=100)
-    with (tmp_path / "PRIVATE.pdf").open("wb") as handle:
-        writer.write(handle)
+    document = fitz.open()
+    document.new_page(width=100, height=100)
+    document.save(tmp_path / "PRIVATE.pdf")
+    document.close()
 
     report = analyze_companions(tmp_path)
     serialized = json.dumps(report)
@@ -37,6 +38,7 @@ def test_companion_audit_is_aggregate_and_detects_structural_sources(tmp_path: P
     assert report["matched_json_xlsx_pdf"] == 1
     assert report["json"]["union_controls"] == 1
     assert report["xlsx"]["sheets_per_workbook"] == {"min": 1, "median": 1, "max": 1}
+    assert report["xlsx"]["formula_cells_per_workbook"] == {"min": 1, "median": 1, "max": 1}
     assert report["contains_case_identifiers"] is False
     assert report["contains_source_values"] is False
     assert "DOCUMENT-ONLY" not in serialized

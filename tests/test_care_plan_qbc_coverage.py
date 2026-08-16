@@ -45,11 +45,14 @@ def test_qbc_coverage_report_is_aggregate_and_classifies_gaps(tmp_path: Path):
     assert "PRIVATE-PATIENT" not in serialized
     by_tag = {row["tag"]: row for row in report["fields"]}
     assert by_tag["LATERALITY"]["value_records"] == 1
-    assert by_tag["HOSPID"]["coverage_status"] == "additional-source-required"
+    assert by_tag["HOSPID"]["coverage_status"] == "unresolved-source-review"
     assert (
-        by_tag["HOSPID"]["recommended_additional_source"]
+        by_tag["HOSPID"]["candidate_additional_source"]
         == "organization-and-patient-master"
     )
+    assert by_tag["D025"]["coverage_status"] == "not-applicable-in-january-sample"
+    assert by_tag["TM02"]["coverage_status"] == "json-source-candidate-unmapped"
+    assert by_tag["T01"]["coverage_status"] == "no-follow-up-event-in-source"
 
 
 def test_fish_source_options_map_only_actual_results(tmp_path: Path):
@@ -91,3 +94,78 @@ def test_fish_source_options_map_only_actual_results(tmp_path: Path):
 
     assert case.candidates["D019"].value == "1"
     assert case.candidates["D053"].value == "0"
+
+
+def test_json_tables_and_unmapped_breast_controls_supply_qbc_candidates(tmp_path: Path):
+    source = {
+        "schema_version": 1,
+        "sections": {
+            "basic": {
+                "tables": [
+                    {
+                        "index": 0,
+                        "rows": [
+                            ["姓名：", "合成病人"],
+                            ["生日：", "2000/01/02"],
+                            ["性別：", "F"],
+                        ],
+                    }
+                ],
+                "fields": [
+                    {
+                        "name": "Synthetic$ddlReason",
+                        "type": "select",
+                        "selected_text": "初診斷或初次治療",
+                    },
+                    {
+                        "name": "Synthetic$cblHisType$0",
+                        "type": "checkbox",
+                        "label": "Invasive ductal carcinoma",
+                        "checked": True,
+                    },
+                    {
+                        "name": "Synthetic$rblMargin",
+                        "type": "radio",
+                        "label": "Negative",
+                        "checked": True,
+                    },
+                    {
+                        "name": "Synthetic$cblMetastasis$0",
+                        "type": "checkbox",
+                        "label": "Lung",
+                        "checked": True,
+                    },
+                    *[
+                        {
+                            "name": f"Synthetic${key}",
+                            "type": "select",
+                            "selected_text": value,
+                        }
+                        for key, value in (
+                            ("ddlClinicTGeneral", "4"),
+                            ("ddlClinicNGeneral", "0"),
+                            ("ddlClinicMGeneral", "1"),
+                            ("ddlPathTGeneral", "4"),
+                            ("ddlPathNGeneral", "0"),
+                            ("ddlPathMGeneral", "1"),
+                        )
+                    ],
+                ],
+            },
+            "reference_reports": {"fields": [], "text": ""},
+            "treatment_plan": {"fields": [], "text": ""},
+        },
+    }
+    path = tmp_path / "synthetic.case.json"
+    path.write_text(json.dumps(source, ensure_ascii=False), encoding="utf-8")
+    case = CaseRecord(case_id="synthetic")
+
+    import_case_json(path, case)
+
+    assert case.candidates["P01"].value == "合成病人"
+    assert case.candidates["BIRTHDAY"].value == "20000102"
+    assert case.candidates["P02"].value == "1"
+    assert case.candidates["D003"].value == "2"
+    assert case.candidates["D028"].value == "0"
+    assert case.candidates["D009"].value == "5"
+    assert case.candidates["D036"].value == "5"

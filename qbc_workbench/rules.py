@@ -75,9 +75,23 @@ def extract_pathology(case,text,filename):
         put(case,"D013","1",Method.RULE_EXTRACTION,e,"PATH_AXILLARY_POSITIVE","陽性",.95,True)
     ratio=re.search(r"involved\s*/\s*total\s*:\s*(\d+)\s*/\s*(\d+)",low)
     if ratio:
-        p,t=ratio.groups(); put(case,"D041","1" if int(p) else "0",Method.RULE_EXTRACTION,e,"PATH_ALND_RESULT")
-        put(case,"D042",p,Method.RULE_EXTRACTION,e,"PATH_ALND_POSITIVE"); put(case,"D043",t,Method.RULE_EXTRACTION,e,"PATH_ALND_TOTAL")
-        put(case,"D044","1" if int(p) else "0",Method.RULE_DERIVED,e,"NODE_POSITIVE_DERIVED")
+        p,t=ratio.groups()
+        context=low[max(0,ratio.start()-500):ratio.start()]
+        sentinel_position=context.rfind("sentinel")
+        axillary_position=context.rfind("axillary")
+        classified=False
+        if sentinel_position>axillary_position:
+            put(case,"D038","1" if int(p) else "0",Method.RULE_EXTRACTION,e,"PATH_SENTINEL_RESULT",review=True)
+            put(case,"D039",p,Method.RULE_EXTRACTION,e,"PATH_SENTINEL_POSITIVE",review=True)
+            put(case,"D040",t,Method.RULE_EXTRACTION,e,"PATH_SENTINEL_TOTAL",review=True)
+            classified=True
+        elif axillary_position>=0:
+            put(case,"D041","1" if int(p) else "0",Method.RULE_EXTRACTION,e,"PATH_ALND_RESULT",review=True)
+            put(case,"D042",p,Method.RULE_EXTRACTION,e,"PATH_ALND_POSITIVE",review=True); put(case,"D043",t,Method.RULE_EXTRACTION,e,"PATH_ALND_TOTAL",review=True)
+            classified=True
+        else:
+            case.issues.append("node involved/total ratio requires sentinel versus axillary review")
+        if classified: put(case,"D044","1" if int(p) else "0",Method.RULE_DERIVED,e,"NODE_POSITIVE_DERIVED")
     for tag,pattern,rule in [("D045",r"no\.\s*micrometastases[^:]*:\s*(\d+)","PATH_MICRO_COUNT"),("D046",r"no\.\s*macrometastases[^:]*:\s*(\d+)","PATH_MACRO_COUNT"),("D047",r"size of invasive carcinoma\s*:\s*([0-9.]+)\s*cm","PATH_TUMOR_SIZE")]:
         if m:=re.search(pattern,low): put(case,tag,m.group(1),Method.RULE_EXTRACTION,e,rule)
     if "no definite response to presurgical" in low or "residual invasive carcinoma" in low:

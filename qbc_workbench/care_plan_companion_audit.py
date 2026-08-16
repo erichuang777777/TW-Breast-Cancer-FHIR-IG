@@ -8,8 +8,8 @@ import json
 import re
 import unicodedata
 
+import fitz
 from openpyxl import load_workbook
-from pypdf import PdfReader
 
 
 TOKEN_PATTERN = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.:/+-]{1,}|[\u3400-\u9fff]{2,}")
@@ -45,40 +45,48 @@ def _json_strings(value: Any) -> list[str]:
 
 
 def _xlsx_strings(path: Path) -> tuple[list[str], dict[str, int]]:
-    workbook = load_workbook(path, read_only=True, data_only=True)
+    value_workbook = load_workbook(path, read_only=True, data_only=True)
     values: list[str] = []
     nonempty_cells = 0
-    formula_cells = 0
-    for sheet in workbook.worksheets:
+    for sheet in value_workbook.worksheets:
         for row in sheet.iter_rows():
             for cell in row:
-                if cell.data_type == "f":
-                    formula_cells += 1
                 if cell.value is not None and str(cell.value).strip():
                     nonempty_cells += 1
                     values.append(str(cell.value))
+    sheet_count = len(value_workbook.worksheets)
+    value_workbook.close()
+
+    formula_workbook = load_workbook(path, read_only=True, data_only=False)
+    formula_cells = sum(
+        cell.data_type == "f"
+        for sheet in formula_workbook.worksheets
+        for row in sheet.iter_rows()
+        for cell in row
+    )
+    formula_workbook.close()
     metrics = {
-        "sheets": len(workbook.worksheets),
+        "sheets": sheet_count,
         "nonempty_cells": nonempty_cells,
         "formula_cells": formula_cells,
     }
-    workbook.close()
     return values, metrics
 
 
 def _pdf_strings(path: Path) -> tuple[list[str], dict[str, int]]:
-    reader = PdfReader(path)
     texts: list[str] = []
     pages_with_text = 0
     extracted_characters = 0
-    for page in reader.pages:
-        text = page.extract_text() or ""
-        if text.strip():
-            pages_with_text += 1
-            extracted_characters += len(text)
-            texts.append(text)
+    with fitz.open(path) as document:
+        page_count = document.page_count
+        for page in document:
+            text = page.get_text() or ""
+            if text.strip():
+                pages_with_text += 1
+                extracted_characters += len(text)
+                texts.append(text)
     return texts, {
-        "pages": len(reader.pages),
+        "pages": page_count,
         "pages_with_text": pages_with_text,
         "extracted_characters": extracted_characters,
     }
