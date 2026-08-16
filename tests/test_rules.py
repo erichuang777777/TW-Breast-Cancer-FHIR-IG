@@ -19,6 +19,14 @@ def test_pathology_node_parser_requires_review():
     assert c.candidates["D012"].status.value=="pending_review"
     assert c.candidates["D042"].value=="7" and c.candidates["D043"].value=="13"
 
+def test_pathology_sentinel_ratio_is_not_misclassified_as_axillary():
+    c=CaseRecord(case_id="x")
+    extract_pathology(c,"Sentinel lymph node, involved/total: 1/4", "p.txt")
+    assert c.candidates["D038"].value=="1"
+    assert c.candidates["D039"].value=="1"
+    assert c.candidates["D040"].value=="4"
+    assert "D041" not in c.candidates
+
 
 # --- 專案決議 2026-08-13：較嚴重的定義為 Stage Ⅲ>Ⅱ>Ⅰ，次分期 ⅢC>ⅢB>ⅢA，
 #     完全同期別才以腫瘤大小排序 ---
@@ -113,4 +121,3 @@ def test_bilateral_case_without_laterality_is_an_error():
 def test_bilateral_counterpart_cannot_be_the_case_itself():
     case = CaseRecord(case_id="L-001", laterality="L", bilateral_counterpart_case_id="L-001")
     assert _rules(case).get("QBC-BILATERAL-COUNTERPART") == "error"
-

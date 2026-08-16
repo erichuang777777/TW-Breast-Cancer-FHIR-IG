@@ -10,6 +10,21 @@ from .importers import import_case_json
 from .models import CaseRecord, ReviewStatus
 
 
+JSON_SOURCE_CANDIDATES: dict[str, dict[str, str]] = {
+    "D010": {"channel": "basic.fields", "source": "cblMetastasis + txbMetastasisDesc"},
+    "D027": {"channel": "treatment_plan.text", "source": "planned breast surgery"},
+    "D029": {"channel": "treatment_plan.text", "source": "planned axillary surgery"},
+    "D030": {"channel": "basic.fields", "source": "cblHisType"},
+    "D037": {"channel": "basic.fields", "source": "cblMetastasis + txbMetastasisDesc"},
+    "TM01": {"channel": "treatment_plan.text", "source": "ordered plan entries"},
+    "TM02": {"channel": "treatment_plan.text", "source": "plan treatment type"},
+    "TM05": {"channel": "treatment_plan.text", "source": "planned regimen or drug"},
+    "TM06": {"channel": "treatment_plan.text", "source": "planned other drug text"},
+    "TM07": {"channel": "treatment_plan.text", "source": "planned radiation site"},
+    "TM08": {"channel": "treatment_plan.text", "source": "planned other site text"},
+}
+
+
 def _recommended_source(tag: str) -> str:
     if tag in {"HOSPID", "ID", "BIRTHDAY"}:
         return "organization-and-patient-master"
@@ -56,6 +71,7 @@ def analyze_care_plan_qbc_coverage(
     not_applicable_records: Counter[str] = Counter()
     method_records: dict[str, Counter[str]] = defaultdict(Counter)
     value_field_counts: list[int] = []
+    diagnosis_types: Counter[str] = Counter()
     parse_failures = 0
 
     for index, source_path in enumerate(source_paths, start=1):
@@ -72,6 +88,8 @@ def analyze_care_plan_qbc_coverage(
                 if tag in qbc_by_tag
             )
         )
+        if case.diagnosis_type:
+            diagnosis_types[case.diagnosis_type] += 1
         for tag, candidate in case.candidates.items():
             if tag not in qbc_by_tag:
                 continue
@@ -81,14 +99,35 @@ def analyze_care_plan_qbc_coverage(
                 value_records[tag] += 1
                 method_records[tag][candidate.method.value] += 1
 
+    parsed_records = len(source_paths) - parse_failures
     rows: list[dict[str, Any]] = []
-    source_gap_counts: Counter[str] = Counter()
+    status_counts: Counter[str] = Counter()
+    unresolved_source_review_counts: Counter[str] = Counter()
     for field in qbc_fields:
         tag = field["tag"]
         produced = value_records[tag] > 0
-        source_recommendation = None if produced else _recommended_source(tag)
-        if source_recommendation:
-            source_gap_counts[source_recommendation] += 1
+        all_not_applicable = (
+            parsed_records > 0 and not_applicable_records[tag] == parsed_records
+        ) or (
+            tag == "TM04"
+            and parsed_records > 0
+            and diagnosis_types.get("3", 0) == 0
+        )
+        if produced:
+            coverage_status = "adapter-produced-in-january-sample"
+        elif all_not_applicable:
+            coverage_status = "not-applicable-in-january-sample"
+        elif tag in JSON_SOURCE_CANDIDATES:
+            coverage_status = "json-source-candidate-unmapped"
+        elif tag.startswith("T") and not tag.startswith("TM"):
+            coverage_status = "no-follow-up-event-in-source"
+        else:
+            coverage_status = "unresolved-source-review"
+        status_counts[coverage_status] += 1
+        source_recommendation = None
+        if coverage_status == "unresolved-source-review":
+            source_recommendation = _recommended_source(tag)
+            unresolved_source_review_counts[source_recommendation] += 1
         rows.append(
             {
                 "tag": tag,
@@ -100,10 +139,9 @@ def analyze_care_plan_qbc_coverage(
                 "value_records": value_records[tag],
                 "not_applicable_records": not_applicable_records[tag],
                 "production_methods": dict(sorted(method_records[tag].items())),
-                "coverage_status": (
-                    "produced-in-january-sample" if produced else "additional-source-required"
-                ),
-                "recommended_additional_source": source_recommendation,
+                "coverage_status": coverage_status,
+                "json_source_candidate": JSON_SOURCE_CANDIDATES.get(tag),
+                "candidate_additional_source": source_recommendation,
             }
         )
 
@@ -115,7 +153,7 @@ def analyze_care_plan_qbc_coverage(
         "contains_case_identifiers": False,
         "contains_source_values": False,
         "source_files": len(source_paths),
-        "parsed_records": len(source_paths) - parse_failures,
+        "parsed_records": parsed_records,
         "parse_failures": parse_failures,
         "qbc_field_count": len(qbc_fields),
         "declared_care_plan_mapping_field_count": len(declared_tags),
@@ -128,6 +166,9 @@ def analyze_care_plan_qbc_coverage(
         },
         "produced_but_not_declared_in_catalog": sorted(produced_tags - declared_tags),
         "declared_but_not_produced_in_january": sorted(declared_tags - produced_tags),
-        "source_gap_counts": dict(sorted(source_gap_counts.items())),
+        "coverage_status_counts": dict(sorted(status_counts.items())),
+        "unresolved_source_review_counts": dict(
+            sorted(unresolved_source_review_counts.items())
+        ),
         "fields": rows,
     }

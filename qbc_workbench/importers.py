@@ -8,18 +8,42 @@ from .rules import derive_stage,ev,extract_pathology,mark_applicability,put
 
 ALL_D=[f"D{i:03d}" for i in range(1,86)]
 
+def _control_key(field):
+    parts=str(field.get("name","")).split("$")
+    return parts[-2] if len(parts)>1 and parts[-1].isdigit() else parts[-1]
+
 def digits_date(value):
     nums=re.findall(r"\d+",str(value or ""));
     if len(nums)>=3: return f"{int(nums[0]):04d}{int(nums[1]):02d}{int(nums[2]):02d}"
     return None
 
 def selected(fields,suffix):
-    hits=[f for f in fields if str(f.get("name","")).split("$")[-1]==suffix]
+    hits=[f for f in fields if _control_key(f)==suffix]
     for f in hits:
         if f.get("checked") is True: return f.get("label") or f.get("selected_text") or f.get("value"),f.get("name")
     for f in hits:
         v=f.get("selected_text") or f.get("value")
         if v not in (None,"","請選擇"): return v,f.get("name")
+    return None,None
+
+def selected_all(fields,suffix):
+    answers=[]
+    for field in fields:
+        if _control_key(field)!=suffix or field.get("checked") is not True:
+            continue
+        value=field.get("label") or field.get("selected_text") or field.get("value")
+        if value not in (None,"","請選擇"):
+            answers.append((str(value),field.get("name")))
+    return answers
+
+def table_value(data,label):
+    section=data.get("sections",{}).get("basic",{})
+    wanted=str(label).strip().rstrip("：:")
+    for table_index,table in enumerate(section.get("tables",[])):
+        for row_index,row in enumerate(table.get("rows",[])):
+            cells=[str(value).strip() for value in row if str(value).strip()]
+            if len(cells)>=2 and cells[0].rstrip("：:")==wanted:
+                return cells[1],f"sections.basic.tables[{table_index}].rows[{row_index}]"
     return None,None
 
 def import_case_json(path:Path,case:CaseRecord):
@@ -30,11 +54,38 @@ def import_case_json(path:Path,case:CaseRecord):
         q=mapping.get(str(v),str(v)) if mapping else str(v)
         put(case,tag,q,Method.STRUCTURED,ev(filename,"json",path=p),"JSON_FIELD_MAP",str(v) if display else None,review=review)
     case.source_files.append(filename)
+    for tag,label in [("P01","姓名"),("BIRTHDAY","生日")]:
+        v,p=table_value(data,label)
+        if v:
+            value=digits_date(v) if tag=="BIRTHDAY" else v
+            if value: put(case,tag,value,Method.STRUCTURED,ev(filename,"json_table",path=p),"JSON_TABLE_DEMOGRAPHIC")
+    sex,sex_path=table_value(data,"性別")
+    sex_map={"M":"0","男":"0","男性":"0","F":"1","女":"1","女性":"1","其他":"2","未知":"3"}
+    if str(sex).strip() in sex_map:
+        put(case,"P02",sex_map[str(sex).strip()],Method.STRUCTURED,ev(filename,"json_table",path=sex_path),"JSON_TABLE_SEX")
     add("DIAG_TYPE","ddlReason",{"初診斷或初次治療":"2"})
     case.diagnosis_type=case.candidates.get("DIAG_TYPE").value if case.candidates.get("DIAG_TYPE") else "2"
     add("LATERALITY","rblLocation",{"左側":"L","右側":"R"}); case.laterality=case.candidates.get("LATERALITY").value if case.candidates.get("LATERALITY") else None
     add("P05","rblMenopause",{"是":"1","否":"2"},review=True)
     add("D002","rblHospital",{"本院":"1","外院":"2"})
+    histology_map={
+        "Ductal carcinoma in situ":"1",
+        "Invasive ductal carcinoma":"2",
+        "Infiltation ductal carcinoma":"2",
+        "Invasive lobular carcinoma":"3",
+        "Infiltation lobular carcinoma":"3",
+        "Mucinous carcinoma":"4",
+        "Other":"8",
+        "Phyllodes tumor, malignant":"8",
+    }
+    histology_answers=selected_all(fields,"cblHisType")
+    histology_codes={histology_map[value] for value,_ in histology_answers if value in histology_map}
+    if case.diagnosis_type=="2" and len(histology_codes)==1:
+        histology_code=next(iter(histology_codes))
+        source_path=next(path for value,path in histology_answers if histology_map.get(value)==histology_code)
+        put(case,"D003",histology_code,Method.STRUCTURED,ev(filename,"json",path=source_path),"JSON_HISTOLOGY_TYPE",review=True)
+    elif case.diagnosis_type=="2" and len(histology_codes)>1:
+        case.issues.append("D003 has multiple histology categories and requires review")
     mapping=[("D004","rb2HGrade1",{"Ⅰ":"1","Ⅱ":"2","Ⅲ":"3","Unknown":"X"}),("D018","rb2Her1",{"Unknown":"X","0+":"0","1+":"1","2+":"2","3+":"3"}),("D020","rbl2Ki67",{"未檢測":"0","已檢測：":"1"}),("D021","txb2Ki67",None),("D031","rblHGrade",{"Ⅰ":"1","Ⅱ":"2","Ⅲ":"3","Unknown":"X"}),("D052","rblHer",{"Unknown":"X","0+":"0","1+":"1","2+":"2","3+":"3"}),("D054","rblKi67",{"未檢測":"0","已檢測：":"1"}),("D055","txbKi67",None),("D047","txbSize1",None)]
     for x in mapping:add(*x)
     fish_mappings = [
@@ -74,6 +125,24 @@ def import_case_json(path:Path,case:CaseRecord):
         v,p=selected(fields,suf)
         if v is not None: put(case,tag,prefix+str(v),Method.STRUCTURED,ev(filename,"json",path=p),"JSON_TNM")
     derive_stage(case,"D005","D006","D007","D008"); derive_stage(case,"D032","D033","D034","D035")
+    margin,margin_path=selected(fields,"rblMargin")
+    if margin=="Negative":
+        put(case,"D028","0",Method.STRUCTURED,ev(filename,"json",path=margin_path),"JSON_SURGICAL_MARGIN",review=True)
+    elif margin=="Positive":
+        case.issues.append("D028 positive margin requires DCIS versus invasive review")
+    metastasis_map={
+        "LN-distant":"1","Bone":"3","Liver":"4","Lung":"5","Brain":"6",
+        "Pleural seeding":"8","Peritoneal seeding":"9","Adrenal":"10",
+    }
+    metastasis_answers=selected_all(fields,"cblMetastasis")
+    metastasis_codes={metastasis_map.get(value,"12") for value,_ in metastasis_answers}
+    other_sites=sorted(value for value,_ in metastasis_answers if value not in metastasis_map)
+    for stage_tag,site_tag,other_tag in [("D008","D009","D010"),("D035","D036","D037")]:
+        if case.candidates.get(stage_tag) and case.candidates[stage_tag].value=="StageⅣ" and metastasis_codes:
+            source_path=metastasis_answers[0][1]
+            put(case,site_tag,",".join(sorted(metastasis_codes,key=int)),Method.STRUCTURED,ev(filename,"json",path=source_path),"JSON_METASTASIS_SITES",review=True)
+            if "12" in metastasis_codes and other_sites:
+                put(case,other_tag,", ".join(other_sites),Method.STRUCTURED,ev(filename,"json",path=source_path),"JSON_METASTASIS_OTHER",review=True)
     mark_applicability(case,ALL_D)
     reports=str(data["sections"].get("reference_reports",{}).get("text","")); extract_pathology(case,reports,filename)
     plan=str(data["sections"].get("treatment_plan",{}).get("text",""))

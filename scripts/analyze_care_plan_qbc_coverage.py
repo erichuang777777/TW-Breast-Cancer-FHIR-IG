@@ -48,6 +48,7 @@ def main() -> None:
                 "not_produced_in_january_field_count": report[
                     "not_produced_in_january_field_count"
                 ],
+                "coverage_status_counts": report["coverage_status_counts"],
                 "contains_case_identifiers": report["contains_case_identifiers"],
                 "contains_source_values": report["contains_source_values"],
             },
