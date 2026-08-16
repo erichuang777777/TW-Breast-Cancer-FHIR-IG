@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Added privacy-safe monthly Cancer Care Plan batch and JSON/XLSX/PDF companion audits, documented the 2026-01 six-variant baseline, and clarified the path from raw clinical facts to future care-plan population.
+- Updated the companion audit to use the declared PyMuPDF runtime dependency and to count XLSX formulas from a formula-preserving workbook view.
 - Added a draft v2 fillable web-template contract and a PHI-free Care Plan JSON-to-QBC coverage matrix; the corrected January baseline produces 50 of 115 QBC fields and separates unmapped JSON candidates, inapplicable fields, absent follow-up events, and unresolved sources.
 - Added QBC extraction from JSON demographic tables, histology, metastasis and margin controls; corrected sentinel-node results so they are not misclassified as axillary-node results.
 - Fixed HER2 FISH mapping for QBC D019/D053 so untested is not treated as negative and results are emitted only when IHC is equivocal.
