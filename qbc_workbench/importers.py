@@ -37,6 +37,33 @@ def import_case_json(path:Path,case:CaseRecord):
     add("D002","rblHospital",{"本院":"1","外院":"2"})
     mapping=[("D004","rb2HGrade1",{"Ⅰ":"1","Ⅱ":"2","Ⅲ":"3","Unknown":"X"}),("D018","rb2Her1",{"Unknown":"X","0+":"0","1+":"1","2+":"2","3+":"3"}),("D020","rbl2Ki67",{"未檢測":"0","已檢測：":"1"}),("D021","txb2Ki67",None),("D031","rblHGrade",{"Ⅰ":"1","Ⅱ":"2","Ⅲ":"3","Unknown":"X"}),("D052","rblHer",{"Unknown":"X","0+":"0","1+":"1","2+":"2","3+":"3"}),("D054","rblKi67",{"未檢測":"0","已檢測：":"1"}),("D055","txbKi67",None),("D047","txbSize1",None)]
     for x in mapping:add(*x)
+    fish_mappings = [
+        ("D019", "rb2HerFISH1", "D018"),
+        ("D053", "rblHerFISH", "D052"),
+    ]
+    for tag, suf, ihc_tag in fish_mappings:
+        v, p = selected(fields, suf)
+        # Source options: 0=not tested, 1=positive, 2=negative. QBC only
+        # accepts an actual result here: 1=positive, 0=negative.
+        positive = {"1", "Positive", "positive", "陽性"}
+        negative = {"2", "Negative", "negative", "陰性"}
+        has_equivocal_ihc = (
+            case.candidates.get(ihc_tag)
+            and case.candidates[ihc_tag].value == "2"
+        )
+        if str(v) in positive | negative and has_equivocal_ihc:
+            put(
+                case,
+                tag,
+                "1" if str(v) in positive else "0",
+                Method.STRUCTURED,
+                ev(filename, "json", path=p),
+                "JSON_HER2_FISH",
+            )
+        elif str(v) in positive | negative:
+            case.issues.append(
+                f"{tag} source result ignored because {ihc_tag} is not equivocal"
+            )
     for tag,suf in [("D015","txb2EReceptor1"),("D017","txb2PReceptor1"),("D049","txbEReceptor"),("D051","txbPReceptor")]:
         v,_=selected(fields,suf)
         put(case,tag,str(v),Method.STRUCTURED,ev(filename,"json",path=suf),"JSON_FIELD_MAP") if v not in (None,"0") else None

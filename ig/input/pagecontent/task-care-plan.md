@@ -23,7 +23,7 @@ sections
 
 機器可讀契約位於 `qbc_workbench/data/cancer_care_plan.schema.json`。`chart`、表單值、報告及計畫文字可能包含 PHI，只能留在受控環境，不得提交至公開 repo、IG examples 或 CI log。
 
-去除所有個案值後的 223 欄控制項 catalog 位於 `qbc_workbench/data/cancer_care_plan_field_catalog.json`；可閱讀版本見「[診療計畫書欄位盤點](care-plan-field-inventory.html)」。
+去除所有個案值後的 223 欄單一樣本基線 catalog 位於 `qbc_workbench/data/cancer_care_plan_field_catalog.json`；可閱讀版本見「[診療計畫書欄位盤點](care-plan-field-inventory.html)」。2026-01 受控批次稽核觀察到 314 個唯一 controls 與 6 種結構變體，新增 91 controls 均先列為待審；詳見「[來源格式稽核](care-plan-source-audit.html)」。
 
 ## 欄位所有權
 
@@ -82,7 +82,7 @@ Preview 可先發布；下列簽核是正式導入或把欄位提升成 canonica
 
 | 審查項目 | 建議角色 | 目前狀態 |
 |---|---|---|
-| 223 欄盤點是否涵蓋目前表單版本 | 表單／癌症個管流程負責人 | 待簽核 |
+| 314-control 多檔 union、6 種表單變體與新增 91 controls 是否涵蓋目前表單版本 | 表單／癌症個管流程負責人 | 待簽核；223-control catalog 僅為單一來源 Preview 基線 |
 | 欄位屬於 shared、care-plan-only 或 derived 的分類 | 乳癌臨床專家 + 資料治理負責人 | 待簽核 |
 | 每欄臨床定義、單位、值域、必填與條件規則 | 乳癌臨床專家 | 待簽核 |
 | 提升到 Condition／Observation／Procedure 等 FHIR path 的選擇 | FHIR 實作負責人 | 待簽核 |
@@ -92,7 +92,7 @@ Preview 可先發布；下列簽核是正式導入或把欄位提升成 canonica
 
 ## 尚未完成
 
-- 現有一份來源 JSON 已盤得 223 個唯一控制項；本 Preview 先以 fallback 規則保存全部有值欄位，尚未逐項完成正式術語與 FHIR path 審查。
+- 既有 223-control catalog 是單一來源基線；受控批次 union 為 314 controls。新增 91 controls 尚未完成欄位定義、條件、術語與 FHIR path 審查。
 - 原子病理、檢驗、超音波來源尚未接入；現階段診療計畫 JSON 只是 secondary source，不是其他 Task 的上游輸出。
 - `QuestionnaireResponse` 先保存來源表單語意；欄位完成治理後，應逐步提升成共用 Condition、Observation、DiagnosticReport、Procedure 或 MedicationRequest。
 - 正式臨床使用仍需在地規則、術語、資安與工作流程審查。

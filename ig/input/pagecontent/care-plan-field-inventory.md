@@ -1,6 +1,6 @@
 # 癌症診療計畫書欄位盤點／Cancer Care Plan Field Inventory
 
-> 本表只含表單控制項 metadata，不含個案值、病歷號、報告文字、來源雜湊或其他 PHI。
+> 本表只含表單控制項 metadata，不含個案值、病歷號、報告文字、來源雜湊或其他 PHI。這是單一來源建立的 223-control Preview 基線，不是完整表單：2026-01 多檔 union 已觀察到 314 controls，新增 91 controls 尚待納入與審閱。
 
 - Catalog version: `1.0.0-preview.1`
 - Unique controls: **223**
@@ -8,7 +8,7 @@
 - Care-plan-only: **195**
 - Derived: **3**
 
-目前所有有值欄位都可無損保存在 QuestionnaireResponse；只有完成語意審查的欄位，才會逐步提升為共用 Condition、Observation、DiagnosticReport、Procedure 或 MedicationRequest。
+目前 parser 認得的有值 source answers 可保存在 QuestionnaireResponse；這不等於整份來源 JSON 的無損序列化。只有完成語意審查的欄位，才會逐步提升為共用 Condition、Observation、DiagnosticReport、Procedure 或 MedicationRequest。
 
 | ID | Section | Control key | Type | Ownership | QBC target | Candidate FHIR path | Review |
 |---|---|---|---|---|---|---|---|
