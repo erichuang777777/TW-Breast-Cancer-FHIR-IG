@@ -160,7 +160,8 @@ define function "Is Stage I To II"(Stage String):
   Stage in { 'I', 'IA', 'IB', 'II', 'IIA', 'IIB' }
 
 define "Is Metastatic":
-  "Clinical Stage" = 'IV' or "Pathological Stage" = 'IV'
+  Coalesce("Clinical Stage" = 'IV', false)
+    or Coalesce("Pathological Stage" = 'IV', false)
 
 // The pathological stage wins when it exists; otherwise the clinical stage
 // stands in. Used by indicator 1.

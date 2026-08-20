@@ -108,6 +108,12 @@ def test_fhirhelpers_uses_the_hl7_cql_namespace():
     assert "Generate IG resources for CQL namespace resolution" in workflow
 
 
+def test_metastatic_exclusion_is_a_total_boolean_when_one_stage_is_missing():
+    text = cql_text()
+    assert 'Coalesce("Clinical Stage" = \'IV\', false)' in text
+    assert 'Coalesce("Pathological Stage" = \'IV\', false)' in text
+
+
 def test_no_artifact_is_still_filed_under_the_pre_merge_name():
     fsh_dir = ROOT / "ig" / "input" / "fsh"
     cql_dir = ROOT / "ig" / "input" / "cql"
