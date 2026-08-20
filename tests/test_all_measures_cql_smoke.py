@@ -11,6 +11,7 @@ VALUE_SETS = ROOT / "tests" / "fixtures" / "cql" / "all-measures-value-sets.json
 RUNNER = ROOT / "ig" / "tools" / "cql-evaluation" / "run-all-measures-smoke.js"
 ASSERTED_RUNNER = ROOT / "ig" / "tools" / "cql-evaluation" / "run-asserted-cases.js"
 QI02_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-02-cases.json"
+QI03_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-03-cases.json"
 WORKFLOW = ROOT / ".github" / "workflows" / "build.yml"
 
 
@@ -114,3 +115,28 @@ def test_ci_executes_bc_qi_02_assertions_with_per_case_runner():
     assert "assert.deepEqual(result[expression], expected" in runner
     assert "Execute bc-qi-02 asserted CQL branches" in workflow
     assert "bc-qi-02-cases.json" in workflow
+
+
+def test_bc_qi_03_assertions_cover_radiotherapy_exclusion_node_and_missing_stage():
+    by_id = {case["id"]: case["expected"] for case in load(QI03_CASES)}
+    assert set(by_id) == {
+        "eligible-radiotherapy",
+        "eligible-without-radiotherapy",
+        "metastatic-exclusion",
+        "n1-below-node-boundary",
+        "missing-pathological-stage",
+    }
+    assert by_id["eligible-radiotherapy"] == {
+        "Initial Population": True,
+        "Denominator 3": True,
+        "Denominator 3 Exclusion": False,
+        "Numerator 3": True,
+    }
+    assert by_id["eligible-without-radiotherapy"]["Numerator 3"] is False
+    assert by_id["metastatic-exclusion"]["Denominator 3 Exclusion"] is True
+    assert by_id["n1-below-node-boundary"]["Denominator 3"] is False
+    assert by_id["missing-pathological-stage"]["Denominator 3"] is False
+
+    workflow = WORKFLOW.read_text(encoding="utf-8")
+    assert "Execute bc-qi-03 asserted CQL branches" in workflow
+    assert "bc-qi-03-cases.json" in workflow

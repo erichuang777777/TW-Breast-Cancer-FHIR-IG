@@ -1,0 +1,81 @@
+[
+  {
+    "id": "eligible-radiotherapy",
+    "expected": { "Initial Population": true, "Denominator 3": true, "Denominator 3 Exclusion": false, "Numerator 3": true },
+    "bundle": {
+      "resourceType": "Bundle", "type": "collection",
+      "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-03-rt", "birthDate": "1970-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi03-rt", "status": "active", "patient": { "reference": "Patient/bc-qi-03-rt" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "path-stage-qi03-rt", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-03-rt" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "III" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "node-qi03-rt", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-03-rt" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N2" }] } } },
+        { "resource": { "resourceType": "Procedure", "id": "mastectomy-qi03-rt", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "total-mastectomy" }] }, "subject": { "reference": "Patient/bc-qi-03-rt" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } },
+        { "resource": { "resourceType": "Procedure", "id": "rt-qi03", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "radiotherapy" }] }, "subject": { "reference": "Patient/bc-qi-03-rt" }, "performedDateTime": "2026-04-01T00:00:00+08:00" } }
+      ]
+    }
+  },
+  {
+    "id": "eligible-without-radiotherapy",
+    "expected": { "Initial Population": true, "Denominator 3": true, "Denominator 3 Exclusion": false, "Numerator 3": false },
+    "bundle": {
+      "resourceType": "Bundle", "type": "collection",
+      "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-03-no-rt", "birthDate": "1970-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi03-no-rt", "status": "active", "patient": { "reference": "Patient/bc-qi-03-no-rt" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "path-stage-qi03-no-rt", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-03-no-rt" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "IIIA" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "node-qi03-no-rt", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-03-no-rt" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N3a" }] } } },
+        { "resource": { "resourceType": "Procedure", "id": "mastectomy-qi03-no-rt", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "total-mastectomy" }] }, "subject": { "reference": "Patient/bc-qi-03-no-rt" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+      ]
+    }
+  },
+  {
+    "id": "metastatic-exclusion",
+    "expected": { "Initial Population": true, "Denominator 3": true, "Denominator 3 Exclusion": true, "Numerator 3": true },
+    "bundle": {
+      "resourceType": "Bundle", "type": "collection",
+      "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-03-metastatic", "birthDate": "1970-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi03-metastatic", "status": "active", "patient": { "reference": "Patient/bc-qi-03-metastatic" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "clinical-stage-qi03-metastatic", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/bc-qi-03-metastatic" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "IV" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "path-stage-qi03-metastatic", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-03-metastatic" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "III" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "node-qi03-metastatic", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-03-metastatic" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N2" }] } } },
+        { "resource": { "resourceType": "Procedure", "id": "mastectomy-qi03-metastatic", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "total-mastectomy" }] }, "subject": { "reference": "Patient/bc-qi-03-metastatic" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } },
+        { "resource": { "resourceType": "Procedure", "id": "rt-qi03-metastatic", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "radiotherapy" }] }, "subject": { "reference": "Patient/bc-qi-03-metastatic" }, "performedDateTime": "2026-04-01T00:00:00+08:00" } }
+      ]
+    }
+  },
+  {
+    "id": "n1-below-node-boundary",
+    "expected": { "Initial Population": true, "Denominator 3": false, "Denominator 3 Exclusion": false, "Numerator 3": true },
+    "bundle": {
+      "resourceType": "Bundle", "type": "collection",
+      "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-03-n1", "birthDate": "1970-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi03-n1", "status": "active", "patient": { "reference": "Patient/bc-qi-03-n1" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "path-stage-qi03-n1", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-03-n1" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "III" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "node-qi03-n1", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-03-n1" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N1" }] } } },
+        { "resource": { "resourceType": "Procedure", "id": "mastectomy-qi03-n1", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "total-mastectomy" }] }, "subject": { "reference": "Patient/bc-qi-03-n1" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } },
+        { "resource": { "resourceType": "Procedure", "id": "rt-qi03-n1", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "radiotherapy" }] }, "subject": { "reference": "Patient/bc-qi-03-n1" }, "performedDateTime": "2026-04-01T00:00:00+08:00" } }
+      ]
+    }
+  },
+  {
+    "id": "missing-pathological-stage",
+    "expected": { "Initial Population": true, "Denominator 3": false, "Denominator 3 Exclusion": false, "Numerator 3": true },
+    "bundle": {
+      "resourceType": "Bundle", "type": "collection",
+      "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-03-missing-stage", "birthDate": "1970-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi03-missing-stage", "status": "active", "patient": { "reference": "Patient/bc-qi-03-missing-stage" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "node-qi03-missing-stage", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-03-missing-stage" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N2" }] } } },
+        { "resource": { "resourceType": "Procedure", "id": "mastectomy-qi03-missing-stage", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "total-mastectomy" }] }, "subject": { "reference": "Patient/bc-qi-03-missing-stage" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } },
+        { "resource": { "resourceType": "Procedure", "id": "rt-qi03-missing-stage", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "radiotherapy" }] }, "subject": { "reference": "Patient/bc-qi-03-missing-stage" }, "performedDateTime": "2026-04-01T00:00:00+08:00" } }
+      ]
+    }
+  }
+]
