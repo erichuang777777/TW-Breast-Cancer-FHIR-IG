@@ -354,7 +354,7 @@ define "Denominator 5":
 // X5-INSITU-STAGE4
 define "Denominator 5 Exclusion":
   "Is Metastatic"
-    or "Effective Stage" = '0'
+    or Coalesce("Effective Stage" = '0', false)
 
 define "Earliest Core Needle Biopsy Date":
   Min(([Procedure: "Core Needle Biopsy"] Biopsy

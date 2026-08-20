@@ -112,6 +112,7 @@ def test_metastatic_exclusion_is_a_total_boolean_when_one_stage_is_missing():
     text = cql_text()
     assert 'Coalesce("Clinical Stage" = \'IV\', false)' in text
     assert 'Coalesce("Pathological Stage" = \'IV\', false)' in text
+    assert 'Coalesce("Effective Stage" = \'0\', false)' in text
 
 
 def test_no_artifact_is_still_filed_under_the_pre_merge_name():
