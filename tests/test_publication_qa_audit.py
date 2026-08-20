@@ -52,7 +52,7 @@ def test_warning_policy_is_complete_and_blocks_formal_release():
     with POLICY.open(encoding="utf-8", newline="") as handle:
         rows = list(csv.DictReader(handle))
     assert len(rows) == 6
-    assert sum(int(row["max_count"]) for row in rows) == 238
+    assert sum(int(row["max_count"]) for row in rows) == 232
     assert all(row["formal_disposition"] == "block" for row in rows)
     assert all(row["preview_approval_status"] == "pending" for row in rows)
     assert all(row["owner"] and row["required_evidence"] for row in rows)

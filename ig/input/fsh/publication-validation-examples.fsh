@@ -17,6 +17,8 @@ Description: "Structure-only example of the common TCR data-item profile; it is 
 * status = #final
 * code = $TCRFieldCS#PK
 * subject = Reference(BreastCancerPatientExample)
+* effectiveDateTime = "2026-01-01T00:00:00+08:00"
+* performer.display = "Synthetic registry abstractor"
 * valueString = "SYNTHETIC-REGISTRY-KEY"
 
 Instance: TCRRawDataItemObservationExample
@@ -29,6 +31,8 @@ Description: "Structure-only example showing reversible preservation of an unsta
 * status = #final
 * code = $TCRFieldCS#DXDATE
 * subject = Reference(BreastCancerPatientExample)
+* effectiveDateTime = "2026-01-01T00:00:00+08:00"
+* performer.display = "Synthetic registry abstractor"
 * valueString = "2026/01/01"
 
 Instance: TCRCodedDataItemObservationExample
@@ -41,6 +45,8 @@ Description: "Structure-only example whose value uses an existing local TCR code
 * status = #final
 * code = $TCRFieldCS#SEX
 * subject = Reference(BreastCancerPatientExample)
+* effectiveDateTime = "2026-01-01T00:00:00+08:00"
+* performer.display = "Synthetic registry abstractor"
 * valueCodeableConcept = $TCRSexCS#2
 
 Instance: TCRIllegalCodeNegativeExample
