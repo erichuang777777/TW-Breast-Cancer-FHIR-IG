@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/Schema/cancer-care-plan-template-v2",
+  "title": "Cancer Care Plan Web Template and Response Contract",
+  "description": "Draft v2 contract for a fillable cancer care-plan web form. Instances may contain PHI and must not be published.",
+  "type": "object",
+  "required": ["schema_version", "template", "instance", "sections"],
+  "properties": {
+    "schema_version": {"const": "2.0.0-draft"},
+    "template": {
+      "type": "object",
+      "required": ["canonical", "version", "status"],
+      "properties": {
+        "canonical": {"type": "string", "format": "uri"},
+        "version": {"type": "string", "minLength": 1},
+        "status": {"enum": ["draft", "active", "retired", "unknown"]}
+      },
+      "additionalProperties": false
+    },
+    "instance": {
+      "type": "object",
+      "required": ["instance_id", "authored", "source_system", "subject_identifier"],
+      "properties": {
+        "instance_id": {"type": "string", "minLength": 1},
+        "authored": {"type": "string", "format": "date-time"},
+        "source_system": {"type": "string", "minLength": 1},
+        "subject_identifier": {"$ref": "#/$defs/identifier"},
+        "encounter_identifier": {"$ref": "#/$defs/nullableIdentifier"},
+        "author_identifier": {"$ref": "#/$defs/nullableIdentifier"}
+      },
+      "additionalProperties": false
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/section"}
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "identifier": {
+      "type": "object",
+      "required": ["system", "value"],
+      "properties": {
+        "system": {"type": "string", "format": "uri"},
+        "value": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "nullableIdentifier": {
+      "anyOf": [
+        {"$ref": "#/$defs/identifier"},
+        {"type": "null"}
+      ]
+    },
+    "section": {
+      "type": "object",
+      "required": ["link_id", "text", "items"],
+      "properties": {
+        "link_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"},
+        "text": {"type": "string", "minLength": 1},
+        "items": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/item"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "item": {
+      "type": "object",
+      "required": [
+        "link_id", "control_name", "text", "type", "required", "repeats",
+        "ownership", "review_status", "answer_options", "answers", "fhir_mappings"
+      ],
+      "properties": {
+        "link_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"},
+        "control_name": {"type": "string", "minLength": 1},
+        "text": {"type": "string", "minLength": 1},
+        "type": {
+          "enum": ["boolean", "decimal", "integer", "date", "dateTime", "string", "text", "choice", "open-choice", "quantity", "attachment", "reference"]
+        },
+        "required": {"type": "boolean"},
+        "repeats": {"type": "boolean"},
+        "ownership": {"enum": ["shared", "care-plan-only", "derived"]},
+        "review_status": {"enum": ["pending-field-review", "pending-terminology-review", "pending-algorithm-review", "reviewed"]},
+        "definition": {"type": ["string", "null"]},
+        "answer_options": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/answerOption"}
+        },
+        "answers": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/answer"}
+        },
+        "enable_when": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/enableWhen"}
+        },
+        "fhir_mappings": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/fhirMapping"}
+        },
+        "source_provenance": {"$ref": "#/$defs/sourceProvenance"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"ownership": {"const": "derived"}}},
+          "then": {"required": ["source_provenance"]}
+        }
+      ],
+      "additionalProperties": false
+    },
+    "answerOption": {
+      "type": "object",
+      "required": ["code", "display"],
+      "properties": {
+        "system": {"type": ["string", "null"], "format": "uri"},
+        "code": {"type": "string"},
+        "display": {"type": "string", "minLength": 1},
+        "inactive": {"type": "boolean", "default": false}
+      },
+      "additionalProperties": false
+    },
+    "answer": {
+      "type": "object",
+      "required": ["value", "data_absent_reason"],
+      "properties": {
+        "value": {"type": ["string", "number", "integer", "boolean", "object", "null"]},
+        "data_absent_reason": {"type": ["string", "null"]},
+        "display": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "enableWhen": {
+      "type": "object",
+      "required": ["question", "operator", "answer"],
+      "properties": {
+        "question": {"type": "string", "minLength": 1},
+        "operator": {"enum": ["exists", "=", "!=", ">", "<", ">=", "<="]},
+        "answer": {"type": ["string", "number", "integer", "boolean"]}
+      },
+      "additionalProperties": false
+    },
+    "fhirMapping": {
+      "type": "object",
+      "required": ["target_layer", "resource_type", "path", "mapping_status"],
+      "properties": {
+        "target_layer": {"enum": ["breast-cancer-common", "care-plan-task"]},
+        "resource_type": {"type": "string", "minLength": 1},
+        "profile": {"type": ["string", "null"], "format": "uri"},
+        "path": {"type": "string", "minLength": 1},
+        "transform": {"type": ["string", "null"]},
+        "mapping_status": {"enum": ["pending", "reviewed", "implemented-partial", "implemented"]}
+      },
+      "additionalProperties": false
+    },
+    "sourceProvenance": {
+      "type": "object",
+      "required": ["source_kind", "source_reference"],
+      "properties": {
+        "source_kind": {"enum": ["web-form", "pathology", "laboratory", "imaging", "history", "treatment", "manual", "algorithm"]},
+        "source_reference": {"type": "string", "minLength": 1},
+        "recorded": {"type": ["string", "null"], "format": "date-time"}
+      },
+      "additionalProperties": false
+    }
+  }
+}

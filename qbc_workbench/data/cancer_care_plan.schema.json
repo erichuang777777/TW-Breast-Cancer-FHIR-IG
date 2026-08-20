@@ -6,7 +6,7 @@
   "type": "object",
   "required": ["schema_version", "sections"],
   "properties": {
-    "schema_version": {"type": "string"},
+    "schema_version": {"type": ["string", "integer"]},
     "source": {"type": ["string", "object", "null"]},
     "scraped_at": {"type": ["string", "null"]},
     "chart": {"type": ["string", "null"], "description": "Private source identifier; may contain PHI."},
@@ -32,7 +32,10 @@
         "found": {"type": ["boolean", "null"]},
         "label": {"type": ["string", "null"]},
         "text": {"type": ["string", "null"]},
-        "tables": {"type": ["array", "null"]},
+        "tables": {
+          "type": ["array", "null"],
+          "items": {"$ref": "#/$defs/sourceTable"}
+        },
         "fields": {
           "type": "array",
           "items": {"$ref": "#/$defs/sourceField"}
@@ -51,7 +54,38 @@
         "value": {"type": ["string", "number", "boolean", "null"]},
         "selected_text": {"type": ["string", "null"]},
         "checked": {"type": ["boolean", "null"]},
+        "disabled": {"type": ["boolean", "null"]},
+        "options": {
+          "type": ["array", "null"],
+          "description": "Forward-compatible full option inventory. Current 2026-01 captures generally contain only the selected value/text for select controls.",
+          "items": {"$ref": "#/$defs/sourceOption"}
+        }
+      },
+      "additionalProperties": true
+    },
+    "sourceOption": {
+      "type": "object",
+      "required": ["value", "label"],
+      "properties": {
+        "value": {"type": ["string", "number", "boolean", "null"]},
+        "label": {"type": ["string", "null"]},
+        "selected": {"type": ["boolean", "null"]},
         "disabled": {"type": ["boolean", "null"]}
+      },
+      "additionalProperties": true
+    },
+    "sourceTable": {
+      "type": "object",
+      "required": ["index", "rows"],
+      "properties": {
+        "index": {"type": "integer", "minimum": 0},
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        }
       },
       "additionalProperties": true
     }
