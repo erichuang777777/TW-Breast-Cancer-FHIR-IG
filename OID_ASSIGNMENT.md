@@ -16,12 +16,19 @@ The UUID-derived `2.25` arc provides a stable root without claiming an
 organizational OID allocation. Changing the canonical URL does not authorize
 changing this root or reassigning existing resource OIDs.
 
+Publisher 2.3.2 also reports that this root is not yet registered in the FHIR
+IG registry `oid-assignments.json`. That single governance warning replaces 133
+per-resource missing-OID warnings, but remains a release blocker. Registration
+of the exact root is an external governance action and must not be simulated by
+an ignore-warning entry.
+
 Release checks must prove that:
 
 1. the configured root is derived from the exact canonical URL above;
 2. every registered OID is unique and below that root;
 3. the counts in the `[Key]` section equal the actual assignments; and
-4. Publisher reports zero missing-OID warnings.
+4. Publisher reports zero per-resource missing-OID warnings; and
+5. the root is registered in the FHIR IG registry before governed release.
 
 Official Publisher parameter documentation:
 <https://build.fhir.org/ig/FHIR/fhir-tools-ig/en/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root>

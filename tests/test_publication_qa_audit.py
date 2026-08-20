@@ -51,8 +51,8 @@ def run_audit(tmp_path: Path, warnings: list[str], *, target: str = "integrity")
 def test_warning_policy_is_complete_and_blocks_formal_release():
     with POLICY.open(encoding="utf-8", newline="") as handle:
         rows = list(csv.DictReader(handle))
-    assert len(rows) == 6
-    assert sum(int(row["max_count"]) for row in rows) == 99
+    assert len(rows) == 7
+    assert sum(int(row["max_count"]) for row in rows) == 100
     assert all(row["formal_disposition"] == "block" for row in rows)
     assert all(row["preview_approval_status"] == "pending" for row in rows)
     assert all(row["owner"] and row["required_evidence"] for row in rows)
@@ -81,6 +81,24 @@ def test_resolved_oid_warning_fails_as_a_regression(tmp_path):
     assert report["over_limit"] == [
         {"warning_id": "PUB-WARN-001", "observed_count": 1, "max_count": 0}
     ]
+
+
+def test_unregistered_oid_root_is_a_classified_governance_blocker(tmp_path):
+    warning = (
+        "ImplementationGuide: The assigned auto-oid-root value "
+        "'2.25.37863882866210842446634463448013114893' is not registered in "
+        "https://github.com/FHIR/ig-registry/blob/master/oid-assignments.json "
+        "so isn't known to be valid"
+    )
+    completed, report = run_audit(tmp_path, [warning])
+    assert completed.returncode == 0, completed.stderr
+    category = next(
+        item for item in report["categories"] if item["warning_id"] == "PUB-WARN-007"
+    )
+    assert category["observed_count"] == 1
+    assert category["within_limit"] is True
+    assert report["qa_integrity_gate"] == "pass"
+    assert report["community_preview_gate"] == "block"
 
 
 def test_unknown_warning_fails_without_silent_acceptance(tmp_path):
