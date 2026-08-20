@@ -15,10 +15,10 @@ carry "abstract and submit the cancer-registry fields" as one of its tasks:
     Task            profile + example modelling the abstraction job itself
                     (inputs = the source documents, output = the completed
                     QuestionnaireResponse / registry row)
-    ConceptMap      skeletons for TCR code -> standard terminology; targets are
-                    deliberately left EMPTY for a terminologist to fill, since
-                    inventing LOINC/SNOMED mappings would be worse than an
-                    honest gap
+    Mapping backlog one row per TCR code that still requires terminology
+                    review. Pending work is not published as a ConceptMap:
+                    FHIR `unmatched` is a reviewed negative mapping assertion,
+                    not a marker for work that has not started.
     ImplementationGuide  a manifest listing everything above
 
 Nothing here invents a code table: a field is only given a ValueSet if this
@@ -454,40 +454,87 @@ def build_value_set(cancer_group: str, field: str, base_url: str) -> dict:
     }
 
 
-def build_concept_map_skeleton(cancer_group: str, field: str,
-                               base_url: str) -> dict:
-    """TCR code -> standard terminology, with every target left unmapped.
+def build_terminology_mapping_backlog(cancer_group: str,
+                                       base_url: str) -> List[dict]:
+    """Return one governed, non-FHIR review row for every verified TCR code.
 
-    The element list is complete so a terminologist can see exactly what needs
-    a target; filling them in with guesses would put invented LOINC/SNOMED
-    codes into a submission pipeline.
+    Empty target and relationship cells mean "not reviewed". They must not be
+    converted to ConceptMap.target.equivalence = unmatched unless a reviewer
+    has actually established that no target concept exists.
     """
-    ident = _slug(cancer_group, field)
-    concepts = _concepts_for(cancer_group, field)
-    return {
-        'resourceType': 'ConceptMap',
-        'id': f'{ident}-to-standard',
-        'url': f'{base_url}/ConceptMap/{ident}-to-standard',
-        'version': FHIR_VERSION,
-        'name': f'TCR{field}ToStandardTerminology',
-        'title': f'TCR {field} to standard terminology mapping status',
-        'status': 'draft',
-        'experimental': True,
-        'description': (
-            'SKELETON ONLY: every element is listed with an "unmatched" '
-            'target so the mapping work is visible. No LOINC/SNOMED target '
-            'has been guessed. Fill in `target` after terminology review.'),
-        'sourceCanonical': f'{base_url}/ValueSet/{ident}-vs',
-        'group': [{
-            'source': f'{base_url}/CodeSystem/{ident}',
-            'element': [{
-                'code': c['code'],
-                'display': c['display'],
-                'target': [{'equivalence': 'unmatched',
-                            'comment': 'TODO: terminology review'}],
-            } for c in concepts],
-        }],
-    }
+    rows = []
+    for field, _zh, _source, _document in FIELD_MAP:
+        if not field_has_code_table(cancer_group, field):
+            continue
+        ident = _slug(cancer_group, field)
+        for concept in _concepts_for(cancer_group, field):
+            rows.append({
+                'cancer_group': cancer_group,
+                'source_field': field,
+                'source_code_system': f'{base_url}/CodeSystem/{ident}',
+                'source_value_set': f'{base_url}/ValueSet/{ident}-vs',
+                'source_code': concept['code'],
+                'source_display': concept['display'],
+                'target_system': '',
+                'target_version': '',
+                'target_code': '',
+                'relationship': '',
+                'review_status': 'not-started',
+                'reviewer': '',
+                'evidence_reference': '',
+                'decision_date': '',
+                'notes': 'Do not publish as ConceptMap until reviewed.',
+            })
+    return rows
+
+
+def write_terminology_mapping_backlog(path: Union[str, Path],
+                                       cancer_group: str,
+                                       base_url: str) -> Path:
+    """Write the backlog while preserving reviewed cells for stable codes."""
+    output = Path(path)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    current = pd.DataFrame(build_terminology_mapping_backlog(
+        cancer_group, base_url))
+    review_columns = [
+        'target_system', 'target_version', 'target_code', 'relationship',
+        'review_status', 'reviewer', 'evidence_reference', 'decision_date',
+        'notes',
+    ]
+    if output.exists():
+        prior = pd.read_csv(output, dtype=str, keep_default_na=False)
+        required = {'source_field', 'source_code', *review_columns}
+        missing = required - set(prior.columns)
+        if missing:
+            raise ValueError(
+                f'Existing terminology backlog lacks columns: {sorted(missing)}')
+        duplicate_keys = prior.duplicated(
+            subset=['source_field', 'source_code'], keep=False)
+        if duplicate_keys.any():
+            duplicates = prior.loc[
+                duplicate_keys, ['source_field', 'source_code']
+            ].drop_duplicates().to_dict('records')
+            raise ValueError(f'Duplicate terminology backlog keys: {duplicates}')
+        prior_by_key = prior.set_index(['source_field', 'source_code'])
+        for index, row in current.iterrows():
+            key = (row['source_field'], row['source_code'])
+            if key in prior_by_key.index:
+                old = prior_by_key.loc[key]
+                for column in review_columns:
+                    current.at[index, column] = old[column]
+    current.to_csv(output, index=False, encoding='utf-8', lineterminator='\n')
+    return output
+
+
+def _remove_legacy_tcr_concept_maps(directory: Path,
+                                    cancer_group: str) -> List[Path]:
+    """Remove only generator-owned, semantically invalid pending maps."""
+    pattern = f'ConceptMap-tcr-{cancer_group}-*-to-standard.json'
+    removed = []
+    for path in directory.glob(pattern):
+        path.unlink()
+        removed.append(path)
+    return removed
 
 
 def build_questionnaire(cancer_group: str, base_url: str) -> dict:
@@ -765,8 +812,9 @@ def build_implementation_guide(cancer_group: str, base_url: str,
         'fhirVersion': [FHIR_VERSION],
         'description': (
             'Cancer-registry reporting as a task within a breast-cancer IG. '
-            'Terminology is generated from verified TCR code tables; the '
-            'ConceptMaps to standard terminology are intentionally unmapped.'),
+            'Terminology is generated from verified TCR code tables. Pending '
+            'standard-terminology review is tracked outside FHIR ConceptMap '
+            'resources until each relationship has been assessed.'),
         'definition': {'resource': [
             {'reference': {'reference': f"{r['resourceType']}/{r['id']}"},
              'name': r.get('title', r['id'])}
@@ -794,10 +842,15 @@ def _task_page_source():
 
 def build_ig(output_dir: Union[str, Path], cancer_group: str = 'breast',
              base_url: str = DEFAULT_BASE_URL,
-             include_concept_maps: bool = True) -> Dict[str, object]:
+             include_concept_maps: bool = False) -> Dict[str, object]:
     """Write every artefact to `output_dir` and return a summary."""
+    if include_concept_maps:
+        raise ValueError(
+            'Pending terminology review cannot be emitted as FHIR ConceptMap; '
+            'use build_terminology_mapping_backlog instead.')
     out = Path(output_dir)
-    for sub in ('CodeSystem', 'ValueSet', 'ConceptMap', 'Questionnaire',
+    _remove_legacy_tcr_concept_maps(out / 'ConceptMap', cancer_group)
+    for sub in ('CodeSystem', 'ValueSet', 'Questionnaire',
                 'StructureDefinition', 'Task', 'QuestionnaireResponse',
                 'ImplementationGuide'):
         (out / sub).mkdir(parents=True, exist_ok=True)
@@ -822,8 +875,6 @@ def build_ig(output_dir: Union[str, Path], cancer_group: str = 'breast',
         total_concepts += cs['count']
         _write(cs)
         _write(build_value_set(cancer_group, field, base_url))
-        if include_concept_maps:
-            _write(build_concept_map_skeleton(cancer_group, field, base_url))
 
     for extension in build_extension_definitions(base_url):
         _write(extension)
@@ -965,7 +1016,7 @@ _INDEX_MD = """# {ig_title}
 
 | 模組 | 內容 | 狀態 |
 |---|---|---|
-| 癌症登記申報 | Task profile、長表 99 欄位 Questionnaire、{n_cs} 個 CodeSystem（{n_concepts} 個概念）、ValueSet、ConceptMap 骨架 | 草稿，代碼已逐碼驗證 |
+| 癌症登記申報 | Task profile、長表 99 欄位 Questionnaire、{n_cs} 個 CodeSystem（{n_concepts} 個概念）、ValueSet、逐碼術語 mapping 待審清冊 | 草稿，代碼已逐碼驗證 |
 | 乳癌臨床資料 profile | （待補）Condition / Observation / Procedure / MedicationAdministration | 未開始 |
 
 ## 代碼從哪裡來
@@ -1002,11 +1053,11 @@ _TERMINOLOGY_MD = """# 代碼系統與值集
 |---|---|---|
 {terminology_rows}
 
-## ConceptMap 為什麼都是 unmatched
+## 為什麼待審 mapping 不發布成 ConceptMap
 
-`ConceptMap` 只提供骨架：每個癌登碼都列出來，但 `target` 一律標成 `unmatched`。
-把 TCR 碼硬對到 LOINC/SNOMED 需要術語專家判斷，猜一個對應碼進到申報管線，
-比留下明顯的缺口更糟。
+FHIR `ConceptMap.target.equivalence = unmatched` 代表經評估後確認沒有對應，不能拿來
+表示「尚未審查」。每個癌登碼的待辦保存在獨立 mapping 清冊；只有完成 target system、
+target code、relationship、reviewer 與 evidence 審查的列，才能產生 ConceptMap。
 """
 
 _IGNORE_WARNINGS = """== Suppressed Messages ==
@@ -1027,7 +1078,7 @@ sushi .
 
 ## 癌症登記模組怎麼更新
 
-`input/resources/` 底下的 CodeSystem / ValueSet / ConceptMap / Questionnaire
+`input/resources/` 底下的 CodeSystem / ValueSet / Questionnaire
 都是**產生的**，不要手改。
 碼冊改版時重新產生：
 
@@ -1067,22 +1118,28 @@ def build_ig_scaffold(repo_dir: Union[str, Path],
     res_dir = repo / 'input' / 'resources'
     term_dir = q_dir = ex_dir = res_dir
     page_dir = repo / 'input' / 'pagecontent'
-    for d in (fsh_dir, res_dir, page_dir, repo / 'input' / 'images'):
+    mapping_dir = repo / 'mappings' / 'tcr'
+    for d in (fsh_dir, res_dir, page_dir, mapping_dir,
+              repo / 'input' / 'images'):
         d.mkdir(parents=True, exist_ok=True)
+    _remove_legacy_tcr_concept_maps(res_dir, cancer_group)
 
     coded_fields = [f for f, _z, _s, _d in FIELD_MAP
                     if field_has_code_table(cancer_group, f)]
     zh = dict((f, z) for f, _z2, _s, _d in FIELD_MAP for z in [_z2])
 
     written, concept_total = [], 0
+    backlog_path = write_terminology_mapping_backlog(
+        mapping_dir / 'terminology-mapping-backlog.csv', cancer_group,
+        canonical)
+    written.append(backlog_path)
     rows = []
     for field in coded_fields:
         cs = build_code_system(cancer_group, field, canonical)
         vs = build_value_set(cancer_group, field, canonical)
-        cm = build_concept_map_skeleton(cancer_group, field, canonical)
         concept_total += cs['count']
         rows.append(f"| {field} | {zh.get(field, '')} | {cs['count']} |")
-        for resource in (cs, vs, cm):
+        for resource in (cs, vs):
             path = term_dir / f"{resource['resourceType']}-{resource['id']}.json"
             path.write_text(json.dumps(resource, ensure_ascii=False, indent=2),
                             encoding='utf-8')
@@ -1362,7 +1419,8 @@ def export_to_breast_ig(repo_dir: Union[str, Path],
                         cancer_group: str = 'breast',
                         canonical: str = DEFAULT_BASE_URL,
                         ig_subdir: str = 'ig',
-                        spec_dir: str = 'tcr_workbench/data') -> Dict[str, object]:
+                        spec_dir: str = 'tcr_workbench/data',
+                        mapping_dir: str = 'mappings/tcr') -> Dict[str, object]:
     """Write the registry module into an existing TW-Breast-Cancer-FHIR-IG clone.
 
     Nothing outside the paths listed in the returned summary is touched, and
@@ -1373,7 +1431,8 @@ def export_to_breast_ig(repo_dir: Union[str, Path],
     res_dir = repo / ig_subdir / 'input' / 'resources'
     page_dir = repo / ig_subdir / 'input' / 'pagecontent'
     data_dir = repo / spec_dir
-    for d in (fsh_dir, res_dir, page_dir, data_dir):
+    terminology_mapping_dir = repo / mapping_dir
+    for d in (fsh_dir, res_dir, page_dir, data_dir, terminology_mapping_dir):
         d.mkdir(parents=True, exist_ok=True)
 
     written = []
@@ -1390,6 +1449,9 @@ def export_to_breast_ig(repo_dir: Union[str, Path],
     # 1. machine-readable field spec, in the workbench's own schema
     spec = build_field_spec(cancer_group)
     _write_json(data_dir / 'tcr_fields.json', spec)
+    backlog_path = terminology_mapping_dir / 'terminology-mapping-backlog.csv'
+    write_terminology_mapping_backlog(backlog_path, cancer_group, canonical)
+    written.append(str(backlog_path.relative_to(repo)))
 
     # 2. FSH: field CodeSystem + module profiles
     _write_text(fsh_dir / 'tcr-terminology.fsh',
@@ -1398,6 +1460,7 @@ def export_to_breast_ig(repo_dir: Union[str, Path],
                 build_module_fsh(cancer_group, canonical))
 
     # 3. generated code tables, questionnaire and examples
+    removed_maps = _remove_legacy_tcr_concept_maps(res_dir, cancer_group)
     concept_total = 0
     for field, _z, _s, _d in FIELD_MAP:
         if not field_has_code_table(cancer_group, field):
@@ -1407,8 +1470,6 @@ def export_to_breast_ig(repo_dir: Union[str, Path],
         _write_json(res_dir / f"CodeSystem-{cs['id']}.json", cs)
         vs = build_value_set(cancer_group, field, canonical)
         _write_json(res_dir / f"ValueSet-{vs['id']}.json", vs)
-        cm = build_concept_map_skeleton(cancer_group, field, canonical)
-        _write_json(res_dir / f"ConceptMap-{cm['id']}.json", cm)
 
     for extension in build_extension_definitions(canonical):
         _write_json(res_dir / f"StructureDefinition-{extension['id']}.json",
@@ -1434,5 +1495,8 @@ def export_to_breast_ig(repo_dir: Union[str, Path],
         '欄位規格': f'{spec_dir}/tcr_fields.json（{len(spec["fields"])} 欄，'
                     f'{verified} 欄值域已驗證）',
         'CodeSystem 概念數': concept_total,
+        '術語 mapping 待審列數': len(build_terminology_mapping_backlog(
+            cancer_group, canonical)),
+        '移除的錯誤 ConceptMap 數': len(removed_maps),
         '需手動加入 sushi-config.yaml 的頁面': 'tcr-registry-task.md',
     }

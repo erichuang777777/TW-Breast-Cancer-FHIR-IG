@@ -2,7 +2,7 @@
 
 目前結論：本專案已達到「可重現建置的社群草稿」階段，但尚未達到可正式發布或投入臨床／申報使用的門檻。
 
-技術面的 FHIR Publisher 資源驗證已由最初的 69 errors 降至 0 errors；完整網站目前為 0 errors、100 warnings、0 broken links。原本 133 個逐資源 missing-OID warnings 已歸零，並以 271 筆固定 assignment 取代；尚有 1 個 OID root registry governance warning。臨床面的原始資料 mapping、正式值集、golden cohort 與治理簽核仍是阻擋項目。
+技術面的 FHIR Publisher 資源驗證已由最初的 69 errors 降至 0 errors；完整網站目前為 0 errors、52 warnings、0 broken links。原本 133 個逐資源 missing-OID warnings 與 48 個錯誤 TCR targetless ConceptMap warnings 已歸零；271 筆 OID assignment 保留既有識別碼（包含 48 個已退役資源，不回收重用），尚有 1 個 OID root registry governance warning。臨床面的原始資料 mapping、正式值集、golden cohort 與治理簽核仍是阻擋項目。
 
 精確的發布層級、六種核對方法與逐項通過門檻見 [PUBLICATION_ACCEPTANCE_MATRIX.md](PUBLICATION_ACCEPTANCE_MATRIX.md)。20 個個管品質／季報 Measure 的逐項規格判定、六層資料驗證與八項正式發布控制，見 [SPECIFICATION_CORRECTNESS_AUDIT.md](SPECIFICATION_CORRECTNESS_AUDIT.md)。整份 IG 各 Task 與 TW Core／mCODE／ICHOM／TWPAS 等外部規格的宣稱邊界，見 [IG_SCOPE_CONFORMANCE_AUDIT.md](IG_SCOPE_CONFORMANCE_AUDIT.md)。
 
@@ -10,16 +10,16 @@
 
 | Gate | 結果 | 說明 |
 |---|---:|---|
-| pytest | pass：258 tests | 包含 mapping、PHI、CQL、IG export、OID assignment、Publisher warning policy、逐 Measure 規格 audit、全 IG scope claims、完整 release-control gate 與 publication workflow 契約測試。 |
+| pytest | pass：262 tests | 包含 mapping、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、逐 Measure 規格 audit、全 IG scope claims、完整 release-control gate 與 publication workflow 契約測試。 |
 | SUSHI 3.20.0 | pass：0 errors / 0 warnings | FSH 可穩定產生 IG resources。 |
 | PHI gate | pass | 目前版本庫未檢出疑似病人識別資料；正式來源資料仍須在受控環境處理。 |
 | CQL CLI translation | pass | `cql-to-elm-cli 3.26.0` 可產生 ELM；FHIRHelpers 由 `hl7.fhir.uv.cql#2.0.0` 解析。 |
 | CQL runtime smoke | pass：20/20 Measures、46/46 criteria | 每個 Measure 所引用的 population／stratifier expression 均已在 ELM engine 執行；這只證明可執行性。 |
 | CQL branch assertions | pass with clinical limitations：20/20 Measures | 全部 Measure 已通過具預期結果的合成 R4 Bundle 分支案例；分布 Measure 另覆蓋全部列舉 strata、月份、年齡帶、缺值與非法值。QR-04 仍受真實前年度 cohort 阻擋，QR-05 仍是候選規則。 |
-| IG Publisher 2.3.2 resource validation | pass with warnings：0 errors / 100 warnings | missing-OID warnings 已由 133 降至 0；剩餘 48 個 TCR target、40 個 FHIRHelpers anchor、11 個 CQL validator limitation 與 1 個 OID registry warning 由機器可讀政策逐類鎖定。 |
-| 完整 IG website/package | pass：0 errors / 100 warnings / 0 broken links | Linux Publisher 2.3.2 已產生網站、`qa.html` 與 `package.tgz`；warning audit 為 QA integrity pass，Community Preview／Formal release block。 |
+| IG Publisher 2.3.2 resource validation | pass with warnings：0 errors / 52 warnings | missing-OID 與 TCR targetless ConceptMap warnings 均為 0；剩餘 40 個 FHIRHelpers anchor、11 個 CQL validator limitation 與 1 個 OID registry warning 由機器可讀政策逐類鎖定。 |
+| 完整 IG website/package | pass：0 errors / 52 warnings / 0 broken links | Linux Publisher 2.3.2 已產生網站、`qa.html` 與 `package.tgz`；warning audit 為 QA integrity pass，Community Preview／Formal release block。 |
 | 完整 release controls | integrity pass；2/8 controls pass | RC-02 FHIR conformance 與 RC-04 executable rules 通過；source mapping、terminology、independent recalculation、golden cohort、governance 與 operational acceptance 均 blocked。Publisher warnings 即使歸零也不會讓此 gate 誤判通過。 |
-| Strict release QA | blocked | 正式 release gate 仍要求 0 warnings；完整 QA 的 100 個 warning 尚未逐一修正或完成具體審查紀錄。 |
+| Strict release QA | blocked | 正式 release gate 仍要求 0 warnings；完整 QA 的 52 個 warning 尚未逐一修正或完成具體審查紀錄。 |
 | Template supply-chain | blocked | Publisher 報告 `fhir.base.template#1.0.0` 已不再被視為安全；升級前不得宣告正式可發布。 |
 
 ## 目前可以做什麼
@@ -36,7 +36,7 @@
 ## 阻擋正式使用的項目
 
 1. **原始資料 mapping**：每個指標輸入都要有來源系統、table/column 或 API element、型別、時間語意、單位、缺值規則、轉換規則、Provenance、owner 與 reviewer。
-2. **正式 terminology**：19 個臨床 ValueSet 目前刻意保持空白，避免把未確認的代碼當成正式值集；TCR ConceptMap 的 unmatched 狀態也不得用虛構 target system 消除 warning。
+2. **正式 terminology**：19 個臨床 ValueSet 目前刻意保持空白，避免把未確認的代碼當成正式值集；2,169 個 TCR code 的標準術語對應維持 `not-started` backlog，未完成 target、relationship、reviewer 與 evidence 前不得發布為 ConceptMap。
 3. **Measure 可執行性**：20 個 Measure 均有具預期值的合成分支測試；QR-04 尚需真實前年度 cohort，QR-05 尚需人工 truth set，QR-17 的來源文件「11 組」與目前 criteria/CQL「10 組」仍須由報表 owner 裁決。
 4. **資料正確性**：需要由原始資料建立 golden cohort，逐案比對 FHIR fact、population membership、分子、分母、排除與分層結果。
 5. **人工作業與治理**：手動補登、報表匯出、VPN 送件、回執與 reconciliation 必須有明確 ownership、稽核軌跡與簽核。

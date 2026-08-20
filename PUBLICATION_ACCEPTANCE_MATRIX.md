@@ -7,8 +7,8 @@
 | 層級 | 目前結果 | 尚缺證據 |
 |---|---:|---|
 | 原始碼／研究草稿 | pass | 必須持續標示 `draft`、`experimental`、非官方及非臨床用途。 |
-| 可重現技術建置 | pass | Publisher 2.3.2：0 errors、100 warnings、0 broken links；一般 CI 與 artifact 均已留存。 |
-| 社群 Preview 發布 | block | 缺範例與 CRMI dependency 兩類已歸零；其餘 4 類 Publisher warning 尚未完成具名、限期核准。 |
+| 可重現技術建置 | pass | Publisher 2.3.2：0 errors、52 warnings、0 broken links；一般 CI 與 artifact 均已留存。 |
+| 社群 Preview 發布 | block | 缺範例、CRMI dependency、missing-OID 與 TCR targetless ConceptMap 四類已歸零；其餘 3 類 Publisher warning 尚未完成具名、限期核准。 |
 | Computable Measure Preview | block | 20/20 Measure、46 個 criteria 已完成 ELM runtime smoke 與合成分支測試；但 QR-04／QR-05 仍有資料與人工 adjudication 限制、QR-17 分群數尚有規格矛盾，且 19 個臨床 ValueSet 為空。 |
 | 院內品管／季報 | block | 缺原始來源 mapping、正式 terminology、完整 reporting-period cohort、golden cohort 與逐案 reconciliation。 |
 | 跨院／正式申報 | block | 除上述項目外，仍缺跨實作驗證、在地治理、VPN／接收端回執與主管機關規則確認。 |
@@ -51,13 +51,13 @@
 
 ### Publisher warnings
 
-最新 100 warnings 的精確基線為：
+最新 52 warnings 的精確基線為：
 
 | 類別 | 數量 | 現況 |
 |---|---:|---|
 | 逐資源 OID 缺漏 | 0 | 以 canonical URL 決定性產生 UUIDv5 `2.25` root，並固定 271 筆 `oids.ini` assignment；不得回歸。 |
 | OID root registry | 1 | root 尚未登錄 FHIR `ig-registry/oid-assignments.json`；正式發布前仍須完成外部治理。 |
-| TCR ConceptMap 無 target system | 48 | 刻意不宣稱未審查的標準術語等價關係。 |
+| TCR ConceptMap 無 target system | 0 | 未審查不等於 `unmatched`；48 個錯誤骨架已退役，2,169 個 source codes 改由非 FHIR backlog 逐碼追蹤。 |
 | FHIRHelpers 重複 XHTML anchor | 40 | Publisher／CQL narrative tooling 問題。 |
 | `text/cql-identifier` 無法由 generic validator 驗證 | 11 | 每個 expression 仍須由 CQL execution 獨立證明。 |
 | Profile／extension 缺 example | 0 | 已加入合成正／負例；政策上限降為 0，防止回歸。 |

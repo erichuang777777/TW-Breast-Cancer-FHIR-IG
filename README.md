@@ -129,7 +129,7 @@ java "-Dfile.encoding=UTF-8" -jar publisher.jar -ig ig.ini
 
 發布前至少應確認：測試通過、SUSHI 無 error、Publisher QA 為 0 errors／0 warnings／0 broken links、Mapping 產物已重建，且 PHI 掃描無發現。
 
-各發布層級、六種資料正確性核對方法、八項正式發布控制、逐項門檻及目前 100 個 Publisher warnings 的精確分類，見 [FHIR IG 發布與資料正確性驗收矩陣](PUBLICATION_ACCEPTANCE_MATRIX.md)；20 個品管／季報 Measure 的規格判定見 [FHIR IG 規格正確性稽核](SPECIFICATION_CORRECTNESS_AUDIT.md)；各 Task 與外部標準可宣稱到哪一層，見 [全 IG 範圍與 Conformance 宣稱稽核](IG_SCOPE_CONFORMANCE_AUDIT.md)。
+各發布層級、六種資料正確性核對方法、八項正式發布控制、逐項門檻及目前 52 個 Publisher warnings 的精確分類，見 [FHIR IG 發布與資料正確性驗收矩陣](PUBLICATION_ACCEPTANCE_MATRIX.md)；20 個品管／季報 Measure 的規格判定見 [FHIR IG 規格正確性稽核](SPECIFICATION_CORRECTNESS_AUDIT.md)；各 Task 與外部標準可宣稱到哪一層，見 [全 IG 範圍與 Conformance 宣稱稽核](IG_SCOPE_CONFORMANCE_AUDIT.md)。
 
 ### 治理與簽核
 

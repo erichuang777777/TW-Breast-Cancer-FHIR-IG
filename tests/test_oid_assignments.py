@@ -55,6 +55,17 @@ def test_committed_oid_register_is_complete_unique_and_under_the_root():
     )
 
 
+def test_retired_tcr_concept_map_oids_are_reserved_not_recycled():
+    parser = load_oids()
+    concept_maps = dict(parser["ConceptMap"])
+    assert not list((ROOT / "ig" / "input" / "resources").glob(
+        "ConceptMap-tcr-breast-*-to-standard.json"
+    ))
+    assert len([name for name in concept_maps if name.startswith("tcr-breast-")]) == 48
+    assert {"QBCGenderToFHIRAdministrativeGender", "QBCLateralityToSNOMEDCT"} \
+        <= set(concept_maps)
+
+
 def test_oid_warnings_are_not_suppressed():
     ignored = IGNORED_WARNINGS.read_text(encoding="utf-8")
     assert "OID assigned" not in ignored

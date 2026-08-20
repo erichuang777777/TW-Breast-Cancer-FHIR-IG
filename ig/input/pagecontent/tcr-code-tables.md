@@ -74,19 +74,20 @@ FHIR 上的對應：① 的產物是 `Observation`（或直接是 QuestionnaireR
 |---|---|---|
 | `CodeSystem` | 48 | 每個已驗證碼表一個。**display 用碼冊中文原文**，另附 `en` designation（本工具的英文臨床意義），`definition` 為中英合併——41 欄已轉錄；AJCC、附錄B 手術碼×2、淋巴結手術碼×2、EBRT、LNEXAM、LN_POSITI 共 7 欄尚未轉錄中文，暫以英文 display 呈現且不附 designation |
 | `ValueSet` | 48 | 供 Questionnaire item 或 `Observation.valueCodeableConcept` 綁定 |
-| `ConceptMap` | 48 | TCR 碼 → 標準術語的**骨架**：每個碼都列出來但 target 一律 `unmatched` |
+| 術語 mapping backlog | 2,169 列 | 每個 TCR 碼一列；target、relationship、reviewer、evidence 未完成前留白，且不發布為 FHIR `ConceptMap` |
 | `Questionnaire` | 1 | 長表 99 欄位，分 8 個 group |
 | `StructureDefinition` | 1 | `TCRRegistryAbstractionTask` |
 | `Task` / `QuestionnaireResponse` | 2 | 範例（合成資料） |
 | `ImplementationGuide` | 1 | 清單 |
 
-**CodeSystem 概念總數 1,529**（乳癌 SSF1–10 共 1,187 碼 + AJCC／他院手術／本院手術／
-他院淋巴結手術／本院淋巴結手術／EBRT／區域淋巴結檢查數／區域淋巴結侵犯數）。
+**CodeSystem 概念總數 2,169**（乳癌 SSF1–10 共 1,187 碼；其餘 38 個
+coded fields 共 982 碼）。
 
-### 兩個刻意的設計選擇
+### 刻意的設計選擇
 
-1. **ConceptMap 一律 unmatched**。把 TCR 碼硬對到 LOINC/SNOMED 需要術語專家判斷；
-   猜一個對應碼進到申報管線，比留下明顯缺口更糟。骨架已把每個待對應的碼列出來。
+1. **未審查不等於 unmatched**。FHIR `ConceptMap.target.equivalence = unmatched`
+   表示已評估且沒有對應，不是「尚未開始」；因此 2,169 個待審碼保存在
+   `mappings/tcr/terminology-mapping-backlog.csv`，完成術語審查後才能產生 ConceptMap。
 2. **EBRT 是加總碼**（1+2+4+8+16+32+64），所以 ValueSet 收的是「元件」，
    Questionnaire item 設 `repeats: true`，而不是列舉 128 種總和。
 3. **`LNEXAM`／`LN_POSITI` 是 choice，不是 integer**。95-99 是 sentinel 碼，
@@ -161,17 +162,19 @@ input/fsh/                 # 手寫的 conformance（可編輯，重跑不會被
   extensions.fsh           #   4 個癌登擴充
   task-registry-abstraction.fsh   # Task profile
 input/resources/           # 產生的資源（勿手改，碼冊改版就重跑）
-  CodeSystem-*.json / ValueSet-*.json / ConceptMap-*.json
+  CodeSystem-*.json / ValueSet-*.json
   Questionnaire-tcr-breast-longform.json
   Task-… / QuestionnaireResponse-…（範例，合成資料）
 input/pagecontent/
   index.md / cancer-registry-task.md / terminology.md
 input/ignoreWarnings.txt
+mappings/tcr/
+  terminology-mapping-backlog.csv   # 非 FHIR、逐碼待審清冊
 ```
 
-**已用 SUSHI 實跑驗證：0 errors 0 warnings**，組出的 ImplementationGuide 含 59 個資源
-（17 CodeSystem／17 ValueSet／17 ConceptMap／5 StructureDefinition／
-Questionnaire／Task／QuestionnaireResponse）與 3 個頁面。
+完整 IG 的 SUSHI 與 Publisher 結果以 repo 根目錄的發布驗收文件及 CI artifact 為準；
+產生器的回歸測試會確認 48 個 TCR CodeSystem、48 個 ValueSet、2,169 個待審列，
+且不會把未審查狀態輸出成 ConceptMap。
 
 過程中 SUSHI 抓到兩個真問題，已修：
 

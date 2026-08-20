@@ -52,22 +52,22 @@ def test_warning_policy_is_complete_and_blocks_formal_release():
     with POLICY.open(encoding="utf-8", newline="") as handle:
         rows = list(csv.DictReader(handle))
     assert len(rows) == 7
-    assert sum(int(row["max_count"]) for row in rows) == 100
+    assert sum(int(row["max_count"]) for row in rows) == 52
     assert all(row["formal_disposition"] == "block" for row in rows)
     assert all(row["preview_approval_status"] == "pending" for row in rows)
     assert all(row["owner"] and row["required_evidence"] for row in rows)
 
 
-def test_known_warning_passes_integrity_but_blocks_preview(tmp_path):
+def test_targetless_concept_map_warning_fails_as_a_regression(tmp_path):
     warning = "ConceptMap/example: ConceptMap.group[0]: No Target Code System"
     completed, report = run_audit(tmp_path, [warning])
-    assert completed.returncode == 0, completed.stderr
-    assert report["gate_scope"] == "publisher-qa-only"
-    assert report["qa_integrity_gate"] == "pass"
+    assert completed.returncode == 1
+    assert report["qa_integrity_gate"] == "fail"
     assert report["community_preview_gate"] == "block"
     assert report["formal_release_gate"] == "block"
-    preview_completed, _report = run_audit(tmp_path, [warning], target="preview")
-    assert preview_completed.returncode == 1
+    assert report["over_limit"] == [
+        {"warning_id": "PUB-WARN-002", "observed_count": 1, "max_count": 0}
+    ]
 
 
 def test_resolved_oid_warning_fails_as_a_regression(tmp_path):
