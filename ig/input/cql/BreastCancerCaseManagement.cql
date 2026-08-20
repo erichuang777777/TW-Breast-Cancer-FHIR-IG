@@ -119,7 +119,7 @@ define "Age At Case Entry":
 // The coding is still carried; only the code value is compared, because the
 // staging code system binding is not settled yet.
 define function "Stage Value"(Report Observation):
-  First((Report.value as FHIR.CodeableConcept).coding C return C.code.value)
+  First(((Report.value as FHIR.CodeableConcept).coding) C return C.code.value)
 
 define "Clinical Stage":
   First(
@@ -172,14 +172,29 @@ define function "Is Node Positive"(Category String):
 // N1mi counts as node positive; N2 or higher means at least four involved nodes.
 define function "Is Node N2 Or Higher"(Category String):
   Category is not null
-    and (Category starts with 'N2' or Category starts with 'N3')
+    and (StartsWith(Category, 'N2') or StartsWith(Category, 'N3'))
+
+// FHIRHelpers 4.0.1 only overloads ToInterval for FHIR.Period and FHIR.Range,
+// not the full performed[x] choice type (dateTime | Period | string | Age |
+// Range), so a fluent Choice.toInterval() call is ambiguous to the translator.
+// This does explicitly, per the value's actual runtime type, what that fluent
+// call was attempting - it does not change which cases are counted. string
+// and Age are not resolvable to a calendar date and fall through to null,
+// same as an absent value would.
+define function "Interval From Performed"(Performed Choice<FHIR.dateTime, FHIR.Period, FHIR.string, FHIR.Age, FHIR.Range>):
+  case
+    when Performed is FHIR.Period then FHIRHelpers.ToInterval(Performed as FHIR.Period)
+    when Performed is FHIR.dateTime then
+      Interval[FHIRHelpers.ToDateTime(Performed as FHIR.dateTime), FHIRHelpers.ToDateTime(Performed as FHIR.dateTime)]
+    else null
+  end
 
 define "Completed Breast Surgery":
   [Procedure: "Breast Surgery"] Operation
     where Operation.status = 'completed'
 
 define "Earliest Breast Surgery Date":
-  Min("Completed Breast Surgery" Operation return date from start of Operation.performed.toInterval())
+  Min("Completed Breast Surgery" Operation return date from start of "Interval From Performed"(Operation.performed))
 
 define "Systemic Therapy Start Dates":
   ([MedicationRequest: "Hormone Therapy"]
@@ -290,7 +305,7 @@ define "HER2 IHC Result":
   First(
     [Observation: "HER2 Immunohistochemistry Code"] Report
       where Report.status in { 'final', 'amended', 'corrected' }
-      return First((Report.value as FHIR.CodeableConcept).coding C return C.display.value)
+      return First(((Report.value as FHIR.CodeableConcept).coding) C return C.display.value)
   )
 
 define "HER2 ISH Positive":
@@ -339,7 +354,7 @@ define "Denominator 5 Exclusion":
 define "Earliest Core Needle Biopsy Date":
   Min(([Procedure: "Core Needle Biopsy"] Biopsy
     where Biopsy.status = 'completed'
-    return date from start of Biopsy.performed.toInterval()))
+    return date from start of "Interval From Performed"(Biopsy.performed)))
 
 // N5-BIOPSY-BEFORE: at least one day before, so a same-day biopsy does not count.
 define "Numerator 5":
@@ -393,7 +408,7 @@ define "Practice Age Node Exclusion":
 define "Numerator 6":
   exists ("Completed Radiotherapy" Course
     where "Earliest Breast Surgery Date" is null
-      or start of Course.performed.toInterval() same day or after "Earliest Breast Surgery Date")
+      or start of "Interval From Performed"(Course.performed) same day or after "Earliest Breast Surgery Date")
 
 // ==========================================================================
 // 個管季報 quarterly：共用定義
@@ -434,7 +449,7 @@ define function "Case Input Code"(InputType String):
             and TypeCoding.code = InputType
       )
       return First(
-        (TaskInput.value as FHIR.CodeableConcept).coding ValueCoding
+        ((TaskInput.value as FHIR.CodeableConcept).coding) ValueCoding
           return ValueCoding.code.value
       )
   )
@@ -683,7 +698,7 @@ define "Numerator QR5":
     and "Interruption Date" is not null
     and exists (
       "Any Curative Treatment Resource" CurativeProcedure
-        where date from start of CurativeProcedure.performed.toInterval() after "Interruption Date"
+        where date from start of "Interval From Performed"(CurativeProcedure.performed) after "Interruption Date"
     )
 
 // ==========================================================================
@@ -737,7 +752,7 @@ define "Histology Morphology":
   First(
     [Observation: "Histology Morphology Code"] Report
       where Report.status in { 'final', 'amended', 'corrected' }
-      return First((Report.value as FHIR.CodeableConcept).coding C return C.code.value)
+      return First(((Report.value as FHIR.CodeableConcept).coding) C return C.code.value)
   )
 
 // The eleven report groups, from the morphology code. The worksheet reaches the
