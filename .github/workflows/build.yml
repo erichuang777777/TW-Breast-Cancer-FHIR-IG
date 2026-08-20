@@ -88,12 +88,18 @@ jobs:
       # FhirLibrarySourceProvider - no separate fetch needed.
       - name: Translate CQL
         run: |
+          set -o pipefail
           mkdir -p elm-out
           java -cp "$(cat classpath.txt)" org.cqframework.cql.cql2elm.cli.Main \
             --input ig/input/cql/BreastCancerCaseManagement.cql \
             --output elm-out \
             --format JSON \
-            --signatures Overloads
+            --signatures Overloads 2>&1 | tee cql-translation.log
+          test -s elm-out/BreastCancerCaseManagement.json
+          if grep -qE 'Translation failed|failed due to errors|ELM generation failed' cql-translation.log; then
+            echo "CQL translator reported failure despite returning exit code 0"
+            exit 1
+          fi
 
       # FHIRHelpers 4.0.1 is pinned to the official CQFramework execution
       # example commit. It is test tooling only and is not published by this IG.

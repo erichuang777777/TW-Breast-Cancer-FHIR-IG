@@ -10,10 +10,10 @@
   "intent": "order",
   "description": "癌症登記長表摘錄（breast）",
   "focus": {
-    "reference": "Condition/example-breast-cancer"
+    "reference": "Condition/breast-cancer-primary-condition-example"
   },
   "for": {
-    "reference": "Patient/example"
+    "reference": "Patient/breast-cancer-patient-example"
   },
   "input": [
     {
@@ -21,7 +21,7 @@
         "text": "病理報告"
       },
       "valueReference": {
-        "reference": "DiagnosticReport/example-pathology"
+        "reference": "DiagnosticReport/breast-cancer-pathology-report-example"
       }
     },
     {
@@ -29,7 +29,7 @@
         "text": "門診紀錄"
       },
       "valueReference": {
-        "reference": "DocumentReference/example-opd-note"
+        "reference": "DiagnosticReport/breast-cancer-laboratory-report-example"
       }
     },
     {
@@ -37,7 +37,7 @@
         "text": "化療紀錄"
       },
       "valueReference": {
-        "reference": "DocumentReference/example-chemo"
+        "reference": "Procedure/breast-cancer-treatment-procedure-example"
       }
     }
   ],

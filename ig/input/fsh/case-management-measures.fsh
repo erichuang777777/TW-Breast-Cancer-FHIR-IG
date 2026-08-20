@@ -30,6 +30,7 @@ Description: "6 項乳癌品質暨核心指標與個管季報 5 項比率、9 �
 * experimental = true
 * type = $LibraryType#logic-library
 * content.id = "ig-loader-BreastCancerCaseManagement.cql"
+* content.contentType = #text/cql
 
 Instance: BreastCancerQualityIndicator01
 InstanceOf: Measure

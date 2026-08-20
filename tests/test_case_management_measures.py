@@ -19,6 +19,7 @@ CRITERIA = MAPPINGS / "case-management-population-criteria.csv"
 FSH = ROOT / "ig" / "input" / "fsh" / "case-management-measures.fsh"
 TERMINOLOGY = ROOT / "ig" / "input" / "fsh" / "case-management-terminology.fsh"
 CQL = ROOT / "ig" / "input" / "cql" / "BreastCancerCaseManagement.cql"
+SUSHI_CONFIG = ROOT / "ig" / "sushi-config.yaml"
 
 LIBRARY_URL = ("https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG"
                "/Library/BreastCancerCaseManagement")
@@ -83,6 +84,17 @@ def test_both_families_share_one_library():
     assert "BreastCancerQualityIndex" not in fsh_text()
     assert "BreastCancerQualityIndex" not in cql_text()
     assert f"library BreastCancerCaseManagement" in cql_text()
+
+
+def test_library_attachment_is_loadable_by_the_ig_publisher():
+    """The binary adjunct loader requires both its sentinel id and MIME type."""
+    text = fsh_text()
+    assert '* content.id = "ig-loader-BreastCancerCaseManagement.cql"' in text
+    assert '* content.contentType = #text/cql' in text
+    config = SUSHI_CONFIG.read_text(encoding="utf-8")
+    assert 'path-binary: input/cql' in config
+    assert 'hl7.fhir.uv.cql: 1.0.0' in config
+    assert 'hl7.fhir.uv.crmi: 1.0.0' in config
 
 
 def test_no_artifact_is_still_filed_under_the_pre_merge_name():
@@ -202,6 +214,8 @@ def test_task_only_workflow_data_is_read_not_inferred():
     a recorded value."""
     text = cql_text()
     assert 'define function "Case Input Code"' in text
+    assert 'define "Case Management Task Inputs"' not in text
+    assert '[Task] CaseTask' in text
     assert "cm-task-input-type" in text
     for define in ('"Case Entry Category"', '"Case Status"',
                    '"Retention Disposition"',

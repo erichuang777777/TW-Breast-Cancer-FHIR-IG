@@ -502,7 +502,10 @@ def build_questionnaire(cancer_group: str, base_url: str) -> dict:
             if field in NUMERIC_FIELDS:
                 item['type'] = 'decimal' if field in ('SURVY6',) else 'integer'
             elif field in DATE_FIELDS:
-                item['type'] = 'date'
+                # TCR dates may use registry-specific unknown components such
+                # as day 99, which are not valid FHIR date lexical values.
+                # Keep the task-layer source value losslessly as a string.
+                item['type'] = 'string'
             elif field in STRING_FIELDS:
                 item['type'] = 'string'
             elif field_has_code_table(cancer_group, field):
@@ -601,15 +604,15 @@ def build_task_example(cancer_group: str, base_url: str) -> dict:
         'status': 'requested',
         'intent': 'order',
         'description': f'癌症登記長表摘錄（{cancer_group}）',
-        'focus': {'reference': 'Condition/example-breast-cancer'},
-        'for': {'reference': 'Patient/example'},
+        'focus': {'reference': 'Condition/breast-cancer-primary-condition-example'},
+        'for': {'reference': 'Patient/breast-cancer-patient-example'},
         'input': [
             {'type': {'text': '病理報告'},
-             'valueReference': {'reference': 'DiagnosticReport/example-pathology'}},
+             'valueReference': {'reference': 'DiagnosticReport/breast-cancer-pathology-report-example'}},
             {'type': {'text': '門診紀錄'},
-             'valueReference': {'reference': 'DocumentReference/example-opd-note'}},
+             'valueReference': {'reference': 'DiagnosticReport/breast-cancer-laboratory-report-example'}},
             {'type': {'text': '化療紀錄'},
-             'valueReference': {'reference': 'DocumentReference/example-chemo'}},
+             'valueReference': {'reference': 'Procedure/breast-cancer-treatment-procedure-example'}},
         ],
         'output': [
             {'type': {'text': 'QuestionnaireResponse'},
@@ -639,7 +642,8 @@ def build_questionnaire_response(cancer_group: str, base_url: str,
                 answer = {'valueString': value}      # TCR allows day=99
             elif field in NUMERIC_FIELDS:
                 try:
-                    answer = {'valueInteger': int(float(value))}
+                    answer = ({'valueDecimal': float(value)} if field == 'SURVY6'
+                              else {'valueInteger': int(float(value))})
                 except ValueError:
                     answer = {'valueString': value}
             elif field_has_code_table(cancer_group, field):
@@ -672,7 +676,7 @@ def build_questionnaire_response(cancer_group: str, base_url: str,
         'id': f'tcr-{cancer_group}-example',
         'questionnaire': f'{base_url}/Questionnaire/tcr-{cancer_group}-longform',
         'status': 'in-progress',
-        'subject': {'reference': 'Patient/example'},
+        'subject': {'reference': 'Patient/breast-cancer-patient-example'},
         'item': items,
         'meta': {'tag': [{'code': 'synthetic',
                           'display': 'Synthetic data — not a real patient'}]},

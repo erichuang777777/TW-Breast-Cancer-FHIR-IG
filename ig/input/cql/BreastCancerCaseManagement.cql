@@ -434,16 +434,13 @@ define "Quarterly Caseload":
 // Read from Task.input, never inferred. An inferred administrative category is
 // a guess wearing the clothes of a recorded fact.
 
-define "Case Management Task Inputs":
-  flatten(
-    [Task] CaseTask
-      where CaseTask.status in { 'ready', 'in-progress', 'completed' }
-      return CaseTask.input
-  )
-
 define function "Case Input Code"(InputType String):
   First(
-    "Case Management Task Inputs" TaskInput
+    (flatten(
+      [Task] CaseTask
+        where CaseTask.status in { 'ready', 'in-progress', 'completed' }
+        return CaseTask.input
+    )) TaskInput
       where exists (
         TaskInput.type.coding TypeCoding
           where TypeCoding.system = 'https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type'

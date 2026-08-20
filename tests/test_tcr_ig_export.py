@@ -15,7 +15,7 @@ import pytest
 
 from tcr_decoder.code_ranges import CODE_RANGES
 from tcr_workbench.ig_export import (
-    DEFAULT_BASE_URL, FIELD_MAP, NUMERIC_FIELDS, SECTIONS, build_ig,
+    DATE_FIELDS, DEFAULT_BASE_URL, FIELD_MAP, NUMERIC_FIELDS, SECTIONS, build_ig,
     build_questionnaire, field_has_code_table,
 )
 
@@ -124,7 +124,7 @@ class TestQuestionnaire:
                     for e in item.get('extension', []))
                 if item.get('answerValueSet'):
                     assert not pending, field
-                elif item['type'] == 'string' and field != 'PK':
+                elif item['type'] == 'string' and field not in DATE_FIELDS | {'PK'}:
                     assert pending, f'{field} has neither a ValueSet nor a flag'
 
     def test_ebrt_repeats_because_the_field_is_additive(self, ig):
@@ -171,6 +171,44 @@ class TestExample:
         assert len(task['input']) >= 3
         assert task['output'][0]['valueReference']['reference'].startswith(
             'QuestionnaireResponse/')
+
+    def test_questionnaire_response_value_types_match_the_questionnaire(self, ig):
+        _summary, resources, _out = ig
+        questionnaire = resources['tcr-breast-longform']
+        response = resources['tcr-breast-example']
+        expected = {
+            item['linkId']: item['type']
+            for group in questionnaire['item'] for item in group['item']
+        }
+        suffix = {
+            'date': 'valueDate', 'decimal': 'valueDecimal',
+            'integer': 'valueInteger', 'string': 'valueString',
+            'choice': 'valueCoding',
+        }
+        for group in response['item']:
+            for item in group['item']:
+                value_key = next(iter(item['answer'][0]))
+                assert value_key == suffix[expected[item['linkId']]], item['linkId']
+
+    def test_task_and_response_references_resolve_to_published_examples(self, ig):
+        _summary, resources, _out = ig
+        response = resources['tcr-breast-example']
+        task = resources['tcr-breast-abstraction-example']
+        references = [response['subject']['reference'], task['focus']['reference'],
+                      task['for']['reference']]
+        references.extend(i['valueReference']['reference'] for i in task['input'])
+        references.append(task['output'][0]['valueReference']['reference'])
+        common_ids = {
+            'breast-cancer-patient-example',
+            'breast-cancer-primary-condition-example',
+            'breast-cancer-pathology-report-example',
+            'breast-cancer-laboratory-report-example',
+            'breast-cancer-treatment-procedure-example',
+        }
+        for reference in references:
+            _resource_type, resource_id = reference.split('/', 1)
+            assert resource_id in resources or resource_id in common_ids, reference
+            assert not resource_id.startswith('example'), reference
 
 
 def test_summary_reports_the_real_coverage_gap(ig):

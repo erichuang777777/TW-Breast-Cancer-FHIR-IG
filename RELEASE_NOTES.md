@@ -10,9 +10,11 @@ FHIR 規格另已重構為「乳癌 FHIR 社群草稿」`1.0.0-preview.1`。共�
 
 ## 驗證結果
 
-- 單元測試：29項通過。
+- 單元測試：208 項通過（2026-08-21 本機重跑）。
 - 個資閘門：`scripts/check_no_phi.py` 通過，發布範圍內無病歷號或個案識別資訊。
-- IG Publisher QA：0 errors、0 broken links；抑制的 warning 均在 `ig/input/ignoreWarnings.txt` 載明理由。
+- SUSHI：0 errors、0 warnings。
+- 最新 HEAD 的完整 IG Publisher QA 尚未通過：資源驗證仍有 20 errors；本機亦缺 Jekyll，尚未產生可作發布證據的 `qa.html`。8/14 舊 release 的結果不得代替目前版本。
+- CQL：20 個 Measure 中，目前只有 `bc-qi-01` 完成實際合成資料執行測試；其餘仍需補齊。
 - 參考病例：JSON/PDF/DOCX/XLSX匯入成功，建立64個欄位狀態。
 - 規則結果：cT2N0M0=StageⅡA、ypT2N2M0=StageⅢA、Non-pCR、腋下淋巴結7/13。
 - 未核准AI／規則候選或缺少必填欄位時，病例核准及XML輸出均被阻擋。
