@@ -97,7 +97,7 @@ def test_library_attachment_is_loadable_by_the_ig_publisher():
     config = SUSHI_CONFIG.read_text(encoding="utf-8")
     assert 'path-binary: input/cql' in config
     assert 'hl7.fhir.uv.cql: 2.0.0' in config
-    assert 'hl7.fhir.uv.crmi: 1.0.0' in config
+    assert 'hl7.fhir.uv.crmi: 2.0.0' in config
 
 
 def test_fhirhelpers_uses_the_hl7_cql_namespace():
