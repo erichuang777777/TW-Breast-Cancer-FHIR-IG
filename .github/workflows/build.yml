@@ -223,3 +223,11 @@ jobs:
             elm-out/FHIRHelpers.json \
             tests/fixtures/cql/bc-qr-10-12-cases.json \
             tests/fixtures/cql/all-measures-value-sets.json
+
+      - name: Execute bc-qr-13 through 15 stratifier assertions
+        run: |
+          node ig/tools/cql-evaluation/run-asserted-cases.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/bc-qr-13-15-cases.json \
+            tests/fixtures/cql/all-measures-value-sets.json

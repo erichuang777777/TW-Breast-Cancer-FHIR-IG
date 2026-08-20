@@ -21,6 +21,7 @@ QR03_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-03-cases.json"
 QR04_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-04-cases.json"
 QR05_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-05-cases.json"
 QR10_12_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-10-12-cases.json"
+QR13_15_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-13-15-cases.json"
 WORKFLOW = ROOT / ".github" / "workflows" / "build.yml"
 
 
@@ -411,3 +412,35 @@ def test_bc_qr_10_through_12_cover_all_admin_values_month_boundaries_and_rejecti
     assert 'criteria.expression = "Case Status Reported"' in measures
     workflow = WORKFLOW.read_text(encoding="utf-8")
     assert "Execute bc-qr-10 through 12 stratifier assertions" in workflow
+
+
+def test_bc_qr_13_through_15_cover_closure_gender_all_age_bands_and_classes():
+    cases = load(QR13_15_CASES)
+    expected = [case["expected"] for case in cases]
+    assert {item["Closure Reason"] for item in expected if item.get("Closure Reason")} == {
+        "death", "transferred", "refused-return", "critical-aad",
+    }
+    assert {item["Administrative Sex"] for item in expected if item.get("Administrative Sex")} == {
+        "male", "female", "other", "unknown",
+    }
+    assert {item["Age Band At Case Entry"] for item in expected} == {
+        "<10", "10-19", "20-29", "30-39", "40-49", "50-59",
+        "60-69", "70-79", "80-89", ">=90",
+    }
+    reported_classes = {
+        item["Registry Case Class Reported"]
+        for item in expected
+        if item.get("Registry Case Class Reported")
+    }
+    assert reported_classes == {
+        "class-0", "class-1", "class-2", "class-3", "staging-in-progress",
+    }
+    by_id = {case["id"]: case["expected"] for case in cases}
+    assert by_id["age-40-missing-demographics-and-admin"]["Administrative Sex"] is None
+    assert by_id["age-50-invalid-admin-values"]["Closure Reason"] is None
+    assert by_id["age-50-invalid-admin-values"]["Registry Case Class Reported"] is None
+    assert by_id["age-70-staging-overrides-class1"]["Registry Case Class"] == "class-1"
+    assert by_id["age-70-staging-overrides-class1"]["Registry Case Class Reported"] == "staging-in-progress"
+
+    workflow = WORKFLOW.read_text(encoding="utf-8")
+    assert "Execute bc-qr-13 through 15 stratifier assertions" in workflow

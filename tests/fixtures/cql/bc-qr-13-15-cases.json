@@ -1,0 +1,125 @@
+[
+  {
+    "id": "age-9-male-death-class0",
+    "expected": { "New Diagnosis Case": true, "Closure Reason": "death", "Administrative Sex": "male", "Age Band At Case Entry": "<10", "Registry Case Class Reported": "class-0", "Is Registry Class 3": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1315-age9", "birthDate": "2016-06-16", "gender": "male" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1315-age9", "status": "active", "patient": { "reference": "Patient/qr1315-age9" }, "period": { "start": "2026-06-15" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1315-age9", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/qr1315-age9" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "closure-reason" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-closure-reason", "code": "death" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "registry-case-class" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-registry-case-class", "code": "class-0" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "age-10-female-transferred-class1",
+    "expected": { "Closure Reason": "transferred", "Administrative Sex": "female", "Age Band At Case Entry": "10-19", "Registry Case Class Reported": "class-1", "Is Registry Class 3": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1315-age10", "birthDate": "2016-06-15", "gender": "female" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1315-age10", "status": "active", "patient": { "reference": "Patient/qr1315-age10" }, "period": { "start": "2026-06-15" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1315-age10", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/qr1315-age10" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "closure-reason" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-closure-reason", "code": "transferred" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "registry-case-class" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-registry-case-class", "code": "class-1" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "age-20-other-refused-class2",
+    "expected": { "Closure Reason": "refused-return", "Administrative Sex": "other", "Age Band At Case Entry": "20-29", "Registry Case Class Reported": "class-2", "Is Registry Class 3": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1315-age20", "birthDate": "2006-06-15", "gender": "other" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1315-age20", "status": "active", "patient": { "reference": "Patient/qr1315-age20" }, "period": { "start": "2026-06-15" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1315-age20", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/qr1315-age20" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "closure-reason" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-closure-reason", "code": "refused-return" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "registry-case-class" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-registry-case-class", "code": "class-2" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "age-30-unknown-critical-class3",
+    "expected": { "Closure Reason": "critical-aad", "Administrative Sex": "unknown", "Age Band At Case Entry": "30-39", "Registry Case Class Reported": "class-3", "Is Registry Class 3": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1315-age30", "birthDate": "1996-06-15", "gender": "unknown" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1315-age30", "status": "active", "patient": { "reference": "Patient/qr1315-age30" }, "period": { "start": "2026-06-15" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1315-age30", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/qr1315-age30" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "closure-reason" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-closure-reason", "code": "critical-aad" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "registry-case-class" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-registry-case-class", "code": "class-3" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "age-40-missing-demographics-and-admin",
+    "expected": { "Closure Reason": null, "Administrative Sex": null, "Age Band At Case Entry": "40-49", "Registry Case Class Reported": null, "Is Registry Class 3": null },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1315-age40", "birthDate": "1986-06-15" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1315-age40", "status": "active", "patient": { "reference": "Patient/qr1315-age40" }, "period": { "start": "2026-06-15" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1315-age40", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/qr1315-age40" }, "input": [{ "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } }] } }
+    ] }
+  },
+  {
+    "id": "age-50-invalid-admin-values",
+    "expected": { "Closure Reason": null, "Administrative Sex": "male", "Age Band At Case Entry": "50-59", "Registry Case Class Reported": null, "Is Registry Class 3": null },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1315-age50", "birthDate": "1976-06-15", "gender": "male" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1315-age50", "status": "active", "patient": { "reference": "Patient/qr1315-age50" }, "period": { "start": "2026-06-15" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1315-age50", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/qr1315-age50" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "closure-reason" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-closure-reason", "code": "invalid" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "registry-case-class" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/wrong", "code": "class-1" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "age-60-class0",
+    "expected": { "Age Band At Case Entry": "60-69", "Registry Case Class Reported": "class-0" },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1315-age60", "birthDate": "1966-06-15", "gender": "female" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1315-age60", "status": "active", "patient": { "reference": "Patient/qr1315-age60" }, "period": { "start": "2026-06-15" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1315-age60", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/qr1315-age60" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "registry-case-class" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-registry-case-class", "code": "class-0" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "age-70-staging-overrides-class1",
+    "expected": { "Age Band At Case Entry": "70-79", "Registry Case Class": "class-1", "Registry Case Class Reported": "staging-in-progress", "Is Registry Class 3": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1315-age70", "birthDate": "1956-06-15", "gender": "other" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1315-age70", "status": "active", "patient": { "reference": "Patient/qr1315-age70" }, "period": { "start": "2026-06-15" } } },
+      { "resource": { "resourceType": "Observation", "id": "obs-qr1315-age70", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/qr1315-age70" }, "dataAbsentReason": { "coding": [{ "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason", "code": "temp-unknown" }] } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1315-age70", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/qr1315-age70" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "registry-case-class" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-registry-case-class", "code": "class-1" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "age-80-class2",
+    "expected": { "Age Band At Case Entry": "80-89", "Registry Case Class Reported": "class-2" },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1315-age80", "birthDate": "1946-06-15", "gender": "unknown" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1315-age80", "status": "active", "patient": { "reference": "Patient/qr1315-age80" }, "period": { "start": "2026-06-15" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1315-age80", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/qr1315-age80" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "registry-case-class" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-registry-case-class", "code": "class-2" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "age-90-class3",
+    "expected": { "Age Band At Case Entry": ">=90", "Registry Case Class Reported": "class-3", "Is Registry Class 3": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1315-age90", "birthDate": "1936-06-15", "gender": "male" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1315-age90", "status": "active", "patient": { "reference": "Patient/qr1315-age90" }, "period": { "start": "2026-06-15" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1315-age90", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/qr1315-age90" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "registry-case-class" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-registry-case-class", "code": "class-3" }] } }
+      ] } }
+    ] }
+  }
+]
