@@ -39,7 +39,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install -e .
+        run: pip install -e ".[test]"
 
       - name: Run pytest
         run: python -m pytest -q

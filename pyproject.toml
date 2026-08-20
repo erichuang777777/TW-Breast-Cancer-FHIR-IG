@@ -24,6 +24,9 @@ dependencies = [
   "tcr-decoder @ git+https://github.com/erichuang777777/TCRD_decoding.git@0582c16f382f1228da674c2c7b72af0b6db98975",
 ]
 
+[project.optional-dependencies]
+test = ["pytest>=8,<10"]
+
 [project.scripts]
 qbc-workbench = "qbc_workbench.cli:main"
 
