@@ -1,0 +1,92 @@
+[
+  {
+    "id": "ihc-3-positive-treated",
+    "expected": { "Initial Population": true, "HER2 Positive": true, "Denominator 4": true, "Denominator 4 Exclusion": false, "Numerator 4": true },
+    "bundle": {
+      "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-04-treated", "birthDate": "1970-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi04-treated", "status": "active", "patient": { "reference": "Patient/bc-qi-04-treated" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "ihc-qi04-treated", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "her2-ihc" }] }, "subject": { "reference": "Patient/bc-qi-04-treated" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/result-test", "code": "3-plus", "display": "3+" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "node-qi04-treated", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-04-treated" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N1" }] } } },
+        { "resource": { "resourceType": "Procedure", "id": "surgery-qi04-treated", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "other-breast-surgery" }] }, "subject": { "reference": "Patient/bc-qi-04-treated" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } },
+        { "resource": { "resourceType": "MedicationRequest", "id": "anti-her2-qi04-treated", "status": "active", "intent": "order", "medicationCodeableConcept": { "coding": [{ "system": "https://example.org/cm-test", "code": "anti-her2-therapy" }] }, "subject": { "reference": "Patient/bc-qi-04-treated" }, "authoredOn": "2026-03-15" } }
+      ]
+    }
+  },
+  {
+    "id": "ihc-3-positive-untreated",
+    "expected": { "Initial Population": true, "HER2 Positive": true, "Denominator 4": true, "Denominator 4 Exclusion": false, "Numerator 4": false },
+    "bundle": {
+      "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-04-untreated", "birthDate": "1970-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi04-untreated", "status": "active", "patient": { "reference": "Patient/bc-qi-04-untreated" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "ihc-qi04-untreated", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "her2-ihc" }] }, "subject": { "reference": "Patient/bc-qi-04-untreated" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/result-test", "code": "3-plus", "display": "3+" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "node-qi04-untreated", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-04-untreated" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N1mi" }] } } },
+        { "resource": { "resourceType": "Procedure", "id": "surgery-qi04-untreated", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "other-breast-surgery" }] }, "subject": { "reference": "Patient/bc-qi-04-untreated" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+      ]
+    }
+  },
+  {
+    "id": "ihc-2-ish-positive-boundary",
+    "expected": { "Initial Population": true, "HER2 ISH Positive": true, "HER2 Positive": true, "Denominator 4": true, "Denominator 4 Exclusion": false, "Numerator 4": false },
+    "bundle": {
+      "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-04-ish-positive", "birthDate": "1970-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi04-ish-positive", "status": "active", "patient": { "reference": "Patient/bc-qi-04-ish-positive" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "ihc-qi04-ish-positive", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "her2-ihc" }] }, "subject": { "reference": "Patient/bc-qi-04-ish-positive" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/result-test", "code": "2-plus", "display": "2+" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "ish-qi04-positive", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "her2-ish" }] }, "subject": { "reference": "Patient/bc-qi-04-ish-positive" }, "interpretation": [{ "coding": [{ "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation", "code": "POS" }] }], "valueCodeableConcept": { "text": "synthetic positive" } } },
+        { "resource": { "resourceType": "Observation", "id": "node-qi04-ish-positive", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-04-ish-positive" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N1" }] } } },
+        { "resource": { "resourceType": "Procedure", "id": "surgery-qi04-ish-positive", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "other-breast-surgery" }] }, "subject": { "reference": "Patient/bc-qi-04-ish-positive" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+      ]
+    }
+  },
+  {
+    "id": "ihc-2-without-positive-ish",
+    "expected": { "Initial Population": true, "HER2 ISH Positive": false, "HER2 Positive": false, "Denominator 4": false, "Denominator 4 Exclusion": false, "Numerator 4": true },
+    "bundle": {
+      "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-04-ish-missing", "birthDate": "1970-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi04-ish-missing", "status": "active", "patient": { "reference": "Patient/bc-qi-04-ish-missing" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "ihc-qi04-ish-missing", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "her2-ihc" }] }, "subject": { "reference": "Patient/bc-qi-04-ish-missing" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/result-test", "code": "2-plus", "display": "2+" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "node-qi04-ish-missing", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-04-ish-missing" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N1" }] } } },
+        { "resource": { "resourceType": "Procedure", "id": "surgery-qi04-ish-missing", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "other-breast-surgery" }] }, "subject": { "reference": "Patient/bc-qi-04-ish-missing" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } },
+        { "resource": { "resourceType": "MedicationRequest", "id": "anti-her2-qi04-ish-missing", "status": "active", "intent": "order", "medicationCodeableConcept": { "coding": [{ "system": "https://example.org/cm-test", "code": "anti-her2-therapy" }] }, "subject": { "reference": "Patient/bc-qi-04-ish-missing" }, "authoredOn": "2026-03-15" } }
+      ]
+    }
+  },
+  {
+    "id": "node-negative-outside-denominator",
+    "expected": { "Initial Population": true, "HER2 Positive": true, "Denominator 4": false, "Denominator 4 Exclusion": false, "Numerator 4": true },
+    "bundle": {
+      "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-04-node-negative", "birthDate": "1970-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi04-node-negative", "status": "active", "patient": { "reference": "Patient/bc-qi-04-node-negative" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "ihc-qi04-node-negative", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "her2-ihc" }] }, "subject": { "reference": "Patient/bc-qi-04-node-negative" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/result-test", "code": "3-plus", "display": "3+" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "node-qi04-node-negative", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-04-node-negative" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N0" }] } } },
+        { "resource": { "resourceType": "Procedure", "id": "surgery-qi04-node-negative", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "other-breast-surgery" }] }, "subject": { "reference": "Patient/bc-qi-04-node-negative" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } },
+        { "resource": { "resourceType": "MedicationRequest", "id": "anti-her2-qi04-node-negative", "status": "active", "intent": "order", "medicationCodeableConcept": { "coding": [{ "system": "https://example.org/cm-test", "code": "anti-her2-therapy" }] }, "subject": { "reference": "Patient/bc-qi-04-node-negative" }, "authoredOn": "2026-03-15" } }
+      ]
+    }
+  },
+  {
+    "id": "metastatic-exclusion",
+    "expected": { "Initial Population": true, "HER2 Positive": true, "Denominator 4": true, "Denominator 4 Exclusion": true, "Numerator 4": true },
+    "bundle": {
+      "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-04-metastatic", "birthDate": "1970-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi04-metastatic", "status": "active", "patient": { "reference": "Patient/bc-qi-04-metastatic" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "clinical-stage-qi04-metastatic", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/bc-qi-04-metastatic" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "IV" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "ihc-qi04-metastatic", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "her2-ihc" }] }, "subject": { "reference": "Patient/bc-qi-04-metastatic" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/result-test", "code": "3-plus", "display": "3+" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "node-qi04-metastatic", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-04-metastatic" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N1" }] } } },
+        { "resource": { "resourceType": "Procedure", "id": "surgery-qi04-metastatic", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "other-breast-surgery" }] }, "subject": { "reference": "Patient/bc-qi-04-metastatic" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } },
+        { "resource": { "resourceType": "MedicationRequest", "id": "anti-her2-qi04-metastatic", "status": "active", "intent": "order", "medicationCodeableConcept": { "coding": [{ "system": "https://example.org/cm-test", "code": "anti-her2-therapy" }] }, "subject": { "reference": "Patient/bc-qi-04-metastatic" }, "authoredOn": "2026-03-15" } }
+      ]
+    }
+  }
+]

@@ -151,3 +151,11 @@ jobs:
             elm-out/FHIRHelpers.json \
             tests/fixtures/cql/bc-qi-03-cases.json \
             tests/fixtures/cql/all-measures-value-sets.json
+
+      - name: Execute bc-qi-04 asserted CQL branches
+        run: |
+          node ig/tools/cql-evaluation/run-asserted-cases.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/bc-qi-04-cases.json \
+            tests/fixtures/cql/all-measures-value-sets.json

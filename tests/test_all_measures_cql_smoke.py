@@ -12,6 +12,7 @@ RUNNER = ROOT / "ig" / "tools" / "cql-evaluation" / "run-all-measures-smoke.js"
 ASSERTED_RUNNER = ROOT / "ig" / "tools" / "cql-evaluation" / "run-asserted-cases.js"
 QI02_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-02-cases.json"
 QI03_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-03-cases.json"
+QI04_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-04-cases.json"
 WORKFLOW = ROOT / ".github" / "workflows" / "build.yml"
 
 
@@ -140,3 +141,26 @@ def test_bc_qi_03_assertions_cover_radiotherapy_exclusion_node_and_missing_stage
     workflow = WORKFLOW.read_text(encoding="utf-8")
     assert "Execute bc-qi-03 asserted CQL branches" in workflow
     assert "bc-qi-03-cases.json" in workflow
+
+
+def test_bc_qi_04_assertions_cover_ihc_ish_node_treatment_and_metastatic_branches():
+    by_id = {case["id"]: case["expected"] for case in load(QI04_CASES)}
+    assert set(by_id) == {
+        "ihc-3-positive-treated",
+        "ihc-3-positive-untreated",
+        "ihc-2-ish-positive-boundary",
+        "ihc-2-without-positive-ish",
+        "node-negative-outside-denominator",
+        "metastatic-exclusion",
+    }
+    assert by_id["ihc-3-positive-treated"]["Numerator 4"] is True
+    assert by_id["ihc-3-positive-untreated"]["Numerator 4"] is False
+    assert by_id["ihc-2-ish-positive-boundary"]["HER2 ISH Positive"] is True
+    assert by_id["ihc-2-ish-positive-boundary"]["Denominator 4"] is True
+    assert by_id["ihc-2-without-positive-ish"]["HER2 Positive"] is False
+    assert by_id["node-negative-outside-denominator"]["Denominator 4"] is False
+    assert by_id["metastatic-exclusion"]["Denominator 4 Exclusion"] is True
+
+    workflow = WORKFLOW.read_text(encoding="utf-8")
+    assert "Execute bc-qi-04 asserted CQL branches" in workflow
+    assert "bc-qi-04-cases.json" in workflow
