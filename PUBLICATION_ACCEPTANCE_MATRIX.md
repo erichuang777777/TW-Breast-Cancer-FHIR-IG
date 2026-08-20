@@ -7,8 +7,8 @@
 | 層級 | 目前結果 | 尚缺證據 |
 |---|---:|---|
 | 原始碼／研究草稿 | pass | 必須持續標示 `draft`、`experimental`、非官方及非臨床用途。 |
-| 可重現技術建置 | pass | Publisher 2.3.2：0 errors、238 warnings、0 broken links；一般 CI 與 artifact 均已留存。 |
-| 社群 Preview 發布 | block | 6 類 Publisher warning 均尚未核准；其中 5 個缺範例 warning 必須修正，CRMI 2.0.0 相容性必須審查。 |
+| 可重現技術建置 | pass | Publisher 2.3.2：0 errors、232 warnings、0 broken links；一般 CI 與 artifact 均已留存。 |
+| 社群 Preview 發布 | block | 缺範例與 CRMI dependency 兩類已歸零；其餘 4 類 Publisher warning 尚未完成具名、限期核准。 |
 | Computable Measure Preview | block | 20 個 Measure 僅 `bc-qi-01` 有真正 runtime test；19 個臨床 ValueSet 為空。 |
 | 院內品管／季報 | block | 缺原始來源 mapping、正式 terminology、完整 reporting-period cohort、golden cohort 與逐案 reconciliation。 |
 | 跨院／正式申報 | block | 除上述項目外，仍缺跨實作驗證、在地治理、VPN／接收端回執與主管機關規則確認。 |
@@ -47,7 +47,7 @@
 
 ### Publisher warnings
 
-最新 238 warnings 的精確基線為：
+最新 232 warnings 的精確基線為：
 
 | 類別 | 數量 | 現況 |
 |---|---:|---|
@@ -55,8 +55,8 @@
 | TCR ConceptMap 無 target system | 48 | 刻意不宣稱未審查的標準術語等價關係。 |
 | FHIRHelpers 重複 XHTML anchor | 40 | Publisher／CQL narrative tooling 問題。 |
 | `text/cql-identifier` 無法由 generic validator 驗證 | 11 | 每個 expression 仍須由 CQL execution 獨立證明。 |
-| Profile／extension 缺 example | 5 | Preview 前應修正。 |
-| CRMI dependency 過舊 | 1 | Preview 前需完成 2.0.0 compatibility review。 |
+| Profile／extension 缺 example | 0 | 已加入合成正／負例；政策上限降為 0，防止回歸。 |
+| CRMI dependency 過舊 | 0 | 已升級 `hl7.fhir.uv.crmi#2.0.0`，並通過 SUSHI、pytest、CQL CI 與完整 Publisher；政策上限降為 0。 |
 
 機器可讀政策位於 `mappings/publication/publisher-warning-policy.csv`。每類包含上限、理由、owner、所需證據與核准欄位。`scripts/audit_publisher_qa.py` 會拒絕：
 

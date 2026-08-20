@@ -9,7 +9,9 @@
 - 建立 20 個乳癌個案管理品質 Measure 草稿與共同 CQL Library。
 - `bc-qi-01` 已具備 5 個合成 R4 Bundle 的端到端 CQL runtime 測試；其餘 19 個 Measure 尚待實作。
 - FHIRHelpers 改由 `hl7.fhir.uv.cql#2.0.0` 的正式 namespace 與 package artifact 解析。
+- CRMI dependency 已升級為 `hl7.fhir.uv.crmi#2.0.0`，並通過完整建置與 CQL regression checks。
 - TCR ValueSet 與 ConceptMap 補齊 shareable metadata，但不主張尚未審查的標準術語等價關係。
+- 為先前缺少範例的 4 個 Profile 與 1 個 Extension 加入 HTEST 合成正／負例。
 - 新增完整 IG Publisher 遠端驗證流程，固定 Publisher 2.3.2、安裝 Jekyll 並保存網站及 QA 證據。
 
 ## 驗證狀態（2026-08-21）
@@ -18,8 +20,8 @@
 - SUSHI 3.20.0：0 errors、0 warnings。
 - PHI gate：pass。
 - CQL translation：pass；CQL runtime：1/20 Measures。
-- IG Publisher resource validation：0 errors、241 warnings。
-- 完整網站、`qa.html` 與 `package.tgz`：遠端 run `32411623067` 已通過，0 errors、238 warnings、0 broken links；warning audit 判定 QA integrity pass、Community Preview／Formal release block。
+- IG Publisher resource validation：0 errors、232 warnings。
+- 完整網站、`qa.html` 與 `package.tgz`：遠端 run `32414373852` 已通過，0 errors、232 warnings、0 broken links；warning audit 判定 QA integrity pass、Community Preview／Formal release block。
 - Strict release：blocked；仍要求 0 warnings、0 broken links，且 Publisher 已指出 `fhir.base.template#1.0.0` 的供應鏈安全問題。
 
 ## 使用限制
