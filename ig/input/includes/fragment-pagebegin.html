@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE HTML>
-{% comment %}IG overlay of HL7/ig-template-base2 fragment-pagebegin.html at 7941e1b.
-The released 0.1.0 template points language-nested pages at assets/images/*.svg;
-upstream issue #16 and current main correct this to ../assets/images/*.svg.{% endcomment %}
-{% assign baselang = include.lang | default: '' | slice: 0,2 | downcase %}
-{% assign rtl_langs = "ar,dv,fa,ha,he,iw,ji,ps,sd,ug,ur,yi" | split: "," %}
-{% if baselang != "" and rtl_langs contains baselang %}
+{% comment %}Pinned 0.1.0 overlay: upstream issue #16 requires jurisdiction flags on language-nested pages to use ../assets/images/.{% endcomment %}
+{% assign baselang = include.lang | slice: 0,2 %}
+{% if "ar;dv;fa;ha;he;iw;ji;ps;sd;ug;ur;yi;" contains baselang %}
 {% assign dir = 'rtl' %}
 {% else %}
 {% assign dir = 'ltr' %}
@@ -49,9 +46,7 @@ upstream issue #16 and current main correct this to ../assets/images/*.svg.{% en
   </head>
   <body onload="document.body.style.opacity='1'">
 {% assign label = {{site.data.pages[localPage].label}} | split: '.0' %}
-	  <script type="text/javascript" src="{{site.data.info.assets}}assets/js/prism.js"></script>
-	  <script type="text/javascript" src="{{site.data.info.assets}}assets/js/prism-fhirpath.js"></script>
-	  <script type="text/javascript" src="{{site.data.info.assets}}assets/js/prism-cql.js"></script>
+	  <script src="{{site.data.info.assets}}assets/js/prism.js"></script>
     <script type="text/javascript" src="{{site.data.info.assets}}assets/js/mermaid.js"></script>
     <script type="text/javascript" src="{{site.data.info.assets}}assets/js/mermaid-init.js"></script>
     <style type="text/css">h2{--heading-prefix:"{{site.data.info.headingOffset}}{{label}}"}
@@ -67,11 +62,11 @@ upstream issue #16 and current main correct this to ../assets/images/*.svg.{% en
 {% endif %}
         {% include fragment-header.html lang=include.lang %}
 {% if site.data.info.releaselabel != '' %}
-{% assign status = site.data.fhir.releaseLabellang[include.lang] %}
+{% assign status = site.data.info.releaselabellang[include.lang] %}
 {% else %}
 {% assign status = site.data.fhir.ig.status %}
 {% endif %}
-        <div id="ig-status" data-fhir="generated">
+        <div id="ig-status">
           <p><span style="font-size:12pt;font-weight:bold">{{site.data.fhir.ig.titlelang[include.lang] | escape_once}}</span>
             <br/>
             <span style="display:inline-block;">{{site.data.fhir.ig.version}} - {{status}}
@@ -91,7 +86,7 @@ upstream issue #16 and current main correct this to ../assets/images/*.svg.{% en
       </div> <!-- /container -->
     </div>  <!-- /segment-header -->
 
-    <div id="segment-navbar" class="segment" data-fhir="generated">  <!-- segment-navbar -->
+    <div id="segment-navbar" class="segment">  <!-- segment-navbar -->
       <div id="stripe"> </div>
       <div class="container">  <!-- container -->
         <!-- HEADER CONTENT -->
@@ -121,7 +116,7 @@ upstream issue #16 and current main correct this to ../assets/images/*.svg.{% en
     </div>  <!-- /segment-navbar -->
     <!--status-bar-->
 {% assign shownav = site.data.info.shownav | downcase | slice: 0 %}
-    <div id="segment-breadcrumb" class="segment" data-fhir="generated">  <!-- segment-breadcrumb -->
+    <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
       <div class="container">  <!-- container -->
         <ul class="breadcrumb">
           {{site.data.pages[localPage].breadcrumblang[include.lang]}}
