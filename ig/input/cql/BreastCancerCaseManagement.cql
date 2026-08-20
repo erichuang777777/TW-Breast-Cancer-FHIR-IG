@@ -207,14 +207,17 @@ define "Estrogen Receptor Percent":
       return (Report.value as FHIR.Quantity).value
   )
 
-// D1-STAGE, D1-ER
+// D1-STAGE
 define "Denominator 1":
   "Initial Population"
     and "Is Stage I To III"("Effective Stage")
-    and "Estrogen Receptor Percent" >= 10.0
 
-// X1-ER-LOW: an ER result below 10% or one that was never obtained. Stated
-// explicitly so a missing result is visibly excluded rather than quietly false.
+// D1-ER, X1-ER-LOW: ER >= 10% is expressed as the complement of this
+// exclusion, not as a Denominator 1 conjunct - a denominator-exclusion must be
+// a subset of the denominator, and "ER >= 10.0" AND'ed into both would make
+// the exclusion empty. An ER result below 10%, or one that was never
+// obtained, is excluded here; stated explicitly so a missing result is
+// visibly excluded rather than quietly false.
 define "Denominator 1 Exclusion":
   "Estrogen Receptor Percent" is null
     or "Estrogen Receptor Percent" < 10.0
