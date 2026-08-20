@@ -1,0 +1,87 @@
+name: Build (sushi, pytest, CQL)
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  sushi:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install sushi
+        working-directory: ig/tools
+        run: npm ci
+
+      - name: Run sushi
+        working-directory: ig
+        run: |
+          node tools/node_modules/fsh-sushi/dist/app.js . 2>&1 | tee sushi-output.log
+          if grep -qE '[1-9][0-9]* Errors|[1-9][0-9]* Warnings' sushi-output.log; then
+            echo "sushi reported errors or warnings; see log above"
+            exit 1
+          fi
+
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -e .
+
+      - name: Run pytest
+        run: python -m pytest -q
+
+  cql:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Fetch Coursier
+        run: curl -sL -o coursier.jar "https://github.com/coursier/coursier/releases/latest/download/coursier.jar"
+
+      # cql-to-elm-cli is not published as a shaded/fat jar, so its full
+      # runtime classpath (including cqf-fhir's hapi-fhir-structures-* deps,
+      # which are pinned by a Gradle-module BOM import that plain Maven POM
+      # resolution does not follow) has to be resolved explicitly.
+      - name: Resolve cql-to-elm-cli classpath
+        run: |
+          java -jar coursier.jar fetch --classpath \
+            info.cqframework:cql-to-elm-cli:3.26.0 \
+            --force-version ca.uhn.hapi.fhir:hapi-fhir-structures-r5:8.2.0 \
+            --force-version ca.uhn.hapi.fhir:hapi-fhir-structures-r4:8.2.0 \
+            --force-version ca.uhn.hapi.fhir:hapi-fhir-structures-dstu3:8.2.0 \
+            --force-version ca.uhn.hapi.fhir:hapi-fhir-structures-dstu2:8.2.0 \
+            --force-version ca.uhn.hapi.fhir:hapi-fhir-structures-hl7org-dstu2:8.2.0 \
+            --force-version ca.uhn.hapi.fhir:hapi-fhir-converter:8.2.0 \
+            --force-version ca.uhn.hapi.fhir:hapi-fhir-base:8.2.0 \
+            > classpath.txt
+
+      # FHIRHelpers 4.0.1 is resolved automatically by the translator's built-in
+      # FhirLibrarySourceProvider - no separate fetch needed.
+      - name: Translate CQL
+        run: |
+          mkdir -p elm-out
+          java -cp "$(cat classpath.txt)" org.cqframework.cql.cql2elm.cli.Main \
+            --input ig/input/cql/BreastCancerCaseManagement.cql \
+            --output elm-out \
+            --format XML \
+            --signatures Overloads
