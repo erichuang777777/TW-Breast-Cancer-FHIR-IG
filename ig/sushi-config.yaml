@@ -158,6 +158,7 @@ menu:
 
 parameters:
   path-binary: input/cql
+  auto-oid-root: 2.25.37863882866210842446634463448013114893
   show-inherited-invariants: false
   apply-contact: true
   apply-jurisdiction: true
