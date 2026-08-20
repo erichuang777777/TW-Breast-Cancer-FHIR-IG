@@ -15,6 +15,7 @@ QI03_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-03-cases.json"
 QI04_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-04-cases.json"
 QI05_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-05-cases.json"
 QI06_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-06-cases.json"
+QR01_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-01-cases.json"
 WORKFLOW = ROOT / ".github" / "workflows" / "build.yml"
 
 
@@ -223,3 +224,27 @@ def test_bc_qi_06_assertions_keep_practice_and_definition_variants_distinct():
     workflow = WORKFLOW.read_text(encoding="utf-8")
     assert "Execute bc-qi-06 asserted CQL branches" in workflow
     assert "bc-qi-06-cases.json" in workflow
+
+
+def test_bc_qr_01_assertions_cover_retention_exclusions_staging_and_cohort():
+    cases = load(QR01_CASES)
+    by_id = {case["id"]: case for case in cases}
+    assert set(by_id) == {
+        "new-diagnosis-stays",
+        "transfer-during-staging",
+        "considering-return-excluded",
+        "temporary-unknown-stage-excluded",
+        "existing-case-outside-denominator",
+    }
+    assert all(case["bundle"]["meta"]["tag"] == [
+        {"system": "https://example.org/tags", "code": "synthetic"}
+    ] for case in cases)
+    assert by_id["new-diagnosis-stays"]["expected"]["Numerator QR1"] is True
+    assert by_id["transfer-during-staging"]["expected"]["Numerator QR1 Exclusion"] is True
+    assert by_id["considering-return-excluded"]["expected"]["Denominator QR1 Exclusion"] is True
+    assert by_id["temporary-unknown-stage-excluded"]["expected"]["Staging In Progress"] is True
+    assert by_id["existing-case-outside-denominator"]["expected"]["Denominator QR1"] is False
+
+    workflow = WORKFLOW.read_text(encoding="utf-8")
+    assert "Execute bc-qr-01 asserted CQL branches" in workflow
+    assert "bc-qr-01-cases.json" in workflow
