@@ -15,7 +15,7 @@ def test_publisher_workflow_is_reproducible_and_preserves_evidence():
     assert '"feat/cancer-registry-task-v2"' in text
     assert "releases/download/2.3.2/publisher.jar" in text
     assert "gem install jekyll" in text
-    assert "actions/upload-artifact@v4" in text
+    assert "actions/upload-artifact@v7" in text
     assert "ig/output/" in text
 
 
