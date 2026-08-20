@@ -86,7 +86,7 @@ Instance: BreastCancerQualityIndicator03
 InstanceOf: Measure
 Usage: #definition
 Title: "品質指標3(核心2)－淋巴結陽性≧4顆全切除後放射治療的比率"
-Description: "接受乳房全切除手術且腋下淋巴結陽性≧4顆，有進行放射治療的比率。排除乳癌第四期病人。分子另要求臨床標靶體積劑量≧4000cGy。"
+Description: "接受乳房全切除手術且腋下淋巴結陽性≧4顆，有進行放射治療的比率。排除乳癌第四期病人。定義原文分子另要求臨床標靶體積劑量≧4000cGy，惟現行資料無劑量欄位（N3-DOSE，見 criteria 表），本 Measure 僅驗證是否完成放射治療，計算結果為上界。"
 * id = "bc-qi-03"
 * url = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/Measure/bc-qi-03"
 * name = "BreastCancerQualityIndicator03PostMastectomyRadiotherapy"

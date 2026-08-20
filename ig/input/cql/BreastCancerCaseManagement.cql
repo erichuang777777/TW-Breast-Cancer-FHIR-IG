@@ -267,16 +267,20 @@ define "Denominator 3":
 define "Denominator 3 Exclusion":
   "Is Metastatic"
 
-// N3-DOSE: the dose is carried on the radiotherapy course summary. Until that
-// profile exists in the common layer this returns null and the numerator is
-// not satisfiable, which is the honest result - see the task page.
+// N3-DOSE: the dose is carried on the radiotherapy course summary, which does
+// not exist yet in the common layer, so this criterion is not evaluated at
+// all - not "false", not approximated. Kept as its own define, deliberately
+// unused below, so the gap stays visible instead of being silently dropped.
 define "Total Radiotherapy Dose cGy":
   null as System.Quantity
 
-// N3-RT, N3-DOSE
+// N3-RT. N3-DOSE (>= 4000 cGy) is NOT enforced here - see the comment above
+// "Total Radiotherapy Dose cGy". bc-qi-03's result is therefore an upper bound:
+// every case counted here received radiotherapy, but not all of them are
+// verified to have received a therapeutic dose. See the Measure Description
+// and the task page's known-divergence table.
 define "Numerator 3":
   exists "Completed Radiotherapy"
-    and "Total Radiotherapy Dose cGy" >= 4000 'cGy'
 
 // ==========================================================================
 // bc-qi-04  HER2 陽性淋巴轉移給予 anti HER2
