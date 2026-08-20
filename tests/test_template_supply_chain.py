@@ -9,6 +9,7 @@ IG_INI = ROOT / "ig" / "ig.ini"
 REGISTER = ROOT / "mappings" / "publication" / "template-supply-chain.csv"
 WORKFLOW = ROOT / ".github" / "workflows" / "publication-readiness.yml"
 GENERATOR = ROOT / "tcr_workbench" / "ig_export.py"
+PAGE_BEGIN_OVERLAY = ROOT / "ig" / "input" / "includes" / "fragment-pagebegin.html"
 
 
 def test_ig_uses_the_pinned_security_advisory_replacement_template():
@@ -52,3 +53,12 @@ def test_publisher_ci_enforces_exact_template_and_no_security_notice():
     workflow = WORKFLOW.read_text(encoding="utf-8")
     assert "Load Template from fhir2.base.template#0.1.0" in workflow
     assert "! grep -Fq 'no longer considered secure' publisher.log" in workflow
+
+
+def test_multilanguage_jurisdiction_flag_overlay_uses_root_assets():
+    source = PAGE_BEGIN_OVERLAY.read_text(encoding="utf-8")
+    assert (
+        'src="../assets/images/{{jurisdiction.flag}}.svg"'
+        in source
+    )
+    assert 'src="assets/images/{{jurisdiction.flag}}.svg"' not in source
