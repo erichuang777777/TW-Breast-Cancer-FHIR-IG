@@ -37,7 +37,7 @@
   },
   {
     "id": "delayed-prior-year-follow-up",
-    "expected": { "Case Entry Category": "delayed-entry-prior-year", "Case Status Reported": "follow-up" },
+    "expected": { "Case Entry Category": "delayed-entry-prior-year", "Case Entry Month": 4, "Case Status Reported": "follow-up" },
     "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
       { "resource": { "resourceType": "Patient", "id": "qr1012-delayed-prior" } },
       { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-delayed-prior", "status": "active", "patient": { "reference": "Patient/qr1012-delayed-prior" }, "period": { "start": "2026-04-01" } } },
@@ -49,7 +49,7 @@
   },
   {
     "id": "curable-recurrence-palliative",
-    "expected": { "Case Entry Category": "first-recurrence-curable", "Case Status Reported": "palliative" },
+    "expected": { "Case Entry Category": "first-recurrence-curable", "Case Entry Month": 5, "Case Status Reported": "palliative" },
     "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
       { "resource": { "resourceType": "Patient", "id": "qr1012-curable" } },
       { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-curable", "status": "active", "patient": { "reference": "Patient/qr1012-curable" }, "period": { "start": "2026-05-01" } } },
@@ -61,7 +61,7 @@
   },
   {
     "id": "noncurable-recurrence-refused",
-    "expected": { "Case Entry Category": "first-recurrence-noncurable", "Case Status Reported": "refused-interrupted" },
+    "expected": { "Case Entry Category": "first-recurrence-noncurable", "Case Entry Month": 6, "Case Status Reported": "refused-interrupted" },
     "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
       { "resource": { "resourceType": "Patient", "id": "qr1012-noncurable" } },
       { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-noncurable", "status": "active", "patient": { "reference": "Patient/qr1012-noncurable" }, "period": { "start": "2026-06-01" } } },
@@ -73,7 +73,7 @@
   },
   {
     "id": "closed-status",
-    "expected": { "Case Status Reported": "closed" },
+    "expected": { "Case Entry Month": 7, "Case Status Reported": "closed" },
     "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
       { "resource": { "resourceType": "Patient", "id": "qr1012-closed" } },
       { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-closed", "status": "finished", "patient": { "reference": "Patient/qr1012-closed" }, "period": { "start": "2026-07-01", "end": "2026-08-01" } } },
@@ -82,7 +82,7 @@
   },
   {
     "id": "staging-overrides-treatment",
-    "expected": { "Case Status": "treatment", "Staging In Progress": true, "Case Status Reported": "diagnosis" },
+    "expected": { "Case Entry Month": 8, "Case Status": "treatment", "Staging In Progress": true, "Case Status Reported": "diagnosis" },
     "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
       { "resource": { "resourceType": "Patient", "id": "qr1012-staging" } },
       { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-staging", "status": "active", "patient": { "reference": "Patient/qr1012-staging" }, "period": { "start": "2026-08-01" } } },
@@ -92,7 +92,7 @@
   },
   {
     "id": "missing-task-values",
-    "expected": { "Case Entry Category": null, "Case Status": null, "Case Status Reported": null },
+    "expected": { "Case Entry Month": 9, "Case Entry Category": null, "Case Status": null, "Case Status Reported": null },
     "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
       { "resource": { "resourceType": "Patient", "id": "qr1012-missing" } },
       { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-missing", "status": "active", "patient": { "reference": "Patient/qr1012-missing" }, "period": { "start": "2026-09-01" } } }
@@ -100,7 +100,7 @@
   },
   {
     "id": "invalid-system-and-code-rejected",
-    "expected": { "Case Entry Category": null, "Case Status": null, "Case Status Reported": null },
+    "expected": { "Case Entry Month": 10, "Case Entry Category": null, "Case Status": null, "Case Status Reported": null },
     "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
       { "resource": { "resourceType": "Patient", "id": "qr1012-invalid" } },
       { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-invalid", "status": "active", "patient": { "reference": "Patient/qr1012-invalid" }, "period": { "start": "2026-10-01" } } },
@@ -108,6 +108,22 @@
         { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/wrong-system", "code": "new-diagnosis" }] } },
         { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-status" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-status", "code": "not-a-valid-status" }] } }
       ] } }
+    ] }
+  },
+  {
+    "id": "february-month-value",
+    "expected": { "Case Entry Month": 2 },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1012-february" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-february", "status": "active", "patient": { "reference": "Patient/qr1012-february" }, "period": { "start": "2026-02-01" } } }
+    ] }
+  },
+  {
+    "id": "november-month-value",
+    "expected": { "Case Entry Month": 11 },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1012-november" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-november", "status": "active", "patient": { "reference": "Patient/qr1012-november" }, "period": { "start": "2026-11-01" } } }
     ] }
   }
 ]

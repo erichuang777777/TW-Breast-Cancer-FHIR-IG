@@ -397,14 +397,18 @@ def test_bc_qr_10_through_12_cover_all_admin_values_month_boundaries_and_rejecti
     }
     assert by_id["new-diagnosis-diagnosis-january"]["Case Entry Month"] == 1
     assert by_id["existing-treatment-december"]["Case Entry Month"] == 12
+    assert {
+        expected["Case Entry Month"]
+        for expected in by_id.values()
+        if "Case Entry Month" in expected
+    } == set(range(1, 13))
     assert by_id["staging-overrides-treatment"]["Case Status"] == "treatment"
     assert by_id["staging-overrides-treatment"]["Case Status Reported"] == "diagnosis"
     assert by_id["missing-task-values"]["Case Entry Category"] is None
-    assert by_id["invalid-system-and-code-rejected"] == {
-        "Case Entry Category": None,
-        "Case Status": None,
-        "Case Status Reported": None,
-    }
+    invalid = by_id["invalid-system-and-code-rejected"]
+    assert invalid["Case Entry Category"] is None
+    assert invalid["Case Status"] is None
+    assert invalid["Case Status Reported"] is None
 
     cql = CQL.read_text(encoding="utf-8")
     assert "AllowedCodes List<String>" in cql
