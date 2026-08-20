@@ -10,7 +10,7 @@
 
 | Gate | 結果 | 說明 |
 |---|---:|---|
-| pytest | pass：241 tests | 包含 mapping、PHI、CQL、IG export、Publisher warning policy、逐 Measure 規格 audit 與 publication workflow 契約測試。 |
+| pytest | pass：245 tests | 包含 mapping、PHI、CQL、IG export、Publisher warning policy、逐 Measure 規格 audit、完整 release-control gate 與 publication workflow 契約測試。 |
 | SUSHI 3.20.0 | pass：0 errors / 0 warnings | FSH 可穩定產生 IG resources。 |
 | PHI gate | pass | 目前版本庫未檢出疑似病人識別資料；正式來源資料仍須在受控環境處理。 |
 | CQL CLI translation | pass | `cql-to-elm-cli 3.26.0` 可產生 ELM；FHIRHelpers 由 `hl7.fhir.uv.cql#2.0.0` 解析。 |
@@ -18,6 +18,7 @@
 | CQL branch assertions | pass with clinical limitations：20/20 Measures | 全部 Measure 已通過具預期結果的合成 R4 Bundle 分支案例；分布 Measure 另覆蓋全部列舉 strata、月份、年齡帶、缺值與非法值。QR-04 仍受真實前年度 cohort 阻擋，QR-05 仍是候選規則。 |
 | IG Publisher 2.3.2 resource validation | pass with warnings：0 errors / 232 warnings | 已消除原有錯誤，補齊 5 個缺失範例並升級 CRMI 2.0.0；其餘 warning 由機器可讀政策逐類鎖定。 |
 | 完整 IG website/package | pass：0 errors / 232 warnings / 0 broken links | GitHub Actions run `32420689838` 使用 Jekyll 與 Publisher 2.3.2，已保存網站、`qa.html`、`package.tgz` 與 warning audit artifact；QA integrity pass，Community Preview／Formal release block。 |
+| 完整 release controls | integrity pass；2/8 controls pass | RC-02 FHIR conformance 與 RC-04 executable rules 通過；source mapping、terminology、independent recalculation、golden cohort、governance 與 operational acceptance 均 blocked。Publisher warnings 即使歸零也不會讓此 gate 誤判通過。 |
 | Strict release QA | blocked | 正式 release gate 仍要求 0 warnings；完整 QA 的 232 個 warning 尚未逐一修正或完成具體審查紀錄。 |
 | Template supply-chain | blocked | Publisher 報告 `fhir.base.template#1.0.0` 已不再被視為安全；升級前不得宣告正式可發布。 |
 

@@ -41,6 +41,8 @@ Publisher／SUSHI 通過所證明的是「產出的資源符合目前載入的 F
 
 所以答案是：**驗證數字正確需要六種；要宣稱正式可發布，總共要八種控制全部完成。**
 
+八項控制的機器可讀狀態位於 [`mappings/publication/release-control-register.csv`](mappings/publication/release-control-register.csv)，由 `scripts/audit_release_controls.py` 依 Measure audit、19 個臨床 ValueSet、簽核 register 與 Publisher audit 重新推導，並拒絕 register 自稱與證據不一致。現況為 **2/8 pass**：只有 RC-02 FHIR conformance 與 RC-04 合成規則執行通過；RC-01、03、05、06、07、08 均 blocked。即使未來 Publisher warnings 降到 0，也不能繞過這六個阻擋項目取得 formal release pass。
+
 ## 每一筆資料應比對的內容
 
 任何會改變 initial population、denominator、exclusion、numerator 或 stratifier 的欄位，都必須逐筆保存並比對：

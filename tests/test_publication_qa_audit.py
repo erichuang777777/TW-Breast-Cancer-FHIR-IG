@@ -65,6 +65,7 @@ def test_known_warning_passes_integrity_but_blocks_preview(tmp_path):
     )
     completed, report = run_audit(tmp_path, [warning])
     assert completed.returncode == 0, completed.stderr
+    assert report["gate_scope"] == "publisher-qa-only"
     assert report["qa_integrity_gate"] == "pass"
     assert report["community_preview_gate"] == "block"
     assert report["formal_release_gate"] == "block"
@@ -79,7 +80,7 @@ def test_unknown_warning_fails_without_silent_acceptance(tmp_path):
     assert report["unknown_warnings"]
 
 
-def test_zero_warning_qa_passes_all_targets(tmp_path):
+def test_zero_warning_qa_passes_all_publisher_qa_targets(tmp_path):
     completed, report = run_audit(tmp_path, [], target="formal")
     assert completed.returncode == 0, completed.stderr
     assert report["qa_integrity_gate"] == "pass"

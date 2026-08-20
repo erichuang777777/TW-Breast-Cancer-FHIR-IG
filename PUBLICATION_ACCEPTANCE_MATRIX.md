@@ -30,6 +30,8 @@
 
 若要由資料正確性進一步宣稱「正式發布」，還必須增加兩個 release control：具名的臨床／術語／資料治理簽核，以及隱私、資安、版本、artifact、接收端回執與跨院實作驗收。因此數字正確性是六層，正式發布合計是八項控制。逐 Measure 判定見 [FHIR IG 規格正確性稽核](SPECIFICATION_CORRECTNESS_AUDIT.md)。
 
+八項控制的宣告狀態位於 `mappings/publication/release-control-register.csv`，CI 會用 `scripts/audit_release_controls.py` 從底層證據重新推導；Publisher formal QA 與完整 formal release 是兩個不同 gate，前者通過不得取代後者。
+
 ## 數量與正確性門檻
 
 ### Mapping

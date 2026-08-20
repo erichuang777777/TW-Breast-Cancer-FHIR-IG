@@ -20,11 +20,16 @@ def test_publisher_workflow_is_reproducible_and_preserves_evidence():
     assert "scripts/audit_publisher_qa.py" in text
     assert "mappings/publication/publisher-warning-policy.csv" in text
     assert "publisher-warning-audit.json" in text
+    assert "scripts/audit_release_controls.py" in text
+    assert "mappings/publication/release-control-register.csv" in text
+    assert "release-control-audit.json" in text
 
 
 def test_publisher_workflow_enforces_technical_and_strict_qa_levels():
     text = workflow_text()
     assert "publisher-exit-code.txt" in text
     assert "errors = 0, warn = [0-9]+, info = [0-9]+, broken links = 0" in text
-    assert "errors = 0, warn = 0, info = [0-9]+, broken links = 0" in text
+    assert "publisher_formal_qa_gate" in text
     assert "test -f output/package.tgz" in text
+    assert "Complete formal release gate" in text
+    assert "maximum_supported_claim" in text

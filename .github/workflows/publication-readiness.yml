@@ -9,11 +9,19 @@ on:
       - ".github/workflows/publication-readiness.yml"
       - "ig/**"
       - "scripts/check_release.ps1"
+      - "scripts/audit_publisher_qa.py"
+      - "scripts/audit_release_controls.py"
+      - "mappings/publication/**"
+      - "outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv"
   pull_request:
     paths:
       - ".github/workflows/publication-readiness.yml"
       - "ig/**"
       - "scripts/check_release.ps1"
+      - "scripts/audit_publisher_qa.py"
+      - "scripts/audit_release_controls.py"
+      - "mappings/publication/**"
+      - "outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv"
 
 jobs:
   publisher:
@@ -75,6 +83,20 @@ jobs:
             --target integrity \
             | tee ig/output/publisher-warning-audit.log
 
+      - name: Audit complete release controls
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_release_controls.py \
+            --controls mappings/publication/release-control-register.csv \
+            --measure-audit mappings/publication/case-management-measure-audit.csv \
+            --terminology-fsh ig/input/fsh/case-management-terminology.fsh \
+            --approval-register outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv \
+            --publisher-audit ig/output/publisher-warning-audit.json \
+            --json-out ig/output/release-control-audit.json \
+            --target integrity \
+            | tee ig/output/release-control-audit.log
+
       - name: Upload Publisher evidence
         if: always()
         uses: actions/upload-artifact@v7
@@ -101,12 +123,12 @@ jobs:
 
       - name: Report strict release status
         if: always()
-        working-directory: ig
         shell: bash
         run: |
-          if [[ -f output/qa.html ]] && \
-             grep -Eq 'errors = 0, warn = 0, info = [0-9]+, broken links = 0' output/qa.html; then
-            echo "Strict release QA: pass" | tee -a "$GITHUB_STEP_SUMMARY"
-          else
-            echo "Strict release QA: blocked until every warning is fixed or explicitly reviewed" | tee -a "$GITHUB_STEP_SUMMARY"
-          fi
+          test -f ig/output/release-control-audit.json
+          publisher_gate="$(python -c "import json; print(json.load(open('ig/output/release-control-audit.json'))['publisher_formal_qa_gate'])")"
+          formal_gate="$(python -c "import json; print(json.load(open('ig/output/release-control-audit.json'))['formal_release_gate'])")"
+          maximum_claim="$(python -c "import json; print(json.load(open('ig/output/release-control-audit.json'))['maximum_supported_claim'])")"
+          echo "Publisher formal QA gate: $publisher_gate" | tee -a "$GITHUB_STEP_SUMMARY"
+          echo "Complete formal release gate: $formal_gate" | tee -a "$GITHUB_STEP_SUMMARY"
+          echo "Maximum supported claim: $maximum_claim" | tee -a "$GITHUB_STEP_SUMMARY"

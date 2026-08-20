@@ -152,6 +152,7 @@ def audit(qa_text: Path, qa_html: Path, policy_path: Path) -> dict[str, object]:
         )
     ]
     return {
+        "gate_scope": "publisher-qa-only",
         "qa": {
             "errors": errors,
             "warnings": warning_total,
@@ -209,7 +210,7 @@ def main() -> int:
         )
     print(f"QA integrity gate: {report['qa_integrity_gate']}")
     print(f"Community Preview gate: {report['community_preview_gate']}")
-    print(f"Formal release gate: {report['formal_release_gate']}")
+    print(f"Publisher formal QA gate: {report['formal_release_gate']}")
     for failure in report["failures"]:
         print(f"FAIL: {failure}", file=sys.stderr)
     selected = {
