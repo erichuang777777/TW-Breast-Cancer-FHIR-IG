@@ -7,7 +7,7 @@
 - 以 TW Core IG 1.0.0 為基礎，提供 Patient、Condition、Observation、DiagnosticReport、Procedure、MedicationRequest 與 Task 等共用模型。
 - 將報表定位為 secondary/reconciliation source；目標資料流為原始來源到 canonical FHIR，再投影至 Task 與報表。
 - 建立 20 個乳癌個案管理品質 Measure 草稿與共同 CQL Library。
-- 20/20 Measure 的 46 個 population／stratifier criteria 已完成 ELM runtime smoke；`bc-qi-01`～`bc-qi-06` 與 `bc-qr-01`～`bc-qr-05` 已具合成 R4 Bundle 預期值分支測試，其餘 9 個分布 Measure 尚待補齊。QR-04 是須載入前年度 cohort 才可運算的條件測試，QR-05 仍是待人工逐案核對的候選規則。
+- 20/20 Measure 的 46 個 population／stratifier criteria 已完成 ELM runtime smoke 與具預期值的合成分支測試；分布 Measure 另覆蓋全部列舉 strata、12 個月份、10 個年齡帶、缺值與非法值。QR-04 是須載入前年度 cohort 才可運算的條件測試，QR-05 仍是待人工逐案核對的候選規則。
 - FHIRHelpers 改由 `hl7.fhir.uv.cql#2.0.0` 的正式 namespace 與 package artifact 解析。
 - CRMI dependency 已升級為 `hl7.fhir.uv.crmi#2.0.0`，並通過完整建置與 CQL regression checks。
 - TCR ValueSet 與 ConceptMap 補齊 shareable metadata，但不主張尚未審查的標準術語等價關係。
@@ -16,10 +16,10 @@
 
 ## 驗證狀態（2026-08-21）
 
-- pytest：232 passed。
+- pytest：235 passed。
 - SUSHI 3.20.0：0 errors、0 warnings。
 - PHI gate：pass。
-- CQL translation：pass；runtime smoke：20/20 Measures、46/46 criteria；目前具預期值的合成分支 assertions：11/20 Measures（QI-01～QI-06、QR-01～QR-05）。
+- CQL translation：pass；runtime smoke：20/20 Measures、46/46 criteria；目前具預期值的合成分支 assertions：20/20 Measures。
 - IG Publisher resource validation：0 errors、232 warnings。
 - 完整網站、`qa.html` 與 `package.tgz`：遠端 run `32414373852` 已通過，0 errors、232 warnings、0 broken links；warning audit 判定 QA integrity pass、Community Preview／Formal release block。
 - Strict release：blocked；仍要求 0 warnings、0 broken links，且 Publisher 已指出 `fhir.base.template#1.0.0` 的供應鏈安全問題。
@@ -30,7 +30,7 @@
 
 - 原始來源欄位到 canonical FHIR 的完整 mapping 與 Provenance。
 - 19 個臨床 ValueSet 的正式內容與 terminology review。
-- 尚餘 9/20 分布 Measure 的完整合成分支 assertions，以及原始資料 golden cohort、QR-04 前年度 cohort、QR-05 人工 adjudication 與跨院一致性驗證。
+- 尚餘原始資料 golden cohort、QR-04 前年度 cohort、QR-05 人工 adjudication、QR-17 分群數規格釐清、正式 terminology 與跨院一致性驗證；合成測試通過不得取代這些證據。
 - QBC／P4P、TCR、TWPAS 的在地流程、VPN、回執、reconciliation 與治理簽核。
 
 因此不得將此 alpha 版本宣稱為正式臨床決策、品質申報或主管機關認證成果。完整門檻與阻擋項目見 [PUBLICATION_READINESS.md](PUBLICATION_READINESS.md)。

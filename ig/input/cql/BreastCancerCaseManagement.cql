@@ -32,13 +32,14 @@ would be a guess presented as a fact.
 
 STATUS: drafted. The full library translates successfully. All 46 population
 and stratifier expressions referenced by the twenty Measures are smoke-executed
-in CI against a synthetic empty-caseload R4 Bundle. bc-qi-01 through bc-qi-06
-and bc-qr-01 through bc-qr-05 additionally have asserted synthetic branches;
+in CI against a synthetic empty-caseload R4 Bundle. bc-qi-01 through bc-qi-06,
+bc-qr-01 through bc-qr-05 and bc-qr-10 through bc-qr-18 additionally have
+asserted synthetic branches;
 bc-qi-01 also has a generated summary MeasureReport. The bc-qr-04 assertions are
 conditional on an explicitly loaded prior-year cohort, and bc-qr-05 still tests
 a candidate rule requiring manual adjudication. The test-only terminology codes
-are not published in the IG ValueSets. The other nine distribution Measures still
-need full assertions. Clinical execution also waits for the terminology in
+are not published in the IG ValueSets. Clinical execution also waits for the
+terminology in
 mappings/case-management/breast-common-to-case-management.csv to be verified
 against a published release and for source-to-FHIR integration. The administrative
 code systems are enumerated because the case management team is their authority.
@@ -823,7 +824,9 @@ define "Histology Morphology":
       return First(((Report.value as FHIR.CodeableConcept).coding) C return C.code.value)
   )
 
-// The eleven report groups, from the morphology code. The worksheet reaches the
+// The ten groups currently enumerated by S17-HISTOLOGY, from the morphology code.
+// Source documentation says eleven groups; that unresolved discrepancy remains
+// a publication blocker rather than being filled with an invented category. The worksheet reaches the
 // same groups from free text through an ordered table of 27 spellings; that
 // table is the proxy this replaces. ICD-O-3 morphology codes are still marked
 // candidate-unverified in the mapping, so this grouping cannot be trusted until
