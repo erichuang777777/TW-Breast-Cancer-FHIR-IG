@@ -44,6 +44,16 @@ maintenance liability.
   Python reference implementation are generated from and checked against.
 - `case-management-task-only-fields.csv` — case-management and committee
   workflow data that must not be promoted into the shared clinical layer.
+- `python-implementation-manifest.json` — which `criterion_id`s the Python
+  reference implementation actually evaluates, generated from
+  `個管品管_1_品質核心指標統計/pipeline/rules.py`'s `CRITERION_IDS` /
+  `UNIMPLEMENTED_CRITERIA` (see `pipeline/export_criteria_manifest.py` there).
+  Its `families_covered` is `["quality"]` only: the **`quarterly` family's**
+  Python reference implementation lives in a separate project
+  (`個管品管_2_季報統計/scripts/quarterly_report.py`) that has not been audited
+  against this CSV, so `bc-qr-*` rows' `python_status` values are currently
+  **unverified claims**, not checked facts - `tests/test_case_management_measures.py`
+  only compares `python_status` against this manifest for the `quality` family.
 
 ## Not the NHI P4P programme indicators
 

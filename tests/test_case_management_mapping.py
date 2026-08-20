@@ -15,6 +15,9 @@ QUARTERLY_RATES = {"bc-qr-01", "bc-qr-02", "bc-qr-03", "bc-qr-04", "bc-qr-05"}
 QUARTERLY_COHORTS = {"bc-qr-10", "bc-qr-11", "bc-qr-12", "bc-qr-13", "bc-qr-14",
                      "bc-qr-15", "bc-qr-16", "bc-qr-17", "bc-qr-18"}
 FAMILIES = {"quality", "quarterly", "both"}
+PYTHON_STATUS_VALUES = {
+    "implemented", "not-implemented", "divergent", "not-evaluable", "manual-override",
+}
 POPULATION_TYPES = {
     "initial-population",
     "denominator",
@@ -134,10 +137,29 @@ def test_indicator_six_keeps_both_readings_visible():
 
 def test_cql_and_python_status_are_tracked_for_every_criterion():
     """CQL is the normative expression, Python the reference implementation;
-    neither may quietly go missing."""
+    neither may quietly go missing, and python_status may only be one of the
+    values the reference-implementation manifest actually distinguishes."""
     for row in rows(CRITERIA):
         assert row["cql_status"], row["criterion_id"]
         assert row["python_status"], row["criterion_id"]
+        assert row["python_status"] in PYTHON_STATUS_VALUES, row["criterion_id"]
+
+
+def test_a_divergent_or_unimplemented_criterion_states_its_impact():
+    """A row that says Python does not (or does not honestly) implement a
+    criterion is only useful if it also says what changes when the gap is
+    closed - otherwise 'not-implemented' is just a different unverified claim.
+
+    Scoped to the quality family: that is what python-implementation-manifest.json
+    covers today, so it is the only family whose python_status this repo has
+    actually cross-checked against the pipeline that computes it. quarterly's
+    not-implemented rows (bc-qr-04, bc-qr-05) are real gaps too, but stating a
+    numeric impact for them would be inventing a number nobody has computed."""
+    for row in rows(CRITERIA):
+        if row["indicator_family"] != "quality":
+            continue
+        if row["python_status"] in ("not-implemented", "divergent"):
+            assert row["python_divergence"], row["criterion_id"]
 
 
 def test_a_blocked_criterion_is_not_claimed_as_implemented():

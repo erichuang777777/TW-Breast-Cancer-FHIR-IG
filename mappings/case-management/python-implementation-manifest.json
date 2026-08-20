@@ -1,0 +1,46 @@
+{
+  "source": "D:/個管師/個管品管_1_品質核心指標統計/pipeline/criteria_manifest.json",
+  "generated_by": "pipeline/export_criteria_manifest.py，由 rules.CRITERION_IDS / rules.UNIMPLEMENTED_CRITERIA 產生",
+  "families_covered": [
+    "quality"
+  ],
+  "note": "quarterly 家族（bc-qr-*）的 Python 參考實作在另一個專案（個管品管_2_季報統計/scripts/quarterly_report.py），尚未經此清單稽核；該家族各列的 python_status 目前僅為宣稱，不受本清單驗證。",
+  "implemented": [
+    "D1-ER",
+    "D1-STAGE",
+    "D2-CSTAGE",
+    "D2-NNEG",
+    "D2-NOTNEOADJ",
+    "D2-SURGERY",
+    "D3-NODE2",
+    "D3-NOTIV",
+    "D3-STAGE",
+    "D3-SURGERY",
+    "D4-CNOTIV",
+    "D4-HER2",
+    "D4-NODE1",
+    "D4-PNOTIV",
+    "D5-STAGE",
+    "D5-SURGERY",
+    "D6-AGE70",
+    "D6-AGE70N0",
+    "D6-BCT",
+    "D6-NOTIV",
+    "D6-NPOS",
+    "D6-STAGE0",
+    "D6-STAGE1TO3",
+    "D6-SURGERY",
+    "N1-HT",
+    "N2-SLNB",
+    "N3-RT",
+    "N4-ANTIHER2",
+    "N5-CB",
+    "N6-RT"
+  ],
+  "unimplemented": {
+    "D4-SURGERY": "指標4 分母未檢查手術；補上後 2026Q1 由 5/5 變 3/3",
+    "D6-INVASIVE": "practice 僅測 病理期別 != '0'，4 例 病理期別=不適用 仍留在分母；補上後由 14/15 變 10/11",
+    "N3-DOSE": "無劑量欄位，完全未評估",
+    "X5-INSITU-STAGE4": "指標5 分母未排除期別 IV／原位癌；補上後由 94/94 變 92/92"
+  }
+}

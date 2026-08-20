@@ -7,6 +7,7 @@ fails here instead of in a committee meeting.
 """
 
 import csv
+import json
 import re
 from pathlib import Path
 
@@ -246,3 +247,67 @@ def test_committee_and_case_manager_decisions_stay_out_of_the_measures():
     for row in rows(CATALOG):
         if row["threshold_2026"] not in {"n/a", ""}:
             assert row["threshold_2026"] not in text, row["measure_id"]
+
+
+# --------------------------------------------------------------------------
+# python_status vs. the reference-implementation manifest
+#
+# The eighteen tests above bind Measure <-> CQL <-> criteria table together,
+# but say nothing about whether the criteria table's python_status column is
+# true. python-implementation-manifest.json is generated from the pipeline
+# that actually produces the quarterly report (pipeline/rules.py's
+# CRITERION_IDS / UNIMPLEMENTED_CRITERIA, exported by
+# pipeline/export_criteria_manifest.py); comparing against it is what turns
+# "CQL and Python agree" from a claim in a comment into a check that fails.
+# --------------------------------------------------------------------------
+
+MANIFEST = MAPPINGS / "python-implementation-manifest.json"
+
+
+def manifest() -> dict:
+    with MANIFEST.open(encoding="utf-8") as handle:
+        return json.load(handle)
+
+
+def test_the_reference_implementation_manifest_exists_and_declares_its_scope():
+    data = manifest()
+    assert data["families_covered"] == ["quality"], (
+        "the manifest's scope changed; the exemption test below and the "
+        "quarterly-family callout in the mappings README must be revisited")
+    assert data["note"], "an unscoped manifest must say so, not go silent about it"
+
+
+def test_quality_criteria_covered_by_the_manifest_match_its_python_status():
+    """Every criterion_id the manifest actually knows about (it was generated
+    from rules.py, not from this CSV, so it does not necessarily know about
+    every row here) must have the same python_status the manifest computed.
+    Flip a covered row's status without re-running the pipeline export and
+    this fails - that is the point."""
+    data = manifest()
+    implemented = set(data["implemented"])
+    unimplemented = set(data["unimplemented"])
+    covered = implemented | unimplemented
+    checked = 0
+    for row in rows(CRITERIA):
+        if row["indicator_family"] != "quality" or row["criterion_id"] not in covered:
+            continue
+        checked += 1
+        if row["criterion_id"] in implemented:
+            assert row["python_status"] == "implemented", row["criterion_id"]
+        else:
+            assert row["python_status"] in ("not-implemented", "divergent",
+                                            "not-evaluable"), row["criterion_id"]
+    # the three known divergences plus N3-DOSE must all have been exercised
+    assert checked >= 4
+
+
+def test_the_quarterly_family_exemption_from_manifest_checking_is_explicit():
+    """quarterly's Python reference implementation lives in a different
+    project (個管品管_2_季報統計/scripts/quarterly_report.py) and has not been
+    audited against this CSV. Skipping the consistency check for it is a
+    documented boundary, not a gap nobody noticed."""
+    data = manifest()
+    assert "quarterly" not in data["families_covered"]
+    readme = (MAPPINGS / "README.md").read_text(encoding="utf-8")
+    assert "quarterly" in readme and "python_status" in readme, (
+        "the quarterly exemption must be written down in the mappings README")
