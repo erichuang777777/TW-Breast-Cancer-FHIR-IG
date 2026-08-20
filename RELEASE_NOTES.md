@@ -1,31 +1,34 @@
 # v0.1.0-alpha.1
 
-FHIR 規格另已重構為「乳癌 FHIR 社群草稿」`1.0.0-preview.1`。共同層提供可重用的乳癌 Profiles，QBC／P4P 明確定位為第一個 Task；TW Core 1.0.0 是結構 dependency，mCODE 4.0.0 與 ICHOM Breast Cancer 1.0.0 為語意參考。
+乳癌 FHIR Implementation Guide 社群草稿，FHIR package version 為 `1.0.0-preview.1`。本版本整合乳癌共同資料層、癌症診療計畫書、QBC／P4P 品管與季報、TCR 與 TWPAS 等平行 Task；它不是衛福部、健保署、HL7 或 ICHOM 的正式出版品。
 
-首個可執行的開發預覽版，包含批次匯入、FHIR canonical Bundle、QBC規則、Ollama結構化擷取、人工審核Web UI、核准閘門、Big5 XML與稽核輸出。
+## 本版重點
 
-後續 conformance 更新加入115欄機器可讀規格、結構化錯誤碼、完整值域／條件規則、治療與追蹤驗證、Big5 XML round-trip、模擬收件端、三種DIAG_TYPE合成測試包、FHIR強型別Observation Profiles及mCODE 4.0.0 gap matrix。
+- 以 TW Core IG 1.0.0 為基礎，提供 Patient、Condition、Observation、DiagnosticReport、Procedure、MedicationRequest 與 Task 等共用模型。
+- 將報表定位為 secondary/reconciliation source；目標資料流為原始來源到 canonical FHIR，再投影至 Task 與報表。
+- 建立 20 個乳癌個案管理品質 Measure 草稿與共同 CQL Library。
+- `bc-qi-01` 已具備 5 個合成 R4 Bundle 的端到端 CQL runtime 測試；其餘 19 個 Measure 尚待實作。
+- FHIRHelpers 改由 `hl7.fhir.uv.cql#2.0.0` 的正式 namespace 與 package artifact 解析。
+- TCR ValueSet 與 ConceptMap 補齊 shareable metadata，但不主張尚未審查的標準術語等價關係。
+- 新增完整 IG Publisher 遠端驗證流程，固定 Publisher 2.3.2、安裝 Jekyll 並保存網站及 QA 證據。
 
-逐版變更請見 [CHANGELOG.md](CHANGELOG.md)。Workbench 應用程式與 FHIR IG 是兩條獨立的版本線，該檔開頭有對照表。
+## 驗證狀態（2026-08-21）
 
-## 驗證結果
+- pytest：212 passed。
+- SUSHI 3.20.0：0 errors、0 warnings。
+- PHI gate：pass。
+- CQL translation：pass；CQL runtime：1/20 Measures。
+- IG Publisher resource validation：0 errors、241 warnings。
+- 完整網站、`qa.html` 與 `package.tgz`：待遠端 publication-readiness workflow 驗證。
+- Strict release：blocked；仍要求 0 warnings、0 broken links，且 Publisher 已指出 `fhir.base.template#1.0.0` 的供應鏈安全問題。
 
-- 單元測試：208 項通過（2026-08-21 本機重跑）。
-- 個資閘門：`scripts/check_no_phi.py` 通過，發布範圍內無病歷號或個案識別資訊。
-- SUSHI：0 errors、0 warnings。
-- 最新 HEAD 的完整 IG Publisher QA 尚未通過：資源驗證仍有 20 errors；本機亦缺 Jekyll，尚未產生可作發布證據的 `qa.html`。8/14 舊 release 的結果不得代替目前版本。
-- CQL：20 個 Measure 中，目前只有 `bc-qi-01` 完成實際合成資料執行測試；其餘仍需補齊。
-- 參考病例：JSON/PDF/DOCX/XLSX匯入成功，建立64個欄位狀態。
-- 規則結果：cT2N0M0=StageⅡA、ypT2N2M0=StageⅢA、Non-pCR、腋下淋巴結7/13。
-- 未核准AI／規則候選或缺少必填欄位時，病例核准及XML輸出均被阻擋。
+## 使用限制
 
-## 限制
+本版僅供設計、互通測試與技術討論。以下事項尚未完成：
 
-此版本是alpha，不得直接作正式臨床申報。
+- 原始來源欄位到 canonical FHIR 的完整 mapping 與 Provenance。
+- 19 個臨床 ValueSet 的正式內容與 terminology review。
+- 20/20 Measure 的可執行測試、golden cohort 與跨院一致性驗證。
+- QBC／P4P、TCR、TWPAS 的在地流程、VPN、回執、reconciliation 與治理簽核。
 
-非官方QBC IG草案為 `draft`／`experimental`，尚未宣告mCODE相容。正式release前仍需完成：
-
-- `QBC_FHIR_Mapping_TaskSpec_v1.0-preview.1.xlsx` 的 `Approval_Register` 保留正式／官方使用所需簽核；社群 Preview 可在非官方、draft／experimental 標示下發布
-- 已知歧義項目取得健保署書面確認
-- 院內主檔、完整三類測試案例與資安審查
-- 健保VPN測試／正式環境驗收
+因此不得將此 alpha 版本宣稱為正式臨床決策、品質申報或主管機關認證成果。完整門檻與阻擋項目見 [PUBLICATION_READINESS.md](PUBLICATION_READINESS.md)。

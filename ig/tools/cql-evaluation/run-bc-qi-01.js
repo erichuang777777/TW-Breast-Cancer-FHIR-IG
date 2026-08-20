@@ -18,6 +18,23 @@ const testCases = readJson(casesPath);
 const valueSets = readJson(valueSetsPath);
 const expectedReport = readJson(expectedReportPath);
 
+// cql-to-elm resolves the built-in FHIR model helper to an include path such
+// as http://hl7.org/fhir/FHIRHelpers, while the released CQL package correctly
+// identifies the same helper as http://hl7.org/fhir/uv/cql/FHIRHelpers.  The
+// JavaScript repository resolves strictly by ELM identifier URI, so register
+// the package ELM under the exact path requested by the translated main ELM.
+const helpersInclude = mainElm.library.includes?.def?.find(
+  include => include.localIdentifier === 'FHIRHelpers'
+);
+const helpersIdentifier = helpersElm.library?.identifier;
+assert.ok(helpersInclude?.path, 'main ELM has no FHIRHelpers include path');
+assert.equal(helpersIdentifier?.id, 'FHIRHelpers');
+assert.equal(helpersIdentifier?.version, helpersInclude.version);
+const helperSuffix = `/${helpersIdentifier.id}`;
+if (helpersInclude.path.endsWith(helperSuffix)) {
+  helpersIdentifier.system = helpersInclude.path.slice(0, -helperSuffix.length);
+}
+
 const repository = new cql.Repository({ main: mainElm, FHIRHelpers: helpersElm });
 const library = new cql.Library(mainElm, repository);
 const codeService = new cql.CodeService(valueSets);

@@ -43,7 +43,7 @@ library BreastCancerCaseManagement version '1.0.0'
 
 using FHIR version '4.0.1'
 
-include FHIRHelpers version '4.0.1' called FHIRHelpers
+include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
 
 // --- observation identification -------------------------------------------
 valueset "Clinical Stage Group Code": 'https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-clinical-stage-group-code'

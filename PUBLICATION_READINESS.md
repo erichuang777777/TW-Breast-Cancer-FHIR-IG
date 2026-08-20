@@ -1,89 +1,60 @@
 # 發布就緒稽核（2026-08-21）
 
-本文件將「公開社群 Preview」與「正式臨床、院內報表或申報使用」分開判定。兩者不可共用同一個完成標準。
+目前結論：本專案已達到「可重現建置的社群草稿」階段，但尚未達到可正式發布或投入臨床／申報使用的門檻。
 
-## 結論
+技術面的 FHIR Publisher 資源驗證已由最初的 69 errors 降至 0 errors；尚有 241 warnings，且本機缺少可用的 Jekyll 環境，因此完整網站、`qa.html` 與 `package.tgz` 必須由新增的 Linux publication-readiness workflow 產生與留證。臨床面的原始資料 mapping、正式值集、golden cohort 與治理簽核仍是阻擋項目。
 
-| 發布層級 | 目前判定 | 理由 |
-|---|---|---|
-| 原始碼／研究草稿分享 | 可 | 已清楚標為 `draft`、`experimental`、非官方；無真實個案範例。 |
-| 社群 Preview 網站與 package | 不可重新發布目前 HEAD | 完整 IG Publisher 尚有 20 errors、338 warnings；本機 Jekyll 工具鏈不完整；Publisher 警告目前 template 不再視為安全。 |
-| 品管＋季報 computable draft | 部分可 | 20 個 Measure 與共用 CQL 已建立，CQL 可由兩條工具路徑翻譯；但只有 `bc-qi-01` 有真正執行測試。 |
-| 正式院內品管／季報 | 不可 | 19 個臨床 ValueSet 仍是空佔位；34 筆共同層 Mapping 中 21 筆術語未驗證，9 筆為 blocking data gap；尚無原始資料到 canonical FHIR 的 golden-data 驗收。 |
-| 正式 QBC／癌登／TWPAS 申報 | 不可 | 人工簽核、官方函釋、VPN／接收端驗收、術語與授權、資安治理尚未完成。 |
+## 本次驗證結果
 
-「可公開草稿」只代表讀者能正確理解目前設計與缺口，不代表數字正確、可互通或可送件。
-
-## 2026-08-21 實測證據
-
-| Gate | 結果 | 證明範圍 |
+| Gate | 結果 | 說明 |
 |---|---:|---|
-| Git 與遠端同步 | pass（稽核起點） | 稽核起點 `b29aef0` 與遠端分支相同；本表記錄本機 gate，提交後的遠端結果以該 commit 的 CI run 為準。 |
-| pytest | pass：208 | 靜態一致性、轉換、規則、合成案例及回歸測試。不能代替臨床正確性。 |
-| SUSHI 3.20.0 | pass：0 errors / 0 warnings | 33 Profiles、9 Extensions、42 ValueSets、12 CodeSystems、55 Instances 可產生。 |
-| PHI gate | pass：346 files | 公開版控檔未命中既定病歷號／個案識別規則。不能代替正式 DPIA 或人工隱私審查。 |
-| CQL CLI translation | pass | `cql-to-elm-cli 3.26.0` 可產生約 370 KB ELM JSON。 |
-| CQL runtime | partial：1/20 Measure | `bc-qi-01` 已對 5 組合成 R4 Bundle 執行；其餘 19 個 Measure 未做 executable test。 |
-| IG Publisher 2.3.2 resource validation | fail：20 errors / 338 warnings | 20 errors 均為各 Measure 的 effective data requirements 無法解析 `FHIRHelpers|4.0.1`；warnings 另含 48 個無 target code system 的 ConceptMap、48 個缺 description 的 ValueSet、48 個缺 title 的 ConceptMap 等。 |
-| IG website/package build | unavailable | Windows 無 Jekyll；未生成當前 HEAD 的 `qa.html`、網站與 `package.tgz`。8/14 的 release artifact 比目前 HEAD 少 27 commits，不能當作現況證據。 |
-| Template supply-chain gate | fail | Publisher 明確警告 `fhir.base.template#1.0.0` 不再視為安全，必須依官方通知完成替換／緩解與重建。 |
+| pytest | pass：212 tests | 包含 mapping、PHI、CQL、IG export 與 publication workflow 契約測試。 |
+| SUSHI 3.20.0 | pass：0 errors / 0 warnings | FSH 可穩定產生 IG resources。 |
+| PHI gate | pass | 目前版本庫未檢出疑似病人識別資料；正式來源資料仍須在受控環境處理。 |
+| CQL CLI translation | pass | `cql-to-elm-cli 3.26.0` 可產生 ELM；FHIRHelpers 由 `hl7.fhir.uv.cql#2.0.0` 解析。 |
+| CQL runtime | partial：1/20 Measures | `bc-qi-01` 已通過 5 個合成 R4 Bundle 案例；其餘 19 個 Measure 尚無可執行測試。 |
+| IG Publisher 2.3.2 resource validation | pass with warnings：0 errors / 241 warnings | 已消除 20 個 FHIRHelpers 錯誤，並補齊 48 個 ValueSet descriptions 與 48 個 ConceptMap titles。 |
+| 完整 IG website/package | remote verification required | 新增 Linux workflow 安裝 Jekyll、固定 Publisher 2.3.2、保存網站與 QA artifact，並要求 0 errors、0 broken links 與 `package.tgz`。 |
+| Strict release QA | blocked | 正式 release gate 仍要求 0 warnings；目前 241 個 warning 尚未逐一修正或完成具體審查紀錄。 |
+| Template supply-chain | blocked | Publisher 報告 `fhir.base.template#1.0.0` 已不再被視為安全；升級前不得宣告正式可發布。 |
 
-本輪已修正先前未被 CI 發現的 Library binary-loader 設定、TCR QuestionnaireResponse 型別、無法解析的範例參照與 CQL `Task.input` 中間型別問題，並加入回歸測試。修正前 Publisher 為 69 errors；修正後剩 20 errors。
+## 目前可以做什麼
 
-## 內容成熟度
+- 繼續撰寫 CQL 的結構、共同函式、資料需求與合成測試。
+- 使用報表作為 secondary source、reconciliation copy 或欄位盤點依據。
+- 建立 mapping table 的骨架、來源責任欄位與待確認狀態。
+- 透過 CI 重現 SUSHI、CQL、Publisher 與測試結果。
 
-### 品管＋季報
+目前不能把報表欄位直接宣告為原始事實，也不能因現有系統能輸出報表，就反向假設其欄位已對應到可信任的 canonical FHIR 資料。正確資料流應為：
 
-- 20 個 Measure：6 個品質指標、5 個季報比率、9 個分布表。
-- 68 筆 population／stratifier criteria：66 drafted、2 not-applicable。
-- Python 對應狀態：56 implemented、5 not-implemented、4 task-layer、1 divergent、1 manual-override、1 not-evaluable。
-- criteria review：56 design、5 blocking-data-gap、4 open-question、3 proxy-in-use。
-- 34 筆共同層 Mapping：21 筆 `candidate-unverified`；review 中 9 筆 `blocking-data-gap`。
-- 19 個臨床 ValueSet 刻意不含代碼；這是正確揭露，不得為了讓畫面看似完成而填入未查證候選碼。
+`raw source element -> source adapter + Provenance -> canonical FHIR fact -> task projection -> report`
 
-### 癌症診療計畫書來源
+## 阻擋正式使用的項目
 
-- 單一來源基線 223 controls：195 `pending-field-review`、3 `pending-algorithm-review`、25 `implemented-partial`。
-- 目前整理後的表單、報表與工作簿只能當 secondary source、reconciliation copy 或進件候選，不能冒充原始病理、檢驗、影像與治療事實。
-- 正式資料流必須是 `raw source element -> source adapter + Provenance -> canonical FHIR fact -> task projection -> report`；不得由報表回推 canonical fact。
+1. **原始資料 mapping**：每個指標輸入都要有來源系統、table/column 或 API element、型別、時間語意、單位、缺值規則、轉換規則、Provenance、owner 與 reviewer。
+2. **正式 terminology**：19 個臨床 ValueSet 目前刻意保持空白，避免把未確認的代碼當成正式值集；TCR ConceptMap 的 unmatched 狀態也不得用虛構 target system 消除 warning。
+3. **Measure 可執行性**：20 個 Measure 目前只有 `bc-qi-01` 有端到端合成測試。每個 Measure 至少需要 positive、negative、exclusion、missing 與 boundary cases。
+4. **資料正確性**：需要由原始資料建立 golden cohort，逐案比對 FHIR fact、population membership、分子、分母、排除與分層結果。
+5. **人工作業與治理**：手動補登、報表匯出、VPN 送件、回執與 reconciliation 必須有明確 ownership、稽核軌跡與簽核。
+6. **發布供應鏈**：完整 Publisher/Jekyll build、0 broken links、warning disposition、template security 與 package metadata 均須有 CI 證據。
 
-### QBC 與治理
+## Mapping table 現階段的建立方式
 
-- approval register：12 `pending-human-signoff`、1 `pending-external-acceptance`、1 `blocked-until-other-gates-close`。
-- 必須補齊主管機關書面確認、院內 master data、術語授權、資安／隱私、VPN receipt 與錯誤碼 reconciliation。
+如果尚未取得原始資料，mapping table 可以先建立，但只能填到「需求與待查證」層級：
 
-## 發布前必須使用的核對方式
+- 每列以一個 canonical clinical fact 或品質指標輸入為單位。
+- 報表欄位記為 `secondary/reconciliation source`，不可標成 authoritative source。
+- 原始欄位未知時，明確填入 `blocking-data-gap`，並記錄應向哪個系統 owner 查詢。
+- terminology 對應未確認時使用 `candidate-unverified`，不得直接發布成正式 ValueSet/ConceptMap 關係。
+- 先完成 CQL 所需的 FHIR resource/profile/path、時間窗、缺值與排除規則；待原始資料到位後再補 source adapter 與 Provenance。
 
-每一筆會影響臨床語意或報表數字的 mapping 至少要有下列六層證據；高風險項目不得只靠單一工具或單一 reviewer。
+## 下一個可驗收里程碑
 
-1. **來源逐欄追溯**：保存權威文件／原始系統欄位、版本、SHA-256、適用條件與原文；報表只能是比對副本。
-2. **FHIR conformance**：SUSHI 加 IG Publisher／FHIR Validator，檢查結構、cardinality、binding、invariant、profile 與 reference；errors 必須為 0。
-3. **術語核對**：由術語服務驗證 system、code、display、版本、ValueSet expansion、授權；candidate 與 confirmed 分開。
-4. **可執行規則測試**：每個 Measure 都要有 positive、negative、exclusion、missing、boundary、日期邊界與多筆事件案例，並實際執行 CQL。
-5. **獨立重算**：CQL 與獨立參考實作對同一批輸入逐案比對 population membership，不只比總數；差異必須為 0 或有簽核理由。
-6. **真實去識別 golden data 與端到端驗收**：由原始資料產生 FHIR，再產生報表／申報檔，與人工核定結果、接收端 receipt 和錯誤碼逐案 reconciliation。
+Preview 技術候選版至少需要：
 
-另須獨立完成臨床雙人審查、資料治理／資安／授權審查，以及 package、網站、連結與版本 metadata 的可重現發布驗證。
+- 遠端完整 Publisher build 成功，產出可下載的網站、`qa.html` 與 `package.tgz`。
+- `qa.html` 為 0 errors、0 broken links；每個 warning 修正或有具體理由、影響、owner 與核准紀錄。
+- 20/20 Measures 皆有 ELM translation 與可執行合成測試。
+- 取得至少一批去識別原始資料，完成一個端到端 source-to-FHIR-to-CQL golden cohort。
 
-## 精確發布門檻
-
-### 社群 Preview
-
-- CI 從乾淨 checkout 可重建網站與 `package.tgz`。
-- IG Publisher：0 errors、0 broken links；每一個 warning 都修正或在 `ignoreWarnings.txt` 記錄逐項理由、owner 與核准日期。
-- CQL 翻譯失敗不能回傳成功；CI 必須同時檢查 exit code、ELM 檔存在與 log 不含 translation error。
-- `draft`、`experimental`、非官方、非臨床／非申報用途及已知缺口在首頁、downloads、package metadata 一致。
-- PHI、授權與 template supply-chain gate 通過。
-
-### 正式臨床／報表／申報
-
-除 Preview 門檻外，還必須全部達成：
-
-- 受影響 mapping 100% 有原始資料路徑、轉換規則、loss classification、Provenance 與 reviewer。
-- 所有正式使用的 ValueSet／ConceptMap 100% 經版本化術語與授權審查；不得有空臨床 ValueSet 或 `candidate-unverified`。
-- 20/20 Measure 均完成 executable synthetic suite；CQL 與獨立實作逐案一致。
-- 代表性去識別 golden cohort 完成雙人臨床審查，分母、分子、排除、stratum 與例外逐案一致。
-- 所有 approval-register blocker 關閉；外部 VPN／接收端驗收成功並保存 receipt。
-- canonical、package id、publisher identity、版本政策與維護責任取得正式治理核准。
-
-在上述條件全部有可追溯證據以前，版本只能維持 Preview，不得將「測試通過」表述為「資料正確」或「可正式使用」。
+正式臨床／申報使用仍需再完成全部 source mapping、正式 terminology、跨院驗證與治理簽核。

@@ -54,6 +54,14 @@ class TestStructure:
 
 
 class TestTerminology:
+    def test_published_terminology_has_shareable_metadata(self, ig):
+        _summary, resources, _out = ig
+        for resource in resources.values():
+            if resource['resourceType'] == 'ValueSet':
+                assert resource.get('description', '').strip(), resource['id']
+            elif resource['resourceType'] == 'ConceptMap':
+                assert resource.get('title', '').strip(), resource['id']
+
     def test_code_systems_cover_exactly_the_verified_fields(self, ig):
         _summary, resources, _out = ig
         generated = {r['id'].replace('tcr-breast-', '')

@@ -33,7 +33,7 @@ dependencies:
   tw.gov.mohw.twcore: 1.0.0
   hl7.terminology.r4: 7.3.0
   hl7.fhir.uv.extensions.r4: 5.3.0
-  hl7.fhir.uv.cql: 1.0.0
+  hl7.fhir.uv.cql: 2.0.0
   hl7.fhir.uv.crmi: 1.0.0
 
 pages:

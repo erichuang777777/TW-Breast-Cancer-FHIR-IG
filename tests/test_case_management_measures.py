@@ -20,6 +20,7 @@ FSH = ROOT / "ig" / "input" / "fsh" / "case-management-measures.fsh"
 TERMINOLOGY = ROOT / "ig" / "input" / "fsh" / "case-management-terminology.fsh"
 CQL = ROOT / "ig" / "input" / "cql" / "BreastCancerCaseManagement.cql"
 SUSHI_CONFIG = ROOT / "ig" / "sushi-config.yaml"
+BUILD_WORKFLOW = ROOT / ".github" / "workflows" / "build.yml"
 
 LIBRARY_URL = ("https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG"
                "/Library/BreastCancerCaseManagement")
@@ -93,8 +94,15 @@ def test_library_attachment_is_loadable_by_the_ig_publisher():
     assert '* content.contentType = #text/cql' in text
     config = SUSHI_CONFIG.read_text(encoding="utf-8")
     assert 'path-binary: input/cql' in config
-    assert 'hl7.fhir.uv.cql: 1.0.0' in config
+    assert 'hl7.fhir.uv.cql: 2.0.0' in config
     assert 'hl7.fhir.uv.crmi: 1.0.0' in config
+
+
+def test_fhirhelpers_uses_the_hl7_cql_namespace():
+    """Resolve FHIRHelpers from the published CQL package, not an implicit alias."""
+    assert "include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1'" in cql_text()
+    workflow = BUILD_WORKFLOW.read_text(encoding="utf-8")
+    assert "--root-dir ig" in workflow
 
 
 def test_no_artifact_is_still_filed_under_the_pre_merge_name():

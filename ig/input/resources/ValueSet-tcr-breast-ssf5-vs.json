@@ -7,6 +7,7 @@
   "title": "台灣癌症登記 SSF5 哨兵淋巴結侵犯數目（SSF5）值集",
   "status": "draft",
   "experimental": true,
+  "description": "Taiwan Cancer Registry value set for SSF5 (SSF5 哨兵淋巴結侵犯數目). Includes every code from the corresponding local TCR CodeSystem; it does not assert equivalence to a standard clinical terminology.",
   "compose": {
     "include": [
       {

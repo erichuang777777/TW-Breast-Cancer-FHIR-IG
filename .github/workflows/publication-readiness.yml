@@ -1,0 +1,93 @@
+name: Publication readiness (IG Publisher)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/publication-readiness.yml"
+      - "ig/**"
+      - "scripts/check_release.ps1"
+
+jobs:
+  publisher:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "20"
+
+      - name: Install SUSHI
+        working-directory: ig/tools
+        run: npm ci
+
+      - name: Install Jekyll
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ruby-full build-essential zlib1g-dev
+          sudo gem install jekyll --no-document
+
+      - name: Download pinned IG Publisher
+        working-directory: ig
+        run: |
+          curl --fail --location --retry 3 --output publisher.jar \
+            "https://github.com/HL7/fhir-ig-publisher/releases/download/2.3.2/publisher.jar"
+          test -s publisher.jar
+
+      # Capture the exit code so that QA and logs are uploaded even when the
+      # Publisher fails. The gate below still rejects any non-zero exit.
+      - name: Build complete IG
+        working-directory: ig
+        shell: bash
+        run: |
+          export PATH="$PWD/tools/node_modules/.bin:$PATH"
+          set +e
+          java -Dfile.encoding=UTF-8 -jar publisher.jar -ig ig.ini \
+            2>&1 | tee publisher.log
+          echo "${PIPESTATUS[0]}" > publisher-exit-code.txt
+          exit 0
+
+      - name: Upload Publisher evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ig-publisher-evidence
+          if-no-files-found: warn
+          retention-days: 14
+          path: |
+            ig/output/
+            ig/publisher.log
+            ig/publisher-exit-code.txt
+
+      - name: Enforce technical publication gate
+        working-directory: ig
+        shell: bash
+        run: |
+          test "$(cat publisher-exit-code.txt)" = "0"
+          test -f output/qa.html
+          summary="$(grep -Eo 'errors = [0-9]+, warn = [0-9]+, info = [0-9]+, broken links = [0-9]+' output/qa.html | head -1)"
+          test -n "$summary"
+          echo "$summary" | tee -a "$GITHUB_STEP_SUMMARY"
+          echo "$summary" | grep -Eq '^errors = 0, warn = [0-9]+, info = [0-9]+, broken links = 0$'
+          test -f output/package.tgz
+
+      - name: Report strict release status
+        if: always()
+        working-directory: ig
+        shell: bash
+        run: |
+          if [[ -f output/qa.html ]] && \
+             grep -Eq 'errors = 0, warn = 0, info = [0-9]+, broken links = 0' output/qa.html; then
+            echo "Strict release QA: pass" | tee -a "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Strict release QA: blocked until every warning is fixed or explicitly reviewed" | tee -a "$GITHUB_STEP_SUMMARY"
+          fi

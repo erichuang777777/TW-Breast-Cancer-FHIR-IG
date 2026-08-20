@@ -445,6 +445,11 @@ def build_value_set(cancer_group: str, field: str, base_url: str) -> dict:
         'title': f'台灣癌症登記 {zh_label}（{field}）值集',
         'status': 'draft',
         'experimental': True,
+        'description': (
+            f'Taiwan Cancer Registry value set for {field} ({zh_label}). '
+            'Includes every code from the corresponding local TCR '
+            'CodeSystem; it does not assert equivalence to a standard '
+            'clinical terminology.'),
         'compose': {'include': [{'system': f'{base_url}/CodeSystem/{ident}'}]},
     }
 
@@ -465,6 +470,7 @@ def build_concept_map_skeleton(cancer_group: str, field: str,
         'url': f'{base_url}/ConceptMap/{ident}-to-standard',
         'version': FHIR_VERSION,
         'name': f'TCR{field}ToStandardTerminology',
+        'title': f'TCR {field} to standard terminology mapping status',
         'status': 'draft',
         'experimental': True,
         'description': (

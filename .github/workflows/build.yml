@@ -92,6 +92,7 @@ jobs:
           mkdir -p elm-out
           java -cp "$(cat classpath.txt)" org.cqframework.cql.cql2elm.cli.Main \
             --input ig/input/cql/BreastCancerCaseManagement.cql \
+            --root-dir ig \
             --output elm-out \
             --format JSON \
             --signatures Overloads 2>&1 | tee cql-translation.log
@@ -101,12 +102,17 @@ jobs:
             exit 1
           fi
 
-      # FHIRHelpers 4.0.1 is pinned to the official CQFramework execution
-      # example commit. It is test tooling only and is not published by this IG.
-      - name: Fetch FHIRHelpers ELM
+      # Use the same released CQL package that the IG declares.  Extracting the
+      # packaged ELM avoids testing against a second, unrelated FHIRHelpers copy.
+      - name: Extract FHIRHelpers ELM from the CQL package
         run: |
-          curl -sL -o elm-out/FHIRHelpers.json \
-            "https://raw.githubusercontent.com/cqframework/cql-exec-examples/e859b971234a4953599d1626b5182077f0652cac/fhir-helpers/r4/FHIRHelpers.json"
+          set -o pipefail
+          curl -sL -o cql-package.tgz \
+            "https://hl7.org/fhir/uv/cql/STU2/package.tgz"
+          tar -xOf cql-package.tgz package/Library-FHIRHelpers.json \
+            | jq -r '.content[] | select(.contentType == "application/elm+json") | .data' \
+            | base64 --decode > elm-out/FHIRHelpers.json
+          test -s elm-out/FHIRHelpers.json
 
       - name: Execute bc-qi-01 synthetic CQL cases
         run: |
