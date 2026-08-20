@@ -19,7 +19,7 @@
 - PHI gate：pass。
 - CQL translation：pass；CQL runtime：1/20 Measures。
 - IG Publisher resource validation：0 errors、241 warnings。
-- 完整網站、`qa.html` 與 `package.tgz`：遠端 run `32410194174` 已通過，0 errors、238 warnings、0 broken links。
+- 完整網站、`qa.html` 與 `package.tgz`：遠端 run `32411623067` 已通過，0 errors、238 warnings、0 broken links；warning audit 判定 QA integrity pass、Community Preview／Formal release block。
 - Strict release：blocked；仍要求 0 warnings、0 broken links，且 Publisher 已指出 `fhir.base.template#1.0.0` 的供應鏈安全問題。
 
 ## 使用限制

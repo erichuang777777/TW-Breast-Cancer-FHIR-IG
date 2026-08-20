@@ -16,7 +16,7 @@
 | CQL CLI translation | pass | `cql-to-elm-cli 3.26.0` 可產生 ELM；FHIRHelpers 由 `hl7.fhir.uv.cql#2.0.0` 解析。 |
 | CQL runtime | partial：1/20 Measures | `bc-qi-01` 已通過 5 個合成 R4 Bundle 案例；其餘 19 個 Measure 尚無可執行測試。 |
 | IG Publisher 2.3.2 resource validation | pass with warnings：0 errors / 241 warnings | 已消除 20 個 FHIRHelpers 錯誤，並補齊 48 個 ValueSet descriptions 與 48 個 ConceptMap titles。 |
-| 完整 IG website/package | pass：0 errors / 238 warnings / 0 broken links | GitHub Actions run `32410194174` 使用 Jekyll 與 Publisher 2.3.2，已保存網站、`qa.html` 與 `package.tgz` artifact。 |
+| 完整 IG website/package | pass：0 errors / 238 warnings / 0 broken links | GitHub Actions run `32411623067` 使用 Jekyll 與 Publisher 2.3.2，已保存網站、`qa.html`、`package.tgz` 與 warning audit artifact；QA integrity pass，Community Preview／Formal release block。 |
 | Strict release QA | blocked | 正式 release gate 仍要求 0 warnings；完整 QA 的 238 個 warning 尚未逐一修正或完成具體審查紀錄。 |
 | Template supply-chain | blocked | Publisher 報告 `fhir.base.template#1.0.0` 已不再被視為安全；升級前不得宣告正式可發布。 |
 
