@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added a reproducible PHI-free source-structure audit for the combined case-management quality and quarterly-report Task, covering workbook variants, field provenance, FHIR mapping coverage, and blocking review items.
 - Added privacy-safe monthly Cancer Care Plan batch and JSON/XLSX/PDF companion audits, documented the 2026-01 six-variant baseline, and clarified the path from raw clinical facts to future care-plan population.
 - Updated the companion audit to use the declared PyMuPDF runtime dependency and to count XLSX formulas from a formula-preserving workbook view.
 - Added a draft v2 fillable web-template contract and a PHI-free Care Plan JSON-to-QBC coverage matrix; the January classification is now 52 type 1, 13 type 2, 1 type 3, and 10 source-incomplete records after applying treatment order, treatment phase, staging, and M1 evidence.

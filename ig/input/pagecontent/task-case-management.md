@@ -35,6 +35,14 @@
 | Output | `MeasureReport`、逐案／逐格可反查的稽核明細、癌症委員會報告與季報工作表 |
 | Acceptance | CQL 與 Python 參考實作在同一組合成資料上逐案一致；每個報表數字都能追到組成它的個案 |
 
+## 來源結構盤點
+
+目前基線已用不讀出個案值的方式盤點品質指標來源、季報來源與共用 Python 參考實作。盤點結果只保存副檔名統計、工作簿結構簽章、欄位 schema、FHIR Mapping 與阻擋項，不保存原始路徑、檔名、sheet 名稱、病歷號、姓名或儲存格值。
+
+2026-08-21 基線包含 15 種工作簿結構、70 種工作表尺寸／公式組合、61 筆來源欄位描述與 34 項共同層 Mapping。另有 20 筆 criterion／mapping 層級的審閱列；同一資料缺口可能同時出現在兩個層級，因此此數字不是 20 個互不重複的臨床問題。
+
+可重跑工具為 `scripts/build_case_management_source_audit.py`，輸出為 `outputs/case_management_source_audit/case_management_source_inventory.xlsx`。來源目錄必須由執行者明確傳入，工具不內建任何院內路徑；原始報表必須留在受控環境且不得進版控。
+
 ## 品質指標（`quality`）
 
 | Measure | 核心指標 | 指標 | 2026Q1 參考結果 |

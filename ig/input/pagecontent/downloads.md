@@ -6,6 +6,8 @@ QBC Task Preview 1.0 Mapping 工作簿：`outputs/qbc_ig_mapping/QBC_FHIR_Mappin
 
 癌症診療計畫書 Task 的機器可讀來源契約與 PHI-free 欄位 catalog 位於 repository 的 `qbc_workbench/data/cancer_care_plan.schema.json` 及 `qbc_workbench/data/cancer_care_plan_field_catalog.json`；網站版請見「[診療計畫書欄位盤點](care-plan-field-inventory.html)」。
 
+個管品管＋季報 Task 的無個資來源結構盤點位於 `outputs/case_management_source_audit/case_management_source_inventory.xlsx`。可重跑工具為 `scripts/build_case_management_source_audit.py`；工具只輸出結構聚合、欄位 schema、FHIR Mapping 與阻擋項，不得用來發布原始報表或個案值。
+
 TWPAS Task 的初版機器可讀對照位於：
 
 - `mappings/twpas/breast-common-to-twpas-1.2.5.csv`：乳癌 common facts 至官方 TWPAS target 的 projection design。
