@@ -14,6 +14,7 @@ QI02_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-02-cases.json"
 QI03_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-03-cases.json"
 QI04_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-04-cases.json"
 QI05_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-05-cases.json"
+QI06_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-06-cases.json"
 WORKFLOW = ROOT / ".github" / "workflows" / "build.yml"
 
 
@@ -188,3 +189,37 @@ def test_bc_qi_05_assertions_cover_biopsy_timing_stage_and_missing_data():
     workflow = WORKFLOW.read_text(encoding="utf-8")
     assert "Execute bc-qi-05 asserted CQL branches" in workflow
     assert "bc-qi-05-cases.json" in workflow
+
+
+def test_bc_qi_06_assertions_keep_practice_and_definition_variants_distinct():
+    cases = load(QI06_CASES)
+    by_id = {case["id"]: case for case in cases}
+    assert set(by_id) == {
+        "eligible-radiotherapy-after-surgery",
+        "eligible-without-radiotherapy",
+        "radiotherapy-before-surgery",
+        "age-70-node-positive-practice",
+        "age-70-node-positive-definition",
+        "age-69-node-negative-practice",
+        "age-69-node-negative-definition",
+        "tis-noninvasive",
+        "missing-pathological-stage",
+    }
+    assert by_id["eligible-radiotherapy-after-surgery"]["expected"]["Numerator 6"] is True
+    assert by_id["eligible-without-radiotherapy"]["expected"]["Numerator 6"] is False
+    assert by_id["radiotherapy-before-surgery"]["expected"]["Numerator 6"] is False
+
+    for prefix in ("age-70-node-positive", "age-69-node-negative"):
+        practice = by_id[f"{prefix}-practice"]
+        definition = by_id[f"{prefix}-definition"]
+        assert practice["parameters"]["Indicator 6 Variant"] == "practice"
+        assert definition["parameters"]["Indicator 6 Variant"] == "definition"
+        assert practice["expected"]["Denominator 6 Exclusion"] is True
+        assert definition["expected"]["Denominator 6 Exclusion"] is False
+
+    assert by_id["tis-noninvasive"]["expected"]["Is Invasive Disease"] is False
+    assert by_id["missing-pathological-stage"]["expected"]["Denominator 6"] is False
+
+    workflow = WORKFLOW.read_text(encoding="utf-8")
+    assert "Execute bc-qi-06 asserted CQL branches" in workflow
+    assert "bc-qi-06-cases.json" in workflow

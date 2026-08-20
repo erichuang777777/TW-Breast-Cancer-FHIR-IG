@@ -1,0 +1,115 @@
+[
+  {
+    "id": "eligible-radiotherapy-after-surgery",
+    "expected": { "Initial Population": true, "Denominator 6": true, "Denominator 6 Exclusion": false, "Numerator 6": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qi-06-after", "birthDate": "1970-01-01" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi06-after", "status": "active", "patient": { "reference": "Patient/bc-qi-06-after" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qi06-after", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-06-after" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "I" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "tumor-qi06-after", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-tumor" }] }, "subject": { "reference": "Patient/bc-qi-06-after" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "T1" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "node-qi06-after", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-06-after" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N1" }] } } },
+      { "resource": { "resourceType": "Procedure", "id": "surgery-qi06-after", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "breast-conserving-surgery" }] }, "subject": { "reference": "Patient/bc-qi-06-after" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } },
+      { "resource": { "resourceType": "Procedure", "id": "rt-qi06-after", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "radiotherapy" }] }, "subject": { "reference": "Patient/bc-qi-06-after" }, "performedDateTime": "2026-03-01T23:59:59+08:00" } }
+    ] }
+  },
+  {
+    "id": "eligible-without-radiotherapy",
+    "expected": { "Initial Population": true, "Denominator 6": true, "Denominator 6 Exclusion": false, "Numerator 6": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qi-06-no-rt", "birthDate": "1970-01-01" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi06-no-rt", "status": "active", "patient": { "reference": "Patient/bc-qi-06-no-rt" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qi06-no-rt", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-06-no-rt" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "II" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "tumor-qi06-no-rt", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-tumor" }] }, "subject": { "reference": "Patient/bc-qi-06-no-rt" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "T2" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "node-qi06-no-rt", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-06-no-rt" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N1" }] } } },
+      { "resource": { "resourceType": "Procedure", "id": "surgery-qi06-no-rt", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "breast-conserving-surgery" }] }, "subject": { "reference": "Patient/bc-qi-06-no-rt" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+    ] }
+  },
+  {
+    "id": "radiotherapy-before-surgery",
+    "expected": { "Initial Population": true, "Denominator 6": true, "Denominator 6 Exclusion": false, "Numerator 6": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qi-06-rt-before", "birthDate": "1970-01-01" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi06-rt-before", "status": "active", "patient": { "reference": "Patient/bc-qi-06-rt-before" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qi06-rt-before", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-06-rt-before" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "I" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "tumor-qi06-rt-before", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-tumor" }] }, "subject": { "reference": "Patient/bc-qi-06-rt-before" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "T1" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "node-qi06-rt-before", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-06-rt-before" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N1" }] } } },
+      { "resource": { "resourceType": "Procedure", "id": "rt-qi06-before", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "radiotherapy" }] }, "subject": { "reference": "Patient/bc-qi-06-rt-before" }, "performedDateTime": "2026-02-28T23:59:59+08:00" } },
+      { "resource": { "resourceType": "Procedure", "id": "surgery-qi06-rt-before", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "breast-conserving-surgery" }] }, "subject": { "reference": "Patient/bc-qi-06-rt-before" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+    ] }
+  },
+  {
+    "id": "age-70-node-positive-practice",
+    "parameters": { "Indicator 6 Variant": "practice" },
+    "expected": { "Denominator 6": true, "Definition Age Node Exclusion": false, "Practice Age Node Exclusion": true, "Denominator 6 Exclusion": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qi-06-age70-practice", "birthDate": "1956-01-01" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi06-age70-practice", "status": "active", "patient": { "reference": "Patient/bc-qi-06-age70-practice" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qi06-age70-practice", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-06-age70-practice" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "I" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "tumor-qi06-age70-practice", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-tumor" }] }, "subject": { "reference": "Patient/bc-qi-06-age70-practice" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "T1" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "node-qi06-age70-practice", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-06-age70-practice" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N1" }] } } },
+      { "resource": { "resourceType": "Procedure", "id": "surgery-qi06-age70-practice", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "breast-conserving-surgery" }] }, "subject": { "reference": "Patient/bc-qi-06-age70-practice" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+    ] }
+  },
+  {
+    "id": "age-70-node-positive-definition",
+    "parameters": { "Indicator 6 Variant": "definition" },
+    "expected": { "Denominator 6": true, "Definition Age Node Exclusion": false, "Practice Age Node Exclusion": true, "Denominator 6 Exclusion": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qi-06-age70-definition", "birthDate": "1956-01-01" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi06-age70-definition", "status": "active", "patient": { "reference": "Patient/bc-qi-06-age70-definition" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qi06-age70-definition", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-06-age70-definition" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "I" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "tumor-qi06-age70-definition", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-tumor" }] }, "subject": { "reference": "Patient/bc-qi-06-age70-definition" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "T1" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "node-qi06-age70-definition", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-06-age70-definition" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N1" }] } } },
+      { "resource": { "resourceType": "Procedure", "id": "surgery-qi06-age70-definition", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "breast-conserving-surgery" }] }, "subject": { "reference": "Patient/bc-qi-06-age70-definition" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+    ] }
+  },
+  {
+    "id": "age-69-node-negative-practice",
+    "parameters": { "Indicator 6 Variant": "practice" },
+    "expected": { "Denominator 6": true, "Definition Age Node Exclusion": false, "Practice Age Node Exclusion": true, "Denominator 6 Exclusion": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qi-06-age69-practice", "birthDate": "1956-03-01" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi06-age69-practice", "status": "active", "patient": { "reference": "Patient/bc-qi-06-age69-practice" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qi06-age69-practice", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-06-age69-practice" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "I" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "tumor-qi06-age69-practice", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-tumor" }] }, "subject": { "reference": "Patient/bc-qi-06-age69-practice" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "T1" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "node-qi06-age69-practice", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-06-age69-practice" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N0" }] } } },
+      { "resource": { "resourceType": "Procedure", "id": "surgery-qi06-age69-practice", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "breast-conserving-surgery" }] }, "subject": { "reference": "Patient/bc-qi-06-age69-practice" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+    ] }
+  },
+  {
+    "id": "age-69-node-negative-definition",
+    "parameters": { "Indicator 6 Variant": "definition" },
+    "expected": { "Denominator 6": true, "Definition Age Node Exclusion": false, "Practice Age Node Exclusion": true, "Denominator 6 Exclusion": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qi-06-age69-definition", "birthDate": "1956-03-01" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi06-age69-definition", "status": "active", "patient": { "reference": "Patient/bc-qi-06-age69-definition" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qi06-age69-definition", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-06-age69-definition" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "I" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "tumor-qi06-age69-definition", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-tumor" }] }, "subject": { "reference": "Patient/bc-qi-06-age69-definition" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "T1" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "node-qi06-age69-definition", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-06-age69-definition" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N0" }] } } },
+      { "resource": { "resourceType": "Procedure", "id": "surgery-qi06-age69-definition", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "breast-conserving-surgery" }] }, "subject": { "reference": "Patient/bc-qi-06-age69-definition" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+    ] }
+  },
+  {
+    "id": "tis-noninvasive",
+    "expected": { "Initial Population": true, "Is Invasive Disease": false, "Denominator 6": false, "Denominator 6 Exclusion": true, "Numerator 6": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qi-06-tis", "birthDate": "1970-01-01" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi06-tis", "status": "active", "patient": { "reference": "Patient/bc-qi-06-tis" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qi06-tis", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-06-tis" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "0" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "tumor-qi06-tis", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-tumor" }] }, "subject": { "reference": "Patient/bc-qi-06-tis" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "Tis" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "node-qi06-tis", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-06-tis" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N0" }] } } },
+      { "resource": { "resourceType": "Procedure", "id": "surgery-qi06-tis", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "breast-conserving-surgery" }] }, "subject": { "reference": "Patient/bc-qi-06-tis" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+    ] }
+  },
+  {
+    "id": "missing-pathological-stage",
+    "expected": { "Initial Population": true, "Is Invasive Disease": false, "Denominator 6": false, "Denominator 6 Exclusion": false, "Numerator 6": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qi-06-missing-stage", "birthDate": "1970-01-01" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi06-missing-stage", "status": "active", "patient": { "reference": "Patient/bc-qi-06-missing-stage" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "tumor-qi06-missing-stage", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-tumor" }] }, "subject": { "reference": "Patient/bc-qi-06-missing-stage" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "T1" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "node-qi06-missing-stage", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-06-missing-stage" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N1" }] } } },
+      { "resource": { "resourceType": "Procedure", "id": "surgery-qi06-missing-stage", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "breast-conserving-surgery" }] }, "subject": { "reference": "Patient/bc-qi-06-missing-stage" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+    ] }
+  }
+]
