@@ -10,12 +10,12 @@
 
 | Gate | 結果 | 說明 |
 |---|---:|---|
-| pytest | pass：227 tests | 包含 mapping、PHI、CQL、IG export、Publisher warning policy 與 publication workflow 契約測試。 |
+| pytest | pass：229 tests | 包含 mapping、PHI、CQL、IG export、Publisher warning policy 與 publication workflow 契約測試。 |
 | SUSHI 3.20.0 | pass：0 errors / 0 warnings | FSH 可穩定產生 IG resources。 |
 | PHI gate | pass | 目前版本庫未檢出疑似病人識別資料；正式來源資料仍須在受控環境處理。 |
 | CQL CLI translation | pass | `cql-to-elm-cli 3.26.0` 可產生 ELM；FHIRHelpers 由 `hl7.fhir.uv.cql#2.0.0` 解析。 |
 | CQL runtime smoke | pass：20/20 Measures、46/46 criteria | 每個 Measure 所引用的 population／stratifier expression 均已在 ELM engine 執行；這只證明可執行性。 |
-| CQL branch assertions | partial：6/20 Measures | `bc-qi-01`～`bc-qi-06` 已通過具預期 population 結果的合成 R4 Bundle 分支案例；其餘 14 個季報／分布 Measure 尚缺完整 assertions。 |
+| CQL branch assertions | partial：8/20 Measures | QI-01～QI-06 與 QR-01～QR-02 已通過具預期 population 結果的合成 R4 Bundle 分支案例；其餘 12 個季報／分布 Measure 尚缺完整 assertions。 |
 | IG Publisher 2.3.2 resource validation | pass with warnings：0 errors / 232 warnings | 已消除原有錯誤，補齊 5 個缺失範例並升級 CRMI 2.0.0；其餘 warning 由機器可讀政策逐類鎖定。 |
 | 完整 IG website/package | pass：0 errors / 232 warnings / 0 broken links | GitHub Actions run `32414373852` 使用 Jekyll 與 Publisher 2.3.2，已保存網站、`qa.html`、`package.tgz` 與 warning audit artifact；QA integrity pass，Community Preview／Formal release block。 |
 | Strict release QA | blocked | 正式 release gate 仍要求 0 warnings；完整 QA 的 232 個 warning 尚未逐一修正或完成具體審查紀錄。 |
@@ -36,7 +36,7 @@
 
 1. **原始資料 mapping**：每個指標輸入都要有來源系統、table/column 或 API element、型別、時間語意、單位、缺值規則、轉換規則、Provenance、owner 與 reviewer。
 2. **正式 terminology**：19 個臨床 ValueSet 目前刻意保持空白，避免把未確認的代碼當成正式值集；TCR ConceptMap 的 unmatched 狀態也不得用虛構 target system 消除 warning。
-3. **Measure 可執行性**：20 個 Measure 目前有 `bc-qi-01`～`bc-qi-06` 的具預期值合成分支測試；其餘 14 個季報／分布 Measure 仍須完成 positive、negative、exclusion、missing 與 boundary cases。
+3. **Measure 可執行性**：20 個 Measure 目前有 QI-01～QI-06 與 QR-01～QR-02 的具預期值合成分支測試；其餘 12 個季報／分布 Measure 仍須完成 positive、negative、exclusion、missing 與 boundary cases。
 4. **資料正確性**：需要由原始資料建立 golden cohort，逐案比對 FHIR fact、population membership、分子、分母、排除與分層結果。
 5. **人工作業與治理**：手動補登、報表匯出、VPN 送件、回執與 reconciliation 必須有明確 ownership、稽核軌跡與簽核。
 6. **發布供應鏈**：完整 Publisher/Jekyll build、0 broken links、warning disposition、template security 與 package metadata 均須有 CI 證據。

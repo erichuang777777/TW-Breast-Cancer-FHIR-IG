@@ -33,11 +33,11 @@ would be a guess presented as a fact.
 STATUS: drafted. The full library translates successfully. All 46 population
 and stratifier expressions referenced by the twenty Measures are smoke-executed
 in CI against a synthetic empty-caseload R4 Bundle. bc-qi-01 through bc-qi-06
-additionally have asserted synthetic branches covering their positive, negative,
-exclusion, missing-data and boundary behavior; bc-qi-01 also has a generated
-summary MeasureReport. The test-only terminology codes are not published in the
-IG ValueSets. The other fourteen quarterly/distribution Measures still need full
-assertions. Clinical execution also waits for the terminology in
+and bc-qr-01 through bc-qr-02 additionally have asserted synthetic branches;
+bc-qi-01 also has a generated summary MeasureReport. The test-only terminology
+codes are not published in the IG ValueSets. The other twelve quarterly and
+distribution Measures still need full assertions. Clinical execution also waits
+for the terminology in
 mappings/case-management/breast-common-to-case-management.csv to be verified
 against a published release and for source-to-FHIR integration. The administrative
 code systems are enumerated because the case management team is their authority.
