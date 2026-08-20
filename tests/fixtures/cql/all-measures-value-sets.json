@@ -1,0 +1,60 @@
+{
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-clinical-stage-group-code": {
+    "synthetic-test-only": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-pathological-stage-group-code": {
+    "synthetic-test-only": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-pathological-n-category-code": {
+    "synthetic-test-only": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-pathological-t-category-code": {
+    "synthetic-test-only": [{ "system": "https://example.org/cm-test", "code": "pathological-tumor" }]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-estrogen-receptor-code": {
+    "synthetic-test-only": [{ "system": "https://example.org/cm-test", "code": "er-percent" }]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-her2-ihc-code": {
+    "synthetic-test-only": [{ "system": "https://example.org/cm-test", "code": "her2-ihc" }]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-her2-ish-code": {
+    "synthetic-test-only": [{ "system": "https://example.org/cm-test", "code": "her2-ish" }]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-breast-surgery-procedure": {
+    "synthetic-test-only": [
+      { "system": "https://example.org/cm-test", "code": "breast-conserving-surgery" },
+      { "system": "https://example.org/cm-test", "code": "total-mastectomy" },
+      { "system": "https://example.org/cm-test", "code": "other-breast-surgery" }
+    ]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-breast-conserving-surgery-procedure": {
+    "synthetic-test-only": [{ "system": "https://example.org/cm-test", "code": "breast-conserving-surgery" }]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-total-mastectomy-procedure": {
+    "synthetic-test-only": [{ "system": "https://example.org/cm-test", "code": "total-mastectomy" }]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-sentinel-lymph-node-biopsy-procedure": {
+    "synthetic-test-only": [{ "system": "https://example.org/cm-test", "code": "sentinel-lymph-node-biopsy" }]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-core-needle-biopsy-procedure": {
+    "synthetic-test-only": [{ "system": "https://example.org/cm-test", "code": "core-needle-biopsy" }]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-radiotherapy-procedure": {
+    "synthetic-test-only": [{ "system": "https://example.org/cm-test", "code": "radiotherapy" }]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-hormone-therapy-medication": {
+    "synthetic-test-only": [{ "system": "https://example.org/cm-test", "code": "hormone-therapy" }]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-cytotoxic-chemotherapy-medication": {
+    "synthetic-test-only": [{ "system": "https://example.org/cm-test", "code": "cytotoxic-chemotherapy" }]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-anti-her2-medication": {
+    "synthetic-test-only": [{ "system": "https://example.org/cm-test", "code": "anti-her2-therapy" }]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-progesterone-receptor-code": {
+    "synthetic-test-only": [{ "system": "https://example.org/cm-test", "code": "pr-percent" }]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-histology-morphology-code": {
+    "synthetic-test-only": [{ "system": "https://example.org/cm-test", "code": "histology-morphology" }]
+  }
+}

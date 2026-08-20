@@ -126,3 +126,12 @@ jobs:
             tests/fixtures/cql/bc-qi-01-cases.json \
             tests/fixtures/cql/bc-qi-01-value-sets.json \
             tests/fixtures/cql/MeasureReport-bc-qi-01-synthetic.json
+
+      - name: Smoke-execute all 20 Measure criteria
+        run: |
+          node ig/tools/cql-evaluation/run-all-measures-smoke.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/all-measures-smoke-cases.json \
+            tests/fixtures/cql/all-measures-value-sets.json \
+            ig/fsh-generated/resources
