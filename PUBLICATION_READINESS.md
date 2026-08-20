@@ -4,20 +4,20 @@
 
 技術面的 FHIR Publisher 資源驗證已由最初的 69 errors 降至 0 errors；Linux publication-readiness workflow 亦已產生完整網站、`qa.html` 與 `package.tgz`，結果為 0 errors、232 warnings、0 broken links。臨床面的原始資料 mapping、正式值集、golden cohort 與治理簽核仍是阻擋項目。
 
-精確的發布層級、六種核對方法與逐項通過門檻見 [PUBLICATION_ACCEPTANCE_MATRIX.md](PUBLICATION_ACCEPTANCE_MATRIX.md)。
+精確的發布層級、六種核對方法與逐項通過門檻見 [PUBLICATION_ACCEPTANCE_MATRIX.md](PUBLICATION_ACCEPTANCE_MATRIX.md)。20 個個管品質／季報 Measure 的逐項規格判定、六層資料驗證與八項正式發布控制，見 [SPECIFICATION_CORRECTNESS_AUDIT.md](SPECIFICATION_CORRECTNESS_AUDIT.md)。
 
 ## 本次驗證結果
 
 | Gate | 結果 | 說明 |
 |---|---:|---|
-| pytest | pass：235 tests | 包含 mapping、PHI、CQL、IG export、Publisher warning policy 與 publication workflow 契約測試。 |
+| pytest | pass：241 tests | 包含 mapping、PHI、CQL、IG export、Publisher warning policy、逐 Measure 規格 audit 與 publication workflow 契約測試。 |
 | SUSHI 3.20.0 | pass：0 errors / 0 warnings | FSH 可穩定產生 IG resources。 |
 | PHI gate | pass | 目前版本庫未檢出疑似病人識別資料；正式來源資料仍須在受控環境處理。 |
 | CQL CLI translation | pass | `cql-to-elm-cli 3.26.0` 可產生 ELM；FHIRHelpers 由 `hl7.fhir.uv.cql#2.0.0` 解析。 |
 | CQL runtime smoke | pass：20/20 Measures、46/46 criteria | 每個 Measure 所引用的 population／stratifier expression 均已在 ELM engine 執行；這只證明可執行性。 |
 | CQL branch assertions | pass with clinical limitations：20/20 Measures | 全部 Measure 已通過具預期結果的合成 R4 Bundle 分支案例；分布 Measure 另覆蓋全部列舉 strata、月份、年齡帶、缺值與非法值。QR-04 仍受真實前年度 cohort 阻擋，QR-05 仍是候選規則。 |
 | IG Publisher 2.3.2 resource validation | pass with warnings：0 errors / 232 warnings | 已消除原有錯誤，補齊 5 個缺失範例並升級 CRMI 2.0.0；其餘 warning 由機器可讀政策逐類鎖定。 |
-| 完整 IG website/package | pass：0 errors / 232 warnings / 0 broken links | GitHub Actions run `32414373852` 使用 Jekyll 與 Publisher 2.3.2，已保存網站、`qa.html`、`package.tgz` 與 warning audit artifact；QA integrity pass，Community Preview／Formal release block。 |
+| 完整 IG website/package | pass：0 errors / 232 warnings / 0 broken links | GitHub Actions run `32420689838` 使用 Jekyll 與 Publisher 2.3.2，已保存網站、`qa.html`、`package.tgz` 與 warning audit artifact；QA integrity pass，Community Preview／Formal release block。 |
 | Strict release QA | blocked | 正式 release gate 仍要求 0 warnings；完整 QA 的 232 個 warning 尚未逐一修正或完成具體審查紀錄。 |
 | Template supply-chain | blocked | Publisher 報告 `fhir.base.template#1.0.0` 已不再被視為安全；升級前不得宣告正式可發布。 |
 

@@ -16,12 +16,12 @@
 
 ## 驗證狀態（2026-08-21）
 
-- pytest：235 passed。
+- pytest：241 passed（新增逐 Measure 規格與發布證據 register 一致性檢查）。
 - SUSHI 3.20.0：0 errors、0 warnings。
 - PHI gate：pass。
 - CQL translation：pass；runtime smoke：20/20 Measures、46/46 criteria；目前具預期值的合成分支 assertions：20/20 Measures。
 - IG Publisher resource validation：0 errors、232 warnings。
-- 完整網站、`qa.html` 與 `package.tgz`：遠端 run `32414373852` 已通過，0 errors、232 warnings、0 broken links；warning audit 判定 QA integrity pass、Community Preview／Formal release block。
+- 完整網站、`qa.html` 與 `package.tgz`：遠端 run `32420689838` 已通過，0 errors、232 warnings、0 broken links；warning audit 判定 QA integrity pass、Community Preview／Formal release block。一般 Build run `32420689847` 亦完整通過。
 - Strict release：blocked；仍要求 0 warnings、0 broken links，且 Publisher 已指出 `fhir.base.template#1.0.0` 的供應鏈安全問題。
 
 ## 使用限制
@@ -33,4 +33,4 @@
 - 尚餘原始資料 golden cohort、QR-04 前年度 cohort、QR-05 人工 adjudication、QR-17 分群數規格釐清、正式 terminology 與跨院一致性驗證；合成測試通過不得取代這些證據。
 - QBC／P4P、TCR、TWPAS 的在地流程、VPN、回執、reconciliation 與治理簽核。
 
-因此不得將此 alpha 版本宣稱為正式臨床決策、品質申報或主管機關認證成果。完整門檻與阻擋項目見 [PUBLICATION_READINESS.md](PUBLICATION_READINESS.md)。
+因此不得將此 alpha 版本宣稱為正式臨床決策、品質申報或主管機關認證成果。完整門檻與阻擋項目見 [PUBLICATION_READINESS.md](PUBLICATION_READINESS.md)，逐 Measure 判定見 [SPECIFICATION_CORRECTNESS_AUDIT.md](SPECIFICATION_CORRECTNESS_AUDIT.md)。

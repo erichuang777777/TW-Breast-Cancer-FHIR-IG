@@ -13,7 +13,7 @@
 | 院內品管／季報 | block | 缺原始來源 mapping、正式 terminology、完整 reporting-period cohort、golden cohort 與逐案 reconciliation。 |
 | 跨院／正式申報 | block | 除上述項目外，仍缺跨實作驗證、在地治理、VPN／接收端回執與主管機關規則確認。 |
 
-## 必須使用的六種核對方法
+## 必須使用的六種資料正確性核對方法
 
 高風險資料與所有會改變分母、分子、排除或分層的欄位，六種方法必須全部通過。單純顯示欄位可依風險降低執行範圍，但不得省略來源追溯與 FHIR conformance。
 
@@ -27,6 +27,8 @@
 | 6 | 原始資料端到端 golden cohort | 原始列／事件到最終報表 | 由原始資料產生 FHIR，再計算 MeasureReport／報表；100% 個案逐案核對來源 fact、分母、分子、排除、stratum 與人工 override。零個未解釋差異。 | 去識別原始資料、Provenance、人工 truth set、輸出報表、接收端 receipt／reconciliation。 |
 
 這六種方法不是「六選一」。對 Measure 輸入與臨床 mapping 而言，它們是由來源到輸出的六層連續證據。
+
+若要由資料正確性進一步宣稱「正式發布」，還必須增加兩個 release control：具名的臨床／術語／資料治理簽核，以及隱私、資安、版本、artifact、接收端回執與跨院實作驗收。因此數字正確性是六層，正式發布合計是八項控制。逐 Measure 判定見 [FHIR IG 規格正確性稽核](SPECIFICATION_CORRECTNESS_AUDIT.md)。
 
 ## 數量與正確性門檻
 
