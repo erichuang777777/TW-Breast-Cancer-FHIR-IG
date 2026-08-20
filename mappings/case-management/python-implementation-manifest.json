@@ -1,46 +1,197 @@
 {
   "source": "D:/個管師/個管品管_1_品質核心指標統計/pipeline/criteria_manifest.json",
-  "generated_by": "pipeline/export_criteria_manifest.py，由 rules.CRITERION_IDS / rules.UNIMPLEMENTED_CRITERIA 產生",
+  "generated_by": "pipeline/export_criteria_manifest.py，由 rules.CRITERION_IDS / rules.UNIMPLEMENTED_CRITERIA / rules.TASK_LAYER_CRITERIA 產生",
   "families_covered": [
     "quality"
   ],
   "note": "quarterly 家族（bc-qr-*）的 Python 參考實作在另一個專案（個管品管_2_季報統計/scripts/quarterly_report.py），尚未經此清單稽核；該家族各列的 python_status 目前僅為宣稱，不受本清單驗證。",
-  "implemented": [
-    "D1-ER",
-    "D1-STAGE",
-    "D2-CSTAGE",
-    "D2-NNEG",
-    "D2-NOTNEOADJ",
-    "D2-SURGERY",
-    "D3-NODE2",
-    "D3-NOTIV",
-    "D3-STAGE",
-    "D3-SURGERY",
-    "D4-CNOTIV",
-    "D4-HER2",
-    "D4-NODE1",
-    "D4-PNOTIV",
-    "D5-STAGE",
-    "D5-SURGERY",
-    "D6-AGE70",
-    "D6-AGE70N0",
-    "D6-BCT",
-    "D6-NOTIV",
-    "D6-NPOS",
-    "D6-STAGE0",
-    "D6-STAGE1TO3",
-    "D6-SURGERY",
-    "N1-HT",
-    "N2-SLNB",
-    "N3-RT",
-    "N4-ANTIHER2",
-    "N5-CB",
-    "N6-RT"
-  ],
+  "implemented": {
+    "D1-ER": {
+      "indicator": 1,
+      "conditions": [
+        "ER>=10"
+      ]
+    },
+    "D1-STAGE": {
+      "indicator": 1,
+      "conditions": [
+        "期別I-III(病理優先)"
+      ]
+    },
+    "D2-NODE": {
+      "indicator": 2,
+      "conditions": [
+        "病理N陰性"
+      ]
+    },
+    "D2-STAGE": {
+      "indicator": 2,
+      "conditions": [
+        "臨床期別I-II"
+      ]
+    },
+    "D2-SURGERY-FIRST": {
+      "indicator": 2,
+      "conditions": [
+        "手術=1",
+        "非新輔助治療"
+      ]
+    },
+    "D3-MASTECTOMY": {
+      "indicator": 3,
+      "conditions": [
+        "術式=MRM/SM/NSM"
+      ]
+    },
+    "D3-NODE": {
+      "indicator": 3,
+      "conditions": [
+        "病理N>=2"
+      ]
+    },
+    "D3-STAGE": {
+      "indicator": 3,
+      "conditions": [
+        "病理期別I-III"
+      ]
+    },
+    "D4-HER2": {
+      "indicator": 4,
+      "conditions": [
+        "HER2陽性(分類B2/H)"
+      ]
+    },
+    "D4-NODE": {
+      "indicator": 4,
+      "conditions": [
+        "病理N>=1"
+      ]
+    },
+    "D5-STAGE": {
+      "indicator": 5,
+      "conditions": [
+        "臨床或病理期別I-III"
+      ]
+    },
+    "D5-SURGERY": {
+      "indicator": 5,
+      "conditions": [
+        "手術=1"
+      ]
+    },
+    "D6-SURGERY-BCT": {
+      "indicator": 6,
+      "conditions": [
+        "手術=1",
+        "術式=BCT"
+      ]
+    },
+    "N1-HT": {
+      "indicator": 1,
+      "conditions": [
+        "賀爾蒙治療=1"
+      ]
+    },
+    "N2-SLNB": {
+      "indicator": 2,
+      "conditions": [
+        "淋巴結術式=SLNB"
+      ]
+    },
+    "N3-RT": {
+      "indicator": 3,
+      "conditions": [
+        "放射線治療=1"
+      ]
+    },
+    "N4-ANTIHER2": {
+      "indicator": 4,
+      "conditions": [
+        "anti HER2藥物治療=1"
+      ]
+    },
+    "N5-BIOPSY-BEFORE": {
+      "indicator": 5,
+      "conditions": [
+        "切片=1"
+      ]
+    },
+    "N6-RT": {
+      "indicator": 6,
+      "conditions": [
+        "放射線治療=1"
+      ]
+    },
+    "X1-ER-LOW": {
+      "indicator": 1,
+      "conditions": [
+        "ER>=10"
+      ]
+    },
+    "X3-STAGE4": {
+      "indicator": 3,
+      "conditions": [
+        "臨床期別非IV"
+      ]
+    },
+    "X4-STAGE4": {
+      "indicator": 4,
+      "conditions": [
+        "臨床期別非IV",
+        "病理期別非IV"
+      ]
+    },
+    "X6-AGE-NODE-DEF": {
+      "indicator": 6,
+      "conditions": [
+        "非(年齡>=70且病理N0)"
+      ]
+    },
+    "X6-AGE-PRACTICE": {
+      "indicator": 6,
+      "conditions": [
+        "年齡<70"
+      ]
+    },
+    "X6-NODE-PRACTICE": {
+      "indicator": 6,
+      "conditions": [
+        "病理N陽性"
+      ]
+    },
+    "X6-STAGE4": {
+      "indicator": 6,
+      "conditions": [
+        "期別非IV"
+      ]
+    }
+  },
   "unimplemented": {
     "D4-SURGERY": "指標4 分母未檢查手術；補上後 2026Q1 由 5/5 變 3/3",
-    "D6-INVASIVE": "practice 僅測 病理期別 != '0'，4 例 病理期別=不適用 仍留在分母；補上後由 14/15 變 10/11",
+    "D6-INVASIVE": "practice 變體只用條件「病理期別非0」，4 例 病理期別=不適用 仍留在分母；definition 變體改用「病理期別I-III」，更接近本條件的真實要求（連帶排除「不適用」），但 2026Q1 委員會核定數字採 practice。補上後 practice 由 14/15 變 10/11",
     "N3-DOSE": "無劑量欄位，完全未評估",
     "X5-INSITU-STAGE4": "指標5 分母未排除期別 IV／原位癌；補上後由 94/94 變 92/92"
+  },
+  "task_layer": {
+    "IP-CLASS": {
+      "mechanism": "input-scoped",
+      "reason": "Class 1/2 篩選由個管師在來源工作表完成；rules.py 從已篩選過的「2_class_1_and_2」分頁讀取，不含篩選邏輯。"
+    },
+    "IP-QUARTER": {
+      "mechanism": "input-scoped",
+      "reason": "季別範圍由來源工作表本身決定（該季匯出檔只含該季個案），rules.py 不做日期區間判斷。"
+    },
+    "N5-ADH-RULE": {
+      "mechanism": "override",
+      "reason": "委員會決議的分子加回，透過 overrides.py 的「分子加回」機制逐案套用，不是 indicator_5_numerator 的條件式。"
+    },
+    "X1-TEAM": {
+      "mechanism": "override",
+      "reason": "委員會排除決議透過 overrides.py 的「分母排除」機制逐案套用，不是 indicator_1_denominator 的條件式。"
+    },
+    "X5-TEAM": {
+      "mechanism": "override",
+      "reason": "委員會排除決議透過 overrides.py 的「分母排除」機制逐案套用，不是 indicator_5_denominator 的條件式。"
+    }
   }
 }

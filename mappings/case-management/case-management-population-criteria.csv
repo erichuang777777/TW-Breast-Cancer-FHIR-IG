@@ -1,10 +1,10 @@
 ﻿measure_id,indicator_family,population_type,criterion_id,variant,criterion_zh,fhir_expression,depends_on_mapping,current_proxy,proxy_removed_by_fhir,cql_status,python_status,review_status,python_divergence
-bc-qi-00,quality,initial-population,IP-CLASS,both,個管師收案名單中 Class 分類為 1 或 2 的個案,task-only case list; not derivable from clinical resources,CM-TASK-001,none,no,drafted,implemented,design,
-bc-qi-00,quality,initial-population,IP-QUARTER,both,收案日期落在報告季別內,EpisodeOfCare.period.start within the reporting period,CM-BC-002,none,no,drafted,implemented,design,
+bc-qi-00,quality,initial-population,IP-CLASS,both,個管師收案名單中 Class 分類為 1 或 2 的個案,task-only case list; not derivable from clinical resources,CM-TASK-001,none,no,drafted,task-layer,design,
+bc-qi-00,quality,initial-population,IP-QUARTER,both,收案日期落在報告季別內,EpisodeOfCare.period.start within the reporting period,CM-BC-002,none,no,drafted,task-layer,design,
 bc-qi-01,quality,denominator,D1-STAGE,both,病理期別為 I-III；病理期別不存在時採臨床期別,"stage group observation where method indicates pathological, else clinical",CM-BC-004 CM-BC-005,none,no,drafted,implemented,design,
 bc-qi-01,quality,denominator-exclusion,D1-ER,both,ER < 10% 或未取得——與 X1-ER-LOW 同由 Denominator 1 Exclusion 表達,Observation.valueQuantity >= 10 '%',CM-BC-008,ER recorded as free text such as >95 or 僅RT; parsed by taking the first integer,yes,drafted,implemented,design,
 bc-qi-01,quality,denominator-exclusion,X1-ER-LOW,both,ER 介於 1-9% 或染色遺失,Observation.valueQuantity < 10 '%' or Observation.dataAbsentReason present,CM-BC-008,"unparseable ER strings are dropped by the rule and separately struck out by the team, reaching the same set by two routes",yes,drafted,implemented,design,
-bc-qi-01,quality,denominator-exclusion,X1-TEAM,both,團隊決議排除(僅來本院放療、外院資料不足、轉院未追蹤等),task-only exclusion register,CM-TASK-010,none,no,not-applicable,implemented,design,
+bc-qi-01,quality,denominator-exclusion,X1-TEAM,both,團隊決議排除(僅來本院放療、外院資料不足、轉院未追蹤等),task-only exclusion register,CM-TASK-010,none,no,not-applicable,task-layer,design,
 bc-qi-01,quality,numerator,N1-HT,both,分母中給予賀爾蒙治療者,MedicationRequest for hormone therapy exists,CM-BC-020,none,no,drafted,implemented,design,
 bc-qi-02,quality,denominator,D2-STAGE,both,臨床期別 I-II,clinical stage group observation in I IA IB II IIA IIB,CM-BC-004,none,no,drafted,implemented,design,
 bc-qi-02,quality,denominator,D2-NODE,both,最終病理腋下淋巴結為陰性(含 0(i-) 0(i+)),pathological N category in N0 N0(i-) N0(i+),CM-BC-006,none,no,drafted,implemented,design,
@@ -24,7 +24,7 @@ bc-qi-04,quality,numerator,N4-ANTIHER2,both,分母中手術前或手術後給予
 bc-qi-05,quality,denominator,D5-SURGERY,both,經過治療手術(全乳房切除或保留乳房手術含腋下淋巴結切除)治療乳癌者,completed breast surgery Procedure exists,CM-BC-014,none,no,drafted,implemented,design,
 bc-qi-05,quality,denominator,D5-STAGE,both,臨床或病理期別 I-III,either stage group observation in I-III,CM-BC-004 CM-BC-005,none,no,drafted,implemented,design,
 bc-qi-05,quality,denominator-exclusion,X5-INSITU-STAGE4,both,排除原位癌及轉移性乳癌,stage group observation equals 0 or IV,CM-BC-004 CM-BC-005,none,no,drafted,not-implemented,design,94/94 -> 92/92
-bc-qi-05,quality,denominator-exclusion,X5-TEAM,both,團隊決議排除(前次年度診斷、他院手術等),task-only exclusion register,CM-TASK-010,none,no,not-applicable,implemented,design,
+bc-qi-05,quality,denominator-exclusion,X5-TEAM,both,團隊決議排除(前次年度診斷、他院手術等),task-only exclusion register,CM-TASK-010,none,no,not-applicable,task-layer,design,
 bc-qi-05,quality,numerator,N5-BIOPSY-BEFORE,both,分母中手術進行至少前一天曾經組織學確診者,biopsy Procedure.performedDateTime or pathology DiagnosticReport.effectiveDateTime at least one day before Procedure.performedDateTime of the surgery,CM-BC-017 CM-BC-018 CM-BC-019,no biopsy or surgery dates exist; approximated by the presence of a core needle biopsy flag,yes,drafted,implemented,proxy-in-use,
 bc-qi-05,quality,numerator,N5-ADH-RULE,both,術前切片為 ADH 並進行診斷性手術，術後加做 SLNB 者仍為符合個案(2024/11/07 第43次會議、2025/06/05 癌委會),biopsy conclusionCode indicates atypical ductal hyperplasia and an axillary staging Procedure follows,CM-BC-016 CM-BC-019,applied case by case as a manual numerator add-back; five cases in 2026Q1,partly,drafted,manual-override,design,
 bc-qi-06,quality,denominator,D6-SURGERY-BCT,both,接受乳房保留手術者,Procedure with breast conserving surgery code exists,CM-BC-014 CM-BC-015,none,no,drafted,implemented,design,

@@ -47,13 +47,36 @@ maintenance liability.
 - `python-implementation-manifest.json` — which `criterion_id`s the Python
   reference implementation actually evaluates, generated from
   `個管品管_1_品質核心指標統計/pipeline/rules.py`'s `CRITERION_IDS` /
-  `UNIMPLEMENTED_CRITERIA` (see `pipeline/export_criteria_manifest.py` there).
+  `UNIMPLEMENTED_CRITERIA` / `TASK_LAYER_CRITERIA` (see
+  `pipeline/export_criteria_manifest.py` there; re-run it and re-copy the
+  output here whenever `rules.py` changes - this file does not update itself).
   Its `families_covered` is `["quality"]` only: the **`quarterly` family's**
   Python reference implementation lives in a separate project
   (`個管品管_2_季報統計/scripts/quarterly_report.py`) that has not been audited
   against this CSV, so `bc-qr-*` rows' `python_status` values are currently
   **unverified claims**, not checked facts - `tests/test_case_management_measures.py`
-  only compares `python_status` against this manifest for the `quality` family.
+  only compares `python_status` against this manifest for the `quality` family,
+  and requires the manifest's id set to exactly match this CSV's `quality`
+  `criterion_id` set (see "python_status vocabulary" below).
+
+### `python_status` vocabulary
+
+Six values, no others:
+
+| value | meaning |
+|---|---|
+| `implemented` | rules.py evaluates this criterion; the manifest names which condition label(s) |
+| `not-implemented` | rules.py does not evaluate this criterion at all |
+| `divergent` | rules.py evaluates something materially different from what the criterion states |
+| `not-evaluable` | no data exists anywhere to evaluate this criterion (e.g. `N3-DOSE` - no dose field) |
+| `manual-override` | applied case by case as a committee decision recorded with a reason (e.g. `N5-ADH-RULE`) |
+| `task-layer` | deliberately outside rules.py's condition functions - either the source workbook is already scoped so the criterion holds for every row (`IP-CLASS`, `IP-QUARTER`), or it is a per-case human decision applied through `overrides.py` (`X1-TEAM`, `X5-TEAM`) |
+
+`not-implemented`, `divergent` and `not-evaluable` map to the manifest's
+`unimplemented` bucket; `task-layer` and `manual-override` map to `task_layer`
+(distinguished there by a `mechanism` of `input-scoped` or `override`);
+everything else is `implemented`. A `not-implemented` or `divergent` row must
+also carry a non-empty `python_divergence`.
 
 ## Not the NHI P4P programme indicators
 

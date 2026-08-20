@@ -255,10 +255,16 @@ def test_committee_and_case_manager_decisions_stay_out_of_the_measures():
 # The eighteen tests above bind Measure <-> CQL <-> criteria table together,
 # but say nothing about whether the criteria table's python_status column is
 # true. python-implementation-manifest.json is generated from the pipeline
-# that actually produces the quarterly report (pipeline/rules.py's
-# CRITERION_IDS / UNIMPLEMENTED_CRITERIA, exported by
+# that actually produces the quality report (pipeline/rules.py's
+# CRITERION_IDS / UNIMPLEMENTED_CRITERIA / TASK_LAYER_CRITERIA, exported by
 # pipeline/export_criteria_manifest.py); comparing against it is what turns
 # "CQL and Python agree" from a claim in a comment into a check that fails.
+#
+# The manifest's id set and this CSV's quality id set are required to be
+# exactly equal - every quality criterion_id must be classified into exactly
+# one of the manifest's three buckets, with no silent gaps in either
+# direction. A manifest that only partially overlaps the CSV is not "checking
+# what it knows about"; it is quietly reducing how much gets checked.
 # --------------------------------------------------------------------------
 
 MANIFEST = MAPPINGS / "python-implementation-manifest.json"
@@ -277,28 +283,60 @@ def test_the_reference_implementation_manifest_exists_and_declares_its_scope():
     assert data["note"], "an unscoped manifest must say so, not go silent about it"
 
 
-def test_quality_criteria_covered_by_the_manifest_match_its_python_status():
-    """Every criterion_id the manifest actually knows about (it was generated
-    from rules.py, not from this CSV, so it does not necessarily know about
-    every row here) must have the same python_status the manifest computed.
-    Flip a covered row's status without re-running the pipeline export and
-    this fails - that is the point."""
+def test_the_manifest_and_the_criteria_table_cover_the_same_quality_ids():
+    """The manifest's id set and the CSV's quality criterion_id set must be
+    exactly equal in both directions. A criterion_id in one but not the other
+    is either a stale manifest (rules.py moved on and nobody regenerated it)
+    or an uncovered criterion silently passing as checked - either way this
+    must break the build loudly, not quietly reduce how much gets checked."""
     data = manifest()
-    implemented = set(data["implemented"])
-    unimplemented = set(data["unimplemented"])
-    covered = implemented | unimplemented
-    checked = 0
-    for row in rows(CRITERIA):
-        if row["indicator_family"] != "quality" or row["criterion_id"] not in covered:
-            continue
-        checked += 1
-        if row["criterion_id"] in implemented:
-            assert row["python_status"] == "implemented", row["criterion_id"]
-        else:
-            assert row["python_status"] in ("not-implemented", "divergent",
-                                            "not-evaluable"), row["criterion_id"]
-    # the three known divergences plus N3-DOSE must all have been exercised
-    assert checked >= 4
+    manifest_ids = (set(data["implemented"]) | set(data["unimplemented"])
+                    | set(data["task_layer"]))
+    csv_ids = {row["criterion_id"] for row in rows(CRITERIA)
+              if row["indicator_family"] == "quality"}
+    only_in_manifest = manifest_ids - csv_ids
+    only_in_csv = csv_ids - manifest_ids
+    assert not only_in_manifest, (
+        "manifest has ids the criteria table does not: {}".format(
+            sorted(only_in_manifest)))
+    assert not only_in_csv, (
+        "criteria table has quality ids the manifest does not cover: {}".format(
+            sorted(only_in_csv)))
+
+
+def test_quality_criteria_match_the_manifest_bucket_they_fall_in():
+    """Every quality criterion_id's python_status must agree with which of the
+    manifest's three buckets (implemented / unimplemented / task_layer) it is
+    generated into. Flip a row's status without re-running the pipeline
+    export and this fails - that is the point. Ids and bucket membership are
+    already checked exhaustively above; this test only has to check status
+    values, so it does not need its own coverage counter."""
+    data = manifest()
+    implemented = data["implemented"]
+    unimplemented = data["unimplemented"]
+    task_layer = data["task_layer"]
+
+    by_id = {row["criterion_id"]: row for row in rows(CRITERIA)
+             if row["indicator_family"] == "quality"}
+
+    for criterion_id in implemented:
+        row = by_id[criterion_id]
+        assert row["python_status"] == "implemented", criterion_id
+
+    for criterion_id in unimplemented:
+        row = by_id[criterion_id]
+        assert row["python_status"] in ("not-implemented", "divergent",
+                                        "not-evaluable"), criterion_id
+        if row["python_status"] in ("not-implemented", "divergent"):
+            assert row["python_divergence"], (
+                "{} is {} but has no python_divergence".format(
+                    criterion_id, row["python_status"]))
+
+    for criterion_id, entry in task_layer.items():
+        row = by_id[criterion_id]
+        assert row["python_status"] in ("task-layer", "manual-override"), criterion_id
+        assert entry.get("mechanism") in ("input-scoped", "override"), (
+            "{} task_layer entry has no valid mechanism".format(criterion_id))
 
 
 def test_the_quarterly_family_exemption_from_manifest_checking_is_explicit():

@@ -17,6 +17,7 @@ QUARTERLY_COHORTS = {"bc-qr-10", "bc-qr-11", "bc-qr-12", "bc-qr-13", "bc-qr-14",
 FAMILIES = {"quality", "quarterly", "both"}
 PYTHON_STATUS_VALUES = {
     "implemented", "not-implemented", "divergent", "not-evaluable", "manual-override",
+    "task-layer",
 }
 POPULATION_TYPES = {
     "initial-population",
