@@ -1,0 +1,17 @@
+{
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-pathological-stage-group-code": {
+    "synthetic-test-only": [
+      { "system": "https://example.org/cm-test", "code": "pathological-stage" }
+    ]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-estrogen-receptor-code": {
+    "synthetic-test-only": [
+      { "system": "https://example.org/cm-test", "code": "er-percent" }
+    ]
+  },
+  "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/ValueSet/cm-hormone-therapy-medication": {
+    "synthetic-test-only": [
+      { "system": "https://example.org/cm-test", "code": "hormone-therapy" }
+    ]
+  }
+}

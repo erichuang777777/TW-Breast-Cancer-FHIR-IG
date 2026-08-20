@@ -55,6 +55,15 @@ jobs:
           distribution: temurin
           java-version: "17"
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install CQL evaluation dependencies
+        working-directory: ig/tools
+        run: npm ci
+
       - name: Fetch Coursier
         run: curl -sL -o coursier.jar "https://github.com/coursier/coursier/releases/latest/download/coursier.jar"
 
@@ -83,5 +92,21 @@ jobs:
           java -cp "$(cat classpath.txt)" org.cqframework.cql.cql2elm.cli.Main \
             --input ig/input/cql/BreastCancerCaseManagement.cql \
             --output elm-out \
-            --format XML \
+            --format JSON \
             --signatures Overloads
+
+      # FHIRHelpers 4.0.1 is pinned to the official CQFramework execution
+      # example commit. It is test tooling only and is not published by this IG.
+      - name: Fetch FHIRHelpers ELM
+        run: |
+          curl -sL -o elm-out/FHIRHelpers.json \
+            "https://raw.githubusercontent.com/cqframework/cql-exec-examples/e859b971234a4953599d1626b5182077f0652cac/fhir-helpers/r4/FHIRHelpers.json"
+
+      - name: Execute bc-qi-01 synthetic CQL cases
+        run: |
+          node ig/tools/cql-evaluation/run-bc-qi-01.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/bc-qi-01-cases.json \
+            tests/fixtures/cql/bc-qi-01-value-sets.json \
+            tests/fixtures/cql/MeasureReport-bc-qi-01-synthetic.json

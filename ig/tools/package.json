@@ -1,5 +1,9 @@
 {
   "dependencies": {
     "fsh-sushi": "3.20.0"
+  },
+  "devDependencies": {
+    "cql-exec-fhir": "2.1.6",
+    "cql-execution": "3.3.2"
   }
 }

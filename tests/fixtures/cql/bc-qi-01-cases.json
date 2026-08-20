@@ -1,0 +1,102 @@
+[
+  {
+    "id": "eligible-treated",
+    "expected": {
+      "Initial Population": true,
+      "Denominator 1": true,
+      "Denominator 1 Exclusion": false,
+      "Numerator 1": true
+    },
+    "bundle": {
+      "resourceType": "Bundle",
+      "type": "collection",
+      "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-01-treated", "birthDate": "1970-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-treated", "status": "active", "patient": { "reference": "Patient/bc-qi-01-treated" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "stage-treated", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-01-treated" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "II" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "er-treated", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "er-percent" }] }, "subject": { "reference": "Patient/bc-qi-01-treated" }, "valueQuantity": { "value": 80, "unit": "%", "system": "http://unitsofmeasure.org", "code": "%" } } },
+        { "resource": { "resourceType": "MedicationRequest", "id": "hormone-treated", "status": "active", "intent": "order", "medicationCodeableConcept": { "coding": [{ "system": "https://example.org/cm-test", "code": "hormone-therapy" }] }, "subject": { "reference": "Patient/bc-qi-01-treated" }, "authoredOn": "2026-03-01" } }
+      ]
+    }
+  },
+  {
+    "id": "eligible-untreated",
+    "expected": {
+      "Initial Population": true,
+      "Denominator 1": true,
+      "Denominator 1 Exclusion": false,
+      "Numerator 1": false
+    },
+    "bundle": {
+      "resourceType": "Bundle",
+      "type": "collection",
+      "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-01-untreated", "birthDate": "1975-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-untreated", "status": "active", "patient": { "reference": "Patient/bc-qi-01-untreated" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "stage-untreated", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-01-untreated" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "II" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "er-untreated", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "er-percent" }] }, "subject": { "reference": "Patient/bc-qi-01-untreated" }, "valueQuantity": { "value": 80, "unit": "%", "system": "http://unitsofmeasure.org", "code": "%" } } }
+      ]
+    }
+  },
+  {
+    "id": "low-er-excluded",
+    "expected": {
+      "Initial Population": true,
+      "Denominator 1": true,
+      "Denominator 1 Exclusion": true,
+      "Numerator 1": false
+    },
+    "bundle": {
+      "resourceType": "Bundle",
+      "type": "collection",
+      "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-01-low-er", "birthDate": "1980-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-low-er", "status": "active", "patient": { "reference": "Patient/bc-qi-01-low-er" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "stage-low-er", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-01-low-er" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "II" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "er-low", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "er-percent" }] }, "subject": { "reference": "Patient/bc-qi-01-low-er" }, "valueQuantity": { "value": 5, "unit": "%", "system": "http://unitsofmeasure.org", "code": "%" } } }
+      ]
+    }
+  },
+  {
+    "id": "missing-er-excluded",
+    "expected": {
+      "Initial Population": true,
+      "Denominator 1": true,
+      "Denominator 1 Exclusion": true,
+      "Numerator 1": false
+    },
+    "bundle": {
+      "resourceType": "Bundle",
+      "type": "collection",
+      "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-01-missing-er", "birthDate": "1985-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-missing-er", "status": "active", "patient": { "reference": "Patient/bc-qi-01-missing-er" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "stage-missing-er", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-01-missing-er" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "II" }] } } }
+      ]
+    }
+  },
+  {
+    "id": "stage-iv-not-denominator",
+    "expected": {
+      "Initial Population": true,
+      "Denominator 1": false,
+      "Denominator 1 Exclusion": true,
+      "Numerator 1": false
+    },
+    "bundle": {
+      "resourceType": "Bundle",
+      "type": "collection",
+      "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-01-stage-iv", "birthDate": "1990-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-stage-iv", "status": "active", "patient": { "reference": "Patient/bc-qi-01-stage-iv" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "stage-iv", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-01-stage-iv" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "IV" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "er-stage-iv", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "er-percent" }] }, "subject": { "reference": "Patient/bc-qi-01-stage-iv" }, "valueQuantity": { "value": 5, "unit": "%", "system": "http://unitsofmeasure.org", "code": "%" } } }
+      ]
+    }
+  }
+]

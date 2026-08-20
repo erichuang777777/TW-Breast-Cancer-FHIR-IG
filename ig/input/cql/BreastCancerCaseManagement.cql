@@ -30,12 +30,13 @@ case-management-terminology.fsh. Reading it from Task rather than inferring it
 from clinical resources is deliberate: an inferred administrative category
 would be a guess presented as a fact.
 
-STATUS: drafted, not yet translated. The clinical value sets it references are
-declared placeholders with no codes, so this library cannot be executed until
-the terminology in mappings/case-management/breast-common-to-case-management.csv
-has been verified against a published release and the value sets populated. The
-administrative code systems are enumerated, because the case management team is
-their authority and there is nothing to verify them against.
+STATUS: drafted. The full library translates successfully. bc-qi-01 is executed
+in CI against synthetic R4 Bundles with a test-only terminology service; those
+synthetic codes are not published in the IG ValueSets. Clinical execution still
+waits for the terminology in
+mappings/case-management/breast-common-to-case-management.csv to be verified
+against a published release and for source-to-FHIR integration. The administrative
+code systems are enumerated because the case management team is their authority.
 */
 
 library BreastCancerCaseManagement version '1.0.0'

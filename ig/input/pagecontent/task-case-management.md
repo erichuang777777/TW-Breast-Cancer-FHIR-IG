@@ -80,7 +80,13 @@
 | `D6-INVASIVE` | 指標6 分母須為侵犯性乳癌（病理期別非 0 且非空） | rules.py practice 僅測「病理期別 != '0'」，「不適用」仍留在分母 | 14/15 → 10/11 |
 | `N3-DOSE` | 指標3 分子須驗證放射劑量 ≧4000 cGy | rules.py 與 CQL 皆**完全未評估**（無劑量欄位） | 無法評估 |
 
-**Acceptance 段落所寫的「CQL 與 Python 參考實作在同一組合成資料上逐案一致」尚未達成**，不只是因為 CQL 尚未逐案比對執行，也因為上述三項（`D4-SURGERY`、`X5-INSITU-STAGE4`、`D6-INVASIVE`）目前就是已知、已記錄、且刻意保留的分歧。`N3-DOSE` 雙邊皆誠實標示未評估，不算分歧。逐案一致要嘛等資料缺口補齊，要嘛委員會決議接受分歧並記錄理由，才能算數。
+**Acceptance 段落所寫的「CQL 與 Python 參考實作在同一組合成資料上逐案一致」尚未達成**：目前只有 `bc-qi-01` 建立真正的合成 CQL execution 基線，其餘 Measure 尚未逐案執行；而且上述三項（`D4-SURGERY`、`X5-INSITU-STAGE4`、`D6-INVASIVE`）目前就是已知、已記錄、且刻意保留的分歧。`N3-DOSE` 雙邊皆誠實標示未評估，不算分歧。全體逐案一致要嘛等資料缺口補齊，要嘛委員會決議接受分歧並記錄理由，才能算數。
+
+### 合成 CQL execution 基線
+
+`bc-qi-01` 已用 CQFramework `cql-execution` 與 R4 `cql-exec-fhir` 實際執行，不再只停在 CQL→ELM 翻譯。五組完全合成 Bundle 分別涵蓋符合分子、只符合分母、ER <10% 排除、ER 缺值排除與 Stage IV 不進分母；預期聚合為 initial population 5、denominator 4、denominator exclusion 2、numerator 1，並與合成 `MeasureReport` fixture 完整比對。
+
+正式臨床 ValueSet 仍維持空佔位。execution test 透過獨立、明確標示 `synthetic-test-only` 的代碼服務辨識測試資料，不會把未查證代碼寫入 IG。這證明的是 canonical FHIR facts → CQL → MeasureReport 的執行路徑；原始院內資料 → canonical FHIR facts、正式術語與真實資料驗收仍為 pending。
 
 ## 個管季報（`quarterly`）
 

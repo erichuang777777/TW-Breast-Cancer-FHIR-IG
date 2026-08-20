@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added real ELM execution for `bc-qi-01` against five synthetic R4 Bundles, with test-only terminology isolation and an expected aggregate MeasureReport gate in CI.
 - Added a reproducible PHI-free source-structure audit for the combined case-management quality and quarterly-report Task, covering workbook variants, field provenance, FHIR mapping coverage, and blocking review items.
 - Added privacy-safe monthly Cancer Care Plan batch and JSON/XLSX/PDF companion audits, documented the 2026-01 six-variant baseline, and clarified the path from raw clinical facts to future care-plan population.
 - Updated the companion audit to use the declared PyMuPDF runtime dependency and to count XLSX formulas from a formula-preserving workbook view.
