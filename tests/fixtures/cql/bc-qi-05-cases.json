@@ -1,0 +1,67 @@
+[
+  {
+    "id": "biopsy-day-before-surgery",
+    "expected": { "Initial Population": true, "Denominator 5": true, "Denominator 5 Exclusion": false, "Numerator 5": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qi-05-before", "birthDate": "1970-01-01" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi05-before", "status": "active", "patient": { "reference": "Patient/bc-qi-05-before" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qi05-before", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/bc-qi-05-before" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "II" }] } } },
+      { "resource": { "resourceType": "Procedure", "id": "biopsy-qi05-before", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "core-needle-biopsy" }] }, "subject": { "reference": "Patient/bc-qi-05-before" }, "performedDateTime": "2026-02-28T23:59:59+08:00" } },
+      { "resource": { "resourceType": "Procedure", "id": "surgery-qi05-before", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "other-breast-surgery" }] }, "subject": { "reference": "Patient/bc-qi-05-before" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+    ] }
+  },
+  {
+    "id": "same-day-biopsy-boundary",
+    "expected": { "Initial Population": true, "Denominator 5": true, "Denominator 5 Exclusion": false, "Numerator 5": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qi-05-same-day", "birthDate": "1970-01-01" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi05-same-day", "status": "active", "patient": { "reference": "Patient/bc-qi-05-same-day" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qi05-same-day", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/bc-qi-05-same-day" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "I" }] } } },
+      { "resource": { "resourceType": "Procedure", "id": "biopsy-qi05-same-day", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "core-needle-biopsy" }] }, "subject": { "reference": "Patient/bc-qi-05-same-day" }, "performedDateTime": "2026-03-01T08:00:00+08:00" } },
+      { "resource": { "resourceType": "Procedure", "id": "surgery-qi05-same-day", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "other-breast-surgery" }] }, "subject": { "reference": "Patient/bc-qi-05-same-day" }, "performedDateTime": "2026-03-01T16:00:00+08:00" } }
+    ] }
+  },
+  {
+    "id": "missing-biopsy",
+    "expected": { "Initial Population": true, "Denominator 5": true, "Denominator 5 Exclusion": false, "Numerator 5": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qi-05-no-biopsy", "birthDate": "1970-01-01" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi05-no-biopsy", "status": "active", "patient": { "reference": "Patient/bc-qi-05-no-biopsy" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qi05-no-biopsy", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-05-no-biopsy" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "III" }] } } },
+      { "resource": { "resourceType": "Procedure", "id": "surgery-qi05-no-biopsy", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "other-breast-surgery" }] }, "subject": { "reference": "Patient/bc-qi-05-no-biopsy" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+    ] }
+  },
+  {
+    "id": "metastatic-exclusion",
+    "expected": { "Initial Population": true, "Denominator 5": true, "Denominator 5 Exclusion": true, "Numerator 5": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qi-05-metastatic", "birthDate": "1970-01-01" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi05-metastatic", "status": "active", "patient": { "reference": "Patient/bc-qi-05-metastatic" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "clinical-stage-qi05-metastatic", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/bc-qi-05-metastatic" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "IV" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "path-stage-qi05-metastatic", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-05-metastatic" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "III" }] } } },
+      { "resource": { "resourceType": "Procedure", "id": "biopsy-qi05-metastatic", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "core-needle-biopsy" }] }, "subject": { "reference": "Patient/bc-qi-05-metastatic" }, "performedDateTime": "2026-02-28T00:00:00+08:00" } },
+      { "resource": { "resourceType": "Procedure", "id": "surgery-qi05-metastatic", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "other-breast-surgery" }] }, "subject": { "reference": "Patient/bc-qi-05-metastatic" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+    ] }
+  },
+  {
+    "id": "stage-zero-exclusion",
+    "expected": { "Initial Population": true, "Denominator 5": false, "Denominator 5 Exclusion": true, "Numerator 5": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qi-05-stage-zero", "birthDate": "1970-01-01" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi05-stage-zero", "status": "active", "patient": { "reference": "Patient/bc-qi-05-stage-zero" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qi05-stage-zero", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-stage" }] }, "subject": { "reference": "Patient/bc-qi-05-stage-zero" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "0" }] } } },
+      { "resource": { "resourceType": "Procedure", "id": "biopsy-qi05-stage-zero", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "core-needle-biopsy" }] }, "subject": { "reference": "Patient/bc-qi-05-stage-zero" }, "performedDateTime": "2026-02-28T00:00:00+08:00" } },
+      { "resource": { "resourceType": "Procedure", "id": "surgery-qi05-stage-zero", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "other-breast-surgery" }] }, "subject": { "reference": "Patient/bc-qi-05-stage-zero" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+    ] }
+  },
+  {
+    "id": "missing-stage",
+    "expected": { "Initial Population": true, "Denominator 5": false, "Denominator 5 Exclusion": false, "Numerator 5": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qi-05-missing-stage", "birthDate": "1970-01-01" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi05-missing-stage", "status": "active", "patient": { "reference": "Patient/bc-qi-05-missing-stage" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Procedure", "id": "biopsy-qi05-missing-stage", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "core-needle-biopsy" }] }, "subject": { "reference": "Patient/bc-qi-05-missing-stage" }, "performedDateTime": "2026-02-28T00:00:00+08:00" } },
+      { "resource": { "resourceType": "Procedure", "id": "surgery-qi05-missing-stage", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "other-breast-surgery" }] }, "subject": { "reference": "Patient/bc-qi-05-missing-stage" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+    ] }
+  }
+]

@@ -13,6 +13,7 @@ ASSERTED_RUNNER = ROOT / "ig" / "tools" / "cql-evaluation" / "run-asserted-cases
 QI02_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-02-cases.json"
 QI03_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-03-cases.json"
 QI04_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-04-cases.json"
+QI05_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-05-cases.json"
 WORKFLOW = ROOT / ".github" / "workflows" / "build.yml"
 
 
@@ -164,3 +165,26 @@ def test_bc_qi_04_assertions_cover_ihc_ish_node_treatment_and_metastatic_branche
     workflow = WORKFLOW.read_text(encoding="utf-8")
     assert "Execute bc-qi-04 asserted CQL branches" in workflow
     assert "bc-qi-04-cases.json" in workflow
+
+
+def test_bc_qi_05_assertions_cover_biopsy_timing_stage_and_missing_data():
+    by_id = {case["id"]: case["expected"] for case in load(QI05_CASES)}
+    assert set(by_id) == {
+        "biopsy-day-before-surgery",
+        "same-day-biopsy-boundary",
+        "missing-biopsy",
+        "metastatic-exclusion",
+        "stage-zero-exclusion",
+        "missing-stage",
+    }
+    assert by_id["biopsy-day-before-surgery"]["Numerator 5"] is True
+    assert by_id["same-day-biopsy-boundary"]["Numerator 5"] is False
+    assert by_id["missing-biopsy"]["Numerator 5"] is False
+    assert by_id["metastatic-exclusion"]["Denominator 5 Exclusion"] is True
+    assert by_id["stage-zero-exclusion"]["Denominator 5"] is False
+    assert by_id["stage-zero-exclusion"]["Denominator 5 Exclusion"] is True
+    assert by_id["missing-stage"]["Denominator 5"] is False
+
+    workflow = WORKFLOW.read_text(encoding="utf-8")
+    assert "Execute bc-qi-05 asserted CQL branches" in workflow
+    assert "bc-qi-05-cases.json" in workflow
