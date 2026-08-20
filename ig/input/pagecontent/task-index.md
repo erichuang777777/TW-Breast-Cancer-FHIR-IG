@@ -11,6 +11,7 @@ Task 是業務 Use Case，不必然等於 FHIR `Task` Resource。只有需要交
 | TWPAS 癌症用藥事前審查 | 架構與 Mapping 草稿 | 重用診斷、分期、marker、ECOG、報告、既有治療及 outcome | 由 adapter 產生符合官方 `tw.gov.mohw.nhi.pas#1.2.5` 的 Apply Bundle；本 IG 不重製官方 Profiles |
 | 癌症診療計畫書產生 | 尚未建立；目前只作 bridge input | 診斷、分期、marker、治療與 Provenance | Composition／document Bundle 候選 |
 | 乳癌藥物事前審查 | 尚未建立 | 預計重用診斷、分期、marker、MedicationRequest | 應優先評估 TWPAS |
+| [個管指標](task-case-management.html) | Draft：6 項品質指標與季報 5 比率 9 分布表；20 個 Measure、共用 Library(CQL) 與 MeasureReport Profile 已建，臨床 ValueSet 待代碼查證 | 重用分期、marker、手術、放療、用藥、就診與轉院機構事實 | Measure、Library(CQL)、MeasureReport、委員會報告與季報工作表 |
 | [癌症登記](task-tcr.html) | Draft：長表 99 欄 Questionnaire、48 欄已驗證碼表 | 預計重用診斷、病理、分期、治療與 outcome | 癌登長表申報列、Task／QuestionnaireResponse |
 | 乳癌病理交換 | 尚未建立 | 預計重用診斷與 marker | DiagnosticReport／Observation |
 | 多專科討論 | 尚未建立 | 預計重用所有 canonical facts | 會議決議／CarePlan／Composition 候選 |

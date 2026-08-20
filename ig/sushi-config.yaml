@@ -61,6 +61,8 @@ pages:
     title: TWPAS 癌藥事前審查 Task
   twpas-crosswalk.md:
     title: 乳癌共同資料至 TWPAS 對照
+  task-case-management.md:
+    title: 個管指標 Task
   task-tcr.md:
     title: 癌症登記 Task
   tcr-code-tables.md:
@@ -118,6 +120,7 @@ menu:
     QBC／P4P Task: task-qbc.html
     TWPAS 癌藥事前審查 Task: task-twpas.html
     乳癌共同資料至 TWPAS 對照: twpas-crosswalk.html
+    個管指標 Task: task-case-management.html
     癌症登記 Task: task-tcr.html
     使用情境: usecases.html
   癌登規格:
