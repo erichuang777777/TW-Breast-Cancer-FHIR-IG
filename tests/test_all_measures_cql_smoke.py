@@ -20,6 +20,7 @@ QR02_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-02-cases.json"
 QR03_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-03-cases.json"
 QR04_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-04-cases.json"
 QR05_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-05-cases.json"
+QR10_12_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-10-12-cases.json"
 WORKFLOW = ROOT / ".github" / "workflows" / "build.yml"
 
 
@@ -368,3 +369,45 @@ def test_bc_qr_05_candidate_assertions_cover_temporal_and_missing_date_branches(
     workflow = WORKFLOW.read_text(encoding="utf-8")
     assert "Execute bc-qr-05 candidate CQL branches" in workflow
     assert "bc-qr-05-cases.json" in workflow
+
+
+def test_bc_qr_10_through_12_cover_all_admin_values_month_boundaries_and_rejections():
+    cases = load(QR10_12_CASES)
+    by_id = {case["id"]: case["expected"] for case in cases}
+    categories = {
+        expected["Case Entry Category"]
+        for expected in by_id.values()
+        if expected.get("Case Entry Category") is not None
+    }
+    assert categories == {
+        "new-diagnosis", "existing-case", "delayed-entry-same-year",
+        "delayed-entry-prior-year", "first-recurrence-curable",
+        "first-recurrence-noncurable",
+    }
+    statuses = {
+        expected["Case Status Reported"]
+        for expected in by_id.values()
+        if expected.get("Case Status Reported") is not None
+    }
+    assert statuses == {
+        "diagnosis", "treatment", "clinical-trial", "follow-up", "palliative",
+        "refused-interrupted", "closed",
+    }
+    assert by_id["new-diagnosis-diagnosis-january"]["Case Entry Month"] == 1
+    assert by_id["existing-treatment-december"]["Case Entry Month"] == 12
+    assert by_id["staging-overrides-treatment"]["Case Status"] == "treatment"
+    assert by_id["staging-overrides-treatment"]["Case Status Reported"] == "diagnosis"
+    assert by_id["missing-task-values"]["Case Entry Category"] is None
+    assert by_id["invalid-system-and-code-rejected"] == {
+        "Case Entry Category": None,
+        "Case Status": None,
+        "Case Status Reported": None,
+    }
+
+    cql = CQL.read_text(encoding="utf-8")
+    assert "AllowedCodes List<String>" in cql
+    assert "ValueCoding.system = ValueSystem" in cql
+    measures = MEASURES.read_text(encoding="utf-8")
+    assert 'criteria.expression = "Case Status Reported"' in measures
+    workflow = WORKFLOW.read_text(encoding="utf-8")
+    assert "Execute bc-qr-10 through 12 stratifier assertions" in workflow

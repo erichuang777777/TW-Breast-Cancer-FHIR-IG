@@ -451,7 +451,7 @@ define "Quarterly Caseload":
 // Read from Task.input, never inferred. An inferred administrative category is
 // a guess wearing the clothes of a recorded fact.
 
-define function "Case Input Code"(InputType String):
+define function "Case Input Code"(InputType String, ValueSystem String, AllowedCodes List<String>):
   First(
     (flatten(
       [Task] CaseTask
@@ -465,37 +465,75 @@ define function "Case Input Code"(InputType String):
       )
       return First(
         ((TaskInput.value as FHIR.CodeableConcept).coding) ValueCoding
+          where ValueCoding.system = ValueSystem
+            and ValueCoding.code in AllowedCodes
           return ValueCoding.code.value
       )
   )
 
 // S10-IDENTITY and IP-NEWDX (CM-TASK-002)
 define "Case Entry Category":
-  "Case Input Code"('case-entry-category')
+  "Case Input Code"(
+    'case-entry-category',
+    'https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category',
+    { 'new-diagnosis', 'existing-case', 'delayed-entry-same-year',
+      'delayed-entry-prior-year', 'first-recurrence-curable',
+      'first-recurrence-noncurable' }
+  )
 
 // S12-DYNAMIC (CM-TASK-003)
 define "Case Status":
-  "Case Input Code"('case-status')
+  "Case Input Code"(
+    'case-status',
+    'https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-status',
+    { 'diagnosis', 'treatment', 'clinical-trial', 'follow-up', 'palliative',
+      'refused-interrupted', 'closed' }
+  )
 
 // S13-CLOSURE (CM-TASK-003, supported by CM-BC-031 and CM-BC-036)
 define "Closure Reason":
-  "Case Input Code"('closure-reason')
+  "Case Input Code"(
+    'closure-reason',
+    'https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-closure-reason',
+    { 'death', 'transferred', 'refused-return', 'critical-aad' }
+  )
 
 // S15-CLASS (CM-TASK-001)
 define "Registry Case Class":
-  "Case Input Code"('registry-case-class')
+  "Case Input Code"(
+    'registry-case-class',
+    'https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-registry-case-class',
+    { 'class-0', 'class-1', 'class-2', 'class-3' }
+  )
 
 // CM-TASK-004 and CM-TASK-005
 define "Retention Disposition":
-  "Case Input Code"('retention-disposition')
+  "Case Input Code"(
+    'retention-disposition',
+    'https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-retention-disposition',
+    { 'stay', 'transfer-during-staging', 'no-treatment-no-return',
+      'untreated-return-over-1m', 'considering-return-under-1m',
+      'staging-in-progress', 'death-during-staging' }
+  )
 
 // CM-TASK-006
 define "Curative Treatment Disposition":
-  "Case Input Code"('curative-treatment-disposition')
+  "Case Input Code"(
+    'curative-treatment-disposition',
+    'https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-curative-treatment-disposition',
+    { 'in-curative-treatment', 'death-during-treatment',
+      'transfer-during-treatment', 'physician-advised-stop', 'not-advisable',
+      'active-surveillance', 'noncurative' }
+  )
 
 // CM-TASK-007
 define "Treatment Completion":
-  "Case Input Code"('treatment-completion')
+  "Case Input Code"(
+    'treatment-completion',
+    'https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-treatment-completion',
+    { 'completed-here', 'completed-then-death', 'completed-then-transfer',
+      'incomplete-refused-part', 'incomplete-interrupted' }
+  )
 
 // IP-NEWDX: only new diagnoses enter the quarterly tables and rates.
 define "New Diagnosis Case":
@@ -519,6 +557,13 @@ define "Staging In Progress":
           where AbsentCoding.code = 'temp-unknown'
       )
   )
+
+// S12-DYNAMIC reporting correction. The current source records a patient who
+// is still being staged as treatment; the worksheet then moves that case to
+// diagnosis by hand. Keep the recorded Task value available as "Case Status",
+// but make the report projection explicit and evidence-based.
+define "Case Status Reported":
+  if "Staging In Progress" then 'diagnosis' else "Case Status"
 
 // The outside hospital staged the patient and this hospital cannot obtain the
 // record: an absent reason of 'unknown', not 'temp-unknown'. Neither is a

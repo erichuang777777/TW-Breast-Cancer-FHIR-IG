@@ -396,7 +396,7 @@ Description: "新診斷個案依報告期末的收案狀態分層。仍在分期
 * group.population[0].criteria.expression = "New Diagnosis Case"
 * group.stratifier[0].code.text = "收案狀態"
 * group.stratifier[0].criteria.language = #text/cql-identifier
-* group.stratifier[0].criteria.expression = "Case Status"
+* group.stratifier[0].criteria.expression = "Case Status Reported"
 
 Instance: BreastCancerQuarterlyReport13ClosureByReason
 InstanceOf: Measure

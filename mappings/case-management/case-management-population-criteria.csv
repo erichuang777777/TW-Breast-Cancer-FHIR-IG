@@ -58,7 +58,7 @@ bc-qr-05,quarterly,denominator,D5-QUIT,both,期間內拒絕及中斷治療個案
 bc-qr-05,quarterly,numerator,N5-RETURN,both,期間內有重返治療個案數,a new curative-intent treatment resource starting after the interruption,CM-BC-035,none; adjudicated by the case manager,yes,drafted,not-implemented,design,
 bc-qr-10,quarterly,stratifier,S10-IDENTITY,both,收案身份(新診斷/舊案/延遲收案-當年度/延遲收案-非當年度/首復發可治癒/首復發不可治癒),task-only case entry category,CM-TASK-002,none,no,drafted,implemented,design,
 bc-qr-11,quarterly,stratifier,S11-MONTH,both,收案月份,month of EpisodeOfCare.period.start,CM-BC-002,none,no,drafted,implemented,design,
-bc-qr-12,quarterly,stratifier,S12-DYNAMIC,both,收案狀態(診斷期/治療期/臨床試驗/追蹤期/緩和醫療/拒絕與中斷/結案),task-only case status,CM-TASK-003,a case still being staged is recorded as 治療期 by the system and is moved to 診斷期 by hand,partial,drafted,implemented,design,
+bc-qr-12,quarterly,stratifier,S12-DYNAMIC,both,收案狀態(診斷期/治療期/臨床試驗/追蹤期/緩和醫療/拒絕與中斷/結案),staging-in-progress evidence overrides the Task status to diagnosis; otherwise use the task-only case status,CM-TASK-003 CM-BC-033,a case still being staged is recorded as 治療期 by the system and is moved to 診斷期 by hand,partial,drafted,implemented,design,
 bc-qr-13,quarterly,stratifier,S13-CLOSURE,both,結案原因(死亡/轉院/拒絕返診/病危AAD),task-only disposition supported by EpisodeOfCare.status and Patient.deceasedDateTime,CM-BC-031 CM-BC-036,none,partial,drafted,implemented,design,
 bc-qr-14,quarterly,stratifier,S14-SEX,both,性別,Patient.gender,CM-BC-030,none,no,drafted,implemented,design,
 bc-qr-14,quarterly,stratifier,S14-AGEBAND,both,年齡層(<10 / 10-19 ... 80-89 / >=90),age at EpisodeOfCare.period.start banded by decade,CM-BC-001 CM-BC-002,the export carries a precomputed band code; the report trusts it rather than the birth date,yes,drafted,implemented,design,

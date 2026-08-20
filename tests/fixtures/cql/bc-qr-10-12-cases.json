@@ -1,0 +1,113 @@
+[
+  {
+    "id": "new-diagnosis-diagnosis-january",
+    "expected": { "Quarterly Caseload": true, "Case Entry Category": "new-diagnosis", "Case Entry Month": 1, "Case Status Reported": "diagnosis" },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1012-new" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-new", "status": "active", "patient": { "reference": "Patient/qr1012-new" }, "period": { "start": "2026-01-01" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1012-new", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/qr1012-new" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-status" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-status", "code": "diagnosis" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "existing-treatment-december",
+    "expected": { "Case Entry Category": "existing-case", "Case Entry Month": 12, "Case Status Reported": "treatment" },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1012-existing" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-existing", "status": "active", "patient": { "reference": "Patient/qr1012-existing" }, "period": { "start": "2026-12-31" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1012-existing", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/qr1012-existing" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "existing-case" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-status" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-status", "code": "treatment" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "delayed-same-year-clinical-trial",
+    "expected": { "Case Entry Category": "delayed-entry-same-year", "Case Entry Month": 3, "Case Status Reported": "clinical-trial" },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1012-delayed-same" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-delayed-same", "status": "active", "patient": { "reference": "Patient/qr1012-delayed-same" }, "period": { "start": "2026-03-15" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1012-delayed-same", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/qr1012-delayed-same" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "delayed-entry-same-year" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-status" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-status", "code": "clinical-trial" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "delayed-prior-year-follow-up",
+    "expected": { "Case Entry Category": "delayed-entry-prior-year", "Case Status Reported": "follow-up" },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1012-delayed-prior" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-delayed-prior", "status": "active", "patient": { "reference": "Patient/qr1012-delayed-prior" }, "period": { "start": "2026-04-01" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1012-delayed-prior", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/qr1012-delayed-prior" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "delayed-entry-prior-year" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-status" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-status", "code": "follow-up" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "curable-recurrence-palliative",
+    "expected": { "Case Entry Category": "first-recurrence-curable", "Case Status Reported": "palliative" },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1012-curable" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-curable", "status": "active", "patient": { "reference": "Patient/qr1012-curable" }, "period": { "start": "2026-05-01" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1012-curable", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/qr1012-curable" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "first-recurrence-curable" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-status" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-status", "code": "palliative" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "noncurable-recurrence-refused",
+    "expected": { "Case Entry Category": "first-recurrence-noncurable", "Case Status Reported": "refused-interrupted" },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1012-noncurable" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-noncurable", "status": "active", "patient": { "reference": "Patient/qr1012-noncurable" }, "period": { "start": "2026-06-01" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1012-noncurable", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/qr1012-noncurable" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "first-recurrence-noncurable" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-status" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-status", "code": "refused-interrupted" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "closed-status",
+    "expected": { "Case Status Reported": "closed" },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1012-closed" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-closed", "status": "finished", "patient": { "reference": "Patient/qr1012-closed" }, "period": { "start": "2026-07-01", "end": "2026-08-01" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1012-closed", "status": "completed", "intent": "order", "for": { "reference": "Patient/qr1012-closed" }, "input": [{ "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-status" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-status", "code": "closed" }] } }] } }
+    ] }
+  },
+  {
+    "id": "staging-overrides-treatment",
+    "expected": { "Case Status": "treatment", "Staging In Progress": true, "Case Status Reported": "diagnosis" },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1012-staging" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-staging", "status": "active", "patient": { "reference": "Patient/qr1012-staging" }, "period": { "start": "2026-08-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "obs-qr1012-staging", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/qr1012-staging" }, "dataAbsentReason": { "coding": [{ "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason", "code": "temp-unknown" }] } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1012-staging", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/qr1012-staging" }, "input": [{ "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-status" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-status", "code": "treatment" }] } }] } }
+    ] }
+  },
+  {
+    "id": "missing-task-values",
+    "expected": { "Case Entry Category": null, "Case Status": null, "Case Status Reported": null },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1012-missing" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-missing", "status": "active", "patient": { "reference": "Patient/qr1012-missing" }, "period": { "start": "2026-09-01" } } }
+    ] }
+  },
+  {
+    "id": "invalid-system-and-code-rejected",
+    "expected": { "Case Entry Category": null, "Case Status": null, "Case Status Reported": null },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1012-invalid" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1012-invalid", "status": "active", "patient": { "reference": "Patient/qr1012-invalid" }, "period": { "start": "2026-10-01" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1012-invalid", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/qr1012-invalid" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/wrong-system", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-status" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-status", "code": "not-a-valid-status" }] } }
+      ] } }
+    ] }
+  }
+]
