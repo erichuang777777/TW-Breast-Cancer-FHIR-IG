@@ -64,6 +64,10 @@ jobs:
         working-directory: ig/tools
         run: npm ci
 
+      - name: Generate IG resources for CQL namespace resolution
+        working-directory: ig
+        run: node tools/node_modules/fsh-sushi/dist/app.js .
+
       - name: Fetch Coursier
         run: curl -sL -o coursier.jar "https://github.com/coursier/coursier/releases/latest/download/coursier.jar"
 

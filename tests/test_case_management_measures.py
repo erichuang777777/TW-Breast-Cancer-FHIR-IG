@@ -103,6 +103,7 @@ def test_fhirhelpers_uses_the_hl7_cql_namespace():
     assert "include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1'" in cql_text()
     workflow = BUILD_WORKFLOW.read_text(encoding="utf-8")
     assert "--root-dir ig" in workflow
+    assert "Generate IG resources for CQL namespace resolution" in workflow
 
 
 def test_no_artifact_is_still_filed_under_the_pre_merge_name():
