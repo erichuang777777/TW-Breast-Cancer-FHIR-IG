@@ -34,6 +34,12 @@ def test_template_supply_chain_register_is_exact_and_machine_readable():
             "https://www.fhir.org/guides/security-notices/"
             "2026-03-npm-dependencies.html"
         ),
+        "known_issue": "https://github.com/HL7/ig-template-base2/issues/16",
+        "overlay_path": "ig/input/includes/fragment-pagebegin.html",
+        "overlay_rule": (
+            "Pinned 0.1.0 source with only jurisdiction flag path changed "
+            "from assets/images to ../assets/images"
+        ),
         "required_status": "pinned-approved-replacement",
         "validation_evidence": (
             "Publisher log must load the exact package; no insecure-template "

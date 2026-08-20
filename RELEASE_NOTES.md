@@ -16,13 +16,14 @@
 
 ## 驗證狀態（2026-08-21）
 
-- pytest：262 passed（新增 OID assignment、TCR 術語 backlog、逐 Measure 規格、全 IG scope claims 與八項 release-control 證據一致性檢查）。
+- pytest：267 passed（新增 OID assignment、TCR 術語 backlog、逐 Measure 規格、全 IG scope claims、template supply-chain 與八項 release-control 證據一致性檢查）。
 - SUSHI 3.20.0：0 errors、0 warnings。
 - PHI gate：pass。
 - CQL translation：pass；runtime smoke：20/20 Measures、46/46 criteria；目前具預期值的合成分支 assertions：20/20 Measures。
 - IG Publisher resource validation：0 errors、52 warnings；133 個逐資源 missing-OID 與 48 個錯誤 TCR targetless ConceptMap warnings 已歸零，剩餘 1 個 OID registry governance warning。
 - 完整網站、`qa.html` 與 `package.tgz`：0 errors、52 warnings、0 broken links；warning audit 判定 QA integrity pass、Community Preview／Formal release block。
-- Strict release：blocked；仍要求 0 warnings、0 broken links，且 Publisher 已指出 `fhir.base.template#1.0.0` 的供應鏈安全問題。
+- Template supply-chain：已依 2026-03 安全公告遷移至固定版本 `fhir2.base.template#0.1.0`；精確套件載入、無 insecure-template notice，並以最小 include overlay 修正該版已知多語系 jurisdiction flag 路徑缺陷。
+- Strict release：blocked；仍要求 0 warnings、完整 warning disposition 與其餘正式發布控制通過；模板安全阻擋已解除，但不取代原始資料、術語、golden cohort 與治理證據。
 - 完整 formal release gate 與 Publisher QA gate 已分離；目前只有 2/8 controls 通過，warnings 歸零也不能繞過 source mapping、terminology、獨立重算、golden cohort 與簽核。
 - 新增 whole-IG claim register，分開判定 TW Core direct parent、mCODE／ICHOM semantic reference、Care Plan、QBC、TWPAS、個管 Measure 與 TCR；修正 TCR 缺口為 48 欄已驗證碼表、32 欄 pending、19 欄非 coded。
 - 新增 canonical-derived UUIDv5 OID root 與 271 筆 committed assignments；逐資源 OID warning 由 133 降為 0，root registry 登錄仍待治理。
