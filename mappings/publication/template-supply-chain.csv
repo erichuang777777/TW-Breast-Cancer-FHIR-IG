@@ -1,0 +1,2 @@
+component,version,registry_url,package_url,sha1,security_advisory,required_status,validation_evidence
+fhir2.base.template,0.1.0,https://packages2.fhir.org/packages/fhir2.base.template,https://packages2.fhir.org/web/fhir2.base.template-0.1.0.tgz,7ddff7819ddcb15677d63949f54f13825fa3d4d1,https://www.fhir.org/guides/security-notices/2026-03-npm-dependencies.html,pinned-approved-replacement,"Publisher log must load the exact package; no insecure-template notice; 0 errors and 0 broken links"

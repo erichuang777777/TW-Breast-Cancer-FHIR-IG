@@ -944,7 +944,7 @@ menu:
 
 _IG_INI = """[IG]
 ig = fsh-generated/resources/ImplementationGuide-{package_id}.json
-template = fhir.base.template#current
+template = fhir2.base.template#0.1.0
 """
 
 _EXTENSIONS_FSH = """// 癌症登記摘錄用的四個擴充。

@@ -23,6 +23,8 @@ def test_publisher_workflow_is_reproducible_and_preserves_evidence():
     assert "scripts/audit_release_controls.py" in text
     assert "mappings/publication/release-control-register.csv" in text
     assert "release-control-audit.json" in text
+    assert "Load Template from fhir2.base.template#0.1.0" in text
+    assert "no longer considered secure" in text
 
 
 def test_publisher_workflow_enforces_technical_and_strict_qa_levels():

@@ -119,6 +119,8 @@ jobs:
           test -n "$summary"
           echo "$summary" | tee -a "$GITHUB_STEP_SUMMARY"
           echo "$summary" | grep -Eq '^errors = 0, warn = [0-9]+, info = [0-9]+, broken links = 0$'
+          grep -Fq 'Load Template from fhir2.base.template#0.1.0' publisher.log
+          ! grep -Fq 'no longer considered secure' publisher.log
           test -f output/package.tgz
 
       - name: Report strict release status
