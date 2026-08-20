@@ -30,10 +30,13 @@ case-management-terminology.fsh. Reading it from Task rather than inferring it
 from clinical resources is deliberate: an inferred administrative category
 would be a guess presented as a fact.
 
-STATUS: drafted. The full library translates successfully. bc-qi-01 is executed
-in CI against synthetic R4 Bundles with a test-only terminology service; those
-synthetic codes are not published in the IG ValueSets. Clinical execution still
-waits for the terminology in
+STATUS: drafted. The full library translates successfully. All 46 population
+and stratifier expressions referenced by the twenty Measures are smoke-executed
+in CI against a synthetic empty-caseload R4 Bundle. bc-qi-01 additionally has
+five asserted branch cases and a generated summary MeasureReport. The test-only
+terminology codes are not published in the IG ValueSets. The other nineteen
+Measures still need positive, negative, exclusion, missing-data and boundary
+assertions. Clinical execution also waits for the terminology in
 mappings/case-management/breast-common-to-case-management.csv to be verified
 against a published release and for source-to-FHIR integration. The administrative
 code systems are enumerated because the case management team is their authority.

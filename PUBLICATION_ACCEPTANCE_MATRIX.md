@@ -9,7 +9,7 @@
 | 原始碼／研究草稿 | pass | 必須持續標示 `draft`、`experimental`、非官方及非臨床用途。 |
 | 可重現技術建置 | pass | Publisher 2.3.2：0 errors、232 warnings、0 broken links；一般 CI 與 artifact 均已留存。 |
 | 社群 Preview 發布 | block | 缺範例與 CRMI dependency 兩類已歸零；其餘 4 類 Publisher warning 尚未完成具名、限期核准。 |
-| Computable Measure Preview | block | 20 個 Measure 僅 `bc-qi-01` 有真正 runtime test；19 個臨床 ValueSet 為空。 |
+| Computable Measure Preview | block | 20/20 Measure、46 個 criteria 已完成 ELM runtime smoke；但只有 `bc-qi-01` 完成具預期值的分支測試，且 19 個臨床 ValueSet 為空。 |
 | 院內品管／季報 | block | 缺原始來源 mapping、正式 terminology、完整 reporting-period cohort、golden cohort 與逐案 reconciliation。 |
 | 跨院／正式申報 | block | 除上述項目外，仍缺跨實作驗證、在地治理、VPN／接收端回執與主管機關規則確認。 |
 
@@ -40,7 +40,7 @@
 
 ### Measure 與測試
 
-- 20/20 Measure 均需 translation 與 runtime execution；目前是 1/20。
+- Translation 與最小 runtime smoke 已達 20/20 Measure、46/46 criteria；具預期值的 positive／negative／exclusion／missing／boundary 分支驗證目前仍是 1/20 Measure。
 - 每個 Measure 的測試數不以任意固定樣本數取代 coverage。最低要求是所有 truth-table branch、排除、缺值、邊界、日期邊界及多筆事件行為全部有案例。
 - Golden cohort 要鎖版並逐案核對 100%，允許的未解釋差異為 0。
 - 若要主張跨院可實作，至少需兩個彼此獨立的 source adapter／實作者完成同一套 conformance 與 golden tests；否則只能宣稱單一環境驗證。
