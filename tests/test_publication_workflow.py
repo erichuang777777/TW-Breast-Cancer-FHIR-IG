@@ -12,6 +12,7 @@ def workflow_text() -> str:
 def test_publisher_workflow_is_reproducible_and_preserves_evidence():
     text = workflow_text()
     assert "workflow_dispatch:" in text
+    assert '"feat/cancer-registry-task-v2"' in text
     assert "releases/download/2.3.2/publisher.jar" in text
     assert "gem install jekyll" in text
     assert "actions/upload-artifact@v4" in text

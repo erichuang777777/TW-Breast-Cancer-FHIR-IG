@@ -2,6 +2,13 @@ name: Publication readiness (IG Publisher)
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - "feat/cancer-registry-task-v2"
+    paths:
+      - ".github/workflows/publication-readiness.yml"
+      - "ig/**"
+      - "scripts/check_release.ps1"
   pull_request:
     paths:
       - ".github/workflows/publication-readiness.yml"
