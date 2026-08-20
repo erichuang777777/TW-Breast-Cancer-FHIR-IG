@@ -58,12 +58,15 @@ async function main() {
   for (const testCase of testCases) {
     assert.ok(testCase.id, 'case has no id');
     assert.ok(testCase.expected && Object.keys(testCase.expected).length, `${testCase.id}: no assertions`);
-    const source = cqlfhir.PatientSource.FHIRv401();
-    source.loadBundles([testCase.bundle]);
     const executor = new cql.Executor(library, codeService, parametersFor(testCase));
     const id = patientId(testCase);
 
     for (const [expression, expected] of Object.entries(testCase.expected)) {
+      // PatientSource is an iterator and is exhausted by each execution.
+      // Recreate it for every expression so later assertions cannot silently
+      // disappear after the first patient has been consumed.
+      const source = cqlfhir.PatientSource.FHIRv401();
+      source.loadBundles([testCase.bundle]);
       const execution = await executor.exec_expression(expression, source);
       const result = execution.patientResults[id];
       assert.ok(result, `${testCase.id}: no result for ${expression}`);

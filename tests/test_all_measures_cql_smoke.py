@@ -110,6 +110,7 @@ def test_ci_executes_bc_qi_02_assertions_with_per_case_runner():
     runner = ASSERTED_RUNNER.read_text(encoding="utf-8")
     workflow = WORKFLOW.read_text(encoding="utf-8")
     assert "testCase.parameters" in runner
+    assert runner.index("FHIRv401()") > runner.index("for (const [expression, expected]")
     assert "assert.deepEqual(result[expression], expected" in runner
     assert "Execute bc-qi-02 asserted CQL branches" in workflow
     assert "bc-qi-02-cases.json" in workflow
