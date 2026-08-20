@@ -133,7 +133,7 @@ java "-Dfile.encoding=UTF-8" -jar publisher.jar -ig ig.ini
 
 ### 治理與簽核
 
-Preview 版本可以由專案維護者發布，不代表官方認證。需要人工確認的項目記錄於 Mapping workbook 的 `Approval_Register` 及對應 CSV；簽核的是本專案對規則、術語與臨床語意所做的本地解讀，不是要求維護者代替主管機關核准官方規則。
+只有 [發布驗收矩陣](PUBLICATION_ACCEPTANCE_MATRIX.md) 的 Community Preview gate 通過後，專案維護者才可發布版本化 Preview；目前只能分享明確標示限制的原始碼／研究草稿。Preview 也不代表官方認證。需要人工確認的項目記錄於 Mapping workbook 的 `Approval_Register` 及對應 CSV；簽核的是本專案對規則、術語與臨床語意所做的本地解讀，不是要求維護者代替主管機關核准官方規則。
 
 正式導入前，採用機構仍應完成臨床、術語、FHIR、資訊安全、法遵與申報流程的在地審查。問題與建議請使用 [GitHub Issues](https://github.com/erichuang777777/TW-Breast-Cancer-FHIR-IG/issues)。
 

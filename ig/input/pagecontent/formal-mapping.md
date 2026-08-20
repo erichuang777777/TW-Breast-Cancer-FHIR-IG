@@ -32,6 +32,6 @@
 
 ## Preview 與正式使用的治理原則
 
-本社群 Preview 可由專案維護者在清楚標示非官方、`draft`／`experimental=true` 的前提下發布。技術測試通過不等於主管機關、院內或臨床權責核准；Excel 的 `Approval_Register` 保留正式或官方使用時的治理閘門，簽核人應填寫決策、姓名、日期、證據位置及簽核版本雜湊。
+只有 repository `PUBLICATION_ACCEPTANCE_MATRIX.md` 定義的 Community Preview gate 通過後，專案維護者才可發布版本化 Preview；清楚標示非官方、`draft`／`experimental=true` 是必要條件，但單靠標示並不足夠。技術測試通過也不等於主管機關、院內或臨床權責核准；Excel 的 `Approval_Register` 保留正式或官方使用時的治理閘門，簽核人應填寫決策、姓名、日期、證據位置及簽核版本雜湊。
 
 若要宣告正式生產使用或官方適用，仍需完成：QBC 申報規則、臨床分類、FHIR 架構、病理／術語、AJCC／SNOMED／藥品碼授權、個資資安、跨系統 UAT、VPN receipt，以及 publisher／canonical 核准。完成後才能另行發布不可變的 `1.0.0`、`status=active`、`experimental=false`。

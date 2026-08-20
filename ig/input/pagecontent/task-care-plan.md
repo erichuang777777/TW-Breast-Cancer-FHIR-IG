@@ -78,7 +78,7 @@ python -m qbc_workbench.cli check-task-alignment `.\private\cases\SYNTHETIC.case
 
 ## 發布前人工審查／簽核
 
-Preview 可先發布；下列簽核是正式導入或把欄位提升成 canonical fact 前的治理閘門：
+目前可分享明確標示限制的研究草稿；版本化 Preview 必須先通過 repository `PUBLICATION_ACCEPTANCE_MATRIX.md` 的 Community Preview gate。下列簽核是正式導入或把欄位提升成 canonical fact 前的額外治理閘門：
 
 | 審查項目 | 建議角色 | 目前狀態 |
 |---|---|---|
