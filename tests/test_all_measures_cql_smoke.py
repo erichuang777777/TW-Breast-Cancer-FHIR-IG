@@ -19,6 +19,7 @@ QR01_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-01-cases.json"
 QR02_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-02-cases.json"
 QR03_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-03-cases.json"
 QR04_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-04-cases.json"
+QR05_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-05-cases.json"
 WORKFLOW = ROOT / ".github" / "workflows" / "build.yml"
 
 
@@ -338,3 +339,32 @@ def test_bc_qr_04_assertions_cover_cohort_gate_death_and_one_year_boundary():
     workflow = WORKFLOW.read_text(encoding="utf-8")
     assert "Execute bc-qr-04 asserted CQL branches" in workflow
     assert "bc-qr-04-cases.json" in workflow
+
+
+def test_bc_qr_05_candidate_assertions_cover_temporal_and_missing_date_branches():
+    cases = load(QR05_CASES)
+    by_id = {case["id"]: case["expected"] for case in cases}
+    assert set(by_id) == {
+        "resumed-day-after-interruption",
+        "treatment-same-day-not-after",
+        "treatment-before-interruption",
+        "missing-interruption-date",
+        "completion-field-creates-denominator",
+        "ordinary-case-outside-denominator",
+    }
+    assert by_id["resumed-day-after-interruption"]["Numerator QR5"] is True
+    assert by_id["treatment-same-day-not-after"]["Numerator QR5"] is False
+    assert by_id["treatment-before-interruption"]["Numerator QR5"] is False
+    assert by_id["missing-interruption-date"]["Interruption Date"] is None
+    assert by_id["missing-interruption-date"]["Numerator QR5"] is False
+    assert by_id["completion-field-creates-denominator"]["Denominator QR5"] is True
+    assert by_id["ordinary-case-outside-denominator"] == {
+        "Denominator QR5": False,
+        "Numerator QR5": False,
+    }
+
+    cql = CQL.read_text(encoding="utf-8")
+    assert "this expression is a candidate, not" in cql
+    workflow = WORKFLOW.read_text(encoding="utf-8")
+    assert "Execute bc-qr-05 candidate CQL branches" in workflow
+    assert "bc-qr-05-cases.json" in workflow
