@@ -6,13 +6,13 @@ Task 是業務 Use Case，不必然等於 FHIR `Task` Resource。只有需要交
 
 | Task | 狀態 | 共同層使用 | 主要輸出 |
 |---|---|---|---|
-| 癌症診療計畫書 | Preview 1.0 可執行草稿 | 與 QBC 平行重用 Patient、Condition、診斷、分期、marker、治療與 Provenance | CarePlan、QuestionnaireResponse、Provenance、Task Bundle |
-| QBC／P4P 申報 | Preview 1.0 | `BreastCancerPatient`，其餘概念採 Mapping 對齊 | QBC FHIR Bundle、115 欄 Mapping、QBC XML／稽核檔 |
-| TWPAS 癌症用藥事前審查 | 架構與 Mapping 草稿 | 重用診斷、分期、marker、ECOG、報告、既有治療及 outcome | 由 adapter 產生符合官方 `tw.gov.mohw.nhi.pas#1.2.5` 的 Apply Bundle；本 IG 不重製官方 Profiles |
+| 癌症診療計畫書 | 可執行部分草稿；195 欄位審查與 3 演算法審查 pending | 與 QBC 平行重用 Patient、Condition、診斷、分期、marker、治療與 Provenance | CarePlan、QuestionnaireResponse、Provenance、Task Bundle |
+| QBC／P4P 申報 | 115/115 技術驗證；115/115 clinical review 與 VPN acceptance pending | `BreastCancerPatient`，其餘概念採 Mapping 對齊 | QBC FHIR Bundle、115 欄 Mapping、QBC XML／稽核檔 |
+| TWPAS 癌症用藥事前審查 | 架構與 Mapping 草稿；尚無正式 adapter output | 重用診斷、分期、marker、ECOG、報告、既有治療及 outcome | 目標是由 adapter 產生並以官方 `tw.gov.mohw.nhi.pas#1.2.5` 驗證 Apply Bundle；本 IG 不重製官方 Profiles |
 | 癌症診療計畫書產生 | 尚未建立；目前只作 bridge input | 診斷、分期、marker、治療與 Provenance | Composition／document Bundle 候選 |
 | 乳癌藥物事前審查 | 尚未建立 | 預計重用診斷、分期、marker、MedicationRequest | 應優先評估 TWPAS |
 | [個管指標](task-case-management.html) | Draft：6 項品質指標與季報 5 比率 9 分布表；20 個 Measure、共用 Library(CQL) 與 MeasureReport Profile 已建，臨床 ValueSet 待代碼查證 | 重用分期、marker、手術、放療、用藥、就診與轉院機構事實 | Measure、Library(CQL)、MeasureReport、委員會報告與季報工作表 |
-| [癌症登記](task-tcr.html) | Draft：長表 99 欄 Questionnaire、48 欄已驗證碼表 | 預計重用診斷、病理、分期、治療與 outcome | 癌登長表申報列、Task／QuestionnaireResponse |
+| [癌症登記](task-tcr.html) | Draft：99 欄 Questionnaire；48 欄已驗證碼表、32 欄碼表 pending、19 欄非 coded | 預計重用診斷、病理、分期、治療與 outcome | 癌登長表申報列、Task／QuestionnaireResponse |
 | 乳癌病理交換 | 尚未建立 | 預計重用診斷與 marker | DiagnosticReport／Observation |
 | 多專科討論 | 尚未建立 | 預計重用所有 canonical facts | 會議決議／CarePlan／Composition 候選 |
 | 乳癌追蹤與 outcome | 尚未建立 | 預計重用 Episode、治療與 outcome | 待參考 ICHOM |

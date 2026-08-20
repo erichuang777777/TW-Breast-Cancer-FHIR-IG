@@ -4,7 +4,7 @@
 
 ## Task 定位
 
-QBC／P4P 是乳癌社群草稿下第一個已完成正式欄位 Mapping 與驗證的業務 Task。它與癌症診療計畫書是平行 Task，應各自讀取乳癌 common FHIR facts。QBC 只投影申報所需子集合，再依官方規格產生 QBC XML。FHIR Bundle 是交換與稽核中介層，不是健保署 VPN 的直接上傳格式。
+QBC／P4P 是乳癌社群草稿下第一個完成 115 欄欄位契約技術 Mapping 與合成驗證的業務 Task；115/115 欄的 clinical review 與外部 VPN 驗收仍未完成。它與癌症診療計畫書是平行 Task，應各自讀取乳癌 common FHIR facts。QBC 只投影申報所需子集合，再依官方規格產生 QBC XML。FHIR Bundle 是交換與稽核中介層，不是健保署 VPN 的直接上傳格式。
 
 ## 輸入與輸出
 

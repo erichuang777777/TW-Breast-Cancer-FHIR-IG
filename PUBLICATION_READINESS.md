@@ -4,13 +4,13 @@
 
 技術面的 FHIR Publisher 資源驗證已由最初的 69 errors 降至 0 errors；Linux publication-readiness workflow 亦已產生完整網站、`qa.html` 與 `package.tgz`，結果為 0 errors、232 warnings、0 broken links。臨床面的原始資料 mapping、正式值集、golden cohort 與治理簽核仍是阻擋項目。
 
-精確的發布層級、六種核對方法與逐項通過門檻見 [PUBLICATION_ACCEPTANCE_MATRIX.md](PUBLICATION_ACCEPTANCE_MATRIX.md)。20 個個管品質／季報 Measure 的逐項規格判定、六層資料驗證與八項正式發布控制，見 [SPECIFICATION_CORRECTNESS_AUDIT.md](SPECIFICATION_CORRECTNESS_AUDIT.md)。
+精確的發布層級、六種核對方法與逐項通過門檻見 [PUBLICATION_ACCEPTANCE_MATRIX.md](PUBLICATION_ACCEPTANCE_MATRIX.md)。20 個個管品質／季報 Measure 的逐項規格判定、六層資料驗證與八項正式發布控制，見 [SPECIFICATION_CORRECTNESS_AUDIT.md](SPECIFICATION_CORRECTNESS_AUDIT.md)。整份 IG 各 Task 與 TW Core／mCODE／ICHOM／TWPAS 等外部規格的宣稱邊界，見 [IG_SCOPE_CONFORMANCE_AUDIT.md](IG_SCOPE_CONFORMANCE_AUDIT.md)。
 
 ## 本次驗證結果
 
 | Gate | 結果 | 說明 |
 |---|---:|---|
-| pytest | pass：245 tests | 包含 mapping、PHI、CQL、IG export、Publisher warning policy、逐 Measure 規格 audit、完整 release-control gate 與 publication workflow 契約測試。 |
+| pytest | pass：253 tests | 包含 mapping、PHI、CQL、IG export、Publisher warning policy、逐 Measure 規格 audit、全 IG scope claims、完整 release-control gate 與 publication workflow 契約測試。 |
 | SUSHI 3.20.0 | pass：0 errors / 0 warnings | FSH 可穩定產生 IG resources。 |
 | PHI gate | pass | 目前版本庫未檢出疑似病人識別資料；正式來源資料仍須在受控環境處理。 |
 | CQL CLI translation | pass | `cql-to-elm-cli 3.26.0` 可產生 ELM；FHIRHelpers 由 `hl7.fhir.uv.cql#2.0.0` 解析。 |

@@ -99,3 +99,5 @@ Publisher／SUSHI 通過所證明的是「產出的資源符合目前載入的 F
 | 正式申報可接受 | 否 | 無接收端／VPN 回執及全部治理、隱私與發布核准。 |
 
 綠色 CI 只能支持前兩個判詞，不能支持後四個。
+
+本表主要深入個管品管／季報 Measure。整份 repository 其他 Task 與外部標準的獨立判定見 [IG_SCOPE_CONFORMANCE_AUDIT.md](IG_SCOPE_CONFORMANCE_AUDIT.md)；任一 Task 的證據不得外推成另一個 Task 或 whole-IG conformance。
