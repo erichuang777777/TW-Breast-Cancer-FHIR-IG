@@ -1,0 +1,84 @@
+[
+  {
+    "id": "completed-here",
+    "expected": { "Denominator QR3": true, "Denominator QR3 Exclusion": false, "Numerator QR3": true, "Numerator QR3 Exclusion": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-03-complete" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr03-complete", "status": "active", "patient": { "reference": "Patient/bc-qr-03-complete" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr03-complete", "status": "completed", "intent": "order", "for": { "reference": "Patient/bc-qr-03-complete" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "treatment-completion" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-treatment-completion", "code": "completed-here" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "administratively-in-treatment",
+    "expected": { "Denominator QR3": true, "Curative Treatment Still Running": true, "Denominator QR3 Exclusion": true, "Numerator QR3": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-03-running-task" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr03-running-task", "status": "active", "patient": { "reference": "Patient/bc-qr-03-running-task" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr03-running-task", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/bc-qr-03-running-task" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "curative-treatment-disposition" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-curative-treatment-disposition", "code": "in-curative-treatment" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "clinical-treatment-resource-running",
+    "expected": { "Denominator QR3": true, "Curative Treatment Still Running": true, "Denominator QR3 Exclusion": true, "Numerator QR3": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-03-running-resource" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr03-running-resource", "status": "active", "patient": { "reference": "Patient/bc-qr-03-running-resource" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Procedure", "id": "procedure-qr03-running", "status": "in-progress", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "breast-conserving-surgery" }] }, "subject": { "reference": "Patient/bc-qr-03-running-resource" }, "performedPeriod": { "start": "2026-03-01" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr03-running-resource", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/bc-qr-03-running-resource" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "noncurative-exclusion",
+    "expected": { "Denominator QR3": true, "Denominator QR3 Exclusion": true, "Numerator QR3": false, "Numerator QR3 Exclusion": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-03-noncurative" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr03-noncurative", "status": "active", "patient": { "reference": "Patient/bc-qr-03-noncurative" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr03-noncurative", "status": "completed", "intent": "order", "for": { "reference": "Patient/bc-qr-03-noncurative" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "curative-treatment-disposition" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-curative-treatment-disposition", "code": "noncurative" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "incomplete-interrupted",
+    "expected": { "Denominator QR3": true, "Denominator QR3 Exclusion": false, "Numerator QR3": false, "Numerator QR3 Exclusion": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-03-interrupted" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr03-interrupted", "status": "active", "patient": { "reference": "Patient/bc-qr-03-interrupted" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr03-interrupted", "status": "completed", "intent": "order", "for": { "reference": "Patient/bc-qr-03-interrupted" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "treatment-completion" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-treatment-completion", "code": "incomplete-interrupted" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "death-before-treatment",
+    "expected": { "Denominator QR3": true, "Died Before Curative Treatment": true, "Denominator QR3 Exclusion": true, "Numerator QR3": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-03-death", "deceasedDateTime": "2026-03-01T00:00:00+08:00" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr03-death", "status": "finished", "patient": { "reference": "Patient/bc-qr-03-death" }, "period": { "start": "2026-02-01", "end": "2026-03-01" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr03-death", "status": "completed", "intent": "order", "for": { "reference": "Patient/bc-qr-03-death" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "existing-case-outside-denominator",
+    "expected": { "Denominator QR3": false, "Denominator QR3 Exclusion": false, "Numerator QR3": false, "Numerator QR3 Exclusion": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-03-existing" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr03-existing", "status": "active", "patient": { "reference": "Patient/bc-qr-03-existing" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr03-existing", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/bc-qr-03-existing" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "existing-case" }] } }
+      ] } }
+    ] }
+  }
+]

@@ -493,7 +493,7 @@ define "Treatment Completion":
 // IP-NEWDX: only new diagnoses enter the quarterly tables and rates.
 define "New Diagnosis Case":
   "Quarterly Caseload"
-    and "Case Entry Category" = 'new-diagnosis'
+    and Coalesce("Case Entry Category" = 'new-diagnosis', false)
 
 // --- staging state ----------------------------------------------------------
 // The worksheet writes '?' for three different situations. Separating them is
@@ -535,7 +535,7 @@ define "Receiving Organisation":
   )
 
 define "Transferred During Staging":
-  "Retention Disposition" = 'transfer-during-staging'
+  Coalesce("Retention Disposition" = 'transfer-during-staging', false)
 
 // CM-BC-034 through Organization.partOf, replacing the hospital-name keyword
 // list. False when either the receiver or the governed system root cannot be
@@ -573,16 +573,16 @@ define "Denominator QR1":
 define "Denominator QR1 Exclusion":
   "Staging In Progress"
     or "Died Before Curative Treatment"
-    or "Retention Disposition" = 'considering-return-under-1m'
+    or Coalesce("Retention Disposition" = 'considering-return-under-1m', false)
 
 // N1-STAY (CM-BC-034 with CM-TASK-004)
 define "Numerator QR1":
-  "Retention Disposition" = 'stay'
+  Coalesce("Retention Disposition" = 'stay', false)
 
 // X1-NOSTAY-TRANSFER, X1-NOSTAY-REFUSE
 define "Numerator QR1 Exclusion":
   "Transferred During Staging"
-    or "Retention Disposition" in { 'no-treatment-no-return', 'untreated-return-over-1m' }
+    or Coalesce("Retention Disposition" in { 'no-treatment-no-return', 'untreated-return-over-1m' }, false)
 
 // ==========================================================================
 // bc-qr-02  留院治療率（臺大體系內矯正後）
@@ -606,7 +606,7 @@ define "Denominator QR3":
 
 // X3-ONGOING (CM-BC-035): a curative plan exists and nothing has completed.
 define "Curative Treatment Still Running":
-  "Curative Treatment Disposition" = 'in-curative-treatment'
+  Coalesce("Curative Treatment Disposition" = 'in-curative-treatment', false)
     or (
       exists "Any Curative Treatment Resource"
         and not exists ("Any Curative Treatment Resource" CurativeProcedure
@@ -619,25 +619,25 @@ define "Denominator QR3 Exclusion":
     or "Died Before Curative Treatment"
     or "Transferred During Staging"
     or "Curative Treatment Still Running"
-    or "Curative Treatment Disposition" in {
+    or Coalesce("Curative Treatment Disposition" in {
       'death-during-treatment', 'transfer-during-treatment',
       'physician-advised-stop', 'not-advisable', 'active-surveillance',
       'noncurative'
-    }
+    }, false)
 
 // N3-COMPLETE (CM-BC-035 with CM-BC-036): completing and then dying or
 // transferring still counts as treatment completed here.
 define "Numerator QR3":
-  "Treatment Completion" in {
+  Coalesce("Treatment Completion" in {
     'completed-here', 'completed-then-death', 'completed-then-transfer'
-  }
+  }, false)
 
 // X3-INCOMPLETE (CM-TASK-007): part of the plan refused, or treatment
 // interrupted. Not derivable from resource status; the case manager records it.
 define "Numerator QR3 Exclusion":
-  "Treatment Completion" in {
+  Coalesce("Treatment Completion" in {
     'incomplete-refused-part', 'incomplete-interrupted'
-  }
+  }, false)
 
 // ==========================================================================
 // bc-qr-04  失聯率 — BLOCKED
@@ -686,10 +686,10 @@ define "Numerator QR4":
 define "Denominator QR5":
   "Quarterly Caseload"
     and (
-      "Case Status" = 'refused-interrupted'
-        or "Treatment Completion" in {
+      Coalesce("Case Status" = 'refused-interrupted', false)
+        or Coalesce("Treatment Completion" in {
           'incomplete-refused-part', 'incomplete-interrupted'
-        }
+        }, false)
     )
 
 // N5-RETURN (CM-BC-035): curative-intent treatment starting after the

@@ -17,6 +17,7 @@ QI05_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-05-cases.json"
 QI06_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-06-cases.json"
 QR01_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-01-cases.json"
 QR02_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-02-cases.json"
+QR03_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-03-cases.json"
 WORKFLOW = ROOT / ".github" / "workflows" / "build.yml"
 
 
@@ -275,3 +276,36 @@ def test_bc_qr_02_assertions_require_the_governed_reporting_system_root():
     workflow = WORKFLOW.read_text(encoding="utf-8")
     assert "Execute bc-qr-02 asserted CQL branches" in workflow
     assert "bc-qr-02-cases.json" in workflow
+
+
+def test_bc_qr_03_assertions_cover_completion_running_exclusions_and_missing_admin_data():
+    cases = load(QR03_CASES)
+    by_id = {case["id"]: case["expected"] for case in cases}
+    assert set(by_id) == {
+        "completed-here",
+        "administratively-in-treatment",
+        "clinical-treatment-resource-running",
+        "noncurative-exclusion",
+        "incomplete-interrupted",
+        "death-before-treatment",
+        "existing-case-outside-denominator",
+    }
+    assert by_id["completed-here"]["Numerator QR3"] is True
+    assert by_id["administratively-in-treatment"]["Curative Treatment Still Running"] is True
+    assert by_id["clinical-treatment-resource-running"]["Curative Treatment Still Running"] is True
+    assert by_id["noncurative-exclusion"]["Denominator QR3 Exclusion"] is True
+    assert by_id["incomplete-interrupted"]["Numerator QR3 Exclusion"] is True
+    assert by_id["death-before-treatment"]["Died Before Curative Treatment"] is True
+    assert by_id["existing-case-outside-denominator"] == {
+        "Denominator QR3": False,
+        "Denominator QR3 Exclusion": False,
+        "Numerator QR3": False,
+        "Numerator QR3 Exclusion": False,
+    }
+
+    cql = CQL.read_text(encoding="utf-8")
+    assert 'Coalesce("Treatment Completion" in {' in cql
+    assert 'Coalesce("Curative Treatment Disposition" = ' in cql
+    workflow = WORKFLOW.read_text(encoding="utf-8")
+    assert "Execute bc-qr-03 asserted CQL branches" in workflow
+    assert "bc-qr-03-cases.json" in workflow
