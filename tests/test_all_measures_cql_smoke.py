@@ -22,6 +22,7 @@ QR04_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-04-cases.json"
 QR05_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-05-cases.json"
 QR10_12_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-10-12-cases.json"
 QR13_15_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-13-15-cases.json"
+QR16_18_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-16-18-cases.json"
 WORKFLOW = ROOT / ".github" / "workflows" / "build.yml"
 
 
@@ -444,3 +445,38 @@ def test_bc_qr_13_through_15_cover_closure_gender_all_age_bands_and_classes():
 
     workflow = WORKFLOW.read_text(encoding="utf-8")
     assert "Execute bc-qr-13 through 15 stratifier assertions" in workflow
+
+
+def test_bc_qr_16_through_18_cover_stage_histology_and_subtype_truth_tables():
+    cases = load(QR16_18_CASES)
+    expected = [case["expected"] for case in cases]
+    assert {item["Reported Stage Group"] for item in expected if item.get("Reported Stage Group")} == {
+        "0", "I", "II", "III", "IV", "staging-in-progress",
+        "other-transferred-during-staging", "other-outside-records-insufficient",
+        "other-unspecified",
+    }
+    assert {item["Histology Group"] for item in expected if item.get("Histology Group")} == {
+        "ic", "ilc", "ic-and-ilc", "ic-with-mucin", "ic-and-paget",
+        "ic-with-neuroendocrine", "metaplastic", "adenoid-cystic", "dcis",
+        "phyllodes",
+    }
+    assert {item["HR HER2 Subtype"] for item in expected if item.get("HR HER2 Subtype")} == {
+        "hr-positive-her2-negative", "hr-positive-her2-positive",
+        "hr-negative-her2-positive", "triple-negative", "indeterminate",
+    }
+    by_id = {case["id"]: case["expected"] for case in cases}
+    assert by_id["stage-ia-ilc-hr-positive-her2-positive"]["Reported Stage Group"] == "I"
+    assert by_id["stage-iib-mixed-hr-negative-her2-positive"]["Reported Stage Group"] == "II"
+    assert by_id["stage-iiic-mucin-triple-negative"]["Reported Stage Group"] == "III"
+    assert by_id["dcis-microinvasion-groups-as-ic"]["Histology Group"] == "ic"
+    assert by_id["missing-stage-pure-dcis"]["HR HER2 Subtype"] is None
+    assert by_id["unmapped-morphology-not-defaulted-to-ic"]["Histology Group"] is None
+    assert by_id["stage-iv-paget-missing-pr-indeterminate"]["HR HER2 Subtype"] == "indeterminate"
+    assert by_id["staging-in-progress-neuroendocrine-ihc2-unresolved"]["HR HER2 Subtype"] == "indeterminate"
+
+    cql = CQL.read_text(encoding="utf-8")
+    assert 'when "Histology Morphology" = \'8500/3\' then \'ic\'' in cql
+    assert 'define "Hormone Receptor Negative":' in cql
+    assert 'define "HER2 Negative":' in cql
+    workflow = WORKFLOW.read_text(encoding="utf-8")
+    assert "Execute bc-qr-16 through 18 stratifier assertions" in workflow

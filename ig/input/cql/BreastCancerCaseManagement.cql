@@ -801,7 +801,12 @@ define "Is Registry Class 3":
 // the worksheet writes as '?' land in three different columns.
 define "Reported Stage Group":
   case
-    when "Effective Stage" is not null then "Effective Stage"
+    when "Effective Stage" = '0' then '0'
+    when "Effective Stage" in { 'I', 'IA', 'IB' } then 'I'
+    when "Effective Stage" in { 'II', 'IIA', 'IIB' } then 'II'
+    when "Effective Stage" in { 'III', 'IIIA', 'IIIB', 'IIIC' } then 'III'
+    when "Effective Stage" = 'IV' then 'IV'
+    when "Effective Stage" is not null then 'other-unspecified'
     when "Staging In Progress" then 'staging-in-progress'
     when "Transferred During Staging" then 'other-transferred-during-staging'
     when "Stage Unobtainable From Outside Facility" then 'other-outside-records-insufficient'
@@ -836,7 +841,8 @@ define "Histology Group":
     when "Histology Morphology" in { '9020/0', '9020/1', '9020/3' } then 'phyllodes'
     when "Histology Morphology" = '8500/2' and "Has Microinvasion" then 'ic'
     when "Histology Morphology" = '8500/2' then 'dcis'
-    else 'ic'
+    when "Histology Morphology" = '8500/3' then 'ic'
+    else null
   end
 
 // DCIS with microinvasion counts as invasive disease and is reported with the
@@ -868,13 +874,29 @@ define "Hormone Receptor Positive":
   Coalesce("Estrogen Receptor Percent", 0.0) >= 1.0
     or Coalesce("Progesterone Receptor Percent", 0.0) >= 1.0
 
+define "Hormone Receptor Negative":
+  "Estrogen Receptor Percent" is not null
+    and "Progesterone Receptor Percent" is not null
+    and "Estrogen Receptor Percent" < 1.0
+    and "Progesterone Receptor Percent" < 1.0
+
+define "HER2 ISH Negative":
+  exists (
+    [Observation: "HER2 In Situ Hybridization Code"] Report
+      where Report.status in { 'final', 'amended', 'corrected' }
+        and Report.interpretation.coding.code contains 'NEG'
+  )
+
+define "HER2 Negative":
+  "HER2 IHC Result" in { '0', '1+' }
+    or ("HER2 IHC Result" = '2+' and "HER2 ISH Negative")
+
 define "HR HER2 Subtype":
   case
     when not "Is Invasive Histology" then null
-    when "Estrogen Receptor Percent" is null and "HER2 IHC Result" is null then 'indeterminate'
-    when "Hormone Receptor Positive" and not "HER2 Positive" then 'hr-positive-her2-negative'
     when "Hormone Receptor Positive" and "HER2 Positive" then 'hr-positive-her2-positive'
-    when not "Hormone Receptor Positive" and "HER2 Positive" then 'hr-negative-her2-positive'
-    when not "Hormone Receptor Positive" and not "HER2 Positive" then 'triple-negative'
+    when "Hormone Receptor Positive" and "HER2 Negative" then 'hr-positive-her2-negative'
+    when "Hormone Receptor Negative" and "HER2 Positive" then 'hr-negative-her2-positive'
+    when "Hormone Receptor Negative" and "HER2 Negative" then 'triple-negative'
     else 'indeterminate'
   end
