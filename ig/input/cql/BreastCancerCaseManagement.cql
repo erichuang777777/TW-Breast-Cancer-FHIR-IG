@@ -125,6 +125,12 @@ define "Case Entry Date":
 define "Age At Case Entry":
   AgeInYearsAt("Case Entry Date")
 
+// FHIR deceased[x] is a choice. Presence alone is not death because an
+// explicitly recorded deceasedBoolean=false is a valid living-patient value.
+define "Patient Is Deceased":
+  Coalesce((Patient.deceased as FHIR.boolean).value, false)
+    or (Patient.deceased as FHIR.dateTime) is not null
+
 // Stage groups are read as the plain category string ('IA', 'IIIC', 'IV').
 // The coding is still carried; only the code value is compared, because the
 // staging code system binding is not settled yet.
@@ -556,7 +562,7 @@ define "Any Curative Treatment Resource":
     where CurativeProcedure.status in { 'in-progress', 'completed' }
 
 define "Died Before Curative Treatment":
-  Patient.deceased is not null
+  "Patient Is Deceased"
     and not exists "Any Curative Treatment Resource"
     and not exists ([MedicationRequest] Request
       where Request.status in { 'active', 'completed' })
@@ -663,7 +669,7 @@ define "Prior Year And Current New Diagnosis Cohort":
 
 define "Denominator QR4":
   "Prior Year And Current New Diagnosis Cohort"
-    and Patient.deceased is null
+    and not "Patient Is Deceased"
 
 // N4-LOST (CM-BC-037): a year with no contact of any kind.
 define "Last Contact Date":
@@ -676,7 +682,7 @@ define "Last Contact Date":
 define "Numerator QR4":
   "Denominator QR4"
     and "Last Contact Date" is not null
-    and "Last Contact Date" before (date from end of "Measurement Period" - 1 year)
+    and "Last Contact Date" same day or before (date from end of "Measurement Period" - 1 year)
 
 // ==========================================================================
 // bc-qr-05  重返治療率

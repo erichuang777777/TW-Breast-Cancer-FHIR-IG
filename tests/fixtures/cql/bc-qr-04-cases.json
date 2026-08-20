@@ -1,0 +1,69 @@
+[
+  {
+    "id": "cohort-not-loaded",
+    "parameters": { "Prior Year Cohort Available": false },
+    "expected": { "Prior Year And Current New Diagnosis Cohort": false, "Denominator QR4": false, "Numerator QR4": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-04-blocked", "deceasedBoolean": false } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr04-blocked", "status": "active", "patient": { "reference": "Patient/bc-qr-04-blocked" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr04-blocked", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/bc-qr-04-blocked" }, "input": [{ "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } }] } }
+    ] }
+  },
+  {
+    "id": "current-new-diagnosis-living-explicit-false",
+    "parameters": { "Prior Year Cohort Available": true },
+    "expected": { "Patient Is Deceased": false, "Prior Year And Current New Diagnosis Cohort": true, "Denominator QR4": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-04-current", "deceasedBoolean": false } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr04-current", "status": "active", "patient": { "reference": "Patient/bc-qr-04-current" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr04-current", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/bc-qr-04-current" }, "input": [{ "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } }] } }
+    ] }
+  },
+  {
+    "id": "prior-year-cohort-member",
+    "parameters": { "Prior Year Cohort Available": true },
+    "expected": { "Prior Year And Current New Diagnosis Cohort": true, "Denominator QR4": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-04-prior" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr04-prior", "status": "finished", "patient": { "reference": "Patient/bc-qr-04-prior" }, "period": { "start": "2025-06-01", "end": "2025-12-01" } } }
+    ] }
+  },
+  {
+    "id": "deceased-cohort-member-excluded",
+    "parameters": { "Prior Year Cohort Available": true },
+    "expected": { "Patient Is Deceased": true, "Prior Year And Current New Diagnosis Cohort": true, "Denominator QR4": false, "Numerator QR4": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-04-deceased", "deceasedDateTime": "2026-05-01T00:00:00+08:00" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr04-deceased", "status": "finished", "patient": { "reference": "Patient/bc-qr-04-deceased" }, "period": { "start": "2025-06-01", "end": "2025-12-01" } } }
+    ] }
+  },
+  {
+    "id": "last-contact-exactly-one-year",
+    "parameters": { "Prior Year Cohort Available": true },
+    "expected": { "Denominator QR4": true, "Numerator QR4": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-04-boundary" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr04-boundary", "status": "finished", "patient": { "reference": "Patient/bc-qr-04-boundary" }, "period": { "start": "2025-06-01", "end": "2025-12-01" } } },
+      { "resource": { "resourceType": "Encounter", "id": "encounter-qr04-boundary", "status": "finished", "class": { "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode", "code": "AMB" }, "subject": { "reference": "Patient/bc-qr-04-boundary" }, "period": { "start": "2025-12-31", "end": "2025-12-31" } } }
+    ] }
+  },
+  {
+    "id": "last-contact-one-day-inside-year",
+    "parameters": { "Prior Year Cohort Available": true },
+    "expected": { "Denominator QR4": true, "Numerator QR4": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-04-inside" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr04-inside", "status": "finished", "patient": { "reference": "Patient/bc-qr-04-inside" }, "period": { "start": "2025-06-01", "end": "2025-12-01" } } },
+      { "resource": { "resourceType": "Encounter", "id": "encounter-qr04-inside", "status": "finished", "class": { "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode", "code": "AMB" }, "subject": { "reference": "Patient/bc-qr-04-inside" }, "period": { "start": "2026-01-01", "end": "2026-01-01" } } }
+    ] }
+  },
+  {
+    "id": "missing-last-contact-not-inferred-lost",
+    "parameters": { "Prior Year Cohort Available": true },
+    "expected": { "Denominator QR4": true, "Last Contact Date": null, "Numerator QR4": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-04-no-contact" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr04-no-contact", "status": "finished", "patient": { "reference": "Patient/bc-qr-04-no-contact" }, "period": { "start": "2025-06-01", "end": "2025-12-01" } } }
+    ] }
+  }
+]

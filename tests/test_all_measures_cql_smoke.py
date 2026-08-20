@@ -18,6 +18,7 @@ QI06_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-06-cases.json"
 QR01_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-01-cases.json"
 QR02_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-02-cases.json"
 QR03_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-03-cases.json"
+QR04_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-04-cases.json"
 WORKFLOW = ROOT / ".github" / "workflows" / "build.yml"
 
 
@@ -309,3 +310,31 @@ def test_bc_qr_03_assertions_cover_completion_running_exclusions_and_missing_adm
     workflow = WORKFLOW.read_text(encoding="utf-8")
     assert "Execute bc-qr-03 asserted CQL branches" in workflow
     assert "bc-qr-03-cases.json" in workflow
+
+
+def test_bc_qr_04_assertions_cover_cohort_gate_death_and_one_year_boundary():
+    cases = load(QR04_CASES)
+    by_id = {case["id"]: case for case in cases}
+    assert set(by_id) == {
+        "cohort-not-loaded",
+        "current-new-diagnosis-living-explicit-false",
+        "prior-year-cohort-member",
+        "deceased-cohort-member-excluded",
+        "last-contact-exactly-one-year",
+        "last-contact-one-day-inside-year",
+        "missing-last-contact-not-inferred-lost",
+    }
+    assert by_id["cohort-not-loaded"]["expected"]["Denominator QR4"] is False
+    assert by_id["current-new-diagnosis-living-explicit-false"]["expected"]["Patient Is Deceased"] is False
+    assert by_id["prior-year-cohort-member"]["expected"]["Denominator QR4"] is True
+    assert by_id["deceased-cohort-member-excluded"]["expected"]["Denominator QR4"] is False
+    assert by_id["last-contact-exactly-one-year"]["expected"]["Numerator QR4"] is True
+    assert by_id["last-contact-one-day-inside-year"]["expected"]["Numerator QR4"] is False
+    assert by_id["missing-last-contact-not-inferred-lost"]["expected"]["Last Contact Date"] is None
+
+    cql = CQL.read_text(encoding="utf-8")
+    assert 'define "Patient Is Deceased":' in cql
+    assert '"Last Contact Date" same day or before' in cql
+    workflow = WORKFLOW.read_text(encoding="utf-8")
+    assert "Execute bc-qr-04 asserted CQL branches" in workflow
+    assert "bc-qr-04-cases.json" in workflow
