@@ -17,6 +17,9 @@ def test_publisher_workflow_is_reproducible_and_preserves_evidence():
     assert "gem install jekyll" in text
     assert "actions/upload-artifact@v7" in text
     assert "ig/output/" in text
+    assert "scripts/audit_publisher_qa.py" in text
+    assert "mappings/publication/publisher-warning-policy.csv" in text
+    assert "publisher-warning-audit.json" in text
 
 
 def test_publisher_workflow_enforces_technical_and_strict_qa_levels():

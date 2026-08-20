@@ -63,6 +63,18 @@ jobs:
           echo "${PIPESTATUS[0]}" > publisher-exit-code.txt
           exit 0
 
+      - name: Audit Publisher warning baseline
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_publisher_qa.py \
+            --qa-text ig/output/qa.txt \
+            --qa-html ig/output/qa.html \
+            --policy mappings/publication/publisher-warning-policy.csv \
+            --json-out ig/output/publisher-warning-audit.json \
+            --target integrity \
+            | tee ig/output/publisher-warning-audit.log
+
       - name: Upload Publisher evidence
         if: always()
         uses: actions/upload-artifact@v7

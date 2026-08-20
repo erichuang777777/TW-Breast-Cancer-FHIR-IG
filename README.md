@@ -129,6 +129,8 @@ java "-Dfile.encoding=UTF-8" -jar publisher.jar -ig ig.ini
 
 發布前至少應確認：測試通過、SUSHI 無 error、Publisher QA 為 0 errors／0 warnings／0 broken links、Mapping 產物已重建，且 PHI 掃描無發現。
 
+各發布層級、六種核對方法、逐項資料正確性門檻及目前 238 個 Publisher warnings 的精確分類，見 [FHIR IG 發布與資料正確性驗收矩陣](PUBLICATION_ACCEPTANCE_MATRIX.md)。
+
 ### 治理與簽核
 
 Preview 版本可以由專案維護者發布，不代表官方認證。需要人工確認的項目記錄於 Mapping workbook 的 `Approval_Register` 及對應 CSV；簽核的是本專案對規則、術語與臨床語意所做的本地解讀，不是要求維護者代替主管機關核准官方規則。

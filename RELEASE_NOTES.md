@@ -14,7 +14,7 @@
 
 ## 驗證狀態（2026-08-21）
 
-- pytest：212 passed。
+- pytest：216 passed。
 - SUSHI 3.20.0：0 errors、0 warnings。
 - PHI gate：pass。
 - CQL translation：pass；CQL runtime：1/20 Measures。
