@@ -10,6 +10,7 @@ claimed for a field this package cannot verify.
 """
 
 import json
+from pathlib import Path
 
 import pytest
 
@@ -18,6 +19,8 @@ from tcr_workbench.ig_export import (
     DATE_FIELDS, DEFAULT_BASE_URL, FIELD_MAP, NUMERIC_FIELDS, SECTIONS, build_ig,
     build_questionnaire, field_has_code_table,
 )
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 @pytest.fixture(scope='module')
@@ -170,7 +173,16 @@ class TestExample:
     def test_example_is_tagged_synthetic(self, ig):
         _summary, resources, _out = ig
         qr = resources['tcr-breast-example']
-        assert any(t['code'] == 'synthetic' for t in qr['meta']['tag'])
+        security = qr['meta']['security']
+        assert any(
+            coding['system'] ==
+            'http://terminology.hl7.org/CodeSystem/v3-ActReason'
+            and coding['code'] == 'HTEST'
+            for coding in security
+        )
+        config = (ROOT / 'ig' / 'sushi-config.yaml').read_text(encoding='utf-8')
+        assert 'QuestionnaireResponse/tcr-breast-example:' in config
+        assert 'Completely synthetic cancer-registry abstraction example' in config
 
     def test_task_example_declares_its_inputs_and_output(self, ig):
         _summary, resources, _out = ig

@@ -684,8 +684,11 @@ def build_questionnaire_response(cancer_group: str, base_url: str,
         'status': 'in-progress',
         'subject': {'reference': 'Patient/breast-cancer-patient-example'},
         'item': items,
-        'meta': {'tag': [{'code': 'synthetic',
-                          'display': 'Synthetic data — not a real patient'}]},
+        'meta': {'security': [{
+            'system': 'http://terminology.hl7.org/CodeSystem/v3-ActReason',
+            'code': 'HTEST',
+            'display': 'test health data',
+        }]},
     }
 
 

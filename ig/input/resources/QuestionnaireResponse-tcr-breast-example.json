@@ -969,10 +969,11 @@
     }
   ],
   "meta": {
-    "tag": [
+    "security": [
       {
-        "code": "synthetic",
-        "display": "Synthetic data — not a real patient"
+        "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+        "code": "HTEST",
+        "display": "test health data"
       }
     ]
   }

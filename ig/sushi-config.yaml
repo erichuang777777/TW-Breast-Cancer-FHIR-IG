@@ -36,6 +36,12 @@ dependencies:
   hl7.fhir.uv.cql: 2.0.0
   hl7.fhir.uv.crmi: 1.0.0
 
+resources:
+  QuestionnaireResponse/tcr-breast-example:
+    name: Synthetic TCR Breast QuestionnaireResponse
+    description: Completely synthetic cancer-registry abstraction example; it represents no real patient and is not suitable for clinical or submission use.
+    exampleBoolean: true
+
 pages:
   index.md:
     title: 首頁
