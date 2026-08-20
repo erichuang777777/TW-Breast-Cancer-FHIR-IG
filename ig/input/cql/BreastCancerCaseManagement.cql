@@ -96,6 +96,11 @@ parameter "Indicator 6 Variant" String default 'practice'
 // never be filed as a case manager's own.
 parameter "Reporting Case Manager" String default null
 
+// Logical id of the Organization that represents the reporting hospital system
+// root. Required for bc-qr-02: Organization.partOf alone only says that an
+// organization has a parent and cannot identify which system owns that parent.
+parameter "Reporting Organization System Root" String default null
+
 // bc-qr-04 needs the prior-year new diagnosis cohort. A single-period export
 // has never carried it; see "Denominator QR4".
 parameter "Prior Year Cohort Available" Boolean default false
@@ -533,13 +538,16 @@ define "Transferred During Staging":
   "Retention Disposition" = 'transfer-during-staging'
 
 // CM-BC-034 through Organization.partOf, replacing the hospital-name keyword
-// list. False when the organisation cannot be resolved, rather than a guess.
+// list. False when either the receiver or the governed system root cannot be
+// resolved, rather than treating membership in any organization tree as NTUH.
 define "Transferred Within NTUH System":
   "Transferred During Staging"
+    and "Reporting Organization System Root" is not null
     and exists (
       [Organization] Receiver
         where Receiver.id = Last(Split(Coalesce("Receiving Organisation".reference.value, ''), '/'))
-          and Receiver.partOf.reference is not null
+          and Last(Split(Coalesce(Receiver.partOf.reference.value, ''), '/'))
+            = "Reporting Organization System Root"
     )
 
 // X1-STAGING-DEATH (CM-BC-036 with CM-BC-035)

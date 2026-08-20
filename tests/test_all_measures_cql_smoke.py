@@ -16,6 +16,7 @@ QI04_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-04-cases.json"
 QI05_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-05-cases.json"
 QI06_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-06-cases.json"
 QR01_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-01-cases.json"
+QR02_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qr-02-cases.json"
 WORKFLOW = ROOT / ".github" / "workflows" / "build.yml"
 
 
@@ -248,3 +249,29 @@ def test_bc_qr_01_assertions_cover_retention_exclusions_staging_and_cohort():
     workflow = WORKFLOW.read_text(encoding="utf-8")
     assert "Execute bc-qr-01 asserted CQL branches" in workflow
     assert "bc-qr-01-cases.json" in workflow
+
+
+def test_bc_qr_02_assertions_require_the_governed_reporting_system_root():
+    cases = load(QR02_CASES)
+    by_id = {case["id"]: case for case in cases}
+    assert set(by_id) == {
+        "stay-counts-without-system-parameter",
+        "transfer-to-reporting-system",
+        "transfer-to-other-system",
+        "transfer-without-system-parameter",
+        "qr1-exclusion-removed-from-denominator",
+    }
+    assert by_id["transfer-to-reporting-system"]["parameters"] == {
+        "Reporting Organization System Root": "ntuh-system"
+    }
+    assert by_id["transfer-to-reporting-system"]["expected"]["Numerator QR2"] is True
+    assert by_id["transfer-to-other-system"]["expected"]["Numerator QR2"] is False
+    assert by_id["transfer-without-system-parameter"]["expected"]["Transferred Within NTUH System"] is False
+    assert by_id["qr1-exclusion-removed-from-denominator"]["expected"]["Denominator QR2"] is False
+
+    cql = CQL.read_text(encoding="utf-8")
+    assert 'parameter "Reporting Organization System Root" String default null' in cql
+    assert '= "Reporting Organization System Root"' in cql
+    workflow = WORKFLOW.read_text(encoding="utf-8")
+    assert "Execute bc-qr-02 asserted CQL branches" in workflow
+    assert "bc-qr-02-cases.json" in workflow
