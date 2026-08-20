@@ -1,0 +1,107 @@
+[
+  {
+    "id": "eligible-slnb",
+    "expected": {
+      "Initial Population": true,
+      "Denominator 2": true,
+      "Numerator 2": true
+    },
+    "bundle": {
+      "resourceType": "Bundle",
+      "type": "collection",
+      "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-02-slnb", "birthDate": "1970-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi02-slnb", "status": "active", "patient": { "reference": "Patient/bc-qi-02-slnb" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "clinical-stage-qi02-slnb", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/bc-qi-02-slnb" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "II" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "node-qi02-slnb", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-02-slnb" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N0" }] } } },
+        { "resource": { "resourceType": "Procedure", "id": "surgery-qi02-slnb", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "breast-conserving-surgery" }] }, "subject": { "reference": "Patient/bc-qi-02-slnb" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } },
+        { "resource": { "resourceType": "Procedure", "id": "slnb-qi02", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "sentinel-lymph-node-biopsy" }] }, "subject": { "reference": "Patient/bc-qi-02-slnb" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+      ]
+    }
+  },
+  {
+    "id": "eligible-without-slnb",
+    "expected": {
+      "Initial Population": true,
+      "Denominator 2": true,
+      "Numerator 2": false
+    },
+    "bundle": {
+      "resourceType": "Bundle",
+      "type": "collection",
+      "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-02-no-slnb", "birthDate": "1970-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi02-no-slnb", "status": "active", "patient": { "reference": "Patient/bc-qi-02-no-slnb" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "clinical-stage-qi02-no-slnb", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/bc-qi-02-no-slnb" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "I" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "node-qi02-no-slnb", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-02-no-slnb" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N0(i+)" }] } } },
+        { "resource": { "resourceType": "Procedure", "id": "surgery-qi02-no-slnb", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "other-breast-surgery" }] }, "subject": { "reference": "Patient/bc-qi-02-no-slnb" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+      ]
+    }
+  },
+  {
+    "id": "systemic-therapy-before-surgery",
+    "expected": {
+      "Initial Population": true,
+      "Surgery Was First Treatment": false,
+      "Denominator 2": false,
+      "Numerator 2": true
+    },
+    "bundle": {
+      "resourceType": "Bundle",
+      "type": "collection",
+      "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-02-systemic-first", "birthDate": "1970-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi02-systemic-first", "status": "active", "patient": { "reference": "Patient/bc-qi-02-systemic-first" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "clinical-stage-qi02-systemic-first", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/bc-qi-02-systemic-first" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "II" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "node-qi02-systemic-first", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-02-systemic-first" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N0" }] } } },
+        { "resource": { "resourceType": "MedicationRequest", "id": "chemo-qi02-systemic-first", "status": "active", "intent": "order", "medicationCodeableConcept": { "coding": [{ "system": "https://example.org/cm-test", "code": "cytotoxic-chemotherapy" }] }, "subject": { "reference": "Patient/bc-qi-02-systemic-first" }, "authoredOn": "2026-02-15" } },
+        { "resource": { "resourceType": "Procedure", "id": "surgery-qi02-systemic-first", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "other-breast-surgery" }] }, "subject": { "reference": "Patient/bc-qi-02-systemic-first" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } },
+        { "resource": { "resourceType": "Procedure", "id": "slnb-qi02-systemic-first", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "sentinel-lymph-node-biopsy" }] }, "subject": { "reference": "Patient/bc-qi-02-systemic-first" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+      ]
+    }
+  },
+  {
+    "id": "missing-node-category",
+    "expected": {
+      "Initial Population": true,
+      "Denominator 2": false,
+      "Numerator 2": true
+    },
+    "bundle": {
+      "resourceType": "Bundle",
+      "type": "collection",
+      "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-02-missing-node", "birthDate": "1970-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi02-missing-node", "status": "active", "patient": { "reference": "Patient/bc-qi-02-missing-node" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "clinical-stage-qi02-missing-node", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/bc-qi-02-missing-node" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "II" }] } } },
+        { "resource": { "resourceType": "Procedure", "id": "surgery-qi02-missing-node", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "other-breast-surgery" }] }, "subject": { "reference": "Patient/bc-qi-02-missing-node" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } },
+        { "resource": { "resourceType": "Procedure", "id": "slnb-qi02-missing-node", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "sentinel-lymph-node-biopsy" }] }, "subject": { "reference": "Patient/bc-qi-02-missing-node" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+      ]
+    }
+  },
+  {
+    "id": "clinical-stage-iii-outside-denominator",
+    "expected": {
+      "Initial Population": true,
+      "Denominator 2": false,
+      "Numerator 2": true
+    },
+    "bundle": {
+      "resourceType": "Bundle",
+      "type": "collection",
+      "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] },
+      "entry": [
+        { "resource": { "resourceType": "Patient", "id": "bc-qi-02-stage-iii", "birthDate": "1970-01-01" } },
+        { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi02-stage-iii", "status": "active", "patient": { "reference": "Patient/bc-qi-02-stage-iii" }, "period": { "start": "2026-02-01" } } },
+        { "resource": { "resourceType": "Observation", "id": "clinical-stage-qi02-stage-iii", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/bc-qi-02-stage-iii" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "III" }] } } },
+        { "resource": { "resourceType": "Observation", "id": "node-qi02-stage-iii", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-node" }] }, "subject": { "reference": "Patient/bc-qi-02-stage-iii" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "N0" }] } } },
+        { "resource": { "resourceType": "Procedure", "id": "surgery-qi02-stage-iii", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "other-breast-surgery" }] }, "subject": { "reference": "Patient/bc-qi-02-stage-iii" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } },
+        { "resource": { "resourceType": "Procedure", "id": "slnb-qi02-stage-iii", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "sentinel-lymph-node-biopsy" }] }, "subject": { "reference": "Patient/bc-qi-02-stage-iii" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+      ]
+    }
+  }
+]

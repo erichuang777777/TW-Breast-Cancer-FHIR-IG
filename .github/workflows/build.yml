@@ -135,3 +135,11 @@ jobs:
             tests/fixtures/cql/all-measures-smoke-cases.json \
             tests/fixtures/cql/all-measures-value-sets.json \
             ig/fsh-generated/resources
+
+      - name: Execute bc-qi-02 asserted CQL branches
+        run: |
+          node ig/tools/cql-evaluation/run-asserted-cases.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/bc-qi-02-cases.json \
+            tests/fixtures/cql/all-measures-value-sets.json

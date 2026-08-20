@@ -9,6 +9,8 @@ MEASURES = ROOT / "ig" / "input" / "fsh" / "case-management-measures.fsh"
 CASES = ROOT / "tests" / "fixtures" / "cql" / "all-measures-smoke-cases.json"
 VALUE_SETS = ROOT / "tests" / "fixtures" / "cql" / "all-measures-value-sets.json"
 RUNNER = ROOT / "ig" / "tools" / "cql-evaluation" / "run-all-measures-smoke.js"
+ASSERTED_RUNNER = ROOT / "ig" / "tools" / "cql-evaluation" / "run-asserted-cases.js"
+QI02_CASES = ROOT / "tests" / "fixtures" / "cql" / "bc-qi-02-cases.json"
 WORKFLOW = ROOT / ".github" / "workflows" / "build.yml"
 
 
@@ -70,3 +72,44 @@ def test_smoke_is_not_misrepresented_as_branch_or_clinical_validation():
     assert "smoke" in cases
     assert "golden" not in runner.lower()
     assert "clinical" not in runner.lower()
+
+
+def test_bc_qi_02_assertions_cover_eligibility_missing_and_order_boundaries():
+    cases = load(QI02_CASES)
+    by_id = {case["id"]: case for case in cases}
+    assert set(by_id) == {
+        "eligible-slnb",
+        "eligible-without-slnb",
+        "systemic-therapy-before-surgery",
+        "missing-node-category",
+        "clinical-stage-iii-outside-denominator",
+    }
+    patient_ids = []
+    for case in cases:
+        assert case["bundle"]["meta"]["tag"] == [
+            {"system": "https://example.org/tags", "code": "synthetic"}
+        ]
+        patients = [
+            entry["resource"]
+            for entry in case["bundle"]["entry"]
+            if entry["resource"]["resourceType"] == "Patient"
+        ]
+        assert len(patients) == 1
+        patient_ids.append(patients[0]["id"])
+    assert len(patient_ids) == len(set(patient_ids))
+
+    assert by_id["eligible-slnb"]["expected"]["Denominator 2"] is True
+    assert by_id["eligible-slnb"]["expected"]["Numerator 2"] is True
+    assert by_id["eligible-without-slnb"]["expected"]["Numerator 2"] is False
+    assert by_id["systemic-therapy-before-surgery"]["expected"]["Surgery Was First Treatment"] is False
+    assert by_id["missing-node-category"]["expected"]["Denominator 2"] is False
+    assert by_id["clinical-stage-iii-outside-denominator"]["expected"]["Denominator 2"] is False
+
+
+def test_ci_executes_bc_qi_02_assertions_with_per_case_runner():
+    runner = ASSERTED_RUNNER.read_text(encoding="utf-8")
+    workflow = WORKFLOW.read_text(encoding="utf-8")
+    assert "testCase.parameters" in runner
+    assert "assert.deepEqual(result[expression], expected" in runner
+    assert "Execute bc-qi-02 asserted CQL branches" in workflow
+    assert "bc-qi-02-cases.json" in workflow
