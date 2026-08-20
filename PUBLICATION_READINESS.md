@@ -2,7 +2,7 @@
 
 目前結論：本專案已達到「可重現建置的社群草稿」階段，但尚未達到可正式發布或投入臨床／申報使用的門檻。
 
-技術面的 FHIR Publisher 資源驗證已由最初的 69 errors 降至 0 errors；Linux publication-readiness workflow 亦已產生完整網站、`qa.html` 與 `package.tgz`，結果為 0 errors、240 warnings、0 broken links。臨床面的原始資料 mapping、正式值集、golden cohort 與治理簽核仍是阻擋項目。
+技術面的 FHIR Publisher 資源驗證已由最初的 69 errors 降至 0 errors；Linux publication-readiness workflow 亦已產生完整網站、`qa.html` 與 `package.tgz`，結果為 0 errors、238 warnings、0 broken links。臨床面的原始資料 mapping、正式值集、golden cohort 與治理簽核仍是阻擋項目。
 
 ## 本次驗證結果
 
@@ -14,8 +14,8 @@
 | CQL CLI translation | pass | `cql-to-elm-cli 3.26.0` 可產生 ELM；FHIRHelpers 由 `hl7.fhir.uv.cql#2.0.0` 解析。 |
 | CQL runtime | partial：1/20 Measures | `bc-qi-01` 已通過 5 個合成 R4 Bundle 案例；其餘 19 個 Measure 尚無可執行測試。 |
 | IG Publisher 2.3.2 resource validation | pass with warnings：0 errors / 241 warnings | 已消除 20 個 FHIRHelpers 錯誤，並補齊 48 個 ValueSet descriptions 與 48 個 ConceptMap titles。 |
-| 完整 IG website/package | pass：0 errors / 240 warnings / 0 broken links | GitHub Actions run `32408943083` 使用 Jekyll 與 Publisher 2.3.2，已保存網站、`qa.html` 與 `package.tgz` artifact。 |
-| Strict release QA | blocked | 正式 release gate 仍要求 0 warnings；完整 QA 的 240 個 warning 尚未逐一修正或完成具體審查紀錄。 |
+| 完整 IG website/package | pass：0 errors / 238 warnings / 0 broken links | GitHub Actions run `32410194174` 使用 Jekyll 與 Publisher 2.3.2，已保存網站、`qa.html` 與 `package.tgz` artifact。 |
+| Strict release QA | blocked | 正式 release gate 仍要求 0 warnings；完整 QA 的 238 個 warning 尚未逐一修正或完成具體審查紀錄。 |
 | Template supply-chain | blocked | Publisher 報告 `fhir.base.template#1.0.0` 已不再被視為安全；升級前不得宣告正式可發布。 |
 
 ## 目前可以做什麼
