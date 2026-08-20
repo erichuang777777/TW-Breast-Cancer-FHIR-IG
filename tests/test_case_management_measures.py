@@ -88,10 +88,12 @@ def test_both_families_share_one_library():
 
 
 def test_library_attachment_is_loadable_by_the_ig_publisher():
-    """The binary adjunct loader requires both its sentinel id and MIME type."""
+    """The binary adjunct loader requires an id-only sentinel attachment."""
     text = fsh_text()
     assert '* content.id = "ig-loader-BreastCancerCaseManagement.cql"' in text
-    assert '* content.contentType = #text/cql' in text
+    # Publisher injects contentType/data only after using this placeholder to
+    # associate the CQL source with the Library.
+    assert "content.contentType" not in text
     config = SUSHI_CONFIG.read_text(encoding="utf-8")
     assert 'path-binary: input/cql' in config
     assert 'hl7.fhir.uv.cql: 2.0.0' in config
