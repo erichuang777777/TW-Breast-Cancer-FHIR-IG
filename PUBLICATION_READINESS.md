@@ -20,7 +20,7 @@
 
 | Gate | 結果 | 說明 |
 |---|---:|---|
-| pytest | pass：341 tests | 包含 mapping、68-criterion 實作差異表、12 項非對齊 criterion 決策鎖定、52-fact 取得優先級、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、完整 262-resource manifest、1028-edge reference graph、52-fact 原始來源與 20-Measure 真實資料證據 gate、四組 canonical version policy、逐 Measure、47 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性 audit、全 IG scope claims／決策、完整 release-control gate、template supply-chain 與 publication workflow 契約測試。 |
+| pytest | pass：346 tests | 包含 mapping、68-criterion 實作差異表、12 項非對齊 criterion 決策鎖定、52-fact 取得優先級與 8 個 owner 工作包、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、完整 262-resource manifest、1028-edge reference graph、52-fact 原始來源與 20-Measure 真實資料證據 gate、四組 canonical version policy、逐 Measure、47 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性 audit、全 IG scope claims／決策、完整 release-control gate、template supply-chain 與 publication workflow 契約測試。 |
 | SUSHI 3.20.0 | pass：0 errors / 0 warnings | FSH 可穩定產生 IG resources。 |
 | PHI gate | pass | 目前版本庫未檢出疑似病人識別資料；正式來源資料仍須在受控環境處理。 |
 | CQL CLI translation | pass | `cql-to-elm-cli 3.26.0` 可產生 ELM；FHIRHelpers 由 `hl7.fhir.uv.cql#2.0.0` 解析。 |
@@ -28,7 +28,7 @@
 | CQL branch assertions | pass with clinical limitations：20/20 Measures | 全部 Measure 已通過具預期結果的合成 R4 Bundle 分支案例；分布 Measure 另覆蓋全部列舉 strata、月份、年齡帶、缺值與非法值。QR-04 仍受真實前年度 cohort 阻擋，QR-05 仍是候選規則。 |
 | IG Publisher 2.3.2 resource validation | pass with warnings：0 errors / 52 warnings | missing-OID 與 TCR targetless ConceptMap warnings 均為 0；剩餘 40 個 FHIRHelpers anchor、11 個 CQL validator limitation 與 1 個 OID registry warning 由機器可讀政策逐類鎖定。 |
 | 完整 IG website/package | pass：0 errors / 52 warnings / 0 broken links | Linux Publisher 2.3.2 已產生網站、`qa.html` 與 `package.tgz`；warning audit 為 QA integrity pass，Community Preview／Formal release block。 |
-| 完整 release controls | integrity pass；2/8 controls pass | RC-02 FHIR conformance 與 RC-04 executable rules 通過；source mapping、terminology、independent recalculation、golden cohort、governance 與 operational acceptance 均 blocked。RC-07 鎖定 QBC 14-Gate、Measure 20-approval、StructureDefinition 47-approval 與 12 項非對齊 criterion resolution；目前 Measure 0/20、artifact 0/47、criterion resolution 0/12。Publisher warnings 即使歸零也不會讓此 gate 誤判通過。 |
+| 完整 release controls | integrity pass；2/8 controls pass | RC-02 FHIR conformance 與 RC-04 executable rules 通過；source mapping、terminology、independent recalculation、golden cohort、governance 與 operational acceptance 均 blocked。RC-01 鎖定 52-fact source evidence 與 52/52 accountable owner，目前兩者皆 0/52；RC-07 鎖定 QBC 14-Gate、Measure 20-approval、StructureDefinition 47-approval 與 12 項非對齊 criterion resolution，目前 Measure 0/20、artifact 0/47、criterion resolution 0/12。Publisher warnings 即使歸零也不會讓這些 gate 誤判通過。 |
 | Terminology inventory | technical pass；clinical block | 完整集合 152（60 CodeSystem、90 ValueSet、2 ConceptMap）；19 個個管臨床 ValueSet 為空、核准 0/19，因此 RC-03 blocked。 |
 | FHIR resource inventory | technical pass；version provenance block | 精確集合 262（225 definitions、37 examples、223 canonical）；261 個 IG manifest references 全數解析。223 canonical 已分成 24 package-explicit、1 CQL、97 package-context pending、101 TCR version collision；政策核准 0/4，因此 RC-08 blocked。 |
 | FHIR reference graph | technical pass | 精確 1028 edges：662 local URL、330 FHIR Reference、36 external canonical；198 unique local targets 全部解析且型別正確，18 unique external canonical 只由 pinned FHIR R4／TW Core dependencies 解析。 |
@@ -65,7 +65,7 @@
 - terminology 對應未確認時使用 `candidate-unverified`，不得直接發布成正式 ValueSet/ConceptMap 關係。
 - 先完成 CQL 所需的 FHIR resource/profile/path、時間窗、缺值與排除規則；待原始資料到位後再補 source adapter 與 Provenance。
 
-本階段骨架已建立於 `mappings/publication/source-traceability-register.csv`：精確涵蓋 34 個共同 fact 與 18 個 task-only fact，共 52 項；目前權威來源核准為 0/52。各館既有報表欄位已明確留在 notes／secondary reconciliation 邊界，不能使原始來源 gate 通過。追蹤間接 CQL 依賴、報告參數與人工 adjudication 後，68 個 criteria 實際引用 45/52 facts；`source-acquisition-priority.csv` 已將全部 52 項排為 **P0 42／P1 4／P2 6**，而 `audit_source_acquisition_priority.py` 會阻止手動降級或 dependency drift。P0/P1/P2 僅是取得順序，不是可選項。逐 Measure 的獨立重算與完整期別驗證則記錄於 `measure-validation-evidence-register.csv`，目前均為 0/20。這些登錄由本機與 CI 強制檢查。
+本階段骨架已建立於 `mappings/publication/source-traceability-register.csv`：精確涵蓋 34 個共同 fact 與 18 個 task-only fact，共 52 項；目前權威來源核准為 0/52。各館既有報表欄位已明確留在 notes／secondary reconciliation 邊界，不能使原始來源 gate 通過。追蹤間接 CQL 依賴、報告參數與人工 adjudication 後，68 個 criteria 實際引用 45/52 facts；`source-acquisition-priority.csv` 已將全部 52 項排為 **P0 42／P1 4／P2 6**，而 `audit_source_acquisition_priority.py` 會阻止手動降級或 dependency drift。`source-acquisition-work-packages.csv` 再把同一集合分為 8 個院內角色工作包與 B0–B4 五批，具名 owner 目前 0/52；[SOURCE_ACQUISITION_WORK_PACKAGES.md](SOURCE_ACQUISITION_WORK_PACKAGES.md) 可直接作派工說明。P0/P1/P2 僅是取得順序，不是可選項。逐 Measure 的獨立重算與完整期別驗證則記錄於 `measure-validation-evidence-register.csv`，目前均為 0/20。這些登錄由本機與 CI 強制檢查。
 
 quality 交接匯入包本身已完成逐檔整合核對：11 個直接對應檔及 2 個 instruction／patch 檔均有處理結論，34 mapping、20 Measure、68 criteria、18 Task-only IDs 與 22 個 FSH symbols 無遺漏；完整證據見 [QUALITY_IMPORT_INTEGRATION_AUDIT.md](QUALITY_IMPORT_INTEGRATION_AUDIT.md)。這只證明匯入完整，不提升真實資料 gate。
 

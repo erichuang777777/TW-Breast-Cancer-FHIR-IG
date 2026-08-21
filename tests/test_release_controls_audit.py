@@ -40,6 +40,7 @@ def run_audit(
     inventory_overrides: dict | None = None,
     reference_overrides: dict | None = None,
     data_evidence_overrides: dict | None = None,
+    source_owners_confirmed: bool = False,
     criterion_resolution_approved: bool = False,
     target: str = "integrity",
 ):
@@ -169,6 +170,37 @@ def run_audit(
     data_evidence_audit.write_text(
         json.dumps(data_evidence_report), encoding="utf-8"
     )
+    source_work_package_audit = tmp_path / "source-work-package-audit.json"
+    confirmed_owner_count = 52 if source_owners_confirmed else 0
+    source_work_package_audit.write_text(
+        json.dumps({
+            "gate_scope": "all-52-source-fact-acquisition-work-packages",
+            "fact_count": 52,
+            "work_package_count": 8,
+            "batch_counts": {
+                "B0-result-blockers": 10,
+                "B1-cohort-rate": 31,
+                "B2-release-provenance": 1,
+                "B3-stratifiers": 4,
+                "B4-support": 6,
+            },
+            "work_package_fact_counts": {
+                "WP-01-PATIENT-ADMIN": 3,
+                "WP-02-REGISTRY-STAGING": 8,
+                "WP-03-PATHOLOGY": 8,
+                "WP-04-SURGERY-PROCEDURE": 5,
+                "WP-05-SYSTEMIC-THERAPY": 3,
+                "WP-06-RADIOTHERAPY": 3,
+                "WP-07-CASE-MANAGEMENT": 19,
+                "WP-08-REPORTING-PROVENANCE": 3,
+            },
+            "confirmed_owner_assignment_count": confirmed_owner_count,
+            "unassigned_owner_count": 52 - confirmed_owner_count,
+            "work_package_integrity_gate": "pass",
+            "owner_assignment_gate": "pass" if source_owners_confirmed else "block",
+        }),
+        encoding="utf-8",
+    )
     criterion_resolution_audit = tmp_path / "criterion-resolution-audit.json"
     approved_resolution_count = 12 if criterion_resolution_approved else 0
     criterion_resolution_audit.write_text(
@@ -214,6 +246,7 @@ def run_audit(
             "--resource-inventory-audit", str(inventory_audit),
             "--reference-graph-audit", str(reference_graph_audit),
             "--data-evidence-audit", str(data_evidence_audit),
+            "--source-work-package-audit", str(source_work_package_audit),
             "--criterion-resolution-audit", str(criterion_resolution_audit),
             "--publisher-audit", str(publisher),
             "--json-out", str(output),
@@ -272,6 +305,9 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["approved_authoritative_or_derived_fact_count"] == 0
     assert report["approved_independent_recalculation_count"] == 0
     assert report["approved_golden_cohort_count"] == 0
+    assert report["source_acquisition_work_package_count"] == 8
+    assert report["confirmed_source_owner_assignment_count"] == 0
+    assert report["source_owner_assignment_gate"] == "block"
     assert report["criterion_resolution_decision_count"] == 12
     assert report["approved_criterion_resolution_decision_count"] == 0
     assert report["non_aligned_criterion_resolution_decision_count"] == 12
@@ -343,6 +379,44 @@ def test_measure_summary_cannot_fake_source_independent_or_golden_evidence(tmp_p
     assert report["derived_status"]["RC-01"] == "blocked"
     assert report["derived_status"]["RC-05"] == "blocked"
     assert report["derived_status"]["RC-06"] == "blocked"
+
+
+def test_rc01_requires_confirmed_accountable_owner_for_every_source_fact(tmp_path):
+    with MEASURES.open(encoding="utf-8-sig", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+        fieldnames = list(rows[0])
+    for row in rows:
+        row["raw_source_mapping"] = "pass"
+    source_ready_measures = tmp_path / "source-ready-measures.csv"
+    with source_ready_measures.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+
+    source_evidence = {
+        "approved_authoritative_or_derived_fact_count": 52,
+        "raw_source_traceability_gate": "pass",
+    }
+    completed, report = run_audit(
+        tmp_path,
+        measures=source_ready_measures,
+        data_evidence_overrides=source_evidence,
+    )
+    assert completed.returncode == 0
+    assert report["derived_status"]["RC-01"] == "blocked"
+    assert report["source_owner_assignment_gate"] == "block"
+
+    completed, report = run_audit(
+        tmp_path,
+        measures=source_ready_measures,
+        data_evidence_overrides=source_evidence,
+        source_owners_confirmed=True,
+    )
+    assert completed.returncode == 1  # real register still truthfully declares blocked
+    assert report["derived_status"]["RC-01"] == "pass"
+    assert report["status_mismatches"] == [
+        {"control_id": "RC-01", "declared": "blocked", "derived": "pass"}
+    ]
 
 
 def test_business_version_gate_cannot_contradict_policy_approval_state(tmp_path):

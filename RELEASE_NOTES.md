@@ -16,7 +16,7 @@
 
 ## 驗證狀態（2026-08-21）
 
-- pytest：341 passed（新增 68-criterion 實作差異表、12 項非對齊 criterion 決策鎖定、專屬 Task profile 與跨 Patient Task 反例、52-fact P0/P1/P2 取得優先級鎖定，並包含 OID assignment、TCR 術語 backlog、完整 262-resource manifest、1028-edge reference graph、52-fact 原始來源與 20-Measure 真實資料證據 gate、四組 canonical version policy、逐 Measure、47 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性、全 IG scope claims／決策、template supply-chain 與八項 release-control 證據一致性檢查）。
+- pytest：346 passed（新增 68-criterion 實作差異表、12 項非對齊 criterion 決策鎖定、專屬 Task profile 與跨 Patient Task 反例、52-fact P0/P1/P2 取得優先級及 8 個 owner 工作包鎖定，並包含 OID assignment、TCR 術語 backlog、完整 262-resource manifest、1028-edge reference graph、52-fact 原始來源與 20-Measure 真實資料證據 gate、四組 canonical version policy、逐 Measure、47 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性、全 IG scope claims／決策、template supply-chain 與八項 release-control 證據一致性檢查）。
 - SUSHI 3.20.0：0 errors、0 warnings。
 - PHI gate：pass。
 - CQL translation：pass；runtime smoke：20/20 Measures、46/46 expressions；底層 criteria crosscheck：68/68；目前具預期值的合成分支 assertions：20/20 Measures。
@@ -33,6 +33,7 @@
 - 精確 FHIR resource inventory 與 IG manifest graph audit 現為 262 rows：225 definitions、37 synthetic examples、223 canonical resources，來源為 159 FSH-generated＋103 manual JSON；261 個 IG resource references 必須逐項解析。完整 canonical version policy register 將 223 項分為 24 package-explicit、1 CQL、97 package-context pending、101 手寫 TCR version collision；四組政策均須具名簽核，目前 0/4，因此 RC-08 保持 blocked。
 - 完整 FHIR reference graph audit 現精確鎖定 1028 個 edges（662 local URL、330 FHIR Reference、36 external canonical），驗證 198 個唯一 local targets 的解析與型別、19 個 Bundle fullUrl identity、18 個外部 canonical allowlist，以及 FHIR R4 `4.0.1`／TW Core `1.0.0` dependency pin。任何新增未審外部 canonical、斷裂 reference 或目標型別漂移均阻擋 RC-02。
 - 新增原始資料與真實數據證據 gate：`source-traceability-register.csv` 精確鎖定 52 個品管／季報 fact，目前骨架 52/52、權威來源核准 0/52；`measure-validation-evidence-register.csv` 精確鎖定 20 個 Measure，目前獨立重算 0/20、完整期別 golden cohort 0/20。CI 明確拒絕以 secondary report 取代原始來源，亦拒絕缺 hash、reviewer、逐案比較數或零差異證據的自稱核准。
+- 新增 52-fact 原始資料取得工作包：8 個 owner domain、5 個批次，先處理 10 個直接結果阻擋項，再處理 31 個 cohort/rate facts；目前具名 owner 0/52。RC-01 同時要求 52/52 權威來源與 52/52 accountable owner，並拒絕沒有姓名、組織／職稱、日期、證據 URI 與簽署 SHA-256 的形式確認。
 - 修正 criteria dependency graph：補入乳癌診斷、報告期間、個管師歸屬、放療執行院所、PR／HER2／組織型／T1mi 間接依賴，以及分期、拒絕／中斷／回治、失聯與委員會 add-back 等人工判定；68 個 criteria 參照的 fact 由 37 修正為 45。
 - 新增機器推導的 `source-acquisition-priority.csv`：52 項分為 P0 42／P1 4／P2 6，每列包含影響 criteria、owner、FHIR target、詢問內容與驗收證據。優先級只代表取得順序，52 項仍全部是 production publication 必要項。
 - 新增 quality 交接匯入包逐檔整合稽核：固定 13 個來源檔 SHA-256，核對 11 個 tracked 對應與 2 個 instruction／navigation patch；34 mapping、20 Measure、68 criteria、18 Task-only IDs、22 FSH symbols及全部原測試均無遺漏，CQL 唯一移除的中介 define 有具體、已執行測試的型別安全替代。

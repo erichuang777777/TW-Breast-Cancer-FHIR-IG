@@ -162,6 +162,7 @@ def audit(
     resource_inventory_audit_path: Path,
     reference_graph_audit_path: Path,
     data_evidence_audit_path: Path,
+    source_work_package_audit_path: Path,
     criterion_resolution_audit_path: Path,
     publisher_audit_path: Path,
 ) -> dict[str, object]:
@@ -505,6 +506,54 @@ def audit(
         expected = "pass" if should_pass else "block"
         if data_evidence.get(field) != expected:
             raise ValueError(f"{data_evidence_audit_path}: {field}/count mismatch")
+    source_work_packages = json.loads(
+        source_work_package_audit_path.read_text(encoding="utf-8")
+    )
+    if source_work_packages.get("gate_scope") != (
+        "all-52-source-fact-acquisition-work-packages"
+    ):
+        raise ValueError(f"{source_work_package_audit_path}: invalid gate_scope")
+    expected_work_package_counts = {
+        "fact_count": 52,
+        "work_package_count": 8,
+        "batch_counts": {
+            "B0-result-blockers": 10,
+            "B1-cohort-rate": 31,
+            "B2-release-provenance": 1,
+            "B3-stratifiers": 4,
+            "B4-support": 6,
+        },
+        "work_package_fact_counts": {
+            "WP-01-PATIENT-ADMIN": 3,
+            "WP-02-REGISTRY-STAGING": 8,
+            "WP-03-PATHOLOGY": 8,
+            "WP-04-SURGERY-PROCEDURE": 5,
+            "WP-05-SYSTEMIC-THERAPY": 3,
+            "WP-06-RADIOTHERAPY": 3,
+            "WP-07-CASE-MANAGEMENT": 19,
+            "WP-08-REPORTING-PROVENANCE": 3,
+        },
+    }
+    for field, expected in expected_work_package_counts.items():
+        if source_work_packages.get(field) != expected:
+            raise ValueError(f"{source_work_package_audit_path}: invalid {field}")
+    confirmed_owner_count = source_work_packages.get(
+        "confirmed_owner_assignment_count"
+    )
+    unassigned_owner_count = source_work_packages.get("unassigned_owner_count")
+    if (
+        not isinstance(confirmed_owner_count, int)
+        or not isinstance(unassigned_owner_count, int)
+        or confirmed_owner_count < 0
+        or unassigned_owner_count < 0
+        or confirmed_owner_count + unassigned_owner_count != 52
+    ):
+        raise ValueError(f"{source_work_package_audit_path}: invalid owner counts")
+    if source_work_packages.get("work_package_integrity_gate") != "pass":
+        raise ValueError(f"{source_work_package_audit_path}: integrity gate must pass")
+    expected_owner_gate = "pass" if confirmed_owner_count == 52 else "block"
+    if source_work_packages.get("owner_assignment_gate") != expected_owner_gate:
+        raise ValueError(f"{source_work_package_audit_path}: owner gate/count mismatch")
     criterion_resolution = json.loads(
         criterion_resolution_audit_path.read_text(encoding="utf-8")
     )
@@ -582,6 +631,7 @@ def audit(
         "RC-01": "pass" if (
             data_evidence["raw_source_traceability_gate"] == "pass"
             and all(row["raw_source_mapping"] == "pass" for row in measures)
+            and source_work_packages["owner_assignment_gate"] == "pass"
         ) else "blocked",
         "RC-02": "pass" if (
             publisher["qa_integrity_gate"] == "pass"
@@ -721,6 +771,13 @@ def audit(
         "approved_golden_cohort_count": data_evidence[
             "approved_golden_cohort_count"
         ],
+        "source_acquisition_work_package_count": source_work_packages[
+            "work_package_count"
+        ],
+        "confirmed_source_owner_assignment_count": confirmed_owner_count,
+        "source_owner_assignment_gate": source_work_packages[
+            "owner_assignment_gate"
+        ],
         "criterion_resolution_decision_count": criterion_resolution["decision_count"],
         "approved_criterion_resolution_decision_count": approved_resolution_count,
         "non_aligned_criterion_resolution_decision_count": non_aligned_resolution_count,
@@ -753,6 +810,7 @@ def main() -> int:
     parser.add_argument("--resource-inventory-audit", type=Path, required=True)
     parser.add_argument("--reference-graph-audit", type=Path, required=True)
     parser.add_argument("--data-evidence-audit", type=Path, required=True)
+    parser.add_argument("--source-work-package-audit", type=Path, required=True)
     parser.add_argument("--criterion-resolution-audit", type=Path, required=True)
     parser.add_argument("--publisher-audit", type=Path, required=True)
     parser.add_argument("--json-out", type=Path)
@@ -770,6 +828,7 @@ def main() -> int:
             args.resource_inventory_audit,
             args.reference_graph_audit,
             args.data_evidence_audit,
+            args.source_work_package_audit,
             args.criterion_resolution_audit,
             args.publisher_audit,
         )
