@@ -43,6 +43,8 @@ Publisher／SUSHI 通過所證明的是「產出的資源符合目前載入的 F
 
 八項控制的機器可讀狀態位於 [`mappings/publication/release-control-register.csv`](mappings/publication/release-control-register.csv)，20 個 Measure 的逐項規格核准位於 [`mappings/publication/case-management-measure-approval-register.csv`](mappings/publication/case-management-measure-approval-register.csv)。`scripts/audit_release_controls.py` 依 Measure audit、19 個臨床 ValueSet、完整且不重複的 QBC 14-Gate 集合、完整且不重複的 Measure 20-approval 集合、簽核內容與 Publisher audit 重新推導，並拒絕刪列或 register 自稱與證據不一致。現況為 **2/8 pass**：只有 RC-02 FHIR conformance 與 RC-04 合成規則執行通過；RC-01、03、05、06、07、08 均 blocked。即使未來 Publisher warnings 降到 0，也不能繞過這六個阻擋項目取得 formal release pass。
 
+RC-08 另外驗證全 IG 的 10 個 scope claim 與 10 個逐項角色決策；目前 0/10 簽核。QBC 與個管品管／季報是 normative Task，因此兩者的 claim evidence 都必須升級為 `formal-release-ready`，才可能通過 whole-IG publication gate。單一 Task 的技術驗證或 operational approval 不會自動擴張成整份 IG 的正式發布證據。
+
 ## 每一筆資料應比對的內容
 
 任何會改變 initial population、denominator、exclusion、numerator 或 stratifier 的欄位，都必須逐筆保存並比對：

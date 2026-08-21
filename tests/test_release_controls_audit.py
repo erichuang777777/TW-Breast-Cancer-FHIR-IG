@@ -4,7 +4,11 @@ import subprocess
 import sys
 from pathlib import Path
 
-from scripts.audit_release_controls import approval_complete, measure_approval_complete
+from scripts.audit_release_controls import (
+    approval_complete,
+    measure_approval_complete,
+    scope_decision_complete,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -16,6 +20,10 @@ APPROVALS = ROOT / "outputs" / "qbc_ig_mapping" / "qbc_mapping_approval_register
 MEASURE_APPROVALS = (
     ROOT / "mappings" / "publication" / "case-management-measure-approval-register.csv"
 )
+SCOPE_CLAIMS = ROOT / "mappings" / "publication" / "ig-scope-claim-register.csv"
+SCOPE_DECISIONS = (
+    ROOT / "mappings" / "publication" / "publication-scope-decision-register.csv"
+)
 
 
 def run_audit(
@@ -25,6 +33,8 @@ def run_audit(
     measures: Path = MEASURES,
     approvals: Path = APPROVALS,
     measure_approvals: Path = MEASURE_APPROVALS,
+    scope_claims: Path = SCOPE_CLAIMS,
+    scope_decisions: Path = SCOPE_DECISIONS,
     target: str = "integrity",
 ):
     publisher = tmp_path / "publisher.json"
@@ -45,6 +55,8 @@ def run_audit(
             "--terminology-fsh", str(TERMINOLOGY),
             "--approval-register", str(approvals),
             "--measure-approval-register", str(measure_approvals),
+            "--scope-claims", str(scope_claims),
+            "--scope-decisions", str(scope_decisions),
             "--publisher-audit", str(publisher),
             "--json-out", str(output),
             "--target", target,
@@ -70,6 +82,10 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["qbc_approval_count"] == 14
     assert report["measure_approval_count"] == 20
     assert report["approved_measure_definition_count"] == 0
+    assert report["scope_claim_count"] == 10
+    assert report["scope_decision_count"] == 10
+    assert report["approved_scope_decision_count"] == 0
+    assert report["normative_scope_readiness"] == "block"
     assert report["data_correctness_gate"] == "block"
     assert report["formal_release_gate"] == "block"
     assert report["maximum_supported_claim"] == "technical-draft-only"
@@ -130,6 +146,25 @@ def test_measure_approval_requires_decision_identity_date_evidence_and_hash():
     assert measure_approval_complete(row)
 
 
+def test_scope_decision_requires_matching_role_identity_date_evidence_and_hash():
+    row = {
+        "current_status": "approved",
+        "decision": "approve",
+        "proposed_role": "normative",
+        "approved_role": "normative",
+        "signer_name": "Publisher",
+        "signer_organization_title": "Governance board / chair",
+        "decision_date": "2026-08-21",
+        "evidence_uri_path": "evidence/scope.json",
+        "signed_artifact_sha256": "",
+    }
+    assert not scope_decision_complete(row)
+    row["signed_artifact_sha256"] = "e" * 64
+    assert scope_decision_complete(row)
+    row["approved_role"] = "informative"
+    assert not scope_decision_complete(row)
+
+
 def test_deleting_a_required_qbc_gate_is_rejected(tmp_path):
     with APPROVALS.open(encoding="utf-8-sig", newline="") as handle:
         rows = list(csv.DictReader(handle))
@@ -158,6 +193,37 @@ def test_deleting_a_measure_approval_is_rejected(tmp_path):
     assert completed.returncode == 2
     assert report is None
     assert "exactly one unique approval for each Measure" in completed.stderr
+
+
+def test_deleting_a_scope_decision_is_rejected(tmp_path):
+    with SCOPE_DECISIONS.open(encoding="utf-8-sig", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+        fieldnames = list(rows[0])
+    altered = tmp_path / "scope-decisions.csv"
+    with altered.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows[:-1])
+    completed, report = run_audit(tmp_path, scope_decisions=altered)
+    assert completed.returncode == 2
+    assert report is None
+    assert "exactly one unique decision for each scope claim" in completed.stderr
+
+
+def test_scope_role_cannot_be_downgraded_to_bypass_normative_evidence(tmp_path):
+    with SCOPE_DECISIONS.open(encoding="utf-8-sig", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+        fieldnames = list(rows[0])
+    next(row for row in rows if row["claim_id"] == "TASK-QBC")["proposed_role"] = "informative"
+    altered = tmp_path / "scope-decisions.csv"
+    with altered.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+    completed, report = run_audit(tmp_path, scope_decisions=altered)
+    assert completed.returncode == 2
+    assert report is None
+    assert "proposed_role does not match locked policy" in completed.stderr
 
 
 def test_signed_approvals_cannot_hide_unresolved_measure_definitions(tmp_path):
@@ -202,12 +268,11 @@ def test_signed_approvals_cannot_hide_unresolved_measure_definitions(tmp_path):
     completed, report = run_audit(
         tmp_path, approvals=qbc_signed, measure_approvals=measures_signed
     )
-    assert completed.returncode == 1  # signed operational gates make declared RC-08 stale
+    assert completed.returncode == 0
     assert report["approved_measure_definition_count"] == 20
     assert report["derived_status"]["RC-07"] == "blocked"
-    assert report["status_mismatches"] == [
-        {"control_id": "RC-08", "declared": "blocked", "derived": "pass"}
-    ]
+    assert report["derived_status"]["RC-08"] == "blocked"
+    assert report["status_mismatches"] == []
 
 
 def test_rc07_requires_both_complete_signatures_and_approved_alignment(tmp_path):
@@ -266,5 +331,84 @@ def test_rc07_requires_both_complete_signatures_and_approved_alignment(tmp_path)
     assert report["derived_status"]["RC-07"] == "pass"
     assert report["status_mismatches"] == [
         {"control_id": "RC-07", "declared": "blocked", "derived": "pass"},
-        {"control_id": "RC-08", "declared": "blocked", "derived": "pass"},
+    ]
+
+
+def test_rc08_requires_signed_scope_roles_and_formal_ready_normative_claims(tmp_path):
+    with APPROVALS.open(encoding="utf-8-sig", newline="") as handle:
+        approval_rows = list(csv.DictReader(handle))
+        approval_fields = list(approval_rows[0])
+    for row in approval_rows:
+        if row["Gate ID"] in {"SEC-PRIVACY", "UAT-VPN", "PUB-RELEASE"}:
+            row.update({
+                "Status": "approved", "Decision (approve/reject/revise)": "approve",
+                "Signer name": "Operational owner",
+                "Signer organization/title": "Hospital / owner",
+                "Decision date": "2026-08-21",
+                "Evidence URI/path": "evidence/operations.json",
+                "Signed artifact SHA-256": "a" * 64,
+            })
+    signed_operations = tmp_path / "operations.csv"
+    with signed_operations.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=approval_fields)
+        writer.writeheader()
+        writer.writerows(approval_rows)
+
+    with SCOPE_DECISIONS.open(encoding="utf-8-sig", newline="") as handle:
+        decision_rows = list(csv.DictReader(handle))
+        decision_fields = list(decision_rows[0])
+    for row in decision_rows:
+        row.update({
+            "current_status": "approved", "decision": "approve",
+            "approved_role": row["proposed_role"], "signer_name": "Scope owner",
+            "signer_organization_title": "Governance board / chair",
+            "decision_date": "2026-08-21",
+            "evidence_uri_path": f"evidence/{row['claim_id']}.json",
+            "signed_artifact_sha256": "b" * 64,
+        })
+    signed_scopes = tmp_path / "signed-scopes.csv"
+    with signed_scopes.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=decision_fields)
+        writer.writeheader()
+        writer.writerows(decision_rows)
+
+    completed, report = run_audit(
+        tmp_path, approvals=signed_operations, scope_decisions=signed_scopes
+    )
+    assert completed.returncode == 0
+    assert report["approved_scope_decision_count"] == 10
+    assert report["normative_scope_readiness"] == "block"
+    assert report["derived_status"]["RC-08"] == "blocked"
+
+    with SCOPE_CLAIMS.open(encoding="utf-8-sig", newline="") as handle:
+        claim_rows = list(csv.DictReader(handle))
+        claim_fields = list(claim_rows[0])
+    for row in claim_rows:
+        if row["claim_id"] in {"TASK-QBC", "TASK-CASE-MGMT"}:
+            row["evidence_status"] = "formal-release-ready"
+    ready_claims = tmp_path / "ready-claims.csv"
+    with ready_claims.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=claim_fields)
+        writer.writeheader()
+        writer.writerows(claim_rows)
+    for row in decision_rows:
+        if row["claim_id"] in {"TASK-QBC", "TASK-CASE-MGMT"}:
+            row["claim_evidence_status"] = "formal-release-ready"
+    ready_decisions = tmp_path / "ready-decisions.csv"
+    with ready_decisions.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=decision_fields)
+        writer.writeheader()
+        writer.writerows(decision_rows)
+
+    completed, report = run_audit(
+        tmp_path,
+        approvals=signed_operations,
+        scope_claims=ready_claims,
+        scope_decisions=ready_decisions,
+    )
+    assert completed.returncode == 1  # real register truthfully declares RC-08 blocked
+    assert report["normative_scope_readiness"] == "pass"
+    assert report["derived_status"]["RC-08"] == "pass"
+    assert report["status_mismatches"] == [
+        {"control_id": "RC-08", "declared": "blocked", "derived": "pass"}
     ]

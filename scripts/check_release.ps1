@@ -42,6 +42,8 @@ try {
         --terminology-fsh ig\input\fsh\case-management-terminology.fsh `
         --approval-register outputs\qbc_ig_mapping\qbc_mapping_approval_register.csv `
         --measure-approval-register mappings\publication\case-management-measure-approval-register.csv `
+        --scope-claims mappings\publication\ig-scope-claim-register.csv `
+        --scope-decisions mappings\publication\publication-scope-decision-register.csv `
         --publisher-audit ig\output\publisher-warning-audit.json `
         --json-out ig\output\release-control-audit.json `
         --target integrity

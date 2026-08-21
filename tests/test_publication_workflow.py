@@ -24,6 +24,8 @@ def test_publisher_workflow_is_reproducible_and_preserves_evidence():
     assert "scripts/audit_release_controls.py" in text
     assert "mappings/publication/release-control-register.csv" in text
     assert "mappings/publication/case-management-measure-approval-register.csv" in text
+    assert "mappings/publication/ig-scope-claim-register.csv" in text
+    assert "mappings/publication/publication-scope-decision-register.csv" in text
     assert "release-control-audit.json" in text
     assert "Load Template from fhir2.base.template#0.1.0" in text
     assert "no longer considered secure" in text
@@ -44,6 +46,8 @@ def test_local_release_script_uses_the_same_evidence_gates_without_overclaiming(
     assert "scripts\\audit_publisher_qa.py" in text
     assert "scripts\\audit_release_controls.py" in text
     assert "case-management-measure-approval-register.csv" in text
+    assert "ig-scope-claim-register.csv" in text
+    assert "publication-scope-decision-register.csv" in text
     assert "--target integrity" in text
     assert "community_preview_gate" in text
     assert "formal_release_gate" in text

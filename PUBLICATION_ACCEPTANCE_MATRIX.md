@@ -32,6 +32,8 @@
 
 八項控制的宣告狀態位於 `mappings/publication/release-control-register.csv`，20 個 Measure 的逐項規格決策位於 `mappings/publication/case-management-measure-approval-register.csv`。CI 會用 `scripts/audit_release_controls.py` 從底層證據重新推導，並要求 QBC 14 個 Gate 與 Measure 20 個 approval ID 都是完整且不重複的集合；刪除待核准項目不能讓 gate 變綠。Publisher formal QA 與完整 formal release 是兩個不同 gate，前者通過不得取代後者。
 
+RC-08 也要求 `ig-scope-claim-register.csv` 與 `publication-scope-decision-register.csv` 精確涵蓋同一組 10 個 claim。三個 normative scope（IG core、QBC、個管品管／季報）、六個 informative scope 與一個 excluded scope 的角色已鎖定；現況 0/10 簽核。即使 operational approvals 已簽署，只要任一 scope 尚未簽核或 normative Task 未達 `formal-release-ready`，完整 formal release 仍為 blocked。
+
 ## 數量與正確性門檻
 
 ### Mapping

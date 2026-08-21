@@ -50,6 +50,30 @@ REQUIRED_MEASURE_APPROVAL_COLUMNS = {
     "decision", "signer_name", "signer_organization_title", "decision_date",
     "evidence_uri_path", "signed_artifact_sha256", "notes",
 }
+REQUIRED_SCOPE_CLAIM_COLUMNS = {
+    "claim_id", "scope", "authority", "version", "relationship",
+    "evidence_status", "allowed_claim", "prohibited_claim", "blocking_evidence",
+}
+REQUIRED_SCOPE_DECISION_COLUMNS = {
+    "decision_id", "claim_id", "scope", "proposed_role",
+    "claim_evidence_status", "allowed_claim", "prohibited_claim",
+    "blocking_evidence", "current_status", "required_signer",
+    "acceptance_evidence", "decision", "approved_role", "signer_name",
+    "signer_organization_title", "decision_date", "evidence_uri_path",
+    "signed_artifact_sha256", "notes",
+}
+SCOPE_ROLES = {
+    "IG-CORE": "normative",
+    "IG-TWCORE": "informative",
+    "IG-MCODE": "informative",
+    "IG-ICHOM": "informative",
+    "TASK-CAREPLAN": "informative",
+    "TASK-QBC": "normative",
+    "TASK-TWPAS": "informative",
+    "TASK-CASE-MGMT": "normative",
+    "TASK-TCR": "informative",
+    "TASK-FUTURE": "excluded",
+}
 SHA256 = re.compile(r"[0-9a-fA-F]{64}")
 
 
@@ -105,12 +129,34 @@ def measure_approval_complete(row: dict[str, str]) -> bool:
     return SHA256.fullmatch(row["signed_artifact_sha256"].strip()) is not None
 
 
+def scope_decision_complete(row: dict[str, str]) -> bool:
+    if (
+        row["current_status"] != "approved"
+        or row["decision"] != "approve"
+        or row["approved_role"] != row["proposed_role"]
+    ):
+        return False
+    required = (
+        "signer_name", "signer_organization_title", "decision_date",
+        "evidence_uri_path", "signed_artifact_sha256",
+    )
+    if not all(row[field].strip() for field in required):
+        return False
+    try:
+        date.fromisoformat(row["decision_date"])
+    except ValueError:
+        return False
+    return SHA256.fullmatch(row["signed_artifact_sha256"].strip()) is not None
+
+
 def audit(
     controls_path: Path,
     measure_audit_path: Path,
     terminology_path: Path,
     approvals_path: Path,
     measure_approvals_path: Path,
+    scope_claims_path: Path,
+    scope_decisions_path: Path,
     publisher_audit_path: Path,
 ) -> dict[str, object]:
     controls = read_csv(controls_path, REQUIRED_CONTROL_COLUMNS, exact_columns=True)
@@ -159,6 +205,55 @@ def audit(
                 raise ValueError(
                     f"{measure_approvals_path}: {row['measure_id']} has empty {field}"
                 )
+    scope_claims = read_csv(
+        scope_claims_path, REQUIRED_SCOPE_CLAIM_COLUMNS, exact_columns=True
+    )
+    if (
+        len(scope_claims) != len(SCOPE_ROLES)
+        or {row["claim_id"] for row in scope_claims} != set(SCOPE_ROLES)
+    ):
+        raise ValueError(
+            f"{scope_claims_path}: claim_id set must be the exact 10 required scopes"
+        )
+    scope_decisions = read_csv(
+        scope_decisions_path, REQUIRED_SCOPE_DECISION_COLUMNS, exact_columns=True
+    )
+    if (
+        len(scope_decisions) != len(scope_claims)
+        or {row["claim_id"] for row in scope_decisions} != set(SCOPE_ROLES)
+        or len({row["decision_id"] for row in scope_decisions}) != len(scope_claims)
+    ):
+        raise ValueError(
+            f"{scope_decisions_path}: expected exactly one unique decision for each scope claim"
+        )
+    claims_by_id = {row["claim_id"]: row for row in scope_claims}
+    for row in scope_decisions:
+        claim = claims_by_id[row["claim_id"]]
+        if row["proposed_role"] != SCOPE_ROLES[row["claim_id"]]:
+            raise ValueError(
+                f"{scope_decisions_path}: {row['claim_id']} proposed_role does not match locked policy"
+            )
+        copied_context = {
+            "scope": "scope",
+            "claim_evidence_status": "evidence_status",
+            "allowed_claim": "allowed_claim",
+            "prohibited_claim": "prohibited_claim",
+            "blocking_evidence": "blocking_evidence",
+        }
+        for decision_field, claim_field in copied_context.items():
+            if row[decision_field] != claim[claim_field]:
+                raise ValueError(
+                    f"{scope_decisions_path}: {row['claim_id']} stale {decision_field}"
+                )
+        for field in (
+            "decision_id", "scope", "claim_evidence_status", "allowed_claim",
+            "prohibited_claim", "blocking_evidence", "current_status",
+            "required_signer", "acceptance_evidence",
+        ):
+            if not row[field].strip():
+                raise ValueError(
+                    f"{scope_decisions_path}: {row['claim_id']} has empty {field}"
+                )
     publisher = json.loads(publisher_audit_path.read_text(encoding="utf-8"))
     if publisher.get("gate_scope") != "publisher-qa-only":
         raise ValueError(
@@ -173,6 +268,12 @@ def audit(
     )
     governance = [row for row in approvals if row["Gate ID"] not in OPERATIONAL_APPROVALS]
     operational = [row for row in approvals if row["Gate ID"] in OPERATIONAL_APPROVALS]
+    normative_scope_ready = all(
+        row["claim_id"] == "IG-CORE"
+        or row["claim_evidence_status"] == "formal-release-ready"
+        for row in scope_decisions
+        if row["proposed_role"] == "normative"
+    )
     derived = {
         "RC-01": "pass" if all(row["raw_source_mapping"] == "pass" for row in measures) else "blocked",
         "RC-02": "pass" if publisher["qa_integrity_gate"] == "pass" else "blocked",
@@ -194,8 +295,11 @@ def audit(
             and all(row["draft_definition_alignment"] == "approved" for row in measures)
             and all(measure_approval_complete(row) for row in measure_approvals)
         ) else "blocked",
-        "RC-08": "pass" if len(operational) == len(OPERATIONAL_APPROVALS) and all(
-            approval_complete(row) for row in operational
+        "RC-08": "pass" if (
+            len(operational) == len(OPERATIONAL_APPROVALS)
+            and all(approval_complete(row) for row in operational)
+            and all(scope_decision_complete(row) for row in scope_decisions)
+            and normative_scope_ready
         ) else "blocked",
     }
     declared = {row["control_id"]: row["current_status"] for row in controls}
@@ -230,6 +334,12 @@ def audit(
         "approved_measure_definition_count": sum(
             measure_approval_complete(row) for row in measure_approvals
         ),
+        "scope_claim_count": len(scope_claims),
+        "scope_decision_count": len(scope_decisions),
+        "approved_scope_decision_count": sum(
+            scope_decision_complete(row) for row in scope_decisions
+        ),
+        "normative_scope_readiness": "pass" if normative_scope_ready else "block",
         "control_integrity_gate": integrity,
         "data_correctness_gate": data_gate,
         "publisher_formal_qa_gate": publisher["formal_release_gate"],
@@ -248,6 +358,8 @@ def main() -> int:
     parser.add_argument("--terminology-fsh", type=Path, required=True)
     parser.add_argument("--approval-register", type=Path, required=True)
     parser.add_argument("--measure-approval-register", type=Path, required=True)
+    parser.add_argument("--scope-claims", type=Path, required=True)
+    parser.add_argument("--scope-decisions", type=Path, required=True)
     parser.add_argument("--publisher-audit", type=Path, required=True)
     parser.add_argument("--json-out", type=Path)
     parser.add_argument(
@@ -258,6 +370,7 @@ def main() -> int:
         report = audit(
             args.controls, args.measure_audit, args.terminology_fsh,
             args.approval_register, args.measure_approval_register,
+            args.scope_claims, args.scope_decisions,
             args.publisher_audit,
         )
     except (OSError, ValueError, csv.Error, json.JSONDecodeError) as exc:

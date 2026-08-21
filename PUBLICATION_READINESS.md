@@ -2,6 +2,8 @@
 
 目前結論：本專案已達到「可重現建置的社群草稿」階段，但尚未達到可正式發布或投入臨床／申報使用的門檻。
 
+全 IG publication scope gate 目前也是 blocked：10 個固定 scope（3 normative、6 informative、1 excluded）尚有 **0/10** 完成人工簽核。RC-08 要求全部 scope 的角色與宣稱邊界均具名核准，且 QBC 與個管品管／季報兩個 normative Task 必須達 `formal-release-ready`；單一 Task 通過或 operational approvals 完成，不能代表 whole IG 可正式發布。
+
 技術面的 FHIR Publisher 資源驗證已由最初的 69 errors 降至 0 errors；完整網站目前為 0 errors、52 warnings、0 broken links。原本 133 個逐資源 missing-OID warnings 與 48 個錯誤 TCR targetless ConceptMap warnings 已歸零；271 筆 OID assignment 保留既有識別碼（包含 48 個已退役資源，不回收重用），尚有 1 個 OID root registry governance warning。臨床面的原始資料 mapping、正式值集、golden cohort 與治理簽核仍是阻擋項目。
 
 精確的發布層級、六種核對方法與逐項通過門檻見 [PUBLICATION_ACCEPTANCE_MATRIX.md](PUBLICATION_ACCEPTANCE_MATRIX.md)。20 個個管品質／季報 Measure 的逐項規格判定、六層資料驗證與八項正式發布控制，見 [SPECIFICATION_CORRECTNESS_AUDIT.md](SPECIFICATION_CORRECTNESS_AUDIT.md)。整份 IG 各 Task 與 TW Core／mCODE／ICHOM／TWPAS 等外部規格的宣稱邊界，見 [IG_SCOPE_CONFORMANCE_AUDIT.md](IG_SCOPE_CONFORMANCE_AUDIT.md)。
@@ -10,7 +12,7 @@
 
 | Gate | 結果 | 說明 |
 |---|---:|---|
-| pytest | pass：276 tests | 包含 mapping、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、逐 Measure 規格與簽核完整性 audit、全 IG scope claims、完整 release-control gate、template supply-chain 與 publication workflow 契約測試。 |
+| pytest | pass：281 tests | 包含 mapping、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、逐 Measure 規格與簽核完整性 audit、全 IG scope claims／決策、完整 release-control gate、template supply-chain 與 publication workflow 契約測試。 |
 | SUSHI 3.20.0 | pass：0 errors / 0 warnings | FSH 可穩定產生 IG resources。 |
 | PHI gate | pass | 目前版本庫未檢出疑似病人識別資料；正式來源資料仍須在受控環境處理。 |
 | CQL CLI translation | pass | `cql-to-elm-cli 3.26.0` 可產生 ELM；FHIRHelpers 由 `hl7.fhir.uv.cql#2.0.0` 解析。 |

@@ -2,6 +2,8 @@
 
 本文件防止把某一個 Task 的技術成果擴張成整份 IG、外部標準或正式申報的正確性宣稱。機器可讀版本位於 [`mappings/publication/ig-scope-claim-register.csv`](mappings/publication/ig-scope-claim-register.csv)。
 
+每個 claim 的發布角色決策另記於 [`mappings/publication/publication-scope-decision-register.csv`](mappings/publication/publication-scope-decision-register.csv)。固定的 10 個角色為：`IG-CORE`、`TASK-QBC`、`TASK-CASE-MGMT` 是 normative；TW Core、mCODE、ICHOM、Care Plan、TWPAS、TCR 是 informative；未來模組是 excluded。現況 **0/10 完成人工簽核**。角色、允許宣稱、禁止宣稱與 blocking evidence 都必須逐列簽核；不能刪除待辦列或把 normative 降為 informative 來通過 RC-08。除 `IG-CORE` 可保留 `technical-build-pass` 外，所有 normative Task 在正式發布前都必須達到 `formal-release-ready`。
+
 ## 整體結論
 
 整份 IG 目前只能宣稱：**以 FHIR R4 4.0.1 與固定 dependency 建置成功的非官方 technical community draft**。不能宣稱整份 IG 已完成 TW Core、mCODE、ICHOM、TWPAS、TCR、QBC 或院內品管的正式 conformance／驗收。

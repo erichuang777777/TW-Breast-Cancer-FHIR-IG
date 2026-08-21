@@ -5,6 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CLAIMS = ROOT / "mappings" / "publication" / "ig-scope-claim-register.csv"
+DECISIONS = ROOT / "mappings" / "publication" / "publication-scope-decision-register.csv"
 CONFIG = ROOT / "ig" / "sushi-config.yaml"
 COMMON_FSH = ROOT / "ig" / "input" / "fsh" / "breast-common-profiles.fsh"
 ALL_FSH = ROOT / "ig" / "input" / "fsh"
@@ -46,6 +47,32 @@ def test_claim_register_has_one_explicit_row_for_every_implemented_or_planned_sc
     assert by_id["TASK-TWPAS"]["evidence_status"] == "mapping-design-only"
     assert by_id["TASK-CASE-MGMT"]["evidence_status"] == "technical-pass-data-validation-blocked"
     assert by_id["TASK-TCR"]["evidence_status"] == "partial-codebook-draft"
+
+
+def test_scope_decision_register_is_exactly_traceable_and_unsigned():
+    claims = {row["claim_id"]: row for row in csv_rows(CLAIMS)}
+    decisions = csv_rows(DECISIONS)
+    assert len(decisions) == 10
+    assert {row["claim_id"] for row in decisions} == set(claims)
+    assert len({row["decision_id"] for row in decisions}) == 10
+    expected_roles = {
+        "IG-CORE": "normative", "IG-TWCORE": "informative",
+        "IG-MCODE": "informative", "IG-ICHOM": "informative",
+        "TASK-CAREPLAN": "informative", "TASK-QBC": "normative",
+        "TASK-TWPAS": "informative", "TASK-CASE-MGMT": "normative",
+        "TASK-TCR": "informative", "TASK-FUTURE": "excluded",
+    }
+    for row in decisions:
+        claim = claims[row["claim_id"]]
+        assert row["proposed_role"] == expected_roles[row["claim_id"]]
+        assert row["scope"] == claim["scope"]
+        assert row["claim_evidence_status"] == claim["evidence_status"]
+        assert row["allowed_claim"] == claim["allowed_claim"]
+        assert row["prohibited_claim"] == claim["prohibited_claim"]
+        assert row["blocking_evidence"] == claim["blocking_evidence"]
+        assert row["current_status"] == "pending-human-signoff"
+        assert not row["decision"]
+        assert not row["signer_name"]
 
 
 def test_external_alignment_claims_match_actual_dependencies_and_profile_parents():
