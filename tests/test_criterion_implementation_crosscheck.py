@@ -37,12 +37,13 @@ def test_crosscheck_covers_all_68_criteria_without_overstating_publication():
         "gate_scope": "criterion-to-implementation-crosscheck-integrity",
         "criterion_count": 68,
         "alignment_counts": {
-            "aligned-to-current-draft": 56,
+            "aligned-to-current-draft": 50,
             "candidate-not-approved": 1,
             "conditional-data-contract": 2,
             "definition-contradiction": 1,
+            "fhir-resource-semantic-mismatch": 5,
             "implemented-variant-unresolved": 3,
-            "known-not-enforced": 1,
+            "known-not-enforced": 2,
             "task-layer-only": 4,
         },
         "source_fully_approved_count": 0,
@@ -60,6 +61,11 @@ def test_result_changing_and_conditional_gaps_are_named_at_criterion_level():
     assert by_id["N5-RETURN"]["cql_alignment"] == "candidate-not-approved"
     assert by_id["S17-HISTOLOGY"]["cql_alignment"] == "definition-contradiction"
     assert by_id["X6-AGE-NODE-DEF"]["cql_alignment"] == "implemented-variant-unresolved"
+    assert by_id["N1-HT"]["cql_alignment"] == "fhir-resource-semantic-mismatch"
+    assert "MedicationRequest is an order" in by_id["N1-HT"]["known_difference"]
+    assert by_id["D2-SURGERY-FIRST"]["cql_alignment"] == "fhir-resource-semantic-mismatch"
+    assert by_id["X1-NOSTAY-TRANSFER"]["cql_alignment"] == "known-not-enforced"
+    assert "new-diagnosis discriminator" in by_id["D4-COHORT"]["known_difference"]
 
 
 def test_dedicated_case_management_profile_closes_the_structural_task_gap():

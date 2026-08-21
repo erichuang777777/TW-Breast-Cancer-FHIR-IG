@@ -17,6 +17,7 @@ on:
       - "scripts/audit_verification_methods.py"
       - "scripts/audit_artifact_conformance.py"
       - "scripts/audit_profile_constraints.py"
+      - "scripts/audit_mapping_profile_projection.py"
       - "scripts/audit_terminology_conformance.py"
       - "scripts/audit_fhir_resource_inventory.py"
       - "scripts/audit_fhir_reference_graph.py"
@@ -41,6 +42,7 @@ on:
       - "scripts/audit_verification_methods.py"
       - "scripts/audit_artifact_conformance.py"
       - "scripts/audit_profile_constraints.py"
+      - "scripts/audit_mapping_profile_projection.py"
       - "scripts/audit_terminology_conformance.py"
       - "scripts/audit_fhir_resource_inventory.py"
       - "scripts/audit_fhir_reference_graph.py"
@@ -149,6 +151,18 @@ jobs:
             --resource-dir ig/input/resources \
             --json-out ig/output/profile-constraint-audit.json \
             | tee ig/output/profile-constraint-audit.log
+
+      - name: Audit every common-fact mapping against Publisher snapshots
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_mapping_profile_projection.py \
+            --mapping mappings/case-management/breast-common-to-case-management.csv \
+            --register mappings/publication/mapping-profile-projection-register.csv \
+            --publisher-snapshot-dir ig/temp/pages \
+            --json-out ig/output/mapping-profile-projection-audit.json \
+            --target integrity \
+            | tee ig/output/mapping-profile-projection-audit.log
 
       - name: Audit complete terminology inventory and clinical approvals
         shell: bash
@@ -286,6 +300,7 @@ jobs:
             --scope-claims mappings/publication/ig-scope-claim-register.csv \
             --scope-decisions mappings/publication/publication-scope-decision-register.csv \
             --artifact-audit ig/output/artifact-conformance-audit.json \
+            --mapping-projection-audit ig/output/mapping-profile-projection-audit.json \
             --terminology-audit ig/output/terminology-conformance-audit.json \
             --resource-inventory-audit ig/output/fhir-resource-inventory-audit.json \
             --reference-graph-audit ig/output/fhir-reference-graph-audit.json \

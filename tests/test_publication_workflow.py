@@ -31,6 +31,9 @@ def test_publisher_workflow_is_reproducible_and_preserves_evidence():
     assert "scripts/audit_profile_constraints.py" in text
     assert "mappings/publication/profile-constraint-baseline.csv" in text
     assert "profile-constraint-audit.json" in text
+    assert "scripts/audit_mapping_profile_projection.py" in text
+    assert "mappings/publication/mapping-profile-projection-register.csv" in text
+    assert "mapping-profile-projection-audit.json" in text
     assert "scripts/audit_terminology_conformance.py" in text
     assert "mappings/publication/case-management-terminology-approval-register.csv" in text
     assert "mappings/publication/terminology-expansion-validation-register.csv" in text
@@ -85,6 +88,9 @@ def test_local_release_script_uses_the_same_evidence_gates_without_overclaiming(
     assert "scripts\\audit_profile_constraints.py" in text
     assert "profile-constraint-baseline.csv" in text
     assert "profile-constraint-audit.json" in text
+    assert "scripts\\audit_mapping_profile_projection.py" in text
+    assert "mapping-profile-projection-register.csv" in text
+    assert "mapping-profile-projection-audit.json" in text
     assert "scripts\\audit_terminology_conformance.py" in text
     assert "case-management-terminology-approval-register.csv" in text
     assert "terminology-expansion-validation-register.csv" in text

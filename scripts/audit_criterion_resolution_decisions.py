@@ -51,13 +51,19 @@ SHA256 = re.compile(r"[0-9a-fA-F]{64}")
 ISSUE_FINGERPRINTS = {
     "IP-CLASS": "72e2c056538726b15852ffbba7f659ab288a0920d642bb423e53e8fa2f125e55",
     "X1-TEAM": "03ee520f10020ff933b9df14cbf971f6ae153506488e9ebf88c212eccf34f89d",
+    "N1-HT": "57b8839557515dc5517e827386ee10c0b2ff6dfeb3afaedb1dc4d2c31021d7d8",
+    "D2-SURGERY-FIRST": "3da2e733ce3b370c228e408216c18e40d8ff31d557709cc68c08d1e5b5a9fcda",
     "N3-DOSE": "1197225b390961f7e72b59a28d2a821087f9c6657d4a5aff978291b48024fb74",
+    "N4-ANTIHER2": "c86f104bd385bc1f7e340c2d4da338d44c99433d0fd7a04f84bcec80234e1395",
     "X5-TEAM": "230c33d46615306c5e5c67f4a93d01615013e09cca39545bb9e5d3e75cae24f0",
     "N5-ADH-RULE": "14d51c84fb7a2bd043eef2fa933b219fd0965dc4da69409e049f696420cfff6a",
     "X6-AGE-NODE-DEF": "9be47a70491f9f75e60a301b3446b1b25f3d7d858fc3463b4125074c86eedcf2",
     "X6-AGE-PRACTICE": "f70e156dc07f0a7a079b96b6b744498ba3c8b315a0da5b60a3b3c2dec4b3fb81",
     "X6-NODE-PRACTICE": "29dad5773f13f83b78bdd3e27b5a657def5698fd1f6f1067647c5b691f9ec3bd",
-    "D4-COHORT": "34afd059facfdf13fc609f58be57cb24c28dcdf8037b22015672ba1a422a1765",
+    "X1-STAGING-DEATH": "cc76b871e46043624d2e7e0833813cb0a460cc488af1dc87089a564a3cd3746a",
+    "X1-NOSTAY-TRANSFER": "0398236e6d5804608d1b4f0301754955a55f905c93e6cd6cbc16f700fc1f3d4d",
+    "X3-STAGING": "440968d7b333d2b7e3f4bbd0720875c1d36727d2c649f3c6efa84a254456f77f",
+    "D4-COHORT": "5821e6d6c82486e12932fda608aae884c76a62baf31b3632b6c4d65be7c2a70b",
     "N4-LOST": "e1f2193f7285af4b5781167f531adf82d9c80d6dffe4e569c12309eb0b00c59a",
     "N5-RETURN": "856b04c9c4d8e288ff888865320d64d92f601b70d7513b46f45676191bb710e4",
     "S17-HISTOLOGY": "1ad61de74b1741d0befba1ef72958cf7aa408d7639dc10664c94a8bda17da2b8",
@@ -68,6 +74,7 @@ PENDING_STATUSES = {
     "pending-data-contract",
     "pending-definition-reconciliation",
 }
+EXPECTED_DECISION_COUNT = 18
 
 
 DECISION_CONTEXT = {
@@ -89,6 +96,24 @@ DECISION_CONTEXT = {
         "evidence": "versioned override schema; Task or MeasureReport representation; positive negative and null truth cases; case-level diff; signed artifact hash",
         "status": "pending-implementation",
     },
+    "N1-HT": {
+        "group": "QI-01-MEDICATION-EVENT",
+        "scope": "actual hormone-therapy evidence for QI-01 numerator",
+        "question": "Which event and source prove that hormone therapy was actually administered rather than merely ordered?",
+        "outcome": "Replace MedicationRequest-existence inference with an approved delivery-event contract and reconcile every numerator case.",
+        "signer": "QI-01 clinical owner; oncology pharmacy owner; FHIR/CQL owner",
+        "evidence": "FHIR R4 resource decision; administration or approved dispense source contract; event-time rule; ordered-not-given and actually-given truth cases; case-level diff; signed artifact hash",
+        "status": "pending-implementation",
+    },
+    "D2-SURGERY-FIRST": {
+        "group": "QI-02-FIRST-TREATMENT-EVENT",
+        "scope": "actual systemic-treatment start for QI-02 ordering rule",
+        "question": "Which actual administration event and timestamp determine whether surgery preceded systemic therapy?",
+        "outcome": "Replace MedicationRequest.authoredOn with approved treatment-event time and reconcile before same-day and after-surgery cases.",
+        "signer": "QI-02 clinical owner; oncology pharmacy owner; FHIR/CQL owner",
+        "evidence": "FHIR R4 resource decision; administration source path; time and timezone contract; before same-day and after truth cases; case-level diff; signed artifact hash",
+        "status": "pending-implementation",
+    },
     "N3-DOSE": {
         "group": "QI-03-RT-DOSE",
         "scope": "delivered radiotherapy dose threshold for QI-03 numerator",
@@ -96,6 +121,15 @@ DECISION_CONTEXT = {
         "outcome": "Map an approved raw delivered-dose source, normalize UCUM units, enforce >=4000 cGy in CQL, and prove boundary cases below at and above the threshold.",
         "signer": "radiation-oncology owner; source-system owner; FHIR/CQL owner",
         "evidence": "source schema and lineage; FHIR profile/path; unit-conversion rule; 3999 4000 4001 cGy truth cases; independent case-level recalculation; signed artifact hash",
+        "status": "pending-implementation",
+    },
+    "N4-ANTIHER2": {
+        "group": "QI-04-ANTIHER2-EVENT",
+        "scope": "actual anti-HER2 treatment evidence for QI-04 numerator",
+        "question": "Which event and source prove that anti-HER2 therapy was actually administered rather than merely ordered?",
+        "outcome": "Replace MedicationRequest-existence inference with an approved delivery-event contract and reconcile every numerator case.",
+        "signer": "QI-04 clinical owner; oncology pharmacy owner; FHIR/CQL owner",
+        "evidence": "FHIR R4 resource decision; administration or approved dispense source contract; event-time rule; ordered-not-given and actually-given truth cases; case-level diff; signed artifact hash",
         "status": "pending-implementation",
     },
     "X5-TEAM": {
@@ -143,11 +177,38 @@ DECISION_CONTEXT = {
         "evidence": "same signed decision package as QI-06-AGE-NODE-VARIANT; node boundary cases; case-level diff; signed artifact hash",
         "status": "pending-human-decision",
     },
+    "X1-STAGING-DEATH": {
+        "group": "QR-TREATMENT-BEFORE-DEATH",
+        "scope": "actual curative treatment before death for QR-01",
+        "question": "Which actual treatment event proves that curative treatment occurred before death, without treating an order as delivery?",
+        "outcome": "Implement approved actual-treatment evidence and reconcile every death-before-treatment exclusion.",
+        "signer": "QR-01 case-management owner; oncology treatment owner; FHIR/CQL owner",
+        "evidence": "FHIR R4 resource decision; treatment-event source contract; order-only and administered-before-death truth cases; case-level diff; signed artifact hash",
+        "status": "pending-implementation",
+    },
+    "X1-NOSTAY-TRANSFER": {
+        "group": "QR-01-TRANSFER-WITHOUT-TREATMENT",
+        "scope": "transfer-during-staging numerator exclusion for QR-01",
+        "question": "Must the transfer exclusion also prove that no local treatment occurred, as the declared rule currently states?",
+        "outcome": "Implement the no-local-treatment predicate or approve revised wording and reconcile every transferred case.",
+        "signer": "QR-01 case-management owner; quality-program owner; FHIR/CQL owner",
+        "evidence": "approved criterion wording; treatment-event contract; transfer with and without local treatment truth cases; case-level diff; signed artifact hash",
+        "status": "pending-implementation",
+    },
+    "X3-STAGING": {
+        "group": "QR-TREATMENT-BEFORE-DEATH",
+        "scope": "actual curative treatment before staging death for QR-03",
+        "question": "Which actual treatment event proves that curative treatment occurred before death, without treating an order as delivery?",
+        "outcome": "Use the same approved actual-treatment evidence as QR-01 and reconcile all inherited QR-03 staging-death cases.",
+        "signer": "QR-03 case-management owner; oncology treatment owner; FHIR/CQL owner",
+        "evidence": "same signed treatment-before-death decision package; QR-03 inherited truth cases; case-level diff; signed artifact hash",
+        "status": "pending-implementation",
+    },
     "D4-COHORT": {
         "group": "QR-04-LONGITUDINAL-COHORT",
         "scope": "complete prior-year plus current QR-04 cohort",
-        "question": "Which extract window and completeness assertion prove that all required prior-year and current cases were loaded?",
-        "outcome": "Approve an executable longitudinal cohort contract with deterministic inclusion, deduplication, late-arrival and completeness rules.",
+        "question": "Which extract window, episode-scoped new-diagnosis discriminator and completeness assertion prove that all required prior-year and current cases were loaded?",
+        "outcome": "Approve an executable longitudinal cohort contract with deterministic new-diagnosis inclusion, episode linkage, deduplication, late-arrival and completeness rules.",
         "signer": "QR-04 case-management owner; source-system owner; data-governance owner",
         "evidence": "versioned extract contract; source query and snapshot hash; completeness proof; late-arrival and duplicate truth cases; denominator reconciliation; signed artifact hash",
         "status": "pending-data-contract",
@@ -240,11 +301,14 @@ def audit(register_path: Path, crosscheck_path: Path) -> dict[str, object]:
             f"missing={sorted(missing_tracked)}, untracked_gaps={sorted(new_untracked_gaps)}"
         )
     if (
-        len(decisions) != 12
+        len(decisions) != EXPECTED_DECISION_COUNT
         or {row["criterion_id"] for row in decisions} != set(DECISION_CONTEXT)
-        or len({row["decision_id"] for row in decisions}) != 12
+        or len({row["decision_id"] for row in decisions}) != EXPECTED_DECISION_COUNT
     ):
-        raise ValueError(f"{register_path}: expected exactly one unique decision row for each of 12 non-aligned criteria")
+        raise ValueError(
+            f"{register_path}: expected exactly one unique decision row for each "
+            f"of {EXPECTED_DECISION_COUNT} non-aligned criteria"
+        )
 
     for row in decisions:
         criterion_id = row["criterion_id"]
@@ -331,20 +395,22 @@ def audit(register_path: Path, crosscheck_path: Path) -> dict[str, object]:
     )
     return {
         "gate_scope": "all-current-non-aligned-criterion-resolution-decisions",
-        "decision_count": 12,
+        "decision_count": EXPECTED_DECISION_COUNT,
         "decision_group_count": len({row["decision_group"] for row in decisions}),
         "issue_class_counts": {
             key: sum(row["issue_class"] == key for row in decisions)
             for key in sorted({row["issue_class"] for row in decisions})
         },
         "approved_decision_count": approved,
-        "pending_decision_count": 12 - approved,
+        "pending_decision_count": EXPECTED_DECISION_COUNT - approved,
         "current_non_aligned_decision_count": current_non_aligned,
         "production_allowed_decision_count": production_allowed,
         "decision_register_integrity_gate": "pass",
         "criterion_resolution_gate": (
             "pass"
-            if approved == 12 and current_non_aligned == 0 and production_allowed == 12
+            if approved == EXPECTED_DECISION_COUNT
+            and current_non_aligned == 0
+            and production_allowed == EXPECTED_DECISION_COUNT
             else "block"
         ),
     }
@@ -366,7 +432,8 @@ def main() -> int:
         args.json_out.parent.mkdir(parents=True, exist_ok=True)
         args.json_out.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(
-        f"Criterion resolution decisions: {report['approved_decision_count']}/12 approved; "
+        f"Criterion resolution decisions: {report['approved_decision_count']}/"
+        f"{EXPECTED_DECISION_COUNT} approved; "
         f"integrity={report['decision_register_integrity_gate']}; "
         f"release={report['criterion_resolution_gate']}"
     )

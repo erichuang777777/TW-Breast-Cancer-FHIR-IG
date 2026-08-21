@@ -195,6 +195,7 @@ def audit(
     scope_claims_path: Path,
     scope_decisions_path: Path,
     artifact_audit_path: Path,
+    mapping_projection_audit_path: Path,
     terminology_audit_path: Path,
     resource_inventory_audit_path: Path,
     reference_graph_audit_path: Path,
@@ -392,6 +393,82 @@ def audit(
     ) else "block"
     if artifact_audit["clinical_artifact_approval_gate"] != expected_clinical_gate:
         raise ValueError(f"{artifact_audit_path}: clinical artifact gate/count mismatch")
+    mapping_projection = json.loads(
+        mapping_projection_audit_path.read_text(encoding="utf-8")
+    )
+    if mapping_projection.get("gate_scope") != (
+        "exact-common-fact-profile-and-element-projection"
+    ):
+        raise ValueError(f"{mapping_projection_audit_path}: invalid gate_scope")
+    if (
+        mapping_projection.get("mapping_fact_count") != 34
+        or mapping_projection.get("target_alternative_count") != 55
+        or mapping_projection.get("projection_register_integrity_gate") != "pass"
+    ):
+        raise ValueError(
+            f"{mapping_projection_audit_path}: invalid mapping projection inventory"
+        )
+    resolved_projection_count = mapping_projection.get(
+        "resolved_local_profile_element_count"
+    )
+    derived_projection_count = mapping_projection.get("declared_derived_rule_count")
+    blocked_projection_count = mapping_projection.get(
+        "blocked_target_alternative_count"
+    )
+    semantic_profile_gap_count = mapping_projection.get(
+        "semantic_profile_gap_alternative_count"
+    )
+    semantic_profile_gap_fact_ids = mapping_projection.get(
+        "semantic_profile_gap_fact_ids"
+    )
+    semantic_profile_gap_fact_count = mapping_projection.get(
+        "semantic_profile_gap_fact_count"
+    )
+    unit_policy_pending_count = mapping_projection.get(
+        "unit_policy_pending_alternative_count"
+    )
+    blocked_projection_fact_ids = mapping_projection.get(
+        "blocked_projection_fact_ids"
+    )
+    blocked_projection_fact_count = mapping_projection.get(
+        "blocked_projection_fact_count"
+    )
+    if (
+        not all(
+            isinstance(value, int) and value >= 0
+            for value in (
+                resolved_projection_count, derived_projection_count,
+                blocked_projection_count, unit_policy_pending_count,
+                blocked_projection_fact_count, semantic_profile_gap_count,
+                semantic_profile_gap_fact_count,
+            )
+        )
+        or resolved_projection_count + derived_projection_count
+        + blocked_projection_count != 55
+        or derived_projection_count != 1
+        or unit_policy_pending_count > resolved_projection_count
+        or semantic_profile_gap_count > resolved_projection_count
+        or not isinstance(semantic_profile_gap_fact_ids, list)
+        or len(semantic_profile_gap_fact_ids) != semantic_profile_gap_fact_count
+        or len(set(semantic_profile_gap_fact_ids)) != semantic_profile_gap_fact_count
+        or not set(semantic_profile_gap_fact_ids) <= set(blocked_projection_fact_ids)
+        or not isinstance(blocked_projection_fact_ids, list)
+        or len(blocked_projection_fact_ids) != blocked_projection_fact_count
+        or len(set(blocked_projection_fact_ids)) != blocked_projection_fact_count
+    ):
+        raise ValueError(
+            f"{mapping_projection_audit_path}: invalid mapping projection counts"
+        )
+    expected_projection_gate = "pass" if (
+        blocked_projection_count == 0
+        and semantic_profile_gap_count == 0
+        and unit_policy_pending_count == 0
+        and blocked_projection_fact_count == 0
+    ) else "block"
+    if mapping_projection.get("projection_readiness_gate") != expected_projection_gate:
+        raise ValueError(
+            f"{mapping_projection_audit_path}: projection readiness/count mismatch"
+        )
     terminology_audit = json.loads(terminology_audit_path.read_text(encoding="utf-8"))
     if terminology_audit.get("gate_scope") != "complete-local-terminology-technical-and-clinical":
         raise ValueError(
@@ -715,14 +792,15 @@ def audit(
     ):
         raise ValueError(f"{criterion_resolution_audit_path}: invalid gate_scope")
     expected_resolution_counts = {
-        "decision_count": 12,
-        "decision_group_count": 8,
+        "decision_count": 18,
+        "decision_group_count": 13,
         "issue_class_counts": {
             "candidate-not-approved": 1,
             "conditional-data-contract": 2,
             "definition-contradiction": 1,
+            "fhir-resource-semantic-mismatch": 5,
             "implemented-variant-unresolved": 3,
-            "known-not-enforced": 1,
+            "known-not-enforced": 2,
             "task-layer-only": 4,
         },
     }
@@ -744,18 +822,18 @@ def audit(
         or not isinstance(production_allowed_resolution_count, int)
         or approved_resolution_count < 0
         or pending_resolution_count < 0
-        or approved_resolution_count + pending_resolution_count != 12
-        or not 0 <= non_aligned_resolution_count <= 12
-        or not 0 <= production_allowed_resolution_count <= 12
+        or approved_resolution_count + pending_resolution_count != 18
+        or not 0 <= non_aligned_resolution_count <= 18
+        or not 0 <= production_allowed_resolution_count <= 18
     ):
         raise ValueError(f"{criterion_resolution_audit_path}: invalid decision counts")
     if criterion_resolution.get("decision_register_integrity_gate") != "pass":
         raise ValueError(f"{criterion_resolution_audit_path}: integrity gate must pass")
     expected_resolution_gate = (
         "pass"
-        if approved_resolution_count == 12
+        if approved_resolution_count == 18
         and non_aligned_resolution_count == 0
-        and production_allowed_resolution_count == 12
+        and production_allowed_resolution_count == 18
         else "block"
     )
     if criterion_resolution.get("criterion_resolution_gate") != expected_resolution_gate:
@@ -814,6 +892,7 @@ def audit(
             data_evidence["raw_source_traceability_gate"] == "pass"
             and all(row["raw_source_mapping"] == "pass" for row in measures)
             and source_work_packages["owner_assignment_gate"] == "pass"
+            and mapping_projection["projection_readiness_gate"] == "pass"
         ) else "blocked",
         "RC-02": "pass" if (
             publisher["qa_integrity_gate"] == "pass"
@@ -918,6 +997,19 @@ def audit(
         "clinical_artifact_approval_gate": artifact_audit[
             "clinical_artifact_approval_gate"
         ],
+        "mapping_projection_fact_count": mapping_projection["mapping_fact_count"],
+        "mapping_target_alternative_count": mapping_projection[
+            "target_alternative_count"
+        ],
+        "resolved_local_profile_element_count": resolved_projection_count,
+        "blocked_target_alternative_count": blocked_projection_count,
+        "semantic_profile_gap_alternative_count": semantic_profile_gap_count,
+        "semantic_profile_gap_fact_count": semantic_profile_gap_fact_count,
+        "semantic_profile_gap_fact_ids": semantic_profile_gap_fact_ids,
+        "unit_policy_pending_alternative_count": unit_policy_pending_count,
+        "blocked_projection_fact_count": blocked_projection_fact_count,
+        "blocked_projection_fact_ids": blocked_projection_fact_ids,
+        "projection_readiness_gate": mapping_projection["projection_readiness_gate"],
         "terminology_artifact_count": terminology_audit["terminology_artifact_count"],
         "clinical_value_set_approval_count": terminology_audit[
             "clinical_value_set_approval_count"
@@ -1036,6 +1128,7 @@ def main() -> int:
     parser.add_argument("--scope-claims", type=Path, required=True)
     parser.add_argument("--scope-decisions", type=Path, required=True)
     parser.add_argument("--artifact-audit", type=Path, required=True)
+    parser.add_argument("--mapping-projection-audit", type=Path, required=True)
     parser.add_argument("--terminology-audit", type=Path, required=True)
     parser.add_argument("--resource-inventory-audit", type=Path, required=True)
     parser.add_argument("--reference-graph-audit", type=Path, required=True)
@@ -1056,6 +1149,7 @@ def main() -> int:
             args.measure_specification_audit,
             args.scope_claims, args.scope_decisions,
             args.artifact_audit,
+            args.mapping_projection_audit,
             args.terminology_audit,
             args.resource_inventory_audit,
             args.reference_graph_audit,

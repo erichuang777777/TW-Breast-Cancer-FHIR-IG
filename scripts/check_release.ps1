@@ -59,6 +59,14 @@ try {
         --json-out ig\output\profile-constraint-audit.json
     if ($LASTEXITCODE -ne 0) { throw "Profile constraint baseline audit failed" }
 
+    python scripts\audit_mapping_profile_projection.py `
+        --mapping mappings\case-management\breast-common-to-case-management.csv `
+        --register mappings\publication\mapping-profile-projection-register.csv `
+        --publisher-snapshot-dir ig\temp\pages `
+        --json-out ig\output\mapping-profile-projection-audit.json `
+        --target integrity
+    if ($LASTEXITCODE -ne 0) { throw "mapping Profile projection audit failed" }
+
     python scripts\audit_terminology_conformance.py `
         --approval-register mappings\publication\case-management-terminology-approval-register.csv `
         --expansion-register mappings\publication\terminology-expansion-validation-register.csv `
@@ -155,6 +163,7 @@ try {
         --scope-claims mappings\publication\ig-scope-claim-register.csv `
         --scope-decisions mappings\publication\publication-scope-decision-register.csv `
         --artifact-audit ig\output\artifact-conformance-audit.json `
+        --mapping-projection-audit ig\output\mapping-profile-projection-audit.json `
         --terminology-audit ig\output\terminology-conformance-audit.json `
         --resource-inventory-audit ig\output\fhir-resource-inventory-audit.json `
         --reference-graph-audit ig\output\fhir-reference-graph-audit.json `

@@ -22,18 +22,22 @@ EXPECTED = {
         "method_name": "raw-source-field-traceability",
         "locked_scope": (
             "52 source facts; 52 accountable owner assignments; "
-            "19 source-contract dimensions per fact"
+            "19 source-contract dimensions per fact; "
+            "34 common facts and 55 FHIR target alternatives"
         ),
         "threshold_markers": (
             "52/52", "19 dimensions", "authoritative", "valid and acyclic",
+            "55/55", "0 unresolved paths", "0 semantic Profile gaps",
+            "0 unit-policy-pending alternatives", "0 blocked projection facts",
             "reports remain secondary",
         ),
         "evidence_markers": (
             "source schema", "source-traceability-register.csv",
-            "signed source contracts", "hashes",
+            "mapping-profile-projection-audit.json", "signed source contracts", "hashes",
         ),
         "independence_markers": (
-            "original source data", "cannot satisfy", "unexplained not-applicable",
+            "original source data", "cannot satisfy", "cannot substitute",
+            "unexplained not-applicable",
         ),
     },
     "VM-02": {
@@ -107,10 +111,10 @@ EXPECTED = {
         "method_name": "clinical-specification-and-governance-approval",
         "locked_scope": (
             "14 QBC gates; 20 Measure definitions; 47 StructureDefinitions; "
-            "12 non-aligned criterion decisions"
+            "18 non-aligned criterion decisions"
         ),
         "threshold_markers": (
-            "14/14", "20/20", "47/47", "12/12", "208",
+            "14/14", "20/20", "47/47", "18/18", "208",
             "live non-aligned criterion count is 0", "SHA-256",
         ),
         "evidence_markers": (

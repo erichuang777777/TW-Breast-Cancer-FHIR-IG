@@ -37,6 +37,8 @@ def run_audit(
     scope_claims: Path = SCOPE_CLAIMS,
     scope_decisions: Path = SCOPE_DECISIONS,
     artifact_approved: bool = False,
+    projection_ready: bool = False,
+    projection_overrides: dict | None = None,
     measure_specification_approved: bool = False,
     terminology_overrides: dict | None = None,
     inventory_overrides: dict | None = None,
@@ -84,6 +86,36 @@ def run_audit(
             "artifact_hash_binding_count": 47 if artifact_approved else 0,
             "clinical_artifact_approval_gate": "pass" if artifact_approved else "block",
         }),
+        encoding="utf-8",
+    )
+    mapping_projection_audit = tmp_path / "mapping-projection-audit.json"
+    mapping_projection_report = {
+            "gate_scope": "exact-common-fact-profile-and-element-projection",
+            "mapping_fact_count": 34,
+            "target_alternative_count": 55,
+            "resolved_local_profile_element_count": 54 if projection_ready else 49,
+            "declared_derived_rule_count": 1,
+            "blocked_target_alternative_count": 0 if projection_ready else 5,
+            "semantic_profile_gap_alternative_count": 0 if projection_ready else 12,
+            "semantic_profile_gap_fact_count": 0 if projection_ready else 8,
+            "semantic_profile_gap_fact_ids": [] if projection_ready else [
+                "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-020",
+                "CM-BC-021", "CM-BC-022", "CM-BC-025", "CM-BC-035"
+            ],
+            "unit_policy_pending_alternative_count": 0 if projection_ready else 3,
+            "blocked_projection_fact_count": 0 if projection_ready else 13,
+            "blocked_projection_fact_ids": [] if projection_ready else [
+                "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-020",
+                "CM-BC-021", "CM-BC-022", "CM-BC-024", "CM-BC-025",
+                "CM-BC-032", "CM-BC-034", "CM-BC-035", "CM-BC-037",
+                "CM-BC-038"
+            ],
+            "projection_register_integrity_gate": "pass",
+            "projection_readiness_gate": "pass" if projection_ready else "block",
+    }
+    mapping_projection_report.update(projection_overrides or {})
+    mapping_projection_audit.write_text(
+        json.dumps(mapping_projection_report),
         encoding="utf-8",
     )
     terminology_audit = tmp_path / "terminology-audit.json"
@@ -236,27 +268,28 @@ def run_audit(
         encoding="utf-8",
     )
     criterion_resolution_audit = tmp_path / "criterion-resolution-audit.json"
-    approved_resolution_count = 12 if criterion_resolution_approved else 0
+    approved_resolution_count = 18 if criterion_resolution_approved else 0
     criterion_resolution_audit.write_text(
         json.dumps({
             "gate_scope": "all-current-non-aligned-criterion-resolution-decisions",
-            "decision_count": 12,
-            "decision_group_count": 8,
+            "decision_count": 18,
+            "decision_group_count": 13,
             "issue_class_counts": {
                 "candidate-not-approved": 1,
                 "conditional-data-contract": 2,
                 "definition-contradiction": 1,
+                "fhir-resource-semantic-mismatch": 5,
                 "implemented-variant-unresolved": 3,
-                "known-not-enforced": 1,
+                "known-not-enforced": 2,
                 "task-layer-only": 4,
             },
             "approved_decision_count": approved_resolution_count,
-            "pending_decision_count": 12 - approved_resolution_count,
+            "pending_decision_count": 18 - approved_resolution_count,
             "current_non_aligned_decision_count": (
-                0 if criterion_resolution_approved else 12
+                0 if criterion_resolution_approved else 18
             ),
             "production_allowed_decision_count": (
-                12 if criterion_resolution_approved else 0
+                18 if criterion_resolution_approved else 0
             ),
             "decision_register_integrity_gate": "pass",
             "criterion_resolution_gate": (
@@ -301,6 +334,7 @@ def run_audit(
             "--scope-claims", str(scope_claims),
             "--scope-decisions", str(scope_decisions),
             "--artifact-audit", str(artifact_audit),
+            "--mapping-projection-audit", str(mapping_projection_audit),
             "--terminology-audit", str(terminology_audit),
             "--resource-inventory-audit", str(inventory_audit),
             "--reference-graph-audit", str(reference_graph_audit),
@@ -345,6 +379,24 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["approved_artifact_count"] == 0
     assert report["artifact_hash_binding_count"] == 0
     assert report["clinical_artifact_approval_gate"] == "block"
+    assert report["mapping_projection_fact_count"] == 34
+    assert report["mapping_target_alternative_count"] == 55
+    assert report["resolved_local_profile_element_count"] == 49
+    assert report["blocked_target_alternative_count"] == 5
+    assert report["semantic_profile_gap_alternative_count"] == 12
+    assert report["semantic_profile_gap_fact_count"] == 8
+    assert report["semantic_profile_gap_fact_ids"] == [
+        "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-020",
+        "CM-BC-021", "CM-BC-022", "CM-BC-025", "CM-BC-035"
+    ]
+    assert report["unit_policy_pending_alternative_count"] == 3
+    assert report["blocked_projection_fact_count"] == 13
+    assert report["blocked_projection_fact_ids"] == [
+        "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-020",
+        "CM-BC-021", "CM-BC-022", "CM-BC-024", "CM-BC-025",
+        "CM-BC-032", "CM-BC-034", "CM-BC-035", "CM-BC-037", "CM-BC-038"
+    ]
+    assert report["projection_readiness_gate"] == "block"
     assert report["approved_qbc_governance_count"] == 0
     assert report["approved_operational_approval_count"] == 0
     assert report["terminology_artifact_count"] == 152
@@ -381,9 +433,9 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["source_acquisition_work_package_count"] == 8
     assert report["confirmed_source_owner_assignment_count"] == 0
     assert report["source_owner_assignment_gate"] == "block"
-    assert report["criterion_resolution_decision_count"] == 12
+    assert report["criterion_resolution_decision_count"] == 18
     assert report["approved_criterion_resolution_decision_count"] == 0
-    assert report["non_aligned_criterion_resolution_decision_count"] == 12
+    assert report["non_aligned_criterion_resolution_decision_count"] == 18
     assert report["production_allowed_criterion_resolution_decision_count"] == 0
     assert report["criterion_resolution_gate"] == "block"
     assert report["repository_phi_pattern_scan_gate"] == "pass"
@@ -462,6 +514,44 @@ def test_fhir_resource_inventory_count_cannot_be_reduced(tmp_path):
     assert "resource_count must be 262" in completed.stderr
 
 
+def test_mapping_projection_gate_cannot_hide_blocked_profile_paths(tmp_path):
+    completed, report = run_audit(
+        tmp_path,
+        projection_overrides={"projection_readiness_gate": "pass"},
+    )
+    assert completed.returncode == 2
+    assert report is None
+    assert "projection readiness/count mismatch" in completed.stderr
+
+
+def test_mapping_projection_gate_cannot_hide_pending_unit_policy(tmp_path):
+    completed, report = run_audit(
+        tmp_path,
+        projection_ready=True,
+        projection_overrides={"unit_policy_pending_alternative_count": 1},
+    )
+    assert completed.returncode == 2
+    assert report is None
+    assert "projection readiness/count mismatch" in completed.stderr
+
+
+def test_mapping_projection_gate_cannot_hide_semantic_profile_gap(tmp_path):
+    completed, report = run_audit(
+        tmp_path,
+        projection_ready=True,
+        projection_overrides={
+            "semantic_profile_gap_alternative_count": 1,
+            "semantic_profile_gap_fact_count": 1,
+            "semantic_profile_gap_fact_ids": ["CM-BC-006"],
+            "blocked_projection_fact_count": 1,
+            "blocked_projection_fact_ids": ["CM-BC-006"],
+        },
+    )
+    assert completed.returncode == 2
+    assert report is None
+    assert "projection readiness/count mismatch" in completed.stderr
+
+
 def test_reference_graph_count_cannot_be_reduced(tmp_path):
     completed, report = run_audit(
         tmp_path, reference_overrides={"total_audited_reference_edge_count": 1027}
@@ -527,6 +617,7 @@ def test_rc01_requires_confirmed_accountable_owner_for_every_source_fact(tmp_pat
         tmp_path,
         measures=source_ready_measures,
         data_evidence_overrides=source_evidence,
+        projection_ready=True,
     )
     assert completed.returncode == 0
     assert report["derived_status"]["RC-01"] == "blocked"
@@ -537,6 +628,7 @@ def test_rc01_requires_confirmed_accountable_owner_for_every_source_fact(tmp_pat
         measures=source_ready_measures,
         data_evidence_overrides=source_evidence,
         source_owners_confirmed=True,
+        projection_ready=True,
     )
     assert completed.returncode == 1  # real register still truthfully declares blocked
     assert report["derived_status"]["RC-01"] == "pass"

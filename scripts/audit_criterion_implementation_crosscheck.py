@@ -108,6 +108,52 @@ SPECIAL = {
         "The multidisciplinary exclusion is intentionally absent from CQL and must be applied as a reasoned case-level decision.",
         "Define the Task/MeasureReport override contract and reconcile every excluded case.",
     ),
+    "N1-HT": (
+        "fhir-resource-semantic-mismatch",
+        "The numerator treats an active/completed MedicationRequest as proof that "
+        "hormone therapy was given. In FHIR R4, MedicationRequest is an order; it "
+        "does not establish an administration event.",
+        "Use an approved administration/dispense evidence contract, then compare "
+        "every numerator member against actual treatment delivery.",
+    ),
+    "D2-SURGERY-FIRST": (
+        "fhir-resource-semantic-mismatch",
+        "The first-treatment comparison uses MedicationRequest.authoredOn as the "
+        "systemic-therapy start. In FHIR R4, authoredOn is when the prescription "
+        "was written, not when treatment was administered.",
+        "Map actual systemic-treatment start events and rerun all ordering and "
+        "same-day boundary cases.",
+    ),
+    "N4-ANTIHER2": (
+        "fhir-resource-semantic-mismatch",
+        "The numerator treats an active/completed MedicationRequest as proof that "
+        "anti-HER2 therapy was given. In FHIR R4, MedicationRequest is an order; "
+        "it does not establish an administration event.",
+        "Use an approved administration/dispense evidence contract, then compare "
+        "every numerator member against actual anti-HER2 delivery.",
+    ),
+    "X1-STAGING-DEATH": (
+        "fhir-resource-semantic-mismatch",
+        "Died Before Curative Treatment treats MedicationRequest order status as "
+        "proof that curative medication treatment occurred before death.",
+        "Replace order-state inference with approved actual-treatment event "
+        "evidence and reconcile every death-before-treatment exclusion.",
+    ),
+    "X1-NOSTAY-TRANSFER": (
+        "known-not-enforced",
+        "The declared rule requires transfer during staging with no local treatment "
+        "resource, but Numerator QR1 Exclusion checks only transfer/refusal "
+        "disposition and never enforces absence of local treatment.",
+        "Implement the no-local-treatment condition or approve a revised normative "
+        "rule, then reconcile every transferred case.",
+    ),
+    "X3-STAGING": (
+        "fhir-resource-semantic-mismatch",
+        "The composite staging exclusion reuses Died Before Curative Treatment, "
+        "which treats MedicationRequest order status as actual treatment evidence.",
+        "Replace order-state inference with approved actual-treatment event evidence "
+        "and reconcile all staging-death cases in QR-03.",
+    ),
     "N3-DOSE": (
         "known-not-enforced",
         "Total Radiotherapy Dose cGy is a null placeholder and Numerator 3 does not enforce the required >=4000 cGy threshold; the result is only an upper bound.",
@@ -140,8 +186,13 @@ SPECIAL = {
     ),
     "D4-COHORT": (
         "conditional-data-contract",
-        "The expression returns false unless the caller asserts that the full prior-year plus current cohort was loaded; the current single-period export cannot prove that assertion.",
-        "Approve and load the complete cohort contract, then reconcile all denominator members.",
+        "The expression returns false unless the caller asserts that the full "
+        "prior-year plus current cohort was loaded; the current single-period "
+        "export cannot prove that assertion. Even when asserted, the prior-year "
+        "branch accepts any EpisodeOfCare by start date without an episode-scoped "
+        "new-diagnosis discriminator.",
+        "Approve and load the complete cohort contract, add an episode-scoped "
+        "new-diagnosis rule, then reconcile all denominator members.",
     ),
     "N4-LOST": (
         "conditional-data-contract",

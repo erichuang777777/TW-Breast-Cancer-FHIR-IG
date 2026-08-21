@@ -12,6 +12,8 @@
 
 完整 reference graph 技術 gate 亦已通過：精確鎖定 1028 個 edge＝662 個本地 URL link＋330 個 FHIR Reference＋36 個外部 canonical。本地 198 個唯一 target 全部解析且型別相符；外部仍只允許 18 個已審 canonical URL，依賴固定為 FHIR R4 `4.0.1` 與 TW Core `1.0.0`。這只證明結構引用閉合，不會解除原始資料、臨床語意或版本治理阻擋。
 
+共同 fact 的 FHIR target 也已逐 alternative 解析：34 個 facts 共 55 個 target alternatives，其中 49 個解析到本地 Profile snapshot 的確切 ElementDefinition，1 個是明列五項輸入的 derived rule，5 個 target paths 仍 unresolved；受影響 facts 為 CM-BC-024／032／034／035／037。語意稽核再從 49 個 path-resolved alternatives 找到 12 個 semantic Profile gaps，影響 CM-BC-006／007／018／020／021／022／025／035：包括 pN/pT 誤用 stage-group shell、診斷性切片誤用 treatment shell，以及以 MedicationRequest 的醫囑、開立時間、預期執行者或醫囑狀態冒充實際治療。CM-BC-038 另缺 episode-scoped new-diagnosis discriminator。另有 3 個百分比 Quantity 路徑可解析，但 unit policy 尚未完成來源與臨床驗證。目前結構、語意與 coverage 缺口的聯集為 13 個 blocked projection facts；RC-01 除了 52/52 原始來源契約與 owner，還要求 projection readiness 55/55、上述缺口全部歸零。
+
 技術面的 FHIR Publisher 資源驗證已由最初的 69 errors 降至 0 errors；完整網站目前為 0 errors、52 warnings、0 broken links。原本 133 個逐資源 missing-OID warnings 與 48 個錯誤 TCR targetless ConceptMap warnings 已歸零；271 筆 OID assignment 保留既有識別碼（包含 48 個已退役資源，不回收重用），尚有 1 個 OID root registry governance warning。臨床面的原始資料 mapping、正式值集、golden cohort 與治理簽核仍是阻擋項目。
 
 精確的發布層級、六種核對方法與逐項通過門檻見 [PUBLICATION_ACCEPTANCE_MATRIX.md](PUBLICATION_ACCEPTANCE_MATRIX.md)。20 個個管品質／季報 Measure 的逐項規格判定、六層資料驗證與八項正式發布控制，見 [SPECIFICATION_CORRECTNESS_AUDIT.md](SPECIFICATION_CORRECTNESS_AUDIT.md)。整份 IG 各 Task 與 TW Core／mCODE／ICHOM／TWPAS 等外部規格的宣稱邊界，見 [IG_SCOPE_CONFORMANCE_AUDIT.md](IG_SCOPE_CONFORMANCE_AUDIT.md)。
@@ -20,7 +22,7 @@
 
 | Gate | 結果 | 說明 |
 |---|---:|---|
-| pytest | pass：410 tests | 包含 mapping、68-criterion 實作差異表、12 項非對齊 criterion 決策鎖定、52-fact 取得優先級與 8 個 owner 工作包、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、完整 262-resource manifest、1028-edge reference graph、216-element Profile constraint baseline（含 differential 順序）、Must Support 實作政策、52-fact 原始來源與 20-Measure 真實資料證據 gate、四組 canonical version policy、逐 Measure、47 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性 audit、全 IG scope claims／決策、完整 release-control gate、template supply-chain 與 publication workflow 契約測試。 |
+| pytest | pass：423 tests | 包含 mapping、34-fact／55-target Profile projection（含 path、semantic Profile、coverage 與 unit-policy 負向 gate）、68-criterion 實作差異表、18 項非對齊 criterion 決策鎖定、52-fact 取得優先級與 8 個 owner 工作包、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、完整 262-resource manifest、1028-edge reference graph、216-element Profile constraint baseline（含 differential 順序）、Must Support 實作政策、52-fact 原始來源與 20-Measure 真實資料證據 gate、四組 canonical version policy、逐 Measure、47 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性 audit、全 IG scope claims／決策、完整 release-control gate、template supply-chain 與 publication workflow 契約測試。 |
 | SUSHI 3.20.0 | pass：0 errors / 0 warnings | FSH 可穩定產生 IG resources。 |
 | PHI gate | pass | 目前版本庫未檢出疑似病人識別資料；正式來源資料仍須在受控環境處理。 |
 | CQL CLI translation | pass | `cql-to-elm-cli 3.26.0` 可產生 ELM；FHIRHelpers 由 `hl7.fhir.uv.cql#2.0.0` 解析。 |
@@ -28,11 +30,12 @@
 | CQL branch assertions | pass with clinical limitations：20/20 Measures | 全部 Measure 已通過具預期結果的合成 R4 Bundle 分支案例；分布 Measure 另覆蓋全部列舉 strata、月份、年齡帶、缺值與非法值。QR-04 仍受真實前年度 cohort 阻擋，QR-05 仍是候選規則。 |
 | IG Publisher 2.3.2 resource validation | pass with warnings：0 errors / 52 warnings | missing-OID 與 TCR targetless ConceptMap warnings 均為 0；剩餘 40 個 FHIRHelpers anchor、11 個 CQL validator limitation 與 1 個 OID registry warning 由機器可讀政策逐類鎖定。 |
 | 完整 IG website/package | pass：0 errors / 52 warnings / 0 broken links | Linux Publisher 2.3.2 已產生網站、`qa.html` 與 `package.tgz`；warning audit 為 QA integrity pass，Community Preview／Formal release block。 |
-| 完整 release controls | integrity pass；2/8 controls pass | RC-02 FHIR conformance 與 RC-04 executable rules 通過；source mapping、terminology、independent recalculation、golden cohort、governance 與 operational acceptance 均 blocked。RC-01 鎖定 52-fact source evidence 與 52/52 accountable owner，目前兩者皆 0/52；RC-07 鎖定 QBC 14-Gate、Measure 20-approval、StructureDefinition 47-approval 與 12 項非對齊 criterion resolution，目前 Measure 0/20、artifact 0/47、criterion resolution 0/12。Publisher warnings 即使歸零也不會讓這些 gate 誤判通過。 |
+| 完整 release controls | integrity pass；2/8 controls pass | RC-02 FHIR conformance 與 RC-04 executable rules 通過；source mapping、terminology、independent recalculation、golden cohort、governance 與 operational acceptance 均 blocked。RC-01 鎖定 52-fact source evidence 與 52/52 accountable owner，目前兩者皆 0/52；RC-07 鎖定 QBC 14-Gate、Measure 20-approval、StructureDefinition 47-approval 與 18 項非對齊 criterion resolution，目前 Measure 0/20、artifact 0/47、criterion resolution 0/18。Publisher warnings 即使歸零也不會讓這些 gate 誤判通過。 |
 | Terminology inventory | technical pass；clinical block | 完整集合 152（60 CodeSystem、90 ValueSet、2 ConceptMap）；19 個個管臨床 ValueSet 為空、核准 0/19，因此 RC-03 blocked。 |
 | FHIR resource inventory | technical pass；version provenance block | 精確集合 262（225 definitions、37 examples、223 canonical）；261 個 IG manifest references 全數解析。223 canonical 已分成 24 package-explicit、1 CQL、97 package-context pending、101 TCR version collision；政策核准 0/4，因此 RC-08 blocked。 |
 | FHIR reference graph | technical pass | 精確 1028 edges：662 local URL、330 FHIR Reference、36 external canonical；198 unique local targets 全部解析且型別正確，18 unique external canonical 只由 pinned FHIR R4／TW Core dependencies 解析。 |
 | Profile constraint baseline | technical pass | 47 個 StructureDefinition 的 216 個 differential elements 逐列相符；77 cardinality、100 Must Support、19 binding、53 type/target、29 fixed/pattern、2 slicing、0 custom invariant、18 declaration/narrative。此 gate 防止審查後漂移，不代表 0/47 人工核准已完成。 |
+| Mapping Profile projection | integrity pass；readiness block | 34 facts／55 alternatives：49 path-resolved local Profile elements、1 derived rule、5 unresolved alternatives、12 semantic Profile gaps（8 facts）、1 additional cohort-coverage gap；缺口聯集共 13 個 blocked facts，另 3 個 unit-policy-pending。RC-01 要求 unresolved、semantic gap、unit pending 與 blocked facts 全部歸零且 55/55 精確。 |
 | Strict release QA | blocked | 正式 release gate 仍要求 0 warnings；完整 QA 的 52 個 warning 尚未逐一修正或完成具體審查紀錄。 |
 | Template supply-chain | technical pass | 已依 2026-03 安全公告固定使用 `fhir2.base.template#0.1.0` 與套件 SHA-1；CI 證明載入精確版本且不再出現 insecure-template notice。已發布模板的多語系 jurisdiction flag 路徑缺陷以最小 include overlay 修正並由 0 broken links gate 鎖定；此項通過不解除臨床／治理發布阻擋。 |
 

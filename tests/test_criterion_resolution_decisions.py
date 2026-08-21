@@ -48,19 +48,20 @@ def sign(
 def test_register_covers_every_current_non_aligned_criterion_without_overclaim():
     assert audit(REGISTER, CROSSCHECK) == {
         "gate_scope": "all-current-non-aligned-criterion-resolution-decisions",
-        "decision_count": 12,
-        "decision_group_count": 8,
+        "decision_count": 18,
+        "decision_group_count": 13,
         "issue_class_counts": {
             "candidate-not-approved": 1,
             "conditional-data-contract": 2,
             "definition-contradiction": 1,
+            "fhir-resource-semantic-mismatch": 5,
             "implemented-variant-unresolved": 3,
-            "known-not-enforced": 1,
+            "known-not-enforced": 2,
             "task-layer-only": 4,
         },
         "approved_decision_count": 0,
-        "pending_decision_count": 12,
-        "current_non_aligned_decision_count": 12,
+        "pending_decision_count": 18,
+        "current_non_aligned_decision_count": 18,
         "production_allowed_decision_count": 0,
         "decision_register_integrity_gate": "pass",
         "criterion_resolution_gate": "block",
@@ -125,8 +126,8 @@ def test_all_signatures_cannot_bypass_live_technical_alignment(tmp_path):
     altered = tmp_path / "decisions.csv"
     write_rows(altered, rows)
     report = audit(altered, CROSSCHECK)
-    assert report["approved_decision_count"] == 12
-    assert report["current_non_aligned_decision_count"] == 12
+    assert report["approved_decision_count"] == 18
+    assert report["current_non_aligned_decision_count"] == 18
     assert report["production_allowed_decision_count"] == 0
     assert report["criterion_resolution_gate"] == "block"
 
@@ -151,7 +152,7 @@ def test_gate_has_a_strict_path_to_pass_after_live_resolution(tmp_path):
     write_rows(resolved_crosscheck, crosscheck_rows)
 
     report = audit(signed, resolved_crosscheck)
-    assert report["approved_decision_count"] == 12
+    assert report["approved_decision_count"] == 18
     assert report["current_non_aligned_decision_count"] == 0
-    assert report["production_allowed_decision_count"] == 12
+    assert report["production_allowed_decision_count"] == 18
     assert report["criterion_resolution_gate"] == "pass"

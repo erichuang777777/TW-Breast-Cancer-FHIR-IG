@@ -26,7 +26,7 @@
 - Strict release：blocked；仍要求 0 warnings、完整 warning disposition 與其餘正式發布控制通過；模板安全阻擋已解除，但不取代原始資料、術語、golden cohort 與治理證據。
 - 完整 formal release gate 與 Publisher QA gate 已分離；目前只有 2/8 controls 通過，warnings 歸零也不能繞過 source mapping、terminology、獨立重算、golden cohort 與簽核。
 - 新增 20/20 Measure 規格決策登錄；RC-07 現在同時要求完整 QBC 14-Gate、完整 Measure 20-approval、有效簽署證據及 `draft_definition_alignment=approved`，避免刪除待辦或簽署未解決規格而誤過正式發布。
-- 新增 12/12 非完全對齊 criterion 的 resolution decision register，分為 8 個決策包並逐列固定問題、權責、必要產出與證據；目前 0/12 核准。CI 會拒絕基線問題被改寫、新增但未納管的缺口、pending 列夾帶決定、缺簽署雜湊及 QI-06 三列互相矛盾的決策；RC-07 同時要求 12/12 簽署、live non-aligned 歸零與 12/12 production disposition allowed，不能只靠簽名繞過未完成實作。
+- criterion resolution register 經 FHIR R4 資源語意複核後擴為 18/18 非完全對齊 criterion、13 個決策包，目前 0/18 核准。新增六項涵蓋 MedicationRequest 醫囑／實際給藥混用、`authoredOn`／治療開始混用、死亡前治療判斷與未執行的轉院無治療條件。CI 會拒絕基線問題被改寫、新增但未納管的缺口、pending 列夾帶決定、缺簽署雜湊及 QI-06 三列互相矛盾的決策；RC-07 同時要求 18/18 簽署、live non-aligned 歸零與 18/18 production disposition allowed，不能只靠簽名繞過未完成實作。
 - 新增 10/10 whole-IG scope 角色決策登錄；目前 0/10 簽核。RC-08 現在鎖定 3 normative、6 informative、1 excluded，並要求 normative Task 達 `formal-release-ready`，避免單一 Task 或 operational approval 被擴張成整份 IG 可正式發布。
 - StructureDefinition conformance register 現為 47/47（34 Profile、13 Extension，包含 4 個非 FSH 的 TCR extension）；新增專屬 `BreastCancerCaseManagementTask` 與合成範例，逐列驗證 parent、type、kind、draft/experimental 及使用證據。技術證據 47/47 pass，人工規格核准 0/47；RC-07 要求全部具名簽核。
 - 新增完整 terminology conformance audit：鎖定 152 個 artifact（60 CodeSystem、90 ValueSet、2 ConceptMap）並驗證 canonical、內容、參照與 CQL 使用狀態。完整清冊技術檢查通過；19 個個管臨床 ValueSet 仍為空、核准 0/19（18 個被 CQL 引用、1 個 defined-not-referenced），因此 RC-03 維持 blocked。
