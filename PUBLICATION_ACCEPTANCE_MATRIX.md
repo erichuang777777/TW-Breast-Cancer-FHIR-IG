@@ -23,8 +23,8 @@
 | 2 | FHIR 結構與語意驗證 | 每個 Profile／resource／reference | SUSHI 0 errors/0 warnings；Publisher 0 errors/0 broken links；cardinality、binding、invariant、reference 與 slicing 全部通過。 | SUSHI log、Publisher `qa.html`、FHIR Validator／Publisher artifact。 |
 | 3 | 術語核對 | 每個 system/code/display/ValueSet/ConceptMap | 使用中的代碼 100% 可由指定版本解析；ValueSet expansion 可重現；不得有空的正式臨床 ValueSet、`candidate-unverified` 或未核准 equivalence。 | 官方 terminology package/service、版本化 expansion、terminologist 雙人審查。 |
 | 4 | 可執行規則測試 | 每個 Measure expression | 20/20 Measure 均實際執行；每個至少覆蓋 positive、negative、exclusion、missing、boundary，另依規則加入多事件、時間窗與 laterality 案例；預期與實際 100% 一致。 | CQL→ELM log、合成 Bundle、逐案 population 結果、MeasureReport fixture。 |
-| 5 | 獨立重算 | 每一個 golden case 的每個 population | CQL 與獨立參考實作逐案 membership 完全一致；不能只比總數。所有差異必須為 0，或有具名 reviewer、理由與版本化核准。 | 獨立實作輸出、逐案 diff、鎖定的測試資料與程式 SHA-256。 |
-| 6 | 原始資料端到端 golden cohort | 原始列／事件到最終報表 | 由原始資料產生 FHIR，再計算 MeasureReport／報表；100% 個案逐案核對來源 fact、分母、分子、排除、stratum 與人工 override。零個未解釋差異。 | 去識別原始資料、Provenance、人工 truth set、輸出報表、接收端 receipt／reconciliation。 |
+| 5 | 獨立重算 | 每一個 in-scope case × 該 Measure 宣告的每個 expression | CQL 與不共用 CQL 邏輯的參考實作必須具有完全相同的 case-by-expression tuple set；現行 20 Measures 共 62 個 Measure-expression uses、46 個 unique expressions。不能只比總數或抽樣 expression；最終差異總數必須為 0。 | 獨立實作輸出、HMAC-SHA256 case token、完整逐案 manifest、truth set／normalizer／程式 SHA-256。 |
+| 6 | 原始資料端到端 golden cohort | 原始列／事件到最終 MeasureReport | 對完整期間 100% 個案，manifest 必須精確涵蓋 case-by-expression、case-by-required-source-fact、人工 override，並為每個 Measure 比較一份完整 MeasureReport。最終差異總數必須為 0。 | 去識別原始資料、Provenance、完整逐案 manifest、人工 truth set、正規化器 hash、輸出報表與 receipt／reconciliation。 |
 
 這六種方法不是「六選一」。對 Measure 輸入與臨床 mapping 而言，它們是由來源到輸出的六層連續證據。
 
@@ -65,12 +65,12 @@ RC-08 進一步要求全部 223 個 canonical resources 的 business-version pro
 
 ### Measure 與測試
 
-- `measure-validation-evidence-register.csv` 精確鎖定 20 個 Measure。獨立重算必須保存不共用 CQL 邏輯的實作 hash、CQL hash、truth-set hash、逐案 population 比較數與零未解釋差異；golden cohort 另須保存完整期別、all-in-scope cohort 宣告、原始 extract／FHIR Bundle hash、source-fact 與人工 override 比較數。目前兩者皆為 0/20。
+- `measure-validation-evidence-register.csv` 精確鎖定 20 個 Measure；`case-level-comparison-register.csv` 是逐案 manifest 模板。獨立重算必須保存不共用 CQL 邏輯的實作、CQL、truth set、normalizer 與 manifest hash，並證明 exact case-by-expression tuple set 完整且零差異；golden cohort 另須保存完整期別、all-in-scope cohort、原始 extract／FHIR Bundle hash、exact case-by-source-fact tuple set、人工 override 與整份 MeasureReport 比較。目前 manifest 為 0 列，兩者皆為 0/20。受控環境操作規則見 [逐案資料正確性驗證協定](CASE_LEVEL_VALIDATION_PROTOCOL.md)。
 - Translation、runtime smoke 與具預期值的合成分支驗證均已達 20/20 Measure、46/46 expressions；底層 68/68 criteria 另有逐條差異表。分布 Measure 另驗證全部列舉 strata、月份、年齡帶、缺值與非法值。QR-04 只證明 cohort 已載入時的條件行為，QR-05 只證明候選規則的機械行為，兩者都不構成真實資料正確性證據。
 - Measure 規格核准目前為 0/20；每一項都必須保存具名 signer、組織／職稱、決定日期、證據 URI 與被簽 artifact 的 SHA-256，且 `draft_definition_alignment` 必須明確為 `approved`。只有簽名欄位或只有綠色 CQL 測試都不足以通過 RC-07。
 - 68 條 criterion 中，56 條與目前草稿對齊；其餘 12 條已鎖定為 8 個決策包，核准目前為 0/12。每列必須回答固定問題並附實作／資料契約／真值集／逐案差異等指定證據；QI-06 三列必須引用同一個不可矛盾的簽署決定。RC-07 要求 12/12 有效簽署、live crosscheck 非對齊數為 0，且這 12 項 production disposition 允許數為 12；簽名不能覆蓋仍存在的技術缺口。
 - 每個 Measure 的測試數不以任意固定樣本數取代 coverage。最低要求是所有 truth-table branch、排除、缺值、邊界、日期邊界及多筆事件行為全部有案例。
-- Golden cohort 要鎖版並逐案核對 100%，允許的未解釋差異為 0。
+- Golden cohort 要鎖版並逐案核對 100%；最終 manifest 的總差異必須為 0，不接受以「已解釋」保留不一致結果。
 - 若要主張跨院可實作，至少需兩個彼此獨立的 source adapter／實作者完成同一套 conformance 與 golden tests；否則只能宣稱單一環境驗證。
 
 ### Publisher warnings

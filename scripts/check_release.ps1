@@ -85,6 +85,8 @@ try {
         --task-mapping mappings\case-management\case-management-task-only-fields.csv `
         --measure-catalog mappings\case-management\case-management-measure-catalog.csv `
         --population-criteria mappings\case-management\case-management-population-criteria.csv `
+        --measure-fsh ig\input\fsh\case-management-measures.fsh `
+        --case-comparison-register mappings\publication\case-level-comparison-register.csv `
         --json-out ig\output\data-correctness-evidence-audit.json `
         --target integrity
     if ($LASTEXITCODE -ne 0) { throw "data-correctness evidence integrity audit failed" }

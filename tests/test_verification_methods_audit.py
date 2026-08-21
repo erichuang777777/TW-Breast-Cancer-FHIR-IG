@@ -73,7 +73,7 @@ def test_lowering_zero_difference_threshold_is_rejected(tmp_path):
         rows = list(csv.DictReader(handle))
         fieldnames = list(rows[0])
     rows[4]["pass_threshold"] = rows[4]["pass_threshold"].replace(
-        "0 unexplained", "review unexplained"
+        "0 total final differences", "review final differences"
     )
     altered = tmp_path / "methods.csv"
     with altered.open("w", encoding="utf-8", newline="") as handle:
@@ -83,7 +83,7 @@ def test_lowering_zero_difference_threshold_is_rejected(tmp_path):
     completed, report = run_audit(tmp_path, register=altered)
     assert completed.returncode == 2
     assert report is None
-    assert "pass threshold lost marker '0 unexplained'" in completed.stderr
+    assert "pass threshold lost marker '0 total final differences'" in completed.stderr
 
 
 def test_release_status_cannot_disagree_with_declared_controls(tmp_path):

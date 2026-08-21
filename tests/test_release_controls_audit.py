@@ -175,12 +175,17 @@ def run_audit(
         "declared_derived_dependency_count": 1,
         "approved_authoritative_or_derived_fact_count": 0,
         "measure_count": 20,
+        "measure_expression_count": 46,
+        "measure_expression_occurrence_count": 62,
+        "case_level_comparison_row_count": 0,
+        "comparison_manifest_sha256": "c" * 64,
         "population_criterion_count": 68,
         "criterion_referenced_fact_count": 45,
         "approved_independent_recalculation_count": 0,
         "approved_golden_cohort_count": 0,
         "source_register_integrity_gate": "pass",
         "validation_register_integrity_gate": "pass",
+        "case_level_comparison_integrity_gate": "pass",
         "raw_source_traceability_gate": "block",
         "independent_recalculation_gate": "block",
         "golden_cohort_gate": "block",
@@ -322,6 +327,9 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["fhir_reference_occurrence_count"] == 330
     assert report["external_canonical_reference_occurrence_count"] == 36
     assert report["source_fact_count"] == 52
+    assert report["measure_expression_count"] == 46
+    assert report["measure_expression_occurrence_count"] == 62
+    assert report["case_level_comparison_row_count"] == 0
     assert report["source_contract_dimension_count"] == 19
     assert report["complete_source_contract_count"] == 0
     assert report["declared_derived_dependency_count"] == 1
@@ -424,6 +432,21 @@ def test_measure_summary_cannot_fake_source_independent_or_golden_evidence(tmp_p
     assert report["derived_status"]["RC-01"] == "blocked"
     assert report["derived_status"]["RC-05"] == "blocked"
     assert report["derived_status"]["RC-06"] == "blocked"
+
+
+def test_approved_counts_cannot_fake_an_empty_case_level_manifest(tmp_path):
+    completed, report = run_audit(
+        tmp_path,
+        data_evidence_overrides={
+            "approved_independent_recalculation_count": 20,
+            "approved_golden_cohort_count": 20,
+            "independent_recalculation_gate": "pass",
+            "golden_cohort_gate": "pass",
+        },
+    )
+    assert completed.returncode == 2
+    assert report is None
+    assert "independent_recalculation_gate/count mismatch" in completed.stderr
 
 
 def test_rc01_requires_confirmed_accountable_owner_for_every_source_fact(tmp_path):

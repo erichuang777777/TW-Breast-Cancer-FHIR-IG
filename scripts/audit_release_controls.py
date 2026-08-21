@@ -455,6 +455,8 @@ def audit(
     expected_data_evidence = {
         "expected_fact_count": 52,
         "measure_count": 20,
+        "measure_expression_count": 46,
+        "measure_expression_occurrence_count": 62,
         "population_criterion_count": 68,
         "criterion_referenced_fact_count": 45,
         "source_contract_dimension_count": 19,
@@ -464,6 +466,7 @@ def audit(
             raise ValueError(f"{data_evidence_audit_path}: {field} must be {expected}")
     for field in (
         "source_evidence_row_count",
+        "case_level_comparison_row_count",
         "complete_source_contract_count",
         "declared_derived_dependency_count",
         "approved_authoritative_or_derived_fact_count",
@@ -499,9 +502,14 @@ def audit(
         )
     for field in (
         "source_register_integrity_gate", "validation_register_integrity_gate",
+        "case_level_comparison_integrity_gate",
     ):
         if data_evidence.get(field) != "pass":
             raise ValueError(f"{data_evidence_audit_path}: {field} must pass")
+    if SHA256.fullmatch(data_evidence.get("comparison_manifest_sha256", "")) is None:
+        raise ValueError(
+            f"{data_evidence_audit_path}: invalid comparison_manifest_sha256"
+        )
     data_gate_rules = {
         "raw_source_traceability_gate": (
             data_evidence["complete_source_contract_count"] == 52
@@ -510,8 +518,12 @@ def audit(
         ),
         "independent_recalculation_gate": (
             data_evidence["approved_independent_recalculation_count"] == 20
+            and data_evidence["case_level_comparison_row_count"] > 0
         ),
-        "golden_cohort_gate": data_evidence["approved_golden_cohort_count"] == 20,
+        "golden_cohort_gate": (
+            data_evidence["approved_golden_cohort_count"] == 20
+            and data_evidence["case_level_comparison_row_count"] > 0
+        ),
     }
     for field, should_pass in data_gate_rules.items():
         expected = "pass" if should_pass else "block"
@@ -794,6 +806,13 @@ def audit(
             "external_canonical_reference_occurrence_count"
         ],
         "source_fact_count": data_evidence["expected_fact_count"],
+        "measure_expression_count": data_evidence["measure_expression_count"],
+        "measure_expression_occurrence_count": data_evidence[
+            "measure_expression_occurrence_count"
+        ],
+        "case_level_comparison_row_count": data_evidence[
+            "case_level_comparison_row_count"
+        ],
         "source_contract_dimension_count": data_evidence[
             "source_contract_dimension_count"
         ],

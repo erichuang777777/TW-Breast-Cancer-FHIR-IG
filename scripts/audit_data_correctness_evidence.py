@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import re
 import sys
@@ -64,19 +65,49 @@ VALIDATION_COLUMNS = {
     "independent_implementation_sha256", "truth_set_sha256", "case_count",
     "case_population_comparison_count", "source_fact_comparison_count",
     "manual_override_comparison_count", "unexplained_difference_count",
+    "comparison_manifest_sha256", "independent_manifest_row_count",
+    "golden_manifest_row_count", "independent_difference_count",
+    "golden_difference_count", "comparison_normalizer_sha256",
     "independent_method", "independent_status", "golden_cohort_status",
     "reviewer_name", "reviewer_organization_title", "review_date",
     "evidence_uri_path", "notes",
 }
+COMPARISON_COLUMNS = {
+    "comparison_id", "verification_method", "measure_id", "case_token",
+    "comparison_unit_type", "comparison_unit_id", "normalization_rule_id",
+    "expected_value_sha256",
+    "actual_value_sha256", "comparison_status", "notes",
+}
+MANUAL_OVERRIDE_FACT_IDS = {
+    "CM-TASK-010", "CM-TASK-013", "CM-TASK-014", "CM-TASK-015",
+}
 
 
-def read_csv(path: Path, columns: set[str]) -> list[dict[str, str]]:
+def read_csv(
+    path: Path, columns: set[str], *, allow_empty: bool = False,
+) -> list[dict[str, str]]:
     with path.open(encoding="utf-8-sig", newline="") as handle:
-        rows = list(csv.DictReader(handle))
-    actual = set(rows[0]) if rows else set()
-    if not rows or actual != columns:
+        reader = csv.DictReader(handle)
+        fieldnames = reader.fieldnames or []
+        rows = list(reader)
+    if set(fieldnames) != columns or len(fieldnames) != len(columns):
         raise ValueError(f"{path}: expected exact columns {sorted(columns)}")
+    if not rows and not allow_empty:
+        raise ValueError(f"{path}: expected at least one data row")
+    if any(
+        None in row or any(value is None for value in row.values())
+        for row in rows
+    ):
+        raise ValueError(f"{path}: malformed row width")
     return rows
+
+
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 def valid_sha(value: str) -> bool:
@@ -222,28 +253,43 @@ def validation_reviewed(row: dict[str, str]) -> bool:
     )
 
 
-def independent_complete(row: dict[str, str]) -> bool:
+def independent_complete(
+    row: dict[str, str], coverage: dict[str, object], manifest_sha256: str,
+) -> bool:
     comparisons = parse_nonnegative_int(row, "case_population_comparison_count")
     differences = parse_nonnegative_int(row, "unexplained_difference_count")
+    total_differences = parse_nonnegative_int(row, "independent_difference_count")
+    manifest_rows = parse_nonnegative_int(row, "independent_manifest_row_count")
     return (
         row["independent_status"] == "approved"
         and row["independent_method"] == "independent-no-shared-cql-logic"
         and comparisons is not None and comparisons > 0
+        and comparisons == coverage["expression_comparison_count"]
+        and manifest_rows == coverage["independent_row_count"]
+        and coverage["independent_complete"] is True
+        and coverage["independent_difference_count"] == 0
+        and total_differences == 0
         and differences == 0
+        and row["comparison_manifest_sha256"] == manifest_sha256
         and validation_reviewed(row)
         and all(valid_sha(row[field]) for field in (
             "cql_artifact_sha256", "independent_implementation_sha256",
+            "comparison_normalizer_sha256",
             "truth_set_sha256",
         ))
     )
 
 
-def golden_complete(row: dict[str, str]) -> bool:
+def golden_complete(
+    row: dict[str, str], coverage: dict[str, object], manifest_sha256: str,
+) -> bool:
     cases = parse_nonnegative_int(row, "case_count")
     populations = parse_nonnegative_int(row, "case_population_comparison_count")
     facts = parse_nonnegative_int(row, "source_fact_comparison_count")
     overrides = parse_nonnegative_int(row, "manual_override_comparison_count")
     differences = parse_nonnegative_int(row, "unexplained_difference_count")
+    total_differences = parse_nonnegative_int(row, "golden_difference_count")
+    manifest_rows = parse_nonnegative_int(row, "golden_manifest_row_count")
     try:
         period_start = date.fromisoformat(row["reporting_period_start"])
         period_end = date.fromisoformat(row["reporting_period_end"])
@@ -254,13 +300,19 @@ def golden_complete(row: dict[str, str]) -> bool:
         and row["cohort_completeness"] == "all-in-scope-cases"
         and period_start <= period_end
         and cases is not None and cases > 0
-        and populations is not None and populations >= cases
-        and facts is not None and facts >= cases
-        and overrides is not None
+        and populations == coverage["expression_comparison_count"]
+        and facts == coverage["source_fact_comparison_count"]
+        and overrides == coverage["manual_override_comparison_count"]
+        and manifest_rows == coverage["golden_row_count"]
+        and coverage["golden_complete"] is True
+        and coverage["golden_difference_count"] == 0
+        and total_differences == 0
         and differences == 0
+        and row["comparison_manifest_sha256"] == manifest_sha256
         and validation_reviewed(row)
         and all(valid_sha(row[field]) for field in (
             "source_extract_sha256", "fhir_bundle_sha256", "cql_artifact_sha256",
+            "comparison_normalizer_sha256",
             "truth_set_sha256",
         ))
     )
@@ -293,6 +345,205 @@ def expected_measures(catalog_path: Path) -> dict[str, str]:
     return {row["measure_id"]: row["indicator_family"] for row in rows}
 
 
+def expected_measure_expressions(measure_fsh_path: Path) -> dict[str, set[str]]:
+    text = measure_fsh_path.read_text(encoding="utf-8")
+    expressions: dict[str, set[str]] = {}
+    for block in text.split("\nInstance: ")[1:]:
+        if "InstanceOf: Measure" not in block:
+            continue
+        measure_match = re.search(r'\* id = "(bc-q[ir]-\d+)"', block)
+        if not measure_match:
+            raise ValueError(f"{measure_fsh_path}: Measure without bc-qi/bc-qr id")
+        measure_id = measure_match.group(1)
+        values = re.findall(r'criteria\.expression = "([^"]+)"', block)
+        if not values or len(values) != len(set(values)):
+            raise ValueError(
+                f"{measure_fsh_path}: missing or duplicate expressions for {measure_id}"
+            )
+        expressions[measure_id] = set(values)
+    unique_expressions = set().union(*expressions.values()) if expressions else set()
+    if (
+        len(expressions) != 20
+        or sum(map(len, expressions.values())) != 62
+        or len(unique_expressions) != 46
+    ):
+        raise ValueError(
+            f"{measure_fsh_path}: expected 20 Measures, 62 expression uses, "
+            "and 46 unique expressions"
+        )
+    return expressions
+
+
+def expected_measure_facts(
+    criteria: list[dict[str, str]], measures: dict[str, str],
+) -> dict[str, set[str]]:
+    shared = {
+        "quality": "bc-qi-00",
+        "quarterly": "bc-qr-00",
+    }
+    result: dict[str, set[str]] = {}
+    for measure_id, family in measures.items():
+        included_measure_ids = {measure_id, shared[family]}
+        result[measure_id] = {
+            fact_id
+            for row in criteria
+            if row["measure_id"] in included_measure_ids
+            for fact_id in row["depends_on_mapping"].split()
+        }
+        if not result[measure_id]:
+            raise ValueError(f"no source facts resolve for {measure_id}")
+    return result
+
+
+def validate_case_comparisons(
+    path: Path,
+    rows: list[dict[str, str]],
+    measures: dict[str, str],
+    expressions: dict[str, set[str]],
+    facts: dict[str, set[str]],
+) -> dict[str, dict[str, object]]:
+    if len({row["comparison_id"] for row in rows}) != len(rows):
+        raise ValueError(f"{path}: comparison_id must be unique")
+    seen: set[tuple[str, str, str, str, str]] = set()
+    by_measure: dict[str, dict[str, object]] = {
+        measure_id: {
+            "VM-05": [], "VM-06": [],
+            "VM-05-differences": 0, "VM-06-differences": 0,
+        }
+        for measure_id in measures
+    }
+    for row in rows:
+        if not row["comparison_id"].strip():
+            raise ValueError(f"{path}: comparison_id cannot be blank")
+        method = row["verification_method"]
+        measure_id = row["measure_id"]
+        unit_type = row["comparison_unit_type"]
+        unit_id = row["comparison_unit_id"]
+        case_token = row["case_token"]
+        if method not in {"VM-05", "VM-06"}:
+            raise ValueError(f"{path}: invalid verification_method")
+        if measure_id not in measures:
+            raise ValueError(f"{path}: unknown measure_id {measure_id}")
+        allowed_types = (
+            {"expression"}
+            if method == "VM-05"
+            else {"expression", "source-fact", "manual-override", "report-resource"}
+        )
+        if unit_type not in allowed_types:
+            raise ValueError(f"{path}: invalid {method} comparison_unit_type")
+        if unit_type == "report-resource":
+            if case_token != "aggregate" or unit_id != "MeasureReport":
+                raise ValueError(f"{path}: invalid report-resource comparison")
+        elif not valid_sha(case_token):
+            raise ValueError(f"{path}: case_token must be an HMAC-SHA256 token")
+        if unit_type == "expression" and unit_id not in expressions[measure_id]:
+            raise ValueError(f"{path}: unknown expression {measure_id}/{unit_id}")
+        if unit_type in {"source-fact", "manual-override"}:
+            if unit_id not in facts[measure_id]:
+                raise ValueError(f"{path}: unrelated source fact {measure_id}/{unit_id}")
+            expected_type = (
+                "manual-override"
+                if unit_id in MANUAL_OVERRIDE_FACT_IDS
+                else "source-fact"
+            )
+            if unit_type != expected_type:
+                raise ValueError(f"{path}: incorrect comparison type for {unit_id}")
+        expected_normalization = (
+            "FHIR-MR-1" if unit_type == "report-resource" else "CV-1"
+        )
+        if row["normalization_rule_id"] != expected_normalization:
+            raise ValueError(f"{path}: invalid normalization rule for {unit_type}")
+        expected_hash = row["expected_value_sha256"]
+        actual_hash = row["actual_value_sha256"]
+        if not valid_sha(expected_hash) or not valid_sha(actual_hash):
+            raise ValueError(f"{path}: comparison values must be SHA-256 digests")
+        status = row["comparison_status"]
+        expected_status = "match" if expected_hash == actual_hash else "difference"
+        if status != expected_status:
+            raise ValueError(f"{path}: comparison_status/hash mismatch")
+        key = (method, measure_id, case_token, unit_type, unit_id)
+        if key in seen:
+            raise ValueError(f"{path}: duplicate comparison unit {key}")
+        seen.add(key)
+        by_measure[measure_id][method].append(row)
+        by_measure[measure_id][f"{method}-differences"] += status == "difference"
+    return by_measure
+
+
+def exact_case_coverage(
+    row: dict[str, str],
+    comparison_rows: dict[str, object],
+    expressions: set[str],
+    facts: set[str],
+) -> dict[str, object]:
+    case_count = parse_nonnegative_int(row, "case_count")
+    vm05 = comparison_rows["VM-05"]
+    vm06 = comparison_rows["VM-06"]
+    independent_tokens = {
+        item["case_token"] for item in vm05 if item["comparison_unit_type"] != "report-resource"
+    }
+    golden_tokens = {
+        item["case_token"] for item in vm06 if item["comparison_unit_type"] != "report-resource"
+    }
+    expected_independent = {
+        (token, "expression", expression)
+        for token in independent_tokens
+        for expression in expressions
+    }
+    expected_golden_expressions = {
+        (token, "expression", expression)
+        for token in golden_tokens
+        for expression in expressions
+    }
+    expected_golden = expected_golden_expressions | {
+        (
+            token,
+            "manual-override" if fact_id in MANUAL_OVERRIDE_FACT_IDS else "source-fact",
+            fact_id,
+        )
+        for token in golden_tokens
+        for fact_id in facts
+    } | {("aggregate", "report-resource", "MeasureReport")}
+    actual_independent = {
+        (item["case_token"], item["comparison_unit_type"], item["comparison_unit_id"])
+        for item in vm05
+    }
+    actual_golden = {
+        (item["case_token"], item["comparison_unit_type"], item["comparison_unit_id"])
+        for item in vm06
+    }
+    manual_count = sum(
+        item["comparison_unit_type"] == "manual-override" for item in vm06
+    )
+    source_fact_count = sum(
+        item["comparison_unit_type"] in {"source-fact", "manual-override"}
+        for item in vm06
+    )
+    return {
+        "case_count": case_count,
+        "independent_row_count": len(vm05),
+        "golden_row_count": len(vm06),
+        "expression_comparison_count": (
+            (case_count or 0) * len(expressions)
+        ),
+        "source_fact_comparison_count": source_fact_count,
+        "manual_override_comparison_count": manual_count,
+        "independent_difference_count": comparison_rows["VM-05-differences"],
+        "golden_difference_count": comparison_rows["VM-06-differences"],
+        "independent_complete": (
+            case_count is not None and case_count > 0
+            and len(independent_tokens) == case_count
+            and actual_independent == expected_independent
+        ),
+        "golden_complete": (
+            case_count is not None and case_count > 0
+            and len(golden_tokens) == case_count
+            and actual_golden == expected_golden
+        ),
+        "cohort_tokens_aligned": independent_tokens == golden_tokens,
+    }
+
+
 def audit(
     source_register_path: Path,
     validation_register_path: Path,
@@ -300,11 +551,18 @@ def audit(
     task_mapping_path: Path,
     measure_catalog_path: Path,
     population_criteria_path: Path,
+    measure_fsh_path: Path,
+    case_comparison_register_path: Path,
 ) -> dict[str, object]:
     sources = read_csv(source_register_path, SOURCE_COLUMNS)
     validations = read_csv(validation_register_path, VALIDATION_COLUMNS)
+    comparisons = read_csv(
+        case_comparison_register_path, COMPARISON_COLUMNS, allow_empty=True,
+    )
+    comparison_manifest_sha256 = file_sha256(case_comparison_register_path)
     facts = expected_facts(common_mapping_path, task_mapping_path)
     measures = expected_measures(measure_catalog_path)
+    measure_expressions = expected_measure_expressions(measure_fsh_path)
     with population_criteria_path.open(encoding="utf-8-sig", newline="") as handle:
         criteria = list(csv.DictReader(handle))
     if len(facts) != 52:
@@ -321,6 +579,8 @@ def audit(
             f"{population_criteria_path}: expected 68 unique criteria covering "
             "all 20 Measures and the bc-qi-00/bc-qr-00 common cohorts"
         )
+    if set(measure_expressions) != set(measures):
+        raise ValueError(f"{measure_fsh_path}: Measure set differs from catalog")
     criterion_fact_ids = {
         fact_id
         for row in criteria
@@ -331,6 +591,11 @@ def audit(
         raise ValueError(
             f"{population_criteria_path}: unknown mapping dependencies {unknown_dependencies}"
         )
+    measure_facts = expected_measure_facts(criteria, measures)
+    comparison_rows = validate_case_comparisons(
+        case_comparison_register_path, comparisons, measures,
+        measure_expressions, measure_facts,
+    )
     if len({row["evidence_id"] for row in sources}) != len(sources):
         raise ValueError(f"{source_register_path}: evidence_id must be unique")
     unknown_facts = sorted({row["fact_id"] for row in sources} - set(facts))
@@ -377,17 +642,62 @@ def audit(
             raise ValueError(f"{validation_register_path}: stale indicator_family for {row['measure_id']}")
         if row["independent_status"] not in {"pending", "approved"} or row["golden_cohort_status"] not in {"pending", "approved"}:
             raise ValueError(f"{validation_register_path}: invalid status for {row['measure_id']}")
-        if row["independent_status"] == "approved" and not independent_complete(row):
+        coverage = exact_case_coverage(
+            row, comparison_rows[row["measure_id"]],
+            measure_expressions[row["measure_id"]], measure_facts[row["measure_id"]],
+        )
+        declared_counts = {
+            "independent_manifest_row_count": coverage["independent_row_count"],
+            "golden_manifest_row_count": coverage["golden_row_count"],
+            "independent_difference_count": coverage["independent_difference_count"],
+            "golden_difference_count": coverage["golden_difference_count"],
+        }
+        for field, expected in declared_counts.items():
+            if row[field].strip():
+                value = parse_nonnegative_int(row, field)
+                if value != expected:
+                    raise ValueError(
+                        f"{validation_register_path}: {field}/manifest mismatch "
+                        f"for {row['measure_id']}"
+                    )
+        if row["comparison_manifest_sha256"].strip() and (
+            row["comparison_manifest_sha256"] != comparison_manifest_sha256
+        ):
+            raise ValueError(
+                f"{validation_register_path}: comparison manifest hash mismatch "
+                f"for {row['measure_id']}"
+            )
+        if row["independent_status"] == "approved" and not independent_complete(
+            row, coverage, comparison_manifest_sha256,
+        ):
             raise ValueError(f"{validation_register_path}: incomplete independent approval for {row['measure_id']}")
-        if row["golden_cohort_status"] == "approved" and not golden_complete(row):
+        if row["golden_cohort_status"] == "approved" and not golden_complete(
+            row, coverage, comparison_manifest_sha256,
+        ):
             raise ValueError(f"{validation_register_path}: incomplete golden approval for {row['measure_id']}")
+        if (
+            row["independent_status"] == "approved"
+            and row["golden_cohort_status"] == "approved"
+            and coverage["cohort_tokens_aligned"] is not True
+        ):
+            raise ValueError(
+                f"{validation_register_path}: VM-05/VM-06 cohort tokens differ "
+                f"for {row['measure_id']}"
+            )
+        row["_coverage"] = coverage
 
     complete_contracts = sum(
         source_contract_complete(rows[0]) for rows in primary_rows.values()
     )
     approved_sources = sum(source_complete(rows[0]) for rows in primary_rows.values())
-    independent_count = sum(independent_complete(row) for row in validations)
-    golden_count = sum(golden_complete(row) for row in validations)
+    independent_count = sum(
+        independent_complete(row, row["_coverage"], comparison_manifest_sha256)
+        for row in validations
+    )
+    golden_count = sum(
+        golden_complete(row, row["_coverage"], comparison_manifest_sha256)
+        for row in validations
+    )
     return {
         "gate_scope": "raw-source-independent-recalculation-and-golden-cohort",
         "expected_fact_count": len(facts),
@@ -399,12 +709,19 @@ def audit(
         "declared_derived_dependency_count": declared_derived_dependencies,
         "approved_authoritative_or_derived_fact_count": approved_sources,
         "measure_count": len(measures),
+        "measure_expression_count": len(set().union(*measure_expressions.values())),
+        "measure_expression_occurrence_count": sum(
+            map(len, measure_expressions.values())
+        ),
+        "case_level_comparison_row_count": len(comparisons),
+        "comparison_manifest_sha256": comparison_manifest_sha256,
         "population_criterion_count": len(criteria),
         "criterion_referenced_fact_count": len(criterion_fact_ids),
         "approved_independent_recalculation_count": independent_count,
         "approved_golden_cohort_count": golden_count,
         "source_register_integrity_gate": "pass",
         "validation_register_integrity_gate": "pass",
+        "case_level_comparison_integrity_gate": "pass",
         "raw_source_traceability_gate": "pass" if approved_sources == len(facts) else "block",
         "independent_recalculation_gate": "pass" if independent_count == len(measures) else "block",
         "golden_cohort_gate": "pass" if golden_count == len(measures) else "block",
@@ -419,6 +736,8 @@ def main() -> int:
     parser.add_argument("--task-mapping", type=Path, required=True)
     parser.add_argument("--measure-catalog", type=Path, required=True)
     parser.add_argument("--population-criteria", type=Path, required=True)
+    parser.add_argument("--measure-fsh", type=Path, required=True)
+    parser.add_argument("--case-comparison-register", type=Path, required=True)
     parser.add_argument("--json-out", type=Path)
     parser.add_argument("--target", choices=("integrity", "data"), default="integrity")
     args = parser.parse_args()
@@ -427,6 +746,7 @@ def main() -> int:
             args.source_register, args.validation_register, args.common_mapping,
             args.task_mapping, args.measure_catalog,
             args.population_criteria,
+            args.measure_fsh, args.case_comparison_register,
         )
     except (OSError, ValueError, csv.Error) as exc:
         print(f"Data-correctness evidence audit failed: {exc}", file=sys.stderr)

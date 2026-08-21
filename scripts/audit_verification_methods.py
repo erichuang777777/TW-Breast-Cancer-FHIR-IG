@@ -73,18 +73,24 @@ EXPECTED = {
         "release_control_id": "RC-05",
         "method_class": "data-correctness",
         "method_name": "independent-case-level-recalculation",
-        "locked_scope": "20 Measures; every in-scope case and population",
-        "threshold_markers": ("20/20", "case-level", "does not reuse CQL logic", "0 unexplained"),
-        "evidence_markers": ("independent implementation hash", "truth-set hash", "case-level diff"),
-        "independence_markers": ("independent of the CQL implementation", "aggregate totals alone are insufficient"),
+        "locked_scope": (
+            "20 Measures; every in-scope case; all 62 Measure-expression uses "
+            "across 46 unique CQL expressions"
+        ),
+        "threshold_markers": ("20/20", "exact case-by-declared-expression tuple set", "does not reuse CQL logic", "0 total final differences"),
+        "evidence_markers": ("independent implementation hash", "truth-set hash", "case-level-comparison-register.csv", "manifest hash"),
+        "independence_markers": ("independent of the CQL implementation", "partial expression sample are insufficient"),
     },
     "VM-06": {
         "release_control_id": "RC-06",
         "method_class": "data-correctness",
         "method_name": "end-to-end-original-data-golden-cohort",
-        "locked_scope": "20 Measures; one complete reporting period; every in-scope case",
-        "threshold_markers": ("20/20", "100%", "original source", "0 unexplained"),
-        "evidence_markers": ("original extract hash", "FHIR Bundle hash", "case-level truth set"),
+        "locked_scope": (
+            "20 Measures; one complete reporting period; every in-scope case; "
+            "every required source fact and complete MeasureReport"
+        ),
+        "threshold_markers": ("20/20", "100%", "exact case-by-expression", "case-by-source-fact", "0 total final differences"),
+        "evidence_markers": ("original extract hash", "FHIR Bundle hash", "case-level truth set", "case-level-comparison-register.csv", "manifest hash"),
         "independence_markers": ("independently", "comparison copies only"),
     },
     "VM-07": {

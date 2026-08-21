@@ -131,6 +131,7 @@ java "-Dfile.encoding=UTF-8" -jar publisher.jar -ig ig.ini
 
 各發布層級、六種資料正確性核對方法、八項正式發布控制、逐項門檻及目前 52 個 Publisher warnings 的精確分類，見 [FHIR IG 發布與資料正確性驗收矩陣](PUBLICATION_ACCEPTANCE_MATRIX.md)；20 個品管／季報 Measure 的規格判定見 [FHIR IG 規格正確性稽核](SPECIFICATION_CORRECTNESS_AUDIT.md)；各 Task 與外部標準可宣稱到哪一層，見 [全 IG 範圍與 Conformance 宣稱稽核](IG_SCOPE_CONFORMANCE_AUDIT.md)。
 八種方法的機器可讀範圍與門檻另鎖定於 `mappings/publication/verification-method-register.csv`，並由 `scripts/audit_verification_methods.py` 在發布 CI 中逐項核對。
+RC-05／RC-06 的逐案 manifest、HMAC case token、值正規化、完整 tuple set 與零總差異規則，見 [逐案資料正確性驗證協定](CASE_LEVEL_VALIDATION_PROTOCOL.md)。
 
 ### 治理與簽核
 

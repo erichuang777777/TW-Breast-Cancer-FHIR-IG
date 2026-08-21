@@ -1,9 +1,17 @@
 import csv
+import hashlib
 from pathlib import Path
 
 import pytest
 
-from scripts.audit_data_correctness_evidence import SOURCE_CONTRACT_FIELDS, audit
+from scripts.audit_data_correctness_evidence import (
+    MANUAL_OVERRIDE_FACT_IDS,
+    SOURCE_CONTRACT_FIELDS,
+    audit,
+    expected_measure_expressions,
+    expected_measure_facts,
+    expected_measures,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,12 +31,20 @@ MEASURE_CATALOG = (
 POPULATION_CRITERIA = (
     ROOT / "mappings" / "case-management" / "case-management-population-criteria.csv"
 )
+MEASURE_FSH = ROOT / "ig" / "input" / "fsh" / "case-management-measures.fsh"
+CASE_COMPARISONS = (
+    ROOT / "mappings" / "publication" / "case-level-comparison-register.csv"
+)
 
 
-def run(source: Path = SOURCE_REGISTER, validation: Path = VALIDATION_REGISTER):
+def run(
+    source: Path = SOURCE_REGISTER,
+    validation: Path = VALIDATION_REGISTER,
+    comparisons: Path = CASE_COMPARISONS,
+):
     return audit(
         source, validation, COMMON_MAPPING, TASK_MAPPING, MEASURE_CATALOG,
-        POPULATION_CRITERIA,
+        POPULATION_CRITERIA, MEASURE_FSH, comparisons,
     )
 
 
@@ -89,6 +105,64 @@ def approved_source_rows() -> list[dict[str, str]]:
     return rows
 
 
+def complete_comparison_manifest(tmp_path: Path, case_count: int = 10):
+    measures = expected_measures(MEASURE_CATALOG)
+    expressions = expected_measure_expressions(MEASURE_FSH)
+    facts = expected_measure_facts(read_rows(POPULATION_CRITERIA), measures)
+    case_tokens = [f"{index + 1:064x}" for index in range(case_count)]
+    rows: list[dict[str, str]] = []
+    counts: dict[str, dict[str, int]] = {}
+    digest = "b" * 64
+
+    def add(method, measure_id, token, unit_type, unit_id):
+        rows.append({
+            "comparison_id": f"CMP-{len(rows) + 1:07d}",
+            "verification_method": method,
+            "measure_id": measure_id,
+            "case_token": token,
+            "comparison_unit_type": unit_type,
+            "comparison_unit_id": unit_id,
+            "normalization_rule_id": (
+                "FHIR-MR-1" if unit_type == "report-resource" else "CV-1"
+            ),
+            "expected_value_sha256": digest,
+            "actual_value_sha256": digest,
+            "comparison_status": "match",
+            "notes": "synthetic complete-coverage manifest",
+        })
+
+    for measure_id in measures:
+        independent_rows = 0
+        golden_rows = 1
+        manual_rows = 0
+        for token in case_tokens:
+            for expression in sorted(expressions[measure_id]):
+                add("VM-05", measure_id, token, "expression", expression)
+                add("VM-06", measure_id, token, "expression", expression)
+                independent_rows += 1
+                golden_rows += 1
+            for fact_id in sorted(facts[measure_id]):
+                unit_type = (
+                    "manual-override"
+                    if fact_id in MANUAL_OVERRIDE_FACT_IDS
+                    else "source-fact"
+                )
+                add("VM-06", measure_id, token, unit_type, fact_id)
+                golden_rows += 1
+                manual_rows += unit_type == "manual-override"
+        add("VM-06", measure_id, "aggregate", "report-resource", "MeasureReport")
+        counts[measure_id] = {
+            "independent": independent_rows,
+            "golden": golden_rows,
+            "facts": case_count * len(facts[measure_id]),
+            "manual": manual_rows,
+        }
+    path = tmp_path / "case-comparisons.csv"
+    write_rows(path, rows)
+    manifest_hash = hashlib.sha256(path.read_bytes()).hexdigest()
+    return path, counts, manifest_hash
+
+
 def test_current_evidence_registers_are_complete_templates_but_not_release_evidence():
     report = run()
     assert report["source_register_integrity_gate"] == "pass"
@@ -100,6 +174,10 @@ def test_current_evidence_registers_are_complete_templates_but_not_release_evide
     assert report["declared_derived_dependency_count"] == 1
     assert report["approved_authoritative_or_derived_fact_count"] == 0
     assert report["measure_count"] == 20
+    assert report["measure_expression_count"] == 46
+    assert report["measure_expression_occurrence_count"] == 62
+    assert report["case_level_comparison_row_count"] == 0
+    assert report["case_level_comparison_integrity_gate"] == "pass"
     assert report["population_criterion_count"] == 68
     assert report["criterion_referenced_fact_count"] == 45
     assert report["approved_independent_recalculation_count"] == 0
@@ -198,11 +276,53 @@ def test_an_approved_golden_result_without_complete_period_evidence_is_rejected(
         run(validation=altered)
 
 
+def test_approved_independent_manifest_cannot_omit_one_case_expression(tmp_path):
+    comparison_path, counts, _ = complete_comparison_manifest(tmp_path)
+    comparison_rows = read_rows(comparison_path)
+    omitted = next(
+        index for index, row in enumerate(comparison_rows)
+        if row["verification_method"] == "VM-05"
+        and row["measure_id"] == "bc-qi-01"
+    )
+    comparison_rows.pop(omitted)
+    write_rows(comparison_path, comparison_rows)
+    manifest_hash = hashlib.sha256(comparison_path.read_bytes()).hexdigest()
+
+    rows = read_rows(VALIDATION_REGISTER)
+    row = next(item for item in rows if item["measure_id"] == "bc-qi-01")
+    digest = "a" * 64
+    row.update({
+        "case_count": "10",
+        "case_population_comparison_count": str(counts["bc-qi-01"]["independent"] - 1),
+        "unexplained_difference_count": "0",
+        "comparison_manifest_sha256": manifest_hash,
+        "independent_manifest_row_count": str(counts["bc-qi-01"]["independent"] - 1),
+        "independent_difference_count": "0",
+        "cql_artifact_sha256": digest,
+        "independent_implementation_sha256": digest,
+        "truth_set_sha256": digest,
+        "independent_method": "independent-no-shared-cql-logic",
+        "independent_status": "approved",
+        "reviewer_name": "Synthetic Reviewer",
+        "reviewer_organization_title": "Test Clinical Validation",
+        "review_date": "2026-08-21",
+        "evidence_uri_path": "test://truncated-case-level-diff",
+    })
+    validation_path = tmp_path / "validation-truncated.csv"
+    write_rows(validation_path, rows)
+    with pytest.raises(ValueError, match="incomplete independent approval"):
+        run(validation=validation_path, comparisons=comparison_path)
+
+
 def test_complete_signed_case_level_evidence_can_pass_all_three_data_gates(tmp_path):
     digest = "a" * 64
     source_rows = approved_source_rows()
     source_path = tmp_path / "source.csv"
     write_rows(source_path, source_rows)
+
+    comparison_path, comparison_counts, manifest_hash = (
+        complete_comparison_manifest(tmp_path)
+    )
 
     validation_rows = read_rows(VALIDATION_REGISTER)
     for row in validation_rows:
@@ -220,6 +340,16 @@ def test_complete_signed_case_level_evidence_can_pass_all_three_data_gates(tmp_p
             "source_fact_comparison_count": "100",
             "manual_override_comparison_count": "0",
             "unexplained_difference_count": "0",
+            "comparison_manifest_sha256": manifest_hash,
+            "independent_manifest_row_count": str(
+                comparison_counts[row["measure_id"]]["independent"]
+            ),
+            "golden_manifest_row_count": str(
+                comparison_counts[row["measure_id"]]["golden"]
+            ),
+            "independent_difference_count": "0",
+            "golden_difference_count": "0",
+            "comparison_normalizer_sha256": digest,
             "independent_method": "independent-no-shared-cql-logic",
             "independent_status": "approved",
             "golden_cohort_status": "approved",
@@ -228,10 +358,22 @@ def test_complete_signed_case_level_evidence_can_pass_all_three_data_gates(tmp_p
             "review_date": "2026-08-21",
             "evidence_uri_path": "test://case-level-diff",
         })
+        row["case_population_comparison_count"] = str(
+            comparison_counts[row["measure_id"]]["independent"]
+        )
+        row["source_fact_comparison_count"] = str(
+            comparison_counts[row["measure_id"]]["facts"]
+        )
+        row["manual_override_comparison_count"] = str(
+            comparison_counts[row["measure_id"]]["manual"]
+        )
     validation_path = tmp_path / "validation.csv"
     write_rows(validation_path, validation_rows)
 
-    report = run(source=source_path, validation=validation_path)
+    report = run(
+        source=source_path, validation=validation_path,
+        comparisons=comparison_path,
+    )
     assert report["approved_authoritative_or_derived_fact_count"] == 52
     assert report["complete_source_contract_count"] == 52
     assert report["approved_independent_recalculation_count"] == 20

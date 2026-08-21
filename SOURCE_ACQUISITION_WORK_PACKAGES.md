@@ -52,7 +52,7 @@
 2. 由 owner 回答該列 `acquisition_question`，交付指定 schema／API spec、版本與 extraction query。
 3. 把權威 system、artifact、element、version 填回 `source-traceability-register.csv`，再逐欄完成下列 19 維資料契約並由 source owner/reviewer 簽核。不得使用空白、`TBD`、`N/A` 或沒有具體理由的 `not-applicable`。
 4. 在受控環境選取可追溯案例，證明原始欄位可以重建預期 FHIR resource/path；敏感資料不得提交到 Git。
-5. 全部來源到位後，另以不共用 CQL 邏輯的實作做 20/20 Measure 逐案重算，再用一個完整報告期間做 source→FHIR→MeasureReport golden-cohort reconciliation；未解釋差異必須為 0。
+5. 全部來源到位後，依 [逐案資料正確性驗證協定](CASE_LEVEL_VALIDATION_PROTOCOL.md)，另以不共用 CQL 邏輯的實作做 20/20 Measure exact case-by-expression 重算，再用一個完整報告期間做 exact case-by-source-fact 與完整 MeasureReport reconciliation；最終 manifest 總差異必須為 0。
 
 `scripts/audit_source_acquisition_work_packages.py` 會拒絕漏列、重複、改動批次、改動工作包、未簽證據卻宣稱 owner confirmed，以及 priority register 更新後未同步的舊內容。
 
