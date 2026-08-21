@@ -16,7 +16,7 @@
 
 ## 驗證狀態（2026-08-21）
 
-- pytest：267 passed（新增 OID assignment、TCR 術語 backlog、逐 Measure 規格、全 IG scope claims、template supply-chain 與八項 release-control 證據一致性檢查）。
+- pytest：276 passed（新增 OID assignment、TCR 術語 backlog、逐 Measure 規格與簽核完整性、全 IG scope claims、template supply-chain 與八項 release-control 證據一致性檢查）。
 - SUSHI 3.20.0：0 errors、0 warnings。
 - PHI gate：pass。
 - CQL translation：pass；runtime smoke：20/20 Measures、46/46 criteria；目前具預期值的合成分支 assertions：20/20 Measures。
@@ -25,6 +25,8 @@
 - Template supply-chain：已依 2026-03 安全公告遷移至固定版本 `fhir2.base.template#0.1.0`；精確套件載入、無 insecure-template notice，並以最小 include overlay 修正該版已知多語系 jurisdiction flag 路徑缺陷。
 - Strict release：blocked；仍要求 0 warnings、完整 warning disposition 與其餘正式發布控制通過；模板安全阻擋已解除，但不取代原始資料、術語、golden cohort 與治理證據。
 - 完整 formal release gate 與 Publisher QA gate 已分離；目前只有 2/8 controls 通過，warnings 歸零也不能繞過 source mapping、terminology、獨立重算、golden cohort 與簽核。
+- 新增 20/20 Measure 規格決策登錄；RC-07 現在同時要求完整 QBC 14-Gate、完整 Measure 20-approval、有效簽署證據及 `draft_definition_alignment=approved`，避免刪除待辦或簽署未解決規格而誤過正式發布。
+- QBC mapping 重建改以 committed `qbc_fields.json` 技術擷取契約為輸入，乾淨 checkout 不再依賴未納入版本庫的 DOCX；115 列仍保留原始文件 SHA-256。重建器只有在 Gate 提案、owner 與驗收條件完全未變時才保留既有人工簽核，內容變更即失效重簽。
 - 新增 whole-IG claim register，分開判定 TW Core direct parent、mCODE／ICHOM semantic reference、Care Plan、QBC、TWPAS、個管 Measure 與 TCR；修正 TCR 缺口為 48 欄已驗證碼表、32 欄 pending、19 欄非 coded。
 - 新增 canonical-derived UUIDv5 OID root 與 271 筆 committed assignments；逐資源 OID warning 由 133 降為 0，root registry 登錄仍待治理。
 - 退役 48 個以 `unmatched` 誤表達「尚未審查」的 TCR ConceptMap；改以 2,169 列非 FHIR 清冊逐碼記錄待審 target、relationship、reviewer 與 evidence，已配置的 OID 保留且不重用。

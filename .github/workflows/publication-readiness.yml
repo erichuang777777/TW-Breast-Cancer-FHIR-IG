@@ -92,6 +92,7 @@ jobs:
             --measure-audit mappings/publication/case-management-measure-audit.csv \
             --terminology-fsh ig/input/fsh/case-management-terminology.fsh \
             --approval-register outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv \
+            --measure-approval-register mappings/publication/case-management-measure-approval-register.csv \
             --publisher-audit ig/output/publisher-warning-audit.json \
             --json-out ig/output/release-control-audit.json \
             --target integrity \

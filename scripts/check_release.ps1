@@ -23,16 +23,36 @@ try {
         $env:Path = (Get-Location).Path + ";" + $env:Path
         java "-Dfile.encoding=UTF-8" -jar publisher.jar -ig ig.ini
         if ($LASTEXITCODE -ne 0) { throw "IG Publisher failed" }
-        $qa = Get-Content -Raw -Encoding UTF8 output\qa.html
-        if ($qa -notmatch "errors = 0, warn = 0, info = \d+, broken links = 0") {
-            throw "IG QA is not clean; inspect ig/output/qa.html"
-        }
     }
     finally {
         Pop-Location
     }
-    Write-Host "Release checks passed: PHI gate, pytest, synthetic test pack, SUSHI and IG Publisher QA."
-    Write-Host "Community Preview is publishable. Production use still requires local governance and acceptance."
+
+    python scripts\audit_publisher_qa.py `
+        --qa-text ig\output\qa.txt `
+        --qa-html ig\output\qa.html `
+        --policy mappings\publication\publisher-warning-policy.csv `
+        --json-out ig\output\publisher-warning-audit.json `
+        --target integrity
+    if ($LASTEXITCODE -ne 0) { throw "Publisher warning integrity audit failed" }
+
+    python scripts\audit_release_controls.py `
+        --controls mappings\publication\release-control-register.csv `
+        --measure-audit mappings\publication\case-management-measure-audit.csv `
+        --terminology-fsh ig\input\fsh\case-management-terminology.fsh `
+        --approval-register outputs\qbc_ig_mapping\qbc_mapping_approval_register.csv `
+        --measure-approval-register mappings\publication\case-management-measure-approval-register.csv `
+        --publisher-audit ig\output\publisher-warning-audit.json `
+        --json-out ig\output\release-control-audit.json `
+        --target integrity
+    if ($LASTEXITCODE -ne 0) { throw "release-control integrity audit failed" }
+
+    $publisherAudit = Get-Content -Raw -Encoding UTF8 ig\output\publisher-warning-audit.json | ConvertFrom-Json
+    $releaseAudit = Get-Content -Raw -Encoding UTF8 ig\output\release-control-audit.json | ConvertFrom-Json
+    Write-Host "Technical checks passed: PHI, pytest, synthetic pack, SUSHI, Publisher and evidence integrity."
+    Write-Host "Community Preview gate: $($publisherAudit.community_preview_gate)"
+    Write-Host "Complete formal release gate: $($releaseAudit.formal_release_gate)"
+    Write-Host "Maximum supported claim: $($releaseAudit.maximum_supported_claim)"
 }
 finally {
     Pop-Location

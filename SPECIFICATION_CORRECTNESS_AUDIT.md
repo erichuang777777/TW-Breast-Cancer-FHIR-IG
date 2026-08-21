@@ -41,7 +41,7 @@ Publisher／SUSHI 通過所證明的是「產出的資源符合目前載入的 F
 
 所以答案是：**驗證數字正確需要六種；要宣稱正式可發布，總共要八種控制全部完成。**
 
-八項控制的機器可讀狀態位於 [`mappings/publication/release-control-register.csv`](mappings/publication/release-control-register.csv)，由 `scripts/audit_release_controls.py` 依 Measure audit、19 個臨床 ValueSet、簽核 register 與 Publisher audit 重新推導，並拒絕 register 自稱與證據不一致。現況為 **2/8 pass**：只有 RC-02 FHIR conformance 與 RC-04 合成規則執行通過；RC-01、03、05、06、07、08 均 blocked。即使未來 Publisher warnings 降到 0，也不能繞過這六個阻擋項目取得 formal release pass。
+八項控制的機器可讀狀態位於 [`mappings/publication/release-control-register.csv`](mappings/publication/release-control-register.csv)，20 個 Measure 的逐項規格核准位於 [`mappings/publication/case-management-measure-approval-register.csv`](mappings/publication/case-management-measure-approval-register.csv)。`scripts/audit_release_controls.py` 依 Measure audit、19 個臨床 ValueSet、完整且不重複的 QBC 14-Gate 集合、完整且不重複的 Measure 20-approval 集合、簽核內容與 Publisher audit 重新推導，並拒絕刪列或 register 自稱與證據不一致。現況為 **2/8 pass**：只有 RC-02 FHIR conformance 與 RC-04 合成規則執行通過；RC-01、03、05、06、07、08 均 blocked。即使未來 Publisher warnings 降到 0，也不能繞過這六個阻擋項目取得 formal release pass。
 
 ## 每一筆資料應比對的內容
 
@@ -69,7 +69,10 @@ Publisher／SUSHI 通過所證明的是「產出的資源符合目前載入的 F
 - 原始來源 mapping 完成：0/20。
 - 獨立重算完成：0/20。
 - 真實 golden cohort 完成：0/20。
+- Measure 規格具名核准完成：0/20。
 - 可供院內臨床／品管正式發布：0/20。
+
+RC-07 要求每個 Measure 同時滿足兩件事：approval register 有 `approve`、signer、組織／職稱、ISO 日期、證據 URI 與 64 位 SHA-256；Measure audit 的 `draft_definition_alignment` 也必須是 `approved`。因此不能用空泛簽名接受仍標為 `known-incomplete`、`candidate` 或 `contradiction` 的規格。
 
 ### 已知會直接改變結果的特定缺口
 

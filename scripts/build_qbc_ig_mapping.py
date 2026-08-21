@@ -1,8 +1,7 @@
 from pathlib import Path
 from collections import Counter
-import re
+import json
 
-from docx import Document
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.formatting.rule import FormulaRule
@@ -11,17 +10,13 @@ from openpyxl.utils import get_column_letter
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SPEC = ROOT / "6 批次上傳格式說明_QBC_乳癌照護品質提升方案_XML上傳_11507(定版).docx"
+EXTRACTED_SPEC = ROOT / "qbc_workbench" / "data" / "qbc_fields.json"
 OUTDIR = ROOT / "outputs" / "qbc_ig_mapping"
 OUT = OUTDIR / "QBC_FHIR_Mapping_TaskSpec_v1.0-preview.1.xlsx"
 
 TWCORE = "https://twcore.mohw.gov.tw/ig/twcore/"
 MCODE = "https://hl7.org/fhir/us/mcode/"
 FHIR = "https://hl7.org/fhir/R4/"
-
-
-def clean(text):
-    return " ".join((text or "").split())
 
 
 def section_for(tag):
@@ -293,18 +288,22 @@ def map_field(tag, label):
 
 
 def load_fields():
-    table = Document(SPEC).tables[2]
+    payload = json.loads(EXTRACTED_SPEC.read_text(encoding="utf-8"))
+    if payload.get("status") != "unofficial-derived-draft":
+        raise RuntimeError(f"Unexpected extracted QBC specification status in {EXTRACTED_SPEC}")
     rows = []
-    tag_re = re.compile(r"^(HOSPID|ID|BIRTHDAY|DIAG_TYPE|LATERALITY|P\d{2}|D\d{3}|TM\d{2}|T\d{2})$")
-    for row in table.rows[1:]:
-        vals = [clean(c.text) for c in row.cells]
-        if len(vals) != 6 or not tag_re.match(vals[2]):
-            continue
-        item, required, tag, label, fmt, rule = vals
+    for item, spec in enumerate(payload["fields"], start=1):
+        tag = spec["tag"]
+        label = spec["label"]
+        required = spec["required_marker"]
+        fmt = spec["source_format"]
+        rule = spec["source_rule"]
+        if spec["section"] != section_for(tag):
+            raise RuntimeError(f"Section mismatch for {tag} in {EXTRACTED_SPEC}")
         mapped = map_field(tag, label)
         rows.append({
-            "項次": item,
-            "區段": section_for(tag),
+            "項次": str(item),
+            "區段": spec["section"],
             "QBC Tag": tag,
             "QBC 中文名稱": label,
             "必要性": required,

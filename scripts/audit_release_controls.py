@@ -25,8 +25,31 @@ REQUIRED_CONTROL_COLUMNS = {
 REQUIRED_MEASURE_COLUMNS = {
     "measure_id", "fhir_conformance", "cql_execution", "terminology_evidence",
     "raw_source_mapping", "independent_recalculation", "golden_cohort",
+    "draft_definition_alignment",
+}
+QBC_APPROVAL_IDS = {
+    "QBC-TM02-SURGERY-POSTOP-REQUIRED",
+    "QBC-DIAGTYPE3-RECURRENCE-REQUIRED",
+    "QBC-XML-TABLE1-CLOSING-TAGS",
+    "QBC-FAQ-PREOP-HORMONE-3D-DIRECT-SURGERY",
+    "FHIR-MCODE-SCOPE",
+    "FHIR-EXTENSIONS",
+    "TERM-PR",
+    "TERM-HER2-FISH",
+    "TERM-PDL1",
+    "GOV-AJCC",
+    "GOV-SNOMED-DRUG",
+    "SEC-PRIVACY",
+    "UAT-VPN",
+    "PUB-RELEASE",
 }
 OPERATIONAL_APPROVALS = {"SEC-PRIVACY", "UAT-VPN", "PUB-RELEASE"}
+REQUIRED_MEASURE_APPROVAL_COLUMNS = {
+    "approval_id", "measure_id", "indicator_family", "decision_scope",
+    "known_issue", "current_status", "required_signer", "acceptance_evidence",
+    "decision", "signer_name", "signer_organization_title", "decision_date",
+    "evidence_uri_path", "signed_artifact_sha256", "notes",
+}
 SHA256 = re.compile(r"[0-9a-fA-F]{64}")
 
 
@@ -66,11 +89,28 @@ def approval_complete(row: dict[str, str]) -> bool:
     return SHA256.fullmatch(row["Signed artifact SHA-256"].strip()) is not None
 
 
+def measure_approval_complete(row: dict[str, str]) -> bool:
+    if row["current_status"] != "approved" or row["decision"] != "approve":
+        return False
+    required = (
+        "signer_name", "signer_organization_title", "decision_date",
+        "evidence_uri_path", "signed_artifact_sha256",
+    )
+    if not all(row[field].strip() for field in required):
+        return False
+    try:
+        date.fromisoformat(row["decision_date"])
+    except ValueError:
+        return False
+    return SHA256.fullmatch(row["signed_artifact_sha256"].strip()) is not None
+
+
 def audit(
     controls_path: Path,
     measure_audit_path: Path,
     terminology_path: Path,
     approvals_path: Path,
+    measure_approvals_path: Path,
     publisher_audit_path: Path,
 ) -> dict[str, object]:
     controls = read_csv(controls_path, REQUIRED_CONTROL_COLUMNS, exact_columns=True)
@@ -96,8 +136,29 @@ def audit(
         },
     )
     approval_ids = {row["Gate ID"] for row in approvals}
-    if not OPERATIONAL_APPROVALS <= approval_ids:
-        raise ValueError(f"{approvals_path}: missing operational approval gates")
+    if len(approvals) != len(QBC_APPROVAL_IDS) or approval_ids != QBC_APPROVAL_IDS:
+        raise ValueError(f"{approvals_path}: Gate ID set must be the exact 14 required gates")
+    measure_approvals = read_csv(
+        measure_approvals_path, REQUIRED_MEASURE_APPROVAL_COLUMNS, exact_columns=True
+    )
+    measure_ids = {row["measure_id"] for row in measures}
+    if (
+        len(measure_approvals) != len(measures)
+        or {row["measure_id"] for row in measure_approvals} != measure_ids
+        or len({row["approval_id"] for row in measure_approvals}) != len(measures)
+    ):
+        raise ValueError(
+            f"{measure_approvals_path}: expected exactly one unique approval for each Measure"
+        )
+    for row in measure_approvals:
+        for field in (
+            "approval_id", "indicator_family", "decision_scope", "known_issue",
+            "current_status", "required_signer", "acceptance_evidence",
+        ):
+            if not row[field].strip():
+                raise ValueError(
+                    f"{measure_approvals_path}: {row['measure_id']} has empty {field}"
+                )
     publisher = json.loads(publisher_audit_path.read_text(encoding="utf-8"))
     if publisher.get("gate_scope") != "publisher-qa-only":
         raise ValueError(
@@ -127,7 +188,12 @@ def audit(
         ) else "blocked",
         "RC-05": "pass" if all(row["independent_recalculation"] == "pass" for row in measures) else "blocked",
         "RC-06": "pass" if all(row["golden_cohort"] == "pass" for row in measures) else "blocked",
-        "RC-07": "pass" if governance and all(approval_complete(row) for row in governance) else "blocked",
+        "RC-07": "pass" if (
+            governance
+            and all(approval_complete(row) for row in governance)
+            and all(row["draft_definition_alignment"] == "approved" for row in measures)
+            and all(measure_approval_complete(row) for row in measure_approvals)
+        ) else "blocked",
         "RC-08": "pass" if len(operational) == len(OPERATIONAL_APPROVALS) and all(
             approval_complete(row) for row in operational
         ) else "blocked",
@@ -159,6 +225,11 @@ def audit(
         "status_mismatches": mismatches,
         "clinical_valuesets": clinical_count,
         "empty_clinical_valuesets": empty_clinical_count,
+        "qbc_approval_count": len(approvals),
+        "measure_approval_count": len(measure_approvals),
+        "approved_measure_definition_count": sum(
+            measure_approval_complete(row) for row in measure_approvals
+        ),
         "control_integrity_gate": integrity,
         "data_correctness_gate": data_gate,
         "publisher_formal_qa_gate": publisher["formal_release_gate"],
@@ -176,6 +247,7 @@ def main() -> int:
     parser.add_argument("--measure-audit", type=Path, required=True)
     parser.add_argument("--terminology-fsh", type=Path, required=True)
     parser.add_argument("--approval-register", type=Path, required=True)
+    parser.add_argument("--measure-approval-register", type=Path, required=True)
     parser.add_argument("--publisher-audit", type=Path, required=True)
     parser.add_argument("--json-out", type=Path)
     parser.add_argument(
@@ -185,7 +257,8 @@ def main() -> int:
     try:
         report = audit(
             args.controls, args.measure_audit, args.terminology_fsh,
-            args.approval_register, args.publisher_audit,
+            args.approval_register, args.measure_approval_register,
+            args.publisher_audit,
         )
     except (OSError, ValueError, csv.Error, json.JSONDecodeError) as exc:
         print(f"Release-control audit failed: {exc}", file=sys.stderr)

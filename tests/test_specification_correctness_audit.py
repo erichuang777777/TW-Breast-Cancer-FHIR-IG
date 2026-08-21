@@ -8,6 +8,9 @@ CATALOG = ROOT / "mappings" / "case-management" / "case-management-measure-catal
 CRITERIA = ROOT / "mappings" / "case-management" / "case-management-population-criteria.csv"
 TERMINOLOGY = ROOT / "ig" / "input" / "fsh" / "case-management-terminology.fsh"
 SPEC_AUDIT = ROOT / "SPECIFICATION_CORRECTNESS_AUDIT.md"
+APPROVALS = (
+    ROOT / "mappings" / "publication" / "case-management-measure-approval-register.csv"
+)
 
 
 def rows(path: Path):
@@ -42,6 +45,25 @@ def test_known_result_changing_gaps_are_explicit():
     assert "10-groups-versus-source-11" in by_id["bc-qr-17"]["draft_definition_alignment"]
 
 
+def test_every_measure_has_one_traceable_pending_specification_decision():
+    audit_rows = rows(AUDIT)
+    audit_by_id = {row["measure_id"]: row for row in audit_rows}
+    approval_rows = rows(APPROVALS)
+    assert len(approval_rows) == 20
+    assert {row["measure_id"] for row in approval_rows} == set(audit_by_id)
+    assert len({row["approval_id"] for row in approval_rows}) == 20
+    assert all(row["current_status"] == "pending-human-signoff" for row in approval_rows)
+    assert all(not row["decision"] for row in approval_rows)
+    assert all(not row["signed_artifact_sha256"] for row in approval_rows)
+    for row in approval_rows:
+        source = audit_by_id[row["measure_id"]]
+        assert row["indicator_family"] == source["indicator_family"]
+        assert row["known_issue"] == source["blocking_issue"]
+        assert row["required_signer"] == source["required_approval"]
+        assert row["decision_scope"].strip()
+        assert row["acceptance_evidence"].strip()
+
+
 def test_existing_criteria_risks_cannot_be_flattened_to_plain_alignment():
     risky_review = {"blocking-data-gap", "open-question", "proxy-in-use"}
     risky_python = {"not-implemented", "divergent", "not-evaluable", "manual-override"}
@@ -70,4 +92,5 @@ def test_human_readable_audit_states_the_two_distinct_thresholds():
     text = SPEC_AUDIT.read_text(encoding="utf-8")
     assert "驗證數字正確需要六種" in text
     assert "總共要八種控制" in text
+    assert "Measure 規格具名核准完成：0/20" in text
     assert "可供院內臨床／品管正式發布：0/20" in text

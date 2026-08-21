@@ -3,6 +3,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = ROOT / ".github" / "workflows" / "publication-readiness.yml"
+LOCAL_RELEASE = ROOT / "scripts" / "check_release.ps1"
 
 
 def workflow_text() -> str:
@@ -22,6 +23,7 @@ def test_publisher_workflow_is_reproducible_and_preserves_evidence():
     assert "publisher-warning-audit.json" in text
     assert "scripts/audit_release_controls.py" in text
     assert "mappings/publication/release-control-register.csv" in text
+    assert "mappings/publication/case-management-measure-approval-register.csv" in text
     assert "release-control-audit.json" in text
     assert "Load Template from fhir2.base.template#0.1.0" in text
     assert "no longer considered secure" in text
@@ -35,3 +37,14 @@ def test_publisher_workflow_enforces_technical_and_strict_qa_levels():
     assert "test -f output/package.tgz" in text
     assert "Complete formal release gate" in text
     assert "maximum_supported_claim" in text
+
+
+def test_local_release_script_uses_the_same_evidence_gates_without_overclaiming():
+    text = LOCAL_RELEASE.read_text(encoding="utf-8")
+    assert "scripts\\audit_publisher_qa.py" in text
+    assert "scripts\\audit_release_controls.py" in text
+    assert "case-management-measure-approval-register.csv" in text
+    assert "--target integrity" in text
+    assert "community_preview_gate" in text
+    assert "formal_release_gate" in text
+    assert "Community Preview is publishable" not in text

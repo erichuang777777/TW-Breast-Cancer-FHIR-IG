@@ -10,7 +10,7 @@
 
 | Gate | 結果 | 說明 |
 |---|---:|---|
-| pytest | pass：267 tests | 包含 mapping、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、逐 Measure 規格 audit、全 IG scope claims、完整 release-control gate、template supply-chain 與 publication workflow 契約測試。 |
+| pytest | pass：276 tests | 包含 mapping、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、逐 Measure 規格與簽核完整性 audit、全 IG scope claims、完整 release-control gate、template supply-chain 與 publication workflow 契約測試。 |
 | SUSHI 3.20.0 | pass：0 errors / 0 warnings | FSH 可穩定產生 IG resources。 |
 | PHI gate | pass | 目前版本庫未檢出疑似病人識別資料；正式來源資料仍須在受控環境處理。 |
 | CQL CLI translation | pass | `cql-to-elm-cli 3.26.0` 可產生 ELM；FHIRHelpers 由 `hl7.fhir.uv.cql#2.0.0` 解析。 |
@@ -18,7 +18,7 @@
 | CQL branch assertions | pass with clinical limitations：20/20 Measures | 全部 Measure 已通過具預期結果的合成 R4 Bundle 分支案例；分布 Measure 另覆蓋全部列舉 strata、月份、年齡帶、缺值與非法值。QR-04 仍受真實前年度 cohort 阻擋，QR-05 仍是候選規則。 |
 | IG Publisher 2.3.2 resource validation | pass with warnings：0 errors / 52 warnings | missing-OID 與 TCR targetless ConceptMap warnings 均為 0；剩餘 40 個 FHIRHelpers anchor、11 個 CQL validator limitation 與 1 個 OID registry warning 由機器可讀政策逐類鎖定。 |
 | 完整 IG website/package | pass：0 errors / 52 warnings / 0 broken links | Linux Publisher 2.3.2 已產生網站、`qa.html` 與 `package.tgz`；warning audit 為 QA integrity pass，Community Preview／Formal release block。 |
-| 完整 release controls | integrity pass；2/8 controls pass | RC-02 FHIR conformance 與 RC-04 executable rules 通過；source mapping、terminology、independent recalculation、golden cohort、governance 與 operational acceptance 均 blocked。Publisher warnings 即使歸零也不會讓此 gate 誤判通過。 |
+| 完整 release controls | integrity pass；2/8 controls pass | RC-02 FHIR conformance 與 RC-04 executable rules 通過；source mapping、terminology、independent recalculation、golden cohort、governance 與 operational acceptance 均 blocked。RC-07 另鎖定完整 QBC 14-Gate 與 Measure 20-approval 集合；目前 Measure 規格核准 0/20。Publisher warnings 即使歸零也不會讓此 gate 誤判通過。 |
 | Strict release QA | blocked | 正式 release gate 仍要求 0 warnings；完整 QA 的 52 個 warning 尚未逐一修正或完成具體審查紀錄。 |
 | Template supply-chain | technical pass | 已依 2026-03 安全公告固定使用 `fhir2.base.template#0.1.0` 與套件 SHA-1；CI 證明載入精確版本且不再出現 insecure-template notice。已發布模板的多語系 jurisdiction flag 路徑缺陷以最小 include overlay 修正並由 0 broken links gate 鎖定；此項通過不解除臨床／治理發布阻擋。 |
 
@@ -37,7 +37,7 @@
 
 1. **原始資料 mapping**：每個指標輸入都要有來源系統、table/column 或 API element、型別、時間語意、單位、缺值規則、轉換規則、Provenance、owner 與 reviewer。
 2. **正式 terminology**：19 個臨床 ValueSet 目前刻意保持空白，避免把未確認的代碼當成正式值集；2,169 個 TCR code 的標準術語對應維持 `not-started` backlog，未完成 target、relationship、reviewer 與 evidence 前不得發布為 ConceptMap。
-3. **Measure 可執行性**：20 個 Measure 均有具預期值的合成分支測試；QR-04 尚需真實前年度 cohort，QR-05 尚需人工 truth set，QR-17 的來源文件「11 組」與目前 criteria/CQL「10 組」仍須由報表 owner 裁決。
+3. **Measure 可執行性與規格核准**：20 個 Measure 均有具預期值的合成分支測試，但逐項規格具名核准仍為 0/20；QR-04 尚需真實前年度 cohort，QR-05 尚需人工 truth set，QR-17 的來源文件「11 組」與目前 criteria/CQL「10 組」仍須由報表 owner 裁決。
 4. **資料正確性**：需要由原始資料建立 golden cohort，逐案比對 FHIR fact、population membership、分子、分母、排除與分層結果。
 5. **人工作業與治理**：手動補登、報表匯出、VPN 送件、回執與 reconciliation 必須有明確 ownership、稽核軌跡與簽核。
 6. **發布供應鏈**：完整 Publisher/Jekyll build、0 broken links、warning disposition、template security 與 package metadata 均須有 CI 證據。

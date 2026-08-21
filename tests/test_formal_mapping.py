@@ -3,11 +3,18 @@ from pathlib import Path
 
 from openpyxl import load_workbook
 
+from scripts.formalize_qbc_mapping import (
+    APPROVAL_HEADERS,
+    approval_rows,
+    merge_approval_rows,
+)
+
 
 ROOT = Path(__file__).resolve().parents[1]
 BOOK = ROOT / "outputs" / "qbc_ig_mapping" / "QBC_FHIR_Mapping_TaskSpec_v1.0-preview.1.xlsx"
 FORMAL = ROOT / "outputs" / "qbc_ig_mapping" / "qbc_fhir_formal_mapping.csv"
 APPROVALS = ROOT / "outputs" / "qbc_ig_mapping" / "qbc_mapping_approval_register.csv"
+BUILD_SCRIPT = ROOT / "scripts" / "build_qbc_ig_mapping.py"
 
 
 def rows(path):
@@ -65,6 +72,33 @@ def test_approval_register_contains_every_release_authority_and_no_fake_signatur
     assert all(row["Required signer"].strip() and row["Acceptance evidence"].strip() for row in approvals)
 
 
+def test_mapping_rebuild_preserves_a_decision_only_when_context_is_unchanged():
+    first = dict(zip(APPROVAL_HEADERS[:6], approval_rows()[0]))
+    first.update({field: "" for field in APPROVAL_HEADERS[6:]})
+    first.update({
+        "Status": "approved",
+        "Decision (approve/reject/revise)": "approve",
+        "Signer name": "Authorized owner",
+        "Signer organization/title": "Hospital / QBC owner",
+        "Decision date": "2026-08-21",
+        "Evidence URI/path": "evidence/qbc-rule.json",
+        "Signed artifact SHA-256": "a" * 64,
+        "Notes": "signed decision",
+    })
+    merged = merge_approval_rows([first])
+    preserved = dict(zip(APPROVAL_HEADERS, merged[0]))
+    assert preserved["Status"] == "approved"
+    assert preserved["Signer name"] == "Authorized owner"
+    assert preserved["Signed artifact SHA-256"] == "a" * 64
+
+    first["Proposed decision"] += " changed"
+    invalidated = dict(zip(APPROVAL_HEADERS, merge_approval_rows([first])[0]))
+    assert invalidated["Status"] == "pending-human-signoff"
+    assert invalidated["Decision (approve/reject/revise)"] == ""
+    assert invalidated["Signer name"] == ""
+    assert invalidated["Signed artifact SHA-256"] == ""
+
+
 def test_workbook_preserves_design_sheet_and_adds_formal_and_approval_sheets():
     wb = load_workbook(BOOK, read_only=True, data_only=False)
     assert "Field_Mapping_115" in wb.sheetnames
@@ -101,8 +135,25 @@ def test_breast_cancer_common_layer_owns_qbc_task():
 
 def test_mapping_distinguishes_bridge_input_from_target_source_evidence():
     mapping = {row["QBC Tag"]: row for row in rows(FORMAL)}
-    assert "bridge input" in mapping["D018"]["Current bridge input"]
+    assert "secondary source" in mapping["D018"]["Current bridge input"]
+    assert "非 Care Plan Task 輸出" in mapping["D018"]["Current bridge input"]
     assert "pathology/laboratory" in mapping["D018"]["Target source evidence"]
     assert "imaging" in mapping["D008"]["Target source evidence"]
     assert "Procedure" in mapping["TM02"]["Target source evidence"]
     assert all("derived projection" in row["Projection role"] for row in mapping.values())
+
+
+def test_mapping_rebuild_uses_the_committed_versioned_extraction_not_a_private_docx():
+    source = BUILD_SCRIPT.read_text(encoding="utf-8")
+    assert '"qbc_workbench" / "data" / "qbc_fields.json"' in source
+    assert "from docx import Document" not in source
+    assert "Document(SPEC)" not in source
+    mapping = rows(FORMAL)
+    assert len({row["Source SHA-256"] for row in mapping}) == 1
+    assert next(iter({row["Source SHA-256"] for row in mapping})) == (
+        "f63be9eae07c552af4f03e9771e48bcda1c5b4eb14c36ae6291c1fc0fb4e069d"
+    )
+    for row in mapping:
+        if len(row["QBC Tag"]) == 4 and row["QBC Tag"][0] == "D" and row["QBC Tag"][1:].isdigit():
+            assert "secondary source" in row["Current bridge input"]
+            assert "非 Care Plan Task 輸出" in row["Current bridge input"]

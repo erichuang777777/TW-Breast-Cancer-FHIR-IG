@@ -9,7 +9,7 @@
 | 原始碼／研究草稿 | pass | 必須持續標示 `draft`、`experimental`、非官方及非臨床用途。 |
 | 可重現技術建置 | pass | Publisher 2.3.2：0 errors、52 warnings、0 broken links；一般 CI 與 artifact 均已留存。 |
 | 社群 Preview 發布 | block | 缺範例、CRMI dependency、missing-OID 與 TCR targetless ConceptMap 四類已歸零；其餘 3 類 Publisher warning 尚未完成具名、限期核准。 |
-| Computable Measure Preview | block | 20/20 Measure、46 個 criteria 已完成 ELM runtime smoke 與合成分支測試；但 QR-04／QR-05 仍有資料與人工 adjudication 限制、QR-17 分群數尚有規格矛盾，且 19 個臨床 ValueSet 為空。 |
+| Computable Measure Preview | block | 20/20 Measure、46 個 criteria 已完成 ELM runtime smoke 與合成分支測試；但 20/20 Measure 規格決策仍待具名核准，QR-04／QR-05 仍有資料與人工 adjudication 限制、QR-17 分群數尚有規格矛盾，且 19 個臨床 ValueSet 為空。 |
 | 院內品管／季報 | block | 缺原始來源 mapping、正式 terminology、完整 reporting-period cohort、golden cohort 與逐案 reconciliation。 |
 | 跨院／正式申報 | block | 除上述項目外，仍缺跨實作驗證、在地治理、VPN／接收端回執與主管機關規則確認。 |
 
@@ -30,12 +30,13 @@
 
 若要由資料正確性進一步宣稱「正式發布」，還必須增加兩個 release control：具名的臨床／術語／資料治理簽核，以及隱私、資安、版本、artifact、接收端回執與跨院實作驗收。因此數字正確性是六層，正式發布合計是八項控制。逐 Measure 判定見 [FHIR IG 規格正確性稽核](SPECIFICATION_CORRECTNESS_AUDIT.md)。
 
-八項控制的宣告狀態位於 `mappings/publication/release-control-register.csv`，CI 會用 `scripts/audit_release_controls.py` 從底層證據重新推導；Publisher formal QA 與完整 formal release 是兩個不同 gate，前者通過不得取代後者。
+八項控制的宣告狀態位於 `mappings/publication/release-control-register.csv`，20 個 Measure 的逐項規格決策位於 `mappings/publication/case-management-measure-approval-register.csv`。CI 會用 `scripts/audit_release_controls.py` 從底層證據重新推導，並要求 QBC 14 個 Gate 與 Measure 20 個 approval ID 都是完整且不重複的集合；刪除待核准項目不能讓 gate 變綠。Publisher formal QA 與完整 formal release 是兩個不同 gate，前者通過不得取代後者。
 
 ## 數量與正確性門檻
 
 ### Mapping
 
+- 可重現重建使用 committed、版本化且帶原始文件 SHA-256 的 `qbc_workbench/data/qbc_fields.json`；它是來源文件的技術擷取契約，不是原始文件本身。受控環境仍須以該 SHA-256 重新核對原始 DOCX，不能因衍生 JSON 可重建就宣稱原始規格已驗真。
 - 正式使用範圍內的 required facts：100% 完成來源與 FHIR mapping。
 - `blocking-data-gap`：0。
 - `candidate-unverified`：0。
@@ -45,6 +46,7 @@
 ### Measure 與測試
 
 - Translation、runtime smoke 與具預期值的合成分支驗證均已達 20/20 Measure、46/46 criteria；分布 Measure 另驗證全部列舉 strata、月份、年齡帶、缺值與非法值。QR-04 只證明 cohort 已載入時的條件行為，QR-05 只證明候選規則的機械行為，兩者都不構成真實資料正確性證據。
+- Measure 規格核准目前為 0/20；每一項都必須保存具名 signer、組織／職稱、決定日期、證據 URI 與被簽 artifact 的 SHA-256，且 `draft_definition_alignment` 必須明確為 `approved`。只有簽名欄位或只有綠色 CQL 測試都不足以通過 RC-07。
 - 每個 Measure 的測試數不以任意固定樣本數取代 coverage。最低要求是所有 truth-table branch、排除、缺值、邊界、日期邊界及多筆事件行為全部有案例。
 - Golden cohort 要鎖版並逐案核對 100%，允許的未解釋差異為 0。
 - 若要主張跨院可實作，至少需兩個彼此獨立的 source adapter／實作者完成同一套 conformance 與 golden tests；否則只能宣稱單一環境驗證。
@@ -81,7 +83,7 @@ Warning 數量下降可直接通過基線稽核；增加、改型或未核准例
 
 ### Computable Preview
 
-除社群 Preview 外，20/20 Measure、正式 terminology 與全部合成 branch coverage 必須完成。此層仍不代表院內數字正確，除非已有原始資料 golden cohort。
+除社群 Preview 外，20/20 Measure 必須完成逐項規格核准、正式 terminology 與全部合成 branch coverage。此層仍不代表院內數字正確，除非已有原始資料 golden cohort。
 
 ### 院內品管／季報
 
