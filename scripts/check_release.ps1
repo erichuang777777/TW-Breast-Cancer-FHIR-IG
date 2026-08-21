@@ -91,6 +91,16 @@ try {
         --json-out ig\output\source-acquisition-priority-audit.json
     if ($LASTEXITCODE -ne 0) { throw "source-acquisition priority audit failed" }
 
+    python scripts\audit_criterion_implementation_crosscheck.py `
+        --register mappings\publication\criterion-implementation-crosscheck.csv `
+        --criteria mappings\case-management\case-management-population-criteria.csv `
+        --source-register mappings\publication\source-traceability-register.csv `
+        --task-mapping mappings\case-management\case-management-task-only-fields.csv `
+        --cql ig\input\cql\BreastCancerCaseManagement.cql `
+        --fsh-directory ig\input\fsh `
+        --json-out ig\output\criterion-implementation-crosscheck-audit.json
+    if ($LASTEXITCODE -ne 0) { throw "criterion implementation crosscheck failed" }
+
     python scripts\audit_release_controls.py `
         --controls mappings\publication\release-control-register.csv `
         --measure-audit mappings\publication\case-management-measure-audit.csv `

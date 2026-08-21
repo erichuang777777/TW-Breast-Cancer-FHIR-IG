@@ -17,6 +17,7 @@ on:
       - "scripts/audit_fhir_reference_graph.py"
       - "scripts/audit_data_correctness_evidence.py"
       - "scripts/audit_source_acquisition_priority.py"
+      - "scripts/audit_criterion_implementation_crosscheck.py"
       - "mappings/publication/**"
       - "mappings/case-management/**"
       - "outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv"
@@ -33,6 +34,7 @@ on:
       - "scripts/audit_fhir_reference_graph.py"
       - "scripts/audit_data_correctness_evidence.py"
       - "scripts/audit_source_acquisition_priority.py"
+      - "scripts/audit_criterion_implementation_crosscheck.py"
       - "mappings/publication/**"
       - "mappings/case-management/**"
       - "outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv"
@@ -175,6 +177,20 @@ jobs:
             --source-register mappings/publication/source-traceability-register.csv \
             --json-out ig/output/source-acquisition-priority-audit.json \
             | tee ig/output/source-acquisition-priority-audit.log
+
+      - name: Audit every criterion against CQL and workflow implementation
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_criterion_implementation_crosscheck.py \
+            --register mappings/publication/criterion-implementation-crosscheck.csv \
+            --criteria mappings/case-management/case-management-population-criteria.csv \
+            --source-register mappings/publication/source-traceability-register.csv \
+            --task-mapping mappings/case-management/case-management-task-only-fields.csv \
+            --cql ig/input/cql/BreastCancerCaseManagement.cql \
+            --fsh-directory ig/input/fsh \
+            --json-out ig/output/criterion-implementation-crosscheck-audit.json \
+            | tee ig/output/criterion-implementation-crosscheck-audit.log
 
       - name: Audit complete release controls
         shell: bash

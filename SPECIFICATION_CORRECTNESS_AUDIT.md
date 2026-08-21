@@ -3,7 +3,7 @@
 本文件回答三件不同的事：哪些內容要比對、資料要正確到什麼程度、以及目前能不能宣稱規格正確。結論必須拆開看：
 
 - **FHIR 技術結構：目前通過。** IG 以 FHIR R4 `4.0.1` 建置；SUSHI、完整 Publisher、reference、profile 與 expression wiring 都通過現有自動檢查。
-- **CQL 機械行為：目前通過合成測試。** 20/20 Measure、46/46 criteria 可轉譯與執行，且現有 draft 規則的正負、缺值、邊界與列舉分層已有預期值測試。
+- **CQL 機械行為：目前通過合成測試。** 20/20 Measure 所引用的 46/46 population／stratifier expressions 可轉譯與執行；底層 68/68 criteria 均有逐條實作追蹤，且現有 draft 規則的正負、缺值、邊界與列舉分層已有預期值測試。
 - **臨床與作業規格：尚未證明正確。** 目前沒有已核准的原始資料契約、19 個臨床 ValueSet 仍為空、沒有獨立重算與真實完整報告期間 golden cohort，且仍有已知定義矛盾或缺資料規則。
 
 因此目前可發布的最高宣稱仍是 **非官方、experimental 的技術草稿**；不能宣稱院內品管數字正確、跨院可互通或可正式申報。
@@ -73,6 +73,20 @@ Terminology 也不能只計算 FSH 檔案或只檢查 CQL 有沒有名稱。實�
 目前各館報表只可填在 `secondary/reconciliation source`，可用來找欄位、建立人工 truth set 和比對輸出；不能取代原始 source evidence，也不能由報表值反推 canonical FHIR fact。
 
 上述要求已落成機器可讀登錄，而不再只是一段文字：[`source-traceability-register.csv`](mappings/publication/source-traceability-register.csv) 精確鎖定 52 個輸入 fact，目前完整骨架 52/52、權威來源核准 0/52；追蹤 CQL 間接呼叫、Measure 參數與 task-layer 人工判定後，68 個 population／stratifier criteria 引用其中 **45 個 fact**。[`source-acquisition-priority.csv`](mappings/publication/source-acquisition-priority.csv) 再將全部 52 項機器分為 P0 42／P1 4／P2 6，並鎖定 owner、影響 criteria、FHIR target、取得問題與驗收證據；優先級不會改變 52/52 都是 production publication 必要項的要求。另由 [`measure-validation-evidence-register.csv`](mappings/publication/measure-validation-evidence-register.csv) 精確鎖定 20 個 Measure，目前獨立重算 0/20、完整期別 golden cohort 0/20。`audit_data_correctness_evidence.py` 禁止 secondary report 取代主來源，也禁止只有 `approved` 字樣、卻缺來源定位、版本、reviewer、日期、證據 URI、SHA-256、逐案比較數或零差異證據的假通過。
+
+## 68 條 criterion 對實作的精確比對
+
+逐條結果位於 [`criterion-implementation-crosscheck.csv`](mappings/publication/criterion-implementation-crosscheck.csv)，由 `audit_criterion_implementation_crosscheck.py` 重新依 criteria、CQL symbols、來源登錄與 Task mapping 推導，禁止人工把缺口改寫成 aligned。現況分類為：
+
+- 56 條與「目前草稿」一致；這不是臨床核准，也不代表真實資料正確。
+- 4 條刻意位於 CQL 外的 task layer：`IP-CLASS`、`X1-TEAM`、`X5-TEAM`、`N5-ADH-RULE`。
+- 1 條已知未執行：`N3-DOSE` 的 ≥4000 cGy 門檻目前仍是 null placeholder。
+- 3 條屬同一個尚未裁決的 QI-06 definition/practice 變體。
+- 2 條依賴尚不存在的完整縱向資料契約：`D4-COHORT`、`N4-LOST`。
+- 1 條為尚未核准的 candidate rule：`N5-RETURN`。
+- 1 條存在 10 群／11 群的定義矛盾：`S17-HISTOLOGY`。
+
+此外有 **22/68 criteria** 會讀取 Task 型態的行政欄位，但目前 IG 只有通用 `[Task]` CQL query，沒有一個專屬個管 Task profile 去約束 `for`／subject、input/output slices、cardinality 與 bindings。既有 `TCRRegistryAbstractionTask` 是癌登摘錄 task，不能拿來當作個管品管／季報契約。這 22 條因此都標為 `missing-dedicated-task-profile`；在新增專屬 profile 或核准同等可測的 generic-Task contract 前，不得宣稱跨系統 workflow 互通。
 
 ## 20 個 Measure 的目前判定
 
