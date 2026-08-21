@@ -16,6 +16,11 @@ import sys
 from datetime import date
 from pathlib import Path
 
+try:
+    from scripts.approval_evidence import retained_evidence_matches
+except ModuleNotFoundError:  # direct execution: python scripts/audit_release_controls.py
+    from approval_evidence import retained_evidence_matches
+
 
 CONTROL_IDS = {f"RC-{number:02d}" for number in range(1, 9)}
 REQUIRED_CONTROL_COLUMNS = {
@@ -149,6 +154,37 @@ def scope_decision_complete(row: dict[str, str]) -> bool:
     return SHA256.fullmatch(row["signed_artifact_sha256"].strip()) is not None
 
 
+def qbc_approval_evidence_complete(row: dict[str, str], register_path: Path) -> bool:
+    return approval_complete(row) and retained_evidence_matches(
+        row,
+        register_path,
+        path_field="Evidence URI/path",
+        hash_field="Signed artifact SHA-256",
+    )
+
+
+def measure_approval_evidence_complete(
+    row: dict[str, str], register_path: Path
+) -> bool:
+    return measure_approval_complete(row) and retained_evidence_matches(
+        row,
+        register_path,
+        path_field="evidence_uri_path",
+        hash_field="signed_artifact_sha256",
+    )
+
+
+def scope_decision_evidence_complete(
+    row: dict[str, str], register_path: Path
+) -> bool:
+    return scope_decision_complete(row) and retained_evidence_matches(
+        row,
+        register_path,
+        path_field="evidence_uri_path",
+        hash_field="signed_artifact_sha256",
+    )
+
+
 def audit(
     controls_path: Path,
     measure_audit_path: Path,
@@ -192,6 +228,11 @@ def audit(
     approval_ids = {row["Gate ID"] for row in approvals}
     if len(approvals) != len(QBC_APPROVAL_IDS) or approval_ids != QBC_APPROVAL_IDS:
         raise ValueError(f"{approvals_path}: Gate ID set must be the exact 14 required gates")
+    for row in approvals:
+        if row["Status"] == "approved" and row["Decision (approve/reject/revise)"] == "approve" and not qbc_approval_evidence_complete(row, approvals_path):
+            raise ValueError(
+                f"{approvals_path}: {row['Gate ID']} approved evidence is missing or SHA-256 mismatched"
+            )
     measure_approvals = read_csv(
         measure_approvals_path, REQUIRED_MEASURE_APPROVAL_COLUMNS, exact_columns=True
     )
@@ -213,6 +254,10 @@ def audit(
                 raise ValueError(
                     f"{measure_approvals_path}: {row['measure_id']} has empty {field}"
                 )
+        if row["current_status"] == "approved" and row["decision"] == "approve" and not measure_approval_evidence_complete(row, measure_approvals_path):
+            raise ValueError(
+                f"{measure_approvals_path}: {row['measure_id']} approved evidence is missing or SHA-256 mismatched"
+            )
     scope_claims = read_csv(
         scope_claims_path, REQUIRED_SCOPE_CLAIM_COLUMNS, exact_columns=True
     )
@@ -262,10 +307,14 @@ def audit(
                 raise ValueError(
                     f"{scope_decisions_path}: {row['claim_id']} has empty {field}"
                 )
+        if row["current_status"] == "approved" and row["decision"] == "approve" and not scope_decision_evidence_complete(row, scope_decisions_path):
+            raise ValueError(
+                f"{scope_decisions_path}: {row['claim_id']} approved evidence is missing or SHA-256 mismatched"
+            )
     artifact_audit = json.loads(artifact_audit_path.read_text(encoding="utf-8"))
-    if artifact_audit.get("gate_scope") != "artifact-structure-and-example-only":
+    if artifact_audit.get("gate_scope") != "artifact-structure-example-and-exact-review-binding":
         raise ValueError(
-            f"{artifact_audit_path}: gate_scope must be artifact-structure-and-example-only"
+            f"{artifact_audit_path}: invalid artifact gate_scope"
         )
     expected_artifact_counts = {
         "artifact_count": 47,
@@ -280,9 +329,14 @@ def audit(
     if artifact_audit.get("clinical_artifact_approval_gate") not in {"pass", "block"}:
         raise ValueError(f"{artifact_audit_path}: invalid clinical_artifact_approval_gate")
     approved_artifact_count = artifact_audit.get("approved_artifact_count")
+    artifact_hash_binding_count = artifact_audit.get("artifact_hash_binding_count")
     if not isinstance(approved_artifact_count, int) or not 0 <= approved_artifact_count <= 47:
         raise ValueError(f"{artifact_audit_path}: invalid approved_artifact_count")
-    expected_clinical_gate = "pass" if approved_artifact_count == 47 else "block"
+    if artifact_hash_binding_count != approved_artifact_count:
+        raise ValueError(f"{artifact_audit_path}: artifact hash binding/count mismatch")
+    expected_clinical_gate = "pass" if (
+        approved_artifact_count == 47 and artifact_hash_binding_count == 47
+    ) else "block"
     if artifact_audit["clinical_artifact_approval_gate"] != expected_clinical_gate:
         raise ValueError(f"{artifact_audit_path}: clinical artifact gate/count mismatch")
     terminology_audit = json.loads(terminology_audit_path.read_text(encoding="utf-8"))
@@ -734,9 +788,9 @@ def audit(
         ) else "blocked",
         "RC-07": "pass" if (
             governance
-            and all(approval_complete(row) for row in governance)
+            and all(qbc_approval_evidence_complete(row, approvals_path) for row in governance)
             and all(row["draft_definition_alignment"] == "approved" for row in measures)
-            and all(measure_approval_complete(row) for row in measure_approvals)
+            and all(measure_approval_evidence_complete(row, measure_approvals_path) for row in measure_approvals)
             and artifact_audit["clinical_artifact_approval_gate"] == "pass"
             and criterion_resolution["criterion_resolution_gate"] == "pass"
         ) else "blocked",
@@ -744,8 +798,8 @@ def audit(
             phi_audit["repository_phi_pattern_scan_gate"] == "pass"
             and publisher["formal_release_gate"] == "pass"
             and len(operational) == len(OPERATIONAL_APPROVALS)
-            and all(approval_complete(row) for row in operational)
-            and all(scope_decision_complete(row) for row in scope_decisions)
+            and all(qbc_approval_evidence_complete(row, approvals_path) for row in operational)
+            and all(scope_decision_evidence_complete(row, scope_decisions_path) for row in scope_decisions)
             and normative_scope_ready
             and resource_inventory["business_version_provenance_gate"] == "pass"
         ) else "blocked",
@@ -778,18 +832,29 @@ def audit(
         "clinical_valuesets": clinical_count,
         "empty_clinical_valuesets": empty_clinical_count,
         "qbc_approval_count": len(approvals),
+        "approved_qbc_governance_count": sum(
+            qbc_approval_evidence_complete(row, approvals_path)
+            for row in governance
+        ),
+        "approved_operational_approval_count": sum(
+            qbc_approval_evidence_complete(row, approvals_path)
+            for row in operational
+        ),
         "measure_approval_count": len(measure_approvals),
         "approved_measure_definition_count": sum(
-            measure_approval_complete(row) for row in measure_approvals
+            measure_approval_evidence_complete(row, measure_approvals_path)
+            for row in measure_approvals
         ),
         "scope_claim_count": len(scope_claims),
         "scope_decision_count": len(scope_decisions),
         "approved_scope_decision_count": sum(
-            scope_decision_complete(row) for row in scope_decisions
+            scope_decision_evidence_complete(row, scope_decisions_path)
+            for row in scope_decisions
         ),
         "normative_scope_readiness": "pass" if normative_scope_ready else "block",
         "artifact_conformance_count": artifact_audit["artifact_count"],
         "approved_artifact_count": approved_artifact_count,
+        "artifact_hash_binding_count": artifact_hash_binding_count,
         "clinical_artifact_approval_gate": artifact_audit[
             "clinical_artifact_approval_gate"
         ],

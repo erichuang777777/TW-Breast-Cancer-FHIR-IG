@@ -1,4 +1,5 @@
 import csv
+import hashlib
 import json
 import subprocess
 import sys
@@ -73,12 +74,13 @@ def run_audit(
     artifact_audit = tmp_path / "artifact-audit.json"
     artifact_audit.write_text(
         json.dumps({
-            "gate_scope": "artifact-structure-and-example-only",
+            "gate_scope": "artifact-structure-example-and-exact-review-binding",
             "artifact_integrity_gate": "pass",
             "artifact_count": 47,
             "profile_count": 34,
             "extension_count": 13,
             "approved_artifact_count": 47 if artifact_approved else 0,
+            "artifact_hash_binding_count": 47 if artifact_approved else 0,
             "clinical_artifact_approval_gate": "pass" if artifact_approved else "block",
         }),
         encoding="utf-8",
@@ -311,7 +313,10 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["normative_scope_readiness"] == "block"
     assert report["artifact_conformance_count"] == 47
     assert report["approved_artifact_count"] == 0
+    assert report["artifact_hash_binding_count"] == 0
     assert report["clinical_artifact_approval_gate"] == "block"
+    assert report["approved_qbc_governance_count"] == 0
+    assert report["approved_operational_approval_count"] == 0
     assert report["terminology_artifact_count"] == 152
     assert report["clinical_value_set_approval_count"] == 19
     assert report["approved_clinical_value_set_count"] == 0
@@ -647,7 +652,7 @@ def test_scope_role_cannot_be_downgraded_to_bypass_normative_evidence(tmp_path):
     assert "proposed_role does not match locked policy" in completed.stderr
 
 
-def test_signed_approvals_cannot_hide_unresolved_measure_definitions(tmp_path):
+def test_formatted_but_missing_approval_evidence_is_rejected(tmp_path):
     with APPROVALS.open(encoding="utf-8-sig", newline="") as handle:
         qbc_rows = list(csv.DictReader(handle))
         qbc_fields = list(qbc_rows[0])
@@ -689,14 +694,18 @@ def test_signed_approvals_cannot_hide_unresolved_measure_definitions(tmp_path):
     completed, report = run_audit(
         tmp_path, approvals=qbc_signed, measure_approvals=measures_signed
     )
-    assert completed.returncode == 0
-    assert report["approved_measure_definition_count"] == 20
-    assert report["derived_status"]["RC-07"] == "blocked"
-    assert report["derived_status"]["RC-08"] == "blocked"
-    assert report["status_mismatches"] == []
+    assert completed.returncode == 2
+    assert report is None
+    assert "approved evidence is missing or SHA-256 mismatched" in completed.stderr
 
 
 def test_rc07_requires_both_complete_signatures_and_approved_alignment(tmp_path):
+    qbc_evidence = tmp_path / "qbc.json"
+    qbc_evidence.write_text('{"review":"qbc"}\n', encoding="utf-8")
+    qbc_hash = hashlib.sha256(qbc_evidence.read_bytes()).hexdigest()
+    measure_evidence = tmp_path / "measures.json"
+    measure_evidence.write_text('{"review":"measures"}\n', encoding="utf-8")
+    measure_hash = hashlib.sha256(measure_evidence.read_bytes()).hexdigest()
     with MEASURES.open(encoding="utf-8-sig", newline="") as handle:
         measure_audit_rows = list(csv.DictReader(handle))
         measure_audit_fields = list(measure_audit_rows[0])
@@ -715,8 +724,8 @@ def test_rc07_requires_both_complete_signatures_and_approved_alignment(tmp_path)
         row.update({
             "Status": "approved", "Decision (approve/reject/revise)": "approve",
             "Signer name": "Owner", "Signer organization/title": "Hospital / owner",
-            "Decision date": "2026-08-21", "Evidence URI/path": "evidence/qbc.json",
-            "Signed artifact SHA-256": "c" * 64,
+            "Decision date": "2026-08-21", "Evidence URI/path": "qbc.json",
+            "Signed artifact SHA-256": qbc_hash,
         })
     qbc_signed = tmp_path / "qbc-all-signed.csv"
     with qbc_signed.open("w", encoding="utf-8", newline="") as handle:
@@ -733,8 +742,8 @@ def test_rc07_requires_both_complete_signatures_and_approved_alignment(tmp_path)
             "signer_name": "Clinical owner",
             "signer_organization_title": "Hospital / cancer committee",
             "decision_date": "2026-08-21",
-            "evidence_uri_path": "evidence/measures.json",
-            "signed_artifact_sha256": "d" * 64,
+            "evidence_uri_path": "measures.json",
+            "signed_artifact_sha256": measure_hash,
         })
     measures_signed = tmp_path / "measures-all-signed.csv"
     with measures_signed.open("w", encoding="utf-8", newline="") as handle:
@@ -758,6 +767,12 @@ def test_rc07_requires_both_complete_signatures_and_approved_alignment(tmp_path)
 
 
 def test_rc08_requires_signed_scope_roles_and_formal_ready_normative_claims(tmp_path):
+    operations_evidence = tmp_path / "operations.json"
+    operations_evidence.write_text('{"review":"operations"}\n', encoding="utf-8")
+    operations_hash = hashlib.sha256(operations_evidence.read_bytes()).hexdigest()
+    scope_evidence = tmp_path / "scopes.json"
+    scope_evidence.write_text('{"review":"scopes"}\n', encoding="utf-8")
+    scope_hash = hashlib.sha256(scope_evidence.read_bytes()).hexdigest()
     with APPROVALS.open(encoding="utf-8-sig", newline="") as handle:
         approval_rows = list(csv.DictReader(handle))
         approval_fields = list(approval_rows[0])
@@ -768,8 +783,8 @@ def test_rc08_requires_signed_scope_roles_and_formal_ready_normative_claims(tmp_
                 "Signer name": "Operational owner",
                 "Signer organization/title": "Hospital / owner",
                 "Decision date": "2026-08-21",
-                "Evidence URI/path": "evidence/operations.json",
-                "Signed artifact SHA-256": "a" * 64,
+                "Evidence URI/path": "operations.json",
+                "Signed artifact SHA-256": operations_hash,
             })
     signed_operations = tmp_path / "operations.csv"
     with signed_operations.open("w", encoding="utf-8", newline="") as handle:
@@ -786,8 +801,8 @@ def test_rc08_requires_signed_scope_roles_and_formal_ready_normative_claims(tmp_
             "approved_role": row["proposed_role"], "signer_name": "Scope owner",
             "signer_organization_title": "Governance board / chair",
             "decision_date": "2026-08-21",
-            "evidence_uri_path": f"evidence/{row['claim_id']}.json",
-            "signed_artifact_sha256": "b" * 64,
+                "evidence_uri_path": "scopes.json",
+                "signed_artifact_sha256": scope_hash,
         })
     signed_scopes = tmp_path / "signed-scopes.csv"
     with signed_scopes.open("w", encoding="utf-8", newline="") as handle:

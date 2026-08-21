@@ -11,6 +11,14 @@ import sys
 from datetime import date
 from pathlib import Path
 
+try:
+    from scripts.approval_evidence import (
+        file_sha256,
+        resolve_repository_evidence,
+    )
+except ModuleNotFoundError:  # direct execution
+    from approval_evidence import file_sha256, resolve_repository_evidence
+
 
 REQUIRED_COLUMNS = {
     "artifact_id", "artifact_name", "artifact_kind", "scope_claim_id",
@@ -49,6 +57,25 @@ def approval_complete(row: dict[str, str]) -> bool:
     return SHA256.fullmatch(row["signed_artifact_sha256"].strip()) is not None
 
 
+def artifact_approval_evidence_complete(
+    row: dict[str, str], artifact: dict[str, object], register_path: Path
+) -> bool:
+    if not approval_complete(row):
+        return False
+    evidence_path = resolve_repository_evidence(
+        row["evidence_uri_path"],
+        register_path,
+        require_retained_approval_evidence=False,
+    )
+    artifact_path = Path(str(artifact.get("_audit_source_path", ""))).resolve()
+    return bool(
+        evidence_path
+        and evidence_path.resolve() == artifact_path
+        and file_sha256(artifact_path).lower()
+        == row["signed_artifact_sha256"].lower()
+    )
+
+
 def load_resources(paths: list[Path]) -> list[dict[str, object]]:
     resources: list[dict[str, object]] = []
     for directory in paths:
@@ -60,6 +87,7 @@ def load_resources(paths: list[Path]) -> list[dict[str, object]]:
             except json.JSONDecodeError as exc:
                 raise ValueError(f"{path}: invalid JSON: {exc}") from exc
             if isinstance(resource, dict) and resource.get("resourceType"):
+                resource["_audit_source_path"] = str(path.resolve())
                 resources.append(resource)
     return resources
 
@@ -192,16 +220,32 @@ def audit(
                 f"{row['artifact_id']}: example {row['example_resource_id']} does not prove "
                 f"{row['evidence_mode']}"
             )
+        if (
+            row["clinical_review_status"] == "approved"
+            and row["decision"] == "approve"
+            and not artifact_approval_evidence_complete(row, artifact, register_path)
+        ):
+            raise ValueError(
+                f"{register_path}: {row['artifact_id']} approval is not bound to the exact generated StructureDefinition"
+            )
+
+    approved_artifacts = sum(
+        artifact_approval_evidence_complete(
+            row, structures[row["artifact_id"]], register_path
+        )
+        for row in rows
+    )
 
     return {
-        "gate_scope": "artifact-structure-and-example-only",
+        "gate_scope": "artifact-structure-example-and-exact-review-binding",
         "artifact_integrity_gate": "pass",
         "artifact_count": len(rows),
         "profile_count": sum(row["artifact_kind"] == "profile" for row in rows),
         "extension_count": sum(row["artifact_kind"] == "extension" for row in rows),
-        "approved_artifact_count": sum(approval_complete(row) for row in rows),
+        "approved_artifact_count": approved_artifacts,
+        "artifact_hash_binding_count": approved_artifacts,
         "clinical_artifact_approval_gate": (
-            "pass" if all(approval_complete(row) for row in rows) else "block"
+            "pass" if approved_artifacts == len(rows) else "block"
         ),
         "maximum_supported_claim": "technical-structure-with-synthetic-examples",
     }

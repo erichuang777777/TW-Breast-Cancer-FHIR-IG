@@ -1,4 +1,5 @@
 import csv
+import hashlib
 import json
 from pathlib import Path
 
@@ -128,3 +129,30 @@ def test_artifact_approval_requires_identity_date_evidence_and_hash():
     assert not approval_complete(row)
     row["signed_artifact_sha256"] = "f" * 64
     assert approval_complete(row)
+
+
+def test_artifact_approval_is_bound_to_exact_generated_structure_definition(tmp_path):
+    data = rows()
+    resource_dir = synthetic_resources(tmp_path, data)
+    artifact = data[0]
+    artifact_path = resource_dir / f"StructureDefinition-{artifact['artifact_id']}.json"
+    artifact.update({
+        "clinical_review_status": "approved",
+        "decision": "approve",
+        "signer_name": "Clinical reviewer",
+        "signer_organization_title": "Hospital / governance board",
+        "decision_date": "2026-08-21",
+        "evidence_uri_path": f"resources/{artifact_path.name}",
+        "signed_artifact_sha256": hashlib.sha256(artifact_path.read_bytes()).hexdigest(),
+    })
+    altered = tmp_path / "register.csv"
+    write_register(altered, data)
+    report = audit(altered, SCOPES, [resource_dir])
+    assert report["approved_artifact_count"] == 1
+    assert report["artifact_hash_binding_count"] == 1
+
+    payload = json.loads(artifact_path.read_text(encoding="utf-8"))
+    payload["description"] = "changed after review"
+    artifact_path.write_text(json.dumps(payload), encoding="utf-8")
+    with pytest.raises(ValueError, match="not bound to the exact generated"):
+        audit(altered, SCOPES, [resource_dir])

@@ -22,6 +22,7 @@ def test_publisher_workflow_is_reproducible_and_preserves_evidence():
     assert "mappings/publication/publisher-warning-policy.csv" in text
     assert "publisher-warning-audit.json" in text
     assert "scripts/audit_release_controls.py" in text
+    assert "scripts/approval_evidence.py" in text
     assert "scripts/audit_artifact_conformance.py" in text
     assert "mappings/publication/artifact-conformance-register.csv" in text
     assert "artifact-conformance-audit.json" in text

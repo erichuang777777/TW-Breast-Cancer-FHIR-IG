@@ -1,4 +1,5 @@
 import csv
+import hashlib
 from pathlib import Path
 
 import pytest
@@ -23,7 +24,15 @@ def write_rows(path: Path, rows: list[dict[str, str]]) -> None:
         writer.writerows(rows)
 
 
-def sign(row: dict[str, str], *, rule: str = "approved-rule") -> None:
+def sign(
+    row: dict[str, str], *, rule: str = "approved-rule", evidence_path: Path | None = None
+) -> None:
+    evidence_uri = "evidence/criterion-resolution.json"
+    evidence_hash = "a" * 64
+    if evidence_path is not None:
+        evidence_path.write_text('{"decision":"approve"}\n', encoding="utf-8")
+        evidence_uri = evidence_path.name
+        evidence_hash = hashlib.sha256(evidence_path.read_bytes()).hexdigest()
     row.update({
         "current_status": "approved",
         "decision": "approve",
@@ -31,8 +40,8 @@ def sign(row: dict[str, str], *, rule: str = "approved-rule") -> None:
         "signer_name": "Authorized owner",
         "signer_organization_title": "Hospital / committee chair",
         "decision_date": "2026-08-21",
-        "evidence_uri_path": "evidence/criterion-resolution.json",
-        "signed_artifact_sha256": "a" * 64,
+        "evidence_uri_path": evidence_uri,
+        "signed_artifact_sha256": evidence_hash,
     })
 
 
@@ -106,8 +115,9 @@ def test_qi06_variant_rows_cannot_carry_contradictory_approvals(tmp_path):
 
 def test_all_signatures_cannot_bypass_live_technical_alignment(tmp_path):
     rows = read_rows(REGISTER)
+    evidence = tmp_path / "criterion-resolution.json"
     for row in rows:
-        sign(row)
+        sign(row, evidence_path=evidence)
     # The three QI-06 rows are one decision package and therefore share fields.
     for row in rows:
         if row["decision_group"] == "QI-06-AGE-NODE-VARIANT":
@@ -124,8 +134,9 @@ def test_all_signatures_cannot_bypass_live_technical_alignment(tmp_path):
 def test_gate_has_a_strict_path_to_pass_after_live_resolution(tmp_path):
     decision_rows = read_rows(REGISTER)
     tracked = {row["criterion_id"] for row in decision_rows}
+    evidence = tmp_path / "criterion-resolution.json"
     for row in decision_rows:
-        sign(row)
+        sign(row, evidence_path=evidence)
         if row["decision_group"] == "QI-06-AGE-NODE-VARIANT":
             row["approved_rule_or_contract"] = "written AND rule"
     signed = tmp_path / "signed-decisions.csv"

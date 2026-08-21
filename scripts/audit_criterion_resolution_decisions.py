@@ -18,6 +18,11 @@ import sys
 from datetime import date
 from pathlib import Path
 
+try:
+    from scripts.approval_evidence import retained_evidence_matches
+except ModuleNotFoundError:  # direct execution
+    from approval_evidence import retained_evidence_matches
+
 
 COLUMNS = [
     "decision_id",
@@ -205,6 +210,15 @@ def decision_complete(row: dict[str, str]) -> bool:
     return SHA256.fullmatch(row["signed_artifact_sha256"].strip()) is not None
 
 
+def decision_evidence_complete(row: dict[str, str], register_path: Path) -> bool:
+    return decision_complete(row) and retained_evidence_matches(
+        row,
+        register_path,
+        path_field="evidence_uri_path",
+        hash_field="signed_artifact_sha256",
+    )
+
+
 def audit(register_path: Path, crosscheck_path: Path) -> dict[str, object]:
     decisions = read_rows(register_path)
     if list(decisions[0]) != COLUMNS:
@@ -294,7 +308,17 @@ def audit(register_path: Path, crosscheck_path: Path) -> dict[str, object]:
             if len({row[field] for row in variant_rows}) != 1:
                 raise ValueError(f"{register_path}: QI-06 variant rows disagree on {field}")
 
-    approved = sum(decision_complete(row) for row in decisions)
+    for row in decisions:
+        if (
+            row["current_status"] == "approved"
+            and row["decision"] == "approve"
+            and not decision_evidence_complete(row, register_path)
+        ):
+            raise ValueError(
+                f"{register_path}: {row['criterion_id']} approved evidence is missing or SHA-256 mismatched"
+            )
+
+    approved = sum(decision_evidence_complete(row, register_path) for row in decisions)
     current_non_aligned = sum(
         crosscheck_by_id[criterion_id]["cql_alignment"]
         != "aligned-to-current-draft"

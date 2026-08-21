@@ -12,6 +12,7 @@ on:
       - "scripts/check_no_phi.py"
       - "scripts/audit_publisher_qa.py"
       - "scripts/audit_release_controls.py"
+      - "scripts/approval_evidence.py"
       - "scripts/audit_verification_methods.py"
       - "scripts/audit_artifact_conformance.py"
       - "scripts/audit_terminology_conformance.py"
@@ -33,6 +34,7 @@ on:
       - "scripts/check_no_phi.py"
       - "scripts/audit_publisher_qa.py"
       - "scripts/audit_release_controls.py"
+      - "scripts/approval_evidence.py"
       - "scripts/audit_verification_methods.py"
       - "scripts/audit_artifact_conformance.py"
       - "scripts/audit_terminology_conformance.py"
@@ -286,6 +288,7 @@ jobs:
           path: |
             ig/output/
             ig/publisher.log
+            ig/fsh-generated/resources/StructureDefinition-*.json
             ig/publisher-exit-code.txt
 
       - name: Enforce technical publication gate

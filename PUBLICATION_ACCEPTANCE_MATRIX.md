@@ -38,7 +38,7 @@ RC-08 也要求 `ig-scope-claim-register.csv` 與 `publication-scope-decision-re
 
 RC-08 的自動隱私檢查現會掃描所有可提交文字檔並解包檢查 `.xlsx`／`.docx` 的 XML 內容；`.pdf`、舊式 `.xls`／`.doc` 與影像等無法可靠自動解析的敏感格式一律阻擋，不得靜默略過。CI 保存不含命中值的 `repository-phi-pattern-scan-audit.json`。這只證明 repository 層級的模式掃描，不能取代 SEC-PRIVACY 的正式資安／隱私審查。
 
-RC-07 另要求 `artifact-conformance-register.csv` 精確涵蓋全部 **47 個 StructureDefinition（34 Profile、13 Extension）**。`scripts/audit_artifact_conformance.py` 會把 FSH 產物與 4 個手寫 TCR extension 一起比對 parent canonical、FHIR type/kind、draft/experimental 狀態及合成範例使用證據。現況技術一致性為 47/47，但人工規格核准為 0/47；Publisher 綠燈不能替代這 47 項核准。
+RC-07 另要求 `artifact-conformance-register.csv` 精確涵蓋全部 **47 個 StructureDefinition（34 Profile、13 Extension）**。`scripts/audit_artifact_conformance.py` 會把 FSH 產物與 4 個手寫 TCR extension 一起比對 parent canonical、FHIR type/kind、draft/experimental 狀態及合成範例使用證據。人工核准還必須直接指向當次實際生成的 `StructureDefinition-*.json`，稽核會重算 SHA-256，禁止 artifact 改變後沿用舊核准。現況技術一致性為 47/47，但精確 artifact 核准為 0/47；Publisher 綠燈不能替代這 47 項核准。所有 QBC、Measure、criterion 與 scope 核准也必須指向 repository 內可讀且 hash 相符的證據，詳見 [`APPROVAL_EVIDENCE_PROTOCOL.md`](APPROVAL_EVIDENCE_PROTOCOL.md)。
 
 RC-03 的 terminology 範圍也已鎖定為生成後與手寫資源的完整聯集：**152 個 terminology artifact（60 CodeSystem、90 ValueSet、2 ConceptMap）**。`scripts/audit_terminology_conformance.py` 逐項檢查 canonical、draft/experimental、CodeSystem 內容、ValueSet include system、ConceptMap element/target，以及 CQL 宣告與實際引用。完整清冊的技術完整性目前通過；但 19 個個管臨床 ValueSet 仍為空，18 個被 CQL 實際引用，另 1 個腋下淋巴結廓清術值集僅定義而未引用。`case-management-terminology-approval-register.csv` 鎖定臨床決定，`terminology-expansion-validation-register.csv` 另鎖定 19 份具版本、逐碼解析與負向測試的 SHA 綁定 expansion bundle，`terminology-conceptmap-relationship-register.csv` 則與實際兩個 ConceptMap 的 6 個 relationship tuple 精確比對。現況為臨床核准 **0/19**、validated expansion **0/19**、relationship 核准 **0/6**，因此 RC-03 必須維持 blocked；詳細證據格式見 [`TERMINOLOGY_VALIDATION_PROTOCOL.md`](TERMINOLOGY_VALIDATION_PROTOCOL.md)。這項技術盤點不等於 152 項均已取得臨床語意核准。
 
@@ -67,7 +67,7 @@ RC-08 進一步要求全部 223 個 canonical resources 的 business-version pro
 
 - `measure-validation-evidence-register.csv` 精確鎖定 20 個 Measure；`case-level-comparison-register.csv` 是逐案 manifest 模板。獨立重算必須保存不共用 CQL 邏輯的實作、CQL、truth set、normalizer 與 manifest hash，並證明 exact case-by-expression tuple set 完整且零差異；golden cohort 另須保存完整期別、all-in-scope cohort、原始 extract／FHIR Bundle hash、exact case-by-source-fact tuple set、人工 override 與整份 MeasureReport 比較。目前 manifest 為 0 列，兩者皆為 0/20。受控環境操作規則見 [逐案資料正確性驗證協定](CASE_LEVEL_VALIDATION_PROTOCOL.md)。
 - Translation、runtime smoke 與具預期值的合成分支驗證均已達 20/20 Measure、46/46 expressions；底層 68/68 criteria 另有逐條差異表。分布 Measure 另驗證全部列舉 strata、月份、年齡帶、缺值與非法值。QR-04 只證明 cohort 已載入時的條件行為，QR-05 只證明候選規則的機械行為，兩者都不構成真實資料正確性證據。
-- Measure 規格核准目前為 0/20；每一項都必須保存具名 signer、組織／職稱、決定日期、證據 URI 與被簽 artifact 的 SHA-256，且 `draft_definition_alignment` 必須明確為 `approved`。只有簽名欄位或只有綠色 CQL 測試都不足以通過 RC-07。
+- Measure 規格核准目前為 0/20；每一項都必須保存具名 signer、組織／職稱、決定日期、repository-relative 證據路徑與被簽 artifact 的 SHA-256，稽核須能讀取檔案並重算出同一 hash，且 `draft_definition_alignment` 必須明確為 `approved`。只有簽名欄位、任意 64 碼字串或只有綠色 CQL 測試都不足以通過 RC-07。
 - 68 條 criterion 中，56 條與目前草稿對齊；其餘 12 條已鎖定為 8 個決策包，核准目前為 0/12。每列必須回答固定問題並附實作／資料契約／真值集／逐案差異等指定證據；QI-06 三列必須引用同一個不可矛盾的簽署決定。RC-07 要求 12/12 有效簽署、live crosscheck 非對齊數為 0，且這 12 項 production disposition 允許數為 12；簽名不能覆蓋仍存在的技術缺口。
 - 每個 Measure 的測試數不以任意固定樣本數取代 coverage。最低要求是所有 truth-table branch、排除、缺值、邊界、日期邊界及多筆事件行為全部有案例。
 - Golden cohort 要鎖版並逐案核對 100%；最終 manifest 的總差異必須為 0，不接受以「已解釋」保留不一致結果。
