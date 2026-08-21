@@ -1,0 +1,20 @@
+validation_id,valueset_id,evidence_bundle_path,evidence_bundle_sha256,validation_status,terminology_service,terminology_service_version,validated_at,expanded_code_count,resolved_code_count,unresolved_code_count,negative_test_count,validator_name,notes
+TERM-EXP-01,cm-clinical-stage-group-code,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle
+TERM-EXP-02,cm-pathological-stage-group-code,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle
+TERM-EXP-03,cm-pathological-n-category-code,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle
+TERM-EXP-04,cm-pathological-t-category-code,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle
+TERM-EXP-05,cm-estrogen-receptor-code,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle
+TERM-EXP-06,cm-her2-ihc-code,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle
+TERM-EXP-07,cm-her2-ish-code,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle
+TERM-EXP-08,cm-breast-surgery-procedure,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle
+TERM-EXP-09,cm-breast-conserving-surgery-procedure,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle
+TERM-EXP-10,cm-total-mastectomy-procedure,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle
+TERM-EXP-11,cm-sentinel-lymph-node-biopsy-procedure,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle
+TERM-EXP-12,cm-axillary-lymph-node-dissection-procedure,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle
+TERM-EXP-13,cm-core-needle-biopsy-procedure,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle
+TERM-EXP-14,cm-radiotherapy-procedure,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle
+TERM-EXP-15,cm-hormone-therapy-medication,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle
+TERM-EXP-16,cm-cytotoxic-chemotherapy-medication,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle
+TERM-EXP-17,cm-anti-her2-medication,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle
+TERM-EXP-18,cm-progesterone-receptor-code,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle
+TERM-EXP-19,cm-histology-morphology-code,,,pending-validation,,,,,,,,,Awaiting versioned expansion and per-code validation bundle

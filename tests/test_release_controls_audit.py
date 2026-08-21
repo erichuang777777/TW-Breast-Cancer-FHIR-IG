@@ -94,6 +94,13 @@ def run_audit(
         "empty_clinical_value_set_count": 19,
         "clinical_value_set_approval_count": 19,
         "approved_clinical_value_set_count": 0,
+        "validated_clinical_value_set_expansion_count": 0,
+        "validated_clinical_expansion_code_count": 0,
+        "versionless_clinical_value_set_count": 19,
+        "concept_map_relationship_count": 6,
+        "approved_concept_map_relationship_count": 0,
+        "local_value_set_code_reference_count": 0,
+        "duplicate_code_system_code_count": 0,
         "clinical_terminology_gate": "block",
     }
     terminology_report.update(terminology_overrides or {})
@@ -390,6 +397,21 @@ def test_terminology_inventory_count_cannot_be_reduced(tmp_path):
 def test_terminology_gate_cannot_contradict_empty_or_unsigned_counts(tmp_path):
     completed, report = run_audit(
         tmp_path, terminology_overrides={"clinical_terminology_gate": "pass"}
+    )
+    assert completed.returncode == 2
+    assert report is None
+    assert "clinical terminology gate/count mismatch" in completed.stderr
+
+
+def test_terminology_gate_cannot_pass_without_expansions_and_relationship_review(tmp_path):
+    completed, report = run_audit(
+        tmp_path,
+        terminology_overrides={
+            "empty_clinical_value_set_count": 0,
+            "approved_clinical_value_set_count": 19,
+            "versionless_clinical_value_set_count": 0,
+            "clinical_terminology_gate": "pass",
+        },
     )
     assert completed.returncode == 2
     assert report is None

@@ -54,10 +54,18 @@ EXPECTED = {
         "method_name": "terminology-resolution-and-clinical-review",
         "locked_scope": (
             "152 terminology artifacts: 60 CodeSystems; 90 ValueSets; 2 ConceptMaps; "
-            "19 clinical ValueSets"
+            "19 clinical ValueSets; 6 ConceptMap relationships"
         ),
-        "threshold_markers": ("152/152", "19/19", "every used code resolves", "0 candidate-unverified"),
-        "evidence_markers": ("terminology-conformance-audit.json", "versioned expansions", "signatures"),
+        "threshold_markers": (
+            "152/152", "19/19", "every expanded tuple resolves",
+            "6/6", "0 candidate-unverified",
+        ),
+        "evidence_markers": (
+            "terminology-conformance-audit.json",
+            "terminology-expansion-validation-register.csv",
+            "terminology-conceptmap-relationship-register.csv",
+            "signatures",
+        ),
         "independence_markers": ("authorized reviewer", "cannot be inferred"),
     },
     "VM-04": {

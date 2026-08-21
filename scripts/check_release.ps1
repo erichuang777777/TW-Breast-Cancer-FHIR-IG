@@ -54,6 +54,8 @@ try {
 
     python scripts\audit_terminology_conformance.py `
         --approval-register mappings\publication\case-management-terminology-approval-register.csv `
+        --expansion-register mappings\publication\terminology-expansion-validation-register.csv `
+        --relationship-register mappings\publication\terminology-conceptmap-relationship-register.csv `
         --cql ig\input\cql\BreastCancerCaseManagement.cql `
         --resource-dir ig\fsh-generated\resources `
         --resource-dir ig\input\resources `

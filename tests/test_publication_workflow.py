@@ -27,6 +27,8 @@ def test_publisher_workflow_is_reproducible_and_preserves_evidence():
     assert "artifact-conformance-audit.json" in text
     assert "scripts/audit_terminology_conformance.py" in text
     assert "mappings/publication/case-management-terminology-approval-register.csv" in text
+    assert "mappings/publication/terminology-expansion-validation-register.csv" in text
+    assert "mappings/publication/terminology-conceptmap-relationship-register.csv" in text
     assert "terminology-conformance-audit.json" in text
     assert "scripts/audit_fhir_resource_inventory.py" in text
     assert "mappings/publication/fhir-resource-inventory.csv" in text
@@ -75,6 +77,8 @@ def test_local_release_script_uses_the_same_evidence_gates_without_overclaiming(
     assert "artifact-conformance-register.csv" in text
     assert "scripts\\audit_terminology_conformance.py" in text
     assert "case-management-terminology-approval-register.csv" in text
+    assert "terminology-expansion-validation-register.csv" in text
+    assert "terminology-conceptmap-relationship-register.csv" in text
     assert "scripts\\audit_fhir_resource_inventory.py" in text
     assert "fhir-resource-inventory.csv" in text
     assert "canonical-version-policy-register.csv" in text

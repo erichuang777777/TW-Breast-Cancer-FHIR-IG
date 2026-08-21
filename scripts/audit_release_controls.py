@@ -296,6 +296,8 @@ def audit(
         "value_set_count": 90,
         "concept_map_count": 2,
         "clinical_value_set_approval_count": 19,
+        "concept_map_relationship_count": 6,
+        "duplicate_code_system_code_count": 0,
     }
     for field, expected in terminology_counts.items():
         if terminology_audit.get(field) != expected:
@@ -304,15 +306,36 @@ def audit(
         raise ValueError(f"{terminology_audit_path}: terminology_integrity_gate must be pass")
     empty_terminology = terminology_audit.get("empty_clinical_value_set_count")
     approved_terminology = terminology_audit.get("approved_clinical_value_set_count")
+    validated_expansions = terminology_audit.get(
+        "validated_clinical_value_set_expansion_count"
+    )
+    versionless_clinical_valuesets = terminology_audit.get(
+        "versionless_clinical_value_set_count"
+    )
+    approved_relationships = terminology_audit.get(
+        "approved_concept_map_relationship_count"
+    )
     if (
         not isinstance(empty_terminology, int)
         or not 0 <= empty_terminology <= 19
         or not isinstance(approved_terminology, int)
         or not 0 <= approved_terminology <= 19
+        or not isinstance(validated_expansions, int)
+        or not 0 <= validated_expansions <= 19
+        or not isinstance(versionless_clinical_valuesets, int)
+        or not 0 <= versionless_clinical_valuesets <= 19
+        or not isinstance(approved_relationships, int)
+        or not 0 <= approved_relationships <= 6
     ):
         raise ValueError(f"{terminology_audit_path}: invalid clinical terminology counts")
     expected_terminology_gate = (
-        "pass" if empty_terminology == 0 and approved_terminology == 19 else "block"
+        "pass" if (
+            empty_terminology == 0
+            and approved_terminology == 19
+            and validated_expansions == 19
+            and versionless_clinical_valuesets == 0
+            and approved_relationships == 6
+        ) else "block"
     )
     if terminology_audit.get("clinical_terminology_gate") != expected_terminology_gate:
         raise ValueError(f"{terminology_audit_path}: clinical terminology gate/count mismatch")
@@ -775,6 +798,12 @@ def audit(
             "clinical_value_set_approval_count"
         ],
         "approved_clinical_value_set_count": approved_terminology,
+        "validated_clinical_value_set_expansion_count": validated_expansions,
+        "versionless_clinical_value_set_count": versionless_clinical_valuesets,
+        "concept_map_relationship_count": terminology_audit[
+            "concept_map_relationship_count"
+        ],
+        "approved_concept_map_relationship_count": approved_relationships,
         "clinical_terminology_gate": terminology_audit["clinical_terminology_gate"],
         "fhir_resource_count": resource_inventory["resource_count"],
         "publication_definition_count": resource_inventory[
