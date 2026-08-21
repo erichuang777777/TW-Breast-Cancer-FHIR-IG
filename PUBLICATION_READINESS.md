@@ -4,7 +4,7 @@
 
 全 IG publication scope gate 目前也是 blocked：10 個固定 scope（3 normative、6 informative、1 excluded）尚有 **0/10** 完成人工簽核。RC-08 要求全部 scope 的角色與宣稱邊界均具名核准，且 QBC 與個管品管／季報兩個 normative Task 必須達 `formal-release-ready`；單一 Task 通過或 operational approvals 完成，不能代表 whole IG 可正式發布。
 
-逐 artifact conformance audit 已完整納入 47 個 StructureDefinition（34 Profile＋13 Extension，包含 4 個手寫 TCR extension）。47/47 的 generated parent/type/kind/status 與合成範例證據一致，但人工規格核准是 0/47，因此目前只能支持「technical structure with synthetic examples」，不能支持臨床語意或正式規格正確性的宣稱。
+逐 artifact conformance audit 已完整納入 47 個 StructureDefinition（34 Profile＋13 Extension，包含 4 個手寫 TCR extension）。47/47 的 generated parent/type/kind/status 與合成範例證據一致；另以 216 列 constraint baseline 鎖定每個 differential element 的 cardinality、Must Support、binding、type/targetProfile、fixed/pattern、slicing、invariant 與完整 SHA-256。現況 216/216 技術比對一致，但人工規格核准仍是 0/47，因此只能支持「沒有未記錄的 Profile 約束漂移」，不能支持臨床語意或正式規格正確性的宣稱。
 
 完整 terminology audit 已納入 152 個 artifact（60 CodeSystem＋90 ValueSet＋2 ConceptMap），技術完整性通過。個管臨床 terminology gate 仍 blocked：19 個 ValueSet 為空且核准 0/19；其中 18 個被 CQL 引用，1 個腋下淋巴結廓清術值集僅定義未引用。這些空值集是刻意的 fail-closed 狀態，必須取得權威版本、完整代碼內容、測試與具名核准後才能解除，不能由現有報表反推補值。
 
@@ -20,7 +20,7 @@
 
 | Gate | 結果 | 說明 |
 |---|---:|---|
-| pytest | pass：346 tests | 包含 mapping、68-criterion 實作差異表、12 項非對齊 criterion 決策鎖定、52-fact 取得優先級與 8 個 owner 工作包、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、完整 262-resource manifest、1028-edge reference graph、52-fact 原始來源與 20-Measure 真實資料證據 gate、四組 canonical version policy、逐 Measure、47 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性 audit、全 IG scope claims／決策、完整 release-control gate、template supply-chain 與 publication workflow 契約測試。 |
+| pytest | pass：410 tests | 包含 mapping、68-criterion 實作差異表、12 項非對齊 criterion 決策鎖定、52-fact 取得優先級與 8 個 owner 工作包、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、完整 262-resource manifest、1028-edge reference graph、216-element Profile constraint baseline（含 differential 順序）、Must Support 實作政策、52-fact 原始來源與 20-Measure 真實資料證據 gate、四組 canonical version policy、逐 Measure、47 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性 audit、全 IG scope claims／決策、完整 release-control gate、template supply-chain 與 publication workflow 契約測試。 |
 | SUSHI 3.20.0 | pass：0 errors / 0 warnings | FSH 可穩定產生 IG resources。 |
 | PHI gate | pass | 目前版本庫未檢出疑似病人識別資料；正式來源資料仍須在受控環境處理。 |
 | CQL CLI translation | pass | `cql-to-elm-cli 3.26.0` 可產生 ELM；FHIRHelpers 由 `hl7.fhir.uv.cql#2.0.0` 解析。 |
@@ -32,6 +32,7 @@
 | Terminology inventory | technical pass；clinical block | 完整集合 152（60 CodeSystem、90 ValueSet、2 ConceptMap）；19 個個管臨床 ValueSet 為空、核准 0/19，因此 RC-03 blocked。 |
 | FHIR resource inventory | technical pass；version provenance block | 精確集合 262（225 definitions、37 examples、223 canonical）；261 個 IG manifest references 全數解析。223 canonical 已分成 24 package-explicit、1 CQL、97 package-context pending、101 TCR version collision；政策核准 0/4，因此 RC-08 blocked。 |
 | FHIR reference graph | technical pass | 精確 1028 edges：662 local URL、330 FHIR Reference、36 external canonical；198 unique local targets 全部解析且型別正確，18 unique external canonical 只由 pinned FHIR R4／TW Core dependencies 解析。 |
+| Profile constraint baseline | technical pass | 47 個 StructureDefinition 的 216 個 differential elements 逐列相符；77 cardinality、100 Must Support、19 binding、53 type/target、29 fixed/pattern、2 slicing、0 custom invariant、18 declaration/narrative。此 gate 防止審查後漂移，不代表 0/47 人工核准已完成。 |
 | Strict release QA | blocked | 正式 release gate 仍要求 0 warnings；完整 QA 的 52 個 warning 尚未逐一修正或完成具體審查紀錄。 |
 | Template supply-chain | technical pass | 已依 2026-03 安全公告固定使用 `fhir2.base.template#0.1.0` 與套件 SHA-1；CI 證明載入精確版本且不再出現 insecure-template notice。已發布模板的多語系 jurisdiction flag 路徑缺陷以最小 include overlay 修正並由 0 broken links gate 鎖定；此項通過不解除臨床／治理發布阻擋。 |
 

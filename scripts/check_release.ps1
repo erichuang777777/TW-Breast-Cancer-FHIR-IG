@@ -52,6 +52,13 @@ try {
         --target integrity
     if ($LASTEXITCODE -ne 0) { throw "artifact-conformance integrity audit failed" }
 
+    python scripts\audit_profile_constraints.py `
+        --baseline mappings\publication\profile-constraint-baseline.csv `
+        --resource-dir ig\fsh-generated\resources `
+        --resource-dir ig\input\resources `
+        --json-out ig\output\profile-constraint-audit.json
+    if ($LASTEXITCODE -ne 0) { throw "Profile constraint baseline audit failed" }
+
     python scripts\audit_terminology_conformance.py `
         --approval-register mappings\publication\case-management-terminology-approval-register.csv `
         --expansion-register mappings\publication\terminology-expansion-validation-register.csv `

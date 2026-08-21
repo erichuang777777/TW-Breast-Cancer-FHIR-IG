@@ -16,6 +16,7 @@ on:
       - "scripts/approval_evidence.py"
       - "scripts/audit_verification_methods.py"
       - "scripts/audit_artifact_conformance.py"
+      - "scripts/audit_profile_constraints.py"
       - "scripts/audit_terminology_conformance.py"
       - "scripts/audit_fhir_resource_inventory.py"
       - "scripts/audit_fhir_reference_graph.py"
@@ -39,6 +40,7 @@ on:
       - "scripts/approval_evidence.py"
       - "scripts/audit_verification_methods.py"
       - "scripts/audit_artifact_conformance.py"
+      - "scripts/audit_profile_constraints.py"
       - "scripts/audit_terminology_conformance.py"
       - "scripts/audit_fhir_resource_inventory.py"
       - "scripts/audit_fhir_reference_graph.py"
@@ -136,6 +138,17 @@ jobs:
             --json-out ig/output/artifact-conformance-audit.json \
             --target integrity \
             | tee ig/output/artifact-conformance-audit.log
+
+      - name: Audit exact Profile differential constraint baseline
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_profile_constraints.py \
+            --baseline mappings/publication/profile-constraint-baseline.csv \
+            --resource-dir ig/fsh-generated/resources \
+            --resource-dir ig/input/resources \
+            --json-out ig/output/profile-constraint-audit.json \
+            | tee ig/output/profile-constraint-audit.log
 
       - name: Audit complete terminology inventory and clinical approvals
         shell: bash

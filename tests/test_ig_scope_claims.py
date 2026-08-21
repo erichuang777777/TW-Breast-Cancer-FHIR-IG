@@ -161,7 +161,7 @@ def test_human_facing_scope_language_does_not_overstate_task_completion():
 
 def test_every_published_narrative_carries_the_non_official_draft_disclaimer():
     pages = list(PAGECONTENT.glob("*.md"))
-    assert len(pages) == 35
+    assert len(pages) == 36
     assert all(
         "{% include disclaimer.md %}" in page.read_text(encoding="utf-8")
         for page in pages

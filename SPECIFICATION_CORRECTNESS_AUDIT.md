@@ -45,7 +45,7 @@ Publisher／SUSHI 通過所證明的是「產出的資源符合目前載入的 F
 
 RC-08 另外驗證全 IG 的 10 個 scope claim 與 10 個逐項角色決策；目前 0/10 簽核。QBC 與個管品管／季報是 normative Task，因此兩者的 claim evidence 都必須升級為 `formal-release-ready`，才可能通過 whole-IG publication gate。單一 Task 的技術驗證或 operational approval 不會自動擴張成整份 IG 的正式發布證據。
 
-Profile／Extension 規格也採逐項核對，而不是只看 Publisher 總數。目前正式集合為 **47 個 StructureDefinition：34 Profile、13 Extension**；其中 4 個 TCR extension 是手寫 JSON，不能因不在 FSH 清單中而漏掉。`artifact-conformance-register.csv` 鎖定每個 artifact 的 parent、type、kind、scope 與合成範例，技術稽核為 47/47 pass；但逐 artifact 的臨床／FHIR reviewer 核准仍是 **0/47**，所以 RC-07 繼續 blocked。
+Profile／Extension 規格也採逐項核對，而不是只看 Publisher 總數。目前正式集合為 **47 個 StructureDefinition：34 Profile、13 Extension**；其中 4 個 TCR extension 是手寫 JSON，不能因不在 FSH 清單中而漏掉。`artifact-conformance-register.csv` 鎖定每個 artifact 的 parent、type、kind、scope 與合成範例，技術稽核為 47/47 pass；`profile-constraint-baseline.csv` 再逐列鎖定全部 **216 個 differential element**，包含 77 個 cardinality、100 個 Must Support、19 個 binding、53 個 type／profile target、29 個 fixed/pattern、2 個 slicing、0 個自訂 invariant，以及 18 個僅宣告／敘述列。每列保存完整 differential JSON 的 SHA-256；增刪元素或改變任一約束都會使發布 CI 失敗。這只證明交付審查的規格沒有漂移，不能把目前 **0/47** 的逐 artifact 臨床／FHIR reviewer 核准改寫成已通過，所以 RC-07 繼續 blocked。0 個自訂 invariant 也不是自動錯誤，但審查者必須確認跨欄位規則是否已由 slicing、binding、CQL 或其他明示機制完整表達。
 
 Terminology 也不能只計算 FSH 檔案或只檢查 CQL 有沒有名稱。實際發布集合是 **152 個 artifact：60 CodeSystem、90 ValueSet、2 ConceptMap**；機器稽核目前確認其 canonical、狀態、基本內容與內部參照完整。個管範圍另有精確的 19 項臨床 ValueSet 核准集合：18 項已被 CQL 引用，腋下淋巴結廓清術 1 項是 defined-not-referenced；19 項目前皆無內容且 **0/19** 完成具名、版本化簽核。因此能證明的是「terminology inventory 技術完整」，不能證明臨床代碼集合或 CQL cohort 語意正確，RC-03 仍 blocked。
 
