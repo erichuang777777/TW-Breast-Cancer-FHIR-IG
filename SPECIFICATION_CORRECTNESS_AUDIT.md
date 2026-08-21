@@ -118,3 +118,5 @@ RC-07 要求每個 Measure 同時滿足兩件事：approval register 有 `approv
 綠色 CI 只能支持前兩個判詞，不能支持後四個。
 
 本表主要深入個管品管／季報 Measure。整份 repository 其他 Task 與外部標準的獨立判定見 [IG_SCOPE_CONFORMANCE_AUDIT.md](IG_SCOPE_CONFORMANCE_AUDIT.md)；任一 Task 的證據不得外推成另一個 Task 或 whole-IG conformance。
+
+使用者提供的 `FHIR_mapping_required from quality/` 匯入包另有逐檔、SHA-256、ID set、FSH/CQL symbol 與測試函式比對，見 [Quality 匯入包整合稽核](QUALITY_IMPORT_INTEGRATION_AUDIT.md)。該稽核證明設計 artifact 已吸收或有具體替代，不會被用來冒充原始資料正確性證據。

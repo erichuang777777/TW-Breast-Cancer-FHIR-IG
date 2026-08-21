@@ -67,6 +67,8 @@
 
 本階段骨架已建立於 `mappings/publication/source-traceability-register.csv`：精確涵蓋 34 個共同 fact 與 18 個 task-only fact，共 52 項；目前權威來源核准為 0/52。各館既有報表欄位已明確留在 notes／secondary reconciliation 邊界，不能使原始來源 gate 通過。逐 Measure 的獨立重算與完整期別驗證則記錄於 `measure-validation-evidence-register.csv`，目前均為 0/20。兩份登錄由 `audit_data_correctness_evidence.py` 在本機與 CI 強制檢查。
 
+quality 交接匯入包本身已完成逐檔整合核對：11 個直接對應檔及 2 個 instruction／patch 檔均有處理結論，34 mapping、20 Measure、68 criteria、18 Task-only IDs 與 22 個 FSH symbols 無遺漏；完整證據見 [QUALITY_IMPORT_INTEGRATION_AUDIT.md](QUALITY_IMPORT_INTEGRATION_AUDIT.md)。這只證明匯入完整，不提升真實資料 gate。
+
 ## 下一個可驗收里程碑
 
 Preview 技術候選版至少需要：
