@@ -60,6 +60,40 @@ MEASURE_IDS = {
     *(f"bc-qr-{number:02d}" for number in range(1, 6)),
     *(f"bc-qr-{number:02d}" for number in range(10, 19)),
 }
+EXPECTED_CAPABILITY_PROFILES = {
+    "Patient": ("breast-cancer-patient",),
+    "Condition": ("breast-cancer-primary-condition",),
+    "Observation": (
+        "breast-cancer-source-observation",
+        "breast-cancer-stage-group-observation",
+        "breast-cancer-tumor-marker-observation",
+    ),
+    "Procedure": ("breast-cancer-treatment-procedure",),
+    "MedicationRequest": ("breast-cancer-medication-request",),
+    "EpisodeOfCare": ("breast-cancer-episode-of-care",),
+    "DiagnosticReport": (
+        "breast-cancer-pathology-report",
+        "breast-cancer-laboratory-report",
+        "breast-cancer-ultrasound-report",
+    ),
+    "Specimen": ("breast-cancer-pathology-specimen",),
+    "CarePlan": ("cancer-care-plan-task-care-plan",),
+    "QuestionnaireResponse": ("cancer-care-plan-task-questionnaire-response",),
+    "Task": (
+        "breast-cancer-case-management-task",
+        "tcr-registry-abstraction-task",
+    ),
+    "Bundle": (
+        "breast-cancer-common-facts-bundle",
+        "cancer-care-plan-task-bundle",
+        "qbc-submission-bundle",
+    ),
+}
+CAPABILITY_DOCUMENTATION = (
+    "A conforming implementation supports only the resources required by its "
+    "declared task modules; this community capability statement is not an "
+    "authorization to claim every task."
+)
 REGISTER_COLUMNS = {
     "resource_type", "resource_id", "publication_role", "authoring_source",
 }
@@ -305,19 +339,53 @@ def audit(
         capability.get("version") != PACKAGE_VERSION
         or capability.get("fhirVersion") != "4.0.1"
         or capability.get("kind") != "requirements"
+        or capability.get("status") != "draft"
+        or capability.get("experimental") is not True
+        or set(capability.get("format", [])) != {"json", "xml"}
     ):
-        raise ValueError("CapabilityStatement version, FHIR version, or kind mismatch")
-    for rest in capability.get("rest", []):
-        for supported in rest.get("resource", []):
-            for profile_url in supported.get("supportedProfile", []):
-                profile_key = canonical_urls.get(profile_url)
-                if not profile_key or profile_key[0] != "StructureDefinition":
-                    raise ValueError(f"CapabilityStatement unresolved supportedProfile {profile_url}")
-                profile = resources[profile_key][0]
-                if profile.get("type") != supported.get("type"):
-                    raise ValueError(
-                        f"CapabilityStatement type mismatch for supportedProfile {profile_url}"
-                    )
+        raise ValueError("CapabilityStatement lifecycle, version, format, or kind mismatch")
+    rest_entries = capability.get("rest", [])
+    if len(rest_entries) != 1:
+        raise ValueError("CapabilityStatement must have exactly one REST requirements block")
+    rest = rest_entries[0]
+    if (
+        set(rest) != {"mode", "documentation", "resource"}
+        or rest.get("mode") != "server"
+        or rest.get("documentation") != CAPABILITY_DOCUMENTATION
+    ):
+        raise ValueError("CapabilityStatement REST claim boundary mismatch")
+    expected_capability_pairs = {
+        (resource_type, f"{CANONICAL}StructureDefinition/{profile_id}")
+        for resource_type, profile_ids in EXPECTED_CAPABILITY_PROFILES.items()
+        for profile_id in profile_ids
+    }
+    observed_capability_pairs: list[tuple[str, str]] = []
+    resources_supported = rest.get("resource", [])
+    if (
+        len(resources_supported) != len(EXPECTED_CAPABILITY_PROFILES)
+        or len({item.get("type") for item in resources_supported})
+        != len(resources_supported)
+    ):
+        raise ValueError("CapabilityStatement resource type set is incomplete or duplicated")
+    for supported in resources_supported:
+        if set(supported) != {"type", "supportedProfile"}:
+            raise ValueError("CapabilityStatement resource claim has unexpected fields")
+        resource_type = supported.get("type")
+        profile_urls = supported.get("supportedProfile", [])
+        if not profile_urls or len(profile_urls) != len(set(profile_urls)):
+            raise ValueError("CapabilityStatement supportedProfile set is empty or duplicated")
+        for profile_url in profile_urls:
+            observed_capability_pairs.append((resource_type, profile_url))
+            profile_key = canonical_urls.get(profile_url)
+            if not profile_key or profile_key[0] != "StructureDefinition":
+                raise ValueError(f"CapabilityStatement unresolved supportedProfile {profile_url}")
+            profile = resources[profile_key][0]
+            if profile.get("type") != resource_type:
+                raise ValueError(
+                    f"CapabilityStatement type mismatch for supportedProfile {profile_url}"
+                )
+    if set(observed_capability_pairs) != expected_capability_pairs:
+        raise ValueError("CapabilityStatement supportedProfile set differs from locked policy")
 
     library_key = ("Library", "BreastCancerCaseManagement")
     library = resources[library_key][0]
@@ -465,6 +533,8 @@ def audit(
             source == "generated-fsh" for _, source in resources.values()
         ),
         "measure_count": len(measures),
+        "capability_resource_type_count": len(resources_supported),
+        "capability_supported_profile_count": len(observed_capability_pairs),
         "canonical_version_policy_count": len(version_policies),
         "approved_canonical_version_policy_count": approved_version_policies,
         "canonical_version_policy_group_counts": group_counts,

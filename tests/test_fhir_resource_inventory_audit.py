@@ -5,9 +5,11 @@ from pathlib import Path
 import pytest
 
 from scripts.audit_fhir_resource_inventory import (
+    CAPABILITY_DOCUMENTATION,
     CANONICAL,
     CANONICAL_TYPES,
     DEFINITION_TYPES,
+    EXPECTED_CAPABILITY_PROFILES,
     PACKAGE_VERSION,
     audit,
     version_policy_approval_complete,
@@ -76,7 +78,22 @@ def synthetic_inventory(tmp_path: Path, *, manual_version="4.0.1"):
                 "version": PACKAGE_VERSION,
                 "fhirVersion": "4.0.1",
                 "kind": "requirements",
-                "rest": [],
+                "format": ["json", "xml"],
+                "rest": [{
+                    "mode": "server",
+                    "documentation": CAPABILITY_DOCUMENTATION,
+                    "resource": [
+                        {
+                            "type": supported_type,
+                            "supportedProfile": [
+                                f"{CANONICAL}StructureDefinition/{profile_id}"
+                                for profile_id in profile_ids
+                            ],
+                        }
+                        for supported_type, profile_ids
+                        in EXPECTED_CAPABILITY_PROFILES.items()
+                    ],
+                }],
             })
         elif resource_type == "Library":
             resource.update({
@@ -88,6 +105,19 @@ def synthetic_inventory(tmp_path: Path, *, manual_version="4.0.1"):
             resource.update({"version": PACKAGE_VERSION, "library": [library_url]})
         elif resource_type == "ConceptMap":
             resource["version"] = PACKAGE_VERSION
+        elif (
+            resource_type == "StructureDefinition"
+            and any(
+                resource_id in profile_ids
+                for profile_ids in EXPECTED_CAPABILITY_PROFILES.values()
+            )
+        ):
+            resource["type"] = next(
+                supported_type
+                for supported_type, profile_ids
+                in EXPECTED_CAPABILITY_PROFILES.items()
+                if resource_id in profile_ids
+            )
         elif resource_type == "NamingSystem":
             resource.update({
                 "status": "draft",
@@ -140,6 +170,8 @@ def test_exact_262_resource_inventory_and_manifest_are_locked(tmp_path):
     assert report["generated_fsh_resource_count"] == 159
     assert report["manual_json_resource_count"] == 103
     assert report["measure_count"] == 20
+    assert report["capability_resource_type_count"] == 12
+    assert report["capability_supported_profile_count"] == 19
     assert report["canonical_version_policy_count"] == 4
     assert report["approved_canonical_version_policy_count"] == 0
     assert report["canonical_version_policy_group_counts"] == {
@@ -199,14 +231,35 @@ def test_capability_statement_supported_profile_must_resolve_and_match_type(tmp_
         "CapabilityStatement-BreastCancerCommunityCapabilityStatement.json"
     )
     resource = json.loads(path.read_text(encoding="utf-8"))
-    resource["rest"] = [{
-        "resource": [{
-            "type": "Patient",
-            "supportedProfile": [f"{CANONICAL}StructureDefinition/not-present"],
-        }]
-    }]
+    resource["rest"][0]["resource"][0]["supportedProfile"] = [
+        f"{CANONICAL}StructureDefinition/not-present"
+    ]
     path.write_text(json.dumps(resource), encoding="utf-8")
     with pytest.raises(ValueError, match="unresolved supportedProfile"):
+        audit(REGISTER, VERSION_POLICIES, generated, manual, cql)
+
+
+def test_capability_statement_cannot_silently_drop_a_supported_profile(tmp_path):
+    generated, manual, cql = synthetic_inventory(tmp_path)
+    path = generated / (
+        "CapabilityStatement-BreastCancerCommunityCapabilityStatement.json"
+    )
+    resource = json.loads(path.read_text(encoding="utf-8"))
+    resource["rest"][0]["resource"][2]["supportedProfile"].pop()
+    path.write_text(json.dumps(resource), encoding="utf-8")
+    with pytest.raises(ValueError, match="differs from locked policy"):
+        audit(REGISTER, VERSION_POLICIES, generated, manual, cql)
+
+
+def test_capability_statement_cannot_overclaim_task_authorization(tmp_path):
+    generated, manual, cql = synthetic_inventory(tmp_path)
+    path = generated / (
+        "CapabilityStatement-BreastCancerCommunityCapabilityStatement.json"
+    )
+    resource = json.loads(path.read_text(encoding="utf-8"))
+    resource["rest"][0]["documentation"] = "Supports every task."
+    path.write_text(json.dumps(resource), encoding="utf-8")
+    with pytest.raises(ValueError, match="REST claim boundary mismatch"):
         audit(REGISTER, VERSION_POLICIES, generated, manual, cql)
 
 
