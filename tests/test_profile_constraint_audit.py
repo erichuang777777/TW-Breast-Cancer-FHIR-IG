@@ -62,16 +62,16 @@ def make_profile(path: Path) -> None:
     path.write_text(json.dumps(payload), encoding="utf-8")
 
 
-def test_current_baseline_locks_all_47_profiles_and_216_elements():
+def test_current_baseline_locks_all_48_profiles_and_222_elements():
     report = audit(BASELINE, RESOURCE_DIRS)
     assert report["constraint_baseline_gate"] == "pass"
-    assert report["structure_definition_count"] == 47
-    assert report["differential_element_count"] == 216
+    assert report["structure_definition_count"] == 48
+    assert report["differential_element_count"] == 222
     assert report["facet_counts"] == {
         "cardinality": 77,
-        "must-support": 100,
+        "must-support": 106,
         "binding": 19,
-        "type": 53,
+        "type": 55,
         "fixed-or-pattern": 29,
         "slicing": 2,
         "invariant": 0,

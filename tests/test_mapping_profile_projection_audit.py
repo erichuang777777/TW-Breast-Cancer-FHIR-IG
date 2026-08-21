@@ -43,7 +43,7 @@ def test_register_covers_exact_34_facts_and_55_target_alternatives():
     assert sum(bool(row["required_unit"]) for row in rows) == 3
 
 
-def test_exact_thirteen_projection_gap_facts_remain_visible():
+def test_exact_nine_projection_gap_facts_remain_visible():
     rows = read_register(REGISTER)
     blocked = {
         row["mapping_id"] for row in rows
@@ -52,8 +52,7 @@ def test_exact_thirteen_projection_gap_facts_remain_visible():
         }
     }
     assert blocked == {
-        "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-020",
-        "CM-BC-021", "CM-BC-022", "CM-BC-024", "CM-BC-025",
+        "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-024",
         "CM-BC-032", "CM-BC-034", "CM-BC-035", "CM-BC-037", "CM-BC-038"
     }
     assert all(
@@ -71,20 +70,14 @@ def test_known_resource_semantic_mismatches_do_not_masquerade_as_valid_paths():
         if row["technical_status"] == "resolved-profile-element-semantic-profile-gap"
     }
     assert set(semantic_gaps) == {
-        "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-020",
-        "CM-BC-021", "CM-BC-022", "CM-BC-025", "CM-BC-035"
+        "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-035"
     }
     assert sum(
         row["technical_status"] == "resolved-profile-element-semantic-profile-gap"
         for row in rows
-    ) == 12
+    ) == 5
     assert "does not constrain Observation.code" in semantic_gaps["CM-BC-006"]["blocking_issue"]
-    assert any(
-        row["mapping_id"] == "CM-BC-020"
-        and "order/request" in row["blocking_issue"]
-        for row in rows
-    )
-    assert "intended performer" in semantic_gaps["CM-BC-025"]["blocking_issue"]
+    assert "curative intent" in semantic_gaps["CM-BC-035"]["blocking_issue"]
 
 
 def test_prior_year_cohort_requires_more_than_an_episode_start_date():

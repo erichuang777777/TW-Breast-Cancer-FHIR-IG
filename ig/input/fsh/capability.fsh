@@ -28,6 +28,8 @@ Description: "Requirements-level capability statement listing the resource famil
 * rest.resource[=].supportedProfile = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/breast-cancer-treatment-procedure"
 * rest.resource[+].type = #MedicationRequest
 * rest.resource[=].supportedProfile = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/breast-cancer-medication-request"
+* rest.resource[+].type = #MedicationAdministration
+* rest.resource[=].supportedProfile = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/breast-cancer-medication-administration"
 * rest.resource[+].type = #EpisodeOfCare
 * rest.resource[=].supportedProfile = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/breast-cancer-episode-of-care"
 * rest.resource[+].type = #DiagnosticReport

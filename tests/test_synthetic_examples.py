@@ -22,7 +22,7 @@ def test_every_public_fsh_example_is_marked_synthetic():
 def test_complete_synthetic_scenario_covers_source_fact_and_treatment_layers():
     text = EXAMPLE_FILES[0].read_text(encoding="utf-8")
     scenario = next(block for block in _example_blocks(text) if "BreastCancerSyntheticScenarioBundleExample" in block)
-    for resource_type in ("Patient", "Condition", "Specimen", "Observation", "DiagnosticReport", "Procedure", "MedicationRequest", "EpisodeOfCare"):
+    for resource_type in ("Patient", "Condition", "Specimen", "Observation", "DiagnosticReport", "Procedure", "MedicationRequest", "MedicationAdministration", "EpisodeOfCare"):
         assert f"/{resource_type}/" in scenario
 
 

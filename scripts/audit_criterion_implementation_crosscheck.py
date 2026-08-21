@@ -108,36 +108,13 @@ SPECIAL = {
         "The multidisciplinary exclusion is intentionally absent from CQL and must be applied as a reasoned case-level decision.",
         "Define the Task/MeasureReport override contract and reconcile every excluded case.",
     ),
-    "N1-HT": (
-        "fhir-resource-semantic-mismatch",
-        "The numerator treats an active/completed MedicationRequest as proof that "
-        "hormone therapy was given. In FHIR R4, MedicationRequest is an order; it "
-        "does not establish an administration event.",
-        "Use an approved administration/dispense evidence contract, then compare "
-        "every numerator member against actual treatment delivery.",
-    ),
-    "D2-SURGERY-FIRST": (
-        "fhir-resource-semantic-mismatch",
-        "The first-treatment comparison uses MedicationRequest.authoredOn as the "
-        "systemic-therapy start. In FHIR R4, authoredOn is when the prescription "
-        "was written, not when treatment was administered.",
-        "Map actual systemic-treatment start events and rerun all ordering and "
-        "same-day boundary cases.",
-    ),
-    "N4-ANTIHER2": (
-        "fhir-resource-semantic-mismatch",
-        "The numerator treats an active/completed MedicationRequest as proof that "
-        "anti-HER2 therapy was given. In FHIR R4, MedicationRequest is an order; "
-        "it does not establish an administration event.",
-        "Use an approved administration/dispense evidence contract, then compare "
-        "every numerator member against actual anti-HER2 delivery.",
-    ),
     "X1-STAGING-DEATH": (
-        "fhir-resource-semantic-mismatch",
-        "Died Before Curative Treatment treats MedicationRequest order status as "
-        "proof that curative medication treatment occurred before death.",
-        "Replace order-state inference with approved actual-treatment event "
-        "evidence and reconcile every death-before-treatment exclusion.",
+        "candidate-not-approved",
+        "Died Before Curative Treatment now uses actual Procedure or "
+        "MedicationAdministration events, but event status alone does not prove "
+        "curative intent or course-level treatment semantics.",
+        "Approve an intent and treatment-course linkage rule, then reconcile every "
+        "death-before-curative-treatment exclusion.",
     ),
     "X1-NOSTAY-TRANSFER": (
         "known-not-enforced",
@@ -148,11 +125,12 @@ SPECIAL = {
         "rule, then reconcile every transferred case.",
     ),
     "X3-STAGING": (
-        "fhir-resource-semantic-mismatch",
+        "candidate-not-approved",
         "The composite staging exclusion reuses Died Before Curative Treatment, "
-        "which treats MedicationRequest order status as actual treatment evidence.",
-        "Replace order-state inference with approved actual-treatment event evidence "
-        "and reconcile all staging-death cases in QR-03.",
+        "whose actual treatment events still lack approved curative-intent and "
+        "course-level linkage semantics.",
+        "Approve the shared intent and treatment-course rule and reconcile all "
+        "staging-death cases in QR-03.",
     ),
     "N3-DOSE": (
         "known-not-enforced",

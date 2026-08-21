@@ -33,5 +33,5 @@ def test_policy_count_is_bound_to_the_live_profile_constraint_inventory():
     )
     page = PAGE.read_text(encoding="utf-8")
     count = report["facet_counts"]["must-support"]
-    assert count == 100
+    assert count == 106
     assert f"共有 {count} 個 `mustSupport = true`" in page

@@ -159,25 +159,25 @@ def synthetic_inventory(tmp_path: Path, *, manual_version="4.0.1"):
     return generated, manual, cql
 
 
-def test_exact_262_resource_inventory_and_manifest_are_locked(tmp_path):
+def test_exact_264_resource_inventory_and_manifest_are_locked(tmp_path):
     generated, manual, cql = synthetic_inventory(tmp_path)
     report = audit(REGISTER, VERSION_POLICIES, generated, manual, cql)
     assert report["resource_inventory_gate"] == "pass"
-    assert report["resource_count"] == 262
-    assert report["publication_definition_count"] == 225
-    assert report["synthetic_example_count"] == 37
-    assert report["canonical_resource_count"] == 223
-    assert report["generated_fsh_resource_count"] == 159
+    assert report["resource_count"] == 264
+    assert report["publication_definition_count"] == 226
+    assert report["synthetic_example_count"] == 38
+    assert report["canonical_resource_count"] == 224
+    assert report["generated_fsh_resource_count"] == 161
     assert report["manual_json_resource_count"] == 103
     assert report["measure_count"] == 20
-    assert report["capability_resource_type_count"] == 12
-    assert report["capability_supported_profile_count"] == 19
+    assert report["capability_resource_type_count"] == 13
+    assert report["capability_supported_profile_count"] == 20
     assert report["canonical_version_policy_count"] == 4
     assert report["approved_canonical_version_policy_count"] == 0
     assert report["canonical_version_policy_group_counts"] == {
         "CV-PACKAGE-EXPLICIT": 24,
         "CV-CQL-LIBRARY": 1,
-        "CV-PACKAGE-CONTEXT": 97,
+        "CV-PACKAGE-CONTEXT": 98,
         "CV-TCR-MANUAL": 101,
     }
     assert report["canonical_version_policy_states"] == {
@@ -194,7 +194,7 @@ def test_deleting_a_manifest_row_cannot_make_inventory_pass(tmp_path):
     altered = tmp_path / "register.csv"
     write_register(altered, rows()[:-1])
     generated, manual, cql = synthetic_inventory(tmp_path)
-    with pytest.raises(ValueError, match="exactly 262 unique resources"):
+    with pytest.raises(ValueError, match="exactly 264 unique resources"):
         audit(altered, VERSION_POLICIES, generated, manual, cql)
 
 

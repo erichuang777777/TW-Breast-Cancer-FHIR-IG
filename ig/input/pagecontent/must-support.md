@@ -43,7 +43,7 @@
 - 有 binding、fixed/pattern、type/profile target、unit 或 slice 時，各限制至少一個有效案例與一個針對性反例。
 - 會影響 Measure 的元素，另須進入 case-level truth table，證明 population membership、numerator、denominator、exclusion 或 stratum 的預期變化。
 
-目前 47 個本地 StructureDefinition 的 differential 共有 100 個 `mustSupport = true`。其逐元素內容由 `profile-constraint-baseline.csv` 與 CI 的 SHA-256 比對鎖定；這證明審查集合沒有漂移，不等於每個元素已完成上述 producer／consumer 測試，也不等於 47 個 artifact 已獲臨床與 FHIR reviewer 核准。
+目前 48 個本地 StructureDefinition 的 differential 共有 106 個 `mustSupport = true`。其逐元素內容由 `profile-constraint-baseline.csv` 與 CI 的 SHA-256 比對鎖定；這證明審查集合沒有漂移，不等於每個元素已完成上述 producer／consumer 測試，也不等於 48 個 artifact 已獲臨床與 FHIR reviewer 核准。
 
 ## 宣告方式
 

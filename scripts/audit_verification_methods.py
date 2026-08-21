@@ -45,10 +45,10 @@ EXPECTED = {
         "method_class": "data-correctness",
         "method_name": "FHIR-structure-and-reference-conformance",
         "locked_scope": (
-            "262 FHIR resources; 225 publication definitions; 37 synthetic examples; "
-            "1028 reference edges; 47 StructureDefinitions"
+            "264 FHIR resources; 226 publication definitions; 38 synthetic examples; "
+            "1042 reference edges; 48 StructureDefinitions"
         ),
-        "threshold_markers": ("262/262", "1028/1028", "0 errors", "0 broken links"),
+        "threshold_markers": ("264/264", "1042/1042", "0 errors", "0 broken links"),
         "evidence_markers": ("Publisher qa.html", "fhir-resource-inventory-audit.json", "fhir-reference-graph-audit.json"),
         "independence_markers": ("separate from clinical correctness", "cannot substitute"),
     },
@@ -110,11 +110,11 @@ EXPECTED = {
         "method_class": "release-acceptance",
         "method_name": "clinical-specification-and-governance-approval",
         "locked_scope": (
-            "14 QBC gates; 20 Measure definitions; 47 StructureDefinitions; "
-            "18 non-aligned criterion decisions"
+            "14 QBC gates; 20 Measure definitions; 48 StructureDefinitions; "
+            "15 non-aligned criterion decisions"
         ),
         "threshold_markers": (
-            "14/14", "20/20", "47/47", "18/18", "208",
+            "14/14", "20/20", "48/48", "15/15", "208",
             "live non-aligned criterion count is 0", "SHA-256",
         ),
         "evidence_markers": (

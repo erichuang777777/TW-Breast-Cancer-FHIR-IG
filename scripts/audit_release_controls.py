@@ -371,8 +371,8 @@ def audit(
             f"{artifact_audit_path}: invalid artifact gate_scope"
         )
     expected_artifact_counts = {
-        "artifact_count": 47,
-        "profile_count": 34,
+        "artifact_count": 48,
+        "profile_count": 35,
         "extension_count": 13,
     }
     for field, expected in expected_artifact_counts.items():
@@ -384,12 +384,12 @@ def audit(
         raise ValueError(f"{artifact_audit_path}: invalid clinical_artifact_approval_gate")
     approved_artifact_count = artifact_audit.get("approved_artifact_count")
     artifact_hash_binding_count = artifact_audit.get("artifact_hash_binding_count")
-    if not isinstance(approved_artifact_count, int) or not 0 <= approved_artifact_count <= 47:
+    if not isinstance(approved_artifact_count, int) or not 0 <= approved_artifact_count <= 48:
         raise ValueError(f"{artifact_audit_path}: invalid approved_artifact_count")
     if artifact_hash_binding_count != approved_artifact_count:
         raise ValueError(f"{artifact_audit_path}: artifact hash binding/count mismatch")
     expected_clinical_gate = "pass" if (
-        approved_artifact_count == 47 and artifact_hash_binding_count == 47
+        approved_artifact_count == 48 and artifact_hash_binding_count == 48
     ) else "block"
     if artifact_audit["clinical_artifact_approval_gate"] != expected_clinical_gate:
         raise ValueError(f"{artifact_audit_path}: clinical artifact gate/count mismatch")
@@ -531,12 +531,12 @@ def audit(
     ):
         raise ValueError(f"{resource_inventory_audit_path}: invalid gate_scope")
     inventory_counts = {
-        "resource_count": 262,
-        "publication_definition_count": 225,
-        "synthetic_example_count": 37,
-        "canonical_resource_count": 223,
+        "resource_count": 264,
+        "publication_definition_count": 226,
+        "synthetic_example_count": 38,
+        "canonical_resource_count": 224,
         "manual_json_resource_count": 103,
-        "generated_fsh_resource_count": 159,
+        "generated_fsh_resource_count": 161,
         "measure_count": 20,
     }
     for field, expected in inventory_counts.items():
@@ -556,7 +556,7 @@ def audit(
     expected_version_group_counts = {
         "CV-PACKAGE-EXPLICIT": 24,
         "CV-CQL-LIBRARY": 1,
-        "CV-PACKAGE-CONTEXT": 97,
+        "CV-PACKAGE-CONTEXT": 98,
         "CV-TCR-MANUAL": 101,
     }
     if version_policy_count != 4:
@@ -615,18 +615,18 @@ def audit(
         )
     reference_graph = json.loads(reference_graph_audit_path.read_text(encoding="utf-8"))
     expected_reference_fields = {
-        "resource_count": 262,
-        "local_url_link_occurrence_count": 662,
-        "unique_local_url_target_count": 198,
-        "canonical_reference_occurrence_count": 269,
-        "local_canonical_reference_occurrence_count": 233,
-        "external_canonical_reference_occurrence_count": 36,
-        "unique_external_canonical_count": 18,
+        "resource_count": 264,
+        "local_url_link_occurrence_count": 669,
+        "unique_local_url_target_count": 200,
+        "canonical_reference_occurrence_count": 276,
+        "local_canonical_reference_occurrence_count": 239,
+        "external_canonical_reference_occurrence_count": 37,
+        "unique_external_canonical_count": 19,
         "versioned_canonical_reference_occurrence_count": 0,
-        "fhir_reference_occurrence_count": 330,
-        "manifest_reference_occurrence_count": 261,
-        "non_manifest_reference_occurrence_count": 69,
-        "total_audited_reference_edge_count": 1028,
+        "fhir_reference_occurrence_count": 336,
+        "manifest_reference_occurrence_count": 263,
+        "non_manifest_reference_occurrence_count": 73,
+        "total_audited_reference_edge_count": 1042,
     }
     if reference_graph.get("gate_scope") != (
         "complete-local-fhir-reference-and-canonical-graph"
@@ -638,8 +638,8 @@ def audit(
         if reference_graph.get(field) != expected:
             raise ValueError(f"{reference_graph_audit_path}: {field} must be {expected}")
     if reference_graph.get("local_url_link_counts") != {
-        "bundle-fullUrl": 19,
-        "canonical-field": 233,
+        "bundle-fullUrl": 20,
+        "canonical-field": 239,
         "code-system-use": 153,
         "conceptmap-code-system-use": 2,
         "extension-use-url": 240,
@@ -648,7 +648,7 @@ def audit(
     }:
         raise ValueError(f"{reference_graph_audit_path}: invalid local URL link counts")
     if reference_graph.get("external_canonical_authority_counts") != {
-        "fhir-r4-core-4.0.1": 34,
+        "fhir-r4-core-4.0.1": 35,
         "tw-core-1.0.0": 2,
     }:
         raise ValueError(
@@ -792,13 +792,12 @@ def audit(
     ):
         raise ValueError(f"{criterion_resolution_audit_path}: invalid gate_scope")
     expected_resolution_counts = {
-        "decision_count": 18,
-        "decision_group_count": 13,
+        "decision_count": 15,
+        "decision_group_count": 10,
         "issue_class_counts": {
-            "candidate-not-approved": 1,
+            "candidate-not-approved": 3,
             "conditional-data-contract": 2,
             "definition-contradiction": 1,
-            "fhir-resource-semantic-mismatch": 5,
             "implemented-variant-unresolved": 3,
             "known-not-enforced": 2,
             "task-layer-only": 4,
@@ -822,18 +821,18 @@ def audit(
         or not isinstance(production_allowed_resolution_count, int)
         or approved_resolution_count < 0
         or pending_resolution_count < 0
-        or approved_resolution_count + pending_resolution_count != 18
-        or not 0 <= non_aligned_resolution_count <= 18
-        or not 0 <= production_allowed_resolution_count <= 18
+        or approved_resolution_count + pending_resolution_count != 15
+        or not 0 <= non_aligned_resolution_count <= 15
+        or not 0 <= production_allowed_resolution_count <= 15
     ):
         raise ValueError(f"{criterion_resolution_audit_path}: invalid decision counts")
     if criterion_resolution.get("decision_register_integrity_gate") != "pass":
         raise ValueError(f"{criterion_resolution_audit_path}: integrity gate must pass")
     expected_resolution_gate = (
         "pass"
-        if approved_resolution_count == 18
+        if approved_resolution_count == 15
         and non_aligned_resolution_count == 0
-        and production_allowed_resolution_count == 18
+        and production_allowed_resolution_count == 15
         else "block"
     )
     if criterion_resolution.get("criterion_resolution_gate") != expected_resolution_gate:

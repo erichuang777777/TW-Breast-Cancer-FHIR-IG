@@ -79,11 +79,11 @@ def run_audit(
         json.dumps({
             "gate_scope": "artifact-structure-example-and-exact-review-binding",
             "artifact_integrity_gate": "pass",
-            "artifact_count": 47,
-            "profile_count": 34,
+            "artifact_count": 48,
+            "profile_count": 35,
             "extension_count": 13,
-            "approved_artifact_count": 47 if artifact_approved else 0,
-            "artifact_hash_binding_count": 47 if artifact_approved else 0,
+            "approved_artifact_count": 48 if artifact_approved else 0,
+            "artifact_hash_binding_count": 48 if artifact_approved else 0,
             "clinical_artifact_approval_gate": "pass" if artifact_approved else "block",
         }),
         encoding="utf-8",
@@ -96,17 +96,15 @@ def run_audit(
             "resolved_local_profile_element_count": 54 if projection_ready else 49,
             "declared_derived_rule_count": 1,
             "blocked_target_alternative_count": 0 if projection_ready else 5,
-            "semantic_profile_gap_alternative_count": 0 if projection_ready else 12,
-            "semantic_profile_gap_fact_count": 0 if projection_ready else 8,
+            "semantic_profile_gap_alternative_count": 0 if projection_ready else 5,
+            "semantic_profile_gap_fact_count": 0 if projection_ready else 4,
             "semantic_profile_gap_fact_ids": [] if projection_ready else [
-                "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-020",
-                "CM-BC-021", "CM-BC-022", "CM-BC-025", "CM-BC-035"
+                "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-035"
             ],
             "unit_policy_pending_alternative_count": 0 if projection_ready else 3,
-            "blocked_projection_fact_count": 0 if projection_ready else 13,
+            "blocked_projection_fact_count": 0 if projection_ready else 9,
             "blocked_projection_fact_ids": [] if projection_ready else [
-                "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-020",
-                "CM-BC-021", "CM-BC-022", "CM-BC-024", "CM-BC-025",
+                "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-024",
                 "CM-BC-032", "CM-BC-034", "CM-BC-035", "CM-BC-037",
                 "CM-BC-038"
             ],
@@ -144,19 +142,19 @@ def run_audit(
     inventory_report = {
         "gate_scope": "exact-complete-fhir-resource-inventory-and-ig-manifest",
         "resource_inventory_gate": "pass",
-        "resource_count": 262,
-        "publication_definition_count": 225,
-        "synthetic_example_count": 37,
-        "canonical_resource_count": 223,
+        "resource_count": 264,
+        "publication_definition_count": 226,
+        "synthetic_example_count": 38,
+        "canonical_resource_count": 224,
         "manual_json_resource_count": 103,
-        "generated_fsh_resource_count": 159,
+        "generated_fsh_resource_count": 161,
         "measure_count": 20,
         "canonical_version_policy_count": 4,
         "approved_canonical_version_policy_count": 0,
         "canonical_version_policy_group_counts": {
             "CV-PACKAGE-EXPLICIT": 24,
             "CV-CQL-LIBRARY": 1,
-            "CV-PACKAGE-CONTEXT": 97,
+            "CV-PACKAGE-CONTEXT": 98,
             "CV-TCR-MANUAL": 101,
         },
         "canonical_version_policy_states": {
@@ -174,31 +172,31 @@ def run_audit(
     reference_report = {
         "gate_scope": "complete-local-fhir-reference-and-canonical-graph",
         "reference_graph_integrity_gate": "pass",
-        "resource_count": 262,
-        "local_url_link_occurrence_count": 662,
+        "resource_count": 264,
+        "local_url_link_occurrence_count": 669,
         "local_url_link_counts": {
-            "bundle-fullUrl": 19,
-            "canonical-field": 233,
+            "bundle-fullUrl": 20,
+            "canonical-field": 239,
             "code-system-use": 153,
             "conceptmap-code-system-use": 2,
             "extension-use-url": 240,
             "fixed-extension-url": 13,
             "naming-system-use": 2,
         },
-        "unique_local_url_target_count": 198,
-        "canonical_reference_occurrence_count": 269,
-        "local_canonical_reference_occurrence_count": 233,
-        "external_canonical_reference_occurrence_count": 36,
-        "unique_external_canonical_count": 18,
+        "unique_local_url_target_count": 200,
+        "canonical_reference_occurrence_count": 276,
+        "local_canonical_reference_occurrence_count": 239,
+        "external_canonical_reference_occurrence_count": 37,
+        "unique_external_canonical_count": 19,
         "external_canonical_authority_counts": {
-            "fhir-r4-core-4.0.1": 34,
+            "fhir-r4-core-4.0.1": 35,
             "tw-core-1.0.0": 2,
         },
         "versioned_canonical_reference_occurrence_count": 0,
-        "fhir_reference_occurrence_count": 330,
-        "manifest_reference_occurrence_count": 261,
-        "non_manifest_reference_occurrence_count": 69,
-        "total_audited_reference_edge_count": 1028,
+        "fhir_reference_occurrence_count": 336,
+        "manifest_reference_occurrence_count": 263,
+        "non_manifest_reference_occurrence_count": 73,
+        "total_audited_reference_edge_count": 1042,
     }
     reference_report.update(reference_overrides or {})
     reference_graph_audit.write_text(
@@ -268,28 +266,27 @@ def run_audit(
         encoding="utf-8",
     )
     criterion_resolution_audit = tmp_path / "criterion-resolution-audit.json"
-    approved_resolution_count = 18 if criterion_resolution_approved else 0
+    approved_resolution_count = 15 if criterion_resolution_approved else 0
     criterion_resolution_audit.write_text(
         json.dumps({
             "gate_scope": "all-current-non-aligned-criterion-resolution-decisions",
-            "decision_count": 18,
-            "decision_group_count": 13,
+            "decision_count": 15,
+            "decision_group_count": 10,
             "issue_class_counts": {
-                "candidate-not-approved": 1,
+                "candidate-not-approved": 3,
                 "conditional-data-contract": 2,
                 "definition-contradiction": 1,
-                "fhir-resource-semantic-mismatch": 5,
                 "implemented-variant-unresolved": 3,
                 "known-not-enforced": 2,
                 "task-layer-only": 4,
             },
             "approved_decision_count": approved_resolution_count,
-            "pending_decision_count": 18 - approved_resolution_count,
+            "pending_decision_count": 15 - approved_resolution_count,
             "current_non_aligned_decision_count": (
-                0 if criterion_resolution_approved else 18
+                0 if criterion_resolution_approved else 15
             ),
             "production_allowed_decision_count": (
-                18 if criterion_resolution_approved else 0
+                15 if criterion_resolution_approved else 0
             ),
             "decision_register_integrity_gate": "pass",
             "criterion_resolution_gate": (
@@ -375,7 +372,7 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["scope_decision_count"] == 10
     assert report["approved_scope_decision_count"] == 0
     assert report["normative_scope_readiness"] == "block"
-    assert report["artifact_conformance_count"] == 47
+    assert report["artifact_conformance_count"] == 48
     assert report["approved_artifact_count"] == 0
     assert report["artifact_hash_binding_count"] == 0
     assert report["clinical_artifact_approval_gate"] == "block"
@@ -383,17 +380,15 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["mapping_target_alternative_count"] == 55
     assert report["resolved_local_profile_element_count"] == 49
     assert report["blocked_target_alternative_count"] == 5
-    assert report["semantic_profile_gap_alternative_count"] == 12
-    assert report["semantic_profile_gap_fact_count"] == 8
+    assert report["semantic_profile_gap_alternative_count"] == 5
+    assert report["semantic_profile_gap_fact_count"] == 4
     assert report["semantic_profile_gap_fact_ids"] == [
-        "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-020",
-        "CM-BC-021", "CM-BC-022", "CM-BC-025", "CM-BC-035"
+        "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-035"
     ]
     assert report["unit_policy_pending_alternative_count"] == 3
-    assert report["blocked_projection_fact_count"] == 13
+    assert report["blocked_projection_fact_count"] == 9
     assert report["blocked_projection_fact_ids"] == [
-        "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-020",
-        "CM-BC-021", "CM-BC-022", "CM-BC-024", "CM-BC-025",
+        "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-024",
         "CM-BC-032", "CM-BC-034", "CM-BC-035", "CM-BC-037", "CM-BC-038"
     ]
     assert report["projection_readiness_gate"] == "block"
@@ -403,10 +398,10 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["clinical_value_set_approval_count"] == 19
     assert report["approved_clinical_value_set_count"] == 0
     assert report["clinical_terminology_gate"] == "block"
-    assert report["fhir_resource_count"] == 262
-    assert report["publication_definition_count"] == 225
-    assert report["synthetic_example_count"] == 37
-    assert report["canonical_resource_count"] == 223
+    assert report["fhir_resource_count"] == 264
+    assert report["publication_definition_count"] == 226
+    assert report["synthetic_example_count"] == 38
+    assert report["canonical_resource_count"] == 224
     assert report["canonical_version_policy_count"] == 4
     assert report["approved_canonical_version_policy_count"] == 0
     assert report["canonical_version_policy_group_counts"]["CV-TCR-MANUAL"] == 101
@@ -416,10 +411,10 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["manual_canonical_versions"] == ["4.0.1"]
     assert report["business_version_provenance_gate"] == "block"
     assert report["reference_graph_integrity_gate"] == "pass"
-    assert report["total_audited_reference_edge_count"] == 1028
-    assert report["local_url_link_occurrence_count"] == 662
-    assert report["fhir_reference_occurrence_count"] == 330
-    assert report["external_canonical_reference_occurrence_count"] == 36
+    assert report["total_audited_reference_edge_count"] == 1042
+    assert report["local_url_link_occurrence_count"] == 669
+    assert report["fhir_reference_occurrence_count"] == 336
+    assert report["external_canonical_reference_occurrence_count"] == 37
     assert report["source_fact_count"] == 52
     assert report["measure_expression_count"] == 46
     assert report["measure_expression_occurrence_count"] == 62
@@ -433,9 +428,9 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["source_acquisition_work_package_count"] == 8
     assert report["confirmed_source_owner_assignment_count"] == 0
     assert report["source_owner_assignment_gate"] == "block"
-    assert report["criterion_resolution_decision_count"] == 18
+    assert report["criterion_resolution_decision_count"] == 15
     assert report["approved_criterion_resolution_decision_count"] == 0
-    assert report["non_aligned_criterion_resolution_decision_count"] == 18
+    assert report["non_aligned_criterion_resolution_decision_count"] == 15
     assert report["production_allowed_criterion_resolution_decision_count"] == 0
     assert report["criterion_resolution_gate"] == "block"
     assert report["repository_phi_pattern_scan_gate"] == "pass"
@@ -511,7 +506,7 @@ def test_fhir_resource_inventory_count_cannot_be_reduced(tmp_path):
     )
     assert completed.returncode == 2
     assert report is None
-    assert "resource_count must be 262" in completed.stderr
+    assert "resource_count must be 264" in completed.stderr
 
 
 def test_mapping_projection_gate_cannot_hide_blocked_profile_paths(tmp_path):
@@ -554,11 +549,11 @@ def test_mapping_projection_gate_cannot_hide_semantic_profile_gap(tmp_path):
 
 def test_reference_graph_count_cannot_be_reduced(tmp_path):
     completed, report = run_audit(
-        tmp_path, reference_overrides={"total_audited_reference_edge_count": 1027}
+        tmp_path, reference_overrides={"total_audited_reference_edge_count": 1041}
     )
     assert completed.returncode == 2
     assert report is None
-    assert "total_audited_reference_edge_count must be 1028" in completed.stderr
+    assert "total_audited_reference_edge_count must be 1042" in completed.stderr
 
 
 def test_measure_summary_cannot_fake_source_independent_or_golden_evidence(tmp_path):

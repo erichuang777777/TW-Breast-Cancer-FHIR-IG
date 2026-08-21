@@ -208,6 +208,22 @@ define function "Interval From Performed"(Performed Choice<FHIR.dateTime, FHIR.P
     else null
   end
 
+// MedicationRequest is an order and never proves delivery. MedicationAdministration
+// is the R4 event resource. completed proves a completed event; in-progress and
+// stopped prove that administration started. not-done and entered-in-error never
+// count as delivered treatment. The exact clinical status policy remains subject
+// to terminology/source-contract review, but order status is intentionally absent.
+define function "Administration Indicates Delivery"(Administration MedicationAdministration):
+  Administration.status in { 'in-progress', 'completed', 'stopped' }
+
+define function "Interval From Administration"(Effective Choice<FHIR.dateTime, FHIR.Period>):
+  case
+    when Effective is FHIR.Period then FHIRHelpers.ToInterval(Effective as FHIR.Period)
+    when Effective is FHIR.dateTime then
+      Interval[FHIRHelpers.ToDateTime(Effective as FHIR.dateTime), FHIRHelpers.ToDateTime(Effective as FHIR.dateTime)]
+    else null
+  end
+
 define "Completed Breast Surgery":
   [Procedure: "Breast Surgery"] Operation
     where Operation.status = 'completed'
@@ -216,11 +232,11 @@ define "Earliest Breast Surgery Date":
   Min("Completed Breast Surgery" Operation return date from start of "Interval From Performed"(Operation.performed))
 
 define "Systemic Therapy Start Dates":
-  ([MedicationRequest: "Hormone Therapy"]
-    union [MedicationRequest: "Cytotoxic Chemotherapy"]
-    union [MedicationRequest: "Anti HER2 Therapy"]) Request
-    where Request.status in { 'active', 'completed' }
-    return date from Request.authoredOn
+  ([MedicationAdministration: "Hormone Therapy"]
+    union [MedicationAdministration: "Cytotoxic Chemotherapy"]
+    union [MedicationAdministration: "Anti HER2 Therapy"]) Administration
+    where "Administration Indicates Delivery"(Administration)
+    return date from start of "Interval From Administration"(Administration.effective)
 
 define "Earliest Systemic Therapy Date":
   Min("Systemic Therapy Start Dates")
@@ -258,8 +274,8 @@ define "Denominator 1 Exclusion":
 
 // N1-HT
 define "Numerator 1":
-  exists ([MedicationRequest: "Hormone Therapy"] Request
-    where Request.status in { 'active', 'completed' })
+  exists ([MedicationAdministration: "Hormone Therapy"] Administration
+    where "Administration Indicates Delivery"(Administration))
 
 // ==========================================================================
 // bc-qi-02  哨兵淋巴結取樣術
@@ -352,8 +368,8 @@ define "Denominator 4 Exclusion":
 
 // N4-ANTIHER2: neoadjuvant and adjuvant administration both count.
 define "Numerator 4":
-  exists ([MedicationRequest: "Anti HER2 Therapy"] Request
-    where Request.status in { 'active', 'completed' })
+  exists ([MedicationAdministration: "Anti HER2 Therapy"] Administration
+    where "Administration Indicates Delivery"(Administration))
 
 // ==========================================================================
 // bc-qi-05  手術前組織學確診
@@ -631,8 +647,8 @@ define "Any Curative Treatment Resource":
 define "Died Before Curative Treatment":
   "Patient Is Deceased"
     and not exists "Any Curative Treatment Resource"
-    and not exists ([MedicationRequest] Request
-      where Request.status in { 'active', 'completed' })
+    and not exists ([MedicationAdministration] Administration
+      where "Administration Indicates Delivery"(Administration))
 
 // ==========================================================================
 // bc-qr-01  留院治療率

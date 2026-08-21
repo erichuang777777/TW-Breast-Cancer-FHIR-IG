@@ -36,7 +36,8 @@ def test_bc_qi_01_cases_are_explicitly_synthetic_and_have_unique_patients():
 
 
 def test_bc_qi_01_expected_cases_cover_the_population_boundaries():
-    expected = {case["id"]: case["expected"] for case in load(CASES)}
+    cases = {case["id"]: case for case in load(CASES)}
+    expected = {case_id: case["expected"] for case_id, case in cases.items()}
     assert expected["eligible-treated"] == {
         "Initial Population": True,
         "Denominator 1": True,
@@ -48,6 +49,19 @@ def test_bc_qi_01_expected_cases_cover_the_population_boundaries():
     assert expected["missing-er-excluded"]["Denominator 1 Exclusion"] is True
     assert expected["stage-iv-not-denominator"]["Denominator 1"] is False
     assert expected["stage-iv-not-denominator"]["Denominator 1 Exclusion"] is True
+
+    treated_types = {
+        entry["resource"]["resourceType"]
+        for entry in cases["eligible-treated"]["bundle"]["entry"]
+    }
+    untreated_types = {
+        entry["resource"]["resourceType"]
+        for entry in cases["eligible-untreated"]["bundle"]["entry"]
+    }
+    assert "MedicationAdministration" in treated_types
+    assert "MedicationRequest" not in treated_types
+    assert "MedicationRequest" in untreated_types
+    assert "MedicationAdministration" not in untreated_types
 
 
 def test_test_only_terminology_cannot_be_mistaken_for_published_codes():

@@ -96,6 +96,7 @@ Measure,bc-qr-16,publication-definition,generated-fsh
 Measure,bc-qr-17,publication-definition,generated-fsh
 Measure,bc-qr-18,publication-definition,generated-fsh
 MeasureReport,breast-cancer-case-management-report-example,synthetic-example,generated-fsh
+MedicationAdministration,breast-cancer-medication-administration-example,synthetic-example,generated-fsh
 MedicationRequest,breast-cancer-medication-request-example,synthetic-example,generated-fsh
 NamingSystem,CancerCarePlanBundleIdentifierNamingSystem,publication-definition,generated-fsh
 NamingSystem,QBCBundleIdentifierNamingSystem,publication-definition,generated-fsh
@@ -127,6 +128,7 @@ StructureDefinition,breast-cancer-case-management-task,publication-definition,ge
 StructureDefinition,breast-cancer-common-facts-bundle,publication-definition,generated-fsh
 StructureDefinition,breast-cancer-episode-of-care,publication-definition,generated-fsh
 StructureDefinition,breast-cancer-laboratory-report,publication-definition,generated-fsh
+StructureDefinition,breast-cancer-medication-administration,publication-definition,generated-fsh
 StructureDefinition,breast-cancer-medication-request,publication-definition,generated-fsh
 StructureDefinition,breast-cancer-pathology-report,publication-definition,generated-fsh
 StructureDefinition,breast-cancer-pathology-specimen,publication-definition,generated-fsh

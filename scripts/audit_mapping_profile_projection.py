@@ -27,9 +27,9 @@ EXPECTED_MAPPING_IDS = {f"CM-BC-{number:03d}" for number in range(1, 26)} | {
 }
 PROFILE_OVERRIDES = {
     ("CM-BC-025", "Procedure"): "breast-cancer-treatment-procedure",
-    ("CM-BC-025", "MedicationRequest"): "breast-cancer-medication-request",
+    ("CM-BC-025", "MedicationAdministration"): "breast-cancer-medication-administration",
     ("CM-BC-035", "Procedure"): "breast-cancer-treatment-procedure",
-    ("CM-BC-035", "MedicationRequest"): "breast-cancer-medication-request",
+    ("CM-BC-035", "MedicationAdministration"): "breast-cancer-medication-administration",
 }
 KNOWN_FACT_COVERAGE_GAPS = {
     "CM-BC-035": (
@@ -71,38 +71,10 @@ KNOWN_SEMANTIC_PROFILE_GAPS = {
         "dedicated diagnostic Procedure Profile or an explicitly reviewed broader "
         "Procedure contract is required."
     ),
-    ("CM-BC-020", "MedicationRequest.medicationCodeableConcept"): (
-        "The measure requires therapy given, but MedicationRequest represents an "
-        "order/request and cannot prove medication administration."
-    ),
-    ("CM-BC-020", "MedicationRequest.authoredOn"): (
-        "MedicationRequest.authoredOn is the prescription authoring time, not the "
-        "actual therapy start or administration time required by the measure."
-    ),
-    ("CM-BC-021", "MedicationRequest.medicationCodeableConcept"): (
-        "The first-treatment rule requires therapy delivered, but "
-        "MedicationRequest represents an order/request and cannot prove medication "
-        "administration."
-    ),
-    ("CM-BC-021", "MedicationRequest.authoredOn"): (
-        "MedicationRequest.authoredOn is the prescription authoring time, not the "
-        "actual therapy start or administration time required by the measure."
-    ),
-    ("CM-BC-022", "MedicationRequest.medicationCodeableConcept"): (
-        "The measure requires anti-HER2 therapy given, but MedicationRequest "
-        "represents an order/request and cannot prove medication administration."
-    ),
-    ("CM-BC-022", "MedicationRequest.authoredOn"): (
-        "MedicationRequest.authoredOn is the prescription authoring time, not the "
-        "actual therapy start or administration time required by the measure."
-    ),
-    ("CM-BC-025", "MedicationRequest.performer"): (
-        "MedicationRequest.performer is the intended performer of administration, "
-        "not evidence of the organisation that actually performed treatment."
-    ),
-    ("CM-BC-035", "MedicationRequest.status"): (
-        "MedicationRequest.status is the state of an order, not proof that "
-        "curative-intent treatment actually started, finished, or stopped."
+    ("CM-BC-035", "MedicationAdministration.status"): (
+        "MedicationAdministration.status establishes event state but does not by "
+        "itself establish curative intent or course-level completion; an approved "
+        "treatment-plan/course linkage rule is required."
     ),
 }
 CHOICE_PATHS = (
@@ -113,6 +85,9 @@ CHOICE_PATHS = (
     (re.compile(r"^Procedure\.performedPeriod(?:\.(start|end))?$"), "Procedure.performed[x]", "Period", True),
     (re.compile(r"^DiagnosticReport\.effectiveDateTime$"), "DiagnosticReport.effective[x]", "dateTime", False),
     (re.compile(r"^MedicationRequest\.medicationCodeableConcept$"), "MedicationRequest.medication[x]", "CodeableConcept", False),
+    (re.compile(r"^MedicationAdministration\.medicationCodeableConcept$"), "MedicationAdministration.medication[x]", "CodeableConcept", False),
+    (re.compile(r"^MedicationAdministration\.effectiveDateTime$"), "MedicationAdministration.effective[x]", "dateTime", False),
+    (re.compile(r"^MedicationAdministration\.effectivePeriod(?:\.(start|end))?$"), "MedicationAdministration.effective[x]", "Period", True),
     (re.compile(r"^Patient\.deceasedDateTime$"), "Patient.deceased[x]", "dateTime", False),
 )
 DATATYPE_CHILDREN = {"Period": {"start", "end"}}
@@ -159,8 +134,8 @@ def load_snapshots(directory: Path) -> dict[str, dict[str, object]]:
             raise ValueError(f"{path}: duplicate local profile id or name")
         profiles[profile_id] = resource
         names.add(name)
-    if len(profiles) != 47:
-        raise ValueError(f"{directory}: expected exact 47 local Publisher snapshots")
+    if len(profiles) != 48:
+        raise ValueError(f"{directory}: expected exact 48 local Publisher snapshots")
     return profiles
 
 
@@ -442,16 +417,13 @@ def audit(
     if (
         len(resolved_rows) != 49 or len(derived) != 1 or len(blocked_rows) != 5
         or len(unit_rows) != 3
-        or len(semantic_gap_rows) != 12
+        or len(semantic_gap_rows) != 5
         or semantic_gap_facts != [
-            "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-020",
-            "CM-BC-021", "CM-BC-022", "CM-BC-025", "CM-BC-035"
+            "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-035"
         ]
         or blocked_facts != [
-            "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-020",
-            "CM-BC-021", "CM-BC-022", "CM-BC-024", "CM-BC-025",
-            "CM-BC-032", "CM-BC-034", "CM-BC-035", "CM-BC-037",
-            "CM-BC-038"
+            "CM-BC-006", "CM-BC-007", "CM-BC-018", "CM-BC-024",
+            "CM-BC-032", "CM-BC-034", "CM-BC-035", "CM-BC-037", "CM-BC-038"
         ]
     ):
         raise ValueError("projection classification drift requires explicit review")

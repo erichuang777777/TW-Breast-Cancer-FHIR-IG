@@ -108,12 +108,12 @@ def audit(
     resource_dirs: list[Path],
 ) -> dict[str, object]:
     rows = read_csv(register_path)
-    if len(rows) != 47 or len({row["artifact_id"] for row in rows}) != 47:
-        raise ValueError(f"{register_path}: expected exactly 47 unique artifacts")
-    if len({row["artifact_name"] for row in rows}) != 47:
+    if len(rows) != 48 or len({row["artifact_id"] for row in rows}) != 48:
+        raise ValueError(f"{register_path}: expected exactly 48 unique artifacts")
+    if len({row["artifact_name"] for row in rows}) != 48:
         raise ValueError(f"{register_path}: artifact_name must be unique")
-    if sum(row["artifact_kind"] == "profile" for row in rows) != 34:
-        raise ValueError(f"{register_path}: expected exactly 34 profiles")
+    if sum(row["artifact_kind"] == "profile" for row in rows) != 35:
+        raise ValueError(f"{register_path}: expected exactly 35 profiles")
     if sum(row["artifact_kind"] == "extension" for row in rows) != 13:
         raise ValueError(f"{register_path}: expected exactly 13 extensions")
 

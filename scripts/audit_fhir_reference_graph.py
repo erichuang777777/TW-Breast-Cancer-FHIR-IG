@@ -34,8 +34,8 @@ CANONICAL_FIELDS = {
     "valueSet": "ValueSet",
 }
 EXPECTED_LOCAL_LINK_COUNTS = {
-    "bundle-fullUrl": 19,
-    "canonical-field": 233,
+    "bundle-fullUrl": 20,
+    "canonical-field": 239,
     "code-system-use": 153,
     "conceptmap-code-system-use": 2,
     "extension-use-url": 240,
@@ -50,6 +50,7 @@ EXPECTED_EXTERNAL_CANONICALS = {
     "http://hl7.org/fhir/StructureDefinition/EpisodeOfCare",
     "http://hl7.org/fhir/StructureDefinition/Extension",
     "http://hl7.org/fhir/StructureDefinition/MeasureReport",
+    "http://hl7.org/fhir/StructureDefinition/MedicationAdministration",
     "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
     "http://hl7.org/fhir/StructureDefinition/Observation",
     "http://hl7.org/fhir/StructureDefinition/Patient",
@@ -78,18 +79,18 @@ class GraphExpectations:
 
 
 PRODUCTION_EXPECTATIONS = GraphExpectations(
-    resource_count=262,
+    resource_count=264,
     local_link_counts=EXPECTED_LOCAL_LINK_COUNTS,
-    unique_local_target_count=198,
-    external_canonical_occurrence_count=36,
+    unique_local_target_count=200,
+    external_canonical_occurrence_count=37,
     external_canonicals=frozenset(EXPECTED_EXTERNAL_CANONICALS),
     external_authority_counts={
-        "fhir-r4-core-4.0.1": 34,
+        "fhir-r4-core-4.0.1": 35,
         "tw-core-1.0.0": 2,
     },
     versioned_canonical_reference_count=0,
-    fhir_reference_count=330,
-    manifest_reference_count=261,
+    fhir_reference_count=336,
+    manifest_reference_count=263,
 )
 
 

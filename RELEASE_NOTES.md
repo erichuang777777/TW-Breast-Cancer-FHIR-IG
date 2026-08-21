@@ -16,7 +16,7 @@
 
 ## 驗證狀態（2026-08-21）
 
-- pytest：346 passed（新增 68-criterion 實作差異表、12 項非對齊 criterion 決策鎖定、專屬 Task profile 與跨 Patient Task 反例、52-fact P0/P1/P2 取得優先級及 8 個 owner 工作包鎖定，並包含 OID assignment、TCR 術語 backlog、完整 262-resource manifest、1028-edge reference graph、52-fact 原始來源與 20-Measure 真實資料證據 gate、四組 canonical version policy、逐 Measure、47 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性、全 IG scope claims／決策、template supply-chain 與八項 release-control 證據一致性檢查）。
+- pytest：423 passed（涵蓋 68-criterion 實作差異表、15 項非對齊 criterion 決策鎖定、MedicationAdministration order-only 反例、52-fact P0/P1/P2 取得優先級及 8 個 owner 工作包、完整 264-resource manifest、1042-edge reference graph、222-element constraint baseline、48 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性）。
 - SUSHI 3.20.0：0 errors、0 warnings。
 - PHI gate：pass。
 - CQL translation：pass；runtime smoke：20/20 Measures、46/46 expressions；底層 criteria crosscheck：68/68；目前具預期值的合成分支 assertions：20/20 Measures。
@@ -26,12 +26,12 @@
 - Strict release：blocked；仍要求 0 warnings、完整 warning disposition 與其餘正式發布控制通過；模板安全阻擋已解除，但不取代原始資料、術語、golden cohort 與治理證據。
 - 完整 formal release gate 與 Publisher QA gate 已分離；目前只有 2/8 controls 通過，warnings 歸零也不能繞過 source mapping、terminology、獨立重算、golden cohort 與簽核。
 - 新增 20/20 Measure 規格決策登錄；RC-07 現在同時要求完整 QBC 14-Gate、完整 Measure 20-approval、有效簽署證據及 `draft_definition_alignment=approved`，避免刪除待辦或簽署未解決規格而誤過正式發布。
-- criterion resolution register 經 FHIR R4 資源語意複核後擴為 18/18 非完全對齊 criterion、13 個決策包，目前 0/18 核准。新增六項涵蓋 MedicationRequest 醫囑／實際給藥混用、`authoredOn`／治療開始混用、死亡前治療判斷與未執行的轉院無治療條件。CI 會拒絕基線問題被改寫、新增但未納管的缺口、pending 列夾帶決定、缺簽署雜湊及 QI-06 三列互相矛盾的決策；RC-07 同時要求 18/18 簽署、live non-aligned 歸零與 18/18 production disposition allowed，不能只靠簽名繞過未完成實作。
+- criterion resolution register 現為 15/15 非完全對齊 criterion、10 個決策包，目前 0/15 核准。N1-HT、D2-SURGERY-FIRST、N4-ANTIHER2 已改用實際 MedicationAdministration 並加入 order-only 負向案例；X1-STAGING-DEATH 與 X3-STAGING 仍因 curative-intent／course linkage 未核准而保持 candidate。CI 會拒絕基線問題被改寫、新增但未納管的缺口、pending 列夾帶決定、缺簽署雜湊及 QI-06 三列互相矛盾的決策；RC-07 同時要求 15/15 簽署、live non-aligned 歸零與 15/15 production disposition allowed，不能只靠簽名繞過未完成實作。
 - 新增 10/10 whole-IG scope 角色決策登錄；目前 0/10 簽核。RC-08 現在鎖定 3 normative、6 informative、1 excluded，並要求 normative Task 達 `formal-release-ready`，避免單一 Task 或 operational approval 被擴張成整份 IG 可正式發布。
-- StructureDefinition conformance register 現為 47/47（34 Profile、13 Extension，包含 4 個非 FSH 的 TCR extension）；新增專屬 `BreastCancerCaseManagementTask` 與合成範例，逐列驗證 parent、type、kind、draft/experimental 及使用證據。技術證據 47/47 pass，人工規格核准 0/47；RC-07 要求全部具名簽核。
+- StructureDefinition conformance register 現為 48/48（35 Profile、13 Extension，包含 4 個非 FSH 的 TCR extension）；新增專屬 `BreastCancerMedicationAdministration` 與合成範例，逐列驗證 parent、type、kind、draft/experimental 及使用證據。技術證據 48/48 pass，人工規格核准 0/48；RC-07 要求全部具名簽核。
 - 新增完整 terminology conformance audit：鎖定 152 個 artifact（60 CodeSystem、90 ValueSet、2 ConceptMap）並驗證 canonical、內容、參照與 CQL 使用狀態。完整清冊技術檢查通過；19 個個管臨床 ValueSet 仍為空、核准 0/19（18 個被 CQL 引用、1 個 defined-not-referenced），因此 RC-03 維持 blocked。
-- 精確 FHIR resource inventory 與 IG manifest graph audit 現為 262 rows：225 definitions、37 synthetic examples、223 canonical resources，來源為 159 FSH-generated＋103 manual JSON；261 個 IG resource references 必須逐項解析。完整 canonical version policy register 將 223 項分為 24 package-explicit、1 CQL、97 package-context pending、101 手寫 TCR version collision；四組政策均須具名簽核，目前 0/4，因此 RC-08 保持 blocked。
-- 完整 FHIR reference graph audit 現精確鎖定 1028 個 edges（662 local URL、330 FHIR Reference、36 external canonical），驗證 198 個唯一 local targets 的解析與型別、19 個 Bundle fullUrl identity、18 個外部 canonical allowlist，以及 FHIR R4 `4.0.1`／TW Core `1.0.0` dependency pin。任何新增未審外部 canonical、斷裂 reference 或目標型別漂移均阻擋 RC-02。
+- 精確 FHIR resource inventory 與 IG manifest graph audit 現為 264 rows：226 definitions、38 synthetic examples、224 canonical resources，來源為 161 FSH-generated＋103 manual JSON；263 個 IG resource references 必須逐項解析。完整 canonical version policy register 將 224 項分為 24 package-explicit、1 CQL、98 package-context pending、101 手寫 TCR version collision；四組政策均須具名簽核，目前 0/4，因此 RC-08 保持 blocked。
+- 完整 FHIR reference graph audit 現精確鎖定 1042 個 edges（669 local URL、336 FHIR Reference、37 external canonical），驗證 200 個唯一 local targets 的解析與型別、20 個 Bundle fullUrl identity、19 個外部 canonical allowlist，以及 FHIR R4 `4.0.1`／TW Core `1.0.0` dependency pin。任何新增未審外部 canonical、斷裂 reference 或目標型別漂移均阻擋 RC-02。
 - 新增原始資料與真實數據證據 gate：`source-traceability-register.csv` 精確鎖定 52 個品管／季報 fact，目前骨架 52/52、權威來源核准 0/52；`measure-validation-evidence-register.csv` 精確鎖定 20 個 Measure，目前獨立重算 0/20、完整期別 golden cohort 0/20。CI 明確拒絕以 secondary report 取代原始來源，亦拒絕缺 hash、reviewer、逐案比較數或零差異證據的自稱核准。
 - 新增 52-fact 原始資料取得工作包：8 個 owner domain、5 個批次，先處理 10 個直接結果阻擋項，再處理 31 個 cohort/rate facts；目前具名 owner 0/52。RC-01 同時要求 52/52 權威來源與 52/52 accountable owner，並拒絕沒有姓名、組織／職稱、日期、證據 URI 與簽署 SHA-256 的形式確認。
 - 修正 criteria dependency graph：補入乳癌診斷、報告期間、個管師歸屬、放療執行院所、PR／HER2／組織型／T1mi 間接依賴，以及分期、拒絕／中斷／回治、失聯與委員會 add-back 等人工判定；68 個 criteria 參照的 fact 由 37 修正為 45。

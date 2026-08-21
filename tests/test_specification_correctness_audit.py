@@ -94,5 +94,5 @@ def test_human_readable_audit_states_the_two_distinct_thresholds():
     assert "總共要八種控制" in text
     assert "Measure 規格具名核准完成：0/20" in text
     assert "可供院內臨床／品管正式發布：0/20" in text
-    assert "12 種 resource type／19 個 supportedProfile" in text
+    assert "13 種 resource type／20 個 supportedProfile" in text
     assert "空集合、缺列、多列、重複、profile type 不符" in text

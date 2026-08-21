@@ -16,7 +16,7 @@
 
 個管品管／季報的共同資料 mapping 另以 34 個 canonical facts 為單位，目前拆成 55 個 FHIR target alternatives。Publisher snapshot 稽核確認 49 個 alternatives 可解析到本 IG 的確切 Profile／ElementDefinition，1 個是由 ER、PR、HER2 IHC、HER2 ISH 與 Ki-67 五項輸入組成的 derived rule；其餘 5 個 alternatives 仍無完整 Profile／element。受影響 facts 是放療總劑量、組織型態、轉院組織關係、放療療程狀態覆蓋與最後接觸時間。
 
-路徑可解析的 49 列中另發現 12 個 semantic Profile gaps，影響 8 個 facts：pN／pT 誤用 stage-group shell；診斷性 core biopsy 誤用 treatment Procedure shell；賀爾蒙、化療及 anti-HER2 治療以 `MedicationRequest` 醫囑冒充實際給藥，並把 `authoredOn` 開立時間當治療開始時間；`MedicationRequest.performer` 只能表示預期執行者；`MedicationRequest.status` 只能表示醫囑狀態。另有 prior-year new-diagnosis cohort 只映射 episode start，缺少 episode-scoped new-diagnosis discriminator。合併結構、語意與 coverage 缺口後共有 13 個 blocked projection facts。另有 3 個百分比 Quantity 已解析到 `Observation.value[x]`，但 `%` 單位仍待來源契約與臨床核准。
+路徑可解析的 49 列中另有 5 個 semantic Profile gaps，影響 4 個 facts：`CM-BC-006／007` 的 pN／pT 誤用 stage-group shell；`CM-BC-018` 的診斷性 core biopsy 誤用 treatment Procedure shell；`CM-BC-035` 雖已改用實際 `Procedure`／`MedicationAdministration` 事件，但 event status 本身仍不能證明 curative intent 或 course-level treatment semantics。賀爾蒙、化療及 anti-HER2 治療已改由 `MedicationAdministration.medication[x]` 與 `effective[x]` 表示；`MedicationRequest` 僅保留醫囑，不能滿足實際治療條件。另有 prior-year new-diagnosis cohort 只映射 episode start，缺少 episode-scoped new-diagnosis discriminator。合併結構、語意與 coverage 缺口後共有 9 個 blocked projection facts。另有 3 個百分比 Quantity 已解析到 `Observation.value[x]`，但 `%` 單位仍待來源契約與臨床核准。
 
 因此本階段的 mapping 完成標準不是「有填 target path」，而是每個 alternative 都具備可解析且語意適配的 Profile canonical、ElementDefinition id/path、choice datatype／slice／unit 規則與阻擋狀態。正式門檻為 55/55 exact projection、unresolved path 0、semantic Profile gap 0、unit-policy-pending 0、blocked fact 0；即使達成，仍須另外完成原始 table/column 或 API path、19 維來源契約、Provenance 與逐案驗證。
 

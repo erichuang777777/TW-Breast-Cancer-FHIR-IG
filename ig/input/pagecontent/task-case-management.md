@@ -29,7 +29,7 @@
 |---|---|
 | Trigger | 季報產出，或個管師修正原始資料後重跑 |
 | Current input | 品質指標：個管師維護的季度工作表（分期、治療旗標、手術紀錄自由文字）。季報：個管系統單一匯出檔（一位個管師一檔，56 欄）加個案判定檔 |
-| Target input | 乳癌 canonical facts：`Patient`、`EpisodeOfCare`、`Condition`、分期與 marker `Observation`、`Procedure`、`MedicationRequest`、`DiagnosticReport`、`Encounter`、`Organization` |
+| Target input | 乳癌 canonical facts：`Patient`、`EpisodeOfCare`、`Condition`、分期與 marker `Observation`、`Procedure`、`MedicationRequest`（醫囑）、`MedicationAdministration`（實際給藥）、`DiagnosticReport`、`Encounter`、`Organization` |
 | FHIR representation | 11 個 proportion `Measure`、9 個 cohort `Measure`、對應 `Library`（CQL）、`MeasureReport`（summary 與 subject-list 各一） |
 | Task-only input | Class 分類、收案身份與作業處置、團隊自訂閾值、委員會排除／加回決議、個管師個案判定 |
 | Output | `MeasureReport`、逐案／逐格可反查的稽核明細、癌症委員會報告與季報工作表 |
@@ -166,7 +166,7 @@ CQL 與 Python 尚未完成 RC-05 要求的獨立逐案重算：必須涵蓋 20 
 
 | Measure | 定義原文要求 | 現行代理 | FHIR 來源 |
 |---|---|---|---|
-| `bc-qi-02` | 手術日期 < 治療開始日期 | 抗癌治療類別 ≠ 新輔助 | `Procedure.performedDateTime` 對 `MedicationRequest.authoredOn` |
+| `bc-qi-02` | 手術日期 < 治療開始日期 | 抗癌治療類別 ≠ 新輔助 | `Procedure.performed[x]` 對 `MedicationAdministration.effective[x]`；`MedicationRequest.authoredOn` 不得當作治療時間 |
 | `bc-qi-03` | 放射劑量 ≧ 4000 cGy | 完全未評估 | `RadiotherapyCourseSummary.totalDoseDelivered` |
 | `bc-qi-04` | 術後 HER-2 = 3+ 或 2+ 且 FISH 陽性 | 分子分型 ∈ {B2, H} | HER2 IHC 與 ISH `Observation` |
 | `bc-qi-05` | 手術日期 > 切片日期 | 僅檢查切片存在 | 切片與手術兩個 `Procedure.performedDateTime` |

@@ -112,6 +112,14 @@ def test_bc_qi_02_assertions_cover_eligibility_missing_and_order_boundaries():
 
     assert by_id["eligible-slnb"]["expected"]["Denominator 2"] is True
     assert by_id["eligible-slnb"]["expected"]["Numerator 2"] is True
+    eligible_resources = [
+        entry["resource"]
+        for entry in by_id["eligible-slnb"]["bundle"]["entry"]
+    ]
+    order = next(resource for resource in eligible_resources if resource["resourceType"] == "MedicationRequest")
+    administration = next(resource for resource in eligible_resources if resource["resourceType"] == "MedicationAdministration")
+    assert order["authoredOn"] < "2026-03-01"
+    assert administration["effectiveDateTime"] > "2026-03-01"
     assert by_id["eligible-without-slnb"]["expected"]["Numerator 2"] is False
     assert by_id["systemic-therapy-before-surgery"]["expected"]["Surgery Was First Treatment"] is False
     assert by_id["missing-node-category"]["expected"]["Denominator 2"] is False
@@ -165,6 +173,15 @@ def test_bc_qi_04_assertions_cover_ihc_ish_node_treatment_and_metastatic_branche
     }
     assert by_id["ihc-3-positive-treated"]["Numerator 4"] is True
     assert by_id["ihc-3-positive-untreated"]["Numerator 4"] is False
+    untreated_types = {
+        entry["resource"]["resourceType"]
+        for entry in next(
+            case for case in load(QI04_CASES)
+            if case["id"] == "ihc-3-positive-untreated"
+        )["bundle"]["entry"]
+    }
+    assert "MedicationRequest" in untreated_types
+    assert "MedicationAdministration" not in untreated_types
     assert by_id["ihc-2-ish-positive-boundary"]["HER2 ISH Positive"] is True
     assert by_id["ihc-2-ish-positive-boundary"]["Denominator 4"] is True
     assert by_id["ihc-2-without-positive-ish"]["HER2 Positive"] is False

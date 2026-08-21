@@ -88,6 +88,19 @@ Description: "Synthetic systemic-treatment request with no real drug, prescriber
 * authoredOn = "2026-01-10"
 * requester.display = "Synthetic prescriber"
 
+Instance: BreastCancerMedicationAdministrationExample
+InstanceOf: BreastCancerMedicationAdministration
+Usage: #example
+Title: "Synthetic Breast Cancer Medication Administration"
+Description: "Synthetic actual-administration event linked to a synthetic order; it contains no real drug, performer or patient data."
+* id = "breast-cancer-medication-administration-example"
+* status = #completed
+* medicationCodeableConcept.text = "Synthetic antineoplastic medication"
+* subject = Reference(BreastCancerPatientExample)
+* effectiveDateTime = "2026-01-12T09:00:00+08:00"
+* performer.actor.display = "Synthetic oncology service"
+* request = Reference(BreastCancerMedicationRequestExample)
+
 Instance: BreastCancerEpisodeOfCareExample
 InstanceOf: BreastCancerEpisodeOfCare
 Usage: #example
@@ -169,5 +182,7 @@ Description: "End-to-end synthetic scenario linking atomic source reports, reusa
 * entry[=].resource = BreastCancerTreatmentProcedureExample
 * entry[+].fullUrl = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/MedicationRequest/breast-cancer-medication-request-example"
 * entry[=].resource = BreastCancerMedicationRequestExample
+* entry[+].fullUrl = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/MedicationAdministration/breast-cancer-medication-administration-example"
+* entry[=].resource = BreastCancerMedicationAdministrationExample
 * entry[+].fullUrl = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/EpisodeOfCare/breast-cancer-episode-example"
 * entry[=].resource = BreastCancerEpisodeOfCareExample
