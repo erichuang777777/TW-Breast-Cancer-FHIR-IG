@@ -86,6 +86,8 @@ Terminology 也不能只計算 FSH 檔案或只檢查 CQL 有沒有名稱。實�
 - 1 條為尚未核准的 candidate rule：`N5-RETURN`。
 - 1 條存在 10 群／11 群的定義矛盾：`S17-HISTOLOGY`。
 
+這 12 條非完全對齊 criterion 現已逐項落入 [`criterion-resolution-decision-register.csv`](mappings/publication/criterion-resolution-decision-register.csv)，分成 8 個不可混淆的決策包。每列固定目前差異、必須回答的問題、必要產出、權責簽署人及可接受證據；目前核准 **0/12**。`audit_criterion_resolution_decisions.py` 會與 live crosscheck 比對，拒絕漏列、新增但未納管的缺口、基線問題被改寫、pending 列偷填決定、無日期／證據 URI／SHA-256 的簽核，以及 QI-06 三列互相矛盾的變體決定。RC-07 不只要求 12/12 簽署，還要求 live crosscheck 的 12 項全數不再 non-aligned 且 production disposition 全數允許；所以 Measure 層泛稱簽核或單純填滿 12 列都不能掩蓋具體缺口。
+
 另有 **22/68 criteria** 會讀取 Task 型態的行政欄位。稽核原先發現只有通用 `[Task]` query，而既有 `TCRRegistryAbstractionTask` 是癌登摘錄用途，不能冒充個管契約；現已新增 experimental 的 `BreastCancerCaseManagementTask`，約束 Patient／focus、七個 input slices、cardinality 與行政值域，CQL 也明確排除不屬於目前 Patient 的 Task。結構缺口已由合成反例驗證關閉，因此 `workflow_profile_gap_count` 為 0；但 profile 與院內值域仍待個管與 FHIR reviewer 核准，不能因此宣稱跨系統 workflow 已正式互通。
 
 ## 20 個 Measure 的目前判定
@@ -100,7 +102,7 @@ Terminology 也不能只計算 FSH 檔案或只檢查 CQL 有沒有名稱。實�
 - Measure 規格具名核准完成：0/20。
 - 可供院內臨床／品管正式發布：0/20。
 
-RC-07 要求每個 Measure 同時滿足兩件事：approval register 有 `approve`、signer、組織／職稱、ISO 日期、證據 URI 與 64 位 SHA-256；Measure audit 的 `draft_definition_alignment` 也必須是 `approved`。因此不能用空泛簽名接受仍標為 `known-incomplete`、`candidate` 或 `contradiction` 的規格。
+RC-07 要求每個 Measure approval 有 `approve`、signer、組織／職稱、ISO 日期、證據 URI 與 64 位 SHA-256，Measure audit 的 `draft_definition_alignment` 必須是 `approved`，47 個 StructureDefinition 必須全部核准，且上述 12 個 criterion resolution 必須逐項有完整證據與有效簽署。因此不能用空泛簽名接受仍標為 `known-incomplete`、`candidate` 或 `contradiction` 的規格。
 
 ### 已知會直接改變結果的特定缺口
 

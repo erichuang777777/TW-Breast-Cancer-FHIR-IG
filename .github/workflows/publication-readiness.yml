@@ -18,6 +18,7 @@ on:
       - "scripts/audit_data_correctness_evidence.py"
       - "scripts/audit_source_acquisition_priority.py"
       - "scripts/audit_criterion_implementation_crosscheck.py"
+      - "scripts/audit_criterion_resolution_decisions.py"
       - "mappings/publication/**"
       - "mappings/case-management/**"
       - "outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv"
@@ -35,6 +36,7 @@ on:
       - "scripts/audit_data_correctness_evidence.py"
       - "scripts/audit_source_acquisition_priority.py"
       - "scripts/audit_criterion_implementation_crosscheck.py"
+      - "scripts/audit_criterion_resolution_decisions.py"
       - "mappings/publication/**"
       - "mappings/case-management/**"
       - "outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv"
@@ -192,6 +194,17 @@ jobs:
             --json-out ig/output/criterion-implementation-crosscheck-audit.json \
             | tee ig/output/criterion-implementation-crosscheck-audit.log
 
+      - name: Audit resolution decisions for every non-aligned criterion
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_criterion_resolution_decisions.py \
+            --register mappings/publication/criterion-resolution-decision-register.csv \
+            --crosscheck mappings/publication/criterion-implementation-crosscheck.csv \
+            --json-out ig/output/criterion-resolution-decision-audit.json \
+            --target integrity \
+            | tee ig/output/criterion-resolution-decision-audit.log
+
       - name: Audit complete release controls
         shell: bash
         run: |
@@ -209,6 +222,7 @@ jobs:
             --resource-inventory-audit ig/output/fhir-resource-inventory-audit.json \
             --reference-graph-audit ig/output/fhir-reference-graph-audit.json \
             --data-evidence-audit ig/output/data-correctness-evidence-audit.json \
+            --criterion-resolution-audit ig/output/criterion-resolution-decision-audit.json \
             --publisher-audit ig/output/publisher-warning-audit.json \
             --json-out ig/output/release-control-audit.json \
             --target integrity \

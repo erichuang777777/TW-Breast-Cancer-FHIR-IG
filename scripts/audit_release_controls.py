@@ -162,6 +162,7 @@ def audit(
     resource_inventory_audit_path: Path,
     reference_graph_audit_path: Path,
     data_evidence_audit_path: Path,
+    criterion_resolution_audit_path: Path,
     publisher_audit_path: Path,
 ) -> dict[str, object]:
     controls = read_csv(controls_path, REQUIRED_CONTROL_COLUMNS, exact_columns=True)
@@ -504,6 +505,59 @@ def audit(
         expected = "pass" if should_pass else "block"
         if data_evidence.get(field) != expected:
             raise ValueError(f"{data_evidence_audit_path}: {field}/count mismatch")
+    criterion_resolution = json.loads(
+        criterion_resolution_audit_path.read_text(encoding="utf-8")
+    )
+    if criterion_resolution.get("gate_scope") != (
+        "all-current-non-aligned-criterion-resolution-decisions"
+    ):
+        raise ValueError(f"{criterion_resolution_audit_path}: invalid gate_scope")
+    expected_resolution_counts = {
+        "decision_count": 12,
+        "decision_group_count": 8,
+        "issue_class_counts": {
+            "candidate-not-approved": 1,
+            "conditional-data-contract": 2,
+            "definition-contradiction": 1,
+            "implemented-variant-unresolved": 3,
+            "known-not-enforced": 1,
+            "task-layer-only": 4,
+        },
+    }
+    for field, expected in expected_resolution_counts.items():
+        if criterion_resolution.get(field) != expected:
+            raise ValueError(f"{criterion_resolution_audit_path}: invalid {field}")
+    approved_resolution_count = criterion_resolution.get("approved_decision_count")
+    pending_resolution_count = criterion_resolution.get("pending_decision_count")
+    non_aligned_resolution_count = criterion_resolution.get(
+        "current_non_aligned_decision_count"
+    )
+    production_allowed_resolution_count = criterion_resolution.get(
+        "production_allowed_decision_count"
+    )
+    if (
+        not isinstance(approved_resolution_count, int)
+        or not isinstance(pending_resolution_count, int)
+        or not isinstance(non_aligned_resolution_count, int)
+        or not isinstance(production_allowed_resolution_count, int)
+        or approved_resolution_count < 0
+        or pending_resolution_count < 0
+        or approved_resolution_count + pending_resolution_count != 12
+        or not 0 <= non_aligned_resolution_count <= 12
+        or not 0 <= production_allowed_resolution_count <= 12
+    ):
+        raise ValueError(f"{criterion_resolution_audit_path}: invalid decision counts")
+    if criterion_resolution.get("decision_register_integrity_gate") != "pass":
+        raise ValueError(f"{criterion_resolution_audit_path}: integrity gate must pass")
+    expected_resolution_gate = (
+        "pass"
+        if approved_resolution_count == 12
+        and non_aligned_resolution_count == 0
+        and production_allowed_resolution_count == 12
+        else "block"
+    )
+    if criterion_resolution.get("criterion_resolution_gate") != expected_resolution_gate:
+        raise ValueError(f"{criterion_resolution_audit_path}: approval gate/count mismatch")
     publisher = json.loads(publisher_audit_path.read_text(encoding="utf-8"))
     if publisher.get("gate_scope") != "publisher-qa-only":
         raise ValueError(
@@ -559,6 +613,7 @@ def audit(
             and all(row["draft_definition_alignment"] == "approved" for row in measures)
             and all(measure_approval_complete(row) for row in measure_approvals)
             and artifact_audit["clinical_artifact_approval_gate"] == "pass"
+            and criterion_resolution["criterion_resolution_gate"] == "pass"
         ) else "blocked",
         "RC-08": "pass" if (
             len(operational) == len(OPERATIONAL_APPROVALS)
@@ -666,6 +721,13 @@ def audit(
         "approved_golden_cohort_count": data_evidence[
             "approved_golden_cohort_count"
         ],
+        "criterion_resolution_decision_count": criterion_resolution["decision_count"],
+        "approved_criterion_resolution_decision_count": approved_resolution_count,
+        "non_aligned_criterion_resolution_decision_count": non_aligned_resolution_count,
+        "production_allowed_criterion_resolution_decision_count": (
+            production_allowed_resolution_count
+        ),
+        "criterion_resolution_gate": criterion_resolution["criterion_resolution_gate"],
         "control_integrity_gate": integrity,
         "data_correctness_gate": data_gate,
         "publisher_formal_qa_gate": publisher["formal_release_gate"],
@@ -691,6 +753,7 @@ def main() -> int:
     parser.add_argument("--resource-inventory-audit", type=Path, required=True)
     parser.add_argument("--reference-graph-audit", type=Path, required=True)
     parser.add_argument("--data-evidence-audit", type=Path, required=True)
+    parser.add_argument("--criterion-resolution-audit", type=Path, required=True)
     parser.add_argument("--publisher-audit", type=Path, required=True)
     parser.add_argument("--json-out", type=Path)
     parser.add_argument(
@@ -707,6 +770,7 @@ def main() -> int:
             args.resource_inventory_audit,
             args.reference_graph_audit,
             args.data_evidence_audit,
+            args.criterion_resolution_audit,
             args.publisher_audit,
         )
     except (OSError, ValueError, csv.Error, json.JSONDecodeError) as exc:

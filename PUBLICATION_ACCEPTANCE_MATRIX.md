@@ -30,7 +30,7 @@
 
 若要由資料正確性進一步宣稱「正式發布」，還必須增加兩個 release control：具名的臨床／術語／資料治理簽核，以及隱私、資安、版本、artifact、接收端回執與跨院實作驗收。因此數字正確性是六層，正式發布合計是八項控制。逐 Measure 判定見 [FHIR IG 規格正確性稽核](SPECIFICATION_CORRECTNESS_AUDIT.md)。
 
-八項控制的宣告狀態位於 `mappings/publication/release-control-register.csv`，20 個 Measure 的逐項規格決策位於 `mappings/publication/case-management-measure-approval-register.csv`。CI 會用 `scripts/audit_release_controls.py` 從底層證據重新推導，並要求 QBC 14 個 Gate 與 Measure 20 個 approval ID 都是完整且不重複的集合；刪除待核准項目不能讓 gate 變綠。Publisher formal QA 與完整 formal release 是兩個不同 gate，前者通過不得取代後者。
+八項控制的宣告狀態位於 `mappings/publication/release-control-register.csv`，20 個 Measure 的逐項規格決策位於 `mappings/publication/case-management-measure-approval-register.csv`，12 個非完全對齊 criterion 的決策位於 `mappings/publication/criterion-resolution-decision-register.csv`。CI 會用 `scripts/audit_release_controls.py` 從底層證據重新推導，並要求 QBC 14 個 Gate、Measure 20 個 approval ID 與目前 criterion resolution 12 列都是完整且不重複的集合；刪除待核准項目不能讓 gate 變綠。Publisher formal QA 與完整 formal release 是兩個不同 gate，前者通過不得取代後者。
 
 RC-08 也要求 `ig-scope-claim-register.csv` 與 `publication-scope-decision-register.csv` 精確涵蓋同一組 10 個 claim。三個 normative scope（IG core、QBC、個管品管／季報）、六個 informative scope 與一個 excluded scope 的角色已鎖定；現況 0/10 簽核。即使 operational approvals 已簽署，只要任一 scope 尚未簽核或 normative Task 未達 `formal-release-ready`，完整 formal release 仍為 blocked。
 
@@ -63,6 +63,7 @@ RC-08 進一步要求全部 223 個 canonical resources 的 business-version pro
 - `measure-validation-evidence-register.csv` 精確鎖定 20 個 Measure。獨立重算必須保存不共用 CQL 邏輯的實作 hash、CQL hash、truth-set hash、逐案 population 比較數與零未解釋差異；golden cohort 另須保存完整期別、all-in-scope cohort 宣告、原始 extract／FHIR Bundle hash、source-fact 與人工 override 比較數。目前兩者皆為 0/20。
 - Translation、runtime smoke 與具預期值的合成分支驗證均已達 20/20 Measure、46/46 expressions；底層 68/68 criteria 另有逐條差異表。分布 Measure 另驗證全部列舉 strata、月份、年齡帶、缺值與非法值。QR-04 只證明 cohort 已載入時的條件行為，QR-05 只證明候選規則的機械行為，兩者都不構成真實資料正確性證據。
 - Measure 規格核准目前為 0/20；每一項都必須保存具名 signer、組織／職稱、決定日期、證據 URI 與被簽 artifact 的 SHA-256，且 `draft_definition_alignment` 必須明確為 `approved`。只有簽名欄位或只有綠色 CQL 測試都不足以通過 RC-07。
+- 68 條 criterion 中，56 條與目前草稿對齊；其餘 12 條已鎖定為 8 個決策包，核准目前為 0/12。每列必須回答固定問題並附實作／資料契約／真值集／逐案差異等指定證據；QI-06 三列必須引用同一個不可矛盾的簽署決定。RC-07 要求 12/12 有效簽署、live crosscheck 非對齊數為 0，且這 12 項 production disposition 允許數為 12；簽名不能覆蓋仍存在的技術缺口。
 - 每個 Measure 的測試數不以任意固定樣本數取代 coverage。最低要求是所有 truth-table branch、排除、缺值、邊界、日期邊界及多筆事件行為全部有案例。
 - Golden cohort 要鎖版並逐案核對 100%，允許的未解釋差異為 0。
 - 若要主張跨院可實作，至少需兩個彼此獨立的 source adapter／實作者完成同一套 conformance 與 golden tests；否則只能宣稱單一環境驗證。

@@ -101,6 +101,13 @@ try {
         --json-out ig\output\criterion-implementation-crosscheck-audit.json
     if ($LASTEXITCODE -ne 0) { throw "criterion implementation crosscheck failed" }
 
+    python scripts\audit_criterion_resolution_decisions.py `
+        --register mappings\publication\criterion-resolution-decision-register.csv `
+        --crosscheck mappings\publication\criterion-implementation-crosscheck.csv `
+        --json-out ig\output\criterion-resolution-decision-audit.json `
+        --target integrity
+    if ($LASTEXITCODE -ne 0) { throw "criterion resolution decision audit failed" }
+
     python scripts\audit_release_controls.py `
         --controls mappings\publication\release-control-register.csv `
         --measure-audit mappings\publication\case-management-measure-audit.csv `
@@ -114,6 +121,7 @@ try {
         --resource-inventory-audit ig\output\fhir-resource-inventory-audit.json `
         --reference-graph-audit ig\output\fhir-reference-graph-audit.json `
         --data-evidence-audit ig\output\data-correctness-evidence-audit.json `
+        --criterion-resolution-audit ig\output\criterion-resolution-decision-audit.json `
         --publisher-audit ig\output\publisher-warning-audit.json `
         --json-out ig\output\release-control-audit.json `
         --target integrity

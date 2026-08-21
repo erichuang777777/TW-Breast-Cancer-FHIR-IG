@@ -40,6 +40,7 @@ def run_audit(
     inventory_overrides: dict | None = None,
     reference_overrides: dict | None = None,
     data_evidence_overrides: dict | None = None,
+    criterion_resolution_approved: bool = False,
     target: str = "integrity",
 ):
     publisher = tmp_path / "publisher.json"
@@ -168,6 +169,36 @@ def run_audit(
     data_evidence_audit.write_text(
         json.dumps(data_evidence_report), encoding="utf-8"
     )
+    criterion_resolution_audit = tmp_path / "criterion-resolution-audit.json"
+    approved_resolution_count = 12 if criterion_resolution_approved else 0
+    criterion_resolution_audit.write_text(
+        json.dumps({
+            "gate_scope": "all-current-non-aligned-criterion-resolution-decisions",
+            "decision_count": 12,
+            "decision_group_count": 8,
+            "issue_class_counts": {
+                "candidate-not-approved": 1,
+                "conditional-data-contract": 2,
+                "definition-contradiction": 1,
+                "implemented-variant-unresolved": 3,
+                "known-not-enforced": 1,
+                "task-layer-only": 4,
+            },
+            "approved_decision_count": approved_resolution_count,
+            "pending_decision_count": 12 - approved_resolution_count,
+            "current_non_aligned_decision_count": (
+                0 if criterion_resolution_approved else 12
+            ),
+            "production_allowed_decision_count": (
+                12 if criterion_resolution_approved else 0
+            ),
+            "decision_register_integrity_gate": "pass",
+            "criterion_resolution_gate": (
+                "pass" if criterion_resolution_approved else "block"
+            ),
+        }),
+        encoding="utf-8",
+    )
     completed = subprocess.run(
         [
             sys.executable, str(SCRIPT),
@@ -183,6 +214,7 @@ def run_audit(
             "--resource-inventory-audit", str(inventory_audit),
             "--reference-graph-audit", str(reference_graph_audit),
             "--data-evidence-audit", str(data_evidence_audit),
+            "--criterion-resolution-audit", str(criterion_resolution_audit),
             "--publisher-audit", str(publisher),
             "--json-out", str(output),
             "--target", target,
@@ -240,6 +272,11 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["approved_authoritative_or_derived_fact_count"] == 0
     assert report["approved_independent_recalculation_count"] == 0
     assert report["approved_golden_cohort_count"] == 0
+    assert report["criterion_resolution_decision_count"] == 12
+    assert report["approved_criterion_resolution_decision_count"] == 0
+    assert report["non_aligned_criterion_resolution_decision_count"] == 12
+    assert report["production_allowed_criterion_resolution_decision_count"] == 0
+    assert report["criterion_resolution_gate"] == "block"
     assert report["data_correctness_gate"] == "block"
     assert report["formal_release_gate"] == "block"
     assert report["maximum_supported_claim"] == "technical-draft-only"
@@ -546,6 +583,7 @@ def test_rc07_requires_both_complete_signatures_and_approved_alignment(tmp_path)
         approvals=qbc_signed,
         measure_approvals=measures_signed,
         artifact_approved=True,
+        criterion_resolution_approved=True,
     )
     assert completed.returncode == 1  # declared RC-07 is still blocked in the real register
     assert report["derived_status"]["RC-07"] == "pass"

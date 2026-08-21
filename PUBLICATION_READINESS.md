@@ -20,7 +20,7 @@
 
 | Gate | 結果 | 說明 |
 |---|---:|---|
-| pytest | pass：334 tests | 包含 mapping、68-criterion 實作差異表、52-fact 取得優先級、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、完整 262-resource manifest、1028-edge reference graph、52-fact 原始來源與 20-Measure 真實資料證據 gate、四組 canonical version policy、逐 Measure、47 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性 audit、全 IG scope claims／決策、完整 release-control gate、template supply-chain 與 publication workflow 契約測試。 |
+| pytest | pass：341 tests | 包含 mapping、68-criterion 實作差異表、12 項非對齊 criterion 決策鎖定、52-fact 取得優先級、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、完整 262-resource manifest、1028-edge reference graph、52-fact 原始來源與 20-Measure 真實資料證據 gate、四組 canonical version policy、逐 Measure、47 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性 audit、全 IG scope claims／決策、完整 release-control gate、template supply-chain 與 publication workflow 契約測試。 |
 | SUSHI 3.20.0 | pass：0 errors / 0 warnings | FSH 可穩定產生 IG resources。 |
 | PHI gate | pass | 目前版本庫未檢出疑似病人識別資料；正式來源資料仍須在受控環境處理。 |
 | CQL CLI translation | pass | `cql-to-elm-cli 3.26.0` 可產生 ELM；FHIRHelpers 由 `hl7.fhir.uv.cql#2.0.0` 解析。 |
@@ -28,10 +28,10 @@
 | CQL branch assertions | pass with clinical limitations：20/20 Measures | 全部 Measure 已通過具預期結果的合成 R4 Bundle 分支案例；分布 Measure 另覆蓋全部列舉 strata、月份、年齡帶、缺值與非法值。QR-04 仍受真實前年度 cohort 阻擋，QR-05 仍是候選規則。 |
 | IG Publisher 2.3.2 resource validation | pass with warnings：0 errors / 52 warnings | missing-OID 與 TCR targetless ConceptMap warnings 均為 0；剩餘 40 個 FHIRHelpers anchor、11 個 CQL validator limitation 與 1 個 OID registry warning 由機器可讀政策逐類鎖定。 |
 | 完整 IG website/package | pass：0 errors / 52 warnings / 0 broken links | Linux Publisher 2.3.2 已產生網站、`qa.html` 與 `package.tgz`；warning audit 為 QA integrity pass，Community Preview／Formal release block。 |
-| 完整 release controls | integrity pass；2/8 controls pass | RC-02 FHIR conformance 與 RC-04 executable rules 通過；source mapping、terminology、independent recalculation、golden cohort、governance 與 operational acceptance 均 blocked。RC-07 鎖定 QBC 14-Gate、Measure 20-approval 與 StructureDefinition 47-approval 完整集合；目前 Measure 0/20、artifact 0/47。Publisher warnings 即使歸零也不會讓此 gate 誤判通過。 |
+| 完整 release controls | integrity pass；2/8 controls pass | RC-02 FHIR conformance 與 RC-04 executable rules 通過；source mapping、terminology、independent recalculation、golden cohort、governance 與 operational acceptance 均 blocked。RC-07 鎖定 QBC 14-Gate、Measure 20-approval、StructureDefinition 47-approval 與 12 項非對齊 criterion resolution；目前 Measure 0/20、artifact 0/47、criterion resolution 0/12。Publisher warnings 即使歸零也不會讓此 gate 誤判通過。 |
 | Terminology inventory | technical pass；clinical block | 完整集合 152（60 CodeSystem、90 ValueSet、2 ConceptMap）；19 個個管臨床 ValueSet 為空、核准 0/19，因此 RC-03 blocked。 |
 | FHIR resource inventory | technical pass；version provenance block | 精確集合 262（225 definitions、37 examples、223 canonical）；261 個 IG manifest references 全數解析。223 canonical 已分成 24 package-explicit、1 CQL、97 package-context pending、101 TCR version collision；政策核准 0/4，因此 RC-08 blocked。 |
-| FHIR reference graph | technical pass | 精確 994 edges：633 local URL、326 FHIR Reference、35 external canonical；190 unique local targets 全部解析且型別正確，18 unique external canonical 只由 pinned FHIR R4／TW Core dependencies 解析。 |
+| FHIR reference graph | technical pass | 精確 1028 edges：662 local URL、330 FHIR Reference、36 external canonical；198 unique local targets 全部解析且型別正確，18 unique external canonical 只由 pinned FHIR R4／TW Core dependencies 解析。 |
 | Strict release QA | blocked | 正式 release gate 仍要求 0 warnings；完整 QA 的 52 個 warning 尚未逐一修正或完成具體審查紀錄。 |
 | Template supply-chain | technical pass | 已依 2026-03 安全公告固定使用 `fhir2.base.template#0.1.0` 與套件 SHA-1；CI 證明載入精確版本且不再出現 insecure-template notice。已發布模板的多語系 jurisdiction flag 路徑缺陷以最小 include overlay 修正並由 0 broken links gate 鎖定；此項通過不解除臨床／治理發布阻擋。 |
 
