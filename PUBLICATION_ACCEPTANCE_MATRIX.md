@@ -48,6 +48,8 @@ RC-08 進一步要求全部 222 個 canonical resources 的 business-version pro
 
 ### Mapping
 
+- `source-traceability-register.csv` 必須精確涵蓋現行個管 mapping 的 **52 個 fact**（34 個共同 fact＋18 個 task-only fact）；68 個 Measure criteria 目前直接引用其中 37 個 fact，其餘是報告、治理、Provenance 或 task 輸出需求，仍須保留。每個 fact 必須恰有一個 authoritative／derived／pending 主列，另可增加報表的 `secondary-reconciliation` 列，但 secondary 列永遠不能使 RC-01 通過。
+- 現況為 52/52 骨架存在、0/52 取得完整權威來源與簽核。`audit_data_correctness_evidence.py` 會拒絕漏列、重複主列、未知 fact、過期名稱／indicator family，及缺證據卻自稱 approved 的列。
 - 可重現重建使用 committed、版本化且帶原始文件 SHA-256 的 `qbc_workbench/data/qbc_fields.json`；它是來源文件的技術擷取契約，不是原始文件本身。受控環境仍須以該 SHA-256 重新核對原始 DOCX，不能因衍生 JSON 可重建就宣稱原始規格已驗真。
 - 正式使用範圍內的 required facts：100% 完成來源與 FHIR mapping。
 - `blocking-data-gap`：0。
@@ -57,6 +59,7 @@ RC-08 進一步要求全部 222 個 canonical resources 的 business-version pro
 
 ### Measure 與測試
 
+- `measure-validation-evidence-register.csv` 精確鎖定 20 個 Measure。獨立重算必須保存不共用 CQL 邏輯的實作 hash、CQL hash、truth-set hash、逐案 population 比較數與零未解釋差異；golden cohort 另須保存完整期別、all-in-scope cohort 宣告、原始 extract／FHIR Bundle hash、source-fact 與人工 override 比較數。目前兩者皆為 0/20。
 - Translation、runtime smoke 與具預期值的合成分支驗證均已達 20/20 Measure、46/46 criteria；分布 Measure 另驗證全部列舉 strata、月份、年齡帶、缺值與非法值。QR-04 只證明 cohort 已載入時的條件行為，QR-05 只證明候選規則的機械行為，兩者都不構成真實資料正確性證據。
 - Measure 規格核准目前為 0/20；每一項都必須保存具名 signer、組織／職稱、決定日期、證據 URI 與被簽 artifact 的 SHA-256，且 `draft_definition_alignment` 必須明確為 `approved`。只有簽名欄位或只有綠色 CQL 測試都不足以通過 RC-07。
 - 每個 Measure 的測試數不以任意固定樣本數取代 coverage。最低要求是所有 truth-table branch、排除、缺值、邊界、日期邊界及多筆事件行為全部有案例。

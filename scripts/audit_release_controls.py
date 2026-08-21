@@ -161,6 +161,7 @@ def audit(
     terminology_audit_path: Path,
     resource_inventory_audit_path: Path,
     reference_graph_audit_path: Path,
+    data_evidence_audit_path: Path,
     publisher_audit_path: Path,
 ) -> dict[str, object]:
     controls = read_csv(controls_path, REQUIRED_CONTROL_COLUMNS, exact_columns=True)
@@ -443,6 +444,66 @@ def audit(
         raise ValueError(
             f"{reference_graph_audit_path}: invalid external canonical authorities"
         )
+    data_evidence = json.loads(data_evidence_audit_path.read_text(encoding="utf-8"))
+    if data_evidence.get("gate_scope") != (
+        "raw-source-independent-recalculation-and-golden-cohort"
+    ):
+        raise ValueError(f"{data_evidence_audit_path}: invalid gate_scope")
+    expected_data_evidence = {
+        "expected_fact_count": 52,
+        "measure_count": 20,
+        "population_criterion_count": 68,
+        "criterion_referenced_fact_count": 37,
+    }
+    for field, expected in expected_data_evidence.items():
+        if data_evidence.get(field) != expected:
+            raise ValueError(f"{data_evidence_audit_path}: {field} must be {expected}")
+    for field in (
+        "source_evidence_row_count",
+        "approved_authoritative_or_derived_fact_count",
+        "approved_independent_recalculation_count",
+        "approved_golden_cohort_count",
+        "secondary_reconciliation_row_count",
+        "approved_secondary_reconciliation_row_count",
+    ):
+        value = data_evidence.get(field)
+        if not isinstance(value, int) or value < 0:
+            raise ValueError(f"{data_evidence_audit_path}: invalid {field}")
+    if data_evidence["source_evidence_row_count"] < 52:
+        raise ValueError(f"{data_evidence_audit_path}: source evidence rows cannot omit facts")
+    if data_evidence["source_evidence_row_count"] != (
+        52 + data_evidence["secondary_reconciliation_row_count"]
+    ):
+        raise ValueError(f"{data_evidence_audit_path}: source/secondary row-count mismatch")
+    bounded_counts = {
+        "approved_authoritative_or_derived_fact_count": 52,
+        "approved_independent_recalculation_count": 20,
+        "approved_golden_cohort_count": 20,
+        "approved_secondary_reconciliation_row_count": data_evidence[
+            "secondary_reconciliation_row_count"
+        ],
+    }
+    for field, upper in bounded_counts.items():
+        if data_evidence[field] > upper:
+            raise ValueError(f"{data_evidence_audit_path}: {field} exceeds {upper}")
+    for field in (
+        "source_register_integrity_gate", "validation_register_integrity_gate",
+    ):
+        if data_evidence.get(field) != "pass":
+            raise ValueError(f"{data_evidence_audit_path}: {field} must pass")
+    data_gate_rules = {
+        "raw_source_traceability_gate": (
+            data_evidence["approved_authoritative_or_derived_fact_count"] == 52
+        ),
+        "independent_recalculation_gate": (
+            data_evidence["approved_independent_recalculation_count"] == 20
+        ),
+        "golden_cohort_gate": data_evidence["approved_golden_cohort_count"] == 20,
+    }
+    for field, should_pass in data_gate_rules.items():
+        expected = "pass" if should_pass else "block"
+        if data_evidence.get(field) != expected:
+            raise ValueError(f"{data_evidence_audit_path}: {field}/count mismatch")
     publisher = json.loads(publisher_audit_path.read_text(encoding="utf-8"))
     if publisher.get("gate_scope") != "publisher-qa-only":
         raise ValueError(
@@ -464,7 +525,10 @@ def audit(
         if row["proposed_role"] == "normative"
     )
     derived = {
-        "RC-01": "pass" if all(row["raw_source_mapping"] == "pass" for row in measures) else "blocked",
+        "RC-01": "pass" if (
+            data_evidence["raw_source_traceability_gate"] == "pass"
+            and all(row["raw_source_mapping"] == "pass" for row in measures)
+        ) else "blocked",
         "RC-02": "pass" if (
             publisher["qa_integrity_gate"] == "pass"
             and resource_inventory["resource_inventory_gate"] == "pass"
@@ -481,8 +545,14 @@ def audit(
             and row["cql_execution"].startswith("pass-synthetic")
             for row in measures
         ) else "blocked",
-        "RC-05": "pass" if all(row["independent_recalculation"] == "pass" for row in measures) else "blocked",
-        "RC-06": "pass" if all(row["golden_cohort"] == "pass" for row in measures) else "blocked",
+        "RC-05": "pass" if (
+            data_evidence["independent_recalculation_gate"] == "pass"
+            and all(row["independent_recalculation"] == "pass" for row in measures)
+        ) else "blocked",
+        "RC-06": "pass" if (
+            data_evidence["golden_cohort_gate"] == "pass"
+            and all(row["golden_cohort"] == "pass" for row in measures)
+        ) else "blocked",
         "RC-07": "pass" if (
             governance
             and all(approval_complete(row) for row in governance)
@@ -576,6 +646,26 @@ def audit(
         "external_canonical_reference_occurrence_count": reference_graph[
             "external_canonical_reference_occurrence_count"
         ],
+        "source_fact_count": data_evidence["expected_fact_count"],
+        "population_criterion_count": data_evidence["population_criterion_count"],
+        "criterion_referenced_fact_count": data_evidence[
+            "criterion_referenced_fact_count"
+        ],
+        "approved_authoritative_or_derived_fact_count": data_evidence[
+            "approved_authoritative_or_derived_fact_count"
+        ],
+        "secondary_reconciliation_row_count": data_evidence[
+            "secondary_reconciliation_row_count"
+        ],
+        "approved_secondary_reconciliation_row_count": data_evidence[
+            "approved_secondary_reconciliation_row_count"
+        ],
+        "approved_independent_recalculation_count": data_evidence[
+            "approved_independent_recalculation_count"
+        ],
+        "approved_golden_cohort_count": data_evidence[
+            "approved_golden_cohort_count"
+        ],
         "control_integrity_gate": integrity,
         "data_correctness_gate": data_gate,
         "publisher_formal_qa_gate": publisher["formal_release_gate"],
@@ -600,6 +690,7 @@ def main() -> int:
     parser.add_argument("--terminology-audit", type=Path, required=True)
     parser.add_argument("--resource-inventory-audit", type=Path, required=True)
     parser.add_argument("--reference-graph-audit", type=Path, required=True)
+    parser.add_argument("--data-evidence-audit", type=Path, required=True)
     parser.add_argument("--publisher-audit", type=Path, required=True)
     parser.add_argument("--json-out", type=Path)
     parser.add_argument(
@@ -615,6 +706,7 @@ def main() -> int:
             args.terminology_audit,
             args.resource_inventory_audit,
             args.reference_graph_audit,
+            args.data_evidence_audit,
             args.publisher_audit,
         )
     except (OSError, ValueError, csv.Error, json.JSONDecodeError) as exc:

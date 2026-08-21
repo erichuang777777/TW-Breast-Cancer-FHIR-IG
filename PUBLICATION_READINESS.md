@@ -20,7 +20,7 @@
 
 | Gate | 結果 | 說明 |
 |---|---:|---|
-| pytest | pass：315 tests | 包含 mapping、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、完整 260-resource manifest、994-edge reference graph、四組 canonical version policy、逐 Measure、46 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性 audit、全 IG scope claims／決策、完整 release-control gate、template supply-chain 與 publication workflow 契約測試。 |
+| pytest | pass：323 tests | 包含 mapping、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、完整 260-resource manifest、994-edge reference graph、52-fact 原始來源與 20-Measure 真實資料證據 gate、四組 canonical version policy、逐 Measure、46 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性 audit、全 IG scope claims／決策、完整 release-control gate、template supply-chain 與 publication workflow 契約測試。 |
 | SUSHI 3.20.0 | pass：0 errors / 0 warnings | FSH 可穩定產生 IG resources。 |
 | PHI gate | pass | 目前版本庫未檢出疑似病人識別資料；正式來源資料仍須在受控環境處理。 |
 | CQL CLI translation | pass | `cql-to-elm-cli 3.26.0` 可產生 ELM；FHIRHelpers 由 `hl7.fhir.uv.cql#2.0.0` 解析。 |
@@ -64,6 +64,8 @@
 - 原始欄位未知時，明確填入 `blocking-data-gap`，並記錄應向哪個系統 owner 查詢。
 - terminology 對應未確認時使用 `candidate-unverified`，不得直接發布成正式 ValueSet/ConceptMap 關係。
 - 先完成 CQL 所需的 FHIR resource/profile/path、時間窗、缺值與排除規則；待原始資料到位後再補 source adapter 與 Provenance。
+
+本階段骨架已建立於 `mappings/publication/source-traceability-register.csv`：精確涵蓋 34 個共同 fact 與 18 個 task-only fact，共 52 項；目前權威來源核准為 0/52。各館既有報表欄位已明確留在 notes／secondary reconciliation 邊界，不能使原始來源 gate 通過。逐 Measure 的獨立重算與完整期別驗證則記錄於 `measure-validation-evidence-register.csv`，目前均為 0/20。兩份登錄由 `audit_data_correctness_evidence.py` 在本機與 CI 強制檢查。
 
 ## 下一個可驗收里程碑
 

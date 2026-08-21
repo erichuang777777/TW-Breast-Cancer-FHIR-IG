@@ -39,6 +39,7 @@ def run_audit(
     terminology_overrides: dict | None = None,
     inventory_overrides: dict | None = None,
     reference_overrides: dict | None = None,
+    data_evidence_overrides: dict | None = None,
     target: str = "integrity",
 ):
     publisher = tmp_path / "publisher.json"
@@ -144,6 +145,29 @@ def run_audit(
         json.dumps(reference_report),
         encoding="utf-8",
     )
+    data_evidence_audit = tmp_path / "data-evidence-audit.json"
+    data_evidence_report = {
+        "gate_scope": "raw-source-independent-recalculation-and-golden-cohort",
+        "expected_fact_count": 52,
+        "source_evidence_row_count": 52,
+        "secondary_reconciliation_row_count": 0,
+        "approved_secondary_reconciliation_row_count": 0,
+        "approved_authoritative_or_derived_fact_count": 0,
+        "measure_count": 20,
+        "population_criterion_count": 68,
+        "criterion_referenced_fact_count": 37,
+        "approved_independent_recalculation_count": 0,
+        "approved_golden_cohort_count": 0,
+        "source_register_integrity_gate": "pass",
+        "validation_register_integrity_gate": "pass",
+        "raw_source_traceability_gate": "block",
+        "independent_recalculation_gate": "block",
+        "golden_cohort_gate": "block",
+    }
+    data_evidence_report.update(data_evidence_overrides or {})
+    data_evidence_audit.write_text(
+        json.dumps(data_evidence_report), encoding="utf-8"
+    )
     completed = subprocess.run(
         [
             sys.executable, str(SCRIPT),
@@ -158,6 +182,7 @@ def run_audit(
             "--terminology-audit", str(terminology_audit),
             "--resource-inventory-audit", str(inventory_audit),
             "--reference-graph-audit", str(reference_graph_audit),
+            "--data-evidence-audit", str(data_evidence_audit),
             "--publisher-audit", str(publisher),
             "--json-out", str(output),
             "--target", target,
@@ -211,6 +236,10 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["local_url_link_occurrence_count"] == 633
     assert report["fhir_reference_occurrence_count"] == 326
     assert report["external_canonical_reference_occurrence_count"] == 35
+    assert report["source_fact_count"] == 52
+    assert report["approved_authoritative_or_derived_fact_count"] == 0
+    assert report["approved_independent_recalculation_count"] == 0
+    assert report["approved_golden_cohort_count"] == 0
     assert report["data_correctness_gate"] == "block"
     assert report["formal_release_gate"] == "block"
     assert report["maximum_supported_claim"] == "technical-draft-only"
@@ -257,6 +286,26 @@ def test_reference_graph_count_cannot_be_reduced(tmp_path):
     assert completed.returncode == 2
     assert report is None
     assert "total_audited_reference_edge_count must be 994" in completed.stderr
+
+
+def test_measure_summary_cannot_fake_source_independent_or_golden_evidence(tmp_path):
+    with MEASURES.open(encoding="utf-8-sig", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+        fieldnames = list(rows[0])
+    for row in rows:
+        row["raw_source_mapping"] = "pass"
+        row["independent_recalculation"] = "pass"
+        row["golden_cohort"] = "pass"
+    altered = tmp_path / "measures.csv"
+    with altered.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+    completed, report = run_audit(tmp_path, measures=altered)
+    assert completed.returncode == 0
+    assert report["derived_status"]["RC-01"] == "blocked"
+    assert report["derived_status"]["RC-05"] == "blocked"
+    assert report["derived_status"]["RC-06"] == "blocked"
 
 
 def test_business_version_gate_cannot_contradict_policy_approval_state(tmp_path):

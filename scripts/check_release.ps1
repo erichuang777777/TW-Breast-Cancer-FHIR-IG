@@ -71,6 +71,17 @@ try {
         --json-out ig\output\fhir-reference-graph-audit.json
     if ($LASTEXITCODE -ne 0) { throw "FHIR reference graph audit failed" }
 
+    python scripts\audit_data_correctness_evidence.py `
+        --source-register mappings\publication\source-traceability-register.csv `
+        --validation-register mappings\publication\measure-validation-evidence-register.csv `
+        --common-mapping mappings\case-management\breast-common-to-case-management.csv `
+        --task-mapping mappings\case-management\case-management-task-only-fields.csv `
+        --measure-catalog mappings\case-management\case-management-measure-catalog.csv `
+        --population-criteria mappings\case-management\case-management-population-criteria.csv `
+        --json-out ig\output\data-correctness-evidence-audit.json `
+        --target integrity
+    if ($LASTEXITCODE -ne 0) { throw "data-correctness evidence integrity audit failed" }
+
     python scripts\audit_release_controls.py `
         --controls mappings\publication\release-control-register.csv `
         --measure-audit mappings\publication\case-management-measure-audit.csv `
@@ -83,6 +94,7 @@ try {
         --terminology-audit ig\output\terminology-conformance-audit.json `
         --resource-inventory-audit ig\output\fhir-resource-inventory-audit.json `
         --reference-graph-audit ig\output\fhir-reference-graph-audit.json `
+        --data-evidence-audit ig\output\data-correctness-evidence-audit.json `
         --publisher-audit ig\output\publisher-warning-audit.json `
         --json-out ig\output\release-control-audit.json `
         --target integrity

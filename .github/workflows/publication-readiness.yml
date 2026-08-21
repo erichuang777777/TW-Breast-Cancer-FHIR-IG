@@ -15,7 +15,9 @@ on:
       - "scripts/audit_terminology_conformance.py"
       - "scripts/audit_fhir_resource_inventory.py"
       - "scripts/audit_fhir_reference_graph.py"
+      - "scripts/audit_data_correctness_evidence.py"
       - "mappings/publication/**"
+      - "mappings/case-management/**"
       - "outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv"
   pull_request:
     paths:
@@ -28,7 +30,9 @@ on:
       - "scripts/audit_terminology_conformance.py"
       - "scripts/audit_fhir_resource_inventory.py"
       - "scripts/audit_fhir_reference_graph.py"
+      - "scripts/audit_data_correctness_evidence.py"
       - "mappings/publication/**"
+      - "mappings/case-management/**"
       - "outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv"
 
 jobs:
@@ -142,6 +146,21 @@ jobs:
             --json-out ig/output/fhir-reference-graph-audit.json \
             | tee ig/output/fhir-reference-graph-audit.log
 
+      - name: Audit raw-source and real-data validation evidence
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_data_correctness_evidence.py \
+            --source-register mappings/publication/source-traceability-register.csv \
+            --validation-register mappings/publication/measure-validation-evidence-register.csv \
+            --common-mapping mappings/case-management/breast-common-to-case-management.csv \
+            --task-mapping mappings/case-management/case-management-task-only-fields.csv \
+            --measure-catalog mappings/case-management/case-management-measure-catalog.csv \
+            --population-criteria mappings/case-management/case-management-population-criteria.csv \
+            --json-out ig/output/data-correctness-evidence-audit.json \
+            --target integrity \
+            | tee ig/output/data-correctness-evidence-audit.log
+
       - name: Audit complete release controls
         shell: bash
         run: |
@@ -158,6 +177,7 @@ jobs:
             --terminology-audit ig/output/terminology-conformance-audit.json \
             --resource-inventory-audit ig/output/fhir-resource-inventory-audit.json \
             --reference-graph-audit ig/output/fhir-reference-graph-audit.json \
+            --data-evidence-audit ig/output/data-correctness-evidence-audit.json \
             --publisher-audit ig/output/publisher-warning-audit.json \
             --json-out ig/output/release-control-audit.json \
             --target integrity \

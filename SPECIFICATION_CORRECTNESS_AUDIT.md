@@ -72,13 +72,15 @@ Terminology 也不能只計算 FSH 檔案或只檢查 CQL 有沒有名稱。實�
 
 目前各館報表只可填在 `secondary/reconciliation source`，可用來找欄位、建立人工 truth set 和比對輸出；不能取代原始 source evidence，也不能由報表值反推 canonical FHIR fact。
 
+上述要求已落成兩份機器可讀登錄，而不再只是一段文字：[`source-traceability-register.csv`](mappings/publication/source-traceability-register.csv) 精確鎖定 52 個輸入 fact，目前完整骨架 52/52、權威來源核准 0/52；68 個 population／stratifier criteria 直接引用其中 37 個 fact，且依賴 ID 也由機器核對。另由 [`measure-validation-evidence-register.csv`](mappings/publication/measure-validation-evidence-register.csv) 精確鎖定 20 個 Measure，目前獨立重算 0/20、完整期別 golden cohort 0/20。`audit_data_correctness_evidence.py` 禁止 secondary report 取代主來源，也禁止只有 `approved` 字樣、卻缺來源定位、版本、reviewer、日期、證據 URI、SHA-256、逐案比較數或零差異證據的假通過。
+
 ## 20 個 Measure 的目前判定
 
 機器可讀的逐項結果位於 [`mappings/publication/case-management-measure-audit.csv`](mappings/publication/case-management-measure-audit.csv)。共同結果如下：
 
 - FHIR conformance：20/20 pass。
 - CQL 合成執行：20/20 pass，但 QR-04 是「完整 cohort 已提供」時的條件測試，QR-05 是 candidate 規則測試。
-- 原始來源 mapping 完成：0/20。
+- 原始來源 mapping：52/52 fact 已建待查證骨架，權威來源核准 0/52；因此 Measure release status 仍為 0/20。
 - 獨立重算完成：0/20。
 - 真實 golden cohort 完成：0/20。
 - Measure 規格具名核准完成：0/20。

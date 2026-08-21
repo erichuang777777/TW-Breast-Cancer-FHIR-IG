@@ -1,0 +1,21 @@
+measure_id,indicator_family,reporting_period_start,reporting_period_end,cohort_completeness,source_extract_sha256,fhir_bundle_sha256,cql_artifact_sha256,independent_implementation_sha256,truth_set_sha256,case_count,case_population_comparison_count,source_fact_comparison_count,manual_override_comparison_count,unexplained_difference_count,independent_method,independent_status,golden_cohort_status,reviewer_name,reviewer_organization_title,review_date,evidence_uri_path,notes
+bc-qi-01,quality,,,,,,,,,,,,,,,pending,pending,,,,,Await authoritative source mapping and a locked complete-period cohort.
+bc-qi-02,quality,,,,,,,,,,,,,,,pending,pending,,,,,Await authoritative source mapping and a locked complete-period cohort.
+bc-qi-03,quality,,,,,,,,,,,,,,,pending,pending,,,,,Await authoritative source mapping and a locked complete-period cohort.
+bc-qi-04,quality,,,,,,,,,,,,,,,pending,pending,,,,,Await authoritative source mapping and a locked complete-period cohort.
+bc-qi-05,quality,,,,,,,,,,,,,,,pending,pending,,,,,Await authoritative source mapping and a locked complete-period cohort.
+bc-qi-06,quality,,,,,,,,,,,,,,,pending,pending,,,,,Await authoritative source mapping and a locked complete-period cohort.
+bc-qr-01,quarterly,,,,,,,,,,,,,,,pending,pending,,,,,Await authoritative source mapping and a locked complete-period cohort.
+bc-qr-02,quarterly,,,,,,,,,,,,,,,pending,pending,,,,,Await authoritative source mapping and a locked complete-period cohort.
+bc-qr-03,quarterly,,,,,,,,,,,,,,,pending,pending,,,,,Await authoritative source mapping and a locked complete-period cohort.
+bc-qr-04,quarterly,,,,,,,,,,,,,,,pending,pending,,,,,Prior-year cohort and loss-to-follow-up adjudication must be included.
+bc-qr-05,quarterly,,,,,,,,,,,,,,,pending,pending,,,,,Return-to-treatment adjudication must be included.
+bc-qr-10,quarterly,,,,,,,,,,,,,,,pending,pending,,,,,Await authoritative source mapping and a locked complete-period cohort.
+bc-qr-11,quarterly,,,,,,,,,,,,,,,pending,pending,,,,,Await authoritative source mapping and a locked complete-period cohort.
+bc-qr-12,quarterly,,,,,,,,,,,,,,,pending,pending,,,,,Await authoritative source mapping and a locked complete-period cohort.
+bc-qr-13,quarterly,,,,,,,,,,,,,,,pending,pending,,,,,Await authoritative source mapping and a locked complete-period cohort.
+bc-qr-14,quarterly,,,,,,,,,,,,,,,pending,pending,,,,,Age boundary and missing/other administrative-sex cases must be included.
+bc-qr-15,quarterly,,,,,,,,,,,,,,,pending,pending,,,,,Class 3 structured-source handling must be included.
+bc-qr-16,quarterly,,,,,,,,,,,,,,,pending,pending,,,,,Stage absent-reason and adjudication cases must be included.
+bc-qr-17,quarterly,,,,,,,,,,,,,,,pending,pending,,,,,Resolve the documented group-count contradiction before approval.
+bc-qr-18,quarterly,,,,,,,,,,,,,,,pending,pending,,,,,Use raw ER/PR/HER2 facts; hand-entered subtype is comparison-only.
