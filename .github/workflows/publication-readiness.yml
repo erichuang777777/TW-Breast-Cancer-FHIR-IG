@@ -12,6 +12,7 @@ on:
       - "scripts/check_no_phi.py"
       - "scripts/audit_publisher_qa.py"
       - "scripts/audit_release_controls.py"
+      - "scripts/audit_measure_specification_approvals.py"
       - "scripts/approval_evidence.py"
       - "scripts/audit_verification_methods.py"
       - "scripts/audit_artifact_conformance.py"
@@ -34,6 +35,7 @@ on:
       - "scripts/check_no_phi.py"
       - "scripts/audit_publisher_qa.py"
       - "scripts/audit_release_controls.py"
+      - "scripts/audit_measure_specification_approvals.py"
       - "scripts/approval_evidence.py"
       - "scripts/audit_verification_methods.py"
       - "scripts/audit_artifact_conformance.py"
@@ -190,7 +192,23 @@ jobs:
             --case-comparison-register mappings/publication/case-level-comparison-register.csv \
             --json-out ig/output/data-correctness-evidence-audit.json \
             --target integrity \
-             | tee ig/output/data-correctness-evidence-audit.log
+            | tee ig/output/data-correctness-evidence-audit.log
+
+      - name: Audit exact live Measure specification approval bundles
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_measure_specification_approvals.py \
+            --approval-register mappings/publication/case-management-measure-approval-register.csv \
+            --measure-audit mappings/publication/case-management-measure-audit.csv \
+            --measure-catalog mappings/case-management/case-management-measure-catalog.csv \
+            --population-criteria mappings/case-management/case-management-population-criteria.csv \
+            --measure-fsh ig/input/fsh/case-management-measures.fsh \
+            --cql ig/input/cql/BreastCancerCaseManagement.cql \
+            --generated-resource-dir ig/fsh-generated/resources \
+            --json-out ig/output/measure-specification-approval-audit.json \
+            --target integrity \
+            | tee ig/output/measure-specification-approval-audit.log
 
       - name: Audit source acquisition priority
         shell: bash
@@ -251,6 +269,7 @@ jobs:
             --terminology-fsh ig/input/fsh/case-management-terminology.fsh \
             --approval-register outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv \
             --measure-approval-register mappings/publication/case-management-measure-approval-register.csv \
+            --measure-specification-audit ig/output/measure-specification-approval-audit.json \
             --scope-claims mappings/publication/ig-scope-claim-register.csv \
             --scope-decisions mappings/publication/publication-scope-decision-register.csv \
             --artifact-audit ig/output/artifact-conformance-audit.json \

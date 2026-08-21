@@ -37,6 +37,7 @@ def run_audit(
     scope_claims: Path = SCOPE_CLAIMS,
     scope_decisions: Path = SCOPE_DECISIONS,
     artifact_approved: bool = False,
+    measure_specification_approved: bool = False,
     terminology_overrides: dict | None = None,
     inventory_overrides: dict | None = None,
     reference_overrides: dict | None = None,
@@ -264,6 +265,30 @@ def run_audit(
         }),
         encoding="utf-8",
     )
+    measure_specification_audit = tmp_path / "measure-specification-audit.json"
+    with measures.open(encoding="utf-8-sig", newline="") as handle:
+        fixture_measure_ids = {row["measure_id"] for row in csv.DictReader(handle)}
+    approved_measure_specifications = 20 if measure_specification_approved else 0
+    approved_truth_cases = 208 if measure_specification_approved else 0
+    measure_specification_audit.write_text(
+        json.dumps({
+            "gate_scope": "exact-live-measure-specification-and-truth-table-approval",
+            "measure_count": 20,
+            "population_criterion_count": 68,
+            "measure_expression_use_count": 62,
+            "approved_measure_specification_count": approved_measure_specifications,
+            "approved_truth_table_case_count": approved_truth_cases,
+            "required_truth_assertion_count": 208,
+            "measure_specification_fingerprints": {
+                measure_id: "a" * 64 for measure_id in fixture_measure_ids
+            },
+            "measure_specification_integrity_gate": "pass",
+            "measure_specification_approval_gate": (
+                "pass" if measure_specification_approved else "block"
+            ),
+        }),
+        encoding="utf-8",
+    )
     completed = subprocess.run(
         [
             sys.executable, str(SCRIPT),
@@ -272,6 +297,7 @@ def run_audit(
             "--terminology-fsh", str(TERMINOLOGY),
             "--approval-register", str(approvals),
             "--measure-approval-register", str(measure_approvals),
+            "--measure-specification-audit", str(measure_specification_audit),
             "--scope-claims", str(scope_claims),
             "--scope-decisions", str(scope_decisions),
             "--artifact-audit", str(artifact_audit),
@@ -307,6 +333,10 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["qbc_approval_count"] == 14
     assert report["measure_approval_count"] == 20
     assert report["approved_measure_definition_count"] == 0
+    assert report["approved_measure_specification_count"] == 0
+    assert report["approved_measure_truth_table_case_count"] == 0
+    assert report["required_measure_truth_assertion_count"] == 208
+    assert report["measure_specification_approval_gate"] == "block"
     assert report["scope_claim_count"] == 10
     assert report["scope_decision_count"] == 10
     assert report["approved_scope_decision_count"] == 0
@@ -757,6 +787,7 @@ def test_rc07_requires_both_complete_signatures_and_approved_alignment(tmp_path)
         approvals=qbc_signed,
         measure_approvals=measures_signed,
         artifact_approved=True,
+        measure_specification_approved=True,
         criterion_resolution_approved=True,
     )
     assert completed.returncode == 1  # declared RC-07 is still blocked in the real register

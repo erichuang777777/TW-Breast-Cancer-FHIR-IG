@@ -102,6 +102,18 @@ try {
         --json-out ig\output\source-acquisition-priority-audit.json
     if ($LASTEXITCODE -ne 0) { throw "source-acquisition priority audit failed" }
 
+    python scripts\audit_measure_specification_approvals.py `
+        --approval-register mappings\publication\case-management-measure-approval-register.csv `
+        --measure-audit mappings\publication\case-management-measure-audit.csv `
+        --measure-catalog mappings\case-management\case-management-measure-catalog.csv `
+        --population-criteria mappings\case-management\case-management-population-criteria.csv `
+        --measure-fsh ig\input\fsh\case-management-measures.fsh `
+        --cql ig\input\cql\BreastCancerCaseManagement.cql `
+        --generated-resource-dir ig\fsh-generated\resources `
+        --json-out ig\output\measure-specification-approval-audit.json `
+        --target integrity
+    if ($LASTEXITCODE -ne 0) { throw "Measure specification approval audit failed" }
+
     python scripts\audit_source_acquisition_work_packages.py `
         --register mappings\publication\source-acquisition-work-packages.csv `
         --priority-register mappings\publication\source-acquisition-priority.csv `
@@ -132,6 +144,7 @@ try {
         --terminology-fsh ig\input\fsh\case-management-terminology.fsh `
         --approval-register outputs\qbc_ig_mapping\qbc_mapping_approval_register.csv `
         --measure-approval-register mappings\publication\case-management-measure-approval-register.csv `
+        --measure-specification-audit ig\output\measure-specification-approval-audit.json `
         --scope-claims mappings\publication\ig-scope-claim-register.csv `
         --scope-decisions mappings\publication\publication-scope-decision-register.csv `
         --artifact-audit ig\output\artifact-conformance-audit.json `

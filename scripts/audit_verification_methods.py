@@ -109,8 +109,15 @@ EXPECTED = {
             "14 QBC gates; 20 Measure definitions; 47 StructureDefinitions; "
             "12 non-aligned criterion decisions"
         ),
-        "threshold_markers": ("14/14", "20/20", "47/47", "12/12", "live non-aligned criterion count is 0", "SHA-256"),
-        "evidence_markers": ("approval registers", "signed decisions", "artifact hashes"),
+        "threshold_markers": (
+            "14/14", "20/20", "47/47", "12/12", "208",
+            "live non-aligned criterion count is 0", "SHA-256",
+        ),
+        "evidence_markers": (
+            "approval registers", "signed decisions",
+            "measure-specification-approval-audit.json", "truth tables",
+            "artifact hashes",
+        ),
         "independence_markers": ("cannot overwrite", "live implementation contradiction"),
     },
     "VM-08": {

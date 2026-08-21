@@ -191,6 +191,7 @@ def audit(
     terminology_path: Path,
     approvals_path: Path,
     measure_approvals_path: Path,
+    measure_specification_audit_path: Path,
     scope_claims_path: Path,
     scope_decisions_path: Path,
     artifact_audit_path: Path,
@@ -258,6 +259,58 @@ def audit(
             raise ValueError(
                 f"{measure_approvals_path}: {row['measure_id']} approved evidence is missing or SHA-256 mismatched"
             )
+    measure_specification = json.loads(
+        measure_specification_audit_path.read_text(encoding="utf-8")
+    )
+    if measure_specification.get("gate_scope") != (
+        "exact-live-measure-specification-and-truth-table-approval"
+    ):
+        raise ValueError(f"{measure_specification_audit_path}: invalid gate_scope")
+    expected_measure_specification_counts = {
+        "measure_count": 20,
+        "population_criterion_count": 68,
+        "measure_expression_use_count": 62,
+        "required_truth_assertion_count": 208,
+    }
+    for field, expected in expected_measure_specification_counts.items():
+        if measure_specification.get(field) != expected:
+            raise ValueError(
+                f"{measure_specification_audit_path}: {field} must be {expected}"
+            )
+    approved_measure_specifications = measure_specification.get(
+        "approved_measure_specification_count"
+    )
+    approved_truth_cases = measure_specification.get(
+        "approved_truth_table_case_count"
+    )
+    fingerprints = measure_specification.get("measure_specification_fingerprints")
+    if (
+        not isinstance(approved_measure_specifications, int)
+        or not 0 <= approved_measure_specifications <= 20
+        or not isinstance(approved_truth_cases, int)
+        or approved_truth_cases < 0
+        or not isinstance(fingerprints, dict)
+        or set(fingerprints) != measure_ids
+        or any(SHA256.fullmatch(str(value)) is None for value in fingerprints.values())
+        or measure_specification.get("measure_specification_integrity_gate") != "pass"
+    ):
+        raise ValueError(f"{measure_specification_audit_path}: invalid specification evidence")
+    expected_measure_specification_gate = (
+        "pass" if approved_measure_specifications == 20 and approved_truth_cases >= 208
+        else "block"
+    )
+    if measure_specification.get("measure_specification_approval_gate") != (
+        expected_measure_specification_gate
+    ):
+        raise ValueError(f"{measure_specification_audit_path}: approval gate/count mismatch")
+    retained_measure_approvals = sum(
+        measure_approval_evidence_complete(row, measure_approvals_path)
+        for row in measure_approvals
+    )
+    if retained_measure_approvals != approved_measure_specifications:
+        raise ValueError(
+            f"{measure_specification_audit_path}: live bundle and approval-register count mismatch"
+        )
     scope_claims = read_csv(
         scope_claims_path, REQUIRED_SCOPE_CLAIM_COLUMNS, exact_columns=True
     )
@@ -791,6 +844,7 @@ def audit(
             and all(qbc_approval_evidence_complete(row, approvals_path) for row in governance)
             and all(row["draft_definition_alignment"] == "approved" for row in measures)
             and all(measure_approval_evidence_complete(row, measure_approvals_path) for row in measure_approvals)
+            and measure_specification["measure_specification_approval_gate"] == "pass"
             and artifact_audit["clinical_artifact_approval_gate"] == "pass"
             and criterion_resolution["criterion_resolution_gate"] == "pass"
         ) else "blocked",
@@ -845,6 +899,12 @@ def audit(
             measure_approval_evidence_complete(row, measure_approvals_path)
             for row in measure_approvals
         ),
+        "approved_measure_specification_count": approved_measure_specifications,
+        "approved_measure_truth_table_case_count": approved_truth_cases,
+        "required_measure_truth_assertion_count": 208,
+        "measure_specification_approval_gate": measure_specification[
+            "measure_specification_approval_gate"
+        ],
         "scope_claim_count": len(scope_claims),
         "scope_decision_count": len(scope_decisions),
         "approved_scope_decision_count": sum(
@@ -972,6 +1032,7 @@ def main() -> int:
     parser.add_argument("--terminology-fsh", type=Path, required=True)
     parser.add_argument("--approval-register", type=Path, required=True)
     parser.add_argument("--measure-approval-register", type=Path, required=True)
+    parser.add_argument("--measure-specification-audit", type=Path, required=True)
     parser.add_argument("--scope-claims", type=Path, required=True)
     parser.add_argument("--scope-decisions", type=Path, required=True)
     parser.add_argument("--artifact-audit", type=Path, required=True)
@@ -992,6 +1053,7 @@ def main() -> int:
         report = audit(
             args.controls, args.measure_audit, args.terminology_fsh,
             args.approval_register, args.measure_approval_register,
+            args.measure_specification_audit,
             args.scope_claims, args.scope_decisions,
             args.artifact_audit,
             args.terminology_audit,
