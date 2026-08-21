@@ -3,10 +3,10 @@ $root = Split-Path -Parent $PSScriptRoot
 
 Push-Location $root
 try {
-    # The PHI gate runs first. Any detected patient data blocks publication.
-    python scripts\check_no_phi.py `
-        --json-out ig\output\repository-phi-pattern-scan-audit.json
-    if ($LASTEXITCODE -ne 0) { throw "PHI gate failed; inspect the findings above" }
+    # Fail fast before generating any publication artifact. The retained JSON
+    # evidence is regenerated after Publisher because Publisher replaces output.
+    python scripts\check_no_phi.py
+    if ($LASTEXITCODE -ne 0) { throw "PHI preflight gate failed; inspect the findings above" }
 
     python scripts\build_qbc_ig_mapping.py
     if ($LASTEXITCODE -ne 0) { throw "formal FHIR mapping build failed" }
@@ -28,6 +28,12 @@ try {
     finally {
         Pop-Location
     }
+
+    # Publisher replaces ig/output. Retain the privacy evidence by running this
+    # gate after the build and before any release decision.
+    python scripts\check_no_phi.py `
+        --json-out ig\output\repository-phi-pattern-scan-audit.json
+    if ($LASTEXITCODE -ne 0) { throw "PHI gate failed; inspect the findings above" }
 
     python scripts\audit_publisher_qa.py `
         --qa-text ig\output\qa.txt `

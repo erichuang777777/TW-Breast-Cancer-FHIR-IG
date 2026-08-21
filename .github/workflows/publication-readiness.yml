@@ -54,14 +54,8 @@ jobs:
       - name: Check out source
         uses: actions/checkout@v6
 
-      - name: Scan committable publication content for PHI patterns
-        shell: bash
-        run: |
-          set -o pipefail
-          mkdir -p ig/output
-          python scripts/check_no_phi.py \
-            --json-out ig/output/repository-phi-pattern-scan-audit.json \
-            | tee ig/output/repository-phi-pattern-scan-audit.log
+      - name: Preflight PHI pattern scan
+        run: python scripts/check_no_phi.py
 
       - name: Set up Java
         uses: actions/setup-java@v5
@@ -103,6 +97,16 @@ jobs:
             2>&1 | tee publisher.log
           echo "${PIPESTATUS[0]}" > publisher-exit-code.txt
           exit 0
+
+      # Publisher replaces ig/output, so create the retained privacy evidence
+      # only after the build and before any release-control audit or upload.
+      - name: Scan committable publication content for PHI patterns
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/check_no_phi.py \
+            --json-out ig/output/repository-phi-pattern-scan-audit.json \
+            | tee ig/output/repository-phi-pattern-scan-audit.log
 
       - name: Audit Publisher warning baseline
         shell: bash
