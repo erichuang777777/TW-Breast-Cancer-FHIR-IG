@@ -34,7 +34,7 @@ def test_committed_oid_register_is_complete_unique_and_under_the_root():
         "CodeSystem": 60,
         "ValueSet": 90,
         "ConceptMap": 50,
-        "StructureDefinition": 46,
+        "StructureDefinition": 47,
         "CapabilityStatement": 1,
         "Library": 1,
         "Measure": 20,
@@ -47,7 +47,7 @@ def test_committed_oid_register_is_complete_unique_and_under_the_root():
         assert len(section) == expected_count
         assignments.extend(section.values())
 
-    assert len(assignments) == 271
+    assert len(assignments) == 272
     assert len(set(assignments)) == len(assignments)
     assert all(
         re.fullmatch(re.escape(OID_ROOT) + r"\.\d+\.\d+", oid)

@@ -265,8 +265,8 @@ def audit(
             f"{artifact_audit_path}: gate_scope must be artifact-structure-and-example-only"
         )
     expected_artifact_counts = {
-        "artifact_count": 46,
-        "profile_count": 33,
+        "artifact_count": 47,
+        "profile_count": 34,
         "extension_count": 13,
     }
     for field, expected in expected_artifact_counts.items():
@@ -277,9 +277,9 @@ def audit(
     if artifact_audit.get("clinical_artifact_approval_gate") not in {"pass", "block"}:
         raise ValueError(f"{artifact_audit_path}: invalid clinical_artifact_approval_gate")
     approved_artifact_count = artifact_audit.get("approved_artifact_count")
-    if not isinstance(approved_artifact_count, int) or not 0 <= approved_artifact_count <= 46:
+    if not isinstance(approved_artifact_count, int) or not 0 <= approved_artifact_count <= 47:
         raise ValueError(f"{artifact_audit_path}: invalid approved_artifact_count")
-    expected_clinical_gate = "pass" if approved_artifact_count == 46 else "block"
+    expected_clinical_gate = "pass" if approved_artifact_count == 47 else "block"
     if artifact_audit["clinical_artifact_approval_gate"] != expected_clinical_gate:
         raise ValueError(f"{artifact_audit_path}: clinical artifact gate/count mismatch")
     terminology_audit = json.loads(terminology_audit_path.read_text(encoding="utf-8"))
@@ -321,12 +321,12 @@ def audit(
     ):
         raise ValueError(f"{resource_inventory_audit_path}: invalid gate_scope")
     inventory_counts = {
-        "resource_count": 260,
-        "publication_definition_count": 224,
-        "synthetic_example_count": 36,
-        "canonical_resource_count": 222,
+        "resource_count": 262,
+        "publication_definition_count": 225,
+        "synthetic_example_count": 37,
+        "canonical_resource_count": 223,
         "manual_json_resource_count": 103,
-        "generated_fsh_resource_count": 157,
+        "generated_fsh_resource_count": 159,
         "measure_count": 20,
     }
     for field, expected in inventory_counts.items():
@@ -346,7 +346,7 @@ def audit(
     expected_version_group_counts = {
         "CV-PACKAGE-EXPLICIT": 24,
         "CV-CQL-LIBRARY": 1,
-        "CV-PACKAGE-CONTEXT": 96,
+        "CV-PACKAGE-CONTEXT": 97,
         "CV-TCR-MANUAL": 101,
     }
     if version_policy_count != 4:
@@ -405,18 +405,18 @@ def audit(
         )
     reference_graph = json.loads(reference_graph_audit_path.read_text(encoding="utf-8"))
     expected_reference_fields = {
-        "resource_count": 260,
-        "local_url_link_occurrence_count": 633,
-        "unique_local_url_target_count": 190,
-        "canonical_reference_occurrence_count": 254,
-        "local_canonical_reference_occurrence_count": 219,
-        "external_canonical_reference_occurrence_count": 35,
+        "resource_count": 262,
+        "local_url_link_occurrence_count": 662,
+        "unique_local_url_target_count": 198,
+        "canonical_reference_occurrence_count": 269,
+        "local_canonical_reference_occurrence_count": 233,
+        "external_canonical_reference_occurrence_count": 36,
         "unique_external_canonical_count": 18,
         "versioned_canonical_reference_occurrence_count": 0,
-        "fhir_reference_occurrence_count": 326,
-        "manifest_reference_occurrence_count": 259,
-        "non_manifest_reference_occurrence_count": 67,
-        "total_audited_reference_edge_count": 994,
+        "fhir_reference_occurrence_count": 330,
+        "manifest_reference_occurrence_count": 261,
+        "non_manifest_reference_occurrence_count": 69,
+        "total_audited_reference_edge_count": 1028,
     }
     if reference_graph.get("gate_scope") != (
         "complete-local-fhir-reference-and-canonical-graph"
@@ -429,8 +429,8 @@ def audit(
             raise ValueError(f"{reference_graph_audit_path}: {field} must be {expected}")
     if reference_graph.get("local_url_link_counts") != {
         "bundle-fullUrl": 19,
-        "canonical-field": 219,
-        "code-system-use": 138,
+        "canonical-field": 233,
+        "code-system-use": 153,
         "conceptmap-code-system-use": 2,
         "extension-use-url": 240,
         "fixed-extension-url": 13,
@@ -438,7 +438,7 @@ def audit(
     }:
         raise ValueError(f"{reference_graph_audit_path}: invalid local URL link counts")
     if reference_graph.get("external_canonical_authority_counts") != {
-        "fhir-r4-core-4.0.1": 33,
+        "fhir-r4-core-4.0.1": 34,
         "tw-core-1.0.0": 2,
     }:
         raise ValueError(

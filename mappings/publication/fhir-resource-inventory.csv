@@ -123,6 +123,7 @@ QuestionnaireResponse,tcr-breast-example,synthetic-example,manual-json
 QuestionnaireResponse,tcr-illegal-code-negative-example,synthetic-example,generated-fsh
 Specimen,breast-cancer-pathology-specimen-example,synthetic-example,generated-fsh
 StructureDefinition,breast-cancer-case-management-report,publication-definition,generated-fsh
+StructureDefinition,breast-cancer-case-management-task,publication-definition,generated-fsh
 StructureDefinition,breast-cancer-common-facts-bundle,publication-definition,generated-fsh
 StructureDefinition,breast-cancer-episode-of-care,publication-definition,generated-fsh
 StructureDefinition,breast-cancer-laboratory-report,publication-definition,generated-fsh
@@ -168,6 +169,7 @@ StructureDefinition,tcr-raw-data-item-observation,publication-definition,generat
 StructureDefinition,tcr-registry-abstraction-task,publication-definition,generated-fsh
 StructureDefinition,tcr-source-document,publication-definition,manual-json
 StructureDefinition,tcr-source-hint,publication-definition,manual-json
+Task,breast-cancer-case-management-task-example,synthetic-example,generated-fsh
 Task,tcr-breast-abstraction-example,synthetic-example,manual-json
 ValueSet,breast-cancer-information-category,publication-definition,generated-fsh
 ValueSet,cm-anti-her2-medication,publication-definition,generated-fsh

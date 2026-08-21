@@ -45,15 +45,15 @@ Publisher／SUSHI 通過所證明的是「產出的資源符合目前載入的 F
 
 RC-08 另外驗證全 IG 的 10 個 scope claim 與 10 個逐項角色決策；目前 0/10 簽核。QBC 與個管品管／季報是 normative Task，因此兩者的 claim evidence 都必須升級為 `formal-release-ready`，才可能通過 whole-IG publication gate。單一 Task 的技術驗證或 operational approval 不會自動擴張成整份 IG 的正式發布證據。
 
-Profile／Extension 規格也採逐項核對，而不是只看 Publisher 總數。目前正式集合為 **46 個 StructureDefinition：33 Profile、13 Extension**；其中 4 個 TCR extension 是手寫 JSON，不能因不在 FSH 清單中而漏掉。`artifact-conformance-register.csv` 鎖定每個 artifact 的 parent、type、kind、scope 與合成範例，技術稽核為 46/46 pass；但逐 artifact 的臨床／FHIR reviewer 核准仍是 **0/46**，所以 RC-07 繼續 blocked。
+Profile／Extension 規格也採逐項核對，而不是只看 Publisher 總數。目前正式集合為 **47 個 StructureDefinition：34 Profile、13 Extension**；其中 4 個 TCR extension 是手寫 JSON，不能因不在 FSH 清單中而漏掉。`artifact-conformance-register.csv` 鎖定每個 artifact 的 parent、type、kind、scope 與合成範例，技術稽核為 47/47 pass；但逐 artifact 的臨床／FHIR reviewer 核准仍是 **0/47**，所以 RC-07 繼續 blocked。
 
 Terminology 也不能只計算 FSH 檔案或只檢查 CQL 有沒有名稱。實際發布集合是 **152 個 artifact：60 CodeSystem、90 ValueSet、2 ConceptMap**；機器稽核目前確認其 canonical、狀態、基本內容與內部參照完整。個管範圍另有精確的 19 項臨床 ValueSet 核准集合：18 項已被 CQL 引用，腋下淋巴結廓清術 1 項是 defined-not-referenced；19 項目前皆無內容且 **0/19** 完成具名、版本化簽核。因此能證明的是「terminology inventory 技術完整」，不能證明臨床代碼集合或 CQL cohort 語意正確，RC-03 仍 blocked。
 
-全 IG 另有一份不可用「總數相同」取代的精確 resource manifest：**260 個 type/id** 必須逐項一致，其中 224 個 definitions、36 個 synthetic examples、222 個 canonical resources；260 項中 157 項由 FSH 生成、103 項為手寫 JSON。技術稽核要求生成的 ImplementationGuide 精確引用其餘 259 項，並驗證 example 分類、canonical、CapabilityStatement、Library／Measure 與 NamingSystem 關係。稽核發現並修正 TCR abstraction Task 被錯標為 definition。這證明發布包沒有漏件或角色漂移，不證明每一資源的臨床內容正確。
+全 IG 另有一份不可用「總數相同」取代的精確 resource manifest：**262 個 type/id** 必須逐項一致，其中 225 個 definitions、37 個 synthetic examples、223 個 canonical resources；262 項中 159 項由 FSH 生成、103 項為手寫 JSON。技術稽核要求生成的 ImplementationGuide 精確引用其餘 261 項，並驗證 example 分類、canonical、CapabilityStatement、Library／Measure 與 NamingSystem 關係。這證明發布包沒有漏件或角色漂移，不證明每一資源的臨床內容正確。
 
-完整引用圖也不能只靠 Publisher「沒有 unresolved warning」推定。`audit_fhir_reference_graph.py` 逐一驗證 **994 個 edge**：633 個本地 URL link、326 個 FHIR `Reference.reference`、35 個外部 canonical；其中本地目標 190 個唯一 URL 均須存在且符合 ValueSet、CodeSystem、StructureDefinition、Library、Measure、Questionnaire 或 NamingSystem 的預期型別，Bundle fullUrl 亦須與內嵌 resource identity 相同。外部集合鎖成 18 個 URL，只能由 FHIR R4 `4.0.1` 與 TW Core `1.0.0` 兩個已固定 authority 解析。任何新增外部 canonical、斷裂 reference 或目標型別漂移都會使 RC-02 失敗。
+完整引用圖也不能只靠 Publisher「沒有 unresolved warning」推定。`audit_fhir_reference_graph.py` 逐一驗證 **1028 個 edge**：662 個本地 URL link、330 個 FHIR `Reference.reference`、36 個外部 canonical；其中本地目標 198 個唯一 URL 均須存在且符合 ValueSet、CodeSystem、StructureDefinition、Library、Measure、Questionnaire 或 NamingSystem 的預期型別，Bundle fullUrl 亦須與內嵌 resource identity 相同。外部集合鎖成 18 個 URL，只能由 FHIR R4 `4.0.1` 與 TW Core `1.0.0` 兩個已固定 authority 解析。任何新增外部 canonical、斷裂 reference 或目標型別漂移都會使 RC-02 失敗。
 
-版本語意缺口涵蓋全部 222 個 canonical resources，而非只有 Questionnaire。精確分類為：24 個明確使用 IG package version、1 個 Library 使用 CQL lifecycle version、96 個生成資源沒有 resource-level version 且尚未核准 package-context-only policy、101 個手寫 TCR canonical resources 全部使用 `4.0.1`。最後一組與 FHIR R4 版本相同，卻沒有 TCR 表單、手冊或碼表的權威 business-version 來源。FHIR R4 [`Questionnaire.version`](https://hl7.org/fhir/R4/questionnaire-definitions.html#Questionnaire.version) 明確將該欄位定義為作者管理的 business version；同類 canonical resources 亦不能把 `fhirVersion` 當成內容版本。四組政策目前 **0/4** 具名簽核，故 RC-08 business-version provenance gate 為 blocked。不得直接把 101 項改成推測年份或版號，也不得默認 96 項一定可只靠 package context。
+版本語意缺口涵蓋全部 223 個 canonical resources，而非只有 Questionnaire。精確分類為：24 個明確使用 IG package version、1 個 Library 使用 CQL lifecycle version、97 個生成資源沒有 resource-level version 且尚未核准 package-context-only policy、101 個手寫 TCR canonical resources 全部使用 `4.0.1`。最後一組與 FHIR R4 版本相同，卻沒有 TCR 表單、手冊或碼表的權威 business-version 來源。FHIR R4 [`Questionnaire.version`](https://hl7.org/fhir/R4/questionnaire-definitions.html#Questionnaire.version) 明確將該欄位定義為作者管理的 business version；同類 canonical resources 亦不能把 `fhirVersion` 當成內容版本。四組政策目前 **0/4** 具名簽核，故 RC-08 business-version provenance gate 為 blocked。不得直接把 101 項改成推測年份或版號，也不得默認 97 項一定可只靠 package context。
 
 ## 每一筆資料應比對的內容
 
@@ -86,7 +86,7 @@ Terminology 也不能只計算 FSH 檔案或只檢查 CQL 有沒有名稱。實�
 - 1 條為尚未核准的 candidate rule：`N5-RETURN`。
 - 1 條存在 10 群／11 群的定義矛盾：`S17-HISTOLOGY`。
 
-此外有 **22/68 criteria** 會讀取 Task 型態的行政欄位，但目前 IG 只有通用 `[Task]` CQL query，沒有一個專屬個管 Task profile 去約束 `for`／subject、input/output slices、cardinality 與 bindings。既有 `TCRRegistryAbstractionTask` 是癌登摘錄 task，不能拿來當作個管品管／季報契約。這 22 條因此都標為 `missing-dedicated-task-profile`；在新增專屬 profile 或核准同等可測的 generic-Task contract 前，不得宣稱跨系統 workflow 互通。
+另有 **22/68 criteria** 會讀取 Task 型態的行政欄位。稽核原先發現只有通用 `[Task]` query，而既有 `TCRRegistryAbstractionTask` 是癌登摘錄用途，不能冒充個管契約；現已新增 experimental 的 `BreastCancerCaseManagementTask`，約束 Patient／focus、七個 input slices、cardinality 與行政值域，CQL 也明確排除不屬於目前 Patient 的 Task。結構缺口已由合成反例驗證關閉，因此 `workflow_profile_gap_count` 為 0；但 profile 與院內值域仍待個管與 FHIR reviewer 核准，不能因此宣稱跨系統 workflow 已正式互通。
 
 ## 20 個 Measure 的目前判定
 

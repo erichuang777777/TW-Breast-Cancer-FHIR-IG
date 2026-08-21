@@ -47,7 +47,7 @@ def test_crosscheck_covers_all_68_criteria_without_overstating_publication():
         },
         "source_fully_approved_count": 0,
         "production_publication_allowed_count": 0,
-        "workflow_profile_gap_count": 22,
+        "workflow_profile_gap_count": 0,
         "integrity_gate": "pass",
     }
 
@@ -62,9 +62,11 @@ def test_result_changing_and_conditional_gaps_are_named_at_criterion_level():
     assert by_id["X6-AGE-NODE-DEF"]["cql_alignment"] == "implemented-variant-unresolved"
 
 
-def test_unrelated_tcr_task_profile_does_not_close_case_management_contract_gap():
+def test_dedicated_case_management_profile_closes_the_structural_task_gap():
     by_id = {row["criterion_id"]: row for row in read_rows(REGISTER)}
-    assert by_id["S13-CLOSURE"]["workflow_contract"] == "missing-dedicated-task-profile"
+    assert by_id["S13-CLOSURE"]["workflow_contract"] == (
+        "dedicated-task-profile-present-pending-approval"
+    )
     assert by_id["IP-QUARTER"]["workflow_contract"] == "not-applicable"
 
 

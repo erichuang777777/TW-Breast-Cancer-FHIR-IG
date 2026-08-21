@@ -35,7 +35,7 @@ tracked 版本不是盲目覆蓋來源副本；後續已加入真實 Publisher�
 | population／stratifier criterion IDs | 68 | 68 | exact same ID set；tracked 增加一個審計欄位。 |
 | Task-only field IDs | 18 | 18 | exact same ID set。 |
 | Measure FSH symbols | 22 | 22 | exact same symbol set。 |
-| mapping test functions | 21 | 24 | 匯入 21 項全部保留，新增 3 項。 |
+| mapping test functions | 21 | 25 | 匯入 21 項全部保留，新增 4 項。 |
 | Measure test functions | 18 | 25 | 匯入 18 項全部保留，新增 7 項。 |
 | CQL define/function symbols | 100 | 107 | 99 項同名保留；1 項等價重構；新增 8 項（新增的 pathology-report date path 使 CM-BC-019 與 N5-BIOPSY-BEFORE 實際對齊）。 |
 

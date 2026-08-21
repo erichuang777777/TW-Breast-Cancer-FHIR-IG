@@ -475,6 +475,8 @@ define function "Case Input Code"(InputType String, ValueSystem String, AllowedC
     (flatten(
       [Task] CaseTask
         where CaseTask.status in { 'ready', 'in-progress', 'completed' }
+          and Last(Split(Coalesce(CaseTask."for".reference.value, ''), '/'))
+            = Patient.id.value
         return CaseTask.input
     )) TaskInput
       where exists (

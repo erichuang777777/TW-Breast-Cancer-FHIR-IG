@@ -74,13 +74,13 @@ def synthetic_resources(tmp_path: Path, data):
     return resource_dir
 
 
-def test_current_register_covers_all_46_artifacts_and_keeps_human_review_open(tmp_path):
+def test_current_register_covers_all_47_artifacts_and_keeps_human_review_open(tmp_path):
     data = rows()
     resource_dir = synthetic_resources(tmp_path, data)
     report = audit(REGISTER, SCOPES, [resource_dir])
     assert report["artifact_integrity_gate"] == "pass"
-    assert report["artifact_count"] == 46
-    assert report["profile_count"] == 33
+    assert report["artifact_count"] == 47
+    assert report["profile_count"] == 34
     assert report["extension_count"] == 13
     assert report["approved_artifact_count"] == 0
     assert report["clinical_artifact_approval_gate"] == "block"
@@ -92,7 +92,7 @@ def test_deleting_an_artifact_cannot_make_the_gate_pass(tmp_path):
     altered = tmp_path / "register.csv"
     write_register(altered, data)
     resource_dir = synthetic_resources(tmp_path, data)
-    with pytest.raises(ValueError, match="exactly 46 unique artifacts"):
+    with pytest.raises(ValueError, match="exactly 47 unique artifacts"):
         audit(altered, SCOPES, [resource_dir])
 
 

@@ -9,7 +9,7 @@
 | 原始碼／研究草稿 | pass | 必須持續標示 `draft`、`experimental`、非官方及非臨床用途。 |
 | 可重現技術建置 | pass | Publisher 2.3.2：0 errors、52 warnings、0 broken links；一般 CI 與 artifact 均已留存。 |
 | 社群 Preview 發布 | block | 缺範例、CRMI dependency、missing-OID 與 TCR targetless ConceptMap 四類已歸零；其餘 3 類 Publisher warning 尚未完成具名、限期核准。 |
-| Computable Measure Preview | block | 20/20 Measure、46 個 criteria 已完成 ELM runtime smoke 與合成分支測試；但 20/20 Measure 規格決策仍待具名核准，QR-04／QR-05 仍有資料與人工 adjudication 限制、QR-17 分群數尚有規格矛盾，且 19 個臨床 ValueSet 為空。 |
+| Computable Measure Preview | block | 20/20 Measure、46 個 expressions 已完成 ELM runtime smoke 與合成分支測試，底層 68/68 criteria 已逐條追蹤；但 20/20 Measure 規格決策仍待具名核准，QR-04／QR-05 仍有資料與人工 adjudication 限制、QR-17 分群數尚有規格矛盾，且 19 個臨床 ValueSet 為空。 |
 | 院內品管／季報 | block | 缺原始來源 mapping、正式 terminology、完整 reporting-period cohort、golden cohort 與逐案 reconciliation。 |
 | 跨院／正式申報 | block | 除上述項目外，仍缺跨實作驗證、在地治理、VPN／接收端回執與主管機關規則確認。 |
 
@@ -34,15 +34,15 @@
 
 RC-08 也要求 `ig-scope-claim-register.csv` 與 `publication-scope-decision-register.csv` 精確涵蓋同一組 10 個 claim。三個 normative scope（IG core、QBC、個管品管／季報）、六個 informative scope 與一個 excluded scope 的角色已鎖定；現況 0/10 簽核。即使 operational approvals 已簽署，只要任一 scope 尚未簽核或 normative Task 未達 `formal-release-ready`，完整 formal release 仍為 blocked。
 
-RC-07 另要求 `artifact-conformance-register.csv` 精確涵蓋全部 **46 個 StructureDefinition（33 Profile、13 Extension）**。`scripts/audit_artifact_conformance.py` 會把 FSH 產物與 4 個手寫 TCR extension 一起比對 parent canonical、FHIR type/kind、draft/experimental 狀態及合成範例使用證據。現況技術一致性為 46/46，但人工規格核准為 0/46；Publisher 綠燈不能替代這 46 項核准。
+RC-07 另要求 `artifact-conformance-register.csv` 精確涵蓋全部 **47 個 StructureDefinition（34 Profile、13 Extension）**。`scripts/audit_artifact_conformance.py` 會把 FSH 產物與 4 個手寫 TCR extension 一起比對 parent canonical、FHIR type/kind、draft/experimental 狀態及合成範例使用證據。現況技術一致性為 47/47，但人工規格核准為 0/47；Publisher 綠燈不能替代這 47 項核准。
 
 RC-03 的 terminology 範圍也已鎖定為生成後與手寫資源的完整聯集：**152 個 terminology artifact（60 CodeSystem、90 ValueSet、2 ConceptMap）**。`scripts/audit_terminology_conformance.py` 逐項檢查 canonical、draft/experimental、CodeSystem 內容、ValueSet include system、ConceptMap element/target，以及 CQL 宣告與實際引用。完整清冊的技術完整性目前通過；但 19 個個管臨床 ValueSet 仍為空，18 個被 CQL 實際引用，另 1 個腋下淋巴結廓清術值集僅定義而未引用。`case-management-terminology-approval-register.csv` 鎖定這 19 項，現況核准 **0/19**，因此 RC-03 必須維持 blocked。這項技術盤點不等於 152 項均已取得臨床語意核准。
 
-RC-02 現在另以 `fhir-resource-inventory.csv` 鎖定生成後完整集合：**260 個 FHIR resources、224 個 publication definitions、36 個 synthetic examples、222 個 canonical resources**；來源為 157 個 FSH 生成資源與 103 個手寫 JSON。`scripts/audit_fhir_resource_inventory.py` 要求 260 個 type/id 與 259 個 `ImplementationGuide.definition.resource` reference 精確一致，並核對 example／definition 標記、canonical 唯一性、CapabilityStatement supportedProfile、20 Measure 到 CQL Library 的引用及 NamingSystem URI。此次稽核也修正 `Task/tcr-breast-abstraction-example` 被誤標為 definition 的問題。
+RC-02 現在另以 `fhir-resource-inventory.csv` 鎖定生成後完整集合：**262 個 FHIR resources、225 個 publication definitions、37 個 synthetic examples、223 個 canonical resources**；來源為 159 個 FSH 生成資源與 103 個手寫 JSON。`scripts/audit_fhir_resource_inventory.py` 要求 262 個 type/id 與 261 個 `ImplementationGuide.definition.resource` reference 精確一致，並核對 example／definition 標記、canonical 唯一性、CapabilityStatement supportedProfile、20 Measure 到 CQL Library 的引用及 NamingSystem URI。
 
-資源存在不代表引用正確，因此 RC-02 另鎖定完整 reference graph：共 **994 個 edge**，包含 633 次本地 URL 連結、326 次 `Reference.reference` 與 35 次外部 canonical。633 次本地連結再分為 219 canonical fields、240 extension uses、138 CodeSystem uses、19 Bundle fullUrls、13 fixed extension URLs、2 NamingSystem uses、2 ConceptMap CodeSystem uses；190 個唯一的本地 URL target 全部可解析且目標 resource type 正確。326 次 FHIR Reference 包含 259 個 IG manifest references 與 67 個臨床／範例資源 references，全部可解析。35 次外部 canonical 只允許 18 個已審 URL，並由 FHIR R4 `4.0.1`（33 次）與 TW Core `1.0.0`（2 次）固定依賴解析。這證明引用圖技術閉合，不證明每一條臨床關係在真實資料上語意正確。
+資源存在不代表引用正確，因此 RC-02 另鎖定完整 reference graph：共 **1028 個 edge**，包含 662 次本地 URL 連結、330 次 `Reference.reference` 與 36 次外部 canonical。662 次本地連結再分為 233 canonical fields、240 extension uses、153 CodeSystem uses、19 Bundle fullUrls、13 fixed extension URLs、2 NamingSystem uses、2 ConceptMap CodeSystem uses；198 個唯一的本地 URL target 全部可解析且目標 resource type 正確。330 次 FHIR Reference 包含 261 個 IG manifest references 與 69 個臨床／範例資源 references，全部可解析。36 次外部 canonical 只允許 18 個已審 URL，並由 FHIR R4 `4.0.1`（34 次）與 TW Core `1.0.0`（2 次）固定依賴解析。這證明引用圖技術閉合，不證明每一條臨床關係在真實資料上語意正確。
 
-RC-08 進一步要求全部 222 個 canonical resources 的 business-version provenance，而不是只看 package version 或單一 Questionnaire。機器稽核把完整集合鎖成四個互斥群組：24 個明確使用 package version、1 個 CQL Library 使用 CQL lifecycle version、96 個生成資源目前只隱含於 package context、101 個手寫 TCR canonical resources 皆填入 `4.0.1`。後一數值與 FHIR R4 版本碰撞，但缺少 TCR 表單／手冊／碼表的權威版本證據；依 FHIR R4 的 [`Questionnaire.version`](https://hl7.org/fhir/R4/questionnaire-definitions.html#Questionnaire.version) 等 canonical resource version 定義，resource `version` 是內容的 business version，不是 `fhirVersion`。四組政策登錄於 `canonical-version-policy-register.csv`，目前 **0/4** 完成具名簽核，因此 gate blocked。這是語意／治理阻擋，不是 Publisher 結構錯誤；取得權威來源後須決定 96 項是否接受 package-context-only policy，並為 101 項填入或明確繼承真正的來源版本及證據，不得猜值。
+RC-08 進一步要求全部 223 個 canonical resources 的 business-version provenance，而不是只看 package version 或單一 Questionnaire。機器稽核把完整集合鎖成四個互斥群組：24 個明確使用 package version、1 個 CQL Library 使用 CQL lifecycle version、97 個生成資源目前只隱含於 package context、101 個手寫 TCR canonical resources 皆填入 `4.0.1`。後一數值與 FHIR R4 版本碰撞，但缺少 TCR 表單／手冊／碼表的權威版本證據；依 FHIR R4 的 [`Questionnaire.version`](https://hl7.org/fhir/R4/questionnaire-definitions.html#Questionnaire.version) 等 canonical resource version 定義，resource `version` 是內容的 business version，不是 `fhirVersion`。四組政策登錄於 `canonical-version-policy-register.csv`，目前 **0/4** 完成具名簽核，因此 gate blocked。這是語意／治理阻擋，不是 Publisher 結構錯誤；取得權威來源後須決定 97 項是否接受 package-context-only policy，並為 101 項填入或明確繼承真正的來源版本及證據，不得猜值。
 
 ## 數量與正確性門檻
 
@@ -61,7 +61,7 @@ RC-08 進一步要求全部 222 個 canonical resources 的 business-version pro
 ### Measure 與測試
 
 - `measure-validation-evidence-register.csv` 精確鎖定 20 個 Measure。獨立重算必須保存不共用 CQL 邏輯的實作 hash、CQL hash、truth-set hash、逐案 population 比較數與零未解釋差異；golden cohort 另須保存完整期別、all-in-scope cohort 宣告、原始 extract／FHIR Bundle hash、source-fact 與人工 override 比較數。目前兩者皆為 0/20。
-- Translation、runtime smoke 與具預期值的合成分支驗證均已達 20/20 Measure、46/46 criteria；分布 Measure 另驗證全部列舉 strata、月份、年齡帶、缺值與非法值。QR-04 只證明 cohort 已載入時的條件行為，QR-05 只證明候選規則的機械行為，兩者都不構成真實資料正確性證據。
+- Translation、runtime smoke 與具預期值的合成分支驗證均已達 20/20 Measure、46/46 expressions；底層 68/68 criteria 另有逐條差異表。分布 Measure 另驗證全部列舉 strata、月份、年齡帶、缺值與非法值。QR-04 只證明 cohort 已載入時的條件行為，QR-05 只證明候選規則的機械行為，兩者都不構成真實資料正確性證據。
 - Measure 規格核准目前為 0/20；每一項都必須保存具名 signer、組織／職稱、決定日期、證據 URI 與被簽 artifact 的 SHA-256，且 `draft_definition_alignment` 必須明確為 `approved`。只有簽名欄位或只有綠色 CQL 測試都不足以通過 RC-07。
 - 每個 Measure 的測試數不以任意固定樣本數取代 coverage。最低要求是所有 truth-table branch、排除、缺值、邊界、日期邊界及多筆事件行為全部有案例。
 - Golden cohort 要鎖版並逐案核對 100%，允許的未解釋差異為 0。

@@ -35,8 +35,8 @@ CANONICAL_FIELDS = {
 }
 EXPECTED_LOCAL_LINK_COUNTS = {
     "bundle-fullUrl": 19,
-    "canonical-field": 219,
-    "code-system-use": 138,
+    "canonical-field": 233,
+    "code-system-use": 153,
     "conceptmap-code-system-use": 2,
     "extension-use-url": 240,
     "fixed-extension-url": 13,
@@ -78,18 +78,18 @@ class GraphExpectations:
 
 
 PRODUCTION_EXPECTATIONS = GraphExpectations(
-    resource_count=260,
+    resource_count=262,
     local_link_counts=EXPECTED_LOCAL_LINK_COUNTS,
-    unique_local_target_count=190,
-    external_canonical_occurrence_count=35,
+    unique_local_target_count=198,
+    external_canonical_occurrence_count=36,
     external_canonicals=frozenset(EXPECTED_EXTERNAL_CANONICALS),
     external_authority_counts={
-        "fhir-r4-core-4.0.1": 33,
+        "fhir-r4-core-4.0.1": 34,
         "tw-core-1.0.0": 2,
     },
     versioned_canonical_reference_count=0,
-    fhir_reference_count=326,
-    manifest_reference_count=259,
+    fhir_reference_count=330,
+    manifest_reference_count=261,
 )
 
 

@@ -286,6 +286,38 @@ def test_task_003_carries_both_case_status_and_closure_reason():
     assert "closure reason when closed:" in behavior
 
 
+def test_case_management_task_profile_and_cql_are_patient_scoped():
+    profile = (ROOT / "ig" / "input" / "fsh" / "case-management-task.fsh").read_text(
+        encoding="utf-8"
+    )
+    assert "Profile: BreastCancerCaseManagementTask" in profile
+    assert "Parent: Task" in profile
+    assert "* for 1..1" in profile
+    expected_slices = {
+        "caseEntryCategory",
+        "caseStatus",
+        "closureReason",
+        "registryCaseClass",
+        "retentionDisposition",
+        "curativeTreatmentDisposition",
+        "treatmentCompletion",
+    }
+    assert all(f"* input[{name}].value[x] only CodeableConcept" in profile
+               for name in expected_slices)
+
+    cql = (ROOT / "ig" / "input" / "cql" / "BreastCancerCaseManagement.cql").read_text(
+        encoding="utf-8"
+    )
+    assert 'CaseTask."for".reference.value' in cql
+    assert "= Patient.id.value" in cql
+
+    capability = (ROOT / "ig" / "input" / "fsh" / "capability.fsh").read_text(
+        encoding="utf-8"
+    )
+    assert "/StructureDefinition/breast-cancer-case-management-task" in capability
+    assert "/StructureDefinition/tcr-registry-abstraction-task" in capability
+
+
 def test_case_management_page_is_in_the_ig_navigation_and_states_its_boundaries():
     config = (ROOT / "ig" / "sushi-config.yaml").read_text(encoding="utf-8")
     assert "task-case-management.md:" in config

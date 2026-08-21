@@ -38,8 +38,8 @@ EXPECTED_COUNTS = {
     "Questionnaire": 1,
     "QuestionnaireResponse": 3,
     "Specimen": 1,
-    "StructureDefinition": 46,
-    "Task": 1,
+    "StructureDefinition": 47,
+    "Task": 2,
     "ValueSet": 90,
 }
 DEFINITION_TYPES = {
@@ -99,7 +99,7 @@ VERSION_POLICY_DEFINITIONS = {
     },
     "CV-PACKAGE-CONTEXT": {
         "scope_rule": "generated canonical resources with no resource-level business version",
-        "artifact_count": "96",
+            "artifact_count": "97",
         "required_owner": "IG publication owner",
         "required_evidence": (
             "decision to add explicit resource versions or approve package-context-only "
@@ -184,8 +184,8 @@ def audit(
     if columns != REGISTER_COLUMNS:
         raise ValueError(f"{register_path}: invalid columns")
     register_keys = [(row["resource_type"], row["resource_id"]) for row in rows]
-    if len(rows) != 260 or len(set(register_keys)) != 260:
-        raise ValueError(f"{register_path}: expected exactly 260 unique resources")
+    if len(rows) != 262 or len(set(register_keys)) != 262:
+        raise ValueError(f"{register_path}: expected exactly 262 unique resources")
 
     with version_policy_path.open(encoding="utf-8-sig", newline="") as handle:
         version_policies = list(csv.DictReader(handle))
@@ -258,8 +258,8 @@ def audit(
         canonical_urls[expected_url] = key
         if resource.get("status") != "draft" or resource.get("experimental") is not True:
             raise ValueError(f"{key}: must remain draft and experimental")
-    if canonical_count != 222:
-        raise ValueError(f"canonical resource count {canonical_count}, expected 222")
+    if canonical_count != 223:
+        raise ValueError(f"canonical resource count {canonical_count}, expected 223")
 
     ig_key = ("ImplementationGuide", "io.github.erichuang777777.breast-cancer")
     ig = resources[ig_key][0]
@@ -268,8 +268,8 @@ def audit(
     manifest_entries = ig.get("definition", {}).get("resource", [])
     manifest_refs = [entry.get("reference", {}).get("reference") for entry in manifest_entries]
     expected_refs = {f"{kind}/{resource_id}" for kind, resource_id in actual_keys - {ig_key}}
-    if len(manifest_refs) != 259 or len(set(manifest_refs)) != 259:
-        raise ValueError("ImplementationGuide manifest must have 259 unique resource references")
+    if len(manifest_refs) != 261 or len(set(manifest_refs)) != 261:
+        raise ValueError("ImplementationGuide manifest must have 261 unique resource references")
     if set(manifest_refs) != expected_refs:
         raise ValueError("ImplementationGuide manifest does not match the exact resource inventory")
 
@@ -293,9 +293,9 @@ def audit(
             definitions += 1
             if entry.get("exampleBoolean") is not False or entry.get("exampleCanonical"):
                 raise ValueError(f"{reference}: definition is incorrectly marked as example")
-    if (definitions, examples) != (224, 36):
+    if (definitions, examples) != (225, 37):
         raise ValueError(
-            f"publication roles definitions={definitions}, examples={examples}; expected 224/36"
+            f"publication roles definitions={definitions}, examples={examples}; expected 225/37"
         )
 
     capability = resources[
@@ -393,7 +393,7 @@ def audit(
     if group_counts != {
         "CV-PACKAGE-EXPLICIT": 24,
         "CV-CQL-LIBRARY": 1,
-        "CV-PACKAGE-CONTEXT": 96,
+        "CV-PACKAGE-CONTEXT": 97,
         "CV-TCR-MANUAL": 101,
     }:
         raise ValueError(f"canonical version policy group counts changed: {group_counts}")

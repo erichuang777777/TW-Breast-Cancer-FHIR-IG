@@ -57,10 +57,10 @@ def run_audit(
         json.dumps({
             "gate_scope": "artifact-structure-and-example-only",
             "artifact_integrity_gate": "pass",
-            "artifact_count": 46,
-            "profile_count": 33,
+            "artifact_count": 47,
+            "profile_count": 34,
             "extension_count": 13,
-            "approved_artifact_count": 46 if artifact_approved else 0,
+            "approved_artifact_count": 47 if artifact_approved else 0,
             "clinical_artifact_approval_gate": "pass" if artifact_approved else "block",
         }),
         encoding="utf-8",
@@ -84,19 +84,19 @@ def run_audit(
     inventory_report = {
         "gate_scope": "exact-complete-fhir-resource-inventory-and-ig-manifest",
         "resource_inventory_gate": "pass",
-        "resource_count": 260,
-        "publication_definition_count": 224,
-        "synthetic_example_count": 36,
-        "canonical_resource_count": 222,
+        "resource_count": 262,
+        "publication_definition_count": 225,
+        "synthetic_example_count": 37,
+        "canonical_resource_count": 223,
         "manual_json_resource_count": 103,
-        "generated_fsh_resource_count": 157,
+        "generated_fsh_resource_count": 159,
         "measure_count": 20,
         "canonical_version_policy_count": 4,
         "approved_canonical_version_policy_count": 0,
         "canonical_version_policy_group_counts": {
             "CV-PACKAGE-EXPLICIT": 24,
             "CV-CQL-LIBRARY": 1,
-            "CV-PACKAGE-CONTEXT": 96,
+            "CV-PACKAGE-CONTEXT": 97,
             "CV-TCR-MANUAL": 101,
         },
         "canonical_version_policy_states": {
@@ -114,31 +114,31 @@ def run_audit(
     reference_report = {
         "gate_scope": "complete-local-fhir-reference-and-canonical-graph",
         "reference_graph_integrity_gate": "pass",
-        "resource_count": 260,
-        "local_url_link_occurrence_count": 633,
+        "resource_count": 262,
+        "local_url_link_occurrence_count": 662,
         "local_url_link_counts": {
             "bundle-fullUrl": 19,
-            "canonical-field": 219,
-            "code-system-use": 138,
+            "canonical-field": 233,
+            "code-system-use": 153,
             "conceptmap-code-system-use": 2,
             "extension-use-url": 240,
             "fixed-extension-url": 13,
             "naming-system-use": 2,
         },
-        "unique_local_url_target_count": 190,
-        "canonical_reference_occurrence_count": 254,
-        "local_canonical_reference_occurrence_count": 219,
-        "external_canonical_reference_occurrence_count": 35,
+        "unique_local_url_target_count": 198,
+        "canonical_reference_occurrence_count": 269,
+        "local_canonical_reference_occurrence_count": 233,
+        "external_canonical_reference_occurrence_count": 36,
         "unique_external_canonical_count": 18,
         "external_canonical_authority_counts": {
-            "fhir-r4-core-4.0.1": 33,
+            "fhir-r4-core-4.0.1": 34,
             "tw-core-1.0.0": 2,
         },
         "versioned_canonical_reference_occurrence_count": 0,
-        "fhir_reference_occurrence_count": 326,
-        "manifest_reference_occurrence_count": 259,
-        "non_manifest_reference_occurrence_count": 67,
-        "total_audited_reference_edge_count": 994,
+        "fhir_reference_occurrence_count": 330,
+        "manifest_reference_occurrence_count": 261,
+        "non_manifest_reference_occurrence_count": 69,
+        "total_audited_reference_edge_count": 1028,
     }
     reference_report.update(reference_overrides or {})
     reference_graph_audit.write_text(
@@ -212,17 +212,17 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["scope_decision_count"] == 10
     assert report["approved_scope_decision_count"] == 0
     assert report["normative_scope_readiness"] == "block"
-    assert report["artifact_conformance_count"] == 46
+    assert report["artifact_conformance_count"] == 47
     assert report["approved_artifact_count"] == 0
     assert report["clinical_artifact_approval_gate"] == "block"
     assert report["terminology_artifact_count"] == 152
     assert report["clinical_value_set_approval_count"] == 19
     assert report["approved_clinical_value_set_count"] == 0
     assert report["clinical_terminology_gate"] == "block"
-    assert report["fhir_resource_count"] == 260
-    assert report["publication_definition_count"] == 224
-    assert report["synthetic_example_count"] == 36
-    assert report["canonical_resource_count"] == 222
+    assert report["fhir_resource_count"] == 262
+    assert report["publication_definition_count"] == 225
+    assert report["synthetic_example_count"] == 37
+    assert report["canonical_resource_count"] == 223
     assert report["canonical_version_policy_count"] == 4
     assert report["approved_canonical_version_policy_count"] == 0
     assert report["canonical_version_policy_group_counts"]["CV-TCR-MANUAL"] == 101
@@ -232,10 +232,10 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["manual_canonical_versions"] == ["4.0.1"]
     assert report["business_version_provenance_gate"] == "block"
     assert report["reference_graph_integrity_gate"] == "pass"
-    assert report["total_audited_reference_edge_count"] == 994
-    assert report["local_url_link_occurrence_count"] == 633
-    assert report["fhir_reference_occurrence_count"] == 326
-    assert report["external_canonical_reference_occurrence_count"] == 35
+    assert report["total_audited_reference_edge_count"] == 1028
+    assert report["local_url_link_occurrence_count"] == 662
+    assert report["fhir_reference_occurrence_count"] == 330
+    assert report["external_canonical_reference_occurrence_count"] == 36
     assert report["source_fact_count"] == 52
     assert report["approved_authoritative_or_derived_fact_count"] == 0
     assert report["approved_independent_recalculation_count"] == 0
@@ -272,20 +272,20 @@ def test_terminology_gate_cannot_contradict_empty_or_unsigned_counts(tmp_path):
 
 def test_fhir_resource_inventory_count_cannot_be_reduced(tmp_path):
     completed, report = run_audit(
-        tmp_path, inventory_overrides={"resource_count": 259}
+        tmp_path, inventory_overrides={"resource_count": 261}
     )
     assert completed.returncode == 2
     assert report is None
-    assert "resource_count must be 260" in completed.stderr
+    assert "resource_count must be 262" in completed.stderr
 
 
 def test_reference_graph_count_cannot_be_reduced(tmp_path):
     completed, report = run_audit(
-        tmp_path, reference_overrides={"total_audited_reference_edge_count": 993}
+        tmp_path, reference_overrides={"total_audited_reference_edge_count": 1027}
     )
     assert completed.returncode == 2
     assert report is None
-    assert "total_audited_reference_edge_count must be 994" in completed.stderr
+    assert "total_audited_reference_edge_count must be 1028" in completed.stderr
 
 
 def test_measure_summary_cannot_fake_source_independent_or_golden_evidence(tmp_path):

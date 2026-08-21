@@ -220,7 +220,7 @@ def derive(
     )
     dedicated_task_profile = any(
         re.search(r"(?m)^Parent:\s+Task\s*$", block)
-        and "cm-task-input-type" in block
+        and ("cm-task-input-type" in block or "CMTaskInputType" in block)
         for block in profile_blocks
     )
 
