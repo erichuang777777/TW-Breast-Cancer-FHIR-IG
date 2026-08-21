@@ -40,7 +40,7 @@ RC-03 的 terminology 範圍也已鎖定為生成後與手寫資源的完整聯�
 
 RC-02 現在另以 `fhir-resource-inventory.csv` 鎖定生成後完整集合：**260 個 FHIR resources、224 個 publication definitions、36 個 synthetic examples、222 個 canonical resources**；來源為 157 個 FSH 生成資源與 103 個手寫 JSON。`scripts/audit_fhir_resource_inventory.py` 要求 260 個 type/id 與 259 個 `ImplementationGuide.definition.resource` reference 精確一致，並核對 example／definition 標記、canonical 唯一性、CapabilityStatement supportedProfile、20 Measure 到 CQL Library 的引用及 NamingSystem URI。此次稽核也修正 `Task/tcr-breast-abstraction-example` 被誤標為 definition 的問題。
 
-RC-08 進一步要求 business-version provenance。FHIR R4 的 `Questionnaire.version` 是由表單作者管理的表單版本，不是 `fhirVersion`；目前 `Questionnaire/tcr-breast-longform` 填入 `4.0.1`，卻沒有 TCR 表單／手冊權威版本證據，因此列為 ambiguous、gate blocked。這是語意／治理阻擋，不是 Publisher 結構錯誤；取得權威來源後應填入實際表單版本並留下證據，不得猜值。
+RC-08 進一步要求全部 222 個 canonical resources 的 business-version provenance，而不是只看 package version 或單一 Questionnaire。機器稽核把完整集合鎖成四個互斥群組：24 個明確使用 package version、1 個 CQL Library 使用 CQL lifecycle version、96 個生成資源目前只隱含於 package context、101 個手寫 TCR canonical resources 皆填入 `4.0.1`。後一數值與 FHIR R4 版本碰撞，但缺少 TCR 表單／手冊／碼表的權威版本證據；依 FHIR R4 的 [`Questionnaire.version`](https://hl7.org/fhir/R4/questionnaire-definitions.html#Questionnaire.version) 等 canonical resource version 定義，resource `version` 是內容的 business version，不是 `fhirVersion`。四組政策登錄於 `canonical-version-policy-register.csv`，目前 **0/4** 完成具名簽核，因此 gate blocked。這是語意／治理阻擋，不是 Publisher 結構錯誤；取得權威來源後須決定 96 項是否接受 package-context-only policy，並為 101 項填入或明確繼承真正的來源版本及證據，不得猜值。
 
 ## 數量與正確性門檻
 

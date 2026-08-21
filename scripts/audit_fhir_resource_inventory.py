@@ -9,6 +9,7 @@ import json
 import re
 import sys
 from collections import Counter
+from datetime import date
 from pathlib import Path
 
 
@@ -62,9 +63,88 @@ MEASURE_IDS = {
 REGISTER_COLUMNS = {
     "resource_type", "resource_id", "publication_role", "authoring_source",
 }
+VERSION_POLICY_COLUMNS = {
+    "policy_id", "scope_rule", "artifact_count", "current_version_state",
+    "required_owner", "required_evidence", "current_status", "decision",
+    "signer_name", "signer_organization_title", "decision_date",
+    "evidence_uri_path", "signed_artifact_sha256", "notes",
+}
+VERSION_POLICY_IDS = {
+    "CV-PACKAGE-EXPLICIT",
+    "CV-CQL-LIBRARY",
+    "CV-PACKAGE-CONTEXT",
+    "CV-TCR-MANUAL",
+}
+VERSION_POLICY_DEFINITIONS = {
+    "CV-PACKAGE-EXPLICIT": {
+        "scope_rule": (
+            "generated canonical resources explicitly carrying package version except "
+            "CQL Library"
+        ),
+        "artifact_count": "24",
+        "required_owner": "IG publication owner",
+        "required_evidence": (
+            "immutable release manifest; package version; exact covered canonical list "
+            "and hashes"
+        ),
+    },
+    "CV-CQL-LIBRARY": {
+        "scope_rule": "CQL Library and source library declaration",
+        "artifact_count": "1",
+        "required_owner": "CQL and publication owners",
+        "required_evidence": (
+            "CQL lifecycle decision; Library/CQL version equality; immutable ELM and "
+            "source hashes"
+        ),
+    },
+    "CV-PACKAGE-CONTEXT": {
+        "scope_rule": "generated canonical resources with no resource-level business version",
+        "artifact_count": "96",
+        "required_owner": "IG publication owner",
+        "required_evidence": (
+            "decision to add explicit resource versions or approve package-context-only "
+            "versioning; exact covered canonical list and release hash"
+        ),
+    },
+    "CV-TCR-MANUAL": {
+        "scope_rule": "all manually authored TCR canonical resources",
+        "artifact_count": "101",
+        "required_owner": "TCR source and publication owners",
+        "required_evidence": (
+            "authoritative TCR form/manual/code-table edition; decision whether local "
+            "artifact or source version is asserted; exact covered canonical list and hashes"
+        ),
+    },
+}
+SHA256 = re.compile(r"[0-9a-fA-F]{64}")
 LIBRARY_DECLARATION = re.compile(
     r"^library\s+([A-Za-z][A-Za-z0-9_]*)\s+version\s+'([^']+)'", re.MULTILINE
 )
+
+
+def version_policy_approval_complete(row: dict[str, str]) -> bool:
+    if (
+        row["current_status"] != "approved"
+        or row["decision"] != "approve"
+        or row["current_version_state"] not in {
+            "explicit-package-version",
+            "cql-library-version",
+            "approved-package-context-only",
+            "authoritative-business-version",
+        }
+    ):
+        return False
+    required = (
+        "signer_name", "signer_organization_title", "decision_date",
+        "evidence_uri_path", "signed_artifact_sha256",
+    )
+    if not all(row[field].strip() for field in required):
+        return False
+    try:
+        date.fromisoformat(row["decision_date"])
+    except ValueError:
+        return False
+    return SHA256.fullmatch(row["signed_artifact_sha256"].strip()) is not None
 
 
 def load_resources(
@@ -93,6 +173,7 @@ def load_resources(
 
 def audit(
     register_path: Path,
+    version_policy_path: Path,
     generated_dir: Path,
     manual_dir: Path,
     cql_path: Path,
@@ -105,6 +186,36 @@ def audit(
     register_keys = [(row["resource_type"], row["resource_id"]) for row in rows]
     if len(rows) != 260 or len(set(register_keys)) != 260:
         raise ValueError(f"{register_path}: expected exactly 260 unique resources")
+
+    with version_policy_path.open(encoding="utf-8-sig", newline="") as handle:
+        version_policies = list(csv.DictReader(handle))
+    version_columns = set(version_policies[0]) if version_policies else set()
+    if version_columns != VERSION_POLICY_COLUMNS:
+        raise ValueError(f"{version_policy_path}: invalid columns")
+    if (
+        len(version_policies) != 4
+        or {row["policy_id"] for row in version_policies} != VERSION_POLICY_IDS
+    ):
+        raise ValueError(f"{version_policy_path}: expected exact four version policies")
+    policy_by_id = {row["policy_id"]: row for row in version_policies}
+    for row in version_policies:
+        for field in (
+            "policy_id", "scope_rule", "artifact_count", "current_version_state",
+            "required_owner", "required_evidence", "current_status",
+        ):
+            if not row[field].strip():
+                raise ValueError(f"{version_policy_path}: {row['policy_id']} empty {field}")
+        if row["current_status"] not in {"pending-human-signoff", "approved"}:
+            raise ValueError(f"{version_policy_path}: invalid current_status")
+        if row["decision"] not in {"", "approve", "reject", "revise"}:
+            raise ValueError(f"{version_policy_path}: invalid decision")
+        definition = VERSION_POLICY_DEFINITIONS[row["policy_id"]]
+        for field, expected in definition.items():
+            if row[field] != expected:
+                raise ValueError(
+                    f"{version_policy_path}: {row['policy_id']} {field} does not match "
+                    "the locked policy"
+                )
 
     resources = load_resources(generated_dir, manual_dir)
     actual_keys = set(resources)
@@ -251,13 +362,94 @@ def audit(
     if len(naming_uris) != 2:
         raise ValueError("NamingSystem preferred URIs must be unique")
 
-    questionnaire = resources[("Questionnaire", "tcr-breast-longform")][0]
-    ambiguous_versions = []
-    if (
-        not questionnaire.get("version")
-        or questionnaire.get("version") == capability.get("fhirVersion")
-    ):
-        ambiguous_versions.append("Questionnaire/tcr-breast-longform")
+    explicit_package = []
+    cql_libraries = []
+    package_context = []
+    manual_canonicals = []
+    unexpected_versions = []
+    for key, (resource, source) in resources.items():
+        if key[0] not in CANONICAL_TYPES:
+            continue
+        version = resource.get("version")
+        if source == "manual-json":
+            manual_canonicals.append((key, version))
+        elif key == library_key:
+            cql_libraries.append((key, version))
+        elif version == PACKAGE_VERSION:
+            explicit_package.append((key, version))
+        elif not version:
+            package_context.append((key, version))
+        else:
+            unexpected_versions.append((key, version))
+    if unexpected_versions:
+        raise ValueError(f"unexpected generated canonical versions: {unexpected_versions}")
+
+    group_counts = {
+        "CV-PACKAGE-EXPLICIT": len(explicit_package),
+        "CV-CQL-LIBRARY": len(cql_libraries),
+        "CV-PACKAGE-CONTEXT": len(package_context),
+        "CV-TCR-MANUAL": len(manual_canonicals),
+    }
+    if group_counts != {
+        "CV-PACKAGE-EXPLICIT": 24,
+        "CV-CQL-LIBRARY": 1,
+        "CV-PACKAGE-CONTEXT": 96,
+        "CV-TCR-MANUAL": 101,
+    }:
+        raise ValueError(f"canonical version policy group counts changed: {group_counts}")
+    for policy_id, count in group_counts.items():
+        try:
+            registered_count = int(policy_by_id[policy_id]["artifact_count"])
+        except ValueError as exc:
+            raise ValueError(f"{version_policy_path}: invalid artifact_count") from exc
+        if registered_count != count:
+            raise ValueError(
+                f"{version_policy_path}: {policy_id} artifact_count must be {count}"
+            )
+
+    context_policy = policy_by_id["CV-PACKAGE-CONTEXT"]
+    context_approved = version_policy_approval_complete(context_policy)
+    expected_context_state = (
+        "approved-package-context-only"
+        if context_approved
+        else "package-context-policy-pending"
+    )
+    manual_versions = {str(version) if version is not None else "" for _, version in manual_canonicals}
+    manual_policy = policy_by_id["CV-TCR-MANUAL"]
+    manual_approved = version_policy_approval_complete(manual_policy)
+    if not manual_versions or "" in manual_versions:
+        expected_manual_state = "missing-business-version"
+    elif "4.0.1" in manual_versions:
+        expected_manual_state = "fhir-version-collision"
+    elif len(manual_versions) != 1:
+        expected_manual_state = "mixed-business-versions"
+    else:
+        expected_manual_state = (
+            "authoritative-business-version"
+            if manual_approved
+            else "authoritative-business-version-candidate"
+        )
+    expected_states = {
+        "CV-PACKAGE-EXPLICIT": "explicit-package-version",
+        "CV-CQL-LIBRARY": "cql-library-version",
+        "CV-PACKAGE-CONTEXT": expected_context_state,
+        "CV-TCR-MANUAL": expected_manual_state,
+    }
+    for policy_id, expected_state in expected_states.items():
+        if policy_by_id[policy_id]["current_version_state"] != expected_state:
+            raise ValueError(
+                f"{version_policy_path}: {policy_id} current_version_state must be "
+                f"{expected_state}"
+            )
+    approved_version_policies = sum(
+        version_policy_approval_complete(row) for row in version_policies
+    )
+    version_gate = (
+        "pass" if approved_version_policies == 4
+        and expected_context_state == "approved-package-context-only"
+        and expected_manual_state == "authoritative-business-version"
+        else "block"
+    )
 
     return {
         "gate_scope": "exact-complete-fhir-resource-inventory-and-ig-manifest",
@@ -273,8 +465,12 @@ def audit(
             source == "generated-fsh" for _, source in resources.values()
         ),
         "measure_count": len(measures),
-        "ambiguous_business_version_artifacts": ambiguous_versions,
-        "business_version_provenance_gate": "block" if ambiguous_versions else "pass",
+        "canonical_version_policy_count": len(version_policies),
+        "approved_canonical_version_policy_count": approved_version_policies,
+        "canonical_version_policy_group_counts": group_counts,
+        "canonical_version_policy_states": expected_states,
+        "manual_canonical_versions": sorted(manual_versions),
+        "business_version_provenance_gate": version_gate,
         "maximum_supported_claim": "complete-technical-inventory-not-semantic-approval",
     }
 
@@ -282,6 +478,7 @@ def audit(
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--register", type=Path, required=True)
+    parser.add_argument("--version-policy-register", type=Path, required=True)
     parser.add_argument("--generated-resource-dir", type=Path, required=True)
     parser.add_argument("--manual-resource-dir", type=Path, required=True)
     parser.add_argument("--cql", type=Path, required=True)
@@ -291,6 +488,7 @@ def main() -> int:
     try:
         report = audit(
             args.register,
+            args.version_policy_register,
             args.generated_resource_dir,
             args.manual_resource_dir,
             args.cql,

@@ -89,9 +89,21 @@ def run_audit(
         "manual_json_resource_count": 103,
         "generated_fsh_resource_count": 157,
         "measure_count": 20,
-        "ambiguous_business_version_artifacts": [
-            "Questionnaire/tcr-breast-longform"
-        ],
+        "canonical_version_policy_count": 4,
+        "approved_canonical_version_policy_count": 0,
+        "canonical_version_policy_group_counts": {
+            "CV-PACKAGE-EXPLICIT": 24,
+            "CV-CQL-LIBRARY": 1,
+            "CV-PACKAGE-CONTEXT": 96,
+            "CV-TCR-MANUAL": 101,
+        },
+        "canonical_version_policy_states": {
+            "CV-PACKAGE-EXPLICIT": "explicit-package-version",
+            "CV-CQL-LIBRARY": "cql-library-version",
+            "CV-PACKAGE-CONTEXT": "package-context-policy-pending",
+            "CV-TCR-MANUAL": "fhir-version-collision",
+        },
+        "manual_canonical_versions": ["4.0.1"],
         "business_version_provenance_gate": "block",
     }
     inventory_report.update(inventory_overrides or {})
@@ -149,10 +161,14 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["publication_definition_count"] == 224
     assert report["synthetic_example_count"] == 36
     assert report["canonical_resource_count"] == 222
+    assert report["canonical_version_policy_count"] == 4
+    assert report["approved_canonical_version_policy_count"] == 0
+    assert report["canonical_version_policy_group_counts"]["CV-TCR-MANUAL"] == 101
+    assert report["canonical_version_policy_states"]["CV-TCR-MANUAL"] == (
+        "fhir-version-collision"
+    )
+    assert report["manual_canonical_versions"] == ["4.0.1"]
     assert report["business_version_provenance_gate"] == "block"
-    assert report["ambiguous_business_version_artifacts"] == [
-        "Questionnaire/tcr-breast-longform"
-    ]
     assert report["data_correctness_gate"] == "block"
     assert report["formal_release_gate"] == "block"
     assert report["maximum_supported_claim"] == "technical-draft-only"
@@ -192,13 +208,13 @@ def test_fhir_resource_inventory_count_cannot_be_reduced(tmp_path):
     assert "resource_count must be 260" in completed.stderr
 
 
-def test_business_version_gate_cannot_contradict_ambiguity_list(tmp_path):
+def test_business_version_gate_cannot_contradict_policy_approval_state(tmp_path):
     completed, report = run_audit(
         tmp_path, inventory_overrides={"business_version_provenance_gate": "pass"}
     )
     assert completed.returncode == 2
     assert report is None
-    assert "business-version gate/list mismatch" in completed.stderr
+    assert "business-version policy gate/count mismatch" in completed.stderr
 
 
 def test_declared_control_status_must_match_derived_evidence(tmp_path):
@@ -481,7 +497,14 @@ def test_rc08_requires_signed_scope_roles_and_formal_ready_normative_claims(tmp_
         approvals=signed_operations,
         scope_decisions=signed_scopes,
         inventory_overrides={
-            "ambiguous_business_version_artifacts": [],
+            "approved_canonical_version_policy_count": 4,
+            "canonical_version_policy_states": {
+                "CV-PACKAGE-EXPLICIT": "explicit-package-version",
+                "CV-CQL-LIBRARY": "cql-library-version",
+                "CV-PACKAGE-CONTEXT": "approved-package-context-only",
+                "CV-TCR-MANUAL": "authoritative-business-version",
+            },
+            "manual_canonical_versions": ["TCR-breast-source-2026"],
             "business_version_provenance_gate": "pass",
         },
     )
@@ -516,7 +539,14 @@ def test_rc08_requires_signed_scope_roles_and_formal_ready_normative_claims(tmp_
         scope_claims=ready_claims,
         scope_decisions=ready_decisions,
         inventory_overrides={
-            "ambiguous_business_version_artifacts": [],
+            "approved_canonical_version_policy_count": 4,
+            "canonical_version_policy_states": {
+                "CV-PACKAGE-EXPLICIT": "explicit-package-version",
+                "CV-CQL-LIBRARY": "cql-library-version",
+                "CV-PACKAGE-CONTEXT": "approved-package-context-only",
+                "CV-TCR-MANUAL": "authoritative-business-version",
+            },
+            "manual_canonical_versions": ["TCR-breast-source-2026"],
             "business_version_provenance_gate": "pass",
         },
     )

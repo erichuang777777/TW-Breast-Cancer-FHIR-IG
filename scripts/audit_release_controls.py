@@ -334,17 +334,72 @@ def audit(
             )
     if resource_inventory.get("resource_inventory_gate") != "pass":
         raise ValueError(f"{resource_inventory_audit_path}: inventory gate must pass")
-    ambiguous_versions = resource_inventory.get("ambiguous_business_version_artifacts")
-    if not isinstance(ambiguous_versions, list) or any(
-        not isinstance(item, str) or not item for item in ambiguous_versions
+    version_policy_count = resource_inventory.get("canonical_version_policy_count")
+    approved_version_policy_count = resource_inventory.get(
+        "approved_canonical_version_policy_count"
+    )
+    version_group_counts = resource_inventory.get(
+        "canonical_version_policy_group_counts"
+    )
+    expected_version_group_counts = {
+        "CV-PACKAGE-EXPLICIT": 24,
+        "CV-CQL-LIBRARY": 1,
+        "CV-PACKAGE-CONTEXT": 96,
+        "CV-TCR-MANUAL": 101,
+    }
+    if version_policy_count != 4:
+        raise ValueError(
+            f"{resource_inventory_audit_path}: canonical_version_policy_count must be 4"
+        )
+    if (
+        not isinstance(approved_version_policy_count, int)
+        or not 0 <= approved_version_policy_count <= 4
     ):
         raise ValueError(
-            f"{resource_inventory_audit_path}: invalid ambiguous business-version list"
+            f"{resource_inventory_audit_path}: invalid approved version-policy count"
         )
-    expected_version_gate = "block" if ambiguous_versions else "pass"
+    if version_group_counts != expected_version_group_counts:
+        raise ValueError(
+            f"{resource_inventory_audit_path}: invalid canonical version-policy groups"
+        )
+    version_states = resource_inventory.get("canonical_version_policy_states")
+    if not isinstance(version_states, dict) or set(version_states) != set(
+        expected_version_group_counts
+    ):
+        raise ValueError(
+            f"{resource_inventory_audit_path}: invalid canonical version-policy states"
+        )
+    if version_states["CV-PACKAGE-EXPLICIT"] != "explicit-package-version":
+        raise ValueError(f"{resource_inventory_audit_path}: invalid explicit-version state")
+    if version_states["CV-CQL-LIBRARY"] != "cql-library-version":
+        raise ValueError(f"{resource_inventory_audit_path}: invalid CQL-version state")
+    if version_states["CV-PACKAGE-CONTEXT"] not in {
+        "package-context-policy-pending", "approved-package-context-only",
+    }:
+        raise ValueError(f"{resource_inventory_audit_path}: invalid package-context state")
+    if version_states["CV-TCR-MANUAL"] not in {
+        "missing-business-version", "fhir-version-collision",
+        "mixed-business-versions", "authoritative-business-version-candidate",
+        "authoritative-business-version",
+    }:
+        raise ValueError(f"{resource_inventory_audit_path}: invalid manual-version state")
+    manual_versions = resource_inventory.get("manual_canonical_versions")
+    if not isinstance(manual_versions, list) or any(
+        not isinstance(item, str) for item in manual_versions
+    ):
+        raise ValueError(
+            f"{resource_inventory_audit_path}: invalid manual canonical-version list"
+        )
+    expected_version_gate = (
+        "pass"
+        if approved_version_policy_count == 4
+        and version_states["CV-PACKAGE-CONTEXT"] == "approved-package-context-only"
+        and version_states["CV-TCR-MANUAL"] == "authoritative-business-version"
+        else "block"
+    )
     if resource_inventory.get("business_version_provenance_gate") != expected_version_gate:
         raise ValueError(
-            f"{resource_inventory_audit_path}: business-version gate/list mismatch"
+            f"{resource_inventory_audit_path}: business-version policy gate/count mismatch"
         )
     publisher = json.loads(publisher_audit_path.read_text(encoding="utf-8"))
     if publisher.get("gate_scope") != "publisher-qa-only":
@@ -458,7 +513,11 @@ def audit(
         "business_version_provenance_gate": resource_inventory[
             "business_version_provenance_gate"
         ],
-        "ambiguous_business_version_artifacts": ambiguous_versions,
+        "canonical_version_policy_count": version_policy_count,
+        "approved_canonical_version_policy_count": approved_version_policy_count,
+        "canonical_version_policy_group_counts": version_group_counts,
+        "canonical_version_policy_states": version_states,
+        "manual_canonical_versions": manual_versions,
         "control_integrity_gate": integrity,
         "data_correctness_gate": data_gate,
         "publisher_formal_qa_gate": publisher["formal_release_gate"],

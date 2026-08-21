@@ -56,6 +56,7 @@ try {
 
     python scripts\audit_fhir_resource_inventory.py `
         --register mappings\publication\fhir-resource-inventory.csv `
+        --version-policy-register mappings\publication\canonical-version-policy-register.csv `
         --generated-resource-dir ig\fsh-generated\resources `
         --manual-resource-dir ig\input\resources `
         --cql ig\input\cql\BreastCancerCaseManagement.cql `

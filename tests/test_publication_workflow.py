@@ -30,6 +30,7 @@ def test_publisher_workflow_is_reproducible_and_preserves_evidence():
     assert "terminology-conformance-audit.json" in text
     assert "scripts/audit_fhir_resource_inventory.py" in text
     assert "mappings/publication/fhir-resource-inventory.csv" in text
+    assert "mappings/publication/canonical-version-policy-register.csv" in text
     assert "fhir-resource-inventory-audit.json" in text
     assert "mappings/publication/release-control-register.csv" in text
     assert "mappings/publication/case-management-measure-approval-register.csv" in text
@@ -60,6 +61,7 @@ def test_local_release_script_uses_the_same_evidence_gates_without_overclaiming(
     assert "case-management-terminology-approval-register.csv" in text
     assert "scripts\\audit_fhir_resource_inventory.py" in text
     assert "fhir-resource-inventory.csv" in text
+    assert "canonical-version-policy-register.csv" in text
     assert "case-management-measure-approval-register.csv" in text
     assert "ig-scope-claim-register.csv" in text
     assert "publication-scope-decision-register.csv" in text
