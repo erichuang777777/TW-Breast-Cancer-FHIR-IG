@@ -50,8 +50,21 @@
 
 1. 在 work-package CSV 填入具名 owner、組織／職稱、日期、assignment evidence URI 與簽署 artifact SHA-256；只有 `confirmed` 字樣不算完成。
 2. 由 owner 回答該列 `acquisition_question`，交付指定 schema／API spec、版本與 extraction query。
-3. 把權威 system、artifact、element、data type、時間、單位、null、轉換及 Provenance 規則填回 `source-traceability-register.csv`，並完成 source owner/reviewer 簽核。
+3. 把權威 system、artifact、element、version 填回 `source-traceability-register.csv`，再逐欄完成下列 19 維資料契約並由 source owner/reviewer 簽核。不得使用空白、`TBD`、`N/A` 或沒有具體理由的 `not-applicable`。
 4. 在受控環境選取可追溯案例，證明原始欄位可以重建預期 FHIR resource/path；敏感資料不得提交到 Git。
 5. 全部來源到位後，另以不共用 CQL 邏輯的實作做 20/20 Measure 逐案重算，再用一個完整報告期間做 source→FHIR→MeasureReport golden-cohort reconciliation；未解釋差異必須為 0。
 
 `scripts/audit_source_acquisition_work_packages.py` 會拒絕漏列、重複、改動批次、改動工作包、未簽證據卻宣稱 owner confirmed，以及 priority register 更新後未同步的舊內容。
+
+### 每個 fact 必填的 19 維資料契約
+
+| 面向 | 必須回答的內容 |
+|---|---|
+| 型別與粒度 | `data_type`、`record_grain`、`source_cardinality`：一筆資料代表什麼，以及每個 case 可有幾筆。 |
+| 識別與串接 | `business_key`、`join_rule`：如何穩定識別並連回 patient／case／episode／event。 |
+| 值域 | `allowed_value_domain`、`precision_tolerance`、`unit_policy`：合法代碼／範圍、精度與 UCUM／換算規則。 |
+| 時間 | `time_semantics`、`event_timezone`、`late_arriving_update_rule`：使用哪個事件時間、時區、cutoff 後更正如何重算。 |
+| 缺值與異常 | `null_policy`、`invalid_value_policy`、`fhir_absence_representation`：來源空值、非法值及 FHIR 缺值如何區分。 |
+| 多筆與擷取 | `duplicate_resolution_rule`、`extraction_filter`：重複／corrected records 如何選，以及明確納入條件。 |
+| 轉換與稽核 | `transformation_rule`、`provenance_rule`：可重現轉換、來源值、時間、adapter/version/hash 如何保存。 |
+| 衍生欄位 | `derivation_input_fact_ids`：derived fact 必須列出已知、非自身且不形成循環的輸入；權威來源則填 `not-applicable:` 加具體理由。 |

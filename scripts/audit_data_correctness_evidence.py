@@ -28,11 +28,35 @@ ALL_ROLES = PRIMARY_ROLES | {"secondary-reconciliation"}
 SOURCE_COLUMNS = {
     "evidence_id", "fact_id", "indicator_family", "fact_name", "fhir_target",
     "source_role", "source_system", "source_artifact", "source_element",
-    "source_version", "data_type", "time_semantics", "unit_policy",
-    "null_policy", "transformation_rule", "provenance_rule", "source_owner",
+    "source_version", "data_type", "record_grain", "business_key",
+    "join_rule", "source_cardinality", "allowed_value_domain",
+    "time_semantics", "event_timezone", "precision_tolerance", "unit_policy",
+    "null_policy", "duplicate_resolution_rule", "late_arriving_update_rule",
+    "invalid_value_policy", "extraction_filter", "transformation_rule",
+    "fhir_absence_representation", "provenance_rule",
+    "derivation_input_fact_ids", "source_owner",
     "review_status", "reviewer_name", "reviewer_organization_title",
     "review_date", "evidence_uri_path", "signed_artifact_sha256", "notes",
 }
+SOURCE_LOCATOR_FIELDS = (
+    "source_system", "source_artifact", "source_element", "source_version",
+)
+SOURCE_CONTRACT_FIELDS = (
+    "data_type", "record_grain", "business_key", "join_rule",
+    "source_cardinality", "allowed_value_domain", "time_semantics",
+    "event_timezone", "precision_tolerance", "unit_policy", "null_policy",
+    "duplicate_resolution_rule", "late_arriving_update_rule",
+    "invalid_value_policy", "extraction_filter", "transformation_rule",
+    "fhir_absence_representation", "provenance_rule",
+    "derivation_input_fact_ids",
+)
+PLACEHOLDER_VALUES = {
+    "-", "?", "na", "n/a", "none", "null", "tbd", "todo", "unknown",
+    "not applicable", "not-applicable", "pending", "待確認", "待補",
+}
+PLACEHOLDER_PREFIXES = (
+    "pending", "tbd", "todo", "unknown", "待確認", "待補",
+)
 VALIDATION_COLUMNS = {
     "measure_id", "indicator_family", "reporting_period_start",
     "reporting_period_end", "cohort_completeness", "source_extract_sha256",
@@ -79,35 +103,105 @@ def reviewed(row: dict[str, str]) -> bool:
     )
 
 
-def source_complete(row: dict[str, str]) -> bool:
-    if not reviewed(row):
+def explicit_contract_value(value: str | None) -> bool:
+    """Require a real rule or an explained not-applicable declaration."""
+    normalized = (value or "").strip()
+    if not normalized or normalized.casefold() in PLACEHOLDER_VALUES:
         return False
+    lowered = normalized.casefold()
+    if any(
+        lowered == prefix
+        or lowered.startswith(prefix + " ")
+        or lowered.startswith(prefix + ":")
+        or lowered.startswith(prefix + "-")
+        for prefix in PLACEHOLDER_PREFIXES
+    ):
+        return False
+    prefix = "not-applicable:"
+    if lowered.startswith(prefix):
+        return len(normalized[len(prefix):].strip()) >= 8
+    return True
+
+
+def source_contract_complete(row: dict[str, str]) -> bool:
     role = row["source_role"]
-    common = (
-        "fact_name", "fhir_target", "source_owner", "time_semantics",
-        "null_policy", "transformation_rule", "provenance_rule",
-    )
-    if not all(row[field].strip() for field in common):
+    if role not in {
+        "authoritative-primary", "authoritative-external", "derived",
+        "secondary-reconciliation",
+    }:
         return False
+    if not all(explicit_contract_value(row[field]) for field in (
+        "fact_name", "fhir_target", "source_owner", *SOURCE_LOCATOR_FIELDS,
+        *SOURCE_CONTRACT_FIELDS,
+    )):
+        return False
+    dependencies = row["derivation_input_fact_ids"].strip()
     if role == "derived":
-        return True
-    if role not in {"authoritative-primary", "authoritative-external"}:
-        return False
-    return all(row[field].strip() for field in (
-        "source_system", "source_artifact", "source_element", "source_version",
-        "data_type",
-    ))
+        return not dependencies.casefold().startswith("not-applicable:")
+    return dependencies.casefold().startswith("not-applicable:")
+
+
+def source_complete(row: dict[str, str]) -> bool:
+    return (
+        row["source_role"] in {
+            "authoritative-primary", "authoritative-external", "derived",
+        }
+        and reviewed(row)
+        and source_contract_complete(row)
+    )
 
 
 def secondary_complete(row: dict[str, str]) -> bool:
     return (
         row["source_role"] == "secondary-reconciliation"
         and reviewed(row)
-        and all(row[field].strip() for field in (
-            "source_system", "source_artifact", "source_element", "source_version",
-            "source_owner", "time_semantics", "null_policy", "provenance_rule",
-        ))
+        and source_contract_complete(row)
     )
+
+
+def validate_derivation_dependencies(
+    primary_rows: dict[str, list[dict[str, str]]],
+) -> int:
+    """Validate declared derived-fact inputs and reject self/cyclic derivations."""
+    fact_ids = set(primary_rows)
+    graph: dict[str, set[str]] = {}
+    declared = 0
+    for fact_id, rows in primary_rows.items():
+        row = rows[0]
+        raw = row["derivation_input_fact_ids"].strip()
+        if row["source_role"] != "derived":
+            continue
+        if not raw:
+            continue
+        dependencies = raw.split()
+        if len(dependencies) != len(set(dependencies)):
+            raise ValueError(f"duplicate derivation dependency for {fact_id}")
+        unknown = sorted(set(dependencies) - fact_ids)
+        if unknown:
+            raise ValueError(f"unknown derivation dependencies for {fact_id}: {unknown}")
+        if fact_id in dependencies:
+            raise ValueError(f"self derivation dependency for {fact_id}")
+        graph[fact_id] = set(dependencies)
+        declared += 1
+
+    visiting: set[str] = set()
+    visited: set[str] = set()
+
+    def visit(fact_id: str) -> None:
+        if fact_id in visiting:
+            raise ValueError(f"cyclic derivation dependency involving {fact_id}")
+        if fact_id in visited:
+            return
+        visiting.add(fact_id)
+        for dependency in graph.get(fact_id, set()):
+            if dependency in graph:
+                visit(dependency)
+        visiting.remove(fact_id)
+        visited.add(fact_id)
+
+    for fact_id in graph:
+        visit(fact_id)
+    return declared
 
 
 def parse_nonnegative_int(row: dict[str, str], field: str) -> int | None:
@@ -272,6 +366,7 @@ def audit(
         raise ValueError(
             f"{source_register_path}: each fact needs exactly one primary/derived/pending row; bad={bad_coverage}"
         )
+    declared_derived_dependencies = validate_derivation_dependencies(primary_rows)
 
     if len(validations) != len(measures) or len({row["measure_id"] for row in validations}) != len(measures):
         raise ValueError(f"{validation_register_path}: expected one row per Measure")
@@ -287,6 +382,9 @@ def audit(
         if row["golden_cohort_status"] == "approved" and not golden_complete(row):
             raise ValueError(f"{validation_register_path}: incomplete golden approval for {row['measure_id']}")
 
+    complete_contracts = sum(
+        source_contract_complete(rows[0]) for rows in primary_rows.values()
+    )
     approved_sources = sum(source_complete(rows[0]) for rows in primary_rows.values())
     independent_count = sum(independent_complete(row) for row in validations)
     golden_count = sum(golden_complete(row) for row in validations)
@@ -296,6 +394,9 @@ def audit(
         "source_evidence_row_count": len(sources),
         "secondary_reconciliation_row_count": secondary_count,
         "approved_secondary_reconciliation_row_count": approved_secondary_count,
+        "source_contract_dimension_count": len(SOURCE_CONTRACT_FIELDS),
+        "complete_source_contract_count": complete_contracts,
+        "declared_derived_dependency_count": declared_derived_dependencies,
         "approved_authoritative_or_derived_fact_count": approved_sources,
         "measure_count": len(measures),
         "population_criterion_count": len(criteria),

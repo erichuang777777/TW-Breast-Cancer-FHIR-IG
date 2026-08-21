@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from scripts.audit_data_correctness_evidence import audit
+from scripts.audit_data_correctness_evidence import SOURCE_CONTRACT_FIELDS, audit
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -44,12 +44,60 @@ def read_rows(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
+def approved_source_rows() -> list[dict[str, str]]:
+    digest = "a" * 64
+    rows = read_rows(SOURCE_REGISTER)
+    for row in rows:
+        role = row["source_role"]
+        row.update({
+            "source_role": role if role == "derived" else "authoritative-primary",
+            "source_system": "synthetic-source-system",
+            "source_artifact": "schema.table-or-versioned-derivation",
+            "source_element": row["fact_id"],
+            "source_version": "2026-01",
+            "data_type": "documented-type",
+            "record_grain": "one row per patient case event",
+            "business_key": "facility-id plus case-id plus event-id",
+            "join_rule": "versioned deterministic patient-case-event join",
+            "source_cardinality": "zero-to-many events per case; latest valid event selected",
+            "allowed_value_domain": "versioned enumerated domain or documented scalar range",
+            "time_semantics": "event-time-or-explicit-not-applicable",
+            "event_timezone": "Asia/Taipei with ISO-8601 offset retained",
+            "precision_tolerance": "exact for codes; documented precision for quantities",
+            "unit_policy": "UCUM unit or not-applicable with governed reason",
+            "null_policy": "explicit null and missing reason policy",
+            "duplicate_resolution_rule": "stable key then latest corrected timestamp",
+            "late_arriving_update_rule": "restate open period and version closed-period correction",
+            "invalid_value_policy": "reject and quarantine outside governed domain",
+            "extraction_filter": "versioned in-scope facility period and case predicate",
+            "transformation_rule": "identity or versioned deterministic transform",
+            "fhir_absence_representation": "dataAbsentReason or omitted optional element by profile rule",
+            "provenance_rule": "retain source identity value time and adapter hash",
+            "derivation_input_fact_ids": (
+                row["derivation_input_fact_ids"]
+                if role == "derived"
+                else "not-applicable: authoritative source fact"
+            ),
+            "source_owner": "Synthetic accountable source-system owner",
+            "review_status": "approved",
+            "reviewer_name": "Synthetic Reviewer",
+            "reviewer_organization_title": "Test Data Governance",
+            "review_date": "2026-08-21",
+            "evidence_uri_path": "test://signed-source-contract",
+            "signed_artifact_sha256": digest,
+        })
+    return rows
+
+
 def test_current_evidence_registers_are_complete_templates_but_not_release_evidence():
     report = run()
     assert report["source_register_integrity_gate"] == "pass"
     assert report["validation_register_integrity_gate"] == "pass"
     assert report["expected_fact_count"] == 52
     assert report["source_evidence_row_count"] == 52
+    assert report["source_contract_dimension_count"] == 19
+    assert report["complete_source_contract_count"] == 0
+    assert report["declared_derived_dependency_count"] == 1
     assert report["approved_authoritative_or_derived_fact_count"] == 0
     assert report["measure_count"] == 20
     assert report["population_criterion_count"] == 68
@@ -80,6 +128,58 @@ def test_an_approved_source_without_evidence_is_rejected(tmp_path):
         run(source=altered)
 
 
+@pytest.mark.parametrize("field", SOURCE_CONTRACT_FIELDS)
+def test_every_source_contract_dimension_is_mandatory_for_approval(tmp_path, field):
+    rows = approved_source_rows()
+    target = next(row for row in rows if row["source_role"] != "derived")
+    target[field] = ""
+    altered = tmp_path / f"source-missing-{field}.csv"
+    write_rows(altered, rows)
+    with pytest.raises(ValueError, match="incomplete approved source"):
+        run(source=altered)
+
+
+def test_unexplained_not_applicable_placeholder_is_rejected(tmp_path):
+    rows = approved_source_rows()
+    rows[0]["unit_policy"] = "not-applicable"
+    altered = tmp_path / "source-placeholder.csv"
+    write_rows(altered, rows)
+    with pytest.raises(ValueError, match="incomplete approved source"):
+        run(source=altered)
+
+
+def test_pending_owner_placeholder_cannot_pass_as_accountable_owner(tmp_path):
+    rows = approved_source_rows()
+    rows[0]["source_owner"] = "pending source-system owner"
+    altered = tmp_path / "source-pending-owner.csv"
+    write_rows(altered, rows)
+    with pytest.raises(ValueError, match="incomplete approved source"):
+        run(source=altered)
+
+
+def test_unknown_derived_input_is_rejected_even_before_approval(tmp_path):
+    rows = read_rows(SOURCE_REGISTER)
+    derived = next(row for row in rows if row["source_role"] == "derived")
+    derived["derivation_input_fact_ids"] = "CM-BC-999"
+    altered = tmp_path / "source-unknown-derived-input.csv"
+    write_rows(altered, rows)
+    with pytest.raises(ValueError, match="unknown derivation dependencies"):
+        run(source=altered)
+
+
+def test_cyclic_derived_inputs_are_rejected_even_before_approval(tmp_path):
+    rows = read_rows(SOURCE_REGISTER)
+    first, second = rows[0], rows[1]
+    first["source_role"] = "derived"
+    first["derivation_input_fact_ids"] = second["fact_id"]
+    second["source_role"] = "derived"
+    second["derivation_input_fact_ids"] = first["fact_id"]
+    altered = tmp_path / "source-cyclic-derived-input.csv"
+    write_rows(altered, rows)
+    with pytest.raises(ValueError, match="cyclic derivation dependency"):
+        run(source=altered)
+
+
 def test_an_approved_independent_result_without_case_diff_evidence_is_rejected(tmp_path):
     rows = read_rows(VALIDATION_REGISTER)
     rows[0]["independent_status"] = "approved"
@@ -100,29 +200,7 @@ def test_an_approved_golden_result_without_complete_period_evidence_is_rejected(
 
 def test_complete_signed_case_level_evidence_can_pass_all_three_data_gates(tmp_path):
     digest = "a" * 64
-    source_rows = read_rows(SOURCE_REGISTER)
-    for row in source_rows:
-        if row["source_role"] != "derived":
-            row.update({
-                "source_role": "authoritative-primary",
-                "source_system": "synthetic-source-system",
-                "source_artifact": "schema.table",
-                "source_element": row["fact_id"],
-                "source_version": "2026-01",
-                "data_type": "documented-type",
-                "transformation_rule": "identity-or-versioned-transform",
-            })
-        row.update({
-            "time_semantics": "event-time-or-explicit-not-applicable",
-            "null_policy": "explicit-null-and-absent-reason-policy",
-            "provenance_rule": "retain source identity value time and adapter hash",
-            "review_status": "approved",
-            "reviewer_name": "Synthetic Reviewer",
-            "reviewer_organization_title": "Test Data Governance",
-            "review_date": "2026-08-21",
-            "evidence_uri_path": "test://signed-source-contract",
-            "signed_artifact_sha256": digest,
-        })
+    source_rows = approved_source_rows()
     source_path = tmp_path / "source.csv"
     write_rows(source_path, source_rows)
 
@@ -155,6 +233,7 @@ def test_complete_signed_case_level_evidence_can_pass_all_three_data_gates(tmp_p
 
     report = run(source=source_path, validation=validation_path)
     assert report["approved_authoritative_or_derived_fact_count"] == 52
+    assert report["complete_source_contract_count"] == 52
     assert report["approved_independent_recalculation_count"] == 20
     assert report["approved_golden_cohort_count"] == 20
     assert report["raw_source_traceability_gate"] == "pass"

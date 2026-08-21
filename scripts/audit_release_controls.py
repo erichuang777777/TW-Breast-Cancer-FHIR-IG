@@ -457,12 +457,15 @@ def audit(
         "measure_count": 20,
         "population_criterion_count": 68,
         "criterion_referenced_fact_count": 45,
+        "source_contract_dimension_count": 19,
     }
     for field, expected in expected_data_evidence.items():
         if data_evidence.get(field) != expected:
             raise ValueError(f"{data_evidence_audit_path}: {field} must be {expected}")
     for field in (
         "source_evidence_row_count",
+        "complete_source_contract_count",
+        "declared_derived_dependency_count",
         "approved_authoritative_or_derived_fact_count",
         "approved_independent_recalculation_count",
         "approved_golden_cohort_count",
@@ -479,6 +482,7 @@ def audit(
     ):
         raise ValueError(f"{data_evidence_audit_path}: source/secondary row-count mismatch")
     bounded_counts = {
+        "complete_source_contract_count": 52,
         "approved_authoritative_or_derived_fact_count": 52,
         "approved_independent_recalculation_count": 20,
         "approved_golden_cohort_count": 20,
@@ -489,6 +493,10 @@ def audit(
     for field, upper in bounded_counts.items():
         if data_evidence[field] > upper:
             raise ValueError(f"{data_evidence_audit_path}: {field} exceeds {upper}")
+    if data_evidence["declared_derived_dependency_count"] < 1:
+        raise ValueError(
+            f"{data_evidence_audit_path}: molecular subtype derivation must declare inputs"
+        )
     for field in (
         "source_register_integrity_gate", "validation_register_integrity_gate",
     ):
@@ -496,6 +504,8 @@ def audit(
             raise ValueError(f"{data_evidence_audit_path}: {field} must pass")
     data_gate_rules = {
         "raw_source_traceability_gate": (
+            data_evidence["complete_source_contract_count"] == 52
+            and
             data_evidence["approved_authoritative_or_derived_fact_count"] == 52
         ),
         "independent_recalculation_gate": (
@@ -784,6 +794,15 @@ def audit(
             "external_canonical_reference_occurrence_count"
         ],
         "source_fact_count": data_evidence["expected_fact_count"],
+        "source_contract_dimension_count": data_evidence[
+            "source_contract_dimension_count"
+        ],
+        "complete_source_contract_count": data_evidence[
+            "complete_source_contract_count"
+        ],
+        "declared_derived_dependency_count": data_evidence[
+            "declared_derived_dependency_count"
+        ],
         "population_criterion_count": data_evidence["population_criterion_count"],
         "criterion_referenced_fact_count": data_evidence[
             "criterion_referenced_fact_count"

@@ -20,10 +20,21 @@ EXPECTED = {
         "release_control_id": "RC-01",
         "method_class": "data-correctness",
         "method_name": "raw-source-field-traceability",
-        "locked_scope": "52 source facts; 52 accountable owner assignments",
-        "threshold_markers": ("52/52", "authoritative", "reports remain secondary"),
-        "evidence_markers": ("source schema", "source-traceability-register.csv", "signed"),
-        "independence_markers": ("original source data", "cannot satisfy"),
+        "locked_scope": (
+            "52 source facts; 52 accountable owner assignments; "
+            "19 source-contract dimensions per fact"
+        ),
+        "threshold_markers": (
+            "52/52", "19 dimensions", "authoritative", "valid and acyclic",
+            "reports remain secondary",
+        ),
+        "evidence_markers": (
+            "source schema", "source-traceability-register.csv",
+            "signed source contracts", "hashes",
+        ),
+        "independence_markers": (
+            "original source data", "cannot satisfy", "unexplained not-applicable",
+        ),
     },
     "VM-02": {
         "release_control_id": "RC-02",

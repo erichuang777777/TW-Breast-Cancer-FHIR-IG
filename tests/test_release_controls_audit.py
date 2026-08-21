@@ -170,6 +170,9 @@ def run_audit(
         "source_evidence_row_count": 52,
         "secondary_reconciliation_row_count": 0,
         "approved_secondary_reconciliation_row_count": 0,
+        "source_contract_dimension_count": 19,
+        "complete_source_contract_count": 0,
+        "declared_derived_dependency_count": 1,
         "approved_authoritative_or_derived_fact_count": 0,
         "measure_count": 20,
         "population_criterion_count": 68,
@@ -319,6 +322,9 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["fhir_reference_occurrence_count"] == 330
     assert report["external_canonical_reference_occurrence_count"] == 36
     assert report["source_fact_count"] == 52
+    assert report["source_contract_dimension_count"] == 19
+    assert report["complete_source_contract_count"] == 0
+    assert report["declared_derived_dependency_count"] == 1
     assert report["approved_authoritative_or_derived_fact_count"] == 0
     assert report["approved_independent_recalculation_count"] == 0
     assert report["approved_golden_cohort_count"] == 0
@@ -433,6 +439,7 @@ def test_rc01_requires_confirmed_accountable_owner_for_every_source_fact(tmp_pat
         writer.writerows(rows)
 
     source_evidence = {
+        "complete_source_contract_count": 52,
         "approved_authoritative_or_derived_fact_count": 52,
         "raw_source_traceability_gate": "pass",
     }
