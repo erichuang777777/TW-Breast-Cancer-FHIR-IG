@@ -34,6 +34,8 @@
 
 RC-08 也要求 `ig-scope-claim-register.csv` 與 `publication-scope-decision-register.csv` 精確涵蓋同一組 10 個 claim。三個 normative scope（IG core、QBC、個管品管／季報）、六個 informative scope 與一個 excluded scope 的角色已鎖定；現況 0/10 簽核。即使 operational approvals 已簽署，只要任一 scope 尚未簽核或 normative Task 未達 `formal-release-ready`，完整 formal release 仍為 blocked。
 
+RC-07 另要求 `artifact-conformance-register.csv` 精確涵蓋全部 **46 個 StructureDefinition（33 Profile、13 Extension）**。`scripts/audit_artifact_conformance.py` 會把 FSH 產物與 4 個手寫 TCR extension 一起比對 parent canonical、FHIR type/kind、draft/experimental 狀態及合成範例使用證據。現況技術一致性為 46/46，但人工規格核准為 0/46；Publisher 綠燈不能替代這 46 項核准。
+
 ## 數量與正確性門檻
 
 ### Mapping

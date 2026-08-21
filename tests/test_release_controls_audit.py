@@ -35,6 +35,7 @@ def run_audit(
     measure_approvals: Path = MEASURE_APPROVALS,
     scope_claims: Path = SCOPE_CLAIMS,
     scope_decisions: Path = SCOPE_DECISIONS,
+    artifact_approved: bool = False,
     target: str = "integrity",
 ):
     publisher = tmp_path / "publisher.json"
@@ -47,6 +48,19 @@ def run_audit(
         encoding="utf-8",
     )
     output = tmp_path / "release.json"
+    artifact_audit = tmp_path / "artifact-audit.json"
+    artifact_audit.write_text(
+        json.dumps({
+            "gate_scope": "artifact-structure-and-example-only",
+            "artifact_integrity_gate": "pass",
+            "artifact_count": 46,
+            "profile_count": 33,
+            "extension_count": 13,
+            "approved_artifact_count": 46 if artifact_approved else 0,
+            "clinical_artifact_approval_gate": "pass" if artifact_approved else "block",
+        }),
+        encoding="utf-8",
+    )
     completed = subprocess.run(
         [
             sys.executable, str(SCRIPT),
@@ -57,6 +71,7 @@ def run_audit(
             "--measure-approval-register", str(measure_approvals),
             "--scope-claims", str(scope_claims),
             "--scope-decisions", str(scope_decisions),
+            "--artifact-audit", str(artifact_audit),
             "--publisher-audit", str(publisher),
             "--json-out", str(output),
             "--target", target,
@@ -86,6 +101,9 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["scope_decision_count"] == 10
     assert report["approved_scope_decision_count"] == 0
     assert report["normative_scope_readiness"] == "block"
+    assert report["artifact_conformance_count"] == 46
+    assert report["approved_artifact_count"] == 0
+    assert report["clinical_artifact_approval_gate"] == "block"
     assert report["data_correctness_gate"] == "block"
     assert report["formal_release_gate"] == "block"
     assert report["maximum_supported_claim"] == "technical-draft-only"
@@ -326,6 +344,7 @@ def test_rc07_requires_both_complete_signatures_and_approved_alignment(tmp_path)
         measures=approved_audit,
         approvals=qbc_signed,
         measure_approvals=measures_signed,
+        artifact_approved=True,
     )
     assert completed.returncode == 1  # declared RC-07 is still blocked in the real register
     assert report["derived_status"]["RC-07"] == "pass"

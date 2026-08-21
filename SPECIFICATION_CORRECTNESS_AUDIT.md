@@ -45,6 +45,8 @@ Publisher／SUSHI 通過所證明的是「產出的資源符合目前載入的 F
 
 RC-08 另外驗證全 IG 的 10 個 scope claim 與 10 個逐項角色決策；目前 0/10 簽核。QBC 與個管品管／季報是 normative Task，因此兩者的 claim evidence 都必須升級為 `formal-release-ready`，才可能通過 whole-IG publication gate。單一 Task 的技術驗證或 operational approval 不會自動擴張成整份 IG 的正式發布證據。
 
+Profile／Extension 規格也採逐項核對，而不是只看 Publisher 總數。目前正式集合為 **46 個 StructureDefinition：33 Profile、13 Extension**；其中 4 個 TCR extension 是手寫 JSON，不能因不在 FSH 清單中而漏掉。`artifact-conformance-register.csv` 鎖定每個 artifact 的 parent、type、kind、scope 與合成範例，技術稽核為 46/46 pass；但逐 artifact 的臨床／FHIR reviewer 核准仍是 **0/46**，所以 RC-07 繼續 blocked。
+
 ## 每一筆資料應比對的內容
 
 任何會改變 initial population、denominator、exclusion、numerator 或 stratifier 的欄位，都必須逐筆保存並比對：

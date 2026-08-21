@@ -4,6 +4,8 @@
 
 每個 claim 的發布角色決策另記於 [`mappings/publication/publication-scope-decision-register.csv`](mappings/publication/publication-scope-decision-register.csv)。固定的 10 個角色為：`IG-CORE`、`TASK-QBC`、`TASK-CASE-MGMT` 是 normative；TW Core、mCODE、ICHOM、Care Plan、TWPAS、TCR 是 informative；未來模組是 excluded。現況 **0/10 完成人工簽核**。角色、允許宣稱、禁止宣稱與 blocking evidence 都必須逐列簽核；不能刪除待辦列或把 normative 降為 informative 來通過 RC-08。除 `IG-CORE` 可保留 `technical-build-pass` 外，所有 normative Task 在正式發布前都必須達到 `formal-release-ready`。
 
+逐一 artifact 的結構證據位於 [`mappings/publication/artifact-conformance-register.csv`](mappings/publication/artifact-conformance-register.csv)。完整集合是 **46 個 StructureDefinition（33 Profile＋13 Extension）**，不是只有 FSH 中的 42 個；另有 4 個手寫 TCR extension 也必須納管。機器稽核會逐列比對 generated `id`、`name`、FHIR `type`、`kind`、`baseDefinition`、`draft/experimental`、衍生關係及直接／衍生 Profile 或 extension-use 合成範例。現況 46/46 技術證據一致，但臨床／FHIR 規格核准為 **0/46**。
+
 ## 整體結論
 
 整份 IG 目前只能宣稱：**以 FHIR R4 4.0.1 與固定 dependency 建置成功的非官方 technical community draft**。不能宣稱整份 IG 已完成 TW Core、mCODE、ICHOM、TWPAS、TCR、QBC 或院內品管的正式 conformance／驗收。

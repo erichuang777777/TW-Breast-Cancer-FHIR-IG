@@ -157,6 +157,7 @@ def audit(
     measure_approvals_path: Path,
     scope_claims_path: Path,
     scope_decisions_path: Path,
+    artifact_audit_path: Path,
     publisher_audit_path: Path,
 ) -> dict[str, object]:
     controls = read_csv(controls_path, REQUIRED_CONTROL_COLUMNS, exact_columns=True)
@@ -254,6 +255,29 @@ def audit(
                 raise ValueError(
                     f"{scope_decisions_path}: {row['claim_id']} has empty {field}"
                 )
+    artifact_audit = json.loads(artifact_audit_path.read_text(encoding="utf-8"))
+    if artifact_audit.get("gate_scope") != "artifact-structure-and-example-only":
+        raise ValueError(
+            f"{artifact_audit_path}: gate_scope must be artifact-structure-and-example-only"
+        )
+    expected_artifact_counts = {
+        "artifact_count": 46,
+        "profile_count": 33,
+        "extension_count": 13,
+    }
+    for field, expected in expected_artifact_counts.items():
+        if artifact_audit.get(field) != expected:
+            raise ValueError(f"{artifact_audit_path}: {field} must be {expected}")
+    if artifact_audit.get("artifact_integrity_gate") != "pass":
+        raise ValueError(f"{artifact_audit_path}: artifact_integrity_gate must be pass")
+    if artifact_audit.get("clinical_artifact_approval_gate") not in {"pass", "block"}:
+        raise ValueError(f"{artifact_audit_path}: invalid clinical_artifact_approval_gate")
+    approved_artifact_count = artifact_audit.get("approved_artifact_count")
+    if not isinstance(approved_artifact_count, int) or not 0 <= approved_artifact_count <= 46:
+        raise ValueError(f"{artifact_audit_path}: invalid approved_artifact_count")
+    expected_clinical_gate = "pass" if approved_artifact_count == 46 else "block"
+    if artifact_audit["clinical_artifact_approval_gate"] != expected_clinical_gate:
+        raise ValueError(f"{artifact_audit_path}: clinical artifact gate/count mismatch")
     publisher = json.loads(publisher_audit_path.read_text(encoding="utf-8"))
     if publisher.get("gate_scope") != "publisher-qa-only":
         raise ValueError(
@@ -294,6 +318,7 @@ def audit(
             and all(approval_complete(row) for row in governance)
             and all(row["draft_definition_alignment"] == "approved" for row in measures)
             and all(measure_approval_complete(row) for row in measure_approvals)
+            and artifact_audit["clinical_artifact_approval_gate"] == "pass"
         ) else "blocked",
         "RC-08": "pass" if (
             len(operational) == len(OPERATIONAL_APPROVALS)
@@ -340,6 +365,11 @@ def audit(
             scope_decision_complete(row) for row in scope_decisions
         ),
         "normative_scope_readiness": "pass" if normative_scope_ready else "block",
+        "artifact_conformance_count": artifact_audit["artifact_count"],
+        "approved_artifact_count": approved_artifact_count,
+        "clinical_artifact_approval_gate": artifact_audit[
+            "clinical_artifact_approval_gate"
+        ],
         "control_integrity_gate": integrity,
         "data_correctness_gate": data_gate,
         "publisher_formal_qa_gate": publisher["formal_release_gate"],
@@ -360,6 +390,7 @@ def main() -> int:
     parser.add_argument("--measure-approval-register", type=Path, required=True)
     parser.add_argument("--scope-claims", type=Path, required=True)
     parser.add_argument("--scope-decisions", type=Path, required=True)
+    parser.add_argument("--artifact-audit", type=Path, required=True)
     parser.add_argument("--publisher-audit", type=Path, required=True)
     parser.add_argument("--json-out", type=Path)
     parser.add_argument(
@@ -371,6 +402,7 @@ def main() -> int:
             args.controls, args.measure_audit, args.terminology_fsh,
             args.approval_register, args.measure_approval_register,
             args.scope_claims, args.scope_decisions,
+            args.artifact_audit,
             args.publisher_audit,
         )
     except (OSError, ValueError, csv.Error, json.JSONDecodeError) as exc:

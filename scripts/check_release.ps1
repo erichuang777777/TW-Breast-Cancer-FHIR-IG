@@ -36,6 +36,15 @@ try {
         --target integrity
     if ($LASTEXITCODE -ne 0) { throw "Publisher warning integrity audit failed" }
 
+    python scripts\audit_artifact_conformance.py `
+        --register mappings\publication\artifact-conformance-register.csv `
+        --scope-claims mappings\publication\ig-scope-claim-register.csv `
+        --resource-dir ig\fsh-generated\resources `
+        --resource-dir ig\input\resources `
+        --json-out ig\output\artifact-conformance-audit.json `
+        --target integrity
+    if ($LASTEXITCODE -ne 0) { throw "artifact-conformance integrity audit failed" }
+
     python scripts\audit_release_controls.py `
         --controls mappings\publication\release-control-register.csv `
         --measure-audit mappings\publication\case-management-measure-audit.csv `
@@ -44,6 +53,7 @@ try {
         --measure-approval-register mappings\publication\case-management-measure-approval-register.csv `
         --scope-claims mappings\publication\ig-scope-claim-register.csv `
         --scope-decisions mappings\publication\publication-scope-decision-register.csv `
+        --artifact-audit ig\output\artifact-conformance-audit.json `
         --publisher-audit ig\output\publisher-warning-audit.json `
         --json-out ig\output\release-control-audit.json `
         --target integrity

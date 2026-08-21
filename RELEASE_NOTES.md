@@ -16,7 +16,7 @@
 
 ## 驗證狀態（2026-08-21）
 
-- pytest：281 passed（新增 OID assignment、TCR 術語 backlog、逐 Measure 規格與簽核完整性、全 IG scope claims／決策、template supply-chain 與八項 release-control 證據一致性檢查）。
+- pytest：286 passed（新增 OID assignment、TCR 術語 backlog、逐 Measure 與 46 個 StructureDefinition 規格／簽核完整性、全 IG scope claims／決策、template supply-chain 與八項 release-control 證據一致性檢查）。
 - SUSHI 3.20.0：0 errors、0 warnings。
 - PHI gate：pass。
 - CQL translation：pass；runtime smoke：20/20 Measures、46/46 criteria；目前具預期值的合成分支 assertions：20/20 Measures。
@@ -27,6 +27,7 @@
 - 完整 formal release gate 與 Publisher QA gate 已分離；目前只有 2/8 controls 通過，warnings 歸零也不能繞過 source mapping、terminology、獨立重算、golden cohort 與簽核。
 - 新增 20/20 Measure 規格決策登錄；RC-07 現在同時要求完整 QBC 14-Gate、完整 Measure 20-approval、有效簽署證據及 `draft_definition_alignment=approved`，避免刪除待辦或簽署未解決規格而誤過正式發布。
 - 新增 10/10 whole-IG scope 角色決策登錄；目前 0/10 簽核。RC-08 現在鎖定 3 normative、6 informative、1 excluded，並要求 normative Task 達 `formal-release-ready`，避免單一 Task 或 operational approval 被擴張成整份 IG 可正式發布。
+- 新增 46/46 StructureDefinition conformance register 與機器稽核（33 Profile、13 Extension，包含 4 個非 FSH 的 TCR extension）；逐列驗證 parent、type、kind、draft/experimental 及合成範例。技術證據 46/46 pass，人工規格核准 0/46；RC-07 現在也要求這 46 項全部具名簽核。
 - QBC mapping 重建改以 committed `qbc_fields.json` 技術擷取契約為輸入，乾淨 checkout 不再依賴未納入版本庫的 DOCX；115 列仍保留原始文件 SHA-256。重建器只有在 Gate 提案、owner 與驗收條件完全未變時才保留既有人工簽核，內容變更即失效重簽。
 - 新增 whole-IG claim register，分開判定 TW Core direct parent、mCODE／ICHOM semantic reference、Care Plan、QBC、TWPAS、個管 Measure 與 TCR；修正 TCR 缺口為 48 欄已驗證碼表、32 欄 pending、19 欄非 coded。
 - 新增 canonical-derived UUIDv5 OID root 與 271 筆 committed assignments；逐資源 OID warning 由 133 降為 0，root registry 登錄仍待治理。
