@@ -9,6 +9,7 @@ VALUE_SETS = FIXTURES / "bc-qi-01-value-sets.json"
 EXPECTED_REPORT = FIXTURES / "MeasureReport-bc-qi-01-synthetic.json"
 RUNNER = ROOT / "ig" / "tools" / "cql-evaluation" / "run-bc-qi-01.js"
 WORKFLOW = ROOT / ".github" / "workflows" / "build.yml"
+TASK_PAGE = ROOT / "ig" / "input" / "pagecontent" / "task-case-management.md"
 
 
 def load(path: Path):
@@ -90,3 +91,14 @@ def test_ci_executes_the_elm_instead_of_only_translating_it():
     assert "cql-exec-fhir" in runner
     assert "Execute bc-qi-01 synthetic CQL cases" in workflow
     assert "run-bc-qi-01.js" in workflow
+
+
+def test_published_task_status_matches_executable_and_data_evidence_boundaries():
+    page = TASK_PAGE.read_text(encoding="utf-8")
+    assert "尚未翻譯執行" not in page
+    assert "46 個唯一 expression（共 62 個使用點）" in page
+    assert "20/20 Measure 都有 asserted synthetic branch cases" in page
+    assert "synthetic-test-only" in page
+    assert "RC-05 要求的獨立逐案重算" in page
+    assert "RC-06 要求的一個完整報告期間原始資料 golden cohort" in page
+    assert "不能宣稱指標數字已具臨床正確性" in page

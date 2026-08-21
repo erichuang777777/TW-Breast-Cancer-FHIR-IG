@@ -150,9 +150,11 @@ case-management-population-criteria.csv   ← 單一事實來源
 - **Python** 是參考實作與驗收工具，另外承擔 CQL 無法涵蓋的部分：委員會的排除／加回決議、個管師的個案判定、報告文件產出、與前次執行的差異比對。
 - 任一邊獨有的行為都必須在 criteria 表標記，不能只存在於程式碼裡。
 
-目前狀態：CQL 已依 criteria 表逐條起草（66 條 criteria 標記 `drafted`，2 條委員會決議標記 `not-applicable`），但**尚未翻譯執行**——臨床 ValueSet 仍是未填代碼的佔位，代碼查證完成前 Library 無法跑。個管作業分類（收案身份、收案狀態、結案原因、Class、留治與治療處置、完治結果）是個管團隊自有的行政代碼，權威來源就是團隊本身，因此在 `case-management-terminology.fsh` 中明確列舉；臨床代碼則一律不列舉。兩者的處理方式不同不是不一致，而是因為可查證的對象不同。
+目前狀態：CQL 已依 criteria 表逐條起草（66 條 criteria 標記 `drafted`，2 條委員會決議標記 `not-applicable`）。完整 Library 已可翻譯；20 個 Measure 引用的 46 個唯一 expression（共 62 個使用點）均在 CI 以合成資料執行，且 20/20 Measure 都有 asserted synthetic branch cases。這只證明規則可執行與既定合成案例的行為，不證明臨床資料正確。
 
-CQL 與 Python 兩邊的逐案比對尚未執行，那是 Library 可翻譯之後的驗收條件，不是現在可宣稱的狀態。
+19 個臨床 ValueSet 仍未取得核准的發布版本與逐碼 expansion 證據；CI 使用的測試代碼屬於 `example.org` 的 `synthetic-test-only` 集合，不會發布成臨床代碼。個管作業分類（收案身份、收案狀態、結案原因、Class、留治與治療處置、完治結果）是個管團隊自有的行政代碼，權威來源就是團隊本身，因此在 `case-management-terminology.fsh` 中明確列舉。兩者的處理方式不同，是因為可查證的權威來源不同。
+
+CQL 與 Python 尚未完成 RC-05 要求的獨立逐案重算：必須涵蓋 20 個 Measure、每一個 in-scope case 與全部 62 個 Measure-expression 使用點，且不能重用 CQL 邏輯。RC-06 要求的一個完整報告期間原始資料 golden cohort 也尚未取得。因此目前只能宣稱 synthetic executable draft，不能宣稱指標數字已具臨床正確性。
 
 現行 Python 實作已內建交叉驗證：同一份數字由兩套不共用程式碼的算法各算一次（逐欄位彙總 vs 逐案標記），逐格必須相同；另檢查各分區小計是否等於個案總數、跨區塊一致性、以及所有欄位值是否落在已知值域內。CQL 併入後成為再一個來源，比對機制不變。
 
