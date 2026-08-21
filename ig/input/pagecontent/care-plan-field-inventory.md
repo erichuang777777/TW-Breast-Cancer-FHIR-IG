@@ -1,5 +1,7 @@
 # 癌症診療計畫書欄位盤點／Cancer Care Plan Field Inventory
 
+{% include disclaimer.md %}
+
 > 本表只含表單控制項 metadata，不含個案值、病歷號、報告文字、來源雜湊或其他 PHI。這是單一來源建立的 223-control Preview 基線，不是完整表單：2026-01 多檔 union 已觀察到 314 controls，新增 91 controls 尚待納入與審閱。
 
 - Catalog version: `1.0.0-preview.1`

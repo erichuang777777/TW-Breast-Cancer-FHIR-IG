@@ -20,6 +20,9 @@ TCR_QUESTIONNAIRE = ROOT / "ig" / "input" / "resources" / "Questionnaire-tcr-bre
 README = ROOT / "README.md"
 TASK_INDEX = ROOT / "ig" / "input" / "pagecontent" / "task-index.md"
 TASK_TCR = ROOT / "ig" / "input" / "pagecontent" / "task-tcr.md"
+TCR_CODE_TABLES = ROOT / "ig" / "input" / "pagecontent" / "tcr-code-tables.md"
+TCR_RESOURCES = ROOT / "ig" / "input" / "resources"
+PAGECONTENT = ROOT / "ig" / "input" / "pagecontent"
 
 
 def csv_rows(path: Path):
@@ -154,3 +157,40 @@ def test_human_facing_scope_language_does_not_overstate_task_completion():
     assert "尚無正式 adapter output" in task_index
     assert "48 欄已有已驗證碼表" in task_tcr
     assert "32 欄" in task_tcr and "19 欄" in task_tcr
+
+
+def test_every_published_narrative_carries_the_non_official_draft_disclaimer():
+    pages = list(PAGECONTENT.glob("*.md"))
+    assert len(pages) == 35
+    assert all(
+        "{% include disclaimer.md %}" in page.read_text(encoding="utf-8")
+        for page in pages
+    )
+
+
+def test_tcr_code_table_page_matches_the_live_questionnaire_boundary():
+    questionnaire = json.loads(TCR_QUESTIONNAIRE.read_text(encoding="utf-8"))
+    leaves = [item for group in questionnaire["item"] for item in group["item"]]
+    pending = [
+        item for item in leaves
+        if any(
+            extension["url"].endswith("tcr-codetable-pending")
+            for extension in item.get("extension", [])
+        )
+    ]
+    page = TCR_CODE_TABLES.read_text(encoding="utf-8")
+    code_systems = [
+        json.loads(path.read_text(encoding="utf-8"))
+        for path in TCR_RESOURCES.glob("CodeSystem-tcr-*.json")
+    ]
+    assert len(pending) == 32
+    assert len(code_systems) == 48
+    assert sum(code_system["count"] for code_system in code_systems) == 2169
+    assert "| 尚未轉錄碼表 | 32 |" in page
+    assert "待補的 32 欄" in page
+    assert "48 個已轉錄 CodeSystem 共列舉 2,169 個 concept" in page
+    assert "32 個 pending 欄不在此範圍內" in page
+    assert "標準術語 relationship 仍待審" in page
+    assert "這不等於官方送件接受" in page
+    assert "保證：輸出必為官方編碼範圍內" not in page
+    assert "21,158" not in page

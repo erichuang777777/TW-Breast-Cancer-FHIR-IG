@@ -1,5 +1,7 @@
 # 乳癌 IG：癌症登記申報 Task 設計
 
+{% include disclaimer.md %}
+
 > **目的**：把「從原始病歷產生癌症登記長表申報檔」做成乳癌 FHIR Implementation
 > Guide 底下的一個 task。
 >
@@ -26,11 +28,11 @@
         │       "source": "DiagnosticReport/path-2024-1234", "confidence": 0.94}
         │  ★ 這一層不可以輸出 TCR 代碼
         │
-   ② 編碼層（確定性規則）  ← 本專案已完成並驗證
+   ② 編碼層（確定性規則）  ← 48 欄已轉錄值域完成；32 欄仍 pending
         │  臨床事實 → TCR 代碼，例：ER 70% strong → SSF1 = "S70"
         │  規則：coding_rules/breast_coding_spec.md
         │  程式：tcr_decoder/encoders.py、tcr_decoder.TCREncoder
-        │  保證：輸出必為官方編碼範圍內、且寬度正確的合法碼
+        │  驗證：已轉錄 48 欄的輸出落在鎖定值域且寬度正確
         │
    ③ 組檔與驗證層
         │  99 個欄位 → QuestionnaireResponse → 長表申報檔
@@ -43,7 +45,7 @@
 | 做法 | 後果 |
 |---|---|
 | LLM 直接輸出「SSF1=S70」 | 無法稽核：不知道它是從哪句話推出來的；也無法保證是合法碼；碼冊改版要重訓 prompt |
-| LLM 只輸出「ER 70%、強染、治療前」，規則轉碼 | 每個代碼都能回推到原文；代碼永遠合法（21,158 碼已逐碼驗證）；碼冊改版只改規則表 |
+| LLM 只輸出「ER 70%、強染、治療前」，規則轉碼 | 本乳癌 IG 的 48 個已轉錄 CodeSystem 共列舉 2,169 個 concept；32 個 pending 欄不在此範圍內，標準術語 relationship 仍待審，且這不等於官方送件接受；碼冊改版只改規則表 |
 
 FHIR 上的對應：① 的產物是 `Observation`（或直接是 QuestionnaireResponse 的
 臨床事實部分），② 的產物是帶 `Coding`（system = 本 IG 的 CodeSystem）的答案，
@@ -105,9 +107,9 @@ coded fields 共 982 碼）。
 |---|---|---|
 | 已有驗證碼表（SSF1–10、結構欄位、腫瘤特性五欄、治療十欄、放射治療七欄、微創手術、人口學與追蹤七欄） | 48 | ✅ 有 CodeSystem/ValueSet，Questionnaire 綁定 |
 | 純數值／日期／識別碼 | 20 | ✅ 型別為 integer/date/string，不需碼表 |
-| 尚未轉錄碼表 | 31 | ⚠️ Questionnaire 仍有該欄位，型別為 string 並帶 `tcr-codetable-pending` 擴充 |
+| 尚未轉錄碼表 | 32 | ⚠️ Questionnaire 仍有該欄位，型別為 string 並帶 `tcr-codetable-pending` 擴充 |
 
-**待補的 31 欄**分三群，長表碼冊都有定義：
+**待補的 32 欄**分四群，長表碼冊都有定義：
 
 1. **腫瘤特性**：TCODE1、MCODE（ICD-O-3，需外部字典）、MCODE6、MCODE6C
    （分級依部位，附錄D）
@@ -117,7 +119,7 @@ coded fields 共 982 碼）。
 4. **人口學與追蹤**：SMOKING、SEQ1、SEQ2、VSTA6、CSTA、RETYPE6、
    DIECAUSE/DIECAUSE6
 
-補這 31 欄的工作方式與已完成的 SSF 相同：轉錄官方編碼範圍到
+補這 32 欄的工作方式與已完成的 SSF 相同：轉錄經權責人確認的編碼範圍到
 `code_ranges.py` → 寫 decoder/encoder → 通過 `test_codebook_conformance.py`
 的四項性質 → FHIR 產生器會自動多出對應的 CodeSystem/ValueSet 並把
 Questionnaire item 從 string 換成 choice。
