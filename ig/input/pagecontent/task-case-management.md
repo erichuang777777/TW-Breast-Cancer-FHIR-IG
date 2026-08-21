@@ -175,7 +175,7 @@ CQL 與 Python 兩邊的逐案比對尚未執行，那是 Library 可翻譯之�
 |---|---|---|
 | 分期未完成 | `分期` 欄填 `?`，再由個管師讀「備註二」自由文字逐案判定 | 分期 `Observation` 加 `dataAbsentReason`（`CM-BC-033`） |
 | 分期本身 | 單一 `分期` 欄，不區分臨床或病理 | 臨床與病理兩個 stage group `Observation`（`CM-BC-004`／`CM-BC-005`） |
-| HR/HER2 分型 | 人工鍵入的字母 A／B1／B2／H／T | 四個 marker `Observation` 推導（`CM-BC-008`～`CM-BC-012`） |
+| HR/HER2 分型 | 人工鍵入的字母 A／B1／B2／H／T | ER／PR／HER2 IHC／HER2 ISH（`CM-BC-008`～`CM-BC-011`）推導 marker 狀態；組織型與 pT/T1mi（`CM-BC-032`、`CM-BC-007`）決定是否進入侵襲癌分型 |
 | 組織類型 | 來源文件稱 11 個分群、27 種拼法；目前 S17/CQL 只列 10 組，發布前須由報表 owner 裁決差異 | 編碼 morphology（`CM-BC-032`）；未對應 code 不得預設成 IC |
 | 體系內轉院 | 以醫院名稱字串比對關鍵字清單 | `Organization.partOf`（`CM-BC-034`） |
 | 年齡層 | 匯出檔預先算好的區間碼 | `Patient.birthDate` 對收案日期計算（`CM-BC-001`） |

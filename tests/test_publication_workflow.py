@@ -40,6 +40,9 @@ def test_publisher_workflow_is_reproducible_and_preserves_evidence():
     assert "mappings/case-management/case-management-population-criteria.csv" in text
     assert '"mappings/case-management/**"' in text
     assert "data-correctness-evidence-audit.json" in text
+    assert "scripts/audit_source_acquisition_priority.py" in text
+    assert "mappings/publication/source-acquisition-priority.csv" in text
+    assert "source-acquisition-priority-audit.json" in text
     assert "mappings/publication/release-control-register.csv" in text
     assert "mappings/publication/case-management-measure-approval-register.csv" in text
     assert "mappings/publication/ig-scope-claim-register.csv" in text
@@ -76,6 +79,9 @@ def test_local_release_script_uses_the_same_evidence_gates_without_overclaiming(
     assert "source-traceability-register.csv" in text
     assert "measure-validation-evidence-register.csv" in text
     assert "data-correctness-evidence-audit.json" in text
+    assert "scripts\\audit_source_acquisition_priority.py" in text
+    assert "source-acquisition-priority.csv" in text
+    assert "source-acquisition-priority-audit.json" in text
     assert "case-management-measure-approval-register.csv" in text
     assert "ig-scope-claim-register.csv" in text
     assert "publication-scope-decision-register.csv" in text

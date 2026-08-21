@@ -53,7 +53,7 @@ def test_current_evidence_registers_are_complete_templates_but_not_release_evide
     assert report["approved_authoritative_or_derived_fact_count"] == 0
     assert report["measure_count"] == 20
     assert report["population_criterion_count"] == 68
-    assert report["criterion_referenced_fact_count"] == 37
+    assert report["criterion_referenced_fact_count"] == 45
     assert report["approved_independent_recalculation_count"] == 0
     assert report["approved_golden_cohort_count"] == 0
     assert report["raw_source_traceability_gate"] == "block"

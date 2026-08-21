@@ -16,6 +16,7 @@ on:
       - "scripts/audit_fhir_resource_inventory.py"
       - "scripts/audit_fhir_reference_graph.py"
       - "scripts/audit_data_correctness_evidence.py"
+      - "scripts/audit_source_acquisition_priority.py"
       - "mappings/publication/**"
       - "mappings/case-management/**"
       - "outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv"
@@ -31,6 +32,7 @@ on:
       - "scripts/audit_fhir_resource_inventory.py"
       - "scripts/audit_fhir_reference_graph.py"
       - "scripts/audit_data_correctness_evidence.py"
+      - "scripts/audit_source_acquisition_priority.py"
       - "mappings/publication/**"
       - "mappings/case-management/**"
       - "outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv"
@@ -159,7 +161,20 @@ jobs:
             --population-criteria mappings/case-management/case-management-population-criteria.csv \
             --json-out ig/output/data-correctness-evidence-audit.json \
             --target integrity \
-            | tee ig/output/data-correctness-evidence-audit.log
+             | tee ig/output/data-correctness-evidence-audit.log
+
+      - name: Audit source acquisition priority
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_source_acquisition_priority.py \
+            --register mappings/publication/source-acquisition-priority.csv \
+            --common-mapping mappings/case-management/breast-common-to-case-management.csv \
+            --task-mapping mappings/case-management/case-management-task-only-fields.csv \
+            --population-criteria mappings/case-management/case-management-population-criteria.csv \
+            --source-register mappings/publication/source-traceability-register.csv \
+            --json-out ig/output/source-acquisition-priority-audit.json \
+            | tee ig/output/source-acquisition-priority-audit.log
 
       - name: Audit complete release controls
         shell: bash

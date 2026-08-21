@@ -61,14 +61,13 @@ def test_every_row_declares_which_report_family_needs_it():
 
 def test_a_shared_fact_is_one_row_serving_both_families():
     """The whole point of merging the two tasks: a fact both reports need is
-    described once, so the two descriptions cannot drift apart."""
+    described once, so the two descriptions cannot drift apart. A blank legacy
+    worksheet column is allowed: several newly exposed dependencies are absent
+    from that report, which is precisely the source gap the mapping records."""
     shared = [row for row in rows(CROSSWALK)
               if row["used_by_indicator_family"] == "both"]
     assert len(shared) >= 6
-    for row in shared:
-        assert row["worksheet_column_quality"], row["mapping_id"]
-        assert row["worksheet_column_quarterly"], row["mapping_id"]
-        assert len(row["legacy_ids"].split()) >= 2, row["mapping_id"]
+    assert len({row["common_concept"] for row in shared}) == len(shared)
 
 
 def test_legacy_ids_are_recorded_and_unique_so_the_merge_stays_traceable():
@@ -113,6 +112,53 @@ def test_criterion_ids_are_unique_and_reference_a_real_mapping_row():
     for row in criteria:
         for reference in row["depends_on_mapping"].split():
             assert reference in known, (row["criterion_id"], reference)
+
+
+def test_declared_fact_family_covers_every_criterion_that_uses_it():
+    facts = {row["mapping_id"]: row for row in rows(CROSSWALK)}
+    facts.update({row["field_id"]: row for row in rows(TASK_ONLY)})
+    family_members = {
+        "quality": {"quality"},
+        "quarterly": {"quarterly"},
+        "both": {"quality", "quarterly"},
+    }
+    for criterion in rows(CRITERIA):
+        for fact_id in criterion["depends_on_mapping"].split():
+            assert criterion["indicator_family"] in family_members[
+                facts[fact_id]["used_by_indicator_family"]
+            ], (criterion["criterion_id"], fact_id)
+
+
+def test_indirect_and_human_adjudication_dependencies_cannot_disappear():
+    """Lock dependencies found by tracing the CQL call graph and task layer.
+
+    These are easy to omit because the criterion expression reaches them through
+    a shared helper, an evaluation parameter, or a governed manual decision.
+    """
+    criteria = {row["criterion_id"]: set(row["depends_on_mapping"].split())
+                for row in rows(CRITERIA)}
+    expected = {
+        "IP-CLASS": {"CM-BC-003", "CM-TASK-001"},
+        "IP-QUARTER": {"CM-BC-002", "CM-TASK-020"},
+        "N5-ADH-RULE": {"CM-BC-016", "CM-BC-019", "CM-TASK-010"},
+        "N6-RT": {"CM-BC-017", "CM-BC-023", "CM-BC-025"},
+        "IP-CASELOAD": {"CM-BC-002", "CM-TASK-020", "CM-TASK-023"},
+        "N4-LOST": {"CM-BC-037", "CM-TASK-015"},
+        "D5-QUIT": {"CM-TASK-003", "CM-TASK-007", "CM-TASK-014"},
+        "N5-RETURN": {"CM-BC-035", "CM-TASK-014"},
+        "S13-CLOSURE": {"CM-BC-031", "CM-BC-036", "CM-TASK-003"},
+        "S16-STAGE": {
+            "CM-BC-004", "CM-BC-005", "CM-BC-033", "CM-BC-034",
+            "CM-TASK-004", "CM-TASK-013",
+        },
+        "S17-HISTOLOGY": {"CM-BC-007", "CM-BC-032"},
+        "S18-SUBTYPE": {
+            "CM-BC-007", "CM-BC-008", "CM-BC-009", "CM-BC-010",
+            "CM-BC-011", "CM-BC-032",
+        },
+    }
+    for criterion_id, dependencies in expected.items():
+        assert criteria[criterion_id] == dependencies, criterion_id
 
 
 def test_no_criterion_still_points_at_a_pre_merge_id():

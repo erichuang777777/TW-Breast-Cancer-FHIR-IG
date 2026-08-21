@@ -82,6 +82,15 @@ try {
         --target integrity
     if ($LASTEXITCODE -ne 0) { throw "data-correctness evidence integrity audit failed" }
 
+    python scripts\audit_source_acquisition_priority.py `
+        --register mappings\publication\source-acquisition-priority.csv `
+        --common-mapping mappings\case-management\breast-common-to-case-management.csv `
+        --task-mapping mappings\case-management\case-management-task-only-fields.csv `
+        --population-criteria mappings\case-management\case-management-population-criteria.csv `
+        --source-register mappings\publication\source-traceability-register.csv `
+        --json-out ig\output\source-acquisition-priority-audit.json
+    if ($LASTEXITCODE -ne 0) { throw "source-acquisition priority audit failed" }
+
     python scripts\audit_release_controls.py `
         --controls mappings\publication\release-control-register.csv `
         --measure-audit mappings\publication\case-management-measure-audit.csv `

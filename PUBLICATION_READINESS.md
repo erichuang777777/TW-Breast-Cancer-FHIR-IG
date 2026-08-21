@@ -20,7 +20,7 @@
 
 | Gate | 結果 | 說明 |
 |---|---:|---|
-| pytest | pass：323 tests | 包含 mapping、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、完整 260-resource manifest、994-edge reference graph、52-fact 原始來源與 20-Measure 真實資料證據 gate、四組 canonical version policy、逐 Measure、46 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性 audit、全 IG scope claims／決策、完整 release-control gate、template supply-chain 與 publication workflow 契約測試。 |
+| pytest | pass：328 tests | 包含 mapping、criteria 間接依賴、52-fact 取得優先級、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、完整 260-resource manifest、994-edge reference graph、52-fact 原始來源與 20-Measure 真實資料證據 gate、四組 canonical version policy、逐 Measure、46 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性 audit、全 IG scope claims／決策、完整 release-control gate、template supply-chain 與 publication workflow 契約測試。 |
 | SUSHI 3.20.0 | pass：0 errors / 0 warnings | FSH 可穩定產生 IG resources。 |
 | PHI gate | pass | 目前版本庫未檢出疑似病人識別資料；正式來源資料仍須在受控環境處理。 |
 | CQL CLI translation | pass | `cql-to-elm-cli 3.26.0` 可產生 ELM；FHIRHelpers 由 `hl7.fhir.uv.cql#2.0.0` 解析。 |
@@ -65,7 +65,7 @@
 - terminology 對應未確認時使用 `candidate-unverified`，不得直接發布成正式 ValueSet/ConceptMap 關係。
 - 先完成 CQL 所需的 FHIR resource/profile/path、時間窗、缺值與排除規則；待原始資料到位後再補 source adapter 與 Provenance。
 
-本階段骨架已建立於 `mappings/publication/source-traceability-register.csv`：精確涵蓋 34 個共同 fact 與 18 個 task-only fact，共 52 項；目前權威來源核准為 0/52。各館既有報表欄位已明確留在 notes／secondary reconciliation 邊界，不能使原始來源 gate 通過。逐 Measure 的獨立重算與完整期別驗證則記錄於 `measure-validation-evidence-register.csv`，目前均為 0/20。兩份登錄由 `audit_data_correctness_evidence.py` 在本機與 CI 強制檢查。
+本階段骨架已建立於 `mappings/publication/source-traceability-register.csv`：精確涵蓋 34 個共同 fact 與 18 個 task-only fact，共 52 項；目前權威來源核准為 0/52。各館既有報表欄位已明確留在 notes／secondary reconciliation 邊界，不能使原始來源 gate 通過。追蹤間接 CQL 依賴、報告參數與人工 adjudication 後，68 個 criteria 實際引用 45/52 facts；`source-acquisition-priority.csv` 已將全部 52 項排為 **P0 42／P1 4／P2 6**，而 `audit_source_acquisition_priority.py` 會阻止手動降級或 dependency drift。P0/P1/P2 僅是取得順序，不是可選項。逐 Measure 的獨立重算與完整期別驗證則記錄於 `measure-validation-evidence-register.csv`，目前均為 0/20。這些登錄由本機與 CI 強制檢查。
 
 quality 交接匯入包本身已完成逐檔整合核對：11 個直接對應檔及 2 個 instruction／patch 檔均有處理結論，34 mapping、20 Measure、68 criteria、18 Task-only IDs 與 22 個 FSH symbols 無遺漏；完整證據見 [QUALITY_IMPORT_INTEGRATION_AUDIT.md](QUALITY_IMPORT_INTEGRATION_AUDIT.md)。這只證明匯入完整，不提升真實資料 gate。
 

@@ -155,7 +155,7 @@ def run_audit(
         "approved_authoritative_or_derived_fact_count": 0,
         "measure_count": 20,
         "population_criterion_count": 68,
-        "criterion_referenced_fact_count": 37,
+        "criterion_referenced_fact_count": 45,
         "approved_independent_recalculation_count": 0,
         "approved_golden_cohort_count": 0,
         "source_register_integrity_gate": "pass",

@@ -48,7 +48,8 @@ RC-08 進一步要求全部 222 個 canonical resources 的 business-version pro
 
 ### Mapping
 
-- `source-traceability-register.csv` 必須精確涵蓋現行個管 mapping 的 **52 個 fact**（34 個共同 fact＋18 個 task-only fact）；68 個 Measure criteria 目前直接引用其中 37 個 fact，其餘是報告、治理、Provenance 或 task 輸出需求，仍須保留。每個 fact 必須恰有一個 authoritative／derived／pending 主列，另可增加報表的 `secondary-reconciliation` 列，但 secondary 列永遠不能使 RC-01 通過。
+- `source-traceability-register.csv` 必須精確涵蓋現行個管 mapping 的 **52 個 fact**（34 個共同 fact＋18 個 task-only fact）；追蹤 CQL 共用函式、Measure 參數與人工 adjudication 後，68 個 Measure criteria 目前引用其中 **45 個 fact**。其餘 7 個是報告、治理、Provenance 或尚未使用的候選輸入，仍須保留。每個 fact 必須恰有一個 authoritative／derived／pending 主列，另可增加報表的 `secondary-reconciliation` 列，但 secondary 列永遠不能使 RC-01 通過。
+- `source-acquisition-priority.csv` 由 dependency graph 機器推導並鎖定 52/52 列：P0 42 項會改變 cohort／分母／分子、已是 blocking data gap，或是 release provenance；P1 4 項目前只改變分層分佈；P2 6 項為報表支援或未使用候選。P0/P1/P2 僅是取得順序，**52 項在 production publication 前都不可省略**。
 - 現況為 52/52 骨架存在、0/52 取得完整權威來源與簽核。`audit_data_correctness_evidence.py` 會拒絕漏列、重複主列、未知 fact、過期名稱／indicator family，及缺證據卻自稱 approved 的列。
 - 可重現重建使用 committed、版本化且帶原始文件 SHA-256 的 `qbc_workbench/data/qbc_fields.json`；它是來源文件的技術擷取契約，不是原始文件本身。受控環境仍須以該 SHA-256 重新核對原始 DOCX，不能因衍生 JSON 可重建就宣稱原始規格已驗真。
 - 正式使用範圍內的 required facts：100% 完成來源與 FHIR mapping。

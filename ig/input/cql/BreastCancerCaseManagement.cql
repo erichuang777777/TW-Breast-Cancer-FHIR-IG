@@ -11,10 +11,10 @@ criterion_id from that file; the Python reference implementation is checked
 against the same table, and the two must agree case by case on synthetic data
 before either is trusted.
 
-Cohort membership (Class 1/2, criterion IP-CLASS) is task-only administrative
-data with no clinical resource behind it. It is applied by evaluating the
-measure against a Group whose members are this quarter's Class 1/2 cases, not by
-logic in this library.
+Cohort membership combines a breast cancer diagnosis (CM-BC-003) with the
+task-only Class 1/2 administrative label (criterion IP-CLASS). It is applied by
+assembling the evaluation Group before this library runs; the Group contract
+must retain both facts rather than treating Class alone as a clinical diagnosis.
 
 Committee exclusions and numerator add-backs (X1-TEAM, X5-TEAM, N5-ADH-RULE)
 are deliberate human decisions recorded per case with a reason. They are applied
@@ -814,9 +814,9 @@ define "Reported Stage Group":
     else 'other-unspecified'
   end
 
-// S17-HISTOLOGY (CM-BC-032): coded morphology. DCIS with microinvasion groups
-// with invasive carcinoma; DCIS and phyllodes are their own strata and stay
-// out of the invasive denominator.
+// S17-HISTOLOGY (CM-BC-032 with CM-BC-007): coded morphology. Pathological T1mi
+// distinguishes DCIS with microinvasion and groups it with invasive carcinoma;
+// DCIS and phyllodes are their own strata and stay out of the invasive denominator.
 define "Histology Morphology":
   First(
     [Observation: "Histology Morphology Code"] Report
@@ -861,10 +861,11 @@ define "Is Invasive Histology":
   "Histology Group" is not null
     and not ("Histology Group" in { 'dcis', 'phyllodes' })
 
-// S18-SUBTYPE (CM-BC-008 with CM-BC-009, CM-BC-010, CM-BC-011): derived from
-// the marker observations. The hand-typed letter A/B1/B2/H/T is not stored; its
-// + and - values were the ER status of an in-situ case, which is why the
-// invasive denominator is decided from histology and not from the letter.
+// S18-SUBTYPE (CM-BC-007 through CM-BC-011, plus CM-BC-032): ER and PR derive
+// hormone-receptor status, HER2 IHC and ISH derive HER2 status, and morphology
+// plus pathological T1mi decides the invasive cohort. The hand-typed letter
+// A/B1/B2/H/T is not stored; its + and - values were the ER status of an in-situ
+// case, which is why invasion is decided from histology and not from the letter.
 define "Progesterone Receptor Percent":
   First(
     [Observation: "Progesterone Receptor Code"] Report

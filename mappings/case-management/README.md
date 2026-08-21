@@ -22,8 +22,8 @@ column keeps them separately readable.
 They nevertheless run on **the same clinical facts**. Held as two mapping sets
 they drifted immediately: the same stage-group observation was described twice,
 with two ids and two projection rules, and nothing forced the two descriptions
-to agree. One mapping table, one row per fact, is the maintainable shape. Six
-of the 34 common-layer facts and two of the 18 task-only fields are used by
+to agree. One mapping table, one row per fact, is the maintainable shape. Nine
+of the 34 common-layer facts and three of the 18 task-only fields are used by
 both families, and each carries its `legacy_ids` so the earlier split remains
 traceable.
 
@@ -42,8 +42,17 @@ maintenance liability.
 - `case-management-population-criteria.csv` — one row per measure population or
   stratum. This is the **single source of truth** both the CQL library and the
   Python reference implementation are generated from and checked against.
+  `depends_on_mapping` includes every fact needed by the canonical rule,
+  including dependencies reached through shared CQL helpers, evaluation
+  parameters, pre-evaluation Group assembly, and governed manual adjudication;
+  it is not limited to fields visibly queried in the final CQL define.
 - `case-management-task-only-fields.csv` — case-management and committee
   workflow data that must not be promoted into the shared clinical layer.
+- `../publication/source-acquisition-priority.csv` — a machine-derived 52-row
+  acquisition queue. P0 changes a cohort/rate, closes a blocking data gap, or
+  proves release provenance; P1 changes a distribution stratum; P2 supports
+  the report or is an unused candidate. These are sequencing labels only: all
+  52 rows remain required before a production-publication claim.
 - `python-implementation-manifest.json` — which `criterion_id`s the Python
   reference implementation actually evaluates, generated from
   `個管品管_1_品質核心指標統計/pipeline/rules.py`'s `CRITERION_IDS` /
