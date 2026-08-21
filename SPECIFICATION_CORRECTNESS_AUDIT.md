@@ -47,6 +47,8 @@ RC-08 另外驗證全 IG 的 10 個 scope claim 與 10 個逐項角色決策；�
 
 Profile／Extension 規格也採逐項核對，而不是只看 Publisher 總數。目前正式集合為 **46 個 StructureDefinition：33 Profile、13 Extension**；其中 4 個 TCR extension 是手寫 JSON，不能因不在 FSH 清單中而漏掉。`artifact-conformance-register.csv` 鎖定每個 artifact 的 parent、type、kind、scope 與合成範例，技術稽核為 46/46 pass；但逐 artifact 的臨床／FHIR reviewer 核准仍是 **0/46**，所以 RC-07 繼續 blocked。
 
+Terminology 也不能只計算 FSH 檔案或只檢查 CQL 有沒有名稱。實際發布集合是 **152 個 artifact：60 CodeSystem、90 ValueSet、2 ConceptMap**；機器稽核目前確認其 canonical、狀態、基本內容與內部參照完整。個管範圍另有精確的 19 項臨床 ValueSet 核准集合：18 項已被 CQL 引用，腋下淋巴結廓清術 1 項是 defined-not-referenced；19 項目前皆無內容且 **0/19** 完成具名、版本化簽核。因此能證明的是「terminology inventory 技術完整」，不能證明臨床代碼集合或 CQL cohort 語意正確，RC-03 仍 blocked。
+
 ## 每一筆資料應比對的內容
 
 任何會改變 initial population、denominator、exclusion、numerator 或 stratifier 的欄位，都必須逐筆保存並比對：

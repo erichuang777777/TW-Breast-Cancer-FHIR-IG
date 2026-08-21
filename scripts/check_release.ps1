@@ -45,6 +45,15 @@ try {
         --target integrity
     if ($LASTEXITCODE -ne 0) { throw "artifact-conformance integrity audit failed" }
 
+    python scripts\audit_terminology_conformance.py `
+        --approval-register mappings\publication\case-management-terminology-approval-register.csv `
+        --cql ig\input\cql\BreastCancerCaseManagement.cql `
+        --resource-dir ig\fsh-generated\resources `
+        --resource-dir ig\input\resources `
+        --json-out ig\output\terminology-conformance-audit.json `
+        --target integrity
+    if ($LASTEXITCODE -ne 0) { throw "terminology-conformance integrity audit failed" }
+
     python scripts\audit_release_controls.py `
         --controls mappings\publication\release-control-register.csv `
         --measure-audit mappings\publication\case-management-measure-audit.csv `
@@ -54,6 +63,7 @@ try {
         --scope-claims mappings\publication\ig-scope-claim-register.csv `
         --scope-decisions mappings\publication\publication-scope-decision-register.csv `
         --artifact-audit ig\output\artifact-conformance-audit.json `
+        --terminology-audit ig\output\terminology-conformance-audit.json `
         --publisher-audit ig\output\publisher-warning-audit.json `
         --json-out ig\output\release-control-audit.json `
         --target integrity

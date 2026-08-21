@@ -158,6 +158,7 @@ def audit(
     scope_claims_path: Path,
     scope_decisions_path: Path,
     artifact_audit_path: Path,
+    terminology_audit_path: Path,
     publisher_audit_path: Path,
 ) -> dict[str, object]:
     controls = read_csv(controls_path, REQUIRED_CONTROL_COLUMNS, exact_columns=True)
@@ -278,6 +279,37 @@ def audit(
     expected_clinical_gate = "pass" if approved_artifact_count == 46 else "block"
     if artifact_audit["clinical_artifact_approval_gate"] != expected_clinical_gate:
         raise ValueError(f"{artifact_audit_path}: clinical artifact gate/count mismatch")
+    terminology_audit = json.loads(terminology_audit_path.read_text(encoding="utf-8"))
+    if terminology_audit.get("gate_scope") != "complete-local-terminology-technical-and-clinical":
+        raise ValueError(
+            f"{terminology_audit_path}: invalid terminology gate_scope"
+        )
+    terminology_counts = {
+        "terminology_artifact_count": 152,
+        "code_system_count": 60,
+        "value_set_count": 90,
+        "concept_map_count": 2,
+        "clinical_value_set_approval_count": 19,
+    }
+    for field, expected in terminology_counts.items():
+        if terminology_audit.get(field) != expected:
+            raise ValueError(f"{terminology_audit_path}: {field} must be {expected}")
+    if terminology_audit.get("terminology_integrity_gate") != "pass":
+        raise ValueError(f"{terminology_audit_path}: terminology_integrity_gate must be pass")
+    empty_terminology = terminology_audit.get("empty_clinical_value_set_count")
+    approved_terminology = terminology_audit.get("approved_clinical_value_set_count")
+    if (
+        not isinstance(empty_terminology, int)
+        or not 0 <= empty_terminology <= 19
+        or not isinstance(approved_terminology, int)
+        or not 0 <= approved_terminology <= 19
+    ):
+        raise ValueError(f"{terminology_audit_path}: invalid clinical terminology counts")
+    expected_terminology_gate = (
+        "pass" if empty_terminology == 0 and approved_terminology == 19 else "block"
+    )
+    if terminology_audit.get("clinical_terminology_gate") != expected_terminology_gate:
+        raise ValueError(f"{terminology_audit_path}: clinical terminology gate/count mismatch")
     publisher = json.loads(publisher_audit_path.read_text(encoding="utf-8"))
     if publisher.get("gate_scope") != "publisher-qa-only":
         raise ValueError(
@@ -304,6 +336,7 @@ def audit(
         "RC-03": "pass" if (
             clinical_count > 0
             and empty_clinical_count == 0
+            and terminology_audit["clinical_terminology_gate"] == "pass"
             and all(row["terminology_evidence"] in {"verified", "not-applicable"} for row in measures)
         ) else "blocked",
         "RC-04": "pass" if all(
@@ -370,6 +403,12 @@ def audit(
         "clinical_artifact_approval_gate": artifact_audit[
             "clinical_artifact_approval_gate"
         ],
+        "terminology_artifact_count": terminology_audit["terminology_artifact_count"],
+        "clinical_value_set_approval_count": terminology_audit[
+            "clinical_value_set_approval_count"
+        ],
+        "approved_clinical_value_set_count": approved_terminology,
+        "clinical_terminology_gate": terminology_audit["clinical_terminology_gate"],
         "control_integrity_gate": integrity,
         "data_correctness_gate": data_gate,
         "publisher_formal_qa_gate": publisher["formal_release_gate"],
@@ -391,6 +430,7 @@ def main() -> int:
     parser.add_argument("--scope-claims", type=Path, required=True)
     parser.add_argument("--scope-decisions", type=Path, required=True)
     parser.add_argument("--artifact-audit", type=Path, required=True)
+    parser.add_argument("--terminology-audit", type=Path, required=True)
     parser.add_argument("--publisher-audit", type=Path, required=True)
     parser.add_argument("--json-out", type=Path)
     parser.add_argument(
@@ -403,6 +443,7 @@ def main() -> int:
             args.approval_register, args.measure_approval_register,
             args.scope_claims, args.scope_decisions,
             args.artifact_audit,
+            args.terminology_audit,
             args.publisher_audit,
         )
     except (OSError, ValueError, csv.Error, json.JSONDecodeError) as exc:

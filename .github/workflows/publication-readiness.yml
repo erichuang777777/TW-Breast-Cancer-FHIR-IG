@@ -12,6 +12,7 @@ on:
       - "scripts/audit_publisher_qa.py"
       - "scripts/audit_release_controls.py"
       - "scripts/audit_artifact_conformance.py"
+      - "scripts/audit_terminology_conformance.py"
       - "mappings/publication/**"
       - "outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv"
   pull_request:
@@ -22,6 +23,7 @@ on:
       - "scripts/audit_publisher_qa.py"
       - "scripts/audit_release_controls.py"
       - "scripts/audit_artifact_conformance.py"
+      - "scripts/audit_terminology_conformance.py"
       - "mappings/publication/**"
       - "outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv"
 
@@ -98,6 +100,19 @@ jobs:
             --target integrity \
             | tee ig/output/artifact-conformance-audit.log
 
+      - name: Audit complete terminology inventory and clinical approvals
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_terminology_conformance.py \
+            --approval-register mappings/publication/case-management-terminology-approval-register.csv \
+            --cql ig/input/cql/BreastCancerCaseManagement.cql \
+            --resource-dir ig/fsh-generated/resources \
+            --resource-dir ig/input/resources \
+            --json-out ig/output/terminology-conformance-audit.json \
+            --target integrity \
+            | tee ig/output/terminology-conformance-audit.log
+
       - name: Audit complete release controls
         shell: bash
         run: |
@@ -111,6 +126,7 @@ jobs:
             --scope-claims mappings/publication/ig-scope-claim-register.csv \
             --scope-decisions mappings/publication/publication-scope-decision-register.csv \
             --artifact-audit ig/output/artifact-conformance-audit.json \
+            --terminology-audit ig/output/terminology-conformance-audit.json \
             --publisher-audit ig/output/publisher-warning-audit.json \
             --json-out ig/output/release-control-audit.json \
             --target integrity \

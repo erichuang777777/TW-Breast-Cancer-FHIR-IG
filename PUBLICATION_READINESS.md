@@ -6,6 +6,8 @@
 
 逐 artifact conformance audit 已完整納入 46 個 StructureDefinition（33 Profile＋13 Extension，包含 4 個手寫 TCR extension）。46/46 的 generated parent/type/kind/status 與合成範例證據一致，但人工規格核准是 0/46，因此目前只能支持「technical structure with synthetic examples」，不能支持臨床語意或正式規格正確性的宣稱。
 
+完整 terminology audit 已納入 152 個 artifact（60 CodeSystem＋90 ValueSet＋2 ConceptMap），技術完整性通過。個管臨床 terminology gate 仍 blocked：19 個 ValueSet 為空且核准 0/19；其中 18 個被 CQL 引用，1 個腋下淋巴結廓清術值集僅定義未引用。這些空值集是刻意的 fail-closed 狀態，必須取得權威版本、完整代碼內容、測試與具名核准後才能解除，不能由現有報表反推補值。
+
 技術面的 FHIR Publisher 資源驗證已由最初的 69 errors 降至 0 errors；完整網站目前為 0 errors、52 warnings、0 broken links。原本 133 個逐資源 missing-OID warnings 與 48 個錯誤 TCR targetless ConceptMap warnings 已歸零；271 筆 OID assignment 保留既有識別碼（包含 48 個已退役資源，不回收重用），尚有 1 個 OID root registry governance warning。臨床面的原始資料 mapping、正式值集、golden cohort 與治理簽核仍是阻擋項目。
 
 精確的發布層級、六種核對方法與逐項通過門檻見 [PUBLICATION_ACCEPTANCE_MATRIX.md](PUBLICATION_ACCEPTANCE_MATRIX.md)。20 個個管品質／季報 Measure 的逐項規格判定、六層資料驗證與八項正式發布控制，見 [SPECIFICATION_CORRECTNESS_AUDIT.md](SPECIFICATION_CORRECTNESS_AUDIT.md)。整份 IG 各 Task 與 TW Core／mCODE／ICHOM／TWPAS 等外部規格的宣稱邊界，見 [IG_SCOPE_CONFORMANCE_AUDIT.md](IG_SCOPE_CONFORMANCE_AUDIT.md)。
@@ -14,7 +16,7 @@
 
 | Gate | 結果 | 說明 |
 |---|---:|---|
-| pytest | pass：286 tests | 包含 mapping、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、逐 Measure 與 46 個 StructureDefinition 規格／簽核完整性 audit、全 IG scope claims／決策、完整 release-control gate、template supply-chain 與 publication workflow 契約測試。 |
+| pytest | pass：294 tests | 包含 mapping、PHI、CQL、IG export、OID assignment、TCR 術語 backlog、Publisher warning policy、逐 Measure、46 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性 audit、全 IG scope claims／決策、完整 release-control gate、template supply-chain 與 publication workflow 契約測試。 |
 | SUSHI 3.20.0 | pass：0 errors / 0 warnings | FSH 可穩定產生 IG resources。 |
 | PHI gate | pass | 目前版本庫未檢出疑似病人識別資料；正式來源資料仍須在受控環境處理。 |
 | CQL CLI translation | pass | `cql-to-elm-cli 3.26.0` 可產生 ELM；FHIRHelpers 由 `hl7.fhir.uv.cql#2.0.0` 解析。 |
@@ -23,6 +25,7 @@
 | IG Publisher 2.3.2 resource validation | pass with warnings：0 errors / 52 warnings | missing-OID 與 TCR targetless ConceptMap warnings 均為 0；剩餘 40 個 FHIRHelpers anchor、11 個 CQL validator limitation 與 1 個 OID registry warning 由機器可讀政策逐類鎖定。 |
 | 完整 IG website/package | pass：0 errors / 52 warnings / 0 broken links | Linux Publisher 2.3.2 已產生網站、`qa.html` 與 `package.tgz`；warning audit 為 QA integrity pass，Community Preview／Formal release block。 |
 | 完整 release controls | integrity pass；2/8 controls pass | RC-02 FHIR conformance 與 RC-04 executable rules 通過；source mapping、terminology、independent recalculation、golden cohort、governance 與 operational acceptance 均 blocked。RC-07 鎖定 QBC 14-Gate、Measure 20-approval 與 StructureDefinition 46-approval 完整集合；目前 Measure 0/20、artifact 0/46。Publisher warnings 即使歸零也不會讓此 gate 誤判通過。 |
+| Terminology inventory | technical pass；clinical block | 完整集合 152（60 CodeSystem、90 ValueSet、2 ConceptMap）；19 個個管臨床 ValueSet 為空、核准 0/19，因此 RC-03 blocked。 |
 | Strict release QA | blocked | 正式 release gate 仍要求 0 warnings；完整 QA 的 52 個 warning 尚未逐一修正或完成具體審查紀錄。 |
 | Template supply-chain | technical pass | 已依 2026-03 安全公告固定使用 `fhir2.base.template#0.1.0` 與套件 SHA-1；CI 證明載入精確版本且不再出現 insecure-template notice。已發布模板的多語系 jurisdiction flag 路徑缺陷以最小 include overlay 修正並由 0 broken links gate 鎖定；此項通過不解除臨床／治理發布阻擋。 |
 

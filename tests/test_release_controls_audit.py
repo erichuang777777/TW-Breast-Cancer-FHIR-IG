@@ -36,6 +36,7 @@ def run_audit(
     scope_claims: Path = SCOPE_CLAIMS,
     scope_decisions: Path = SCOPE_DECISIONS,
     artifact_approved: bool = False,
+    terminology_overrides: dict | None = None,
     target: str = "integrity",
 ):
     publisher = tmp_path / "publisher.json"
@@ -61,6 +62,21 @@ def run_audit(
         }),
         encoding="utf-8",
     )
+    terminology_audit = tmp_path / "terminology-audit.json"
+    terminology_report = {
+        "gate_scope": "complete-local-terminology-technical-and-clinical",
+        "terminology_integrity_gate": "pass",
+        "terminology_artifact_count": 152,
+        "code_system_count": 60,
+        "value_set_count": 90,
+        "concept_map_count": 2,
+        "empty_clinical_value_set_count": 19,
+        "clinical_value_set_approval_count": 19,
+        "approved_clinical_value_set_count": 0,
+        "clinical_terminology_gate": "block",
+    }
+    terminology_report.update(terminology_overrides or {})
+    terminology_audit.write_text(json.dumps(terminology_report), encoding="utf-8")
     completed = subprocess.run(
         [
             sys.executable, str(SCRIPT),
@@ -72,6 +88,7 @@ def run_audit(
             "--scope-claims", str(scope_claims),
             "--scope-decisions", str(scope_decisions),
             "--artifact-audit", str(artifact_audit),
+            "--terminology-audit", str(terminology_audit),
             "--publisher-audit", str(publisher),
             "--json-out", str(output),
             "--target", target,
@@ -104,6 +121,10 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["artifact_conformance_count"] == 46
     assert report["approved_artifact_count"] == 0
     assert report["clinical_artifact_approval_gate"] == "block"
+    assert report["terminology_artifact_count"] == 152
+    assert report["clinical_value_set_approval_count"] == 19
+    assert report["approved_clinical_value_set_count"] == 0
+    assert report["clinical_terminology_gate"] == "block"
     assert report["data_correctness_gate"] == "block"
     assert report["formal_release_gate"] == "block"
     assert report["maximum_supported_claim"] == "technical-draft-only"
@@ -114,6 +135,24 @@ def test_zero_publisher_warnings_cannot_bypass_clinical_release_controls(tmp_pat
     assert completed.returncode == 1
     assert report["publisher_formal_qa_gate"] == "pass"
     assert report["formal_release_gate"] == "block"
+
+
+def test_terminology_inventory_count_cannot_be_reduced(tmp_path):
+    completed, report = run_audit(
+        tmp_path, terminology_overrides={"terminology_artifact_count": 151}
+    )
+    assert completed.returncode == 2
+    assert report is None
+    assert "terminology_artifact_count must be 152" in completed.stderr
+
+
+def test_terminology_gate_cannot_contradict_empty_or_unsigned_counts(tmp_path):
+    completed, report = run_audit(
+        tmp_path, terminology_overrides={"clinical_terminology_gate": "pass"}
+    )
+    assert completed.returncode == 2
+    assert report is None
+    assert "clinical terminology gate/count mismatch" in completed.stderr
 
 
 def test_declared_control_status_must_match_derived_evidence(tmp_path):

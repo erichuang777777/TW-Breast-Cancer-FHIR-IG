@@ -36,6 +36,8 @@ RC-08 也要求 `ig-scope-claim-register.csv` 與 `publication-scope-decision-re
 
 RC-07 另要求 `artifact-conformance-register.csv` 精確涵蓋全部 **46 個 StructureDefinition（33 Profile、13 Extension）**。`scripts/audit_artifact_conformance.py` 會把 FSH 產物與 4 個手寫 TCR extension 一起比對 parent canonical、FHIR type/kind、draft/experimental 狀態及合成範例使用證據。現況技術一致性為 46/46，但人工規格核准為 0/46；Publisher 綠燈不能替代這 46 項核准。
 
+RC-03 的 terminology 範圍也已鎖定為生成後與手寫資源的完整聯集：**152 個 terminology artifact（60 CodeSystem、90 ValueSet、2 ConceptMap）**。`scripts/audit_terminology_conformance.py` 逐項檢查 canonical、draft/experimental、CodeSystem 內容、ValueSet include system、ConceptMap element/target，以及 CQL 宣告與實際引用。完整清冊的技術完整性目前通過；但 19 個個管臨床 ValueSet 仍為空，18 個被 CQL 實際引用，另 1 個腋下淋巴結廓清術值集僅定義而未引用。`case-management-terminology-approval-register.csv` 鎖定這 19 項，現況核准 **0/19**，因此 RC-03 必須維持 blocked。這項技術盤點不等於 152 項均已取得臨床語意核准。
+
 ## 數量與正確性門檻
 
 ### Mapping
