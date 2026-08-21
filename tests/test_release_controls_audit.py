@@ -38,6 +38,7 @@ def run_audit(
     artifact_approved: bool = False,
     terminology_overrides: dict | None = None,
     inventory_overrides: dict | None = None,
+    reference_overrides: dict | None = None,
     target: str = "integrity",
 ):
     publisher = tmp_path / "publisher.json"
@@ -108,6 +109,41 @@ def run_audit(
     }
     inventory_report.update(inventory_overrides or {})
     inventory_audit.write_text(json.dumps(inventory_report), encoding="utf-8")
+    reference_graph_audit = tmp_path / "reference-graph-audit.json"
+    reference_report = {
+        "gate_scope": "complete-local-fhir-reference-and-canonical-graph",
+        "reference_graph_integrity_gate": "pass",
+        "resource_count": 260,
+        "local_url_link_occurrence_count": 633,
+        "local_url_link_counts": {
+            "bundle-fullUrl": 19,
+            "canonical-field": 219,
+            "code-system-use": 138,
+            "conceptmap-code-system-use": 2,
+            "extension-use-url": 240,
+            "fixed-extension-url": 13,
+            "naming-system-use": 2,
+        },
+        "unique_local_url_target_count": 190,
+        "canonical_reference_occurrence_count": 254,
+        "local_canonical_reference_occurrence_count": 219,
+        "external_canonical_reference_occurrence_count": 35,
+        "unique_external_canonical_count": 18,
+        "external_canonical_authority_counts": {
+            "fhir-r4-core-4.0.1": 33,
+            "tw-core-1.0.0": 2,
+        },
+        "versioned_canonical_reference_occurrence_count": 0,
+        "fhir_reference_occurrence_count": 326,
+        "manifest_reference_occurrence_count": 259,
+        "non_manifest_reference_occurrence_count": 67,
+        "total_audited_reference_edge_count": 994,
+    }
+    reference_report.update(reference_overrides or {})
+    reference_graph_audit.write_text(
+        json.dumps(reference_report),
+        encoding="utf-8",
+    )
     completed = subprocess.run(
         [
             sys.executable, str(SCRIPT),
@@ -121,6 +157,7 @@ def run_audit(
             "--artifact-audit", str(artifact_audit),
             "--terminology-audit", str(terminology_audit),
             "--resource-inventory-audit", str(inventory_audit),
+            "--reference-graph-audit", str(reference_graph_audit),
             "--publisher-audit", str(publisher),
             "--json-out", str(output),
             "--target", target,
@@ -169,6 +206,11 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     )
     assert report["manual_canonical_versions"] == ["4.0.1"]
     assert report["business_version_provenance_gate"] == "block"
+    assert report["reference_graph_integrity_gate"] == "pass"
+    assert report["total_audited_reference_edge_count"] == 994
+    assert report["local_url_link_occurrence_count"] == 633
+    assert report["fhir_reference_occurrence_count"] == 326
+    assert report["external_canonical_reference_occurrence_count"] == 35
     assert report["data_correctness_gate"] == "block"
     assert report["formal_release_gate"] == "block"
     assert report["maximum_supported_claim"] == "technical-draft-only"
@@ -206,6 +248,15 @@ def test_fhir_resource_inventory_count_cannot_be_reduced(tmp_path):
     assert completed.returncode == 2
     assert report is None
     assert "resource_count must be 260" in completed.stderr
+
+
+def test_reference_graph_count_cannot_be_reduced(tmp_path):
+    completed, report = run_audit(
+        tmp_path, reference_overrides={"total_audited_reference_edge_count": 993}
+    )
+    assert completed.returncode == 2
+    assert report is None
+    assert "total_audited_reference_edge_count must be 994" in completed.stderr
 
 
 def test_business_version_gate_cannot_contradict_policy_approval_state(tmp_path):

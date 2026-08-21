@@ -64,6 +64,13 @@ try {
         --target inventory
     if ($LASTEXITCODE -ne 0) { throw "FHIR resource inventory audit failed" }
 
+    python scripts\audit_fhir_reference_graph.py `
+        --generated-resource-dir ig\fsh-generated\resources `
+        --manual-resource-dir ig\input\resources `
+        --sushi-config ig\sushi-config.yaml `
+        --json-out ig\output\fhir-reference-graph-audit.json
+    if ($LASTEXITCODE -ne 0) { throw "FHIR reference graph audit failed" }
+
     python scripts\audit_release_controls.py `
         --controls mappings\publication\release-control-register.csv `
         --measure-audit mappings\publication\case-management-measure-audit.csv `
@@ -75,6 +82,7 @@ try {
         --artifact-audit ig\output\artifact-conformance-audit.json `
         --terminology-audit ig\output\terminology-conformance-audit.json `
         --resource-inventory-audit ig\output\fhir-resource-inventory-audit.json `
+        --reference-graph-audit ig\output\fhir-reference-graph-audit.json `
         --publisher-audit ig\output\publisher-warning-audit.json `
         --json-out ig\output\release-control-audit.json `
         --target integrity

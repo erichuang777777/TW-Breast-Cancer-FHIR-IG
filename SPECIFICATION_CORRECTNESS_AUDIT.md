@@ -51,6 +51,8 @@ Terminology 也不能只計算 FSH 檔案或只檢查 CQL 有沒有名稱。實�
 
 全 IG 另有一份不可用「總數相同」取代的精確 resource manifest：**260 個 type/id** 必須逐項一致，其中 224 個 definitions、36 個 synthetic examples、222 個 canonical resources；260 項中 157 項由 FSH 生成、103 項為手寫 JSON。技術稽核要求生成的 ImplementationGuide 精確引用其餘 259 項，並驗證 example 分類、canonical、CapabilityStatement、Library／Measure 與 NamingSystem 關係。稽核發現並修正 TCR abstraction Task 被錯標為 definition。這證明發布包沒有漏件或角色漂移，不證明每一資源的臨床內容正確。
 
+完整引用圖也不能只靠 Publisher「沒有 unresolved warning」推定。`audit_fhir_reference_graph.py` 逐一驗證 **994 個 edge**：633 個本地 URL link、326 個 FHIR `Reference.reference`、35 個外部 canonical；其中本地目標 190 個唯一 URL 均須存在且符合 ValueSet、CodeSystem、StructureDefinition、Library、Measure、Questionnaire 或 NamingSystem 的預期型別，Bundle fullUrl 亦須與內嵌 resource identity 相同。外部集合鎖成 18 個 URL，只能由 FHIR R4 `4.0.1` 與 TW Core `1.0.0` 兩個已固定 authority 解析。任何新增外部 canonical、斷裂 reference 或目標型別漂移都會使 RC-02 失敗。
+
 版本語意缺口涵蓋全部 222 個 canonical resources，而非只有 Questionnaire。精確分類為：24 個明確使用 IG package version、1 個 Library 使用 CQL lifecycle version、96 個生成資源沒有 resource-level version 且尚未核准 package-context-only policy、101 個手寫 TCR canonical resources 全部使用 `4.0.1`。最後一組與 FHIR R4 版本相同，卻沒有 TCR 表單、手冊或碼表的權威 business-version 來源。FHIR R4 [`Questionnaire.version`](https://hl7.org/fhir/R4/questionnaire-definitions.html#Questionnaire.version) 明確將該欄位定義為作者管理的 business version；同類 canonical resources 亦不能把 `fhirVersion` 當成內容版本。四組政策目前 **0/4** 具名簽核，故 RC-08 business-version provenance gate 為 blocked。不得直接把 101 項改成推測年份或版號，也不得默認 96 項一定可只靠 package context。
 
 ## 每一筆資料應比對的內容

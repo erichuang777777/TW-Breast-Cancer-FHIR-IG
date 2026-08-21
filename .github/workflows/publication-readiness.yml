@@ -14,6 +14,7 @@ on:
       - "scripts/audit_artifact_conformance.py"
       - "scripts/audit_terminology_conformance.py"
       - "scripts/audit_fhir_resource_inventory.py"
+      - "scripts/audit_fhir_reference_graph.py"
       - "mappings/publication/**"
       - "outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv"
   pull_request:
@@ -26,6 +27,7 @@ on:
       - "scripts/audit_artifact_conformance.py"
       - "scripts/audit_terminology_conformance.py"
       - "scripts/audit_fhir_resource_inventory.py"
+      - "scripts/audit_fhir_reference_graph.py"
       - "mappings/publication/**"
       - "outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv"
 
@@ -129,6 +131,17 @@ jobs:
             --target inventory \
             | tee ig/output/fhir-resource-inventory-audit.log
 
+      - name: Audit complete FHIR reference and canonical graph
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_fhir_reference_graph.py \
+            --generated-resource-dir ig/fsh-generated/resources \
+            --manual-resource-dir ig/input/resources \
+            --sushi-config ig/sushi-config.yaml \
+            --json-out ig/output/fhir-reference-graph-audit.json \
+            | tee ig/output/fhir-reference-graph-audit.log
+
       - name: Audit complete release controls
         shell: bash
         run: |
@@ -144,6 +157,7 @@ jobs:
             --artifact-audit ig/output/artifact-conformance-audit.json \
             --terminology-audit ig/output/terminology-conformance-audit.json \
             --resource-inventory-audit ig/output/fhir-resource-inventory-audit.json \
+            --reference-graph-audit ig/output/fhir-reference-graph-audit.json \
             --publisher-audit ig/output/publisher-warning-audit.json \
             --json-out ig/output/release-control-audit.json \
             --target integrity \

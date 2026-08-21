@@ -16,7 +16,7 @@
 
 ## 驗證狀態（2026-08-21）
 
-- pytest：307 passed（新增 OID assignment、TCR 術語 backlog、完整 260-resource manifest、四組 canonical version policy、逐 Measure、46 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性、全 IG scope claims／決策、template supply-chain 與八項 release-control 證據一致性檢查）。
+- pytest：315 passed（新增 OID assignment、TCR 術語 backlog、完整 260-resource manifest、994-edge reference graph、四組 canonical version policy、逐 Measure、46 個 StructureDefinition 與 152 個 terminology artifact 的規格／簽核完整性、全 IG scope claims／決策、template supply-chain 與八項 release-control 證據一致性檢查）。
 - SUSHI 3.20.0：0 errors、0 warnings。
 - PHI gate：pass。
 - CQL translation：pass；runtime smoke：20/20 Measures、46/46 criteria；目前具預期值的合成分支 assertions：20/20 Measures。
@@ -30,6 +30,7 @@
 - 新增 46/46 StructureDefinition conformance register 與機器稽核（33 Profile、13 Extension，包含 4 個非 FSH 的 TCR extension）；逐列驗證 parent、type、kind、draft/experimental 及合成範例。技術證據 46/46 pass，人工規格核准 0/46；RC-07 現在也要求這 46 項全部具名簽核。
 - 新增完整 terminology conformance audit：鎖定 152 個 artifact（60 CodeSystem、90 ValueSet、2 ConceptMap）並驗證 canonical、內容、參照與 CQL 使用狀態。完整清冊技術檢查通過；19 個個管臨床 ValueSet 仍為空、核准 0/19（18 個被 CQL 引用、1 個 defined-not-referenced），因此 RC-03 維持 blocked。
 - 新增精確 260-row FHIR resource inventory 與 IG manifest graph audit：224 definitions、36 synthetic examples、222 canonical resources，來源為 157 FSH-generated＋103 manual JSON；259 個 IG resource references 必須逐項解析。修正 TCR abstraction Task 被誤標為 definition。另新增完整 canonical version policy register：222 項分為 24 package-explicit、1 CQL、96 package-context pending、101 手寫 TCR version collision；四組政策均須具名簽核，目前 0/4，因此 RC-08 保持 blocked，不能只修正一個 Questionnaire 或擅自猜版本。
+- 新增完整 FHIR reference graph audit：精確鎖定 994 個 edges（633 local URL、326 FHIR Reference、35 external canonical），驗證 190 個唯一 local targets 的解析與型別、19 個 Bundle fullUrl identity、18 個外部 canonical allowlist，以及 FHIR R4 `4.0.1`／TW Core `1.0.0` dependency pin。任何新增未審外部 canonical、斷裂 reference 或目標型別漂移均阻擋 RC-02。
 - QBC mapping 重建改以 committed `qbc_fields.json` 技術擷取契約為輸入，乾淨 checkout 不再依賴未納入版本庫的 DOCX；115 列仍保留原始文件 SHA-256。重建器只有在 Gate 提案、owner 與驗收條件完全未變時才保留既有人工簽核，內容變更即失效重簽。
 - 新增 whole-IG claim register，分開判定 TW Core direct parent、mCODE／ICHOM semantic reference、Care Plan、QBC、TWPAS、個管 Measure 與 TCR；修正 TCR 缺口為 48 欄已驗證碼表、32 欄 pending、19 欄非 coded。
 - 新增 canonical-derived UUIDv5 OID root 與 271 筆 committed assignments；逐資源 OID warning 由 133 降為 0，root registry 登錄仍待治理。

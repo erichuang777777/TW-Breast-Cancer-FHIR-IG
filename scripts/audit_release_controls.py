@@ -160,6 +160,7 @@ def audit(
     artifact_audit_path: Path,
     terminology_audit_path: Path,
     resource_inventory_audit_path: Path,
+    reference_graph_audit_path: Path,
     publisher_audit_path: Path,
 ) -> dict[str, object]:
     controls = read_csv(controls_path, REQUIRED_CONTROL_COLUMNS, exact_columns=True)
@@ -401,6 +402,47 @@ def audit(
         raise ValueError(
             f"{resource_inventory_audit_path}: business-version policy gate/count mismatch"
         )
+    reference_graph = json.loads(reference_graph_audit_path.read_text(encoding="utf-8"))
+    expected_reference_fields = {
+        "resource_count": 260,
+        "local_url_link_occurrence_count": 633,
+        "unique_local_url_target_count": 190,
+        "canonical_reference_occurrence_count": 254,
+        "local_canonical_reference_occurrence_count": 219,
+        "external_canonical_reference_occurrence_count": 35,
+        "unique_external_canonical_count": 18,
+        "versioned_canonical_reference_occurrence_count": 0,
+        "fhir_reference_occurrence_count": 326,
+        "manifest_reference_occurrence_count": 259,
+        "non_manifest_reference_occurrence_count": 67,
+        "total_audited_reference_edge_count": 994,
+    }
+    if reference_graph.get("gate_scope") != (
+        "complete-local-fhir-reference-and-canonical-graph"
+    ):
+        raise ValueError(f"{reference_graph_audit_path}: invalid gate_scope")
+    if reference_graph.get("reference_graph_integrity_gate") != "pass":
+        raise ValueError(f"{reference_graph_audit_path}: reference graph gate must pass")
+    for field, expected in expected_reference_fields.items():
+        if reference_graph.get(field) != expected:
+            raise ValueError(f"{reference_graph_audit_path}: {field} must be {expected}")
+    if reference_graph.get("local_url_link_counts") != {
+        "bundle-fullUrl": 19,
+        "canonical-field": 219,
+        "code-system-use": 138,
+        "conceptmap-code-system-use": 2,
+        "extension-use-url": 240,
+        "fixed-extension-url": 13,
+        "naming-system-use": 2,
+    }:
+        raise ValueError(f"{reference_graph_audit_path}: invalid local URL link counts")
+    if reference_graph.get("external_canonical_authority_counts") != {
+        "fhir-r4-core-4.0.1": 33,
+        "tw-core-1.0.0": 2,
+    }:
+        raise ValueError(
+            f"{reference_graph_audit_path}: invalid external canonical authorities"
+        )
     publisher = json.loads(publisher_audit_path.read_text(encoding="utf-8"))
     if publisher.get("gate_scope") != "publisher-qa-only":
         raise ValueError(
@@ -426,6 +468,7 @@ def audit(
         "RC-02": "pass" if (
             publisher["qa_integrity_gate"] == "pass"
             and resource_inventory["resource_inventory_gate"] == "pass"
+            and reference_graph["reference_graph_integrity_gate"] == "pass"
         ) else "blocked",
         "RC-03": "pass" if (
             clinical_count > 0
@@ -518,6 +561,21 @@ def audit(
         "canonical_version_policy_group_counts": version_group_counts,
         "canonical_version_policy_states": version_states,
         "manual_canonical_versions": manual_versions,
+        "reference_graph_integrity_gate": reference_graph[
+            "reference_graph_integrity_gate"
+        ],
+        "total_audited_reference_edge_count": reference_graph[
+            "total_audited_reference_edge_count"
+        ],
+        "local_url_link_occurrence_count": reference_graph[
+            "local_url_link_occurrence_count"
+        ],
+        "fhir_reference_occurrence_count": reference_graph[
+            "fhir_reference_occurrence_count"
+        ],
+        "external_canonical_reference_occurrence_count": reference_graph[
+            "external_canonical_reference_occurrence_count"
+        ],
         "control_integrity_gate": integrity,
         "data_correctness_gate": data_gate,
         "publisher_formal_qa_gate": publisher["formal_release_gate"],
@@ -541,6 +599,7 @@ def main() -> int:
     parser.add_argument("--artifact-audit", type=Path, required=True)
     parser.add_argument("--terminology-audit", type=Path, required=True)
     parser.add_argument("--resource-inventory-audit", type=Path, required=True)
+    parser.add_argument("--reference-graph-audit", type=Path, required=True)
     parser.add_argument("--publisher-audit", type=Path, required=True)
     parser.add_argument("--json-out", type=Path)
     parser.add_argument(
@@ -555,6 +614,7 @@ def main() -> int:
             args.artifact_audit,
             args.terminology_audit,
             args.resource_inventory_audit,
+            args.reference_graph_audit,
             args.publisher_audit,
         )
     except (OSError, ValueError, csv.Error, json.JSONDecodeError) as exc:
