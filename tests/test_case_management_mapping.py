@@ -275,6 +275,17 @@ def test_class_label_stays_task_only_for_both_families():
     assert fields["CM-TASK-001"]["common_fact"] == "no"
 
 
+def test_task_003_carries_both_case_status_and_closure_reason():
+    """S12 and S13 share CM-TASK-003, so neither Task input may disappear."""
+    field = {row["field_id"]: row for row in rows(TASK_ONLY)}["CM-TASK-003"]
+    assert field["fhir_representation"] == (
+        "Task.input[case-status]|Task.input[closure-reason]"
+    )
+    behavior = field["required_behavior"]
+    assert "case status:" in behavior
+    assert "closure reason when closed:" in behavior
+
+
 def test_case_management_page_is_in_the_ig_navigation_and_states_its_boundaries():
     config = (ROOT / "ig" / "sushi-config.yaml").read_text(encoding="utf-8")
     assert "task-case-management.md:" in config

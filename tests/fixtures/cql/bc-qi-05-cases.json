@@ -11,6 +11,17 @@
     ] }
   },
   {
+    "id": "pathology-report-day-before-surgery",
+    "expected": { "Initial Population": true, "Denominator 5": true, "Denominator 5 Exclusion": false, "Numerator 5": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qi-05-report-before", "birthDate": "1970-01-01" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qi05-report-before", "status": "active", "patient": { "reference": "Patient/bc-qi-05-report-before" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qi05-report-before", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/bc-qi-05-report-before" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage-test", "code": "II" }] } } },
+      { "resource": { "resourceType": "DiagnosticReport", "id": "pathology-qi05-report-before", "meta": { "profile": ["https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/breast-cancer-pathology-report"] }, "status": "final", "code": { "text": "Synthetic preoperative pathology report" }, "subject": { "reference": "Patient/bc-qi-05-report-before" }, "effectiveDateTime": "2026-02-28T23:59:59+08:00" } },
+      { "resource": { "resourceType": "Procedure", "id": "surgery-qi05-report-before", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "other-breast-surgery" }] }, "subject": { "reference": "Patient/bc-qi-05-report-before" }, "performedDateTime": "2026-03-01T00:00:00+08:00" } }
+    ] }
+  },
+  {
     "id": "same-day-biopsy-boundary",
     "expected": { "Initial Population": true, "Denominator 5": true, "Denominator 5 Exclusion": false, "Numerator 5": false },
     "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [

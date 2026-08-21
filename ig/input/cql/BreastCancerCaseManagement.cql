@@ -370,16 +370,34 @@ define "Denominator 5 Exclusion":
   "Is Metastatic"
     or Coalesce("Effective Stage" = '0', false)
 
-define "Earliest Core Needle Biopsy Date":
-  Min(([Procedure: "Core Needle Biopsy"] Biopsy
+define "Core Needle Biopsy Dates":
+  ([Procedure: "Core Needle Biopsy"] Biopsy
     where Biopsy.status = 'completed'
-    return date from start of "Interval From Performed"(Biopsy.performed)))
+    return date from start of "Interval From Performed"(Biopsy.performed))
+
+// CM-BC-019: when the biopsy Procedure date is unavailable, the signed
+// pathology report's effective date is the defensible histologic-diagnosis
+// date. Restrict the generic DiagnosticReport retrieve to resources declaring
+// conformance to the pathology profile; unrelated laboratory/imaging reports
+// must never make this numerator true.
+define "Pathology Report Dates":
+  ([DiagnosticReport] Report
+    where Report.status in { 'final', 'amended', 'corrected' }
+      and exists (
+        Report.meta.profile ProfileUrl
+          where ProfileUrl.value = 'https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/breast-cancer-pathology-report'
+      )
+      and Report.effective is FHIR.dateTime
+    return date from (Report.effective as FHIR.dateTime))
+
+define "Earliest Histologic Diagnosis Date":
+  Min("Core Needle Biopsy Dates" union "Pathology Report Dates")
 
 // N5-BIOPSY-BEFORE: at least one day before, so a same-day biopsy does not count.
 define "Numerator 5":
-  "Earliest Core Needle Biopsy Date" is not null
+  "Earliest Histologic Diagnosis Date" is not null
     and "Earliest Breast Surgery Date" is not null
-    and "Earliest Core Needle Biopsy Date" before day of "Earliest Breast Surgery Date"
+    and "Earliest Histologic Diagnosis Date" before day of "Earliest Breast Surgery Date"
 
 // ==========================================================================
 // bc-qi-06  乳房保留手術後放射線治療

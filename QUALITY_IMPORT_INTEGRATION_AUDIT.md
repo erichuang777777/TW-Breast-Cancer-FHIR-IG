@@ -37,7 +37,7 @@ tracked 版本不是盲目覆蓋來源副本；後續已加入真實 Publisher�
 | Measure FSH symbols | 22 | 22 | exact same symbol set。 |
 | mapping test functions | 21 | 24 | 匯入 21 項全部保留，新增 3 項。 |
 | Measure test functions | 18 | 25 | 匯入 18 項全部保留，新增 7 項。 |
-| CQL define/function symbols | 100 | 105 | 99 項同名保留；1 項等價重構；新增 6 項。 |
+| CQL define/function symbols | 100 | 107 | 99 項同名保留；1 項等價重構；新增 8 項（新增的 pathology-report date path 使 CM-BC-019 與 N5-BIOPSY-BEFORE 實際對齊）。 |
 
 CQL 唯一不再同名存在的是 `Case Management Task Inputs`。匯入版先建立一個 untyped flatten define，再由 `Case Input Code` 取值；tracked 版把 `[Task]` 查詢 inline 到 `Case Input Code`，並新增 `ValueSystem`、`AllowedCodes` 與 code system/code 驗證。`tests/test_case_management_measures.py` 明確要求舊 define 不存在且直接 Task query 存在；全部 20 Measure 已完成遠端 ELM translation、runtime smoke 與 asserted branch execution。因此這是經驗證的替代，不是漏件。
 

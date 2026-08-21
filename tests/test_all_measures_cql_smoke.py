@@ -180,6 +180,7 @@ def test_bc_qi_05_assertions_cover_biopsy_timing_stage_and_missing_data():
     by_id = {case["id"]: case["expected"] for case in load(QI05_CASES)}
     assert set(by_id) == {
         "biopsy-day-before-surgery",
+        "pathology-report-day-before-surgery",
         "same-day-biopsy-boundary",
         "missing-biopsy",
         "metastatic-exclusion",
@@ -187,12 +188,26 @@ def test_bc_qi_05_assertions_cover_biopsy_timing_stage_and_missing_data():
         "missing-stage",
     }
     assert by_id["biopsy-day-before-surgery"]["Numerator 5"] is True
+    assert by_id["pathology-report-day-before-surgery"]["Numerator 5"] is True
     assert by_id["same-day-biopsy-boundary"]["Numerator 5"] is False
     assert by_id["missing-biopsy"]["Numerator 5"] is False
     assert by_id["metastatic-exclusion"]["Denominator 5 Exclusion"] is True
     assert by_id["stage-zero-exclusion"]["Denominator 5"] is False
     assert by_id["stage-zero-exclusion"]["Denominator 5 Exclusion"] is True
     assert by_id["missing-stage"]["Denominator 5"] is False
+
+    cql = CQL.read_text(encoding="utf-8")
+    config = (ROOT / "ig" / "sushi-config.yaml").read_text(encoding="utf-8")
+    canonical = next(
+        line.removeprefix("canonical:").strip()
+        for line in config.splitlines()
+        if line.startswith("canonical:")
+    )
+    assert 'define "Pathology Report Dates":' in cql
+    assert f"{canonical}/StructureDefinition/breast-cancer-pathology-report" in cql
+    assert 'define "Earliest Histologic Diagnosis Date":' in cql
+    assert '"Core Needle Biopsy Dates" union "Pathology Report Dates"' in cql
+    assert '"Earliest Histologic Diagnosis Date" before day of ' in cql
 
     workflow = WORKFLOW.read_text(encoding="utf-8")
     assert "Execute bc-qi-05 asserted CQL branches" in workflow
