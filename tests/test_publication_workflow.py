@@ -108,3 +108,12 @@ def test_local_release_script_uses_the_same_evidence_gates_without_overclaiming(
     assert "community_preview_gate" in text
     assert "formal_release_gate" in text
     assert "Community Preview is publishable" not in text
+
+
+def test_pytest_ci_generates_live_measure_resources_before_specification_tests():
+    workflow = (ROOT / ".github" / "workflows" / "build.yml").read_text(
+        encoding="utf-8"
+    )
+    pytest_job = workflow.split("  pytest:", 1)[1].split("  cql:", 1)[0]
+    assert "Generate current Measure resources for specification tests" in pytest_job
+    assert pytest_job.index("fsh-sushi/dist/app.js") < pytest_job.index("python -m pytest")
