@@ -127,9 +127,10 @@ sushi.cmd .
 java "-Dfile.encoding=UTF-8" -jar publisher.jar -ig ig.ini
 ```
 
-發布前至少應確認：測試通過、SUSHI 無 error、Publisher QA 為 0 errors／0 warnings／0 broken links、Mapping 產物已重建，且 PHI 掃描無發現。
+發布前至少應確認：測試通過、SUSHI 為 0 errors／0 warnings、Publisher QA 為 0 errors／0 broken links且 warning 未新增或未分類、Mapping 產物已重建，且 PHI 掃描無發現。正式發布仍須讓八項控制全部通過；目前 52 個已分類 Publisher warnings 不等於 0 warnings，也不能以基線存在取代正式核准。
 
 各發布層級、六種資料正確性核對方法、八項正式發布控制、逐項門檻及目前 52 個 Publisher warnings 的精確分類，見 [FHIR IG 發布與資料正確性驗收矩陣](PUBLICATION_ACCEPTANCE_MATRIX.md)；20 個品管／季報 Measure 的規格判定見 [FHIR IG 規格正確性稽核](SPECIFICATION_CORRECTNESS_AUDIT.md)；各 Task 與外部標準可宣稱到哪一層，見 [全 IG 範圍與 Conformance 宣稱稽核](IG_SCOPE_CONFORMANCE_AUDIT.md)。
+八種方法的機器可讀範圍與門檻另鎖定於 `mappings/publication/verification-method-register.csv`，並由 `scripts/audit_verification_methods.py` 在發布 CI 中逐項核對。
 
 ### 治理與簽核
 
@@ -264,7 +265,7 @@ sushi.cmd .
 java "-Dfile.encoding=UTF-8" -jar publisher.jar -ig ig.ini
 ```
 
-Before publication, confirm that tests pass, SUSHI reports no errors, Publisher QA reports 0 errors, 0 warnings, and 0 broken links, mapping artifacts are rebuilt, and the PHI scan finds nothing.
+Before publication, confirm that tests pass, SUSHI reports zero errors and warnings, Publisher QA reports zero errors and broken links with no new or unclassified warnings, mapping artifacts are rebuilt, and the PHI scan finds nothing. Formal publication additionally requires all eight release controls to pass; the current 52 classified Publisher warnings are not the same as zero warnings and their baseline does not replace formal approval.
 
 ### Governance and review
 

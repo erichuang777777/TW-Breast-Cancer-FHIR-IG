@@ -165,6 +165,7 @@ def audit(
     source_work_package_audit_path: Path,
     criterion_resolution_audit_path: Path,
     publisher_audit_path: Path,
+    phi_audit_path: Path,
 ) -> dict[str, object]:
     controls = read_csv(controls_path, REQUIRED_CONTROL_COLUMNS, exact_columns=True)
     if {row["control_id"] for row in controls} != CONTROL_IDS or len(controls) != 8:
@@ -615,6 +616,35 @@ def audit(
     for field in ("qa_integrity_gate", "formal_release_gate"):
         if publisher.get(field) not in {"pass", "block", "fail"}:
             raise ValueError(f"{publisher_audit_path}: invalid or missing {field}")
+    phi_audit = json.loads(phi_audit_path.read_text(encoding="utf-8"))
+    if phi_audit.get("gate_scope") != (
+        "committable-publication-content-phi-pattern-scan"
+    ):
+        raise ValueError(f"{phi_audit_path}: invalid gate_scope")
+    if phi_audit.get("office_open_xml_scanning") != "enabled":
+        raise ValueError(f"{phi_audit_path}: Office Open XML scanning must be enabled")
+    if phi_audit.get("opaque_sensitive_file_policy") != "block":
+        raise ValueError(f"{phi_audit_path}: opaque sensitive file policy must block")
+    candidate_file_count = phi_audit.get("candidate_file_count")
+    inspected_file_count = phi_audit.get("inspected_file_count")
+    scanner_exclusion_count = phi_audit.get("scanner_exclusion_count")
+    if (
+        not isinstance(candidate_file_count, int)
+        or not isinstance(inspected_file_count, int)
+        or not isinstance(scanner_exclusion_count, int)
+        or candidate_file_count <= 0
+        or inspected_file_count <= 0
+        or scanner_exclusion_count < 0
+        or inspected_file_count + scanner_exclusion_count > candidate_file_count
+        or phi_audit.get("pattern_count") != 3
+    ):
+        raise ValueError(f"{phi_audit_path}: invalid privacy scan coverage counts")
+    finding_count = phi_audit.get("finding_count")
+    if not isinstance(finding_count, int) or finding_count < 0:
+        raise ValueError(f"{phi_audit_path}: invalid finding_count")
+    expected_phi_gate = "pass" if finding_count == 0 else "block"
+    if phi_audit.get("repository_phi_pattern_scan_gate") != expected_phi_gate:
+        raise ValueError(f"{phi_audit_path}: privacy scan gate/count mismatch")
 
     clinical_count, empty_clinical_count = clinical_valueset_count_and_empty_count(
         terminology_path
@@ -666,7 +696,9 @@ def audit(
             and criterion_resolution["criterion_resolution_gate"] == "pass"
         ) else "blocked",
         "RC-08": "pass" if (
-            len(operational) == len(OPERATIONAL_APPROVALS)
+            phi_audit["repository_phi_pattern_scan_gate"] == "pass"
+            and publisher["formal_release_gate"] == "pass"
+            and len(operational) == len(OPERATIONAL_APPROVALS)
             and all(approval_complete(row) for row in operational)
             and all(scope_decision_complete(row) for row in scope_decisions)
             and normative_scope_ready
@@ -788,6 +820,11 @@ def audit(
         "control_integrity_gate": integrity,
         "data_correctness_gate": data_gate,
         "publisher_formal_qa_gate": publisher["formal_release_gate"],
+        "repository_phi_pattern_scan_gate": phi_audit[
+            "repository_phi_pattern_scan_gate"
+        ],
+        "repository_phi_pattern_finding_count": finding_count,
+        "repository_phi_pattern_inspected_file_count": inspected_file_count,
         "formal_release_gate": formal_gate,
         "maximum_supported_claim": (
             "technical-draft-only" if integrity == "pass" and derived["RC-02"] == "pass"
@@ -813,6 +850,7 @@ def main() -> int:
     parser.add_argument("--source-work-package-audit", type=Path, required=True)
     parser.add_argument("--criterion-resolution-audit", type=Path, required=True)
     parser.add_argument("--publisher-audit", type=Path, required=True)
+    parser.add_argument("--phi-audit", type=Path, required=True)
     parser.add_argument("--json-out", type=Path)
     parser.add_argument(
         "--target", choices=("integrity", "data", "formal"), default="integrity"
@@ -831,6 +869,7 @@ def main() -> int:
             args.source_work_package_audit,
             args.criterion_resolution_audit,
             args.publisher_audit,
+            args.phi_audit,
         )
     except (OSError, ValueError, csv.Error, json.JSONDecodeError) as exc:
         print(f"Release-control audit failed: {exc}", file=sys.stderr)

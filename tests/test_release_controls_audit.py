@@ -42,6 +42,7 @@ def run_audit(
     data_evidence_overrides: dict | None = None,
     source_owners_confirmed: bool = False,
     criterion_resolution_approved: bool = False,
+    phi_overrides: dict | None = None,
     target: str = "integrity",
 ):
     publisher = tmp_path / "publisher.json"
@@ -53,6 +54,21 @@ def run_audit(
         }),
         encoding="utf-8",
     )
+    phi_audit = tmp_path / "phi-audit.json"
+    phi_report = {
+        "gate_scope": "committable-publication-content-phi-pattern-scan",
+        "scan_mode": "git tracked files",
+        "candidate_file_count": 373,
+        "inspected_file_count": 371,
+        "scanner_exclusion_count": 2,
+        "pattern_count": 3,
+        "office_open_xml_scanning": "enabled",
+        "opaque_sensitive_file_policy": "block",
+        "finding_count": 0,
+        "repository_phi_pattern_scan_gate": "pass",
+    }
+    phi_report.update(phi_overrides or {})
+    phi_audit.write_text(json.dumps(phi_report), encoding="utf-8")
     output = tmp_path / "release.json"
     artifact_audit = tmp_path / "artifact-audit.json"
     artifact_audit.write_text(
@@ -249,6 +265,7 @@ def run_audit(
             "--source-work-package-audit", str(source_work_package_audit),
             "--criterion-resolution-audit", str(criterion_resolution_audit),
             "--publisher-audit", str(publisher),
+            "--phi-audit", str(phi_audit),
             "--json-out", str(output),
             "--target", target,
         ],
@@ -313,6 +330,9 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["non_aligned_criterion_resolution_decision_count"] == 12
     assert report["production_allowed_criterion_resolution_decision_count"] == 0
     assert report["criterion_resolution_gate"] == "block"
+    assert report["repository_phi_pattern_scan_gate"] == "pass"
+    assert report["repository_phi_pattern_finding_count"] == 0
+    assert report["repository_phi_pattern_inspected_file_count"] == 371
     assert report["data_correctness_gate"] == "block"
     assert report["formal_release_gate"] == "block"
     assert report["maximum_supported_claim"] == "technical-draft-only"
@@ -323,6 +343,25 @@ def test_zero_publisher_warnings_cannot_bypass_clinical_release_controls(tmp_pat
     assert completed.returncode == 1
     assert report["publisher_formal_qa_gate"] == "pass"
     assert report["formal_release_gate"] == "block"
+
+
+def test_privacy_scan_gate_cannot_contradict_finding_count(tmp_path):
+    completed, report = run_audit(
+        tmp_path,
+        phi_overrides={"finding_count": 1, "repository_phi_pattern_scan_gate": "pass"},
+    )
+    assert completed.returncode == 2
+    assert report is None
+    assert "privacy scan gate/count mismatch" in completed.stderr
+
+
+def test_rc08_cannot_pass_when_repository_phi_scan_blocks(tmp_path):
+    completed, report = run_audit(
+        tmp_path,
+        phi_overrides={"finding_count": 1, "repository_phi_pattern_scan_gate": "block"},
+    )
+    assert completed.returncode == 0
+    assert report["derived_status"]["RC-08"] == "blocked"
 
 
 def test_terminology_inventory_count_cannot_be_reduced(tmp_path):
@@ -768,3 +807,28 @@ def test_rc08_requires_signed_scope_roles_and_formal_ready_normative_claims(tmp_
     assert report["status_mismatches"] == [
         {"control_id": "RC-08", "declared": "blocked", "derived": "pass"}
     ]
+
+    completed, report = run_audit(
+        tmp_path,
+        approvals=signed_operations,
+        scope_claims=ready_claims,
+        scope_decisions=ready_decisions,
+        inventory_overrides={
+            "approved_canonical_version_policy_count": 4,
+            "canonical_version_policy_states": {
+                "CV-PACKAGE-EXPLICIT": "explicit-package-version",
+                "CV-CQL-LIBRARY": "cql-library-version",
+                "CV-PACKAGE-CONTEXT": "approved-package-context-only",
+                "CV-TCR-MANUAL": "authoritative-business-version",
+            },
+            "manual_canonical_versions": ["TCR-breast-source-2026"],
+            "business_version_provenance_gate": "pass",
+        },
+        phi_overrides={
+            "finding_count": 1,
+            "repository_phi_pattern_scan_gate": "block",
+        },
+    )
+    assert completed.returncode == 0
+    assert report["derived_status"]["RC-08"] == "blocked"
+    assert report["status_mismatches"] == []

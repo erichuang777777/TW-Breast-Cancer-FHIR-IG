@@ -30,9 +30,13 @@
 
 若要由資料正確性進一步宣稱「正式發布」，還必須增加兩個 release control：具名的臨床／術語／資料治理簽核，以及隱私、資安、版本、artifact、接收端回執與跨院實作驗收。因此數字正確性是六層，正式發布合計是八項控制。逐 Measure 判定見 [FHIR IG 規格正確性稽核](SPECIFICATION_CORRECTNESS_AUDIT.md)。
 
+這八項不是文件中的概略建議，而是由 `mappings/publication/verification-method-register.csv` 鎖定的一對一清冊（VM-01→RC-01 至 VM-08→RC-08）。每列明定比對單位、精確範圍、零容忍／100% 門檻、必備證據與獨立性要求；`scripts/audit_verification_methods.py` 會拒絕漏項、重複對應、縮小範圍、移除零差異門檻，或將 release control 的實際狀態改寫成較寬鬆結果。現況只有 VM-02 與 VM-04 通過，亦即 **2/8**；六項資料正確性方法只有 **2/6**，所以仍只能主張 `technical-draft-only`。
+
 八項控制的宣告狀態位於 `mappings/publication/release-control-register.csv`，20 個 Measure 的逐項規格決策位於 `mappings/publication/case-management-measure-approval-register.csv`，12 個非完全對齊 criterion 的決策位於 `mappings/publication/criterion-resolution-decision-register.csv`。CI 會用 `scripts/audit_release_controls.py` 從底層證據重新推導，並要求 QBC 14 個 Gate、Measure 20 個 approval ID 與目前 criterion resolution 12 列都是完整且不重複的集合；刪除待核准項目不能讓 gate 變綠。Publisher formal QA 與完整 formal release 是兩個不同 gate，前者通過不得取代後者。
 
 RC-08 也要求 `ig-scope-claim-register.csv` 與 `publication-scope-decision-register.csv` 精確涵蓋同一組 10 個 claim。三個 normative scope（IG core、QBC、個管品管／季報）、六個 informative scope 與一個 excluded scope 的角色已鎖定；現況 0/10 簽核。即使 operational approvals 已簽署，只要任一 scope 尚未簽核或 normative Task 未達 `formal-release-ready`，完整 formal release 仍為 blocked。
+
+RC-08 的自動隱私檢查現會掃描所有可提交文字檔並解包檢查 `.xlsx`／`.docx` 的 XML 內容；`.pdf`、舊式 `.xls`／`.doc` 與影像等無法可靠自動解析的敏感格式一律阻擋，不得靜默略過。CI 保存不含命中值的 `repository-phi-pattern-scan-audit.json`。這只證明 repository 層級的模式掃描，不能取代 SEC-PRIVACY 的正式資安／隱私審查。
 
 RC-07 另要求 `artifact-conformance-register.csv` 精確涵蓋全部 **47 個 StructureDefinition（34 Profile、13 Extension）**。`scripts/audit_artifact_conformance.py` 會把 FSH 產物與 4 個手寫 TCR extension 一起比對 parent canonical、FHIR type/kind、draft/experimental 狀態及合成範例使用證據。現況技術一致性為 47/47，但人工規格核准為 0/47；Publisher 綠燈不能替代這 47 項核准。
 

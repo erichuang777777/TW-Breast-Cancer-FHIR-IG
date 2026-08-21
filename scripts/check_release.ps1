@@ -4,7 +4,8 @@ $root = Split-Path -Parent $PSScriptRoot
 Push-Location $root
 try {
     # The PHI gate runs first. Any detected patient data blocks publication.
-    python scripts\check_no_phi.py
+    python scripts\check_no_phi.py `
+        --json-out ig\output\repository-phi-pattern-scan-audit.json
     if ($LASTEXITCODE -ne 0) { throw "PHI gate failed; inspect the findings above" }
 
     python scripts\build_qbc_ig_mapping.py
@@ -131,9 +132,18 @@ try {
         --source-work-package-audit ig\output\source-acquisition-work-packages-audit.json `
         --criterion-resolution-audit ig\output\criterion-resolution-decision-audit.json `
         --publisher-audit ig\output\publisher-warning-audit.json `
+        --phi-audit ig\output\repository-phi-pattern-scan-audit.json `
         --json-out ig\output\release-control-audit.json `
         --target integrity
     if ($LASTEXITCODE -ne 0) { throw "release-control integrity audit failed" }
+
+    python scripts\audit_verification_methods.py `
+        --register mappings\publication\verification-method-register.csv `
+        --controls mappings\publication\release-control-register.csv `
+        --release-audit ig\output\release-control-audit.json `
+        --json-out ig\output\verification-method-audit.json `
+        --target integrity
+    if ($LASTEXITCODE -ne 0) { throw "verification-method integrity audit failed" }
 
     $publisherAudit = Get-Content -Raw -Encoding UTF8 ig\output\publisher-warning-audit.json | ConvertFrom-Json
     $releaseAudit = Get-Content -Raw -Encoding UTF8 ig\output\release-control-audit.json | ConvertFrom-Json

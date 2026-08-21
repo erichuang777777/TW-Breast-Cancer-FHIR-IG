@@ -9,8 +9,10 @@ on:
       - ".github/workflows/publication-readiness.yml"
       - "ig/**"
       - "scripts/check_release.ps1"
+      - "scripts/check_no_phi.py"
       - "scripts/audit_publisher_qa.py"
       - "scripts/audit_release_controls.py"
+      - "scripts/audit_verification_methods.py"
       - "scripts/audit_artifact_conformance.py"
       - "scripts/audit_terminology_conformance.py"
       - "scripts/audit_fhir_resource_inventory.py"
@@ -28,8 +30,10 @@ on:
       - ".github/workflows/publication-readiness.yml"
       - "ig/**"
       - "scripts/check_release.ps1"
+      - "scripts/check_no_phi.py"
       - "scripts/audit_publisher_qa.py"
       - "scripts/audit_release_controls.py"
+      - "scripts/audit_verification_methods.py"
       - "scripts/audit_artifact_conformance.py"
       - "scripts/audit_terminology_conformance.py"
       - "scripts/audit_fhir_resource_inventory.py"
@@ -49,6 +53,15 @@ jobs:
     steps:
       - name: Check out source
         uses: actions/checkout@v6
+
+      - name: Scan committable publication content for PHI patterns
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p ig/output
+          python scripts/check_no_phi.py \
+            --json-out ig/output/repository-phi-pattern-scan-audit.json \
+            | tee ig/output/repository-phi-pattern-scan-audit.log
 
       - name: Set up Java
         uses: actions/setup-java@v5
@@ -238,9 +251,22 @@ jobs:
             --source-work-package-audit ig/output/source-acquisition-work-packages-audit.json \
             --criterion-resolution-audit ig/output/criterion-resolution-decision-audit.json \
             --publisher-audit ig/output/publisher-warning-audit.json \
+            --phi-audit ig/output/repository-phi-pattern-scan-audit.json \
             --json-out ig/output/release-control-audit.json \
             --target integrity \
             | tee ig/output/release-control-audit.log
+
+      - name: Audit exact eight-method verification coverage
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_verification_methods.py \
+            --register mappings/publication/verification-method-register.csv \
+            --controls mappings/publication/release-control-register.csv \
+            --release-audit ig/output/release-control-audit.json \
+            --json-out ig/output/verification-method-audit.json \
+            --target integrity \
+            | tee ig/output/verification-method-audit.log
 
       - name: Upload Publisher evidence
         if: always()
@@ -273,6 +299,7 @@ jobs:
         shell: bash
         run: |
           test -f ig/output/release-control-audit.json
+          test -f ig/output/verification-method-audit.json
           publisher_gate="$(python -c "import json; print(json.load(open('ig/output/release-control-audit.json'))['publisher_formal_qa_gate'])")"
           formal_gate="$(python -c "import json; print(json.load(open('ig/output/release-control-audit.json'))['formal_release_gate'])")"
           maximum_claim="$(python -c "import json; print(json.load(open('ig/output/release-control-audit.json'))['maximum_supported_claim'])")"
