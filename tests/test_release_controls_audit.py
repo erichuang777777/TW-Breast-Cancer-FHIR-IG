@@ -37,6 +37,7 @@ def run_audit(
     scope_decisions: Path = SCOPE_DECISIONS,
     artifact_approved: bool = False,
     terminology_overrides: dict | None = None,
+    inventory_overrides: dict | None = None,
     target: str = "integrity",
 ):
     publisher = tmp_path / "publisher.json"
@@ -77,6 +78,24 @@ def run_audit(
     }
     terminology_report.update(terminology_overrides or {})
     terminology_audit.write_text(json.dumps(terminology_report), encoding="utf-8")
+    inventory_audit = tmp_path / "inventory-audit.json"
+    inventory_report = {
+        "gate_scope": "exact-complete-fhir-resource-inventory-and-ig-manifest",
+        "resource_inventory_gate": "pass",
+        "resource_count": 260,
+        "publication_definition_count": 224,
+        "synthetic_example_count": 36,
+        "canonical_resource_count": 222,
+        "manual_json_resource_count": 103,
+        "generated_fsh_resource_count": 157,
+        "measure_count": 20,
+        "ambiguous_business_version_artifacts": [
+            "Questionnaire/tcr-breast-longform"
+        ],
+        "business_version_provenance_gate": "block",
+    }
+    inventory_report.update(inventory_overrides or {})
+    inventory_audit.write_text(json.dumps(inventory_report), encoding="utf-8")
     completed = subprocess.run(
         [
             sys.executable, str(SCRIPT),
@@ -89,6 +108,7 @@ def run_audit(
             "--scope-decisions", str(scope_decisions),
             "--artifact-audit", str(artifact_audit),
             "--terminology-audit", str(terminology_audit),
+            "--resource-inventory-audit", str(inventory_audit),
             "--publisher-audit", str(publisher),
             "--json-out", str(output),
             "--target", target,
@@ -125,6 +145,14 @@ def test_current_register_is_truthful_and_only_two_of_eight_controls_pass(tmp_pa
     assert report["clinical_value_set_approval_count"] == 19
     assert report["approved_clinical_value_set_count"] == 0
     assert report["clinical_terminology_gate"] == "block"
+    assert report["fhir_resource_count"] == 260
+    assert report["publication_definition_count"] == 224
+    assert report["synthetic_example_count"] == 36
+    assert report["canonical_resource_count"] == 222
+    assert report["business_version_provenance_gate"] == "block"
+    assert report["ambiguous_business_version_artifacts"] == [
+        "Questionnaire/tcr-breast-longform"
+    ]
     assert report["data_correctness_gate"] == "block"
     assert report["formal_release_gate"] == "block"
     assert report["maximum_supported_claim"] == "technical-draft-only"
@@ -153,6 +181,24 @@ def test_terminology_gate_cannot_contradict_empty_or_unsigned_counts(tmp_path):
     assert completed.returncode == 2
     assert report is None
     assert "clinical terminology gate/count mismatch" in completed.stderr
+
+
+def test_fhir_resource_inventory_count_cannot_be_reduced(tmp_path):
+    completed, report = run_audit(
+        tmp_path, inventory_overrides={"resource_count": 259}
+    )
+    assert completed.returncode == 2
+    assert report is None
+    assert "resource_count must be 260" in completed.stderr
+
+
+def test_business_version_gate_cannot_contradict_ambiguity_list(tmp_path):
+    completed, report = run_audit(
+        tmp_path, inventory_overrides={"business_version_provenance_gate": "pass"}
+    )
+    assert completed.returncode == 2
+    assert report is None
+    assert "business-version gate/list mismatch" in completed.stderr
 
 
 def test_declared_control_status_must_match_derived_evidence(tmp_path):
@@ -431,7 +477,13 @@ def test_rc08_requires_signed_scope_roles_and_formal_ready_normative_claims(tmp_
         writer.writerows(decision_rows)
 
     completed, report = run_audit(
-        tmp_path, approvals=signed_operations, scope_decisions=signed_scopes
+        tmp_path,
+        approvals=signed_operations,
+        scope_decisions=signed_scopes,
+        inventory_overrides={
+            "ambiguous_business_version_artifacts": [],
+            "business_version_provenance_gate": "pass",
+        },
     )
     assert completed.returncode == 0
     assert report["approved_scope_decision_count"] == 10
@@ -463,6 +515,10 @@ def test_rc08_requires_signed_scope_roles_and_formal_ready_normative_claims(tmp_
         approvals=signed_operations,
         scope_claims=ready_claims,
         scope_decisions=ready_decisions,
+        inventory_overrides={
+            "ambiguous_business_version_artifacts": [],
+            "business_version_provenance_gate": "pass",
+        },
     )
     assert completed.returncode == 1  # real register truthfully declares RC-08 blocked
     assert report["normative_scope_readiness"] == "pass"

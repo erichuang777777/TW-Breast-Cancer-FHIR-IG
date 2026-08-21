@@ -38,6 +38,10 @@ RC-07 另要求 `artifact-conformance-register.csv` 精確涵蓋全部 **46 個 
 
 RC-03 的 terminology 範圍也已鎖定為生成後與手寫資源的完整聯集：**152 個 terminology artifact（60 CodeSystem、90 ValueSet、2 ConceptMap）**。`scripts/audit_terminology_conformance.py` 逐項檢查 canonical、draft/experimental、CodeSystem 內容、ValueSet include system、ConceptMap element/target，以及 CQL 宣告與實際引用。完整清冊的技術完整性目前通過；但 19 個個管臨床 ValueSet 仍為空，18 個被 CQL 實際引用，另 1 個腋下淋巴結廓清術值集僅定義而未引用。`case-management-terminology-approval-register.csv` 鎖定這 19 項，現況核准 **0/19**，因此 RC-03 必須維持 blocked。這項技術盤點不等於 152 項均已取得臨床語意核准。
 
+RC-02 現在另以 `fhir-resource-inventory.csv` 鎖定生成後完整集合：**260 個 FHIR resources、224 個 publication definitions、36 個 synthetic examples、222 個 canonical resources**；來源為 157 個 FSH 生成資源與 103 個手寫 JSON。`scripts/audit_fhir_resource_inventory.py` 要求 260 個 type/id 與 259 個 `ImplementationGuide.definition.resource` reference 精確一致，並核對 example／definition 標記、canonical 唯一性、CapabilityStatement supportedProfile、20 Measure 到 CQL Library 的引用及 NamingSystem URI。此次稽核也修正 `Task/tcr-breast-abstraction-example` 被誤標為 definition 的問題。
+
+RC-08 進一步要求 business-version provenance。FHIR R4 的 `Questionnaire.version` 是由表單作者管理的表單版本，不是 `fhirVersion`；目前 `Questionnaire/tcr-breast-longform` 填入 `4.0.1`，卻沒有 TCR 表單／手冊權威版本證據，因此列為 ambiguous、gate blocked。這是語意／治理阻擋，不是 Publisher 結構錯誤；取得權威來源後應填入實際表單版本並留下證據，不得猜值。
+
 ## 數量與正確性門檻
 
 ### Mapping

@@ -13,6 +13,7 @@ on:
       - "scripts/audit_release_controls.py"
       - "scripts/audit_artifact_conformance.py"
       - "scripts/audit_terminology_conformance.py"
+      - "scripts/audit_fhir_resource_inventory.py"
       - "mappings/publication/**"
       - "outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv"
   pull_request:
@@ -24,6 +25,7 @@ on:
       - "scripts/audit_release_controls.py"
       - "scripts/audit_artifact_conformance.py"
       - "scripts/audit_terminology_conformance.py"
+      - "scripts/audit_fhir_resource_inventory.py"
       - "mappings/publication/**"
       - "outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv"
 
@@ -113,6 +115,19 @@ jobs:
             --target integrity \
             | tee ig/output/terminology-conformance-audit.log
 
+      - name: Audit exact FHIR resource inventory and IG manifest
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_fhir_resource_inventory.py \
+            --register mappings/publication/fhir-resource-inventory.csv \
+            --generated-resource-dir ig/fsh-generated/resources \
+            --manual-resource-dir ig/input/resources \
+            --cql ig/input/cql/BreastCancerCaseManagement.cql \
+            --json-out ig/output/fhir-resource-inventory-audit.json \
+            --target inventory \
+            | tee ig/output/fhir-resource-inventory-audit.log
+
       - name: Audit complete release controls
         shell: bash
         run: |
@@ -127,6 +142,7 @@ jobs:
             --scope-decisions mappings/publication/publication-scope-decision-register.csv \
             --artifact-audit ig/output/artifact-conformance-audit.json \
             --terminology-audit ig/output/terminology-conformance-audit.json \
+            --resource-inventory-audit ig/output/fhir-resource-inventory-audit.json \
             --publisher-audit ig/output/publisher-warning-audit.json \
             --json-out ig/output/release-control-audit.json \
             --target integrity \

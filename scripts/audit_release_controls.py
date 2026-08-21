@@ -159,6 +159,7 @@ def audit(
     scope_decisions_path: Path,
     artifact_audit_path: Path,
     terminology_audit_path: Path,
+    resource_inventory_audit_path: Path,
     publisher_audit_path: Path,
 ) -> dict[str, object]:
     controls = read_csv(controls_path, REQUIRED_CONTROL_COLUMNS, exact_columns=True)
@@ -310,6 +311,41 @@ def audit(
     )
     if terminology_audit.get("clinical_terminology_gate") != expected_terminology_gate:
         raise ValueError(f"{terminology_audit_path}: clinical terminology gate/count mismatch")
+    resource_inventory = json.loads(
+        resource_inventory_audit_path.read_text(encoding="utf-8")
+    )
+    if resource_inventory.get("gate_scope") != (
+        "exact-complete-fhir-resource-inventory-and-ig-manifest"
+    ):
+        raise ValueError(f"{resource_inventory_audit_path}: invalid gate_scope")
+    inventory_counts = {
+        "resource_count": 260,
+        "publication_definition_count": 224,
+        "synthetic_example_count": 36,
+        "canonical_resource_count": 222,
+        "manual_json_resource_count": 103,
+        "generated_fsh_resource_count": 157,
+        "measure_count": 20,
+    }
+    for field, expected in inventory_counts.items():
+        if resource_inventory.get(field) != expected:
+            raise ValueError(
+                f"{resource_inventory_audit_path}: {field} must be {expected}"
+            )
+    if resource_inventory.get("resource_inventory_gate") != "pass":
+        raise ValueError(f"{resource_inventory_audit_path}: inventory gate must pass")
+    ambiguous_versions = resource_inventory.get("ambiguous_business_version_artifacts")
+    if not isinstance(ambiguous_versions, list) or any(
+        not isinstance(item, str) or not item for item in ambiguous_versions
+    ):
+        raise ValueError(
+            f"{resource_inventory_audit_path}: invalid ambiguous business-version list"
+        )
+    expected_version_gate = "block" if ambiguous_versions else "pass"
+    if resource_inventory.get("business_version_provenance_gate") != expected_version_gate:
+        raise ValueError(
+            f"{resource_inventory_audit_path}: business-version gate/list mismatch"
+        )
     publisher = json.loads(publisher_audit_path.read_text(encoding="utf-8"))
     if publisher.get("gate_scope") != "publisher-qa-only":
         raise ValueError(
@@ -332,7 +368,10 @@ def audit(
     )
     derived = {
         "RC-01": "pass" if all(row["raw_source_mapping"] == "pass" for row in measures) else "blocked",
-        "RC-02": "pass" if publisher["qa_integrity_gate"] == "pass" else "blocked",
+        "RC-02": "pass" if (
+            publisher["qa_integrity_gate"] == "pass"
+            and resource_inventory["resource_inventory_gate"] == "pass"
+        ) else "blocked",
         "RC-03": "pass" if (
             clinical_count > 0
             and empty_clinical_count == 0
@@ -358,6 +397,7 @@ def audit(
             and all(approval_complete(row) for row in operational)
             and all(scope_decision_complete(row) for row in scope_decisions)
             and normative_scope_ready
+            and resource_inventory["business_version_provenance_gate"] == "pass"
         ) else "blocked",
     }
     declared = {row["control_id"]: row["current_status"] for row in controls}
@@ -409,6 +449,16 @@ def audit(
         ],
         "approved_clinical_value_set_count": approved_terminology,
         "clinical_terminology_gate": terminology_audit["clinical_terminology_gate"],
+        "fhir_resource_count": resource_inventory["resource_count"],
+        "publication_definition_count": resource_inventory[
+            "publication_definition_count"
+        ],
+        "synthetic_example_count": resource_inventory["synthetic_example_count"],
+        "canonical_resource_count": resource_inventory["canonical_resource_count"],
+        "business_version_provenance_gate": resource_inventory[
+            "business_version_provenance_gate"
+        ],
+        "ambiguous_business_version_artifacts": ambiguous_versions,
         "control_integrity_gate": integrity,
         "data_correctness_gate": data_gate,
         "publisher_formal_qa_gate": publisher["formal_release_gate"],
@@ -431,6 +481,7 @@ def main() -> int:
     parser.add_argument("--scope-decisions", type=Path, required=True)
     parser.add_argument("--artifact-audit", type=Path, required=True)
     parser.add_argument("--terminology-audit", type=Path, required=True)
+    parser.add_argument("--resource-inventory-audit", type=Path, required=True)
     parser.add_argument("--publisher-audit", type=Path, required=True)
     parser.add_argument("--json-out", type=Path)
     parser.add_argument(
@@ -444,6 +495,7 @@ def main() -> int:
             args.scope_claims, args.scope_decisions,
             args.artifact_audit,
             args.terminology_audit,
+            args.resource_inventory_audit,
             args.publisher_audit,
         )
     except (OSError, ValueError, csv.Error, json.JSONDecodeError) as exc:

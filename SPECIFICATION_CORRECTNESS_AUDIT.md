@@ -49,6 +49,10 @@ Profile／Extension 規格也採逐項核對，而不是只看 Publisher 總數�
 
 Terminology 也不能只計算 FSH 檔案或只檢查 CQL 有沒有名稱。實際發布集合是 **152 個 artifact：60 CodeSystem、90 ValueSet、2 ConceptMap**；機器稽核目前確認其 canonical、狀態、基本內容與內部參照完整。個管範圍另有精確的 19 項臨床 ValueSet 核准集合：18 項已被 CQL 引用，腋下淋巴結廓清術 1 項是 defined-not-referenced；19 項目前皆無內容且 **0/19** 完成具名、版本化簽核。因此能證明的是「terminology inventory 技術完整」，不能證明臨床代碼集合或 CQL cohort 語意正確，RC-03 仍 blocked。
 
+全 IG 另有一份不可用「總數相同」取代的精確 resource manifest：**260 個 type/id** 必須逐項一致，其中 224 個 definitions、36 個 synthetic examples、222 個 canonical resources；260 項中 157 項由 FSH 生成、103 項為手寫 JSON。技術稽核要求生成的 ImplementationGuide 精確引用其餘 259 項，並驗證 example 分類、canonical、CapabilityStatement、Library／Measure 與 NamingSystem 關係。稽核發現並修正 TCR abstraction Task 被錯標為 definition。這證明發布包沒有漏件或角色漂移，不證明每一資源的臨床內容正確。
+
+版本語意仍有一項明確缺口：`Questionnaire/tcr-breast-longform.version` 目前是 `4.0.1`，與 FHIR R4 版本相同，但沒有權威 TCR 表單版本來源。依 FHIR R4 [`Questionnaire.version`](https://hl7.org/fhir/R4/questionnaire-definitions.html#Questionnaire.version) 定義，這是表單本身由作者管理的 business version；因此目前只能標示為 ambiguous，RC-08 business-version provenance gate 為 blocked。不能直接把它改成推測的年份或版號。
+
 ## 每一筆資料應比對的內容
 
 任何會改變 initial population、denominator、exclusion、numerator 或 stratifier 的欄位，都必須逐筆保存並比對：
