@@ -8,6 +8,7 @@ import json
 import re
 import sys
 from collections import Counter
+from dataclasses import dataclass
 from pathlib import Path
 
 try:
@@ -63,6 +64,35 @@ EXPECTED_EXTERNAL_CANONICALS = {
 }
 
 
+@dataclass(frozen=True)
+class GraphExpectations:
+    resource_count: int
+    local_link_counts: dict[str, int]
+    unique_local_target_count: int
+    external_canonical_occurrence_count: int
+    external_canonicals: frozenset[str]
+    external_authority_counts: dict[str, int]
+    versioned_canonical_reference_count: int
+    fhir_reference_count: int
+    manifest_reference_count: int
+
+
+PRODUCTION_EXPECTATIONS = GraphExpectations(
+    resource_count=260,
+    local_link_counts=EXPECTED_LOCAL_LINK_COUNTS,
+    unique_local_target_count=190,
+    external_canonical_occurrence_count=35,
+    external_canonicals=frozenset(EXPECTED_EXTERNAL_CANONICALS),
+    external_authority_counts={
+        "fhir-r4-core-4.0.1": 33,
+        "tw-core-1.0.0": 2,
+    },
+    versioned_canonical_reference_count=0,
+    fhir_reference_count=326,
+    manifest_reference_count=259,
+)
+
+
 def walk_strings(value: object, path: tuple[str, ...] = ()):
     if isinstance(value, dict):
         for key, child in value.items():
@@ -87,10 +117,14 @@ def audit(
     generated_dir: Path,
     manual_dir: Path,
     sushi_config_path: Path,
+    *,
+    expectations: GraphExpectations = PRODUCTION_EXPECTATIONS,
 ) -> dict[str, object]:
     resources = load_resources(generated_dir, manual_dir)
-    if len(resources) != 260:
-        raise ValueError(f"reference graph requires the exact 260-resource inventory")
+    if len(resources) != expectations.resource_count:
+        raise ValueError(
+            f"reference graph requires exactly {expectations.resource_count} resources"
+        )
 
     config_text = sushi_config_path.read_text(encoding="utf-8")
     fhir_version = re.search(r"^fhirVersion:\s*['\"]?([^\s'\"]+)", config_text, re.M)
@@ -276,12 +310,15 @@ def audit(
                     )
                 local_targets.add(full_url)
 
-    if dict(sorted(local_counts.items())) != EXPECTED_LOCAL_LINK_COUNTS:
+    if dict(sorted(local_counts.items())) != expectations.local_link_counts:
         raise ValueError(
             f"local URL link counts changed: {dict(sorted(local_counts.items()))}"
         )
     external_set = set(external_canonicals)
-    if len(external_canonicals) != 35 or external_set != EXPECTED_EXTERNAL_CANONICALS:
+    if (
+        len(external_canonicals) != expectations.external_canonical_occurrence_count
+        or external_set != expectations.external_canonicals
+    ):
         raise ValueError(
             "external canonical graph changed; update authority and dependency review"
         )
@@ -294,21 +331,21 @@ def audit(
             for value in external_canonicals
         ),
     }
-    if external_authority_counts != {
-        "fhir-r4-core-4.0.1": 33,
-        "tw-core-1.0.0": 2,
-    }:
+    if external_authority_counts != expectations.external_authority_counts:
         raise ValueError(f"external canonical authority counts changed")
-    if versioned_canonicals != 0:
+    if versioned_canonicals != expectations.versioned_canonical_reference_count:
         raise ValueError(
             "versioned canonical reference policy changed; explicit review is required"
         )
-    if reference_count != 326 or manifest_reference_count != 259:
+    if (
+        reference_count != expectations.fhir_reference_count
+        or manifest_reference_count != expectations.manifest_reference_count
+    ):
         raise ValueError(
             f"FHIR reference counts changed: total={reference_count}, "
             f"manifest={manifest_reference_count}"
         )
-    if len(local_targets) != 190:
+    if len(local_targets) != expectations.unique_local_target_count:
         raise ValueError(f"unique local URL target count changed: {len(local_targets)}")
 
     return {
