@@ -1,4 +1,5 @@
 import zipfile
+import hashlib
 from types import SimpleNamespace
 
 from scripts import check_no_phi
@@ -42,6 +43,51 @@ def test_declared_synthetic_identifier_is_allowed_in_office_file(tmp_path):
     with zipfile.ZipFile(candidate, "w") as archive:
         archive.writestr("word/document.xml", "<w:t>Z000000000</w:t>")
     assert scan(candidate, tmp_path) == []
+
+
+def test_text_only_zip_payload_is_scanned(tmp_path):
+    candidate = tmp_path / "cohort.zip"
+    with zipfile.ZipFile(candidate, "w") as archive:
+        archive.writestr(
+            "patients/example.json",
+            '{"resourceType":"Patient","identifier":"' + "C1" + '23456789"}',
+        )
+    findings = scan(candidate, tmp_path)
+    assert len(findings) == 1
+    assert "cohort.zip!patients/example.json" in findings[0]
+
+
+def test_zip_with_opaque_member_is_blocked(tmp_path):
+    candidate = tmp_path / "mixed.zip"
+    with zipfile.ZipFile(candidate, "w") as archive:
+        archive.writestr("patients/example.json", '{"resourceType":"Patient"}')
+        archive.writestr("attachments/report.pdf", b"%PDF-1.7")
+    findings = scan(candidate, tmp_path)
+    assert len(findings) == 1
+    assert "mixed.zip!attachments/report.pdf" in findings[0]
+    assert "無法自動檢查" in findings[0]
+
+
+def test_reviewed_synthetic_zip_allowance_is_bound_to_exact_hash(tmp_path, monkeypatch):
+    candidate = tmp_path / "cohort.zip"
+    with zipfile.ZipFile(candidate, "w") as archive:
+        archive.writestr(
+            "patients/example.json",
+            '{"identifier":"' + "S999" + '12345"}',
+        )
+    digest = hashlib.sha256(candidate.read_bytes()).hexdigest()
+    monkeypatch.setattr(
+        check_no_phi,
+        "VERIFIED_SYNTHETIC_ARCHIVES",
+        {"cohort.zip": digest},
+    )
+    assert scan(candidate, tmp_path) == []
+
+    with zipfile.ZipFile(candidate, "a") as archive:
+        archive.writestr("README.md", "changed")
+    findings = scan(candidate, tmp_path)
+    assert len(findings) == 1
+    assert "S999" + "12345" in findings[0]
 
 
 def test_opaque_sensitive_binary_is_never_silently_skipped(tmp_path):

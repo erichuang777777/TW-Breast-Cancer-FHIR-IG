@@ -17,6 +17,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import subprocess
@@ -61,8 +62,17 @@ OFFICE_TEXT_MEMBER_SUFFIXES = {".xml", ".rels", ".txt", ".csv"}
 # an additional parser/OCR step.  A committable instance is therefore a finding,
 # never a silent skip.
 OPAQUE_SENSITIVE_SUFFIXES = {
-    ".pdf", ".doc", ".xls", ".zip", ".png", ".jpg", ".jpeg", ".tif", ".tiff",
+    ".pdf", ".doc", ".xls", ".png", ".jpg", ".jpeg", ".tif", ".tiff",
 }
+
+# Public test archives are allowed to carry their source system's synthetic
+# identifier shape only when the entire archive matches the reviewed hash.
+VERIFIED_SYNTHETIC_ARCHIVES = {
+    "outputs/synthetic_cohort/tw-breast-cancer-synthetic-100-v0.1.zip":
+        "f8416b0826880dd6599644e2c11ea15d5aede37c5b6ccce88c56e78f985060dd",
+}
+SYNTHETIC_ARCHIVE_ALLOW_PATTERNS = (re.compile(r"S999\d{5}"),)
+ZIP_TEXT_MEMBER_SUFFIXES = {".json", ".csv", ".md", ".txt", ".xml", ".rels"}
 SKIP_SUFFIXES = {
     ".jar", ".tgz", ".ico", ".woff", ".ttf", ".eot", ".otf", ".pyc",
 }
@@ -107,12 +117,18 @@ def candidate_files(staged: bool) -> tuple[list[Path], str]:
     return files, "手動走訪（尚未 git init）"
 
 
-def _scan_text(text: str, location: str) -> list[str]:
+def _scan_text(
+    text: str,
+    location: str,
+    extra_allow_patterns: tuple[re.Pattern[str], ...] = (),
+) -> list[str]:
     findings: list[str] = []
     for lineno, line in enumerate(text.splitlines(), start=1):
         for label, pattern in PATTERNS:
             for match in pattern.finditer(line):
                 if match.group(0) in SYNTHETIC_ALLOWLIST:
+                    continue
+                if any(pattern.fullmatch(match.group(0)) for pattern in extra_allow_patterns):
                     continue
                 findings.append(
                     f"{location}:{lineno}: {label} -> {match.group(0)!r}"
@@ -150,6 +166,36 @@ def scan(path: Path, root: Path = ROOT) -> list[str]:
     suffix = path.suffix.lower()
     if suffix in OPAQUE_SENSITIVE_SUFFIXES:
         return [f"{rel}: 無法自動檢查的敏感二進位格式 {suffix}"]
+    if suffix == ".zip":
+        try:
+            findings: list[str] = []
+            expected_hash = VERIFIED_SYNTHETIC_ARCHIVES.get(rel)
+            verified_synthetic = bool(expected_hash) and (
+                hashlib.sha256(path.read_bytes()).hexdigest() == expected_hash
+            )
+            extra_allow_patterns = (
+                SYNTHETIC_ARCHIVE_ALLOW_PATTERNS if verified_synthetic else ()
+            )
+            with zipfile.ZipFile(path) as archive:
+                for member in archive.infolist():
+                    if member.is_dir():
+                        continue
+                    member_suffix = Path(member.filename).suffix.lower()
+                    if member_suffix not in ZIP_TEXT_MEMBER_SUFFIXES:
+                        return [
+                            f"{rel}!{member.filename}: ZIP 內含無法自動檢查的格式"
+                        ]
+                    text = _decode_text_payload(archive.read(member))
+                    if text is None:
+                        return [f"{rel}!{member.filename}: ZIP 文字內容無法解碼檢查"]
+                    findings.extend(_scan_text(
+                        text,
+                        f"{rel}!{member.filename}",
+                        extra_allow_patterns,
+                    ))
+            return findings
+        except (OSError, zipfile.BadZipFile):
+            return [f"{rel}: ZIP 檔無法解包檢查"]
     if suffix in OFFICE_OPEN_XML_SUFFIXES:
         try:
             findings: list[str] = []
