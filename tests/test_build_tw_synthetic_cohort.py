@@ -3,6 +3,8 @@ import json
 import zipfile
 from pathlib import Path
 
+import pytest
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "build_tw_synthetic_cohort.py"
@@ -59,6 +61,12 @@ def test_transform_preserves_fields_references_and_source_profiles():
 
 
 def test_source_archives_contain_enough_patient_bundles():
+    missing = [path for _, path, _ in MODULE.SOURCES if not path.exists()]
+    if missing:
+        pytest.skip(
+            "source archives are intentionally excluded from Git; "
+            "run this source-capacity check only when they are available locally"
+        )
     for _, archive_path, required in MODULE.SOURCES:
         assert archive_path.exists()
         with zipfile.ZipFile(archive_path) as archive:

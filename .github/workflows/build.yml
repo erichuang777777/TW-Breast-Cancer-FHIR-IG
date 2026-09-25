@@ -80,7 +80,10 @@ jobs:
         run: node tools/node_modules/fsh-sushi/dist/app.js .
 
       - name: Fetch Coursier
-        run: curl -sL -o coursier.jar "https://github.com/coursier/coursier/releases/latest/download/coursier.jar"
+        run: |
+          curl --fail --location --silent --show-error \
+            -o coursier.jar \
+            "https://github.com/coursier/coursier/releases/download/v2.1.25-M26/coursier.jar"
 
       # cql-to-elm-cli is not published as a shaded/fat jar, so its full
       # runtime classpath (including cqf-fhir's hapi-fhir-structures-* deps,
