@@ -1,0 +1,137 @@
+[
+  {
+    "id": "stage0-ic-hr-positive-her2-negative",
+    "expected": { "Reported Stage Group": "0", "Histology Group": "ic", "Is Invasive Histology": true, "HR HER2 Subtype": "hr-positive-her2-negative" },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1618-01" } }, { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1618-01", "status": "active", "patient": { "reference": "Patient/qr1618-01" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qr1618-01", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/qr1618-01" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/stage", "code": "0" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "hist-qr1618-01", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "histology-morphology" }] }, "subject": { "reference": "Patient/qr1618-01" }, "valueCodeableConcept": { "coding": [{ "system": "http://terminology.hl7.org/CodeSystem/icd-o-3", "code": "8500/3" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "er-qr1618-01", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "er-percent" }] }, "subject": { "reference": "Patient/qr1618-01" }, "valueQuantity": { "value": 1, "unit": "%", "system": "http://unitsofmeasure.org", "code": "%" } } },
+      { "resource": { "resourceType": "Observation", "id": "pr-qr1618-01", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pr-percent" }] }, "subject": { "reference": "Patient/qr1618-01" }, "valueQuantity": { "value": 0, "unit": "%", "system": "http://unitsofmeasure.org", "code": "%" } } },
+      { "resource": { "resourceType": "Observation", "id": "ihc-qr1618-01", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "her2-ihc" }] }, "subject": { "reference": "Patient/qr1618-01" }, "valueCodeableConcept": { "coding": [{ "system": "https://example.org/her2", "code": "0", "display": "0" }] } } }
+    ] }
+  },
+  {
+    "id": "stage-ia-ilc-hr-positive-her2-positive",
+    "expected": { "Reported Stage Group": "I", "Histology Group": "ilc", "HR HER2 Subtype": "hr-positive-her2-positive" },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1618-02" } }, { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1618-02", "status": "active", "patient": { "reference": "Patient/qr1618-02" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qr1618-02", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/qr1618-02" }, "valueCodeableConcept": { "coding": [{ "code": "IA" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "hist-qr1618-02", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "histology-morphology" }] }, "subject": { "reference": "Patient/qr1618-02" }, "valueCodeableConcept": { "coding": [{ "code": "8520/3" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "er-qr1618-02", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "er-percent" }] }, "subject": { "reference": "Patient/qr1618-02" }, "valueQuantity": { "value": 1 } } },
+      { "resource": { "resourceType": "Observation", "id": "pr-qr1618-02", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pr-percent" }] }, "subject": { "reference": "Patient/qr1618-02" }, "valueQuantity": { "value": 0 } } },
+      { "resource": { "resourceType": "Observation", "id": "ihc-qr1618-02", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "her2-ihc" }] }, "subject": { "reference": "Patient/qr1618-02" }, "valueCodeableConcept": { "coding": [{ "code": "3", "display": "3+" }] } } }
+    ] }
+  },
+  {
+    "id": "stage-iib-mixed-hr-negative-her2-positive",
+    "expected": { "Reported Stage Group": "II", "Histology Group": "ic-and-ilc", "HR HER2 Subtype": "hr-negative-her2-positive" },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1618-03" } }, { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1618-03", "status": "active", "patient": { "reference": "Patient/qr1618-03" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qr1618-03", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/qr1618-03" }, "valueCodeableConcept": { "coding": [{ "code": "IIB" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "hist-qr1618-03", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "histology-morphology" }] }, "subject": { "reference": "Patient/qr1618-03" }, "valueCodeableConcept": { "coding": [{ "code": "8522/3" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "er-qr1618-03", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "er-percent" }] }, "subject": { "reference": "Patient/qr1618-03" }, "valueQuantity": { "value": 0 } } },
+      { "resource": { "resourceType": "Observation", "id": "pr-qr1618-03", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pr-percent" }] }, "subject": { "reference": "Patient/qr1618-03" }, "valueQuantity": { "value": 0 } } },
+      { "resource": { "resourceType": "Observation", "id": "ihc-qr1618-03", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "her2-ihc" }] }, "subject": { "reference": "Patient/qr1618-03" }, "valueCodeableConcept": { "coding": [{ "display": "3+" }] } } }
+    ] }
+  },
+  {
+    "id": "stage-iiic-mucin-triple-negative",
+    "expected": { "Reported Stage Group": "III", "Histology Group": "ic-with-mucin", "HR HER2 Subtype": "triple-negative" },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1618-04" } }, { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1618-04", "status": "active", "patient": { "reference": "Patient/qr1618-04" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qr1618-04", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/qr1618-04" }, "valueCodeableConcept": { "coding": [{ "code": "IIIC" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "hist-qr1618-04", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "histology-morphology" }] }, "subject": { "reference": "Patient/qr1618-04" }, "valueCodeableConcept": { "coding": [{ "code": "8480/3" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "er-qr1618-04", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "er-percent" }] }, "subject": { "reference": "Patient/qr1618-04" }, "valueQuantity": { "value": 0 } } },
+      { "resource": { "resourceType": "Observation", "id": "pr-qr1618-04", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pr-percent" }] }, "subject": { "reference": "Patient/qr1618-04" }, "valueQuantity": { "value": 0 } } },
+      { "resource": { "resourceType": "Observation", "id": "ihc-qr1618-04", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "her2-ihc" }] }, "subject": { "reference": "Patient/qr1618-04" }, "valueCodeableConcept": { "coding": [{ "display": "0" }] } } }
+    ] }
+  },
+  {
+    "id": "stage-iv-paget-missing-pr-indeterminate",
+    "expected": { "Reported Stage Group": "IV", "Histology Group": "ic-and-paget", "HR HER2 Subtype": "indeterminate" },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1618-05" } }, { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1618-05", "status": "active", "patient": { "reference": "Patient/qr1618-05" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qr1618-05", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/qr1618-05" }, "valueCodeableConcept": { "coding": [{ "code": "IV" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "hist-qr1618-05", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "histology-morphology" }] }, "subject": { "reference": "Patient/qr1618-05" }, "valueCodeableConcept": { "coding": [{ "code": "8541/3" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "er-qr1618-05", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "er-percent" }] }, "subject": { "reference": "Patient/qr1618-05" }, "valueQuantity": { "value": 0 } } },
+      { "resource": { "resourceType": "Observation", "id": "ihc-qr1618-05", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "her2-ihc" }] }, "subject": { "reference": "Patient/qr1618-05" }, "valueCodeableConcept": { "coding": [{ "display": "0" }] } } }
+    ] }
+  },
+  {
+    "id": "staging-in-progress-neuroendocrine-ihc2-unresolved",
+    "expected": { "Reported Stage Group": "staging-in-progress", "Histology Group": "ic-with-neuroendocrine", "HR HER2 Subtype": "indeterminate" },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1618-06" } }, { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1618-06", "status": "active", "patient": { "reference": "Patient/qr1618-06" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qr1618-06", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/qr1618-06" }, "dataAbsentReason": { "coding": [{ "code": "temp-unknown" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "hist-qr1618-06", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "histology-morphology" }] }, "subject": { "reference": "Patient/qr1618-06" }, "valueCodeableConcept": { "coding": [{ "code": "8574/3" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "er-qr1618-06", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "er-percent" }] }, "subject": { "reference": "Patient/qr1618-06" }, "valueQuantity": { "value": 1 } } },
+      { "resource": { "resourceType": "Observation", "id": "pr-qr1618-06", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pr-percent" }] }, "subject": { "reference": "Patient/qr1618-06" }, "valueQuantity": { "value": 0 } } },
+      { "resource": { "resourceType": "Observation", "id": "ihc-qr1618-06", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "her2-ihc" }] }, "subject": { "reference": "Patient/qr1618-06" }, "valueCodeableConcept": { "coding": [{ "display": "2+" }] } } }
+    ] }
+  },
+  {
+    "id": "transfer-stage-metaplastic-ish-negative",
+    "expected": { "Reported Stage Group": "other-transferred-during-staging", "Histology Group": "metaplastic", "HER2 ISH Negative": true, "HR HER2 Subtype": "hr-positive-her2-negative" },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1618-07" } }, { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1618-07", "status": "finished", "patient": { "reference": "Patient/qr1618-07" }, "period": { "start": "2026-02-01", "end": "2026-03-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "hist-qr1618-07", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "histology-morphology" }] }, "subject": { "reference": "Patient/qr1618-07" }, "valueCodeableConcept": { "coding": [{ "code": "8575/3" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "er-qr1618-07", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "er-percent" }] }, "subject": { "reference": "Patient/qr1618-07" }, "valueQuantity": { "value": 1 } } },
+      { "resource": { "resourceType": "Observation", "id": "pr-qr1618-07", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pr-percent" }] }, "subject": { "reference": "Patient/qr1618-07" }, "valueQuantity": { "value": 0 } } },
+      { "resource": { "resourceType": "Observation", "id": "ihc-qr1618-07", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "her2-ihc" }] }, "subject": { "reference": "Patient/qr1618-07" }, "valueCodeableConcept": { "coding": [{ "display": "2+" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "ish-qr1618-07", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "her2-ish" }] }, "subject": { "reference": "Patient/qr1618-07" }, "interpretation": [{ "coding": [{ "code": "NEG" }] }] } },
+      { "resource": { "resourceType": "Task", "id": "task-qr1618-07", "status": "completed", "intent": "order", "for": { "reference": "Patient/qr1618-07" }, "input": [{ "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "retention-disposition" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-retention-disposition", "code": "transfer-during-staging" }] } }] } }
+    ] }
+  },
+  {
+    "id": "outside-records-adenoid-cystic",
+    "expected": { "Reported Stage Group": "other-outside-records-insufficient", "Histology Group": "adenoid-cystic" },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1618-08" } }, { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1618-08", "status": "active", "patient": { "reference": "Patient/qr1618-08" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qr1618-08", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/qr1618-08" }, "dataAbsentReason": { "coding": [{ "code": "unknown" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "hist-qr1618-08", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "histology-morphology" }] }, "subject": { "reference": "Patient/qr1618-08" }, "valueCodeableConcept": { "coding": [{ "code": "8200/3" }] } } }
+    ] }
+  },
+  {
+    "id": "missing-stage-pure-dcis",
+    "expected": { "Reported Stage Group": "other-unspecified", "Histology Group": "dcis", "Is Invasive Histology": false, "HR HER2 Subtype": null },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1618-09" } }, { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1618-09", "status": "active", "patient": { "reference": "Patient/qr1618-09" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "hist-qr1618-09", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "histology-morphology" }] }, "subject": { "reference": "Patient/qr1618-09" }, "valueCodeableConcept": { "coding": [{ "code": "8500/2" }] } } }
+    ] }
+  },
+  {
+    "id": "invalid-stage-phyllodes",
+    "expected": { "Reported Stage Group": "other-unspecified", "Histology Group": "phyllodes", "Is Invasive Histology": false, "HR HER2 Subtype": null },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1618-10" } }, { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1618-10", "status": "active", "patient": { "reference": "Patient/qr1618-10" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qr1618-10", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/qr1618-10" }, "valueCodeableConcept": { "coding": [{ "code": "XYZ" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "hist-qr1618-10", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "histology-morphology" }] }, "subject": { "reference": "Patient/qr1618-10" }, "valueCodeableConcept": { "coding": [{ "code": "9020/1" }] } } }
+    ] }
+  },
+  {
+    "id": "dcis-microinvasion-groups-as-ic",
+    "expected": { "Reported Stage Group": "I", "Has Microinvasion": true, "Histology Group": "ic", "Is Invasive Histology": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1618-11" } }, { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1618-11", "status": "active", "patient": { "reference": "Patient/qr1618-11" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "stage-qr1618-11", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "clinical-stage" }] }, "subject": { "reference": "Patient/qr1618-11" }, "valueCodeableConcept": { "coding": [{ "code": "I" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "t-qr1618-11", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "pathological-tumor" }] }, "subject": { "reference": "Patient/qr1618-11" }, "valueCodeableConcept": { "coding": [{ "code": "T1mi" }] } } },
+      { "resource": { "resourceType": "Observation", "id": "hist-qr1618-11", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "histology-morphology" }] }, "subject": { "reference": "Patient/qr1618-11" }, "valueCodeableConcept": { "coding": [{ "code": "8500/2" }] } } }
+    ] }
+  },
+  {
+    "id": "missing-morphology-not-invasive",
+    "expected": { "Histology Morphology": null, "Histology Group": null, "Is Invasive Histology": false, "HR HER2 Subtype": null },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1618-12" } }, { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1618-12", "status": "active", "patient": { "reference": "Patient/qr1618-12" }, "period": { "start": "2026-02-01" } } }
+    ] }
+  },
+  {
+    "id": "unmapped-morphology-not-defaulted-to-ic",
+    "expected": { "Histology Morphology": "9999/3", "Histology Group": null, "Is Invasive Histology": false, "HR HER2 Subtype": null },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "qr1618-13" } }, { "resource": { "resourceType": "EpisodeOfCare", "id": "ep-qr1618-13", "status": "active", "patient": { "reference": "Patient/qr1618-13" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Observation", "id": "hist-qr1618-13", "status": "final", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "histology-morphology" }] }, "subject": { "reference": "Patient/qr1618-13" }, "valueCodeableConcept": { "coding": [{ "code": "9999/3" }] } } }
+    ] }
+  }
+]

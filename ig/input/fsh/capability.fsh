@@ -28,6 +28,8 @@ Description: "Requirements-level capability statement listing the resource famil
 * rest.resource[=].supportedProfile = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/breast-cancer-treatment-procedure"
 * rest.resource[+].type = #MedicationRequest
 * rest.resource[=].supportedProfile = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/breast-cancer-medication-request"
+* rest.resource[+].type = #MedicationAdministration
+* rest.resource[=].supportedProfile = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/breast-cancer-medication-administration"
 * rest.resource[+].type = #EpisodeOfCare
 * rest.resource[=].supportedProfile = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/breast-cancer-episode-of-care"
 * rest.resource[+].type = #DiagnosticReport
@@ -40,6 +42,9 @@ Description: "Requirements-level capability statement listing the resource famil
 * rest.resource[=].supportedProfile = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/cancer-care-plan-task-care-plan"
 * rest.resource[+].type = #QuestionnaireResponse
 * rest.resource[=].supportedProfile = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/cancer-care-plan-task-questionnaire-response"
+* rest.resource[+].type = #Task
+* rest.resource[=].supportedProfile[+] = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/breast-cancer-case-management-task"
+* rest.resource[=].supportedProfile[+] = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-registry-abstraction-task"
 * rest.resource[+].type = #Bundle
 * rest.resource[=].supportedProfile[+] = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/breast-cancer-common-facts-bundle"
 * rest.resource[=].supportedProfile[+] = "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/cancer-care-plan-task-bundle"

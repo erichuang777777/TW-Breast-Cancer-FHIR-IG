@@ -182,6 +182,22 @@ Description: "Reusable medication-request shell for breast-cancer systemic treat
 * authoredOn MS
 * requester MS
 
+Profile: BreastCancerMedicationAdministration
+Parent: MedicationAdministration
+Id: breast-cancer-medication-administration
+Title: "Breast Cancer Medication Administration - Community Draft"
+Description: "Actual breast-cancer systemic-treatment administration event. A MedicationRequest alone SHALL NOT be treated as proof that medication was administered; request preserves the authorizing order when known."
+* ^status = #draft
+* ^experimental = true
+* status MS
+* medication[x] 1..1 MS
+* subject 1..1 MS
+* subject only Reference(BreastCancerPatient)
+* effective[x] 1..1 MS
+* performer MS
+* request MS
+* request only Reference(BreastCancerMedicationRequest)
+
 Profile: BreastCancerEpisodeOfCare
 Parent: EpisodeOfCare
 Id: breast-cancer-episode-of-care

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "empty-caseload-smoke",
+    "expected": {
+      "Initial Population": false,
+      "Quarterly Caseload": false,
+      "New Diagnosis Case": false,
+      "Prior Year And Current New Diagnosis Cohort": false,
+      "Denominator QR4": false
+    },
+    "bundle": {
+      "resourceType": "Bundle",
+      "type": "collection",
+      "meta": {
+        "tag": [
+          {
+            "system": "https://example.org/tags",
+            "code": "synthetic"
+          }
+        ]
+      },
+      "entry": [
+        {
+          "resource": {
+            "resourceType": "Patient",
+            "id": "all-measures-empty-caseload",
+            "gender": "unknown",
+            "birthDate": "1980-01-01"
+          }
+        }
+      ]
+    }
+  }
+]

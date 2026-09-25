@@ -7,6 +7,7 @@
   "title": "台灣癌症登記 SSF3 前導性療法之療效（SSF3）值集",
   "status": "draft",
   "experimental": true,
+  "description": "Taiwan Cancer Registry value set for SSF3 (SSF3 前導性療法之療效). Includes every code from the corresponding local TCR CodeSystem; it does not assert equivalence to a standard clinical terminology.",
   "compose": {
     "include": [
       {

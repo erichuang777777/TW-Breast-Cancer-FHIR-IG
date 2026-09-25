@@ -1,0 +1,131 @@
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+WORKFLOW = ROOT / ".github" / "workflows" / "publication-readiness.yml"
+LOCAL_RELEASE = ROOT / "scripts" / "check_release.ps1"
+
+
+def workflow_text() -> str:
+    return WORKFLOW.read_text(encoding="utf-8")
+
+
+def test_publisher_workflow_is_reproducible_and_preserves_evidence():
+    text = workflow_text()
+    assert "workflow_dispatch:" in text
+    assert '"feat/cancer-registry-task-v2"' in text
+    assert "releases/download/2.3.2/publisher.jar" in text
+    assert "gem install jekyll" in text
+    assert "actions/upload-artifact@v7" in text
+    assert "ig/output/" in text
+    assert "scripts/audit_publisher_qa.py" in text
+    assert "mappings/publication/publisher-warning-policy.csv" in text
+    assert "publisher-warning-audit.json" in text
+    assert "scripts/audit_release_controls.py" in text
+    assert "scripts/approval_evidence.py" in text
+    assert "scripts/audit_measure_specification_approvals.py" in text
+    assert "measure-specification-approval-audit.json" in text
+    assert "scripts/audit_artifact_conformance.py" in text
+    assert "mappings/publication/artifact-conformance-register.csv" in text
+    assert "artifact-conformance-audit.json" in text
+    assert "scripts/audit_profile_constraints.py" in text
+    assert "mappings/publication/profile-constraint-baseline.csv" in text
+    assert "profile-constraint-audit.json" in text
+    assert "scripts/audit_mapping_profile_projection.py" in text
+    assert "mappings/publication/mapping-profile-projection-register.csv" in text
+    assert "mapping-profile-projection-audit.json" in text
+    assert "scripts/audit_terminology_conformance.py" in text
+    assert "mappings/publication/case-management-terminology-approval-register.csv" in text
+    assert "mappings/publication/terminology-expansion-validation-register.csv" in text
+    assert "mappings/publication/terminology-conceptmap-relationship-register.csv" in text
+    assert "terminology-conformance-audit.json" in text
+    assert "scripts/audit_fhir_resource_inventory.py" in text
+    assert "mappings/publication/fhir-resource-inventory.csv" in text
+    assert "mappings/publication/canonical-version-policy-register.csv" in text
+    assert "fhir-resource-inventory-audit.json" in text
+    assert "scripts/audit_fhir_reference_graph.py" in text
+    assert "fhir-reference-graph-audit.json" in text
+    assert "scripts/audit_data_correctness_evidence.py" in text
+    assert "mappings/publication/source-traceability-register.csv" in text
+    assert "mappings/publication/measure-validation-evidence-register.csv" in text
+    assert "mappings/publication/case-level-comparison-register.csv" in text
+    assert "ig/input/fsh/case-management-measures.fsh" in text
+    assert "mappings/case-management/case-management-population-criteria.csv" in text
+    assert '"mappings/case-management/**"' in text
+    assert "data-correctness-evidence-audit.json" in text
+    assert "scripts/audit_source_acquisition_priority.py" in text
+    assert "mappings/publication/source-acquisition-priority.csv" in text
+    assert "source-acquisition-priority-audit.json" in text
+    assert "scripts/audit_source_acquisition_work_packages.py" in text
+    assert "mappings/publication/source-acquisition-work-packages.csv" in text
+    assert "source-acquisition-work-packages-audit.json" in text
+    assert "mappings/publication/release-control-register.csv" in text
+    assert "mappings/publication/case-management-measure-approval-register.csv" in text
+    assert "mappings/publication/ig-scope-claim-register.csv" in text
+    assert "mappings/publication/publication-scope-decision-register.csv" in text
+    assert "release-control-audit.json" in text
+    assert "Load Template from fhir2.base.template#0.1.0" in text
+    assert "no longer considered secure" in text
+
+
+def test_publisher_workflow_enforces_technical_and_strict_qa_levels():
+    text = workflow_text()
+    assert "publisher-exit-code.txt" in text
+    assert "errors = 0, warn = [0-9]+, info = [0-9]+, broken links = 0" in text
+    assert "publisher_formal_qa_gate" in text
+    assert "test -f output/package.tgz" in text
+    assert "Complete formal release gate" in text
+    assert "maximum_supported_claim" in text
+
+
+def test_local_release_script_uses_the_same_evidence_gates_without_overclaiming():
+    text = LOCAL_RELEASE.read_text(encoding="utf-8")
+    assert "scripts\\audit_publisher_qa.py" in text
+    assert "scripts\\audit_release_controls.py" in text
+    assert "scripts\\audit_measure_specification_approvals.py" in text
+    assert "scripts\\audit_artifact_conformance.py" in text
+    assert "artifact-conformance-register.csv" in text
+    assert "scripts\\audit_profile_constraints.py" in text
+    assert "profile-constraint-baseline.csv" in text
+    assert "profile-constraint-audit.json" in text
+    assert "scripts\\audit_mapping_profile_projection.py" in text
+    assert "mapping-profile-projection-register.csv" in text
+    assert "mapping-profile-projection-audit.json" in text
+    assert "scripts\\audit_terminology_conformance.py" in text
+    assert "case-management-terminology-approval-register.csv" in text
+    assert "terminology-expansion-validation-register.csv" in text
+    assert "terminology-conceptmap-relationship-register.csv" in text
+    assert "scripts\\audit_fhir_resource_inventory.py" in text
+    assert "fhir-resource-inventory.csv" in text
+    assert "canonical-version-policy-register.csv" in text
+    assert "scripts\\audit_fhir_reference_graph.py" in text
+    assert "fhir-reference-graph-audit.json" in text
+    assert "scripts\\audit_data_correctness_evidence.py" in text
+    assert "source-traceability-register.csv" in text
+    assert "measure-validation-evidence-register.csv" in text
+    assert "case-level-comparison-register.csv" in text
+    assert "case-management-measures.fsh" in text
+    assert "data-correctness-evidence-audit.json" in text
+    assert "scripts\\audit_source_acquisition_priority.py" in text
+    assert "source-acquisition-priority.csv" in text
+    assert "source-acquisition-priority-audit.json" in text
+    assert "scripts\\audit_source_acquisition_work_packages.py" in text
+    assert "source-acquisition-work-packages.csv" in text
+    assert "source-acquisition-work-packages-audit.json" in text
+    assert "case-management-measure-approval-register.csv" in text
+    assert "measure-specification-approval-audit.json" in text
+    assert "ig-scope-claim-register.csv" in text
+    assert "publication-scope-decision-register.csv" in text
+    assert "--target integrity" in text
+    assert "community_preview_gate" in text
+    assert "formal_release_gate" in text
+    assert "Community Preview is publishable" not in text
+
+
+def test_pytest_ci_generates_live_measure_resources_before_specification_tests():
+    workflow = (ROOT / ".github" / "workflows" / "build.yml").read_text(
+        encoding="utf-8"
+    )
+    pytest_job = workflow.split("  pytest:", 1)[1].split("  cql:", 1)[0]
+    assert "Generate current Measure resources for specification tests" in pytest_job
+    assert pytest_job.index("fsh-sushi/dist/app.js") < pytest_job.index("python -m pytest")

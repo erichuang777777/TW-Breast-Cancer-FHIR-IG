@@ -1,0 +1,252 @@
+name: Build (sushi, pytest, CQL)
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  sushi:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+
+      - name: Install sushi
+        working-directory: ig/tools
+        run: npm ci
+
+      - name: Run sushi
+        working-directory: ig
+        run: |
+          node tools/node_modules/fsh-sushi/dist/app.js . 2>&1 | tee sushi-output.log
+          if grep -qE '[1-9][0-9]* Errors|[1-9][0-9]* Warnings' sushi-output.log; then
+            echo "sushi reported errors or warnings; see log above"
+            exit 1
+          fi
+
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+
+      - name: Generate current Measure resources for specification tests
+        working-directory: ig
+        run: |
+          npm ci --prefix tools
+          node tools/node_modules/fsh-sushi/dist/app.js .
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -e ".[test]"
+
+      - name: Run pytest
+        run: python -m pytest -q
+
+  cql:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+
+      - name: Install CQL evaluation dependencies
+        working-directory: ig/tools
+        run: npm ci
+
+      - name: Generate IG resources for CQL namespace resolution
+        working-directory: ig
+        run: node tools/node_modules/fsh-sushi/dist/app.js .
+
+      - name: Fetch Coursier
+        run: curl -sL -o coursier.jar "https://github.com/coursier/coursier/releases/latest/download/coursier.jar"
+
+      # cql-to-elm-cli is not published as a shaded/fat jar, so its full
+      # runtime classpath (including cqf-fhir's hapi-fhir-structures-* deps,
+      # which are pinned by a Gradle-module BOM import that plain Maven POM
+      # resolution does not follow) has to be resolved explicitly.
+      - name: Resolve cql-to-elm-cli classpath
+        run: |
+          java -jar coursier.jar fetch --classpath \
+            info.cqframework:cql-to-elm-cli:3.26.0 \
+            --force-version ca.uhn.hapi.fhir:hapi-fhir-structures-r5:8.2.0 \
+            --force-version ca.uhn.hapi.fhir:hapi-fhir-structures-r4:8.2.0 \
+            --force-version ca.uhn.hapi.fhir:hapi-fhir-structures-dstu3:8.2.0 \
+            --force-version ca.uhn.hapi.fhir:hapi-fhir-structures-dstu2:8.2.0 \
+            --force-version ca.uhn.hapi.fhir:hapi-fhir-structures-hl7org-dstu2:8.2.0 \
+            --force-version ca.uhn.hapi.fhir:hapi-fhir-converter:8.2.0 \
+            --force-version ca.uhn.hapi.fhir:hapi-fhir-base:8.2.0 \
+            > classpath.txt
+
+      # FHIRHelpers 4.0.1 is resolved automatically by the translator's built-in
+      # FhirLibrarySourceProvider - no separate fetch needed.
+      - name: Translate CQL
+        run: |
+          set -o pipefail
+          mkdir -p elm-out
+          java -cp "$(cat classpath.txt)" org.cqframework.cql.cql2elm.cli.Main \
+            --input ig/input/cql/BreastCancerCaseManagement.cql \
+            --root-dir ig \
+            --output elm-out \
+            --format JSON \
+            --signatures Overloads 2>&1 | tee cql-translation.log
+          test -s elm-out/BreastCancerCaseManagement.json
+          if grep -qE 'Translation failed|failed due to errors|ELM generation failed' cql-translation.log; then
+            echo "CQL translator reported failure despite returning exit code 0"
+            exit 1
+          fi
+
+      # Use the same released CQL package that the IG declares.  Extracting the
+      # packaged ELM avoids testing against a second, unrelated FHIRHelpers copy.
+      - name: Extract FHIRHelpers ELM from the CQL package
+        run: |
+          set -o pipefail
+          curl -sL -o cql-package.tgz \
+            "https://hl7.org/fhir/uv/cql/STU2/package.tgz"
+          tar -xOf cql-package.tgz package/Library-FHIRHelpers.json \
+            | jq -r '.content[] | select(.contentType == "application/elm+json") | .data' \
+            | base64 --decode > elm-out/FHIRHelpers.json
+          test -s elm-out/FHIRHelpers.json
+
+      - name: Execute bc-qi-01 synthetic CQL cases
+        run: |
+          node ig/tools/cql-evaluation/run-bc-qi-01.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/bc-qi-01-cases.json \
+            tests/fixtures/cql/bc-qi-01-value-sets.json \
+            tests/fixtures/cql/MeasureReport-bc-qi-01-synthetic.json
+
+      - name: Smoke-execute all 20 Measure criteria
+        run: |
+          node ig/tools/cql-evaluation/run-all-measures-smoke.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/all-measures-smoke-cases.json \
+            tests/fixtures/cql/all-measures-value-sets.json \
+            ig/fsh-generated/resources
+
+      - name: Execute bc-qi-02 asserted CQL branches
+        run: |
+          node ig/tools/cql-evaluation/run-asserted-cases.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/bc-qi-02-cases.json \
+            tests/fixtures/cql/all-measures-value-sets.json
+
+      - name: Execute bc-qi-03 asserted CQL branches
+        run: |
+          node ig/tools/cql-evaluation/run-asserted-cases.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/bc-qi-03-cases.json \
+            tests/fixtures/cql/all-measures-value-sets.json
+
+      - name: Execute bc-qi-04 asserted CQL branches
+        run: |
+          node ig/tools/cql-evaluation/run-asserted-cases.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/bc-qi-04-cases.json \
+            tests/fixtures/cql/all-measures-value-sets.json
+
+      - name: Execute bc-qi-05 asserted CQL branches
+        run: |
+          node ig/tools/cql-evaluation/run-asserted-cases.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/bc-qi-05-cases.json \
+            tests/fixtures/cql/all-measures-value-sets.json
+
+      - name: Execute bc-qi-06 asserted CQL branches
+        run: |
+          node ig/tools/cql-evaluation/run-asserted-cases.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/bc-qi-06-cases.json \
+            tests/fixtures/cql/all-measures-value-sets.json
+
+      - name: Execute bc-qr-01 asserted CQL branches
+        run: |
+          node ig/tools/cql-evaluation/run-asserted-cases.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/bc-qr-01-cases.json \
+            tests/fixtures/cql/all-measures-value-sets.json
+
+      - name: Execute bc-qr-02 asserted CQL branches
+        run: |
+          node ig/tools/cql-evaluation/run-asserted-cases.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/bc-qr-02-cases.json \
+            tests/fixtures/cql/all-measures-value-sets.json
+
+      - name: Execute bc-qr-03 asserted CQL branches
+        run: |
+          node ig/tools/cql-evaluation/run-asserted-cases.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/bc-qr-03-cases.json \
+            tests/fixtures/cql/all-measures-value-sets.json
+
+      - name: Execute bc-qr-04 asserted CQL branches
+        run: |
+          node ig/tools/cql-evaluation/run-asserted-cases.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/bc-qr-04-cases.json \
+            tests/fixtures/cql/all-measures-value-sets.json
+
+      - name: Execute bc-qr-05 candidate CQL branches
+        run: |
+          node ig/tools/cql-evaluation/run-asserted-cases.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/bc-qr-05-cases.json \
+            tests/fixtures/cql/all-measures-value-sets.json
+
+      - name: Execute bc-qr-10 through 12 stratifier assertions
+        run: |
+          node ig/tools/cql-evaluation/run-asserted-cases.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/bc-qr-10-12-cases.json \
+            tests/fixtures/cql/all-measures-value-sets.json
+
+      - name: Execute bc-qr-13 through 15 stratifier assertions
+        run: |
+          node ig/tools/cql-evaluation/run-asserted-cases.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/bc-qr-13-15-cases.json \
+            tests/fixtures/cql/all-measures-value-sets.json
+
+      - name: Execute bc-qr-16 through 18 stratifier assertions
+        run: |
+          node ig/tools/cql-evaluation/run-asserted-cases.js \
+            elm-out/BreastCancerCaseManagement.json \
+            elm-out/FHIRHelpers.json \
+            tests/fixtures/cql/bc-qr-16-18-cases.json \
+            tests/fixtures/cql/all-measures-value-sets.json

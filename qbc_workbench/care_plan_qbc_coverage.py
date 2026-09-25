@@ -12,16 +12,16 @@ from .models import CaseRecord, ReviewStatus
 
 JSON_SOURCE_CANDIDATES: dict[str, dict[str, str]] = {
     "D010": {"channel": "basic.fields", "source": "cblMetastasis + txbMetastasisDesc"},
-    "D027": {"channel": "treatment_plan.text", "source": "planned breast surgery"},
-    "D029": {"channel": "treatment_plan.text", "source": "planned axillary surgery"},
+    "D027": {"channel": "treatment_plan.text", "source": "care-plan breast surgery fact"},
+    "D029": {"channel": "treatment_plan.text", "source": "care-plan axillary surgery fact"},
     "D030": {"channel": "basic.fields", "source": "cblHisType"},
     "D037": {"channel": "basic.fields", "source": "cblMetastasis + txbMetastasisDesc"},
-    "TM01": {"channel": "treatment_plan.text", "source": "ordered plan entries"},
-    "TM02": {"channel": "treatment_plan.text", "source": "plan treatment type"},
-    "TM05": {"channel": "treatment_plan.text", "source": "planned regimen or drug"},
-    "TM06": {"channel": "treatment_plan.text", "source": "planned other drug text"},
-    "TM07": {"channel": "treatment_plan.text", "source": "planned radiation site"},
-    "TM08": {"channel": "treatment_plan.text", "source": "planned other site text"},
+    "TM01": {"channel": "treatment_plan.text", "source": "ordered care-plan treatment facts"},
+    "TM02": {"channel": "treatment_plan.text", "source": "care-plan treatment category"},
+    "TM05": {"channel": "treatment_plan.text", "source": "care-plan regimen or drug fact"},
+    "TM06": {"channel": "treatment_plan.text", "source": "care-plan other drug text"},
+    "TM07": {"channel": "treatment_plan.text", "source": "care-plan radiation site fact"},
+    "TM08": {"channel": "treatment_plan.text", "source": "care-plan other site text"},
 }
 
 
@@ -72,6 +72,7 @@ def analyze_care_plan_qbc_coverage(
     method_records: dict[str, Counter[str]] = defaultdict(Counter)
     value_field_counts: list[int] = []
     diagnosis_types: Counter[str] = Counter()
+    diagnosis_assessments: Counter[str] = Counter()
     parse_failures = 0
 
     for index, source_path in enumerate(source_paths, start=1):
@@ -90,6 +91,7 @@ def analyze_care_plan_qbc_coverage(
         )
         if case.diagnosis_type:
             diagnosis_types[case.diagnosis_type] += 1
+        diagnosis_assessments[case.diagnosis_type_assessment] += 1
         for tag, candidate in case.candidates.items():
             if tag not in qbc_by_tag:
                 continue
@@ -111,6 +113,7 @@ def analyze_care_plan_qbc_coverage(
         ) or (
             tag == "TM04"
             and parsed_records > 0
+            and sum(diagnosis_types.values()) == parsed_records
             and diagnosis_types.get("3", 0) == 0
         )
         if produced:
@@ -163,6 +166,13 @@ def analyze_care_plan_qbc_coverage(
             "min": min(value_field_counts, default=0),
             "median": median(value_field_counts) if value_field_counts else 0,
             "max": max(value_field_counts, default=0),
+        },
+        "diagnosis_type_counts": {
+            "1": diagnosis_types.get("1", 0),
+            "2": diagnosis_types.get("2", 0),
+            "3": diagnosis_types.get("3", 0),
+            "pending_review": diagnosis_assessments.get("pending_review", 0),
+            "source_incomplete": diagnosis_assessments.get("source_incomplete", 0),
         },
         "produced_but_not_declared_in_catalog": sorted(produced_tags - declared_tags),
         "declared_but_not_produced_in_january": sorted(declared_tags - produced_tags),

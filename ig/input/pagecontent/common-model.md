@@ -19,6 +19,7 @@
 | `BreastCancerTumorMarkerObservation` | ER、PR、HER2、Ki-67、PD-L1 等結果外殼 | FHIR Observation |
 | `BreastCancerTreatmentProcedure` | 手術、放療與其他非藥物治療 | FHIR Procedure |
 | `BreastCancerMedicationRequest` | 全身性治療用藥要求 | FHIR MedicationRequest |
+| `BreastCancerMedicationAdministration` | 全身性治療實際給藥事件；醫囑本身不得視為已給藥 | FHIR MedicationAdministration |
 | `BreastCancerEpisodeOfCare` | 串接診斷、治療與追蹤期間 | FHIR EpisodeOfCare |
 | `BreastCancerCommonFactsBundle` | Task-neutral 的來源證據與共用 facts 交換邊界；供平行 Task 獨立取用 | FHIR collection Bundle |
 

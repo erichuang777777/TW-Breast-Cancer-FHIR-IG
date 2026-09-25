@@ -33,6 +33,18 @@ dependencies:
   tw.gov.mohw.twcore: 1.0.0
   hl7.terminology.r4: 7.3.0
   hl7.fhir.uv.extensions.r4: 5.3.0
+  hl7.fhir.uv.cql: 2.0.0
+  hl7.fhir.uv.crmi: 2.0.0
+
+resources:
+  QuestionnaireResponse/tcr-breast-example:
+    name: Synthetic TCR Breast QuestionnaireResponse
+    description: Completely synthetic cancer-registry abstraction example; it represents no real patient and is not suitable for clinical or submission use.
+    exampleBoolean: true
+  Task/tcr-breast-abstraction-example:
+    name: Synthetic TCR Breast Abstraction Task
+    description: Completely synthetic workflow example linking the draft TCR questionnaire and response; it is not a production abstraction task or submission.
+    exampleBoolean: true
 
 pages:
   index.md:
@@ -45,6 +57,8 @@ pages:
     title: 乳癌共同資料模型
   data-flow.md:
     title: 資料來源與轉換流程
+  must-support.md:
+    title: Must Support 實作政策
   external-alignment.md:
     title: 外部規格對齊
   examples.md:
@@ -63,6 +77,8 @@ pages:
     title: TWPAS 癌藥事前審查 Task
   twpas-crosswalk.md:
     title: 乳癌共同資料至 TWPAS 對照
+  task-case-management.md:
+    title: 個管指標 Task
   task-tcr.md:
     title: 癌症登記 Task
   tcr-code-tables.md:
@@ -111,6 +127,7 @@ menu:
     Scope 與邊界: scope.html
     共同資料模型: common-model.html
     資料來源與轉換流程: data-flow.html
+    Must Support 實作政策: must-support.html
     外部規格對齊: external-alignment.html
     合成範例: examples.html
   Task 模組:
@@ -121,6 +138,7 @@ menu:
     QBC／P4P Task: task-qbc.html
     TWPAS 癌藥事前審查 Task: task-twpas.html
     乳癌共同資料至 TWPAS 對照: twpas-crosswalk.html
+    個管指標 Task: task-case-management.html
     癌症登記 Task: task-tcr.html
     使用情境: usecases.html
   癌登規格:
@@ -146,6 +164,8 @@ menu:
   下載與驗證: downloads.html
 
 parameters:
+  path-binary: input/cql
+  auto-oid-root: 2.25.37863882866210842446634463448013114893
   show-inherited-invariants: false
   apply-contact: true
   apply-jurisdiction: true

@@ -1,0 +1,67 @@
+[
+  {
+    "id": "stay-counts-without-system-parameter",
+    "expected": { "Denominator QR2": true, "Numerator QR1": true, "Transferred Within NTUH System": false, "Numerator QR2": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-02-stay" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr02-stay", "status": "active", "patient": { "reference": "Patient/bc-qr-02-stay" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr02-stay", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/bc-qr-02-stay" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "retention-disposition" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-retention-disposition", "code": "stay" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "transfer-to-reporting-system",
+    "parameters": { "Reporting Organization System Root": "ntuh-system" },
+    "expected": { "Denominator QR2": true, "Numerator QR1": false, "Transferred Within NTUH System": true, "Numerator QR2": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-02-in-system" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr02-in-system", "status": "finished", "patient": { "reference": "Patient/bc-qr-02-in-system" }, "managingOrganization": { "reference": "Organization/receiver-in-system" }, "period": { "start": "2026-02-01", "end": "2026-03-01" } } },
+      { "resource": { "resourceType": "Organization", "id": "receiver-in-system", "active": true, "partOf": { "reference": "Organization/ntuh-system" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr02-in-system", "status": "completed", "intent": "order", "for": { "reference": "Patient/bc-qr-02-in-system" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "retention-disposition" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-retention-disposition", "code": "transfer-during-staging" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "transfer-to-other-system",
+    "parameters": { "Reporting Organization System Root": "ntuh-system" },
+    "expected": { "Denominator QR2": true, "Transferred Within NTUH System": false, "Numerator QR2": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-02-other-system" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr02-other-system", "status": "finished", "patient": { "reference": "Patient/bc-qr-02-other-system" }, "managingOrganization": { "reference": "Organization/receiver-other-system" }, "period": { "start": "2026-02-01", "end": "2026-03-01" } } },
+      { "resource": { "resourceType": "Organization", "id": "receiver-other-system", "active": true, "partOf": { "reference": "Organization/other-system" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr02-other-system", "status": "completed", "intent": "order", "for": { "reference": "Patient/bc-qr-02-other-system" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "retention-disposition" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-retention-disposition", "code": "transfer-during-staging" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "transfer-without-system-parameter",
+    "expected": { "Denominator QR2": true, "Transferred Within NTUH System": false, "Numerator QR2": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-02-no-parameter" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr02-no-parameter", "status": "finished", "patient": { "reference": "Patient/bc-qr-02-no-parameter" }, "managingOrganization": { "reference": "Organization/receiver-no-parameter" }, "period": { "start": "2026-02-01", "end": "2026-03-01" } } },
+      { "resource": { "resourceType": "Organization", "id": "receiver-no-parameter", "active": true, "partOf": { "reference": "Organization/ntuh-system" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr02-no-parameter", "status": "completed", "intent": "order", "for": { "reference": "Patient/bc-qr-02-no-parameter" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "retention-disposition" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-retention-disposition", "code": "transfer-during-staging" }] } }
+      ] } }
+    ] }
+  },
+  {
+    "id": "qr1-exclusion-removed-from-denominator",
+    "expected": { "Denominator QR1": true, "Denominator QR1 Exclusion": true, "Denominator QR2": false, "Numerator QR2": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-02-excluded" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr02-excluded", "status": "active", "patient": { "reference": "Patient/bc-qr-02-excluded" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr02-excluded", "status": "ready", "intent": "order", "for": { "reference": "Patient/bc-qr-02-excluded" }, "input": [
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-entry-category" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-entry-category", "code": "new-diagnosis" }] } },
+        { "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "retention-disposition" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-retention-disposition", "code": "considering-return-under-1m" }] } }
+      ] } }
+    ] }
+  }
+]

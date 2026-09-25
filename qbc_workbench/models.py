@@ -34,6 +34,11 @@ class TreatmentEvent(BaseModel):
     planned_start:str|None=None; planned_end:str|None=None; actual_start:str|None=None; actual_end:str|None=None
     evidence:list[Evidence]=Field(default_factory=list)
 
+class CarePlanTreatmentFact(BaseModel):
+    """A treatment fact stated by the care-plan source before QBC code normalization."""
+    sequence:int; category:str; phase:str|None=None; plan_date:str|None=None
+    evidence:list[Evidence]=Field(default_factory=list)
+
 class FollowUpEvent(BaseModel):
     trace_date:str
     treatment_status:str|None=None
@@ -45,7 +50,9 @@ class FollowUpEvent(BaseModel):
 
 class CaseRecord(BaseModel):
     case_id:str; diagnosis_type:str|None=None; laterality:str|None=None
+    diagnosis_type_assessment:str="pending_review"
     candidates:dict[str,Candidate]=Field(default_factory=dict); treatments:list[TreatmentEvent]=Field(default_factory=list)
+    care_plan_treatment_facts:list[CarePlanTreatmentFact]=Field(default_factory=list)
     followups:list[FollowUpEvent]=Field(default_factory=list)
     # 惡性葉狀瘤／肉瘤等非乳癌上皮性腫瘤：一般乳癌 TNM 分期不適用，
     # 臨床手填分期優先，不得被自動計算結果推翻。專案決議 2026-08-13。

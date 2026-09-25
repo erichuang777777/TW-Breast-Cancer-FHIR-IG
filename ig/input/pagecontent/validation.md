@@ -21,6 +21,8 @@ java "-Dfile.encoding=UTF-8" -jar publisher.jar -ig ig.ini
 
 正式候選版本必須達到 `qa.html` 的 Errors=0 與 Broken Links=0；所有 warning 需修正或留存具體理由。
 
+Publisher warning 另由 `scripts/audit_publisher_qa.py` 對照 `mappings/publication/publisher-warning-policy.csv` 稽核。任何未知 warning、重疊分類或既有類別數量增加都會使 CI 失敗；具名理由不等於已核准，社群 Preview 仍需補上 reviewer、核准日與到期日，正式 release 預設要求 0 warnings。
+
 ## 個案與 XML
 
 ```powershell

@@ -81,7 +81,7 @@
         {
           "linkId": "DXDATE",
           "text": "[DXDATE] 診斷日期",
-          "type": "date",
+          "type": "string",
           "extension": [
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
@@ -96,7 +96,7 @@
         {
           "linkId": "VISTDATE",
           "text": "[VISTDATE] 首次就診日期",
-          "type": "date",
+          "type": "string",
           "extension": [
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
@@ -806,7 +806,7 @@
         {
           "linkId": "FSDATE",
           "text": "[FSDATE] 首次手術日期",
-          "type": "date",
+          "type": "string",
           "extension": [
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
@@ -1564,7 +1564,7 @@
         {
           "linkId": "LCD",
           "text": "[LCD] 最後接觸日期",
-          "type": "date",
+          "type": "string",
           "extension": [
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
@@ -1579,7 +1579,7 @@
         {
           "linkId": "REDATE",
           "text": "[REDATE] 復發日期",
-          "type": "date",
+          "type": "string",
           "extension": [
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
@@ -1648,7 +1648,7 @@
         {
           "linkId": "LCD6",
           "text": "[LCD6] 最後接觸日期（延長追蹤）",
-          "type": "date",
+          "type": "string",
           "extension": [
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",
@@ -1678,7 +1678,7 @@
         {
           "linkId": "REDATE6",
           "text": "[REDATE6] 復發日期（延長追蹤）",
-          "type": "date",
+          "type": "string",
           "extension": [
             {
               "url": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/StructureDefinition/tcr-source-hint",

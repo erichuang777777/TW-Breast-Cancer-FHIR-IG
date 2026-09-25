@@ -12,7 +12,7 @@
 
 FHIR Profile 只有一個 `baseDefinition`。因此本草稿以 TW Core 作台灣結構父層，透過 Mapping Table、canonical reference 與文件說明對齊 mCODE／ICHOM，不建立虛假的多重繼承。
 
-目前 `BreastCancerPatient` 已直接衍生自 TW Core Patient；其他乳癌 Condition、Observation、DiagnosticReport、Specimen、Procedure 與 MedicationRequest 草稿仍有部分直接衍生自 FHIR base resource。這些 Profile 只能稱為「以 TW Core 為台灣結構對齊基準」，不得宣稱已全部衍生自 TW Core。改父層前須逐一比較 TW Core 1.0.0 differential、現有範例與各 Task projection，確認不會造成不相容限制。
+目前 `BreastCancerPatient` 已直接衍生自 TW Core Patient；其他乳癌 Condition、Observation、DiagnosticReport、Specimen、Procedure、MedicationRequest 與 MedicationAdministration 草稿仍有部分直接衍生自 FHIR base resource。這些 Profile 只能稱為「以 TW Core 為台灣結構對齊基準」，不得宣稱已全部衍生自 TW Core。改父層前須逐一比較 TW Core 1.0.0 differential、現有範例與各 Task projection，確認不會造成不相容限制。
 
 若未來要宣告 mCODE conformance，必須逐一驗證 mCODE 及其 US Core 父層限制是否與 TW Core 可同時滿足，並建立明確的 conformance 測試與 CapabilityStatement。
 

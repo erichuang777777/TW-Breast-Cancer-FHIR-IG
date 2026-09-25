@@ -4,7 +4,7 @@
   "questionnaire": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/Questionnaire/tcr-breast-longform",
   "status": "in-progress",
   "subject": {
-    "reference": "Patient/example"
+    "reference": "Patient/breast-cancer-patient-example"
   },
   "item": [
     {
@@ -945,7 +945,7 @@
           "linkId": "SURVY6",
           "answer": [
             {
-              "valueInteger": 9
+              "valueDecimal": 9
             }
           ]
         },
@@ -969,10 +969,11 @@
     }
   ],
   "meta": {
-    "tag": [
+    "security": [
       {
-        "code": "synthetic",
-        "display": "Synthetic data — not a real patient"
+        "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+        "code": "HTEST",
+        "display": "test health data"
       }
     ]
   }

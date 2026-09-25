@@ -1,0 +1,366 @@
+name: Publication readiness (IG Publisher)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "feat/cancer-registry-task-v2"
+    paths:
+      - ".github/workflows/publication-readiness.yml"
+      - "ig/**"
+      - "scripts/check_release.ps1"
+      - "scripts/check_no_phi.py"
+      - "scripts/audit_publisher_qa.py"
+      - "scripts/audit_release_controls.py"
+      - "scripts/audit_measure_specification_approvals.py"
+      - "scripts/approval_evidence.py"
+      - "scripts/audit_verification_methods.py"
+      - "scripts/audit_artifact_conformance.py"
+      - "scripts/audit_profile_constraints.py"
+      - "scripts/audit_mapping_profile_projection.py"
+      - "scripts/audit_terminology_conformance.py"
+      - "scripts/audit_fhir_resource_inventory.py"
+      - "scripts/audit_fhir_reference_graph.py"
+      - "scripts/audit_data_correctness_evidence.py"
+      - "scripts/audit_source_acquisition_priority.py"
+      - "scripts/audit_source_acquisition_work_packages.py"
+      - "scripts/audit_criterion_implementation_crosscheck.py"
+      - "scripts/audit_criterion_resolution_decisions.py"
+      - "mappings/publication/**"
+      - "mappings/case-management/**"
+      - "outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv"
+  pull_request:
+    paths:
+      - ".github/workflows/publication-readiness.yml"
+      - "ig/**"
+      - "scripts/check_release.ps1"
+      - "scripts/check_no_phi.py"
+      - "scripts/audit_publisher_qa.py"
+      - "scripts/audit_release_controls.py"
+      - "scripts/audit_measure_specification_approvals.py"
+      - "scripts/approval_evidence.py"
+      - "scripts/audit_verification_methods.py"
+      - "scripts/audit_artifact_conformance.py"
+      - "scripts/audit_profile_constraints.py"
+      - "scripts/audit_mapping_profile_projection.py"
+      - "scripts/audit_terminology_conformance.py"
+      - "scripts/audit_fhir_resource_inventory.py"
+      - "scripts/audit_fhir_reference_graph.py"
+      - "scripts/audit_data_correctness_evidence.py"
+      - "scripts/audit_source_acquisition_priority.py"
+      - "scripts/audit_source_acquisition_work_packages.py"
+      - "scripts/audit_criterion_implementation_crosscheck.py"
+      - "scripts/audit_criterion_resolution_decisions.py"
+      - "mappings/publication/**"
+      - "mappings/case-management/**"
+      - "outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv"
+
+jobs:
+  publisher:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Preflight PHI pattern scan
+        run: python scripts/check_no_phi.py
+
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "20"
+
+      - name: Install SUSHI
+        working-directory: ig/tools
+        run: npm ci
+
+      - name: Install Jekyll
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ruby-full build-essential zlib1g-dev
+          sudo gem install jekyll --no-document
+
+      - name: Download pinned IG Publisher
+        working-directory: ig
+        run: |
+          curl --fail --location --retry 3 --output publisher.jar \
+            "https://github.com/HL7/fhir-ig-publisher/releases/download/2.3.2/publisher.jar"
+          test -s publisher.jar
+
+      # Capture the exit code so that QA and logs are uploaded even when the
+      # Publisher fails. The gate below still rejects any non-zero exit.
+      - name: Build complete IG
+        working-directory: ig
+        shell: bash
+        run: |
+          export PATH="$PWD/tools/node_modules/.bin:$PATH"
+          set +e
+          java -Dfile.encoding=UTF-8 -jar publisher.jar -ig ig.ini \
+            2>&1 | tee publisher.log
+          echo "${PIPESTATUS[0]}" > publisher-exit-code.txt
+          exit 0
+
+      # Publisher replaces ig/output, so create the retained privacy evidence
+      # only after the build and before any release-control audit or upload.
+      - name: Scan committable publication content for PHI patterns
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/check_no_phi.py \
+            --json-out ig/output/repository-phi-pattern-scan-audit.json \
+            | tee ig/output/repository-phi-pattern-scan-audit.log
+
+      - name: Audit Publisher warning baseline
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_publisher_qa.py \
+            --qa-text ig/output/qa.txt \
+            --qa-html ig/output/qa.html \
+            --policy mappings/publication/publisher-warning-policy.csv \
+            --json-out ig/output/publisher-warning-audit.json \
+            --target integrity \
+            | tee ig/output/publisher-warning-audit.log
+
+      - name: Audit every StructureDefinition and synthetic example
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_artifact_conformance.py \
+            --register mappings/publication/artifact-conformance-register.csv \
+            --scope-claims mappings/publication/ig-scope-claim-register.csv \
+            --resource-dir ig/fsh-generated/resources \
+            --resource-dir ig/input/resources \
+            --json-out ig/output/artifact-conformance-audit.json \
+            --target integrity \
+            | tee ig/output/artifact-conformance-audit.log
+
+      - name: Audit exact Profile differential constraint baseline
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_profile_constraints.py \
+            --baseline mappings/publication/profile-constraint-baseline.csv \
+            --resource-dir ig/fsh-generated/resources \
+            --resource-dir ig/input/resources \
+            --json-out ig/output/profile-constraint-audit.json \
+            | tee ig/output/profile-constraint-audit.log
+
+      - name: Audit every common-fact mapping against Publisher snapshots
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_mapping_profile_projection.py \
+            --mapping mappings/case-management/breast-common-to-case-management.csv \
+            --register mappings/publication/mapping-profile-projection-register.csv \
+            --publisher-snapshot-dir ig/temp/pages \
+            --json-out ig/output/mapping-profile-projection-audit.json \
+            --target integrity \
+            | tee ig/output/mapping-profile-projection-audit.log
+
+      - name: Audit complete terminology inventory and clinical approvals
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_terminology_conformance.py \
+            --approval-register mappings/publication/case-management-terminology-approval-register.csv \
+            --expansion-register mappings/publication/terminology-expansion-validation-register.csv \
+            --relationship-register mappings/publication/terminology-conceptmap-relationship-register.csv \
+            --cql ig/input/cql/BreastCancerCaseManagement.cql \
+            --resource-dir ig/fsh-generated/resources \
+            --resource-dir ig/input/resources \
+            --json-out ig/output/terminology-conformance-audit.json \
+            --target integrity \
+            | tee ig/output/terminology-conformance-audit.log
+
+      - name: Audit exact FHIR resource inventory and IG manifest
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_fhir_resource_inventory.py \
+            --register mappings/publication/fhir-resource-inventory.csv \
+            --version-policy-register mappings/publication/canonical-version-policy-register.csv \
+            --generated-resource-dir ig/fsh-generated/resources \
+            --manual-resource-dir ig/input/resources \
+            --cql ig/input/cql/BreastCancerCaseManagement.cql \
+            --json-out ig/output/fhir-resource-inventory-audit.json \
+            --target inventory \
+            | tee ig/output/fhir-resource-inventory-audit.log
+
+      - name: Audit complete FHIR reference and canonical graph
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_fhir_reference_graph.py \
+            --generated-resource-dir ig/fsh-generated/resources \
+            --manual-resource-dir ig/input/resources \
+            --sushi-config ig/sushi-config.yaml \
+            --json-out ig/output/fhir-reference-graph-audit.json \
+            | tee ig/output/fhir-reference-graph-audit.log
+
+      - name: Audit raw-source and real-data validation evidence
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_data_correctness_evidence.py \
+            --source-register mappings/publication/source-traceability-register.csv \
+            --validation-register mappings/publication/measure-validation-evidence-register.csv \
+            --common-mapping mappings/case-management/breast-common-to-case-management.csv \
+            --task-mapping mappings/case-management/case-management-task-only-fields.csv \
+            --measure-catalog mappings/case-management/case-management-measure-catalog.csv \
+            --population-criteria mappings/case-management/case-management-population-criteria.csv \
+            --measure-fsh ig/input/fsh/case-management-measures.fsh \
+            --case-comparison-register mappings/publication/case-level-comparison-register.csv \
+            --json-out ig/output/data-correctness-evidence-audit.json \
+            --target integrity \
+            | tee ig/output/data-correctness-evidence-audit.log
+
+      - name: Audit exact live Measure specification approval bundles
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_measure_specification_approvals.py \
+            --approval-register mappings/publication/case-management-measure-approval-register.csv \
+            --measure-audit mappings/publication/case-management-measure-audit.csv \
+            --measure-catalog mappings/case-management/case-management-measure-catalog.csv \
+            --population-criteria mappings/case-management/case-management-population-criteria.csv \
+            --measure-fsh ig/input/fsh/case-management-measures.fsh \
+            --cql ig/input/cql/BreastCancerCaseManagement.cql \
+            --generated-resource-dir ig/fsh-generated/resources \
+            --json-out ig/output/measure-specification-approval-audit.json \
+            --target integrity \
+            | tee ig/output/measure-specification-approval-audit.log
+
+      - name: Audit source acquisition priority
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_source_acquisition_priority.py \
+            --register mappings/publication/source-acquisition-priority.csv \
+            --common-mapping mappings/case-management/breast-common-to-case-management.csv \
+            --task-mapping mappings/case-management/case-management-task-only-fields.csv \
+            --population-criteria mappings/case-management/case-management-population-criteria.csv \
+            --source-register mappings/publication/source-traceability-register.csv \
+            --json-out ig/output/source-acquisition-priority-audit.json \
+            | tee ig/output/source-acquisition-priority-audit.log
+
+      - name: Audit owner-based source acquisition work packages
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_source_acquisition_work_packages.py \
+            --register mappings/publication/source-acquisition-work-packages.csv \
+            --priority-register mappings/publication/source-acquisition-priority.csv \
+            --json-out ig/output/source-acquisition-work-packages-audit.json \
+            --target integrity \
+            | tee ig/output/source-acquisition-work-packages-audit.log
+
+      - name: Audit every criterion against CQL and workflow implementation
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_criterion_implementation_crosscheck.py \
+            --register mappings/publication/criterion-implementation-crosscheck.csv \
+            --criteria mappings/case-management/case-management-population-criteria.csv \
+            --source-register mappings/publication/source-traceability-register.csv \
+            --task-mapping mappings/case-management/case-management-task-only-fields.csv \
+            --cql ig/input/cql/BreastCancerCaseManagement.cql \
+            --fsh-directory ig/input/fsh \
+            --json-out ig/output/criterion-implementation-crosscheck-audit.json \
+            | tee ig/output/criterion-implementation-crosscheck-audit.log
+
+      - name: Audit resolution decisions for every non-aligned criterion
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_criterion_resolution_decisions.py \
+            --register mappings/publication/criterion-resolution-decision-register.csv \
+            --crosscheck mappings/publication/criterion-implementation-crosscheck.csv \
+            --json-out ig/output/criterion-resolution-decision-audit.json \
+            --target integrity \
+            | tee ig/output/criterion-resolution-decision-audit.log
+
+      - name: Audit complete release controls
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_release_controls.py \
+            --controls mappings/publication/release-control-register.csv \
+            --measure-audit mappings/publication/case-management-measure-audit.csv \
+            --terminology-fsh ig/input/fsh/case-management-terminology.fsh \
+            --approval-register outputs/qbc_ig_mapping/qbc_mapping_approval_register.csv \
+            --measure-approval-register mappings/publication/case-management-measure-approval-register.csv \
+            --measure-specification-audit ig/output/measure-specification-approval-audit.json \
+            --scope-claims mappings/publication/ig-scope-claim-register.csv \
+            --scope-decisions mappings/publication/publication-scope-decision-register.csv \
+            --artifact-audit ig/output/artifact-conformance-audit.json \
+            --mapping-projection-audit ig/output/mapping-profile-projection-audit.json \
+            --terminology-audit ig/output/terminology-conformance-audit.json \
+            --resource-inventory-audit ig/output/fhir-resource-inventory-audit.json \
+            --reference-graph-audit ig/output/fhir-reference-graph-audit.json \
+            --data-evidence-audit ig/output/data-correctness-evidence-audit.json \
+            --source-work-package-audit ig/output/source-acquisition-work-packages-audit.json \
+            --criterion-resolution-audit ig/output/criterion-resolution-decision-audit.json \
+            --publisher-audit ig/output/publisher-warning-audit.json \
+            --phi-audit ig/output/repository-phi-pattern-scan-audit.json \
+            --json-out ig/output/release-control-audit.json \
+            --target integrity \
+            | tee ig/output/release-control-audit.log
+
+      - name: Audit exact eight-method verification coverage
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/audit_verification_methods.py \
+            --register mappings/publication/verification-method-register.csv \
+            --controls mappings/publication/release-control-register.csv \
+            --release-audit ig/output/release-control-audit.json \
+            --json-out ig/output/verification-method-audit.json \
+            --target integrity \
+            | tee ig/output/verification-method-audit.log
+
+      - name: Upload Publisher evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ig-publisher-evidence
+          if-no-files-found: warn
+          retention-days: 14
+          path: |
+            ig/output/
+            ig/publisher.log
+            ig/fsh-generated/resources/StructureDefinition-*.json
+            ig/publisher-exit-code.txt
+
+      - name: Enforce technical publication gate
+        working-directory: ig
+        shell: bash
+        run: |
+          test "$(cat publisher-exit-code.txt)" = "0"
+          test -f output/qa.html
+          summary="$(grep -Eo 'errors = [0-9]+, warn = [0-9]+, info = [0-9]+, broken links = [0-9]+' output/qa.html | head -1)"
+          test -n "$summary"
+          echo "$summary" | tee -a "$GITHUB_STEP_SUMMARY"
+          echo "$summary" | grep -Eq '^errors = 0, warn = [0-9]+, info = [0-9]+, broken links = 0$'
+          grep -Fq 'Load Template from fhir2.base.template#0.1.0' publisher.log
+          ! grep -Fq 'no longer considered secure' publisher.log
+          test -f output/package.tgz
+
+      - name: Report strict release status
+        if: always()
+        shell: bash
+        run: |
+          test -f ig/output/release-control-audit.json
+          test -f ig/output/verification-method-audit.json
+          publisher_gate="$(python -c "import json; print(json.load(open('ig/output/release-control-audit.json'))['publisher_formal_qa_gate'])")"
+          formal_gate="$(python -c "import json; print(json.load(open('ig/output/release-control-audit.json'))['formal_release_gate'])")"
+          maximum_claim="$(python -c "import json; print(json.load(open('ig/output/release-control-audit.json'))['maximum_supported_claim'])")"
+          echo "Publisher formal QA gate: $publisher_gate" | tee -a "$GITHUB_STEP_SUMMARY"
+          echo "Complete formal release gate: $formal_gate" | tee -a "$GITHUB_STEP_SUMMARY"
+          echo "Maximum supported claim: $maximum_claim" | tee -a "$GITHUB_STEP_SUMMARY"

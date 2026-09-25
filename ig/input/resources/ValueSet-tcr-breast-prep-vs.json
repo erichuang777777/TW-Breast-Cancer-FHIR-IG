@@ -7,6 +7,7 @@
   "title": "台灣癌症登記 安寧緩和照護（PREP）值集",
   "status": "draft",
   "experimental": true,
+  "description": "Taiwan Cancer Registry value set for PREP (安寧緩和照護). Includes every code from the corresponding local TCR CodeSystem; it does not assert equivalence to a standard clinical terminology.",
   "compose": {
     "include": [
       {

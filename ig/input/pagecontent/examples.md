@@ -38,7 +38,7 @@ QBC Observations + Provenance + Submission Bundle
 - 合成 Patient 與乳癌 Condition。
 - 合成病理 Specimen、腫瘤標記 Observation 與病理 DiagnosticReport。
 - 合成檢驗與超音波 DiagnosticReport。
-- 合成分期結構、治療 Procedure、MedicationRequest 與 EpisodeOfCare。
+- 合成分期結構、治療 Procedure、MedicationRequest 醫囑、MedicationAdministration 實際給藥與 EpisodeOfCare。
 
 The bundle links a synthetic Patient and breast cancer Condition to synthetic pathology, laboratory, ultrasound, stage, treatment, medication-request, and episode-of-care records. Values intentionally demonstrate structure and lineage rather than clinical realism.
 

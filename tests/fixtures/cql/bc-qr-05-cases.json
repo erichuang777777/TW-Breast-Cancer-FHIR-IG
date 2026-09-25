@@ -1,0 +1,62 @@
+[
+  {
+    "id": "resumed-day-after-interruption",
+    "expected": { "Denominator QR5": true, "Numerator QR5": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-05-after" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr05-after", "status": "onhold", "patient": { "reference": "Patient/bc-qr-05-after" }, "period": { "start": "2026-02-01", "end": "2026-03-01" } } },
+      { "resource": { "resourceType": "Procedure", "id": "procedure-qr05-after", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "radiotherapy" }] }, "subject": { "reference": "Patient/bc-qr-05-after" }, "performedDateTime": "2026-03-02T00:00:00+08:00" } },
+      { "resource": { "resourceType": "Task", "id": "task-qr05-after", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/bc-qr-05-after" }, "input": [{ "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-status" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-status", "code": "refused-interrupted" }] } }] } }
+    ] }
+  },
+  {
+    "id": "treatment-same-day-not-after",
+    "expected": { "Denominator QR5": true, "Numerator QR5": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-05-same" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr05-same", "status": "onhold", "patient": { "reference": "Patient/bc-qr-05-same" }, "period": { "start": "2026-02-01", "end": "2026-03-01" } } },
+      { "resource": { "resourceType": "Procedure", "id": "procedure-qr05-same", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "breast-conserving-surgery" }] }, "subject": { "reference": "Patient/bc-qr-05-same" }, "performedDateTime": "2026-03-01T23:59:59+08:00" } },
+      { "resource": { "resourceType": "Task", "id": "task-qr05-same", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/bc-qr-05-same" }, "input": [{ "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-status" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-status", "code": "refused-interrupted" }] } }] } }
+    ] }
+  },
+  {
+    "id": "treatment-before-interruption",
+    "expected": { "Denominator QR5": true, "Numerator QR5": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-05-before" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr05-before", "status": "cancelled", "patient": { "reference": "Patient/bc-qr-05-before" }, "period": { "start": "2026-02-01", "end": "2026-03-01" } } },
+      { "resource": { "resourceType": "Procedure", "id": "procedure-qr05-before", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "radiotherapy" }] }, "subject": { "reference": "Patient/bc-qr-05-before" }, "performedDateTime": "2026-02-28T23:59:59+08:00" } },
+      { "resource": { "resourceType": "Task", "id": "task-qr05-before", "status": "completed", "intent": "order", "for": { "reference": "Patient/bc-qr-05-before" }, "input": [{ "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "treatment-completion" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-treatment-completion", "code": "incomplete-interrupted" }] } }] } }
+    ] }
+  },
+  {
+    "id": "missing-interruption-date",
+    "expected": { "Denominator QR5": true, "Interruption Date": null, "Numerator QR5": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-05-missing-date" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr05-missing-date", "status": "active", "patient": { "reference": "Patient/bc-qr-05-missing-date" }, "period": { "start": "2026-02-01" } } },
+      { "resource": { "resourceType": "Procedure", "id": "procedure-qr05-missing-date", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "radiotherapy" }] }, "subject": { "reference": "Patient/bc-qr-05-missing-date" }, "performedDateTime": "2026-03-02T00:00:00+08:00" } },
+      { "resource": { "resourceType": "Task", "id": "task-qr05-missing-date", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/bc-qr-05-missing-date" }, "input": [{ "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-status" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-status", "code": "refused-interrupted" }] } }] } }
+    ] }
+  },
+  {
+    "id": "completion-field-creates-denominator",
+    "expected": { "Denominator QR5": true, "Numerator QR5": true },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-05-completion" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr05-completion", "status": "onhold", "patient": { "reference": "Patient/bc-qr-05-completion" }, "period": { "start": "2026-02-01", "end": "2026-03-01" } } },
+      { "resource": { "resourceType": "Procedure", "id": "procedure-qr05-completion", "status": "in-progress", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "breast-conserving-surgery" }] }, "subject": { "reference": "Patient/bc-qr-05-completion" }, "performedPeriod": { "start": "2026-03-02" } } },
+      { "resource": { "resourceType": "Task", "id": "task-qr05-completion", "status": "completed", "intent": "order", "for": { "reference": "Patient/bc-qr-05-completion" }, "input": [{ "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "treatment-completion" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-treatment-completion", "code": "incomplete-refused-part" }] } }] } }
+    ] }
+  },
+  {
+    "id": "ordinary-case-outside-denominator",
+    "expected": { "Denominator QR5": false, "Numerator QR5": false },
+    "bundle": { "resourceType": "Bundle", "type": "collection", "meta": { "tag": [{ "system": "https://example.org/tags", "code": "synthetic" }] }, "entry": [
+      { "resource": { "resourceType": "Patient", "id": "bc-qr-05-ordinary" } },
+      { "resource": { "resourceType": "EpisodeOfCare", "id": "episode-qr05-ordinary", "status": "onhold", "patient": { "reference": "Patient/bc-qr-05-ordinary" }, "period": { "start": "2026-02-01", "end": "2026-03-01" } } },
+      { "resource": { "resourceType": "Procedure", "id": "procedure-qr05-ordinary", "status": "completed", "code": { "coding": [{ "system": "https://example.org/cm-test", "code": "radiotherapy" }] }, "subject": { "reference": "Patient/bc-qr-05-ordinary" }, "performedDateTime": "2026-03-02T00:00:00+08:00" } },
+      { "resource": { "resourceType": "Task", "id": "task-qr05-ordinary", "status": "in-progress", "intent": "order", "for": { "reference": "Patient/bc-qr-05-ordinary" }, "input": [{ "type": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-task-input-type", "code": "case-status" }] }, "valueCodeableConcept": { "coding": [{ "system": "https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG/CodeSystem/cm-case-status", "code": "treatment" }] } }] } }
+    ] }
+  }
+]

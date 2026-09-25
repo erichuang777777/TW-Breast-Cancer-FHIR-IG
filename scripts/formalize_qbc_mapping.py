@@ -243,6 +243,53 @@ def approval_rows() -> list[list[str]]:
     ]
 
 
+APPROVAL_HEADERS = [
+    "Gate ID", "Category", "Proposed decision", "Required signer", "Status",
+    "Acceptance evidence", "Decision (approve/reject/revise)", "Signer name",
+    "Signer organization/title", "Decision date", "Evidence URI/path",
+    "Signed artifact SHA-256", "Notes",
+]
+APPROVAL_CONTEXT_FIELDS = (
+    "Gate ID", "Category", "Proposed decision", "Required signer",
+    "Acceptance evidence",
+)
+APPROVAL_DECISION_FIELDS = (
+    "Status", "Decision (approve/reject/revise)", "Signer name",
+    "Signer organization/title", "Decision date", "Evidence URI/path",
+    "Signed artifact SHA-256", "Notes",
+)
+
+
+def merge_approval_rows(
+    previous_rows: list[dict[str, str]],
+) -> list[list[str]]:
+    """Preserve a decision only while its complete approval context is unchanged."""
+    previous_by_id = {row.get("Gate ID", ""): row for row in previous_rows}
+    merged: list[list[str]] = []
+    for base in approval_rows():
+        current = dict(zip(APPROVAL_HEADERS[:6], base))
+        current.update({field: "" for field in APPROVAL_HEADERS[6:]})
+        previous = previous_by_id.get(current["Gate ID"])
+        if previous and all(
+            previous.get(field, "") == current[field]
+            for field in APPROVAL_CONTEXT_FIELDS
+        ):
+            for field in APPROVAL_DECISION_FIELDS:
+                current[field] = previous.get(field, "")
+        merged.append([current[field] for field in APPROVAL_HEADERS])
+    return merged
+
+
+def approval_rows_preserving_existing_decisions() -> list[list[str]]:
+    previous_rows: list[dict[str, str]] = []
+    if APPROVAL_CSV.exists():
+        with APPROVAL_CSV.open(encoding="utf-8-sig", newline="") as handle:
+            reader = csv.DictReader(handle)
+            if reader.fieldnames == APPROVAL_HEADERS:
+                previous_rows = list(reader)
+    return merge_approval_rows(previous_rows)
+
+
 def style(ws, widths: dict[int, int]) -> None:
     ws.freeze_panes = "A2"
     ws.sheet_view.showGridLines = False
@@ -320,15 +367,12 @@ def formalize(path: Path) -> Path:
     ws.add_table(Table(displayName="QBCFormalMapping", ref=ws.dimensions))
     ws.tables["QBCFormalMapping"].tableStyleInfo = TableStyleInfo(name="TableStyleMedium2", showRowStripes=True)
 
-    approval_headers = [
-        "Gate ID", "Category", "Proposed decision", "Required signer", "Status", "Acceptance evidence",
-        "Decision (approve/reject/revise)", "Signer name", "Signer organization/title", "Decision date",
-        "Evidence URI/path", "Signed artifact SHA-256", "Notes",
-    ]
+    approval_headers = APPROVAL_HEADERS
+    merged_approvals = approval_rows_preserving_existing_decisions()
     aws = wb.create_sheet("Approval_Register", 3)
     aws.append(approval_headers)
-    for row in approval_rows():
-        aws.append(row + [""] * 7)
+    for row in merged_approvals:
+        aws.append(row)
     style(aws, {1: 34, 2: 25, 3: 90, 4: 34, 5: 30, 6: 80, 7: 28, 8: 24, 9: 34, 10: 18, 11: 55, 12: 66, 13: 50})
     aws.add_table(Table(displayName="QBCApprovalRegister", ref=aws.dimensions))
     aws.tables["QBCApprovalRegister"].tableStyleInfo = TableStyleInfo(name="TableStyleMedium2", showRowStripes=True)
@@ -385,7 +429,7 @@ def formalize(path: Path) -> Path:
     with APPROVAL_CSV.open("w", encoding="utf-8-sig", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(approval_headers)
-        writer.writerows(row + [""] * 7 for row in approval_rows())
+        writer.writerows(merged_approvals)
     return path
 
 

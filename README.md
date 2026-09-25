@@ -11,7 +11,7 @@
 
 ### 專案定位
 
-本專案建立一套以台灣醫療情境為背景的乳癌 FHIR 實作指引草稿。乳癌是上層臨床範疇（domain scope）；QBC／P4P 癌症治療品質改善計畫資料申報是目前第一個被納入驗證的業務 Task，不等同於整套乳癌 IG。
+本專案建立一套以台灣醫療情境為背景的乳癌 FHIR 實作指引草稿。乳癌是上層臨床範疇（domain scope）；QBC／P4P 癌症治療品質改善計畫資料申報是目前第一個完成欄位契約技術驗證的業務 Task，不等同於整套乳癌 IG，也不表示臨床簽核或 VPN 驗收完成。
 
 本草稿希望讓後續 Task 共用乳癌核心模型，避免每個申報或作業流程各自建立不相容的 Patient、Condition、Observation、DiagnosticReport、Procedure、MedicationRequest 等定義。
 
@@ -24,7 +24,7 @@
 診療計畫／治療計畫／多專科討論／癌症登記／藥物申請
         ↓
 ├─ Task：癌症診療計畫書（獨立 Task 草稿）
-├─ Task：QBC／P4P 癌症治療申報（第一個已驗證 Task）
+├─ Task：QBC／P4P 癌症治療申報（第一個完成欄位契約技術驗證的 Task）
 └─ Task：TWPAS 癌症用藥事前審查（官方 TWPAS 1.2.5 投影設計）
 ```
 
@@ -127,11 +127,15 @@ sushi.cmd .
 java "-Dfile.encoding=UTF-8" -jar publisher.jar -ig ig.ini
 ```
 
-發布前至少應確認：測試通過、SUSHI 無 error、Publisher QA 為 0 errors／0 warnings／0 broken links、Mapping 產物已重建，且 PHI 掃描無發現。
+發布前至少應確認：測試通過、SUSHI 為 0 errors／0 warnings、Publisher QA 為 0 errors／0 broken links且 warning 未新增或未分類、Mapping 產物已重建，且 PHI 掃描無發現。正式發布仍須讓八項控制全部通過；目前 52 個已分類 Publisher warnings 不等於 0 warnings，也不能以基線存在取代正式核准。
+
+各發布層級、六種資料正確性核對方法、八項正式發布控制、逐項門檻及目前 52 個 Publisher warnings 的精確分類，見 [FHIR IG 發布與資料正確性驗收矩陣](PUBLICATION_ACCEPTANCE_MATRIX.md)；20 個品管／季報 Measure 的規格判定見 [FHIR IG 規格正確性稽核](SPECIFICATION_CORRECTNESS_AUDIT.md)；各 Task 與外部標準可宣稱到哪一層，見 [全 IG 範圍與 Conformance 宣稱稽核](IG_SCOPE_CONFORMANCE_AUDIT.md)。
+八種方法的機器可讀範圍與門檻另鎖定於 `mappings/publication/verification-method-register.csv`，並由 `scripts/audit_verification_methods.py` 在發布 CI 中逐項核對。
+RC-05／RC-06 的逐案 manifest、HMAC case token、值正規化、完整 tuple set 與零總差異規則，見 [逐案資料正確性驗證協定](CASE_LEVEL_VALIDATION_PROTOCOL.md)。
 
 ### 治理與簽核
 
-Preview 版本可以由專案維護者發布，不代表官方認證。需要人工確認的項目記錄於 Mapping workbook 的 `Approval_Register` 及對應 CSV；簽核的是本專案對規則、術語與臨床語意所做的本地解讀，不是要求維護者代替主管機關核准官方規則。
+只有 [發布驗收矩陣](PUBLICATION_ACCEPTANCE_MATRIX.md) 的 Community Preview gate 通過後，專案維護者才可發布版本化 Preview；目前只能分享明確標示限制的原始碼／研究草稿。Preview 也不代表官方認證。需要人工確認的項目記錄於 Mapping workbook 的 `Approval_Register` 及對應 CSV；簽核的是本專案對規則、術語與臨床語意所做的本地解讀，不是要求維護者代替主管機關核准官方規則。
 
 正式導入前，採用機構仍應完成臨床、術語、FHIR、資訊安全、法遵與申報流程的在地審查。問題與建議請使用 [GitHub Issues](https://github.com/erichuang777777/TW-Breast-Cancer-FHIR-IG/issues)。
 
@@ -145,7 +149,7 @@ Preview 版本可以由專案維護者發布，不代表官方認證。需要人
 
 ### Project purpose
 
-This repository develops a Taiwan-context community draft for a breast cancer FHIR Implementation Guide. Breast cancer is the domain scope. The QBC/P4P cancer care quality reporting workflow is the first validated business task; it is not the entire breast cancer IG.
+This repository develops a Taiwan-context community draft for a breast cancer FHIR Implementation Guide. Breast cancer is the domain scope. QBC/P4P is the first business task whose field contract has completed technical validation; this does not mean clinical sign-off or VPN acceptance, and it is not the entire breast cancer IG.
 
 The guide provides a reusable breast cancer model so future workflows can share compatible definitions for Patient, Condition, Observation, DiagnosticReport, Procedure, MedicationRequest, and related resources instead of creating a separate IG for every task.
 
@@ -158,7 +162,7 @@ Shared breast cancer FHIR Profiles, ValueSets, and Extensions
 care plans / treatment plans / tumor board / cancer registry / drug review
         ↓
 ├─ Task: cancer care plan (independent task draft)
-├─ Task: QBC/P4P reporting (the first validated task)
+├─ Task: QBC/P4P reporting (the first field-contract technically validated task)
 └─ Task: TWPAS cancer drug prior authorization (official TWPAS 1.2.5 projection design)
 ```
 
@@ -262,7 +266,7 @@ sushi.cmd .
 java "-Dfile.encoding=UTF-8" -jar publisher.jar -ig ig.ini
 ```
 
-Before publication, confirm that tests pass, SUSHI reports no errors, Publisher QA reports 0 errors, 0 warnings, and 0 broken links, mapping artifacts are rebuilt, and the PHI scan finds nothing.
+Before publication, confirm that tests pass, SUSHI reports zero errors and warnings, Publisher QA reports zero errors and broken links with no new or unclassified warnings, mapping artifacts are rebuilt, and the PHI scan finds nothing. Formal publication additionally requires all eight release controls to pass; the current 52 classified Publisher warnings are not the same as zero warnings and their baseline does not replace formal approval.
 
 ### Governance and review
 

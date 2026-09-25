@@ -9,15 +9,20 @@ QuestionnaireResponse exists in the CodeSystem it cites, and no code table is
 claimed for a field this package cannot verify.
 """
 
+import csv
 import json
+from pathlib import Path
 
 import pytest
 
 from tcr_decoder.code_ranges import CODE_RANGES
 from tcr_workbench.ig_export import (
-    DEFAULT_BASE_URL, FIELD_MAP, NUMERIC_FIELDS, SECTIONS, build_ig,
-    build_questionnaire, field_has_code_table,
+    DATE_FIELDS, DEFAULT_BASE_URL, FIELD_MAP, NUMERIC_FIELDS, SECTIONS, build_ig,
+    build_questionnaire, build_terminology_mapping_backlog,
+    field_has_code_table, write_terminology_mapping_backlog,
 )
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 @pytest.fixture(scope='module')
@@ -54,6 +59,12 @@ class TestStructure:
 
 
 class TestTerminology:
+    def test_published_terminology_has_shareable_metadata(self, ig):
+        _summary, resources, _out = ig
+        for resource in resources.values():
+            if resource['resourceType'] == 'ValueSet':
+                assert resource.get('description', '').strip(), resource['id']
+
     def test_code_systems_cover_exactly_the_verified_fields(self, ig):
         _summary, resources, _out = ig
         generated = {r['id'].replace('tcr-breast-', '')
@@ -80,17 +91,101 @@ class TestTerminology:
                 assert any(d['language'] == 'en' and d['value'].strip()
                            for d in designations), concept
 
-    def test_concept_maps_leave_every_target_unmapped(self, ig):
-        """A guessed LOINC/SNOMED target would be worse than a visible gap."""
+    def test_unreviewed_terminology_is_not_published_as_a_concept_map(self, ig):
         _summary, resources, _out = ig
         maps = [r for r in resources.values() if r['resourceType'] == 'ConceptMap']
-        assert maps
-        for cm in maps:
-            for group in cm['group']:
-                for element in group['element']:
-                    for target in element['target']:
-                        assert target['equivalence'] == 'unmatched'
-                        assert 'code' not in target
+        assert maps == []
+
+        backlog = build_terminology_mapping_backlog('breast', DEFAULT_BASE_URL)
+        code_system_total = sum(
+            resource['count'] for resource in resources.values()
+            if resource['resourceType'] == 'CodeSystem'
+        )
+        assert len(backlog) == code_system_total == 2169
+        assert len({(row['source_field'], row['source_code']) for row in backlog}) == 2169
+        assert {row['source_field'] for row in backlog} == {
+            field for field, _zh, _source, _document in FIELD_MAP
+            if field_has_code_table('breast', field)
+        }
+        assert all(row['review_status'] == 'not-started' for row in backlog)
+        assert all(not row['target_system'] and not row['target_version']
+                   and not row['target_code']
+                   and not row['relationship'] for row in backlog)
+
+    def test_legacy_concept_map_switch_fails_closed(self, tmp_path):
+        with pytest.raises(ValueError, match='cannot be emitted'):
+            build_ig(tmp_path, include_concept_maps=True)
+
+    def test_backlog_regeneration_preserves_review_decisions(self, tmp_path):
+        path = tmp_path / 'backlog.csv'
+        write_terminology_mapping_backlog(path, 'breast', DEFAULT_BASE_URL)
+        with path.open(encoding='utf-8', newline='') as handle:
+            rows = list(csv.DictReader(handle))
+            fieldnames = list(rows[0])
+        rows[0].update({
+            'target_system': 'http://snomed.info/sct',
+            'target_version': 'review-version',
+            'target_code': '123456',
+            'relationship': 'equivalent',
+            'review_status': 'reviewed',
+            'reviewer': 'terminologist-a',
+            'evidence_reference': 'decision-001',
+            'decision_date': '2026-08-21',
+        })
+        with path.open('w', encoding='utf-8', newline='') as handle:
+            writer = csv.DictWriter(handle, fieldnames=fieldnames,
+                                    lineterminator='\n')
+            writer.writeheader()
+            writer.writerows(rows)
+
+        write_terminology_mapping_backlog(path, 'breast', DEFAULT_BASE_URL)
+        with path.open(encoding='utf-8', newline='') as handle:
+            regenerated = list(csv.DictReader(handle))
+        assert regenerated[0] == rows[0]
+
+
+def test_committed_terminology_backlog_matches_current_verified_codes():
+    path = ROOT / 'mappings' / 'tcr' / 'terminology-mapping-backlog.csv'
+    with path.open(encoding='utf-8', newline='') as handle:
+        rows = list(csv.DictReader(handle))
+    expected_rows = build_terminology_mapping_backlog(
+        'breast',
+        'https://erichuang777777.github.io/TW-Breast-Cancer-FHIR-IG',
+    )
+    source_columns = [
+        'cancer_group', 'source_field', 'source_code_system',
+        'source_value_set', 'source_code', 'source_display',
+    ]
+    expected = {
+        (row['source_field'], row['source_code']): {
+            column: row[column] for column in source_columns
+        }
+        for row in expected_rows
+    }
+    actual = {
+        (row['source_field'], row['source_code']): {
+            column: row[column] for column in source_columns
+        }
+        for row in rows
+    }
+    assert len(rows) == len(actual) == 2169
+    assert actual == expected
+
+    for row in rows:
+        assert row['review_status'] in {'not-started', 'in-review', 'reviewed'}
+        if row['review_status'] == 'not-started':
+            assert not any(row[column] for column in (
+                'target_system', 'target_version', 'target_code',
+                'relationship', 'reviewer', 'evidence_reference',
+                'decision_date',
+            ))
+        elif row['review_status'] == 'reviewed':
+            assert all(row[column] for column in (
+                'target_system', 'relationship', 'reviewer',
+                'evidence_reference', 'decision_date',
+            ))
+            if row['relationship'] not in {'unmatched', 'disjoint'}:
+                assert row['target_code']
 
 
 class TestQuestionnaire:
@@ -124,7 +219,7 @@ class TestQuestionnaire:
                     for e in item.get('extension', []))
                 if item.get('answerValueSet'):
                     assert not pending, field
-                elif item['type'] == 'string' and field != 'PK':
+                elif item['type'] == 'string' and field not in DATE_FIELDS | {'PK'}:
                     assert pending, f'{field} has neither a ValueSet nor a flag'
 
     def test_ebrt_repeats_because_the_field_is_additive(self, ig):
@@ -162,7 +257,16 @@ class TestExample:
     def test_example_is_tagged_synthetic(self, ig):
         _summary, resources, _out = ig
         qr = resources['tcr-breast-example']
-        assert any(t['code'] == 'synthetic' for t in qr['meta']['tag'])
+        security = qr['meta']['security']
+        assert any(
+            coding['system'] ==
+            'http://terminology.hl7.org/CodeSystem/v3-ActReason'
+            and coding['code'] == 'HTEST'
+            for coding in security
+        )
+        config = (ROOT / 'ig' / 'sushi-config.yaml').read_text(encoding='utf-8')
+        assert 'QuestionnaireResponse/tcr-breast-example:' in config
+        assert 'Completely synthetic cancer-registry abstraction example' in config
 
     def test_task_example_declares_its_inputs_and_output(self, ig):
         _summary, resources, _out = ig
@@ -171,6 +275,44 @@ class TestExample:
         assert len(task['input']) >= 3
         assert task['output'][0]['valueReference']['reference'].startswith(
             'QuestionnaireResponse/')
+
+    def test_questionnaire_response_value_types_match_the_questionnaire(self, ig):
+        _summary, resources, _out = ig
+        questionnaire = resources['tcr-breast-longform']
+        response = resources['tcr-breast-example']
+        expected = {
+            item['linkId']: item['type']
+            for group in questionnaire['item'] for item in group['item']
+        }
+        suffix = {
+            'date': 'valueDate', 'decimal': 'valueDecimal',
+            'integer': 'valueInteger', 'string': 'valueString',
+            'choice': 'valueCoding',
+        }
+        for group in response['item']:
+            for item in group['item']:
+                value_key = next(iter(item['answer'][0]))
+                assert value_key == suffix[expected[item['linkId']]], item['linkId']
+
+    def test_task_and_response_references_resolve_to_published_examples(self, ig):
+        _summary, resources, _out = ig
+        response = resources['tcr-breast-example']
+        task = resources['tcr-breast-abstraction-example']
+        references = [response['subject']['reference'], task['focus']['reference'],
+                      task['for']['reference']]
+        references.extend(i['valueReference']['reference'] for i in task['input'])
+        references.append(task['output'][0]['valueReference']['reference'])
+        common_ids = {
+            'breast-cancer-patient-example',
+            'breast-cancer-primary-condition-example',
+            'breast-cancer-pathology-report-example',
+            'breast-cancer-laboratory-report-example',
+            'breast-cancer-treatment-procedure-example',
+        }
+        for reference in references:
+            _resource_type, resource_id = reference.split('/', 1)
+            assert resource_id in resources or resource_id in common_ids, reference
+            assert not resource_id.startswith('example'), reference
 
 
 def test_summary_reports_the_real_coverage_gap(ig):
@@ -208,7 +350,8 @@ class TestIGScaffold:
                          'input/ignoreWarnings.txt',
                          'input/pagecontent/index.md',
                          'input/pagecontent/cancer-registry-task.md',
-                         'input/pagecontent/terminology.md'):
+                         'input/pagecontent/terminology.md',
+                         'mappings/tcr/terminology-mapping-backlog.csv'):
             assert (repo / expected).exists(), expected
 
     def test_generated_resources_are_flat_under_input_resources(self, scaffold):
